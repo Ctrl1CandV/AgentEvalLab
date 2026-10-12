@@ -1,0 +1,21 @@
+== rsn-002 derivation-check self-calibration ==
+
+Reference samples:
+  s1: theta=45, mu=0.2, L=2.0, g=9.8; correct=4.709020, student=4.458541
+  s2: theta=60, mu=0.5, L=1.5, g=9.8; correct=4.255719, student=3.280419
+  s3: theta=30, mu=0.3, L=3.0, g=9.81; correct=3.760016, student=3.431035
+
+[PASS] samples_in_domain: expected and actual outcomes matched
+[PASS] energy_equals_newton: expected and actual outcomes matched
+[PASS] student_differs_in_domain: expected and actual outcomes matched
+[PASS] correct_solution_approaches_freefall: expected and actual outcomes matched
+[PASS] student_solution_below_freefall: expected and actual outcomes matched
+[PASS] low_friction_case_is_discriminating: expected and actual outcomes matched
+[PASS] domain_guard: expected and actual outcomes matched
+[PASS] reference_pass: expected and actual outcomes matched
+[PASS] negative_student_numbers_fail: expected and actual outcomes matched
+[PASS] negative_missing_velocity_fails: expected and actual outcomes matched
+[PASS] empty_answer_fails: expected and actual outcomes matched
+[PASS] repeatable: expected and actual outcomes matched
+
+RESULT: PASS

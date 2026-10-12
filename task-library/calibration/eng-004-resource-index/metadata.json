@@ -1,0 +1,42 @@
+{
+  "id": "eng-004-resource-index",
+  "version": "0.1.1",
+  "familyId": "eng-resource-index-maintenance",
+  "capability": "engineering",
+  "usage": "development",
+  "status": "development-calibration",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "docs/design/V1_EVALUATION.md",
+      "https://nodejs.org/docs/latest-v22.x/api/typescript.html"
+    ]
+  },
+  "license": {
+    "taskText": "Original project-authored task material; no third-party text is copied.",
+    "thirdPartyContent": []
+  },
+  "claimBoundary": "Offline grader and reference calibration only. No live model API result, method validity claim, or frozen benchmark status.",
+  "runtime": "Node.js 22.23.3 + Python 3.13.15",
+  "network": false,
+  "contentHashesSha256": {
+    "calibration.md": "8506389ce48424b77b081bce07abaec8f8feec3a34ef1415373d4441d8025d2e",
+    "environment/README.md": "82c6fd6864cc53b806d1557b459773b9213b38123add3f40f12c2287f7e6ad28",
+    "instruction.md": "7d22392e845226583951488b6f14f6821af88cb0a33816514ddd0de49c9f2e07",
+    "logs/acceptance-self-calibration.log": "9bdf3c9c478011ea29b046bcbddefaa3e8b0e50fc7a72c838aafdba0c6ae075a",
+    "private/acceptance.py": "84a01b776aa6fb177ec8c96ad1c6c4ea5cbc0038ae27fa31fd4e1f225f46b0a2",
+    "private/hidden_catalog.json": "ea13749fc3d9ee35f92e78e972b924bb280c238d41f24ae51d0b40895d35e1a8",
+    "private/mutants/bad-csv-quoting/src/export.ts": "682084c95dd1c18a4e73a00739051d1ccce332c8e58af8bdb76d45d81cb1a45e",
+    "private/mutants/off-by-one-page/src/search.ts": "db24b4b9da78f292281fce2bae781df9e9dc557c145710f78ce3f21e408a4423",
+    "private/mutants/wrong-next-offset/src/search.ts": "fb36b063637dcd84860ae222b9854c38263942f6ec0907f206378a17a4c73662",
+    "private/reference-variants/ref-a/src/cli.ts": "f220f5dca065ef5b24fdfaa1224717391a2a3bb7b5c421a9266de078504a5e7f",
+    "private/reference-variants/ref-a/src/export.ts": "6757955f17ca79a6c9eea9451b2ad9cfe1b2249f2a9ac86f562cd73f102a2f62",
+    "private/reference-variants/ref-a/src/search.ts": "cb29cd81a1b117b40e767923c50ebf6b9e58b63bf48a214e6259a12f9835dc68",
+    "private/reference-variants/ref-b/src/cli.ts": "75f97cc996fd1aace609e32e776e01ae5d506eb4aa648566af6076ff7456dc91",
+    "private/reference-variants/ref-b/src/export.ts": "ad27c733d6d1448272da8164b6b0b4a432afba36d4279c5ea72d18317ef92aed",
+    "private/reference-variants/ref-b/src/search.ts": "738c03f702033165b7c854334ff14751d98da8b7ad13b90fb835b9aaac954b40",
+    "public/catalog.json": "8adb02f3969ad1570c43741a771ce013d5113fc17122849cec72144714b58b5c",
+    "public/task-contract.md": "15fcbcade911d2e342dc3b9a81b0f8fe9f80f2ffe2b40c6e09084ef73366ec27",
+    "rubric.md": "e85ebd37c2f8a3d7229b80f1b03886798fb63ceb3fab04edc45f7a0b4b0e948c"
+  }
+}

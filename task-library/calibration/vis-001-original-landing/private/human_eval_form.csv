@@ -1,0 +1,3 @@
+review_id,task_version,left_id,right_id,fit_a,fit_b,clarity_a,clarity_b,completeness_a,completeness_b,preference,evidence
+1,0.1.0,anonymous-a,anonymous-b,,,,,,,,
+

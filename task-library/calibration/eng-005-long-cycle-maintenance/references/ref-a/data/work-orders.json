@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "workOrders": [
+    { "id": "WO-101", "title": "Repair east entrance access reader", "status": "OPEN", "createdAt": "2026-01-02T09:00:00.000Z", "description": "Card reader intermittently fails" },
+    { "id": "WO-102", "title": "Inspect backup jobs", "status": "DONE", "createdAt": "2026-01-02T09:00:00.000Z", "description": "" },
+    { "id": "WO-103", "title": "Update conference room guide", "status": "IN_PROGRESS", "createdAt": "2026-01-03T09:00:00.000Z", "description": "Replace outdated floor map" },
+    { "id": "WO-104", "title": "Check UPS battery", "status": "OPEN", "createdAt": "2026-01-04T09:00:00.000Z", "description": "" }
+  ]
+}

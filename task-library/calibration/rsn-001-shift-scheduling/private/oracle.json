@@ -1,0 +1,118 @@
+{
+  "A": {
+    "feasible": false,
+    "minimal_conflict_sets": [
+      [
+        "availability",
+        "coverage",
+        "per_person_max"
+      ]
+    ],
+    "explanation": "Only Bob and Carol are available. With a two-day maximum each, they can cover at most four of five days. Removing availability allows three people to cover five days; removing the per-person limit allows Bob and Carol to cover five days; reducing coverage to four days is also feasible. Therefore the unique minimal conflict set is {availability, coverage, per_person_max}."
+  },
+  "B": {
+    "gap": "daily_need",
+    "branches": {
+      "1": {
+        "feasible": true,
+        "witness": {
+          "0": [
+            "Alice"
+          ],
+          "1": [
+            "Alice"
+          ],
+          "2": [
+            "Bob"
+          ],
+          "3": [
+            "Bob"
+          ],
+          "4": [
+            "Carol"
+          ]
+        }
+      },
+      "2": {
+        "feasible": false,
+        "proof": "Two people per day for five days require 10 person-days. Three people working at most two days each provide at most 6, so this case is infeasible."
+      }
+    }
+  },
+  "C": {
+    "feasible": true,
+    "witness": {
+      "0": [
+        "Alice"
+      ],
+      "1": [
+        "Bob"
+      ],
+      "2": [
+        "Carol"
+      ],
+      "3": [
+        "Alice"
+      ],
+      "4": [
+        "Bob"
+      ]
+    }
+  },
+  "reference_answers": {
+    "A": {
+      "feasible": false,
+      "conflict_set": [
+        "coverage",
+        "per_person_max",
+        "availability"
+      ]
+    },
+    "B": {
+      "gap": "daily_need",
+      "branches": {
+        "1": {
+          "feasible": true
+        },
+        "2": {
+          "feasible": false
+        }
+      }
+    },
+    "C": {
+      "feasible": true,
+      "schedule": {
+        "0": [
+          "Alice"
+        ],
+        "1": [
+          "Bob"
+        ],
+        "2": [
+          "Carol"
+        ],
+        "3": [
+          "Alice"
+        ],
+        "4": [
+          "Bob"
+        ]
+      }
+    }
+  },
+  "regression_old_7day": {
+    "people": [
+      "Alice",
+      "Bob",
+      "Carol"
+    ],
+    "days": 7,
+    "daily_need": 1,
+    "per_person_max": 2,
+    "unavailable": [
+      "Alice"
+    ],
+    "note": "This is the earlier flawed instance. Even without availability, coverage and a two-day maximum are infeasible for seven days because 3*2=6<7. Availability was redundant and therefore not part of a minimal conflict set. The current five-day instance makes availability necessary to the minimal conflict set.",
+    "expect_wo_availability_unsat": true
+  }
+}

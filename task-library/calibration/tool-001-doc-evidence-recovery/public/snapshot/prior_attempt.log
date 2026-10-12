@@ -1,0 +1,2 @@
+2026-09-30T09:12:01Z read config/settings.toml -> ERROR not_found
+2026-09-30T09:12:01Z note: The production timeout_ms is needed. The previous attempt used the wrong path; recover and continue.

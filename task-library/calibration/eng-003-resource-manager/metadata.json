@@ -1,0 +1,81 @@
+{
+  "id": "eng-003-resource-manager",
+  "family_id": "eng-stateful-interactive",
+  "draft_version": "0.1.0",
+  "capability_tags": {
+    "primary": "engineering",
+    "sub": [
+      "stateful-interactive-app",
+      "local-persistence",
+      "forms-validation",
+      "import-export",
+      "error-recovery",
+      "http-api"
+    ],
+    "secondary": [
+      "aesthetics-frontend(human-eval, blocked)",
+      "reasoning-state"
+    ]
+  },
+  "status": "screening",
+  "proposed_usage": "development",
+  "review_driver": "The review requested another stateful interactive engineering task with local persistence and import/export, keeping engineering and visual scoring separate so the task set would not consist only of CLI tasks.",
+  "source": {
+    "type": "original-design",
+    "note": "The task contract and sample data were created for this project; no project code or data was copied.",
+    "domain_references": [
+      {
+        "name": "Python 3.13 http.server / json / csv docs",
+        "url": "https://docs.python.org/3.13/",
+        "license": "PSF License v2",
+        "access_date": "2026-09-30",
+        "use": "Official API reference for fixed dependencies."
+      }
+    ]
+  },
+  "license": {
+    "task_text": "Original project-authored task material; no third-party text is copied.",
+    "third_party_content_copied": "None.",
+    "tool_vs_data_license_checked": true
+  },
+  "runtime": {
+    "python": "Python 3.13.15 (LibreOffice build)",
+    "deps": "stdlib only",
+    "network": false,
+    "db": "JSON-file persistence; no external database"
+  },
+  "content_hashes_sha256_16": {
+    "instruction.md": "f45ec2dd785e3b66",
+    "rubric.md": "cd7035b288573437",
+    "private/ref_store.py": "db4fd1f7a161b19a",
+    "private/ref_server.py": "a889b1f9590381cc",
+    "private/acceptance.py": "70ea77216e274869",
+    "private/bad_store_novalidation.py": "aae8ed76b67a50e9",
+    "private/bad_store_import_partial.py": "35ea27e2600ca0d9",
+    "private/frontend/index.html": "363548c7667d68c6",
+    "private/frontend/app.js": "2dba727fe05304f2",
+    "private/frontend/style.css": "03be7e2bbc2521cb"
+  },
+  "calibration_status": {
+    "self_calibration": "PASS (exit 0)",
+    "functional_scenarios": "ref_store 14/14",
+    "http_end_to_end_smoke": "PASS (POST 201 / list 1 / index.html served)",
+    "bad_impls_rejected": {
+      "novalidation": "11/14",
+      "import_partial": "10/14",
+      "empty": "0/14"
+    },
+    "repeatable": true
+  },
+  "scoring_split": {
+    "function": "Automated; historically run offline",
+    "engineering": "human review",
+    "aesthetics": "Human review; blocked pending a rendering backend"
+  },
+  "missing": [
+    "Automated screenshots and anonymous human visual review require the Phase 4 rendering backend; visual quality was not automatically judged.",
+    "Atomicity during a real write crash requires Phase 2 process control; corrupt-store recovery is covered by the corrupt_store_recovery case.",
+    "Real candidate-model implementation and acceptance remain blocked pending an execution backend and model.",
+    "Budget remains pending a Phase 2 pilot."
+  ]
+}

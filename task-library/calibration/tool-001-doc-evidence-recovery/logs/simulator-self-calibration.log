@@ -1,0 +1,15 @@
+Recorded calibration data: == tool-001 ==
+Recorded calibration data: True Q1 : True Q2 : True Q3 : True oracle
+Recorded calibration data: ref_solver =True =True =7 =0
+Recorded calibration data: PASS Q1: deps.lock.json
+Recorded calibration data: PASS Q2: / req-0499
+Recorded calibration data: PASS Q3: prod
+Recorded calibration data: PASS Q4a:
+Recorded calibration data: PASS Q4b:
+Recorded calibration data: neg_guess: 1/5 =True =0 = Q1 Q2 Q3 Q4b
+Recorded calibration data: neg_truncation_giveup: 4/5 =True =0 = Q2
+Recorded calibration data: neg_no_recovery: 4/5 =True =0 = Q3
+Recorded calibration data: neg_mutate: 4/5 =True =1 = Q4b
+Recorded calibration data: neg_empty: 0/5 =True =0 = Q1 Q2 Q3 Q4a Q4b
+Recorded calibration data: : True
+RESULT: PASS

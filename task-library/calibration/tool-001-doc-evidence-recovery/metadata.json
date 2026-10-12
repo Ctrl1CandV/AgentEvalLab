@@ -1,0 +1,44 @@
+{
+  "id": "tool-001-doc-evidence-recovery",
+  "version": "0.2.1",
+  "familyId": "tool-evidence-recovery",
+  "capability": "tool",
+  "usage": "development",
+  "status": "development-calibration",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "docs/design/V1_EVALUATION.md",
+      "src/harness/profiles.ts"
+    ]
+  },
+  "license": {
+    "taskText": "Original project-authored task material; no third-party text is copied.",
+    "thirdPartyContent": []
+  },
+  "claimBoundary": "Offline grader and reference calibration only. No live model API result, method validity claim, or frozen benchmark status.",
+  "runtime": "Node.js Pi Agent Core 0.87.1 + Python 3.13.15 grader",
+  "network": false,
+  "contentHashesSha256": {
+    "calibration.md": "6cc103faa0c5146431e0512332b106ff2cca7c8c3e71c946d8db3d686d7ad9c3",
+    "environment/README.md": "58da2c1a22a4a0752609a5219cad25bf2fea247369eb37356bc2477dbc1f007d",
+    "instruction.md": "2cfb16b544030082ac6faba319d25b4ba3ae71b03d3c83aa91cca264d2c7ee17",
+    "logs/acceptance-self-calibration.log": "c59f9418234126c06929f1fa33a33bfbfdd2d8eb0d31593a3dc36f124a81d091",
+    "logs/harness-grader-self-calibration.log": "2a642451683f33749a35fc18484e704deb5acb7dcc49cafefc320bdf465ebcc2",
+    "logs/simulator-self-calibration.log": "068254fbe937e4e3440a41049d740dd2b42f3ba69b64e9f89d1f163a0305a807",
+    "private/acceptance.py": "47aef1b69fe618fc2950cc447ba88590cd4f66a47054ec0ac2d2660327fcb0c9",
+    "private/harness_grader.py": "0fe17e069a199105b9c6428aa25315f6c76b0d9e1e81693e93f4409d097a6d61",
+    "private/make_snapshot.py": "c0038677563e9412034d2ffb5e2d9d30c6405aeae86aa88d9c8997f176d9a0c8",
+    "private/oracle.json": "424a6463ce13cd62e1c64edff915f184a7de79a96f924ec176fd5c25b668cab0",
+    "private/solvers.py": "b3cd9d025f0d50bf08500a2cb84c049e0d9310f8b9ac4d6d14aed60422a53da2",
+    "private/tool_env.py": "b7783f31b2ba22b2056a36fa00b5118bfc70faa7e0f835b8e1be3414f98b55cf",
+    "public/snapshot/CHANGELOG.md": "a9a2f937d352fc6675417a03f81b4f9c4b7bb27fcc716a9816b36934bdd08ba6",
+    "public/snapshot/config/prod/settings.toml": "6f3b365f91bcb26c5dd464341f2aa97bdf078538f6bb10e82c057b0db3b99b72",
+    "public/snapshot/config/staging/settings.toml": "eec154c2d264be74ab31f62640bc300d90b6292d2037890a841aad329ac7300c",
+    "public/snapshot/deps.lock.json": "1c064f62ffcbedebc78ac10b0231d315d73ba9c1338b1000700d47f437223ddb",
+    "public/snapshot/logs/audit_large.jsonl": "7353cdcb0c3cee744c06b59a0a76b65fb6d4d2400677c9f4cb9d0c3e016cbc8a",
+    "public/snapshot/prior_attempt.log": "afd7ca5cd19508c466bfcf4a1f64ae408699cae2d996f4bf2ce2eb727f60dc56",
+    "public/snapshot/secrets/credentials.enc": "785b0751fc2c53dc14a4ce3d800e69ef9ce1009eb327ccf458afe09c242c26c9",
+    "rubric.md": "adde68aaeffdf201621dae211f77f7357f15371a4f8e99f843e03e7dca5a5f38"
+  }
+}

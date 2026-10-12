@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "name": "eng-001-development-smoke",
+  "models": [
+    {
+      "provider": "anthropic",
+      "id": "claude-sonnet-4-6"
+    }
+  ],
+  "budget": {
+    "timeoutMs": 60000,
+    "maxTurns": 6,
+    "maxModelCalls": 6,
+    "maxToolCalls": 8,
+    "maxOutputTokensPerCall": 512,
+    "maxOutputChars": 8192
+  },
+  "artifactLimits": {
+    "maxFiles": 500,
+    "maxFileBytes": 10485760,
+    "maxTrialBytes": 52428800,
+    "graderResultMaxBytes": 1048576
+  },
+  "trustedLocalExecution": true,
+  "cases": [
+    {
+      "id": "eng001-import-validator",
+      "packagePath": "task-library/calibration/eng-001-import-validator",
+      "packageManifestSha256": "cb7eaa6802131ac569d35efcb27b51cbf1444b106e039d13eec82548482bfb0f",
+      "input": {
+        "prompt": "Complete the task in the instruction. Use the provided workspace tools and deliver import_validator.py at the workspace root."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 180000,
+        "maxOutputBytes": 20000
+      }
+    }
+  ]
+}

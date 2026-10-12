@@ -1,0 +1,4 @@
+[staging]
+timeout_ms = 8000
+max_retries = 3
+region = "sandbox"

@@ -1,0 +1,8 @@
+node_modules/
+runs/
+
+.env
+
+__pycache__/
+*.py[cod]
+/task-library/candidates/eng-005-long-cycle-maintenance/baseline/

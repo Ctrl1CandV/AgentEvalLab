@@ -1,0 +1,26 @@
+{
+  "project": "meridian-cli",
+  "lockfile_version": 3,
+  "packages": {
+    "argonaut": {
+      "version": "2.7.4",
+      "license": "Apache-2.0",
+      "sha256": "09a26182b8619ea6a6578bd45613be39873c4ee2b00a6393642be6decbeb26ba"
+    },
+    "kelp": {
+      "version": "1.19.0",
+      "license": "MIT",
+      "sha256": "bda5ec06f6dfc05fbed284659eb8b7f8dfe79d2a74d35dabce75ef054dbbaba5"
+    },
+    "tessera": {
+      "version": "0.9.13",
+      "license": "BSD-3-Clause",
+      "sha256": "4225b9678de9754123d66536f02c43f07e07ed83c12d82c307622856f37ad1d5"
+    },
+    "orbital": {
+      "version": "4.2.1",
+      "license": "MPL-2.0",
+      "sha256": "e7d522779cb0a98a4b59bada369a9ed4f1347c0b059fbecfe87d70c9029fce57"
+    }
+  }
+}

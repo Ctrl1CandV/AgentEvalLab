@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 2,
+  "name": "eng-005-long-cycle-development",
+  "models": [
+    {
+      "provider": "anthropic",
+      "id": "claude-sonnet-4-6"
+    }
+  ],
+  "execution": {
+    "kind": "trajectory",
+    "contextPolicy": "continuous",
+    "stageBudget": {
+      "timeoutMs": 720000,
+      "maxTurns": 36,
+      "maxModelCalls": 36,
+      "maxToolCalls": 100,
+      "maxOutputTokensPerCall": 4096,
+      "maxOutputChars": 60000
+    },
+    "publicRepairMax": 1
+  },
+  "budget": {
+    "timeoutMs": 3600000,
+    "maxTurns": 160,
+    "maxModelCalls": 160,
+    "maxToolCalls": 400,
+    "maxOutputTokensPerCall": 4096,
+    "maxOutputChars": 60000
+  },
+  "artifactLimits": {
+    "maxFiles": 500,
+    "maxFileBytes": 10485760,
+    "maxTrialBytes": 52428800,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "trustedLocalExecution": true,
+  "cases": [
+    {
+      "id": "eng005-long-cycle",
+      "repository": {
+        "path": "task-library/candidates/eng-005-long-cycle-maintenance/baseline",
+        "commit": "679119874c31d2cff12cc48f57c86a1fcec6bcbc"
+      },
+      "packagePath": "task-library/candidates/eng-005-long-cycle-maintenance",
+      "packageManifestSha256": "8f08be22be798d1182371ba66dcc90206e72c32ca92b57067b534bc89be58c8e",
+      "toolProfile": "workspace-augmented",
+      "input": {
+        "prompt": "Work in the provided repository. Keep the original commands and records compatible while completing each released stage. Inspect the current stage instruction before acting."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 30000,
+        "maxOutputBytes": 20000
+      }
+    }
+  ]
+}

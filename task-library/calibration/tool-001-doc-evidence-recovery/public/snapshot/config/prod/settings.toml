@@ -1,0 +1,4 @@
+[prod]
+timeout_ms = 3500
+max_retries = 7
+region = "ap-east"

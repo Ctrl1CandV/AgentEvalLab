@@ -1,0 +1,4 @@
+{"rel_path": "a.txt", "input_sha256": "e49c81e2d2f84e259d40e2fb8192f3bcd198b355184845d76d8f58807d0d78ee", "output_sha256": "352ff51c2212e00fdb16c5bbd858ebfef38d6184ff2fa9c2cd43ca9832de12ee", "status": "done"}
+{"rel_path": "b.txt", "input_sha256": "ef5b05a961b4c934b17999593e4b7253614d6c99d26d6e50b843e546d79e57e5", "output_sha256": "4c470cd2edcf6ce7ef52f040475674d44fffe73cba0ffd705107e4c28bcaff93", "status": "done"}
+{"rel_path": "empty.txt", "input_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "output_sha256": "af45692920ecc38c887a7fbc6c05bd53c9b737796328d211a066d65474d02d41", "status": "done"}
+{"rel_path": "sub/c.txt", "input_sha256": "8828bbabe7da7e9b1533bba13f73eee69bd709b6b792148422818940f316843f", "output_sha256": "8b03bb316614aa4926121b8217739b3363d4bcaceaa20bd9464a384405bc01df", "status": "done"}

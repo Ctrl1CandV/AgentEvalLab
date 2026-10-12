@@ -1,0 +1,10 @@
+{
+  "name": "work-order-cli",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-strip-types src/cli.ts"
+  },
+  "engines": { "node": ">=22 <23" }
+}

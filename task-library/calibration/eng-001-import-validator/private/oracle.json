@@ -1,0 +1,338 @@
+{
+  "_note": "Fixtures and expected results are independently authored from the fixed task contract. Do not derive expected results from a reference implementation. Each error is a [record, field, code] tuple; errors are ordered by (record, field), and fatal exit-2 cases have no summary and use top_code.",
+  "cases": {
+    "clean_dry": {
+      "input": "private/fixtures/clean.csv",
+      "mode": "dry-run",
+      "expect": {
+        "exit": 0,
+        "errors": [],
+        "summary": {
+          "records": 3,
+          "errors": 0
+        }
+      }
+    },
+    "embedded_dry": {
+      "input": "private/fixtures/embedded.csv",
+      "mode": "dry-run",
+      "expect": {
+        "exit": 0,
+        "errors": [],
+        "summary": {
+          "records": 2,
+          "errors": 0
+        }
+      }
+    },
+    "multiline_pos_dry": {
+      "input": "private/fixtures/multiline_pos.csv",
+      "mode": "dry-run",
+      "expect": {
+        "exit": 1,
+        "errors": [
+          [
+            0,
+            "age",
+            "type_mismatch"
+          ]
+        ],
+        "errors_line": [
+          3
+        ],
+        "summary": {
+          "records": 1,
+          "errors": 1
+        }
+      }
+    },
+    "type_errors_dry": {
+      "input": "private/fixtures/type_errors.csv",
+      "mode": "dry-run",
+      "expect": {
+        "exit": 1,
+        "errors": [
+          [
+            0,
+            "active",
+            "type_mismatch"
+          ],
+          [
+            0,
+            "age",
+            "type_mismatch"
+          ],
+          [
+            1,
+            "score",
+            "type_mismatch"
+          ],
+          [
+            1,
+            "signup_date",
+            "type_mismatch"
+          ]
+        ],
+        "summary": {
+          "records": 2,
+          "errors": 4
+        }
+      }
+    },
+    "missing_required_dry": {
+      "input": "private/fixtures/missing_required.csv",
+      "mode": "dry-run",
+      "expect": {
+        "exit": 1,
+        "errors": [
+          [
+            0,
+            "email",
+            "missing_required"
+          ],
+          [
+            1,
+            "id",
+            "missing_required"
+          ]
+        ],
+        "summary": {
+          "records": 2,
+          "errors": 2
+        }
+      }
+    },
+    "constraints_dry": {
+      "input": "private/fixtures/constraints.csv",
+      "mode": "dry-run",
+      "expect": {
+        "exit": 1,
+        "errors": [
+          [
+            0,
+            "age",
+            "constraint"
+          ],
+          [
+            1,
+            "age",
+            "constraint"
+          ],
+          [
+            2,
+            "email",
+            "constraint"
+          ]
+        ],
+        "summary": {
+          "records": 3,
+          "errors": 3
+        }
+      }
+    },
+    "unique_dup_dry": {
+      "input": "private/fixtures/unique_dup.csv",
+      "mode": "dry-run",
+      "expect": {
+        "exit": 1,
+        "errors": [
+          [
+            1,
+            "id",
+            "unique_violation"
+          ],
+          [
+            2,
+            "email",
+            "unique_violation"
+          ]
+        ],
+        "summary": {
+          "records": 3,
+          "errors": 2
+        }
+      }
+    },
+    "nan_inf_dry": {
+      "input": "private/fixtures/nan_inf.csv",
+      "mode": "dry-run",
+      "expect": {
+        "exit": 1,
+        "errors": [
+          [
+            0,
+            "score",
+            "type_mismatch"
+          ],
+          [
+            1,
+            "score",
+            "type_mismatch"
+          ],
+          [
+            2,
+            "score",
+            "type_mismatch"
+          ]
+        ],
+        "summary": {
+          "records": 3,
+          "errors": 3
+        }
+      }
+    },
+    "bom_dry": {
+      "input": "private/fixtures/bom.csv",
+      "mode": "dry-run",
+      "encoding": "utf-8-sig",
+      "expect": {
+        "exit": 0,
+        "errors": [],
+        "summary": {
+          "records": 3,
+          "errors": 0
+        }
+      }
+    },
+    "header_only_dry": {
+      "input": "private/fixtures/header_only.csv",
+      "mode": "dry-run",
+      "expect": {
+        "exit": 0,
+        "errors": [],
+        "summary": {
+          "records": 0,
+          "errors": 0
+        }
+      }
+    },
+    "empty_input": {
+      "input": "private/fixtures/empty.csv",
+      "mode": "dry-run",
+      "expect": {
+        "exit": 2,
+        "top_code": "empty_input"
+      }
+    },
+    "extra_column": {
+      "input": "private/fixtures/extra_column.csv",
+      "mode": "dry-run",
+      "expect": {
+        "exit": 2,
+        "top_code": "header_mismatch"
+      }
+    },
+    "missing_column": {
+      "input": "private/fixtures/missing_column.csv",
+      "mode": "dry-run",
+      "expect": {
+        "exit": 2,
+        "top_code": "header_mismatch"
+      }
+    },
+    "duplicate_header": {
+      "input": "private/fixtures/duplicate_header.csv",
+      "mode": "dry-run",
+      "expect": {
+        "exit": 2,
+        "top_code": "duplicate_header"
+      }
+    },
+    "malformed_csv": {
+      "input": "private/fixtures/malformed.csv",
+      "mode": "dry-run",
+      "expect": {
+        "exit": 2,
+        "top_code": "parse_error"
+      }
+    },
+    "bad_schema_unknown_type": {
+      "schema": "private/fixtures/bad_schema_unknown_type.json",
+      "input": "private/fixtures/clean.csv",
+      "mode": "dry-run",
+      "expect": {
+        "exit": 2,
+        "top_code": "schema_error"
+      }
+    },
+    "bad_schema_pk_missing": {
+      "schema": "private/fixtures/bad_schema_pk_missing.json",
+      "input": "private/fixtures/clean.csv",
+      "mode": "dry-run",
+      "expect": {
+        "exit": 2,
+        "top_code": "schema_error"
+      }
+    },
+    "bad_schema_invalid": {
+      "schema": "private/fixtures/bad_schema_invalid.json",
+      "input": "private/fixtures/clean.csv",
+      "mode": "dry-run",
+      "expect": {
+        "exit": 2,
+        "top_code": "schema_error"
+      }
+    },
+    "clean_apply": {
+      "input": "private/fixtures/clean.csv",
+      "mode": "apply",
+      "db": "clean.sqlite",
+      "expect": {
+        "exit": 0,
+        "errors": [],
+        "db": {
+          "exists": true,
+          "row_count": 3,
+          "pks": [
+            1,
+            2,
+            3
+          ]
+        }
+      }
+    },
+    "mixed_apply_all_or_nothing": {
+      "input": "private/fixtures/mixed_valid_invalid.csv",
+      "mode": "apply",
+      "db": "mixed.sqlite",
+      "expect": {
+        "exit": 1,
+        "errors": [
+          [
+            2,
+            "age",
+            "type_mismatch"
+          ]
+        ],
+        "db": {
+          "exists": false
+        }
+      }
+    },
+    "dryrun_must_not_create_db": {
+      "input": "private/fixtures/clean.csv",
+      "mode": "dry-run",
+      "db": "should_not_exist.sqlite",
+      "expect": {
+        "exit": 0,
+        "errors": [],
+        "db": {
+          "exists": false
+        }
+      }
+    }
+  },
+  "idempotency": {
+    "input": "private/fixtures/clean.csv",
+    "db": "idem.sqlite",
+    "apply_twice_expect": {
+      "exit": 0,
+      "row_count": 3,
+      "pks": [
+        1,
+        2,
+        3
+      ]
+    }
+  }
+}

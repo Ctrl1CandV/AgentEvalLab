@@ -1,0 +1,100 @@
+{
+  "id": "eng-002-resumable-batch",
+  "family_id": "eng-resumable-state",
+  "draft_version": "0.2.0",
+  "capability_tags": {
+    "primary": "engineering",
+    "sub": [
+      "stateful-batch",
+      "crash-recovery",
+      "atomic-publish",
+      "idempotent-resume",
+      "journaling"
+    ],
+    "secondary": [
+      "reasoning-crash-consistency",
+      "tool-file-state"
+    ]
+  },
+  "status": "screening",
+  "proposed_usage": "development",
+  "source": {
+    "type": "original-design",
+    "note": "The task contract and fixtures were created for this project; no project code or data was copied.",
+    "domain_references": [
+      {
+        "name": "rclone (checkpoint and resume concepts)",
+        "url": "https://github.com/rclone/rclone",
+        "license": "MIT",
+        "access_date": "2026-09-30",
+        "use": "Conceptual reference only; no source was copied."
+      },
+      {
+        "name": "Python 3.13 stdlib docs (hashlib/os/tempfile/json)",
+        "url": "https://docs.python.org/3.13/",
+        "license": "PSF License v2",
+        "access_date": "2026-09-30",
+        "use": "Official API reference for the fixed dependencies."
+      }
+    ]
+  },
+  "license": {
+    "task_text": "Original project-authored task material; no third-party text is copied.",
+    "third_party_content_copied": "None.",
+    "tool_vs_data_license_checked": true
+  },
+  "runtime": {
+    "python": "Python 3.13.15 (LibreOffice build; see the environment notes)",
+    "deps": "stdlib only",
+    "network": false
+  },
+  "content_hashes_sha256_16": {
+    "instruction.md": "4ed27d36a0a7c22c",
+    "rubric.md": "814058414c56bf01",
+    "private/ref_impl.py": "d33edf4c16519b48",
+    "private/acceptance.py": "b8718297092b4361",
+    "private/make_fixtures.py": "e0a739c9d3369f6e",
+    "private/bad_trusts_journal.py": "de733b43889b03fa",
+    "private/bad_input_hash_ignored.py": "243a12f6befacc73"
+  },
+  "fixtures": {
+    "states_generated_by": "private/make_fixtures.py",
+    "states": [
+      "empty",
+      "complete",
+      "missing_output",
+      "corrupt_output",
+      "bad_journal",
+      "input_changed",
+      "stale_tmp"
+    ],
+    "states_file_count": 53,
+    "states_combined_sha256_16": "2741252162418356",
+    "public_example_combined_sha256_16": "b857c36bf3664dce",
+    "deterministic": true
+  },
+  "calibration_status": {
+    "self_calibration": "PASS (exit 0)",
+    "static_recovery_blackbox": "Reference implementation passed 7/7 static recovery cases; unchanged mtimes proved complete-state skipping.",
+    "interrupt_recovery_whitebox": "before_journal, stale_temp, and after_n recovery checks passed 3/3.",
+    "bad_impls_rejected": {
+      "trusts_journal": "5/7",
+      "input_hash_ignored": "6/7",
+      "empty": "0/7"
+    },
+    "repeatable": true
+  },
+  "guarantees": {
+    "promised": "After a single-process interruption, the next run converges to the correct final state.",
+    "not_promised": [
+      "No power-loss durability or exactly-once guarantee; fsync is not used.",
+      "No multi-process concurrency guarantee."
+    ]
+  },
+  "missing": [
+    "External process termination with reproducible synchronization or observation requires Phase 2 process control; only white-box injection is recorded.",
+    "A real candidate-model implementation remains pending an execution backend and model; no paid model was called.",
+    "Budget remains pending a Phase 2 pilot.",
+    "Concurrent operation is out of scope; this task is fixed to one process."
+  ]
+}

@@ -1,0 +1,6 @@
+Recorded calibration data: PASS / : ok
+Recorded calibration data: PASS 3: feature=3
+Recorded calibration data: PASS : ok
+Recorded calibration data: FAIL + : email
+Recorded calibration data: PASS empty/error/success : app.js form-state
+Recorded calibration data: PASS WCAG 2.2 : ok

@@ -1,0 +1,50 @@
+{
+  "brand": "BookLoop",
+  "product": "Fictional single-page homepage for a community used-book exchange platform",
+  "audience": "City residents ages 25 to 40 who want a finished book to keep circulating",
+  "tone": "Warm, restrained, trustworthy, and free of exaggerated marketing",
+  "nav": ["Home", "How it works", "About"],
+  "hero": {
+    "h1": "Let a finished book meet its next reader.",
+    "sub": "Community book exchange, nearby, with less waste.",
+    "cta_primary": "Start exchanging",
+    "cta_secondary": "Learn the rules"
+  },
+  "features_region_note": "The feature section is variable length: the default has three items and the long-content case has six. The layout must remain usable.",
+  "features": [
+    {"title": "Nearby matches", "body": "Find books you want to read in your area, with pickup or delivery."},
+    {"title": "Trust points", "body": "Reliable handoffs and honest condition notes help build trust."},
+    {"title": "Transparent condition", "body": "See notes about creases, annotations, and wear before exchanging."}
+  ],
+  "form": {
+    "legend": "List a book",
+    "fields": [
+      {"name": "title", "label": "Book title", "type": "text", "required": true},
+      {"name": "district", "label": "Area", "type": "select", "required": true, "options": ["Downtown", "Jiangbei", "Shapingba", "Nan'an"]},
+      {"name": "email", "label": "Email", "type": "email", "required": true},
+      {"name": "condition", "label": "Condition", "type": "radio", "required": true, "options": ["New", "Light wear", "Visible wear"]}
+    ],
+    "submit": "Submit listing",
+    "states": {
+      "empty": "Enter a book title, area, and email to continue.",
+      "error": "Fix the fields marked in red, then try again.",
+      "success": "Your book is listed. We will contact you within two business days."
+    }
+  },
+  "footer": "© 2026 BookLoop · Rules · Privacy · Contact",
+  "decorative_microcopy_allowed": true,
+  "palette": {
+    "--bg": "#FFFFFF", "--fg": "#1A1A1A", "--muted": "#555555",
+    "--accent": "#1E40AF", "--accent-fg": "#FFFFFF", "--line": "#D9D9D9", "--err": "#B00020"
+  },
+  "contrast_requirements": [
+    {"pair": ["--fg", "--bg"], "min": 4.5, "role": "body text"},
+    {"pair": ["--muted", "--bg"], "min": 4.5, "role": "secondary text"},
+    {"pair": ["--accent-fg", "--accent"], "min": 4.5, "role": "primary button text and background"},
+    {"pair": ["--err", "--bg"], "min": 4.5, "role": "error message"}
+  ],
+  "viewports": [
+    {"name": "desktop", "width": 1440, "height": 900, "dpr": 1},
+    {"name": "mobile", "width": 390, "height": 844, "dpr": 2}
+  ]
+}

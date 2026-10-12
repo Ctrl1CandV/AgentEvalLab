@@ -1,0 +1,4 @@
+﻿id,email,age,signup_date,active,score
+1,alice@example.com,30,2024-01-15,true,9.5
+2,bob@example.com,25,2024-02-20,false,7.0
+3,carol@example.com,,2024-03-10,true,

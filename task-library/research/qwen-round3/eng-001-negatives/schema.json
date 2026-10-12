@@ -1,0 +1,11 @@
+{
+  "primary_key": "id",
+  "columns": [
+    {"name": "id", "type": "int", "required": true, "unique": true},
+    {"name": "email", "type": "str", "required": true, "unique": true, "maxlength": 254},
+    {"name": "age", "type": "int", "required": false, "min": 0, "max": 150},
+    {"name": "signup_date", "type": "date", "required": false, "format": "YYYY-MM-DD"},
+    {"name": "active", "type": "bool", "required": false},
+    {"name": "score", "type": "float", "required": false}
+  ]
+}

@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "id": "rsn-002-derivation-check",
+  "version": "0.2.0",
+  "familyId": "rsn-derivation-error-localization",
+  "capability": "reasoning",
+  "usage": "development",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "docs/design/V1_EVALUATION.md"
+    ]
+  },
+  "license": {
+    "taskText": "Original project-authored task material; no third-party text is copied.",
+    "thirdPartyContent": []
+  },
+  "entryPoint": {
+    "instruction": "instruction.md"
+  },
+  "files": {
+    "public": [
+      {
+        "path": "instruction.md",
+        "sha256": "89b68253351e948b5b0543e284afe20bfe827333a8866d2892e46f2c7f7348ee"
+      },
+      {
+        "path": "public/samples.json",
+        "sha256": "9709a176f2b96592b6f639f580d3d57a28728c549b2e3e1d7974df256ec1194b"
+      }
+    ],
+    "trusted": [
+      {
+        "path": "calibration.md",
+        "sha256": "924b1fe7460588f3303de21a17ae2def27973595d5778fbff97f5c78fa3d1961"
+      },
+      {
+        "path": "environment/README.md",
+        "sha256": "d4bd91eb116bf0972a566b38891343acc3feac246110e6efd2f561fc20bf42a2"
+      },
+      {
+        "path": "metadata.json",
+        "sha256": "bdcfba677278109ed4cbb9706ebdcb4ab1e571acdcf046133f6f92ea6c74dd5c"
+      },
+      {
+        "path": "rubric.md",
+        "sha256": "4ebb9a3930951f3ba7a2ef446c0f309bf0514292a2c2c4d7cb4b28afea52f607"
+      },
+      {
+        "path": "logs/acceptance-self-calibration.log",
+        "sha256": "1220748e09a78aa0183b2a21459abfe5ac7c31f351bc530e19aebf38cf60ff4e"
+      },
+      {
+        "path": "logs/self-calibration.log",
+        "sha256": "9687abe074adc67ac0dd007501a8cb5b9d142e106186558bfc8c5a02ac61fc54"
+      },
+      {
+        "path": "private/acceptance.py",
+        "sha256": "3a7e4e5133dc8dd14d9d6b1d8c38f3819bb533d6c6065de27b26a63214858ab1"
+      },
+      {
+        "path": "private/oracle.json",
+        "sha256": "3079a43ed47473ac39f285b81665ace1ffce325a12fdcd12c6bd029ac1e20fa6"
+      },
+      {
+        "path": "private/verify.py",
+        "sha256": "206efa7096bc37e94787120a6399375c250c360fe9bdf8070417ffb9bad61464"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "REQ-NUMERIC",
+      "critical": true,
+      "introducedAt": "rsn-002 v0.2.0",
+      "checkIds": [
+        "sample-values"
+      ]
+    },
+    {
+      "id": "REQ-LOCALIZATION",
+      "critical": true,
+      "introducedAt": "rsn-002 v0.2.0",
+      "checkIds": [
+        "wrong-step-location"
+      ]
+    },
+    {
+      "id": "REQ-DIMENSIONS",
+      "critical": true,
+      "introducedAt": "rsn-002 v0.2.0",
+      "checkIds": [
+        "dimension-certificate"
+      ]
+    },
+    {
+      "id": "REQ-COUNTEREXAMPLE",
+      "critical": true,
+      "introducedAt": "rsn-002 v0.2.0",
+      "checkIds": [
+        "counterexample-certificate"
+      ]
+    },
+    {
+      "id": "REQ-LIMIT",
+      "critical": true,
+      "introducedAt": "rsn-002 v0.2.0",
+      "checkIds": [
+        "limit-certificate"
+      ]
+    },
+    {
+      "id": "REQ-HUMAN-FORMULA",
+      "critical": false,
+      "introducedAt": "rsn-002 v0.2.0; human scoring not implemented",
+      "checkIds": [
+        "formula-equivalence-review"
+      ]
+    },
+    {
+      "id": "REQ-HUMAN-EXPLANATION",
+      "critical": false,
+      "introducedAt": "rsn-002 v0.2.0; human scoring not implemented",
+      "checkIds": [
+        "explanation-quality-review"
+      ]
+    }
+  ],
+  "toolProfiles": [
+    "workspace-basic"
+  ],
+  "grader": {
+    "id": "rsn002-acceptance",
+    "version": "1.0.0",
+    "entryPoint": "private/acceptance.py",
+    "executable": "C:/Program Files/LibreOffice/program/python-core-3.13.15/bin/python.exe",
+    "args": [
+      "{entryPoint}",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ],
+    "answerSource": "execution-output"
+  },
+  "environment": {
+    "runtime": "Python 3.13.15",
+    "dependencies": "Python standard library; no network",
+    "network": false,
+    "runtimeCheck": {
+      "executable": "C:/Program Files/LibreOffice/program/python-core-3.13.15/bin/python.exe",
+      "args": [
+        "--version"
+      ],
+      "expectedSubstring": "Python 3.13.15"
+    }
+  }
+}

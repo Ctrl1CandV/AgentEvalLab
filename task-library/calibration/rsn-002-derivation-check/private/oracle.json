@@ -1,0 +1,21 @@
+{
+  "correct_formula": "v = sqrt(2*g*L*(sin(theta) - mu*cos(theta)))",
+  "student_formula": "v = sqrt(2*g*L*(sin(theta) - mu))",
+  "error_key_facts": [
+    "The normal force on an incline is N = m*g*cos(theta), not m*g.",
+    "Kinetic friction is f = mu*N = mu*m*g*cos(theta).",
+    "Friction work is W_f = f*L = mu*m*g*L*cos(theta); the student omitted cos(theta)."
+  ],
+  "distinguishing_checks": {
+    "valid": [
+      "As theta approaches pi/2, the normal force and friction approach zero. The correct expression approaches sqrt(2gL), while the student expression approaches sqrt(2gL(1-mu)), which is smaller.",
+      "Choose a numeric example where the formulas differ. The student's speed is smaller because mu is at least mu*cos(theta)."
+    ],
+    "invalid_non_discriminating": [
+      "Zero acceleration makes both speeds zero and cannot distinguish the formulas.",
+      "As mu approaches zero, both formulas reduce to sqrt(2gL sin(theta)) and cannot distinguish the error."
+    ]
+  },
+  "domain_guard_note": "Near theta=0, the student expression may be non-real. The prompt assumes downhill acceleration and tan(theta)>mu; do not use an out-of-domain input to claim the models are distinguished. The missing cosine factor follows from the incline's normal force.",
+  "numeric_values_are_computed_in_verify_py": true
+}

@@ -1,0 +1,25 @@
+== eng-003 acceptance self-calibration ==
+
+-- ref_store.py: 14/14 functional scenarios passed
+   [PASS] add_valid: ok
+   [PASS] add_invalid_title: ok
+   [PASS] add_invalid_url: ok
+   [PASS] edit: ok
+   [PASS] delete: ok
+   [PASS] list_filters: ok
+   [PASS] export_roundtrip: ok
+   [PASS] import_merge: ok
+   [PASS] import_all_or_nothing: ok
+   [PASS] import_dup_ids: ok
+   [PASS] import_corrupt: ok
+   [PASS] import_csv: ok
+   [PASS] persistence_reload: ok
+   [PASS] corrupt_store_recovery: ok
+Reference functional suite passed: True
+[HTTP end-to-end smoke] PASS: POST=201 list=1 index_html=True
+Mutant bad_store_novalidation.py: 11/14; rejected as expected
+Mutant bad_store_import_partial.py: 10/14; rejected as expected
+Mutant bad_store_empty.py: 0/14; rejected as expected
+Repeated runs produced the same results: True
+
+RESULT: PASS

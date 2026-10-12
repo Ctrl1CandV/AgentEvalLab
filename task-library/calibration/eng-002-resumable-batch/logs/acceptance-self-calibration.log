@@ -1,0 +1,28 @@
+== eng-002 acceptance self-calibration ==
+
+[Static recovery: reference implementation]
+-- ref_impl.py: 7/7 static cases passed
+   [PASS] empty: ok
+   [PASS] complete: ok
+   [PASS] missing_output: ok
+   [PASS] corrupt_output: ok
+   [PASS] bad_journal: ok
+   [PASS] input_changed: ok
+   [PASS] stale_tmp: ok
+Reference static suite passed: True
+
+[White-box interruption and atomic publish: EE_CRASH injection]
+   [PASS] before_journal:a.txt: resume reached the expected final state
+   [PASS] stale_temp:a.txt: resume reached the expected final state
+   [PASS] after_n:2: resume reached the expected final state
+Interruption recovery suite passed: True
+
+[Mutant rejection]
+   bad_trusts_journal.py: 5/7; rejected as expected
+   bad_input_hash_ignored.py: 6/7; rejected as expected
+   bad_empty.py: 0/7; rejected as expected
+
+[Repeatability]
+   Repeated runs produced the same results: True
+
+RESULT: PASS

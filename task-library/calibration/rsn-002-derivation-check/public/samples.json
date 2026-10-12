@@ -1,0 +1,12 @@
+{
+  "domain": {
+    "theta_deg": "(0, 90)",
+    "mu": ">= 0",
+    "valid_when": "tan(theta) > mu (equivalent to sin(theta) - mu*cos(theta) > 0; downhill acceleration and a positive radicand)"
+  },
+  "samples": [
+    {"id": "s1", "theta_deg": 45, "mu": 0.2, "L": 2.0, "g": 9.8},
+    {"id": "s2", "theta_deg": 60, "mu": 0.5, "L": 1.5, "g": 9.8},
+    {"id": "s3", "theta_deg": 30, "mu": 0.3, "L": 3.0, "g": 9.81}
+  ]
+}

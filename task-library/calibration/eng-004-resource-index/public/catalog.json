@@ -1,0 +1,6 @@
+{
+  "resources": [
+    { "id": "sample-2", "title": "Field notes", "tags": ["reference"], "rank": 2 },
+    { "id": "sample-1", "title": "Workshop guide", "tags": [], "rank": 0 }
+  ]
+}

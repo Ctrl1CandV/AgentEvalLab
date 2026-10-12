@@ -1,0 +1,348 @@
+{
+  "schemaVersion": 1,
+  "id": "eng-005-long-cycle-maintenance",
+  "version": "0.1.1",
+  "familyId": "eng-workflow-evolution",
+  "capability": "engineering",
+  "usage": "development",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "docs/design/LONG_HORIZON_ENGINEERING.md",
+      "https://nodejs.org/docs/latest-v22.x/api/typescript.html"
+    ]
+  },
+  "license": {
+    "taskText": "Original task specification and materials authored by this project; free to use and adapt.",
+    "thirdPartyContent": []
+  },
+  "entryPoint": {
+    "instruction": "instruction.md"
+  },
+  "files": {
+    "public": [
+      {
+        "path": "instruction.md",
+        "sha256": "15879884efc2397126f80a2d66d8dabf8cceb65a208fedc25a761b8df9b66628"
+      },
+      {
+        "path": "public/project-brief.md",
+        "sha256": "55d960d08f2db583bd7e36ec80203eafb0c125045b0efadf869982bed60d2dc5"
+      }
+    ],
+    "trusted": [
+      {
+        "path": "private/base-fixture.json",
+        "sha256": "3c39b7fe2211e61ffc8acdcf45ff7cd850061fe0eadcba6b758332ee5fdd8ab4"
+      },
+      {
+        "path": "private/grader.py",
+        "sha256": "602bd2302b7207024db5816e79b2ff60c25c8e3d258dcd90f4f074ee5f34355f"
+      },
+      {
+        "path": "private/v1-fixture.json",
+        "sha256": "e918021369022a7538a521558617638d43ef1ef9d64f4340878f424e48dc4e0a"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "BASE_CLI",
+      "critical": true,
+      "introducedAt": "BASE_CLI",
+      "checkIds": [
+        "base.read",
+        "base.create",
+        "base.update",
+        "base.export"
+      ]
+    },
+    {
+      "id": "BASE_DATA",
+      "critical": true,
+      "introducedAt": "BASE_DATA",
+      "checkIds": [
+        "data.preserves-seed"
+      ]
+    },
+    {
+      "id": "QUERY",
+      "critical": true,
+      "introducedAt": "QUERY",
+      "checkIds": [
+        "query.filter",
+        "query.order",
+        "query.pagination",
+        "query.invalid"
+      ]
+    },
+    {
+      "id": "DEPENDENCY",
+      "critical": true,
+      "introducedAt": "DEPENDENCY",
+      "checkIds": [
+        "dependency.self",
+        "dependency.cycle",
+        "dependency.transition",
+        "dependency.prerequisite"
+      ]
+    },
+    {
+      "id": "NO_MUTATION",
+      "critical": true,
+      "introducedAt": "NO_MUTATION",
+      "checkIds": [
+        "failure.no_mutation"
+      ]
+    },
+    {
+      "id": "MIGRATION",
+      "critical": true,
+      "introducedAt": "MIGRATION",
+      "checkIds": [
+        "migration.schema",
+        "migration.preserve",
+        "migration.events",
+        "migration.idempotent"
+      ]
+    },
+    {
+      "id": "ERRORS_DOCS",
+      "critical": true,
+      "introducedAt": "ERRORS_DOCS",
+      "checkIds": [
+        "errors.protocol",
+        "errors.codes",
+        "docs.usage"
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "id": "S1",
+      "instruction": "stages/S1/instruction.md",
+      "files": [
+        {
+          "path": "stages/S1/instruction.md",
+          "sha256": "7cde3d76a820410a427c84ff7879abcff8e9bddfa16c84f7bfcd12712855e50b"
+        },
+        {
+          "path": "stages/S1/public/checker.py",
+          "sha256": "1ece8fadeb2829ce921fd86c98a13dac2cf7561838df6ba56724fbf798fe0e8e"
+        }
+      ],
+      "activeRequirementIds": [
+        "BASE_CLI",
+        "BASE_DATA",
+        "QUERY"
+      ],
+      "publicChecker": {
+        "entryPoint": "stages/S1/public/checker.py",
+        "executable": "python",
+        "args": [
+          "{entryPoint}",
+          "--submission",
+          "{submission}",
+          "--stage",
+          "S1"
+        ],
+        "timeoutMs": 25000,
+        "maxOutputBytes": 100000,
+        "checkIds": [
+          "public-s1"
+        ]
+      }
+    },
+    {
+      "id": "S2",
+      "instruction": "stages/S2/instruction.md",
+      "files": [
+        {
+          "path": "stages/S2/instruction.md",
+          "sha256": "91efefac06ef69cdbe5db7399fcdc425bc66468e7a917cf02e8dc407c3529e09"
+        },
+        {
+          "path": "stages/S2/public/checker.py",
+          "sha256": "0f26fa6782bf5d79d75001cd3d0d7ed5f6d0e028a0b3a874a0184b7edc524f38"
+        }
+      ],
+      "activeRequirementIds": [
+        "BASE_CLI",
+        "BASE_DATA",
+        "QUERY",
+        "DEPENDENCY"
+      ],
+      "publicChecker": {
+        "entryPoint": "stages/S2/public/checker.py",
+        "executable": "python",
+        "args": [
+          "{entryPoint}",
+          "--submission",
+          "{submission}",
+          "--stage",
+          "S2"
+        ],
+        "timeoutMs": 25000,
+        "maxOutputBytes": 100000,
+        "checkIds": [
+          "public-s2"
+        ]
+      }
+    },
+    {
+      "id": "S3",
+      "instruction": "stages/S3/instruction.md",
+      "files": [
+        {
+          "path": "stages/S3/instruction.md",
+          "sha256": "1d9489633cf055905fa53e193936f3b24be6c2b3b76d80f1f59c91cb275a5d2a"
+        },
+        {
+          "path": "stages/S3/public/cases.json",
+          "sha256": "a3a88eec31b186162949d612cb3c387fedda0ba4deac6c6c7181cc5c25a0bc79"
+        },
+        {
+          "path": "stages/S3/public/checker.py",
+          "sha256": "106ee1f7e3ec7b4d7936f03999fc8d87e4672c8761b6c399f121640a48fb8e57"
+        }
+      ],
+      "activeRequirementIds": [
+        "BASE_CLI",
+        "BASE_DATA",
+        "QUERY",
+        "DEPENDENCY",
+        "NO_MUTATION"
+      ],
+      "publicChecker": {
+        "entryPoint": "stages/S3/public/checker.py",
+        "executable": "python",
+        "args": [
+          "{entryPoint}",
+          "--submission",
+          "{submission}",
+          "--stage",
+          "S3"
+        ],
+        "timeoutMs": 25000,
+        "maxOutputBytes": 100000,
+        "checkIds": [
+          "public-s3"
+        ]
+      }
+    },
+    {
+      "id": "S4",
+      "instruction": "stages/S4/instruction.md",
+      "files": [
+        {
+          "path": "stages/S4/instruction.md",
+          "sha256": "a7a06d1e111253e58f03444698002bc4d4478ebd220fa4cf3297e75ae319da61"
+        },
+        {
+          "path": "stages/S4/public/checker.py",
+          "sha256": "8cbe96c800ea70fce8a17de5f1fbf6ce3540d631719ae1bebdcf9bb6b531485f"
+        },
+        {
+          "path": "stages/S4/public/v1-fixture.json",
+          "sha256": "e918021369022a7538a521558617638d43ef1ef9d64f4340878f424e48dc4e0a"
+        }
+      ],
+      "activeRequirementIds": [
+        "BASE_CLI",
+        "BASE_DATA",
+        "QUERY",
+        "DEPENDENCY",
+        "NO_MUTATION",
+        "MIGRATION"
+      ],
+      "publicChecker": {
+        "entryPoint": "stages/S4/public/checker.py",
+        "executable": "python",
+        "args": [
+          "{entryPoint}",
+          "--submission",
+          "{submission}",
+          "--stage",
+          "S4"
+        ],
+        "timeoutMs": 25000,
+        "maxOutputBytes": 100000,
+        "checkIds": [
+          "public-s4"
+        ]
+      }
+    },
+    {
+      "id": "S5",
+      "instruction": "stages/S5/instruction.md",
+      "files": [
+        {
+          "path": "stages/S5/instruction.md",
+          "sha256": "32c624893cb74d38e0e8c65f6945e45b4fc438c7f128aaf08d8faf3f286897cb"
+        },
+        {
+          "path": "stages/S5/public/checker.py",
+          "sha256": "dd15966f566d445036cdd92862c2a11cdc38f621c7bd23c14ba10022254fa513"
+        }
+      ],
+      "activeRequirementIds": [
+        "BASE_CLI",
+        "BASE_DATA",
+        "QUERY",
+        "DEPENDENCY",
+        "NO_MUTATION",
+        "MIGRATION",
+        "ERRORS_DOCS"
+      ],
+      "publicChecker": {
+        "entryPoint": "stages/S5/public/checker.py",
+        "executable": "python",
+        "args": [
+          "{entryPoint}",
+          "--submission",
+          "{submission}",
+          "--stage",
+          "S5"
+        ],
+        "timeoutMs": 25000,
+        "maxOutputBytes": 100000,
+        "checkIds": [
+          "public-s5"
+        ]
+      }
+    }
+  ],
+  "toolProfiles": [
+    "workspace-basic",
+    "workspace-augmented"
+  ],
+  "grader": {
+    "id": "eng005-checkpoint-grader",
+    "version": "1.0.1",
+    "entryPoint": "private/grader.py",
+    "executable": "python",
+    "args": [
+      "{entryPoint}",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ]
+  },
+  "environment": {
+    "runtime": "Node.js 22.x + Python 3.x",
+    "dependencies": "Node built-ins and Python standard library; no network",
+    "network": false,
+    "runtimeCheck": {
+      "executable": "node",
+      "args": [
+        "--version"
+      ],
+      "expectedSubstring": "v22."
+    }
+  },
+  "baseline": {
+    "path": "baseline",
+    "commit": "679119874c31d2cff12cc48f57c86a1fcec6bcbc"
+  }
+}

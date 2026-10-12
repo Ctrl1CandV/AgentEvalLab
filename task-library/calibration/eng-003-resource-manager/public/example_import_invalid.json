@@ -1,0 +1,19 @@
+{
+  "_note": "Contains one invalid record (empty title and invalid URL). Import must fail atomically and leave state unchanged.",
+  "resources": [
+    {
+      "title": "Valid resource",
+      "url": "https://ok.example.com",
+      "tags": [
+        "x"
+      ]
+    },
+    {
+      "title": "",
+      "url": "not-a-url",
+      "tags": [
+        "y"
+      ]
+    }
+  ]
+}

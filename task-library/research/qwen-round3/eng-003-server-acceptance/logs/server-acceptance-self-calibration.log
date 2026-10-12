@@ -1,0 +1,6 @@
+Recorded calibration data: == qwen-round3 eng-003 server ==
+Recorded calibration data: good store_unit=True store server_http=True HTTP CRUD/Import cleanup=True =True =True
+Recorded calibration data: bad_server_missing store_unit=True store server_http=False server.py HTTP
+Recorded calibration data: bad_server_wrong_route server_http=False POST /resources 201/ok got 404 ok : False error : not_found
+Recorded calibration data: browser_ui blocked / REPORT
+RESULT: PASS

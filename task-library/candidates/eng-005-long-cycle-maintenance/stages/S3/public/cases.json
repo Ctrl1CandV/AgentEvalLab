@@ -1,0 +1,7 @@
+{
+  "cases": [
+    { "name": "self-dependency", "command": ["depends", "add", "WO-101", "WO-101"] },
+    { "name": "dependency-cycle", "setup": [["depends", "add", "WO-101", "WO-102"]], "command": ["depends", "add", "WO-102", "WO-101"] },
+    { "name": "illegal-transition", "command": ["update", "WO-101", "--status", "DONE"] }
+  ]
+}

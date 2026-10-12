@@ -1,0 +1,35 @@
+{
+  "id": "rsn-001-shift-scheduling",
+  "version": "0.2.1",
+  "familyId": "rsn-constraint-csp",
+  "capability": "reasoning",
+  "usage": "development",
+  "status": "development-calibration",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "docs/design/V1_EVALUATION.md",
+      "https://developers.google.com/optimization/scheduling"
+    ]
+  },
+  "license": {
+    "taskText": "Original project-authored task material; no third-party text is copied.",
+    "thirdPartyContent": []
+  },
+  "claimBoundary": "Offline grader and reference calibration only. No live model API result, method validity claim, or frozen benchmark status.",
+  "runtime": "Python 3.13.15",
+  "network": false,
+  "contentHashesSha256": {
+    "calibration.md": "373bdf1cc51af2a8cb7ff7d090acee9ce135c3393b2a5f1468c2d90cab009c3c",
+    "environment/README.md": "70b8bb5ea12357ed41deba317469f2764be02984f8aa25690d864ecf901a4b93",
+    "instruction.md": "fcbfc8961c7cb30cccc2f40eab04b24302b798d2ac55b48bf8ed1cb242bb5e7e",
+    "logs/acceptance-self-calibration.log": "4ce9303fcea1b4bb082e94ea761d566ca921737f103b18b91723c62b4606edfc",
+    "logs/self-calibration.log": "5350ecfdce80d33ac55c511237c6095369113bef3038bd93a59e64bff72a5a2f",
+    "private/acceptance.py": "0ee4d0bde52922e7c27990b5943b733a9b021c26adce70bb0170689271b588f8",
+    "private/negatives.json": "3ea60ed4782e36149d5203124b0d1babcf210e60734555dd68e261e05d6e75b9",
+    "private/oracle.json": "231480af5cf1d6f60f86e82f9edc514381e8353a5d8bd74a51c02f3c838ef8fe",
+    "private/verify.py": "57dd2a654c73d5f8ea4a5e9232dcdc4c2f212a97d23a24ac53dcd62240f6a7d6",
+    "public/instances.json": "583fabe73d041f3f88a0aa39d7f6a84421768e1a3185a6fb8c9b49a6e9e3d05a",
+    "rubric.md": "e9613fe1161da042d4699d5b9dba233ba40459d9bc2e087329e5293e83c4e888"
+  }
+}

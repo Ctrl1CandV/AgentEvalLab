@@ -1,0 +1,22 @@
+{
+  "resources": [
+    {
+      "title": "Python Documentation",
+      "url": "https://docs.python.org",
+      "tags": [
+        "lang",
+        "docs"
+      ],
+      "notes": "Standard library reference"
+    },
+    {
+      "title": "MDN Web Docs",
+      "url": "https://developer.mozilla.org",
+      "tags": [
+        "web",
+        "docs"
+      ],
+      "notes": ""
+    }
+  ]
+}

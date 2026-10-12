@@ -1,0 +1,10 @@
+different-valid-evidence-path: PASS
+no-evidence-is-rejected: PASS
+q1-repeated-overlapping-pages-pass: PASS
+q1-conflicting-overlap-fails: PASS
+q2-cross-page-jsonl-record-pass: PASS
+q2-incomplete-record-fails: PASS
+forbidden-attempt-is-rejected: PASS
+missing-recovery-is-rejected: PASS
+repeatable: PASS
+RESULT: PASS (9/9)

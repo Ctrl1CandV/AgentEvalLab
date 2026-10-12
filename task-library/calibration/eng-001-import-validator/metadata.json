@@ -1,0 +1,98 @@
+{
+  "id": "eng-001-import-validator",
+  "family_id": "eng-data-validation",
+  "draft_version": "0.2.0",
+  "capability_tags": {
+    "primary": "engineering",
+    "sub": [
+      "from-scratch-cli",
+      "data-validation",
+      "parsing-edge-cases",
+      "persistence",
+      "idempotency"
+    ],
+    "secondary": [
+      "reasoning-error-classification",
+      "tool-execution",
+      "documentation-readme"
+    ]
+  },
+  "status": "screening",
+  "proposed_usage": "development",
+  "source": {
+    "type": "original-design",
+    "note": "The task specification and fixtures were created for this project; no project code or data was copied.",
+    "domain_references": [
+      {
+        "name": "csvkit (wireservice/csvkit)",
+        "url": "https://github.com/wireservice/csvkit",
+        "license": "MIT",
+        "version": "2.1.0 (Homebrew; checked 2026-09-30)",
+        "access_date": "2026-09-30",
+        "use": "Requirements prior art for RFC 4180, encoding, and csvclean edge cases; no code was copied."
+      },
+      {
+        "name": "Python 3.13 stdlib docs (csv/sqlite3/argparse)",
+        "url": "https://docs.python.org/3.13/",
+        "license": "PSF License v2 (example dual license: 0BSD)",
+        "access_date": "2026-09-30",
+        "use": "Official API reference for the fixed dependencies."
+      }
+    ]
+  },
+  "license": {
+    "task_text": "Original project-authored task material; no third-party text is copied.",
+    "third_party_content_copied": "None.",
+    "tool_vs_data_license_checked": true
+  },
+  "runtime": {
+    "python": "Python 3.13.15 (direct LibreOffice interpreter; child process trees are not isolated)",
+    "deps": "stdlib only",
+    "sqlite": "Built-in Python sqlite3 module",
+    "network": false
+  },
+  "content_hashes_sha256_16": {
+    "instruction.md": "428959f5db8e1a6c",
+    "rubric.md": "dc685e8da231fe31",
+    "calibration.md": "2fcfd80ead8c8744",
+    "environment/README.md": "9b6f096fe9229759",
+    "public/schema.json": "9a1ece75d4ca596e",
+    "public/data_clean.csv": "dc2da541307c87e3",
+    "public/expected_dry_run_clean.jsonl": "ac9b88e0dfd696f2",
+    "private/oracle.json": "71a4a95f0e6f739d",
+    "private/acceptance.py": "f6fabbb26e1fc2cd",
+    "private/ref_impl_a.py": "dca42193dbadb800",
+    "private/ref_impl_b.py": "d4b2de8f43a78020",
+    "private/make_fixtures.py": "ae07a631b413ace7"
+  },
+  "fixtures": {
+    "count": 19,
+    "generated_by": "private/make_fixtures.py",
+    "combined_sha256_16": "57fc1e9dac419902",
+    "deterministic": true
+  },
+  "calibration_status": {
+    "acceptance_self_calibration": "PASS (3 independent runs; each exit 0)",
+    "reference_impls_pass": {
+      "ref_impl_a": "22/22",
+      "ref_impl_b": "22/22"
+    },
+    "bad_impls_rejected": {
+      "naive_split": "5/22",
+      "always_exit0": "7/22",
+      "dryrun_writes": "20/22",
+      "insert_only": "21/22",
+      "empty": "0/22"
+    },
+    "repeatable": true,
+    "trusted_grader_protocol": "PASS: reference 22/22; empty candidate 0/22; both completed",
+    "pi_offline_harness_flow": "PASS: 6 synthetic Pi calls, 5 real workspace tool calls; public failure repaired, public check and private grader 22/22; no live API",
+    "offline_node_tests": "25/25 PASS after temporary TypeScript compilation"
+  },
+  "missing": [
+    "Real candidate-model implementation and verification have not been authorized or run; only injected offline Pi calibration exists.",
+    "The fixed small-change maintainability task remains to be designed.",
+    "Strong OS sandboxing and child-process-tree isolation are not implemented.",
+    "Formal model budget remains pending an M5 small-budget pilot."
+  ]
+}

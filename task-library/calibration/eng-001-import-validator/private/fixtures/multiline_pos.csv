@@ -1,0 +1,3 @@
+id,email,age,signup_date,active,score
+1,"multi
+line@example.com",badage,2024-01-01,true,8.0

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BookLoop · Find your next read</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header data-role="site-header">
+    <nav data-role="nav" aria-label="Main navigation">
+      <span class="brand" data-role="brand">BookLoop</span>
+      <ul>
+        <li><a href="#main">Home</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section data-role="hero" aria-labelledby="hero-h">
+      <h1 id="hero-h" data-role="hero-h1">Let a finished book meet its next reader.</h1>
+      <p data-role="hero-sub">Community book exchange, nearby, with less waste.</p>
+      <div class="cta-row">
+        <a href="#signup" data-role="cta-primary" class="btn btn-primary">Start exchanging</a>
+        <a href="#how" data-role="cta-secondary" class="btn btn-ghost">Learn the rules</a>
+      </div>
+    </section>
+
+    <section id="how" data-role="features" aria-labelledby="feat-h">
+      <h2 id="feat-h">Find your next favorite book</h2>
+      <ul class="features" data-role="feature-list">
+        <li data-role="feature"><h3>Nearby matches</h3><p>Find books you want to read in your area, with pickup or delivery.</p></li>
+        <li data-role="feature"><h3>Trust points</h3><p>Reliable handoffs and honest condition notes help build trust.</p></li>
+        <li data-role="feature"><h3>Transparent condition</h3><p>See notes about creases, annotations, and wear before exchanging.</p></li>
+      </ul>
+    </section>
+
+    <section id="signup" data-role="signup" aria-labelledby="form-h">
+      <h2 id="form-h">List a book</h2>
+      <form id="signup-form" data-role="signup-form" data-state="empty" novalidate>
+        <p class="field">
+          <label for="f-title">Book title</label>
+          <input id="f-title" name="title" type="text" required aria-describedby="form-state" />
+        </p>
+        <p class="field">
+          <label for="f-district">Area</label>
+          <select id="f-district" name="district" required>
+            <option value="">Choose an area</option>
+            <option>Downtown</option><option>Jiangbei</option><option>Shapingba</option><option>Nan'an</option>
+          </select>
+        </p>
+        <p class="field">
+          <label>Email
+          <input id="f-email" name="email" type="email" required /></label>
+        </p>
+        <fieldset class="field">
+          <legend>Condition</legend>
+          <label><input type="radio" name="condition" value="New" required /> New</label>
+          <label><input type="radio" name="condition" value="Light wear" /> Light wear</label>
+          <label><input type="radio" name="condition" value="Visible wear" /> Visible wear</label>
+        </fieldset>
+        <button type="submit" data-role="submit" class="btn btn-primary">Submit listing</button>
+        <p id="form-state" data-role="form-state" class="state" role="status">Add a book to your list.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer id="about" data-role="footer">
+    <p>© 2026 BookLoop · Rules · Privacy · Contact</p>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>

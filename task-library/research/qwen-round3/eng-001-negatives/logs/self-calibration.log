@@ -1,0 +1,20 @@
+Recorded calibration data: == qwen-round3 eng-001 ==
+Recorded calibration data: -- ref_impl_a.py: 10/10
+Recorded calibration data: PASS S1_full_row_content: / /NULL
+Recorded calibration data: PASS S2_existing_pk_update: id=1 id=3
+Recorded calibration data: PASS S3_nonpk_unique_conflict: unique
+Recorded calibration data: PASS S4_failure_no_db_change:
+Recorded calibration data: PASS S5_dryrun_no_db_change: dry-run
+Recorded calibration data: PASS S6_all_nonpk_wrong: value= line
+Recorded calibration data: PASS S7_value_is_raw: value
+Recorded calibration data: PASS S8_error_order: 0 age 1 email
+Recorded calibration data: PASS S9_summary: summary.ok/records/errors/by_code
+Recorded calibration data: PASS S10_fatal_no_summary: exit2 + error + summary
+Recorded calibration data: -- m1_wrong_email_db.py: 8/10 S1_full_row_content OK = S1_full_row_content S2_existing_pk_update
+Recorded calibration data: -- m2_insert_no_upsert.py: 9/10 S2_existing_pk_update OK = S2_existing_pk_update
+Recorded calibration data: -- m3_write_on_failure.py: 8/10 S4_failure_no_db_change OK = S3_nonpk_unique_conflict S4_failure_no_db_change
+Recorded calibration data: -- m4_dryrun_touches_db.py: 9/10 S5_dryrun_no_db_change OK = S5_dryrun_no_db_change
+Recorded calibration data: -- m5_unsorted_errors.py: 9/10 S8_error_order OK = S8_error_order
+Recorded calibration data: -- m6_wrong_value.py: 9/10 S7_value_is_raw OK = S7_value_is_raw
+Recorded calibration data: -- m7_skip_unique_conflict.py: 9/10 S3_nonpk_unique_conflict OK = S3_nonpk_unique_conflict
+RESULT: PASS

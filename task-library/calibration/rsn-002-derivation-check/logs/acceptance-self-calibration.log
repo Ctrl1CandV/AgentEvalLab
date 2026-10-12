@@ -1,0 +1,12 @@
+reference-answer: PASS ['counterexample-certificate', 'dimension-certificate', 'limit-certificate', 'sample-values', 'wrong-step-location']
+alternative-parameters: PASS ['counterexample-certificate', 'dimension-certificate', 'limit-certificate', 'sample-values', 'wrong-step-location']
+reject-wrong-step: PASS ['counterexample-certificate', 'dimension-certificate', 'limit-certificate', 'sample-values']
+reject-student-numbers: PASS ['counterexample-certificate', 'dimension-certificate', 'limit-certificate', 'wrong-step-location']
+reject-invalid-counterexample: PASS ['dimension-certificate', 'limit-certificate', 'sample-values', 'wrong-step-location']
+reject-bad-limit-certificate: PASS ['counterexample-certificate', 'dimension-certificate', 'sample-values', 'wrong-step-location']
+reject-missing-dimensions: PASS ['counterexample-certificate', 'limit-certificate', 'sample-values', 'wrong-step-location']
+reject-malformed: PASS 
+repeatable: PASS 
+human-review: formula-equivalence and explanation-quality remain unscored by design
+RESULT: PASS (9/9)
+grader-protocol: PASS (5 automated check IDs returned; 2 human check IDs explicitly unscored)

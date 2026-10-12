@@ -1,0 +1,22 @@
+eng-001 development calibration, 2026-10-02
+Runtime: Python 3.13.15; pinned direct interpreter C:\Program Files\LibreOffice\program\python-core-3.13.15\bin\python.exe
+Command: private/acceptance.py --self-calibrate
+No model API, credentials, or hidden fixture values are included in this summary.
+
+Independent self-calibration runs with the direct interpreter: 3/3 PASS (exit 0; reference A and B each 22/22; repeatability true)
+Negative pass counts by run:
+  naive_split: 5/22 (rejected)
+  always_exit0: 7/22 (rejected)
+  dryrun_writes: 20/22 (rejected)
+  insert_only: 21/22 (rejected)
+  empty: 0/22 (rejected)
+
+Trusted grader protocol:
+  Reference candidate: exit 0; gradingStatus completed; 22/22 pass
+  Empty candidate: exit 0; gradingStatus completed; 0/22 pass
+
+Pi offline Harness integration: PASS; 6 synthetic Pi calls, 5 real workspace tool calls; read public expectation, public self-test failed then passed after repair; frozen reference candidate independently graded 22/22. This is calibration code injection, not a real model run.
+TypeScript: npm run check PASS; compiled offline Node suite 25/25 PASS. Coverage includes regrade append/report rebuild/restore hash, grader malformed/empty/N/A/unscored/timeout cases, runtime rejection, candidate failure classes, artifact limits and event-log failure.
+CLI preflight: compiled node src/main.js --plan examples/eng-001.eval.json --validate-only PASS; no credentials loaded or API request made.
+Candidate probes: missing entry point, invalid JSONL, 5-second timeout and 200 KB combined stdout/stderr cap classified as candidate failures; duplicate JSON object keys rejected. Candidate cwd/argv use only a temporary generic schema/input copy and reveal no private fixture path.
+Score-run: regrade uses the hash-verified frozen submission copy; each grader version/reason is append-only; report selects latest score-run without changing result.json. Snapshot restore into a new directory matched the original per-file manifest; existing destinations and post-score snapshot tampering were rejected.

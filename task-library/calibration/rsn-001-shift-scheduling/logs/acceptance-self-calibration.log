@@ -1,0 +1,15 @@
+oracle: PASS
+alternative-legal-answer: PASS
+clarification-target-accepted: PASS
+unrelated-clarification-target-rejected: PASS
+negative-A-claim_feasible_uses_unavailable: PASS
+negative-A-conflict_set_missing_availability: PASS
+negative-A-conflict_set_nonminimal_superset: PASS
+negative-A-old_bug_redundant_claim: PASS
+negative-B-pick_n1_without_flagging_gap: PASS
+negative-B-wrong_branch_conclusions: PASS
+negative-C-always_infeasible_strategy: PASS
+negative-C-invalid_witness_over_max: PASS
+malformed-json-value: PASS
+deterministic-repeat: PASS
+RESULT: PASS (14/14)

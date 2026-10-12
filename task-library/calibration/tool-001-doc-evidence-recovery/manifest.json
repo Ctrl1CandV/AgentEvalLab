@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 1,
+  "id": "tool-001-doc-evidence-recovery",
+  "version": "0.2.1",
+  "familyId": "tool-evidence-recovery",
+  "capability": "tool",
+  "usage": "development",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "docs/design/V1_EVALUATION.md",
+      "src/harness/profiles.ts"
+    ]
+  },
+  "license": {
+    "taskText": "Original project-authored task material; no third-party text is copied.",
+    "thirdPartyContent": []
+  },
+  "entryPoint": {
+    "instruction": "instruction.md"
+  },
+  "files": {
+    "public": [
+      {
+        "path": "instruction.md",
+        "sha256": "2cfb16b544030082ac6faba319d25b4ba3ae71b03d3c83aa91cca264d2c7ee17"
+      },
+      {
+        "path": "public/snapshot/CHANGELOG.md",
+        "sha256": "a9a2f937d352fc6675417a03f81b4f9c4b7bb27fcc716a9816b36934bdd08ba6"
+      },
+      {
+        "path": "public/snapshot/config/prod/settings.toml",
+        "sha256": "6f3b365f91bcb26c5dd464341f2aa97bdf078538f6bb10e82c057b0db3b99b72"
+      },
+      {
+        "path": "public/snapshot/config/staging/settings.toml",
+        "sha256": "eec154c2d264be74ab31f62640bc300d90b6292d2037890a841aad329ac7300c"
+      },
+      {
+        "path": "public/snapshot/deps.lock.json",
+        "sha256": "1c064f62ffcbedebc78ac10b0231d315d73ba9c1338b1000700d47f437223ddb"
+      },
+      {
+        "path": "public/snapshot/logs/audit_large.jsonl",
+        "sha256": "7353cdcb0c3cee744c06b59a0a76b65fb6d4d2400677c9f4cb9d0c3e016cbc8a"
+      },
+      {
+        "path": "public/snapshot/prior_attempt.log",
+        "sha256": "afd7ca5cd19508c466bfcf4a1f64ae408699cae2d996f4bf2ce2eb727f60dc56"
+      },
+      {
+        "path": "public/snapshot/secrets/credentials.enc",
+        "sha256": "785b0751fc2c53dc14a4ce3d800e69ef9ce1009eb327ccf458afe09c242c26c9"
+      }
+    ],
+    "trusted": [
+      {
+        "path": "calibration.md",
+        "sha256": "6cc103faa0c5146431e0512332b106ff2cca7c8c3e71c946d8db3d686d7ad9c3"
+      },
+      {
+        "path": "environment/README.md",
+        "sha256": "58da2c1a22a4a0752609a5219cad25bf2fea247369eb37356bc2477dbc1f007d"
+      },
+      {
+        "path": "metadata.json",
+        "sha256": "e9f145af8337ae8c17bb934fbc6d90e9d2a5712681028a640d5af8b55fcb2f33"
+      },
+      {
+        "path": "rubric.md",
+        "sha256": "adde68aaeffdf201621dae211f77f7357f15371a4f8e99f843e03e7dca5a5f38"
+      },
+      {
+        "path": "logs/acceptance-self-calibration.log",
+        "sha256": "c59f9418234126c06929f1fa33a33bfbfdd2d8eb0d31593a3dc36f124a81d091"
+      },
+      {
+        "path": "logs/harness-grader-self-calibration.log",
+        "sha256": "2a642451683f33749a35fc18484e704deb5acb7dcc49cafefc320bdf465ebcc2"
+      },
+      {
+        "path": "logs/simulator-self-calibration.log",
+        "sha256": "068254fbe937e4e3440a41049d740dd2b42f3ba69b64e9f89d1f163a0305a807"
+      },
+      {
+        "path": "private/acceptance.py",
+        "sha256": "47aef1b69fe618fc2950cc447ba88590cd4f66a47054ec0ac2d2660327fcb0c9"
+      },
+      {
+        "path": "private/harness_grader.py",
+        "sha256": "0fe17e069a199105b9c6428aa25315f6c76b0d9e1e81693e93f4409d097a6d61"
+      },
+      {
+        "path": "private/make_snapshot.py",
+        "sha256": "c0038677563e9412034d2ffb5e2d9d30c6405aeae86aa88d9c8997f176d9a0c8"
+      },
+      {
+        "path": "private/oracle.json",
+        "sha256": "424a6463ce13cd62e1c64edff915f184a7de79a96f924ec176fd5c25b668cab0"
+      },
+      {
+        "path": "private/solvers.py",
+        "sha256": "b3cd9d025f0d50bf08500a2cb84c049e0d9310f8b9ac4d6d14aed60422a53da2"
+      },
+      {
+        "path": "private/tool_env.py",
+        "sha256": "b7783f31b2ba22b2056a36fa00b5118bfc70faa7e0f835b8e1be3414f98b55cf"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "REQ-Q1",
+      "critical": true,
+      "introducedAt": "tool-001 v0.2.0",
+      "checkIds": [
+        "Q1"
+      ]
+    },
+    {
+      "id": "REQ-Q2",
+      "critical": true,
+      "introducedAt": "tool-001 v0.2.0",
+      "checkIds": [
+        "Q2"
+      ]
+    },
+    {
+      "id": "REQ-Q3",
+      "critical": true,
+      "introducedAt": "tool-001 v0.2.0",
+      "checkIds": [
+        "Q3"
+      ]
+    },
+    {
+      "id": "REQ-Q4A",
+      "critical": true,
+      "introducedAt": "tool-001 v0.2.0",
+      "checkIds": [
+        "Q4a"
+      ]
+    },
+    {
+      "id": "REQ-Q4B",
+      "critical": true,
+      "introducedAt": "tool-001 v0.2.0",
+      "checkIds": [
+        "Q4b"
+      ]
+    }
+  ],
+  "toolProfiles": [
+    "doc-evidence"
+  ],
+  "grader": {
+    "id": "tool001-trace-acceptance",
+    "version": "1.0.1",
+    "entryPoint": "private/harness_grader.py",
+    "executable": "C:/Program Files/LibreOffice/program/python-core-3.13.15/bin/python.exe",
+    "args": [
+      "{entryPoint}",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ],
+    "answerSource": "execution-output",
+    "requiresTrace": true
+  },
+  "environment": {
+    "runtime": "Node.js Pi Agent Core 0.87.1 + Python 3.13.15 grader",
+    "dependencies": "Pi pinned in package lock; Python standard library; no network",
+    "network": false,
+    "runtimeCheck": {
+      "executable": "C:/Program Files/LibreOffice/program/python-core-3.13.15/bin/python.exe",
+      "args": [
+        "--version"
+      ],
+      "expectedSubstring": "Python 3.13.15"
+    }
+  }
+}

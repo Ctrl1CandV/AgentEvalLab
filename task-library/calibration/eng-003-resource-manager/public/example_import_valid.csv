@@ -1,0 +1,3 @@
+id,title,url,tags,notes
+10,CSV example item,https://example.com/a,"a;b",Imported from CSV
+,Item without an id,https://example.com/b,c,A missing id is allocated from next_id

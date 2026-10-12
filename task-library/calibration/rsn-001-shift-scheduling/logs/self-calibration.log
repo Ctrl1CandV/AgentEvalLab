@@ -1,0 +1,22 @@
+Recorded calibration data: == rsn-001 ==
+Recorded calibration data: Notes
+Recorded calibration data: A_infeasible False False OK A
+Recorded calibration data: C_feasible True True OK C
+Recorded calibration data: A_MUS==oracle ava ava OK
+Recorded calibration data: regression_old_7day_bug True True OK 7 availability UNSAT
+Recorded calibration data: reference_A_pass True True OK
+Recorded calibration data: reference_B_pass True True OK
+Recorded calibration data: reference_C_pass True True OK
+Recorded calibration data: neg_A_claim_feasible_uses_unavailable False False OK Alice
+Recorded calibration data: neg_A_conflict_set_missing_availability False False OK 5 6>=5 UNSAT
+Recorded calibration data: neg_A_conflict_set_nonminimal_superset False False OK
+Recorded calibration data: neg_A_old_bug_redundant_claim False False OK availability
+Recorded calibration data: neg_B_pick_n1_without_flagging_gap False False OK daily_need=1
+Recorded calibration data: neg_B_wrong_branch_conclusions False False OK
+Recorded calibration data: neg_C_always_infeasible_strategy False False OK C 6>=5
+Recorded calibration data: neg_C_invalid_witness_over_max False False OK Alice 3 >2 per_person_max
+Recorded calibration data: empty_A_fail False False OK
+Recorded calibration data: empty_B_fail False False OK
+Recorded calibration data: empty_C_fail False False OK
+Recorded calibration data: repeatable True True OK
+RESULT: PASS

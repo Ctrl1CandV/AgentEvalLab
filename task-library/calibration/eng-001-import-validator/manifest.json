@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "id": "eng-001-import-validator",
+  "version": "0.2.0",
+  "familyId": "eng-data-validation",
+  "capability": "engineering",
+  "usage": "development",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "docs/TASK_COLLECTION.md",
+      "https://docs.python.org/3.13/library/csv.html",
+      "https://docs.python.org/3.13/library/sqlite3.html"
+    ]
+  },
+  "license": {
+    "taskText": "Original project-authored task material; no third-party text is copied.",
+    "thirdPartyContent": []
+  },
+  "entryPoint": {
+    "instruction": "instruction.md"
+  },
+  "files": {
+    "public": [
+      {
+        "path": "instruction.md",
+        "sha256": "428959f5db8e1a6c892c3c4148be671efaea18dcc475b8d5558efca98b19e8eb"
+      },
+      {
+        "path": "public/data_clean.csv",
+        "sha256": "dc2da541307c87e3696667739258e6c81fc30cee3c614b5e11cecbe321b548e1"
+      },
+      {
+        "path": "public/expected_dry_run_clean.jsonl",
+        "sha256": "ac9b88e0dfd696f2af11f7f0bb3a618b5f9a2d74096979f3de51541ea89d4642"
+      },
+      {
+        "path": "public/schema.json",
+        "sha256": "9a1ece75d4ca596e57e551151c1fe59a0a12f84afccf9f21a81baa660b6f38ef"
+      }
+    ],
+    "trusted": [
+      {
+        "path": "calibration.md",
+        "sha256": "2fcfd80ead8c8744a18f57d97bd2f48437ce1e225e683ff98f76eff535b4d3f3"
+      },
+      {
+        "path": "environment/README.md",
+        "sha256": "9b6f096fe922975956e8ceab3050545deac4a8f218db25e78a72f73bdd73d79c"
+      },
+      {
+        "path": "metadata.json",
+        "sha256": "bc3af88bc28501e8931ab95f900d222cb7704d27260be8e8fd50a10320e9be5f"
+      },
+      {
+        "path": "private/acceptance.py",
+        "sha256": "f6fabbb26e1fc2cd3d4c63e3b03f67f5a10672a94a80499e00ec715ccf297098"
+      },
+      {
+        "path": "private/bad_impl_always_exit0.py",
+        "sha256": "d0440b4b4928783d2aac3d07ebc7d4aa26601f73b845b227a57c2f80b84cbd6c"
+      },
+      {
+        "path": "private/bad_impl_dryrun_writes.py",
+        "sha256": "150454404a46548a49daac04332fd16fe4a8b3919f6cf242f2a23faa31703994"
+      },
+      {
+        "path": "private/bad_impl_empty.py",
+        "sha256": "6121d83f4ae1abe1dfa5518cb0253bcf18476f0425238e2a2c34964df422f692"
+      },
+      {
+        "path": "private/bad_impl_insert_only.py",
+        "sha256": "337717b1324904524fb8a750eccb5a28f748d39ed59f1620d98bde9c3fed3491"
+      },
+      {
+        "path": "private/bad_impl_naive_split.py",
+        "sha256": "5052bc34715608abbf0ed8273e2c8abad6ccb0a54ff823ef7baa7d21d8a5a2a6"
+      },
+      {
+        "path": "private/fixtures/bad_schema_invalid.json",
+        "sha256": "01d5db6b79e27716e83deec3d616374907d93a110f5ce900205ba540d5b6bd40"
+      },
+      {
+        "path": "private/fixtures/bad_schema_pk_missing.json",
+        "sha256": "4b3d2e0716cd80c67557102e690073b3694e7e1780006fe54fce2ca4dad084d8"
+      },
+      {
+        "path": "private/fixtures/bad_schema_unknown_type.json",
+        "sha256": "01639d1c5d2052fbbec2a119f3194aa6ce169ee358865c0d5c73a18b550dbc43"
+      },
+      {
+        "path": "private/fixtures/bom.csv",
+        "sha256": "59c35e8bc76c7807fb9513e201688fa707ed0203fed8e1c1bcd1db2c8be64254"
+      },
+      {
+        "path": "private/fixtures/clean.csv",
+        "sha256": "dc2da541307c87e3696667739258e6c81fc30cee3c614b5e11cecbe321b548e1"
+      },
+      {
+        "path": "private/fixtures/constraints.csv",
+        "sha256": "f2484dd9927fd26fbef8f8578a98bd898cfe44ef9ecfa22bb08f490a8892eb35"
+      },
+      {
+        "path": "private/fixtures/duplicate_header.csv",
+        "sha256": "e3e6b2f6478346b45326a07fa4b3a45420d05bba837814030553bfdeda19ba8e"
+      },
+      {
+        "path": "private/fixtures/embedded.csv",
+        "sha256": "219b5094d17d3d1df5d589779f6feb6530574039060780ccb049f2b72079d4f7"
+      },
+      {
+        "path": "private/fixtures/empty.csv",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "private/fixtures/extra_column.csv",
+        "sha256": "fbc7ac81008c54af019bf8d9ad5df008ab046d29127ec750fc4620206a5fd16a"
+      },
+      {
+        "path": "private/fixtures/header_only.csv",
+        "sha256": "8142ebca575e5de78b1bce155d8aa4b203392208484d45def38215c755a565ae"
+      },
+      {
+        "path": "private/fixtures/malformed.csv",
+        "sha256": "02833fad307b6eb7243bd98c3afc555a9149d764c3d622b8baa9776eda078eea"
+      },
+      {
+        "path": "private/fixtures/missing_column.csv",
+        "sha256": "1e0f754037bf7a0463da21686ee939fc42c88ddc305d11ffd3a4359f9eaa228e"
+      },
+      {
+        "path": "private/fixtures/missing_required.csv",
+        "sha256": "7566bfd5b409a48ff13e831b27d7e6c5f7bad5769a793844cd40d569407a143c"
+      },
+      {
+        "path": "private/fixtures/mixed_valid_invalid.csv",
+        "sha256": "0d27a71d3af11a1a948ad7a3a2cf31419ac64a9e92ce7b3ae949d7d11756953c"
+      },
+      {
+        "path": "private/fixtures/multiline_pos.csv",
+        "sha256": "d990209f66d3363dbd6640ea6993091d5c12632c294d0e24652e21e9c414fed1"
+      },
+      {
+        "path": "private/fixtures/nan_inf.csv",
+        "sha256": "f422208a0d66a4222bda31254ed78b78936198df19f902c9107d0d23ffb65fa7"
+      },
+      {
+        "path": "private/fixtures/type_errors.csv",
+        "sha256": "f08428c3008acb88fd596cf97c057eb15a276b59c793ce9df4a1c1d614cb038d"
+      },
+      {
+        "path": "private/fixtures/unique_dup.csv",
+        "sha256": "c779759df26816ba07fc64924befd479912dfa7babc2f9396ec9973460da4694"
+      },
+      {
+        "path": "private/make_fixtures.py",
+        "sha256": "ae07a631b413ace75243a91f6bd6be335876f487eec763eecb1fa9c62bac3157"
+      },
+      {
+        "path": "private/oracle.json",
+        "sha256": "71a4a95f0e6f739db9ae4c4879d88a34fa39f524ad8973aa8efee3414185800b"
+      },
+      {
+        "path": "private/ref_impl_a.py",
+        "sha256": "dca42193dbadb8007d686ee68e867082795b889b4aca0ef3aca778f1e4a094c9"
+      },
+      {
+        "path": "private/ref_impl_b.py",
+        "sha256": "d4b2de8f43a78020ed405e185c4db550e0d19126c92baa106028ac91bef30624"
+      },
+      {
+        "path": "rubric.md",
+        "sha256": "dc685e8da231fe312322d37e7673542b78f11e0dde12c8f28520f3776caff4f2"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "REQ-IMPLEMENTATION",
+      "critical": true,
+      "introducedAt": "eng-001 v0.2.0 fixed contract",
+      "checkIds": [
+        "case_clean_dry",
+        "case_embedded_dry",
+        "case_multiline_pos_dry",
+        "case_type_errors_dry",
+        "case_missing_required_dry",
+        "case_constraints_dry",
+        "case_unique_dup_dry",
+        "case_nan_inf_dry",
+        "case_bom_dry",
+        "case_header_only_dry",
+        "case_empty_input",
+        "case_extra_column",
+        "case_missing_column",
+        "case_duplicate_header",
+        "case_malformed_csv",
+        "case_bad_schema_unknown_type",
+        "case_bad_schema_pk_missing",
+        "case_bad_schema_invalid",
+        "case_clean_apply",
+        "case_mixed_apply_all_or_nothing",
+        "case_dryrun_must_not_create_db",
+        "case_idempotency"
+      ]
+    }
+  ],
+  "grader": {
+    "id": "eng001-acceptance",
+    "version": "1.0.0",
+    "entryPoint": "private/acceptance.py",
+    "executable": "C:/Program Files/LibreOffice/program/python-core-3.13.15/bin/python.exe",
+    "args": [
+      "{entryPoint}",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ]
+  },
+  "environment": {
+    "runtime": "Python 3.13.15",
+    "dependencies": "Python standard library; SQLite via sqlite3",
+    "network": false,
+    "runtimeCheck": {
+      "executable": "C:/Program Files/LibreOffice/program/python-core-3.13.15/bin/python.exe",
+      "args": [
+        "--version"
+      ],
+      "expectedSubstring": "Python 3.13.15"
+    }
+  }
+}

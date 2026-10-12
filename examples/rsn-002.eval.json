@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 2,
+  "name": "rsn-002-derivation-development",
+  "models": [
+    {
+      "provider": "anthropic",
+      "id": "claude-sonnet-4-6"
+    }
+  ],
+  "budget": {
+    "timeoutMs": 60000,
+    "maxTurns": 3,
+    "maxModelCalls": 3,
+    "maxToolCalls": 0,
+    "maxOutputTokensPerCall": 2048,
+    "maxOutputChars": 16000
+  },
+  "artifactLimits": {
+    "maxFiles": 1000,
+    "maxFileBytes": 10485760,
+    "maxTrialBytes": 52428800,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "trustedLocalExecution": true,
+  "cases": [
+    {
+      "id": "rsn002-derivation",
+      "packagePath": "task-library/calibration/rsn-002-derivation-check",
+      "packageManifestSha256": "2dcf1b815461f9a6bbf368d1efe18065705099ac7fdd61e35e17777fb29b0b97",
+      "input": {
+        "prompt": "Return the structured result requested by the task. Include every required certificate."
+      },
+      "toolProfile": "workspace-basic",
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 180000,
+        "maxOutputBytes": 100000
+      }
+    }
+  ]
+}

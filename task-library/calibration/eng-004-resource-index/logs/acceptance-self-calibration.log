@@ -1,0 +1,15 @@
+csv_record_endings_crlf-records: PASS
+csv_record_endings_lf-record-with-final-crlf: PASS
+csv_record_endings_quoted-field-lf: PASS
+csv_valid_rfc4180_output: PASS
+csv_lf_records_with_final_crlf_rejected: PASS
+reference_A_repeat_1: 7/7 PASS
+reference_B_repeat_1: 7/7 PASS
+reference_A_repeat_2: 7/7 PASS
+reference_B_repeat_2: 7/7 PASS
+reference_A_repeat_3: 7/7 PASS
+reference_B_repeat_3: 7/7 PASS
+mutant_off-by-one-page: REJECTED
+mutant_bad-csv-quoting: REJECTED
+mutant_wrong-next-offset: REJECTED
+RESULT: PASS (6 reference runs, 3 targeted mutants, 3 CSV delimiter cases)

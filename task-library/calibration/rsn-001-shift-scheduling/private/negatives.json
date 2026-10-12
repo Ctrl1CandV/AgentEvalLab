@@ -1,0 +1,141 @@
+{
+  "A": [
+    {
+      "name": "claim_feasible_uses_unavailable",
+      "answer": {
+        "feasible": true,
+        "schedule": {
+          "0": [
+            "Bob"
+          ],
+          "1": [
+            "Bob"
+          ],
+          "2": [
+            "Carol"
+          ],
+          "3": [
+            "Carol"
+          ],
+          "4": [
+            "Alice"
+          ]
+        }
+      },
+      "why": "This deliberately incorrect answer violates one or more hard constraints."
+    },
+    {
+      "name": "conflict_set_missing_availability",
+      "answer": {
+        "feasible": false,
+        "conflict_set": [
+          "coverage",
+          "per_person_max"
+        ]
+      },
+      "why": "This deliberately incorrect answer violates one or more hard constraints."
+    },
+    {
+      "name": "conflict_set_nonminimal_superset",
+      "answer": {
+        "feasible": false,
+        "conflict_set": [
+          "coverage",
+          "per_person_max",
+          "availability",
+          "background_days"
+        ]
+      },
+      "why": "This deliberately incorrect answer violates one or more hard constraints."
+    },
+    {
+      "name": "old_bug_redundant_claim",
+      "answer": {
+        "feasible": false,
+        "conflict_set": [
+          "coverage",
+          "per_person_max"
+        ]
+      },
+      "why": "This deliberately incorrect answer violates one or more hard constraints."
+    }
+  ],
+  "B": [
+    {
+      "name": "pick_n1_without_flagging_gap",
+      "answer": {
+        "feasible": true,
+        "schedule": {
+          "0": [
+            "Alice"
+          ],
+          "1": [
+            "Alice"
+          ],
+          "2": [
+            "Bob"
+          ],
+          "3": [
+            "Bob"
+          ],
+          "4": [
+            "Carol"
+          ]
+        }
+      },
+      "why": "This deliberately incorrect answer violates one or more hard constraints."
+    },
+    {
+      "name": "wrong_branch_conclusions",
+      "answer": {
+        "gap": "daily_need",
+        "branches": {
+          "1": {
+            "feasible": false
+          },
+          "2": {
+            "feasible": true
+          }
+        }
+      },
+      "why": "This deliberately incorrect answer violates one or more hard constraints."
+    }
+  ],
+  "C": [
+    {
+      "name": "always_infeasible_strategy",
+      "answer": {
+        "feasible": false,
+        "conflict_set": [
+          "coverage",
+          "per_person_max"
+        ]
+      },
+      "why": "This deliberately incorrect answer violates one or more hard constraints."
+    },
+    {
+      "name": "invalid_witness_over_max",
+      "answer": {
+        "feasible": true,
+        "schedule": {
+          "0": [
+            "Alice"
+          ],
+          "1": [
+            "Alice"
+          ],
+          "2": [
+            "Alice"
+          ],
+          "3": [
+            "Bob"
+          ],
+          "4": [
+            "Carol"
+          ]
+        }
+      },
+      "why": "This deliberately incorrect answer violates one or more hard constraints."
+    }
+  ]
+}

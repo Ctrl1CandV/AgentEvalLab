@@ -1,0 +1,15 @@
+{
+  "task": "rsn-001-shift-scheduling",
+  "background_note": "People and days are context, not constraints. Do not infer a value when daily_need is missing.",
+  "constraint_names": {
+    "coverage": "Assign exactly daily_need distinct employees each day",
+    "per_person_max": "No employee works more than per_person_max days this week",
+    "availability": "Employees listed as unavailable must not be scheduled"
+  },
+  "minimal_definition": "A minimal conflict set is infeasible, and removing any one constraint makes it feasible.",
+  "instances": {
+    "A": {"people": ["Alice", "Bob", "Carol"], "days": 5, "daily_need": 1, "per_person_max": 2, "unavailable": ["Alice"]},
+    "B": {"people": ["Alice", "Bob", "Carol"], "days": 5, "per_person_max": 2, "unavailable": []},
+    "C": {"people": ["Alice", "Bob", "Carol"], "days": 5, "daily_need": 1, "per_person_max": 2, "unavailable": []}
+  }
+}

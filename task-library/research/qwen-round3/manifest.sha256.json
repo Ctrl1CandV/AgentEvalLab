@@ -1,0 +1,157 @@
+{
+  "excluded": [
+    "__pycache__",
+    "logs",
+    "manifest.sha256.json",
+    "*.pyc"
+  ],
+  "file_count": 36,
+  "files": {
+    "candidates-round4/precedents.md": {
+      "bytes": 895,
+      "sha256": "b95a34186ca0e6c66fa3df6fdf7d292d41c06c36f66915bf85db676fc1d043d5"
+    },
+    "eng-001-negatives/mutants/m1_wrong_email_db.py": {
+      "bytes": 396,
+      "sha256": "e5d18fa6ac8eddb1ee5ffa3d2152e4dd7ddb37caa6ac7eaf8fc345dd18ba7225"
+    },
+    "eng-001-negatives/mutants/m2_insert_no_upsert.py": {
+      "bytes": 860,
+      "sha256": "7b900fed54b5468945330eb4768f1a29c1a862941fb7a84780cebf5a08425175"
+    },
+    "eng-001-negatives/mutants/m3_write_on_failure.py": {
+      "bytes": 1354,
+      "sha256": "04049e105a5e3affa1fabec164c60889b5047966d68c870e48e27146562d9c5d"
+    },
+    "eng-001-negatives/mutants/m4_dryrun_touches_db.py": {
+      "bytes": 371,
+      "sha256": "ca47595cee0a9fcbe7a5e76ff9b1d91968778616b796d2791985313d178acbc7"
+    },
+    "eng-001-negatives/mutants/m5_unsorted_errors.py": {
+      "bytes": 289,
+      "sha256": "f491ca3870b407c8008034ad516391546a4e8b731396648864bb43f84c222334"
+    },
+    "eng-001-negatives/mutants/m6_wrong_value.py": {
+      "bytes": 377,
+      "sha256": "92a1379f4ca91fb8bfd557d7b6ba42f5d5c1c80c80f85a24b175070b128b166b"
+    },
+    "eng-001-negatives/mutants/m7_skip_unique_conflict.py": {
+      "bytes": 232,
+      "sha256": "7d012b200a4d9e207c9e3840ed0a368b143c6b2ffe42ac0d07c241eb20608cd9"
+    },
+    "eng-001-negatives/ref_impl_a.py": {
+      "bytes": 9850,
+      "sha256": "dca42193dbadb8007d686ee68e867082795b889b4aca0ef3aca778f1e4a094c9"
+    },
+    "eng-001-negatives/schema.json": {
+      "bytes": 498,
+      "sha256": "9a1ece75d4ca596e57e551151c1fe59a0a12f84afccf9f21a81baa660b6f38ef"
+    },
+    "eng-001-negatives/verify_negatives.py": {
+      "bytes": 13622,
+      "sha256": "f62c2a6013c0d96241f80088d67159348f107e584ebe42a117af528b0b084cc2"
+    },
+    "eng-002-interrupt/interrupt_probe.py": {
+      "bytes": 6847,
+      "sha256": "69bb9708b6de5fc895dc131b29446bdbde545e45b2c98335d4efd49a0dc8ccb5"
+    },
+    "eng-002-interrupt/protocol.md": {
+      "bytes": 1775,
+      "sha256": "dae4d6658df2cdd2fe2d18ad566706ae58aeb0a0bd2f35f670d664173c04c932"
+    },
+    "eng-002-interrupt/ref_impl.py": {
+      "bytes": 5685,
+      "sha256": "d33edf4c16519b48de006cf0eb11c253fb3a0123a171bab1f59c85b521e17fbd"
+    },
+    "eng-003-server-acceptance/acceptance_prototype.py": {
+      "bytes": 9389,
+      "sha256": "fb1acca5c40dc8fea702d1ab059dc7431b54fb033c142cd9e4017271cf6633bd"
+    },
+    "eng-003-server-acceptance/make_submissions.py": {
+      "bytes": 3310,
+      "sha256": "602a090bb156af50a1c293023153cb9d0d2f56bc712f5192cd9fd86aaaf2c316"
+    },
+    "eng-003-server-acceptance/server_protocol.md": {
+      "bytes": 1137,
+      "sha256": "1df6209d424d45bf93f494f73ee6205c6522dfd4be5029e0a6e0efa82dfd3676"
+    },
+    "eng-003-server-acceptance/submissions/bad_server_missing/service.py": {
+      "bytes": 9265,
+      "sha256": "db4fd1f7a161b19a5f537cea2ae7bf9f6b31f1ba8c84f7da50c217d7b152ea4d"
+    },
+    "eng-003-server-acceptance/submissions/bad_server_wrong_route/server.py": {
+      "bytes": 1364,
+      "sha256": "27f31b8c18a72938dcb08d2285711efc92a93ee5fdf9ed33a0dd7a3e3d11c698"
+    },
+    "eng-003-server-acceptance/submissions/bad_server_wrong_route/service.py": {
+      "bytes": 9265,
+      "sha256": "db4fd1f7a161b19a5f537cea2ae7bf9f6b31f1ba8c84f7da50c217d7b152ea4d"
+    },
+    "eng-003-server-acceptance/submissions/good_submission/frontend/app.js": {
+      "bytes": 3757,
+      "sha256": "2dba727fe05304f2c4a687671baa08003ebe87d90c3cce455c35faadad7843e8"
+    },
+    "eng-003-server-acceptance/submissions/good_submission/frontend/index.html": {
+      "bytes": 1947,
+      "sha256": "363548c7667d68c686bbd6d535428d05dae25931f6441eee2aa5969d2450fcb3"
+    },
+    "eng-003-server-acceptance/submissions/good_submission/frontend/style.css": {
+      "bytes": 2451,
+      "sha256": "03be7e2bbc2521cb3071b9d0afc1f5061b3a3fe2e6ddcafe7122c1f2a479b13a"
+    },
+    "eng-003-server-acceptance/submissions/good_submission/server.py": {
+      "bytes": 4572,
+      "sha256": "f7e0ce985092e0e0f0222497cefe4e781dfd91ef1ac8316e13730c12b217c87f"
+    },
+    "eng-003-server-acceptance/submissions/good_submission/service.py": {
+      "bytes": 9265,
+      "sha256": "db4fd1f7a161b19a5f537cea2ae7bf9f6b31f1ba8c84f7da50c217d7b152ea4d"
+    },
+    "license-source-audit/audit.md": {
+      "bytes": 2165,
+      "sha256": "ec7a0f2a44f6659fdc3dcede8f37fa90327b048f9baadc3ca86bb59d72be2693"
+    },
+    "license-source-audit/make_manifest.py": {
+      "bytes": 1273,
+      "sha256": "f374da5f587cbdcac382ee423910dfa1b2c8453267bf1a7344228a423e083eb0"
+    },
+    "REPORT.md": {
+      "bytes": 3137,
+      "sha256": "88bde183bef3e6c2e01ad499eabb0862fb3737379e07cf02c87d6aca94018ad6"
+    },
+    "vis-negatives/make_vis_negatives.py": {
+      "bytes": 1815,
+      "sha256": "06019820689a0630b7a8dda659576710f1e0573d2b9561aa8e26612bf68896ea"
+    },
+    "vis-negatives/notes.md": {
+      "bytes": 996,
+      "sha256": "f383584551dd010dc025cbe5c858964523e02aac821b7e4f476652ea48772f81"
+    },
+    "vis-negatives/variants/palette_ok_low_contrast/app.js": {
+      "bytes": 1120,
+      "sha256": "eaa5be6cb46d12867608f0411161aad7cc16c44171c044337f847cbd09594184"
+    },
+    "vis-negatives/variants/palette_ok_low_contrast/index.html": {
+      "bytes": 3377,
+      "sha256": "204e5c80dfc3047f9932b0a6ec98a762ab3f2f663a8254c845ee6e2470827a97"
+    },
+    "vis-negatives/variants/palette_ok_low_contrast/style.css": {
+      "bytes": 3413,
+      "sha256": "35e6db0b332372be408c99afe2ceb3f89d6e09b4c92c0cb0a65accb5cb39c945"
+    },
+    "vis-negatives/variants/wrapping_label/app.js": {
+      "bytes": 1120,
+      "sha256": "eaa5be6cb46d12867608f0411161aad7cc16c44171c044337f847cbd09594184"
+    },
+    "vis-negatives/variants/wrapping_label/index.html": {
+      "bytes": 3363,
+      "sha256": "22dca7d2a8591fc2eb29ad99219f83716f5696111fad235beab745505c237216"
+    },
+    "vis-negatives/variants/wrapping_label/style.css": {
+      "bytes": 3359,
+      "sha256": "a89ce1d037912e673bdb50e2a04fcf3c62e94b06f5e08257aa189ad35ab14f66"
+    }
+  },
+  "generated_by": "license-source-audit/make_manifest.py",
+  "root": "task-library/research/qwen-round3"
+}

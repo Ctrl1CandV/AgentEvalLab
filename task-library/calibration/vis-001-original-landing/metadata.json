@@ -1,0 +1,87 @@
+{
+  "id": "vis-001-original-landing",
+  "family_id": "vis-original-frontend",
+  "draft_version": "0.2.0",
+  "capability_tags": {
+    "primary": "aesthetics",
+    "sub": [
+      "original-frontend",
+      "responsive",
+      "form-states",
+      "accessibility-baseline"
+    ],
+    "secondary": [
+      "engineering-static-frontend",
+      "ui-copy-layout(decorative only)"
+    ]
+  },
+  "status": "screening",
+  "proposed_usage": "undecided",
+  "source": {
+    "type": "original-design",
+    "note": "Original brief for a fictional community book-exchange brand. Copy, palette, form, and viewports are fixed; the reference frontend is original and does not copy an existing site.",
+    "format_references": [
+      {
+        "name": "WCAG 2.2",
+        "url": "https://www.w3.org/TR/WCAG22/",
+        "license": "W3C Software Notice and License",
+        "version": "W3C Recommendation (2023)",
+        "access_date": "2026-09-30",
+        "use": "Factual reference for contrast thresholds and target size; facts are not copyrighted and no document text was copied."
+      },
+      {
+        "name": "axe-core",
+        "url": "https://github.com/dequelabs/axe-core",
+        "license": "MPL 2.0",
+        "version": "4.11+ (wcag22aa)",
+        "access_date": "2026-09-30",
+        "use": "Potential evaluator-side accessibility scanner; not installed or run and not included in candidate materials."
+      },
+      {
+        "name": "Design2Code",
+        "url": "https://github.com/NoviScl/Design2Code",
+        "license": "Unconfirmed; format reference only.",
+        "access_date": "2026-09-30",
+        "use": "Reference for visual artifact and reproduction evaluation format; screenshot similarity is not original aesthetic quality. No content was copied."
+      }
+    ]
+  },
+  "license": {
+    "task_text": "Original project-authored task material; no third-party text is copied.",
+    "third_party_content_copied": "None; brand, copy, and frontend are original, and WCAG thresholds are factual.",
+    "tool_vs_data_license_checked": true,
+    "fonts_images": "Reference frontend uses system fonts and no external images. Any submitted image must be CC0 or otherwise licensed, with its source recorded."
+  },
+  "runtime": {
+    "structural_contrast_check": "Python 3.13.15 standard library; historically run",
+    "visual_render": "Headless Chromium and axe-core; not installed or run; blocked.",
+    "network": false
+  },
+  "content_hashes_sha256_16": {
+    "instruction.md": "81691d67066cebd1",
+    "rubric.md": "ac25b6782ec49b1f",
+    "public/content.json": "f7f7fc29d59d8048",
+    "public/content_long.json": "1b7732456c2be236",
+    "private/verify_frontend.py": "a99de6bf35dd2072",
+    "private/frontend/index.html": "8369ba8abec6e0fd",
+    "private/frontend/style.css": "a89ce1d037912e67",
+    "private/frontend/app.js": "9992eb32057a1fad",
+    "private/human_eval_form.md": "90bb4736664f479b",
+    "private/human_eval_form.csv": "50cc622cc20c7018"
+  },
+  "calibration_status": {
+    "structural_contrast_self_calibration": "PASS (exit 0): reference frontend passed 6/6; targeted missing-feature, low-contrast, unlabeled-field, and changed-copy mutations were rejected.",
+    "visual_aesthetics": "Blocked pending Phase 4 rendering and anonymous human review; Markdown and CSV review forms are ready.",
+    "responsive_long_content_axe": "Blocked pending a browser backend."
+  },
+  "scoring_split": {
+    "function_structure_a11y_baseline": "Automated structure and declared contrast checks have run; rendered checks remain blocked.",
+    "aesthetics": "human pairwise (blocked)"
+  },
+  "missing": [
+    "A fixed headless Chromium rendering backend is needed for screenshots, responsive layout, long content, and full axe-core checks; do not install system components for this task.",
+    "Anonymous pairwise human review requires enough reviewers and rendered calibration examples; visual quality has not been validated by people.",
+    "Fix an axe-core version and wcag22aa configuration, and define when incomplete or uncovered cases go to human review.",
+    "Budget for rendering, screenshots, and human review remains pending a pilot."
+  ]
+}

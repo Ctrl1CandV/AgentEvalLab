@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "workOrders": [
+    { "id": "FIX-01", "title": "Server room inspection", "status": "OPEN", "createdAt": "2025-04-03T01:02:03.000Z", "description": "" },
+    { "id": "FIX-02", "title": "Boundary record", "status": "DONE", "createdAt": "2025-04-03T01:02:03.000Z", "description": "Preserve the original value", "dependsOn": [] }
+  ]
+}

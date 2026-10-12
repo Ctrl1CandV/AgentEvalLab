@@ -1,0 +1,33 @@
+{
+  "id": "rsn-002-derivation-check",
+  "version": "0.2.0",
+  "familyId": "rsn-derivation-error-localization",
+  "capability": "reasoning",
+  "usage": "development",
+  "status": "development-calibration",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "docs/design/V1_EVALUATION.md"
+    ]
+  },
+  "license": {
+    "taskText": "Original project-authored task material; no third-party text is copied.",
+    "thirdPartyContent": []
+  },
+  "claimBoundary": "Offline grader and reference calibration only. No live model API result, method validity claim, or frozen benchmark status.",
+  "runtime": "Python 3.13.15",
+  "network": false,
+  "contentHashesSha256": {
+    "calibration.md": "924b1fe7460588f3303de21a17ae2def27973595d5778fbff97f5c78fa3d1961",
+    "environment/README.md": "d4bd91eb116bf0972a566b38891343acc3feac246110e6efd2f561fc20bf42a2",
+    "instruction.md": "89b68253351e948b5b0543e284afe20bfe827333a8866d2892e46f2c7f7348ee",
+    "logs/acceptance-self-calibration.log": "1220748e09a78aa0183b2a21459abfe5ac7c31f351bc530e19aebf38cf60ff4e",
+    "logs/self-calibration.log": "9687abe074adc67ac0dd007501a8cb5b9d142e106186558bfc8c5a02ac61fc54",
+    "private/acceptance.py": "3a7e4e5133dc8dd14d9d6b1d8c38f3819bb533d6c6065de27b26a63214858ab1",
+    "private/oracle.json": "3079a43ed47473ac39f285b81665ace1ffce325a12fdcd12c6bd029ac1e20fa6",
+    "private/verify.py": "206efa7096bc37e94787120a6399375c250c360fe9bdf8070417ffb9bad61464",
+    "public/samples.json": "9709a176f2b96592b6f639f580d3d57a28728c549b2e3e1d7974df256ec1194b",
+    "rubric.md": "4ebb9a3930951f3ba7a2ef446c0f309bf0514292a2c2c4d7cb4b28afea52f607"
+  }
+}

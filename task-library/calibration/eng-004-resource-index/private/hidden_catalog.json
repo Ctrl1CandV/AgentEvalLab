@@ -1,0 +1,9 @@
+{
+  "resources": [
+    { "id": "r-05", "title": "Torch archive", "tags": ["history"], "rank": 3 },
+    { "id": "r-03", "title": "A, \"Quoted\" Almanac\nRevised", "tags": ["reference", "multi,\nline"], "rank": 1 },
+    { "id": "r-04", "title": "Amber device", "tags": [], "rank": 0 },
+    { "id": "r-02", "title": "Torch periscope", "tags": ["optics"], "rank": 2 },
+    { "id": "r-01", "title": "Torch & Anvil", "tags": ["engine", "forge"], "rank": 0 }
+  ]
+}

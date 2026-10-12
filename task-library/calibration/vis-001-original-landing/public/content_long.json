@@ -1,0 +1,11 @@
+{
+  "_note": "Long-content variant: expand the variable feature area from three to six entries. Only features are replaced; all other content matches content.json.",
+  "features": [
+    {"title": "Nearby matches", "body": "Find books you want to read in your area, with pickup or delivery."},
+    {"title": "Trust points", "body": "Reliable handoffs and honest condition notes help build trust."},
+    {"title": "Transparent condition", "body": "See notes about creases, annotations, and wear before exchanging."},
+    {"title": "Themed lists", "body": "Organize exchange lists by topic and meet readers with similar interests."},
+    {"title": "Journey history", "body": "Keep a record of how many readers have passed a book along."},
+    {"title": "Community book fair", "body": "Meet once a month to exchange books in person."}
+  ]
+}
