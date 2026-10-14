@@ -31,7 +31,17 @@ Make single-model, task-level evaluation reliable before any agent- or harness-c
 - Fixed: eng-005 reference READMEs (they failed the S5 check), a mis-specified Unicode paging test, and npm scripts that the sandbox could not run.
 - Still open: rebuild the eng-004 baseline. The pinned commit `3b43f3c6…` was an unresolvable Git link to the reference project. Create a project-owned baseline, ship it as a bundle restored by a prepare script (as for eng-005), and release it as a new task version.
 
-## Phase 3: Fix pre-pilot blockers (planned, not started)
+## Phase 3: Fix pre-pilot blockers (done 2026-10-14, except the AliPlan live check)
+
+Status:
+- WP0, checkpoint commits: `076b6a7` through `8063533`.
+- WP1, workspace per trial: `8ebf366`.
+- WP2, bubblewrap sandbox: `6008d5e`.
+- WP3, verdict and review: `48a7993`.
+- WP4, plan schema 3: `c1a4438`.
+- WP5, batch containment: `96397d5`.
+- WP6, repetitions and reports: `1b14106`.
+- WP7, provider check: DeepSeek passed every check. AliPlan's token-plan quota is exhausted until 2026-10-19 16:00 UTC. See [the provider check](../reviews/2026-10-14-provider-check.md).
 
 Work packages follow the [benchmark alignment review](../reviews/2026-10-13-benchmark-alignment-review.md); finding IDs are given in brackets. Every package lands with tests. Any package that changes graders, checkers, or manifests bumps the affected task versions once, re-pins with `scripts/task_packages.py rehash`, and reruns that package's calibration.
 

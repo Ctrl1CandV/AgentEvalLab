@@ -41,7 +41,7 @@ Validate a plan without loading credentials or sending requests:
 npm run harness -- --plan examples/eng-001.eval.json --validate-only
 ```
 
-Results are written under `runs/<run-id>/`. A live run requires `batch.maxTotalTokens` in the plan, and an interrupted single-run batch can be continued with `--resume runs/<run-id>`.
+Results are written under `runs/<run-id>/`. Networked commands go through the host proxy: the `harness` and `provider-check` npm scripts set `NODE_USE_ENV_PROXY=1` so Node's fetch honours `HTTPS_PROXY`. Check a provider with `npm run provider-check -- provider:model`, which sends at most five small requests. A live run requires `batch.maxTotalTokens` in the plan, and an interrupted single-run batch can be continued with `--resume runs/<run-id>`.
 
 ## Project map
 
