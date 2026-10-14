@@ -36,6 +36,18 @@ export interface CustomModelConfig {
   verified: boolean;
 }
 
+// Pi only sends an explicit "thinking disabled" parameter for models declared with reasoning: true, so a
+// model that thinks by default must be declared that way for a plan's thinkingLevel "off" to take effect.
+
+// Checked 2026-10-14 against https://api-docs.deepseek.com/quick_start/pricing: 1M context, 384K maximum
+// output, thinking on by default. Prices change between peak and off-peak hours, so cost stays unknown and
+// batches are bounded by tokens.
+const deepseekFlash: CustomModelConfig = { id: "deepseek-flash", contextWindow: 1_000_000, maxTokens: 384_000, reasoning: true, prices: null, verified: true };
+
+// Checked 2026-10-14 against https://help.aliyun.com/zh/model-studio/qwen3-8-flash: 1M context, 131,072
+// maximum output, thinking supported. AliPlan bills through a token plan, so no per-token prices are declared.
+const qwen38Flash: CustomModelConfig = { id: "qwen3.8-flash", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: true, prices: null, verified: true };
+
 // Conservative placeholders used until a model's metadata is checked against its provider.
 function unverified(id: string): CustomModelConfig {
   return { id, contextWindow: 128_000, maxTokens: 8_192, reasoning: false, prices: null, verified: false };
@@ -62,7 +74,7 @@ export const providerConfigs: readonly ProviderConfig[] = [
   {
     id: "deepseek", name: "DeepSeek", api: "openai-completions",
     baseUrl: "https://api.deepseek.com", apiKeyEnv: "DEEPSEEK_APIKEY",
-    models: [unverified("deepseek-v4-pro"), unverified("deepseek-flash")],
+    models: [unverified("deepseek-v4-pro"), deepseekFlash],
   },
   {
     id: "deepseek-anthropic", name: "DeepSeek (Anthropic)", api: "anthropic-messages",
@@ -73,7 +85,7 @@ export const providerConfigs: readonly ProviderConfig[] = [
   {
     id: "aliplan", name: "AliPlan", api: "anthropic-messages",
     baseUrl: "https://token-plan.cn-beijing.maas.aliyuncs.com/apps/anthropic", apiKeyEnv: "ALIPLAN_APIKEY",
-    models: [unverified("qwen3.8-max"), unverified("qwen3.8-flash"), unverified("qwen3.7-max"), unverified("qwen3.7-flash")],
+    models: [unverified("qwen3.8-max"), qwen38Flash, unverified("qwen3.7-max"), unverified("qwen3.7-flash")],
   },
   {
     id: "aliplan-openai", name: "AliPlan (OpenAI)", api: "openai-completions",

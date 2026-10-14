@@ -107,8 +107,8 @@ test("experiment.json records the evaluated condition and fingerprints it", asyn
     assert.equal(condition.packages["@earendil-works/pi-agent-core"], "0.87.1");
     assert.deepEqual(condition.models[0], {
       provider: "deepseek", id: "deepseek-flash", thinkingLevel: "off", temperature: 0, api: "openai-completions",
-      baseUrl: "https://api.deepseek.com", contextWindow: 128_000, maxTokens: 8_192, reasoning: false,
-      pricesDeclared: false, metadataVerified: false,
+      baseUrl: "https://api.deepseek.com", contextWindow: 1_000_000, maxTokens: 384_000, reasoning: true,
+      pricesDeclared: false, metadataVerified: true,
     });
     assert.deepEqual(condition.tools[0]!.toolNames, ["read_file", "list_directory", "write_file", "execute_command"]);
     assert.match(condition.tools[0]!.definitionsSha256, /^[a-f0-9]{64}$/);

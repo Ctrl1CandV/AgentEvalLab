@@ -9,7 +9,8 @@ export function classifyProviderFailure(message: AssistantMessage, contextWindow
   if (isContextOverflow(message, contextWindow)) return "context_limit";
   const text = (message.errorMessage ?? "").toLowerCase();
   const status = Number(/(?:^|[(\s])([45]\d\d)(?=\D|$)/.exec(text)?.[1] ?? Number.NaN);
-  if (status === 402 || /insufficient[_ ](balance|quota|funds|credit)|exceeded your current quota|quota exceeded|arrearage|account balance|billing/.test(text)) return "balance";
+  // Exhausted plans and quotas are billing states, not transient throttling, even when sent as 429.
+  if (status === 402 || /insufficient[_ ](balance|quota|funds|credit)|exceeded your current quota|quota exceeded|quota (has been |is )?exhausted|exhausted.{0,40}quota|arrearage|account balance|billing/.test(text)) return "balance";
   if (status === 401 || status === 403 || /invalid[_ ]?api[_ ]?key|incorrect api key|unauthori[sz]ed|authentication|permission denied/.test(text)) return "auth";
   if (status === 429 || /rate limit|too many requests/.test(text)) return "rate_limit";
   if ((status >= 500 && status < 600) || /overloaded|internal server error|bad gateway|service unavailable|gateway timeout/.test(text)) return "server";

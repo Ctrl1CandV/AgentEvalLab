@@ -11,7 +11,8 @@
     "preharness": "npm run prepare:eng005-baseline",
     "test": "node --import tsx --test tests/*.test.ts",
     "check": "tsc --noEmit",
-    "harness": "node --import tsx src/main.ts"
+    "harness": "NODE_USE_ENV_PROXY=1 node --import tsx src/main.ts",
+    "provider-check": "NODE_USE_ENV_PROXY=1 node --import tsx scripts/provider-check.ts"
   },
   "keywords": [],
   "author": "",
