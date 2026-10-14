@@ -11,9 +11,9 @@
   ],
   "budget": {
     "timeoutMs": 60000,
-    "maxTurns": 3,
-    "maxModelCalls": 3,
-    "maxToolCalls": 0,
+    "maxTurns": 6,
+    "maxModelCalls": 6,
+    "maxToolCalls": 4,
     "maxOutputTokensPerCall": 2048,
     "maxOutputChars": 16000,
     "maxToolResultChars": 100000
@@ -44,7 +44,8 @@
         "kind": "task-package",
         "timeoutMs": 180000,
         "maxOutputBytes": 100000
-      }
+      },
+      "readOnly": true
     }
   ]
 }
