@@ -129,7 +129,14 @@ test("thinking conditions a model cannot run under are rejected", () => {
     cases: [{ id: "case", input: { prompt: "text" }, evaluator: { kind: "exact-match", expected: "ok" } }],
   });
   assert.throws(() => validatePlan(plan("off")), /THINKING_OFF_UNSUPPORTED/, "GLM-5.3-Flash cannot disable thinking");
+  assert.throws(() => validatePlan(plan("medium")), /THINKING_LEVEL_UNSUPPORTED/, "GLM-5.3-Flash has no thinking level to send");
   validatePlan(plan("provider-default"));
+  // Pi clamps undeclared levels (luna "max" would silently become "high"), so only declared levels pass.
+  const luna = (thinkingLevel: string) => ({ ...plan(thinkingLevel), models: [{ provider: "supergpt", id: "gpt-6-luna", thinkingLevel }] });
+  for (const level of ["off", "low", "medium", "high", "xhigh", "max", "provider-default"]) validatePlan(luna(level));
+  assert.throws(() => validatePlan(luna("minimal")), /THINKING_LEVEL_UNSUPPORTED/, "GPT-6 Luna has no minimal effort");
+  const unverified = { ...plan("high"), models: [{ provider: "supercn", id: "glm-5.3", thinkingLevel: "high" }] };
+  assert.throws(() => validatePlan(unverified), /THINKING_LEVEL_UNSUPPORTED/, "models without declared reasoning cannot claim a level");
   assert.equal(resolveModel({ provider: "supergpt", id: "gpt-6-luna" }).model.reasoning, true);
   assert.equal(resolveModel({ provider: "supergpt", id: "gpt-6-luna", thinkingLevel: "provider-default" }).model.reasoning, false,
     "provider-default sends no thinking parameter");

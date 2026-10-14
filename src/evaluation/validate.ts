@@ -1,3 +1,4 @@
+import { getSupportedThinkingLevels } from "@earendil-works/pi-ai";
 import { validateBudget, parseModel } from "../config.js";
 import { thinkingLevels } from "../types.js";
 import { validateBatchPolicy } from "./batch.js";
@@ -54,14 +55,15 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
     if (typeof model.provider !== "string" || typeof model.id !== "string") throw new Error("INVALID_MODEL");
     const identity = `${model.provider}:${model.id}`;
     const selection = parseModel(identity);
-    resolveModel(selection);
+    const { model: resolved } = resolveModel(selection);
     if (identities.has(identity)) throw new Error("DUPLICATE_MODEL");
     if (model.thinkingLevel !== undefined && !thinkingLevels.includes(model.thinkingLevel as never)) throw new Error("INVALID_THINKING_LEVEL");
-    // Refuse conditions a model cannot run under, so a plan never records thinking "off" that was not applied.
+    // Refuse conditions a model cannot run under, so a plan never records a thinking level that was not applied:
+    // Pi silently clamps an unsupported level to the nearest supported one, and sends nothing for non-reasoning models.
     const control = lookupModelConfig(selection.provider, selection.id)?.thinking;
     const level = (model.thinkingLevel ?? "off") as string;
     if (control === "always-on" && level === "off") throw new Error("THINKING_OFF_UNSUPPORTED");
-    if (control === "none" && level !== "off" && level !== "provider-default") throw new Error("THINKING_UNSUPPORTED");
+    if (level !== "provider-default" && !(getSupportedThinkingLevels(resolved) as string[]).includes(level)) throw new Error("THINKING_LEVEL_UNSUPPORTED");
     if (model.temperature !== undefined && model.temperature !== null &&
         (typeof model.temperature !== "number" || !Number.isFinite(model.temperature) || model.temperature < 0 || model.temperature > 2)) {
       throw new Error("INVALID_TEMPERATURE");

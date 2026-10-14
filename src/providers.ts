@@ -58,11 +58,14 @@ const deepseekFlash: CustomModelConfig = { id: "deepseek-flash", contextWindow: 
 const qwen38Flash: CustomModelConfig = { id: "qwen3.8-flash", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: true, thinking: "configurable", prices: null, verified: true };
 
 // Checked 2026-10-14 against https://developers.openai.com/api/docs/models/gpt-6-luna: 1,050,000 context
-// (922,000 input), 128,000 maximum output, reasoning effort none to max with default "medium". Thinking "off"
-// is sent as reasoning_effort "none". Served through the SuperGPT relay, whose prices are not published here and
-// which ignores both max_tokens and max_completion_tokens; the runner enforces the output cap from reported usage.
+// (922,000 input), 128,000 maximum output, reasoning effort none, low, medium (default), high, xhigh and max.
+// Thinking "off" is sent as reasoning_effort "none"; "minimal" does not exist. Pi clamps undeclared levels, so
+// every supported level is declared and validation rejects the rest. Through the SuperGPT relay the effort also
+// applies when tools are present (checked 2026-10-14), although OpenAI's Chat Completions allows function calling
+// only with "none". The relay's prices are not published here, and it ignores both max_tokens and
+// max_completion_tokens; the runner enforces the output cap from reported usage.
 const gpt6Luna: CustomModelConfig = { id: "gpt-6-luna", contextWindow: 1_050_000, maxTokens: 128_000, reasoning: true, thinking: "configurable",
-  thinkingLevelMap: { off: "none" }, prices: null, verified: true };
+  thinkingLevelMap: { off: "none", minimal: null, xhigh: "xhigh", max: "max" }, prices: null, verified: true };
 
 // Checked 2026-10-14 against https://docs.bigmodel.cn/cn/guide/models/vlm/glm-5.3-flash: 1M context, 128K
 // maximum output, and thinking that cannot be disabled (thinking.type only "enabled"). Declared without

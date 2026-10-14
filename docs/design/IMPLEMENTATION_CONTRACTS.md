@@ -7,6 +7,7 @@ A plan pins its schema version, case IDs, models, budgets, task-package paths an
 Plans use schema version 3. Each model entry may set `thinkingLevel` (default `"off"`) and `temperature` (default 0; `null` omits the parameter).
 - `"provider-default"` sends no thinking parameter.
 - A model whose provider metadata marks thinking as `always-on` cannot be planned with `"off"`, so a recorded condition always matches what the provider received.
+- Any other level must be one the resolved model supports (Pi's `getSupportedThinkingLevels`); otherwise validation fails with `THINKING_LEVEL_UNSUPPORTED`. Pi would otherwise clamp the level to the nearest supported one without notice, and a model declared without reasoning would receive no thinking parameter at all.
 - The runner ends a run with `OUTPUT_TOKEN_LIMIT` when a response reports more output tokens than `maxOutputTokensPerCall`, even if the endpoint ignored the cap. Budgets include `maxToolResultChars`; a larger tool result is returned to the model as a `TOOL_RESULT_TOO_LARGE` tool error, and the run continues. At run start, `experiment.json` records the evaluated condition (`src/evaluation/condition.ts`) and includes it in the run fingerprint:
 - git commit and dirty flag;
 - Node and Python versions, and Pi package versions;
