@@ -80,9 +80,13 @@ test("doc-evidence profile preserves zero-based Unicode paging, hard limits and 
     };
     assert.deepEqual(tools.map(tool => tool.name), ["list", "read", "search"]);
 
-    const first = await result(byName("read"), "read-1", { path: "notes.txt", offset: 1, limit: 1 });
+    // Offsets count Unicode code points: the emoji is one unit at offset 5, so offset 6 starts at "o"
+    // (UTF-16 indexing would return half of the surrogate pair there).
+    const first = await result(byName("read"), "read-1", { path: "notes.txt", offset: 5, limit: 1 });
     assert.equal(first.content, "🙂");
-    assert.equal(first.next_offset, 2);
+    assert.equal(first.next_offset, 6);
+    const after = await result(byName("read"), "read-1b", { path: "notes.txt", offset: 6, limit: 1 });
+    assert.equal(after.content, "o");
     const page = await result(byName("read"), "read-2", { path: "notes.txt", offset: 0, limit: 999 });
     assert.equal(Array.from(String(page.content)).length, 400);
     assert.equal(page.truncated, true);
