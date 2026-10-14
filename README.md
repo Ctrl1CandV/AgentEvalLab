@@ -14,9 +14,20 @@ This project supports task-specific comparisons. It does not produce a general m
 
 ## Quick start
 
-Requirements: Node.js 22 or later and npm.
+Requirements: Node.js 22, npm, and Python 3.13 available as `python3` (task graders and checkers use it). The pinned runtime is defined in `environment.yml`:
 
-```powershell
+```bash
+mamba env create -f environment.yml
+conda activate agenteval
+```
+
+Check task-package integrity without Node.js:
+
+```bash
+python3 scripts/task_packages.py check
+```
+
+```bash
 npm ci
 npm run check
 npm test
@@ -26,7 +37,7 @@ Create a local `.env` file and add credentials only for a provider you intend to
 
 Validate a plan without loading credentials or sending requests:
 
-```powershell
+```bash
 npm run harness -- --plan examples/eng-001.eval.json --validate-only
 ```
 

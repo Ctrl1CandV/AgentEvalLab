@@ -4,7 +4,7 @@ These plans demonstrate the evaluation schema and task-package pins. They are ex
 
 Use `--validate-only` to check a plan without loading credentials or sending requests:
 
-```powershell
+```bash
 npm run harness -- --plan examples/eng-001.eval.json --validate-only
 ```
 
