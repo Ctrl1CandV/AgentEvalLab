@@ -81,6 +81,21 @@ export interface ReportContext {
 
 const modelKey = (model: ModelSelection) => `${model.provider}:${model.id}`;
 
+/** Median and maximum of known values; trials with unknown values are counted, never treated as zero. */
+function distribution(values: Array<number | null>) {
+  const known = values.filter((value): value is number => value !== null).sort((left, right) => left - right);
+  const middle = Math.floor(known.length / 2);
+  const median = known.length === 0 ? null : known.length % 2 ? known[middle]! : (known[middle - 1]! + known[middle]!) / 2;
+  return { median, max: known.length ? known[known.length - 1]! : null, unknown: values.length - known.length };
+}
+
+/** Total reported tokens of one trial, or null when any request lacks reported usage. */
+function trialTokens(record: TrialRecord): number | null {
+  const requests = record.execution.requestUsage ?? [];
+  return requests.length > 0 && requests.every(request => request.totalTokens !== null)
+    ? requests.reduce((sum, request) => sum + request.totalTokens!, 0) : null;
+}
+
 /** Per model and task: verdict counts, pass rates with Wilson intervals, pass@k/pass^k, and per-check rates. */
 export function taskResults(records: TrialRecord[], context: ReportContext) {
   const groups = new Map<string, TrialRecord[]>();
@@ -101,6 +116,12 @@ export function taskResults(records: TrialRecord[], context: ReportContext) {
       return { id, passed, judged: values.length, rate: values.length ? passed / values.length : null };
     });
     const k = context.repetitions;
+    // How each execution ended: "done" or the stop code (budget limits, provider failures, timeouts).
+    const executionOutcomes: Record<string, number> = {};
+    for (const record of group) {
+      const outcome = record.execution.status === "done" ? "done" : record.execution.error ?? record.execution.status;
+      executionOutcomes[outcome] = (executionOutcomes[outcome] ?? 0) + 1;
+    }
     return {
       model: modelKey(first.model),
       caseId: first.caseId,
@@ -116,6 +137,13 @@ export function taskResults(records: TrialRecord[], context: ReportContext) {
       statuses,
       malformedAnswers: group.filter(record => record.evaluation.checks.some(check => check.id === "answer-format" && check.passed === false)).length,
       reviewPending: group.filter(record => record.evaluation.review?.status === "pending").length,
+      executionOutcomes,
+      usage: {
+        modelCalls: distribution(group.map(record => record.execution.modelCalls)),
+        toolCalls: distribution(group.map(record => record.execution.toolCalls)),
+        totalTokens: distribution(group.map(trialTokens)),
+        durationMs: distribution(group.map(record => record.durationMs)),
+      },
       checks,
     };
   }).sort((left, right) => left.caseId.localeCompare(right.caseId) || left.model.localeCompare(right.model));
@@ -180,6 +208,13 @@ export function markdownReport(report: ReturnType<typeof buildReport>): string {
     "| --- | --- | --- | ---: | ---: | --- | ---: | ---: | ---: | ---: |",
     ...report.byTask.map(row => `| ${row.caseId} | ${row.capability} | ${row.model} | ${row.decided}/${row.trials} | ${percent(row.passRate)} | ${interval(row.interval)} | ${percent(row.passAtK)} | ${percent(row.passHatK)} | ${row.malformedAnswers} | ${row.reviewPending} |`),
     ""];
+  const range = (value: { median: number | null; max: number | null; unknown: number }, scale = 1, digits = 0) =>
+    value.median === null ? "unknown" : `${(value.median / scale).toFixed(digits)} / ${(value.max! / scale).toFixed(digits)}${value.unknown ? ` (+${value.unknown} unknown)` : ""}`;
+  lines.push("## Usage by task", "", "Median / maximum per trial. Execution outcomes show how trials ended; budget stops such as MODEL_CALL_LIMIT or OUTPUT_TOKEN_LIMIT indicate a binding budget.", "",
+    "| Task | Model | Model calls | Tool calls | Tokens (thousands) | Duration (s) | Execution outcomes |",
+    "| --- | --- | --- | --- | --- | --- | --- |",
+    ...report.byTask.map(row => `| ${row.caseId} | ${row.model} | ${range(row.usage.modelCalls)} | ${range(row.usage.toolCalls)} | ${range(row.usage.totalTokens, 1000, 1)} | ${range(row.usage.durationMs, 1000, 1)} | ${Object.entries(row.executionOutcomes).map(([key, count]) => `${key} ${count}`).join(", ")} |`),
+    "");
   if (report.pairedComparisons.length) {
     lines.push("## Paired model differences", "", "Mean per-task pass-rate difference (A − B) within one capability, with a 95% t interval over tasks; no interval with fewer than two tasks.", "",
       "| Capability | Model A | Model B | Tasks | Mean difference | 95% interval |", "| --- | --- | --- | ---: | ---: | --- |",

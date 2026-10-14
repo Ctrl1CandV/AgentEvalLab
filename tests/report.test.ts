@@ -75,6 +75,9 @@ test("repetitions are interleaved by seed and reported per task with format fail
     assert.equal(deepseek.trials, 2);
     assert.equal(deepseek.passes, 1);
     assert.equal(deepseek.malformedAnswers, 1);
+    assert.deepEqual(deepseek.executionOutcomes, { done: 2 });
+    assert.equal(deepseek.usage.totalTokens.unknown, 2, "trials without reported usage are unknown, not zero");
+    assert.match(await readFile(join(result.directory, "report.md"), "utf8"), /## Usage by task/);
     near(deepseek.passHatK, 0, "pass^2 with one of two passes");
     near(deepseek.passAtK, 1, "pass@2 with one of two passes");
     const qwen = report.byTask.find(row => row.caseId === "rsn001" && row.model === "aliplan:qwen3.8-flash")!;
