@@ -12,6 +12,8 @@ import { preflightPlan } from "./evaluation/preflight.js";
 import { importHumanReview, mergeRunReports, regradeTrial, restoreTrialSnapshot } from "./evaluation/regrade.js";
 import { restoreTrajectorySnapshot } from "./evaluation/trajectory-snapshot.js";
 import type { EvaluationPlan } from "./evaluation/types.js";
+import { fileURLToPath } from "node:url";
+import { git } from "./command.js";
 
 async function main(): Promise<void> {
   const { values } = parseArgs({
@@ -32,6 +34,7 @@ async function main(): Promise<void> {
       review: { type: "string" },
       resume: { type: "string" },
       merge: { type: "string", multiple: true },
+      "allow-dirty": { type: "boolean" },
       help: { type: "boolean" },
     },
   });
@@ -39,7 +42,7 @@ async function main(): Promise<void> {
   if (values.help) {
     console.log([
       'npm run harness -- --model provider:id --prompt "..." [--out runs] [--validate-only]',
-      "npm run harness -- --plan plan.eval.json [--out runs] [--validate-only] [--resume runs/<run>]",
+      "npm run harness -- --plan plan.eval.json [--out runs] [--validate-only] [--resume runs/<run>] [--allow-dirty]",
       "npm run harness -- --merge runs/<run-a> --merge runs/<run-b> [--out runs]",
       "npm run harness -- --plan plan.eval.json --regrade runs/<run>/<trial> --reason \"reason\"",
       "npm run harness -- --plan plan.eval.json --import-review runs/<run>/<trial> --review review.json --reason \"reason\"",
@@ -108,6 +111,9 @@ async function main(): Promise<void> {
     // SPEC rule 8: no provider request without an explicit batch budget.
     if (typeof plan.batch?.maxTotalTokens !== "number") throw new Error("BATCH_TOKEN_CEILING_REQUIRED");
     if (values.resume && plan.execution?.kind === "trajectory") throw new Error("RESUME_UNSUPPORTED_FOR_TRAJECTORY");
+    // A live run must map to one committed code revision; the fingerprint records the commit and dirty flag.
+    const repositoryRoot = fileURLToPath(new URL("../", import.meta.url));
+    if (!values["allow-dirty"] && (await git(repositoryRoot, ["status", "--porcelain"])).trim()) throw new Error("WORKTREE_DIRTY");
     loadCredentials();
     if (plan.execution?.kind === "trajectory") {
       const result = await runTrajectoryEvaluation(plan, { outputRoot: values.out });
