@@ -225,7 +225,7 @@ test("eng-001 runs read, failed public check, repair, and grading through Pi off
       await preflightPlan(plan);
     } catch (error) {
       if (error instanceof Error && error.message === "PACKAGE_RUNTIME_UNSUPPORTED") {
-        t.skip("Python 3.13.15 task runtime is unavailable");
+        t.skip("Python 3.13 task runtime is unavailable");
         return;
       }
       throw error;

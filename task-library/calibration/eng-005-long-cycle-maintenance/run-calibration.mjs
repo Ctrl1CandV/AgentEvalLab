@@ -23,7 +23,7 @@ function run(executable, args, cwd, timeout = 30_000) {
 
 function publicCheck(submission, stageId) {
   const stage = manifest.stages.find(item => item.id === stageId);
-  const output = run("python", [join(packageRoot, ...stage.publicChecker.entryPoint.split("/")), "--submission", submission, "--stage", stageId], repositoryRoot, stage.publicChecker.timeoutMs + 2_000);
+  const output = run("python3", [join(packageRoot, ...stage.publicChecker.entryPoint.split("/")), "--submission", submission, "--stage", stageId], repositoryRoot, stage.publicChecker.timeoutMs + 2_000);
   const result = JSON.parse(output);
   if (result.status !== "passed" || result.stageId !== stageId || JSON.stringify(result.checks.map(item => item.id).sort()) !== JSON.stringify([...stage.publicChecker.checkIds].sort())) {
     throw new Error(`PUBLIC_REFERENCE_FAILED:${stageId}:${JSON.stringify(result)}`);
@@ -51,7 +51,7 @@ async function privateGrade(submission, stageId, cycleId = "cycle-1", mustPass =
       context: { stageId, cycleId, activeRequirementIds: stage.activeRequirementIds },
       evidenceRoot,
     }), "utf8");
-    run("python", [join(packageRoot, ...manifest.grader.entryPoint.split("/")), "--request", requestPath, "--result", resultPath], repositoryRoot, 60_000);
+    run("python3", [join(packageRoot, ...manifest.grader.entryPoint.split("/")), "--request", requestPath, "--result", resultPath], repositoryRoot, 60_000);
     const result = JSON.parse(await readFile(resultPath, "utf8"));
     const expected = manifest.requirements.filter(item => stage.activeRequirementIds.includes(item.id)).flatMap(item => item.checkIds).sort();
     const actual = result.checks.map(item => item.id).sort();

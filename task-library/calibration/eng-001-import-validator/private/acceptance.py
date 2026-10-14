@@ -37,7 +37,7 @@ PY = _find_python_launcher()
 ORACLE = json.load(open(os.path.join(HERE, "oracle.json"), encoding="utf-8"))
 DEFAULT_SCHEMA = os.path.join(PKG, "public", "schema.json")
 TASK_ID = "eng-001-import-validator"
-TASK_VERSION = "0.2.0"
+TASK_VERSION = "0.3.0"
 GRADER_ID = "eng001-acceptance"
 GRADER_VERSION = "1.0.0"
 MAX_CANDIDATE_OUTPUT = 200_000

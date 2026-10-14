@@ -10,7 +10,7 @@ sys.path.insert(0, HERE)
 import verify  # noqa: E402
 
 TASK_ID = "rsn-002-derivation-check"
-TASK_VERSION = "0.2.0"
+TASK_VERSION = "0.3.0"
 GRADER_VERSION = "1.0.0"
 CHECK_REQUIREMENTS = {
     "sample-values": "REQ-NUMERIC",

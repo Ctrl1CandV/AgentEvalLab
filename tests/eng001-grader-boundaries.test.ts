@@ -19,8 +19,8 @@ test("eng-001 classifies missing, malformed, timed out and oversized candidates 
   assert.ok(python);
   const version = await command(python, ["--version"], packagePath, 5_000, 2_000);
   if (version.status !== "completed" || version.exitCode !== 0 ||
-      !(version.stdout + version.stderr).includes("Python 3.13.15")) {
-    t.skip("Python 3.13.15 task runtime is unavailable");
+      !(version.stdout + version.stderr).includes("Python 3.13.")) {
+    t.skip("Python 3.13 task runtime is unavailable");
     return;
   }
 

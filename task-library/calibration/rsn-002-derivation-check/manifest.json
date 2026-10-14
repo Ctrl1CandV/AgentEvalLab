@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "rsn-002-derivation-check",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "familyId": "rsn-derivation-error-localization",
   "capability": "reasoning",
   "usage": "development",
@@ -22,7 +22,7 @@
     "public": [
       {
         "path": "instruction.md",
-        "sha256": "89b68253351e948b5b0543e284afe20bfe827333a8866d2892e46f2c7f7348ee"
+        "sha256": "5b48620ee2b2c473ddbdc5111a4a9d96b33f981e0d47e74fa47d75fe97a0a2af"
       },
       {
         "path": "public/samples.json",
@@ -32,23 +32,23 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "924b1fe7460588f3303de21a17ae2def27973595d5778fbff97f5c78fa3d1961"
+        "sha256": "6747abec98027163b54e903635ccffe7967d760cc1b5de3d09f3cd9e081abf60"
       },
       {
         "path": "environment/README.md",
-        "sha256": "d4bd91eb116bf0972a566b38891343acc3feac246110e6efd2f561fc20bf42a2"
+        "sha256": "f6504770a6c7a48b7e5af58fec6f26e39480c39aca7423c08ea3b618888c421f"
       },
       {
         "path": "metadata.json",
-        "sha256": "bdcfba677278109ed4cbb9706ebdcb4ab1e571acdcf046133f6f92ea6c74dd5c"
+        "sha256": "b1eddf128fa02a2c447d5da69b892639f32e22b3c4da35eccff1b61637064f48"
       },
       {
         "path": "rubric.md",
-        "sha256": "4ebb9a3930951f3ba7a2ef446c0f309bf0514292a2c2c4d7cb4b28afea52f607"
+        "sha256": "506e99dbb58e5d8179f382566274fffcb77aa3d7efd44a5832cd5a68e84e81b3"
       },
       {
         "path": "logs/acceptance-self-calibration.log",
-        "sha256": "1220748e09a78aa0183b2a21459abfe5ac7c31f351bc530e19aebf38cf60ff4e"
+        "sha256": "bfd96dd98a1dbb7e48fcfe70c9772139ac4e534acf6f1c67ef739dc78cd8c721"
       },
       {
         "path": "logs/self-calibration.log",
@@ -56,7 +56,7 @@
       },
       {
         "path": "private/acceptance.py",
-        "sha256": "3a7e4e5133dc8dd14d9d6b1d8c38f3819bb533d6c6065de27b26a63214858ab1"
+        "sha256": "cc97ebdf20dc0bbff13e3d387dc542b3c58e87f31082b2a03a54067800facc02"
       },
       {
         "path": "private/oracle.json",
@@ -133,7 +133,7 @@
     "id": "rsn002-acceptance",
     "version": "1.0.0",
     "entryPoint": "private/acceptance.py",
-    "executable": "C:/Program Files/LibreOffice/program/python-core-3.13.15/bin/python.exe",
+    "executable": "python3",
     "args": [
       "{entryPoint}",
       "--request",
@@ -144,15 +144,15 @@
     "answerSource": "execution-output"
   },
   "environment": {
-    "runtime": "Python 3.13.15",
+    "runtime": "Python 3.13",
     "dependencies": "Python standard library; no network",
     "network": false,
     "runtimeCheck": {
-      "executable": "C:/Program Files/LibreOffice/program/python-core-3.13.15/bin/python.exe",
+      "executable": "python3",
       "args": [
         "--version"
       ],
-      "expectedSubstring": "Python 3.13.15"
+      "expectedSubstring": "Python 3.13."
     }
   }
 }

@@ -17,7 +17,7 @@ PKG = os.path.dirname(HERE)
 HIDDEN = os.path.join(HERE, "hidden_catalog.json")
 NODE = shutil.which("node") or "node"
 TASK_ID = "eng-004-resource-index"
-TASK_VERSION = "0.1.1"
+TASK_VERSION = "0.2.0"
 GRADER_VERSION = "1.0.1"
 CHECKS = [
     ("search-filter", "REQ-SEARCH"),

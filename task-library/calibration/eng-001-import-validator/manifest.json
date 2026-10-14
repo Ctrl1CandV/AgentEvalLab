@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "eng-001-import-validator",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "familyId": "eng-data-validation",
   "capability": "engineering",
   "usage": "development",
@@ -24,7 +24,7 @@
     "public": [
       {
         "path": "instruction.md",
-        "sha256": "428959f5db8e1a6c892c3c4148be671efaea18dcc475b8d5558efca98b19e8eb"
+        "sha256": "ba7fd43b4799937e47580fd16c8078571c88046ea21b200f804f8b4cd8ec9fe3"
       },
       {
         "path": "public/data_clean.csv",
@@ -36,33 +36,33 @@
       },
       {
         "path": "public/schema.json",
-        "sha256": "9a1ece75d4ca596e57e551151c1fe59a0a12f84afccf9f21a81baa660b6f38ef"
+        "sha256": "e3b7572aaec273d006c8bb9e11b0dc32591b291dd5e2ab343048c7cf04b8a261"
       }
     ],
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "2fcfd80ead8c8744a18f57d97bd2f48437ce1e225e683ff98f76eff535b4d3f3"
+        "sha256": "366761dd526a6f04b946eb749758ba9bdc5f691cd7b462a2ea9dafce5e37d4eb"
       },
       {
         "path": "environment/README.md",
-        "sha256": "9b6f096fe922975956e8ceab3050545deac4a8f218db25e78a72f73bdd73d79c"
+        "sha256": "410bb0a5f4abcb4b3fb329b7b5bc4e8f023c1e7fafe4c5ea5567e2e4e2536959"
       },
       {
         "path": "metadata.json",
-        "sha256": "bc3af88bc28501e8931ab95f900d222cb7704d27260be8e8fd50a10320e9be5f"
+        "sha256": "5249f8ee1d56dc7dec87c255b0e9638dc2035d2abbb203d72697466f410555e2"
       },
       {
         "path": "private/acceptance.py",
-        "sha256": "f6fabbb26e1fc2cd3d4c63e3b03f67f5a10672a94a80499e00ec715ccf297098"
+        "sha256": "605d32a2b152fec7d2a90a8fdcf1bee18d7cc6ced694143c88f2f2a84baf582c"
       },
       {
         "path": "private/bad_impl_always_exit0.py",
-        "sha256": "d0440b4b4928783d2aac3d07ebc7d4aa26601f73b845b227a57c2f80b84cbd6c"
+        "sha256": "4b016c3216414a11d11bb050946f29d6996e93fea68b30d605ba52f34a2ce495"
       },
       {
         "path": "private/bad_impl_dryrun_writes.py",
-        "sha256": "150454404a46548a49daac04332fd16fe4a8b3919f6cf242f2a23faa31703994"
+        "sha256": "0cdddf1d35355bdcee71dac3e91d447ca1d68f2b061ad8476f56321fd9ef8d7f"
       },
       {
         "path": "private/bad_impl_empty.py",
@@ -70,7 +70,7 @@
       },
       {
         "path": "private/bad_impl_insert_only.py",
-        "sha256": "337717b1324904524fb8a750eccb5a28f748d39ed59f1620d98bde9c3fed3491"
+        "sha256": "52a286a53605d71a3c8e0a1181c50793b62a3ed0e84e8b0936fed1c70888e4c6"
       },
       {
         "path": "private/bad_impl_naive_split.py",
@@ -157,6 +157,10 @@
         "sha256": "ae07a631b413ace75243a91f6bd6be335876f487eec763eecb1fa9c62bac3157"
       },
       {
+        "path": "private/make_mutants.py",
+        "sha256": "9507e107b9d7318136d9dcbca5c6f94284bd1ca8685158275e22ffad29955a37"
+      },
+      {
         "path": "private/oracle.json",
         "sha256": "71a4a95f0e6f739db9ae4c4879d88a34fa39f524ad8973aa8efee3414185800b"
       },
@@ -170,7 +174,7 @@
       },
       {
         "path": "rubric.md",
-        "sha256": "dc685e8da231fe312322d37e7673542b78f11e0dde12c8f28520f3776caff4f2"
+        "sha256": "7bc1d2b3e6eca1d4617a01cfbf3b813f69d3ac09819e194a453a4d3051f58176"
       }
     ]
   },
@@ -209,7 +213,7 @@
     "id": "eng001-acceptance",
     "version": "1.0.0",
     "entryPoint": "private/acceptance.py",
-    "executable": "C:/Program Files/LibreOffice/program/python-core-3.13.15/bin/python.exe",
+    "executable": "python3",
     "args": [
       "{entryPoint}",
       "--request",
@@ -219,15 +223,15 @@
     ]
   },
   "environment": {
-    "runtime": "Python 3.13.15",
+    "runtime": "Python 3.13",
     "dependencies": "Python standard library; SQLite via sqlite3",
     "network": false,
     "runtimeCheck": {
-      "executable": "C:/Program Files/LibreOffice/program/python-core-3.13.15/bin/python.exe",
+      "executable": "python3",
       "args": [
         "--version"
       ],
-      "expectedSubstring": "Python 3.13.15"
+      "expectedSubstring": "Python 3.13."
     }
   }
 }

@@ -27,7 +27,7 @@
     {
       "id": "rsn002-derivation",
       "packagePath": "task-library/calibration/rsn-002-derivation-check",
-      "packageManifestSha256": "2dcf1b815461f9a6bbf368d1efe18065705099ac7fdd61e35e17777fb29b0b97",
+      "packageManifestSha256": "64cd1509928199c5abf3dd47c8c1000ed138891d673bc37eeeabac65e5adec53",
       "input": {
         "prompt": "Return the structured result requested by the task. Include every required certificate."
       },

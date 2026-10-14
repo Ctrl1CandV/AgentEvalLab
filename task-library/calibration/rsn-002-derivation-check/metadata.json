@@ -1,6 +1,6 @@
 {
   "id": "rsn-002-derivation-check",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "familyId": "rsn-derivation-error-localization",
   "capability": "reasoning",
   "usage": "development",

@@ -52,7 +52,7 @@ for (const id of stageIds) {
     activeRequirementIds: stageRequirements[id],
     publicChecker: {
       entryPoint: `${stageRoot}/public/checker.py`,
-      executable: "python",
+      executable: "python3",
       args: ["{entryPoint}", "--submission", "{submission}", "--stage", id],
       timeoutMs: 25_000,
       maxOutputBytes: 100_000,
@@ -64,7 +64,7 @@ const baselineCommit = execFileSync("git", ["rev-parse", "HEAD"], { cwd: join(ro
 const manifest = {
   schemaVersion: 1,
   id: "eng-005-long-cycle-maintenance",
-  version: "0.1.1",
+  version: "0.2.0",
   familyId: "eng-workflow-evolution",
   capability: "engineering",
   usage: "development",
@@ -75,7 +75,7 @@ const manifest = {
   requirements: Object.entries(requirementChecks).map(([id, checkIds]) => ({ id, critical: true, introducedAt: id, checkIds })),
   stages,
   toolProfiles: ["workspace-basic", "workspace-augmented"],
-  grader: { id: "eng005-checkpoint-grader", version: "1.0.1", entryPoint: "private/grader.py", executable: "python",
+  grader: { id: "eng005-checkpoint-grader", version: "1.0.1", entryPoint: "private/grader.py", executable: "python3",
     args: ["{entryPoint}", "--request", "{request}", "--result", "{result}"] },
   environment: { runtime: "Node.js 22.x + Python 3.x", dependencies: "Node built-ins and Python standard library; no network", network: false,
     runtimeCheck: { executable: "node", args: ["--version"], expectedSubstring: "v22." } },

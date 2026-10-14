@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "eng-004-resource-index",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "familyId": "eng-resource-index-maintenance",
   "capability": "engineering",
   "usage": "development",
@@ -23,7 +23,7 @@
     "public": [
       {
         "path": "instruction.md",
-        "sha256": "7d22392e845226583951488b6f14f6821af88cb0a33816514ddd0de49c9f2e07"
+        "sha256": "55ef93edd63cffaeda8775150a6b0f33fe34d7d4aaabf8be44a375a110a92cf4"
       },
       {
         "path": "public/catalog.json",
@@ -31,25 +31,25 @@
       },
       {
         "path": "public/task-contract.md",
-        "sha256": "15fcbcade911d2e342dc3b9a81b0f8fe9f80f2ffe2b40c6e09084ef73366ec27"
+        "sha256": "d7637434d3baa0b5f5ed879429649a4ca1008b9659b8d3dfc58190dcef97c07d"
       }
     ],
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "8506389ce48424b77b081bce07abaec8f8feec3a34ef1415373d4441d8025d2e"
+        "sha256": "bcda6e456207e78ec4841482f5e63fc38799e723302fb41efd10c9029fafbe80"
       },
       {
         "path": "environment/README.md",
-        "sha256": "82c6fd6864cc53b806d1557b459773b9213b38123add3f40f12c2287f7e6ad28"
+        "sha256": "5e47c9f85dbf98fd070d68548028fb34b142671ac0caaaba4a8c8238222e97c8"
       },
       {
         "path": "metadata.json",
-        "sha256": "429b42524937e67bccd330c046bc3076a132211a05c0c1b6bcc94741fd7476b3"
+        "sha256": "cc2556bcda505853f57138480afc7daf411ac81b39f61d5005b4b2be669ab503"
       },
       {
         "path": "rubric.md",
-        "sha256": "e85ebd37c2f8a3d7229b80f1b03886798fb63ceb3fab04edc45f7a0b4b0e948c"
+        "sha256": "38c66dfa1846983a4ab6a0cc13dc2f4e673cbe265d2ce4b1f8c99fc59ec05dc0"
       },
       {
         "path": "logs/acceptance-self-calibration.log",
@@ -57,7 +57,7 @@
       },
       {
         "path": "private/acceptance.py",
-        "sha256": "84a01b776aa6fb177ec8c96ad1c6c4ea5cbc0038ae27fa31fd4e1f225f46b0a2"
+        "sha256": "0e3b32e5ff1f2d0f7f4edb4bf027efc2153bc9a8c3795bf0e75fae93081f27b4"
       },
       {
         "path": "private/hidden_catalog.json",
@@ -146,7 +146,7 @@
     "id": "eng004-acceptance",
     "version": "1.0.1",
     "entryPoint": "private/acceptance.py",
-    "executable": "C:/Program Files/LibreOffice/program/python-core-3.13.15/bin/python.exe",
+    "executable": "python3",
     "args": [
       "{entryPoint}",
       "--request",
@@ -156,7 +156,7 @@
     ]
   },
   "environment": {
-    "runtime": "Node.js 22.23.3 + Python 3.13.15",
+    "runtime": "Node.js 22 + Python 3.13",
     "dependencies": "Node built-ins and Python standard library; no network",
     "network": false,
     "runtimeCheck": {

@@ -1,6 +1,6 @@
 {
   "id": "eng-004-resource-index",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "familyId": "eng-resource-index-maintenance",
   "capability": "engineering",
   "usage": "development",

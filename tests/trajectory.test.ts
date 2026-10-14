@@ -216,7 +216,7 @@ test("public checker mutations stay outside the archived trajectory snapshot", a
   };
   const checker = manifest.stages.find(stage => stage.id === "S1")!.publicChecker;
   const code = "import argparse,json,sys;from pathlib import Path;p=argparse.ArgumentParser();p.add_argument('--submission');p.add_argument('--stage');a=p.parse_args(sys.argv[2:]);(Path(a.submission)/'data/work-orders.json').unlink();print(json.dumps(dict(schemaVersion=1,stageId='S1',status='passed',checks=[dict(id='public-s1',passed=True,reasonCode='OK',feedback='ok')])))";
-  checker.executable = "python";
+  checker.executable = "python3";
   checker.args = ["-c", code, "{entryPoint}", "--submission", "{submission}", "--stage", "S1"];
   checker.timeoutMs = 5_000;
   checker.maxOutputBytes = 1_000;
@@ -269,10 +269,10 @@ test("trajectory classifies public checker timeout, output, protocol, exit and s
   });
   try {
     const scenarios = [
-      { id: "timeout", executable: "python", code: "import time;time.sleep(1)", timeoutMs: 100, maxOutputBytes: 1_000, reason: "PUBLIC_CHECK_TIMEOUT" },
-      { id: "output", executable: "python", code: "import sys;sys.stdout.write('x'*1000)", timeoutMs: 1_000, maxOutputBytes: 8, reason: "PUBLIC_CHECK_OUTPUT_LIMIT" },
-      { id: "protocol", executable: "python", code: "import sys;sys.stdout.write(chr(123))", timeoutMs: 1_000, maxOutputBytes: 1_000, reason: "PUBLIC_CHECK_RESULT_INVALID_JSON" },
-      { id: "exit", executable: "python", code: "raise SystemExit(3)", timeoutMs: 1_000, maxOutputBytes: 1_000, reason: "PUBLIC_CHECK_NONZERO_EXIT" },
+      { id: "timeout", executable: "python3", code: "import time;time.sleep(1)", timeoutMs: 100, maxOutputBytes: 1_000, reason: "PUBLIC_CHECK_TIMEOUT" },
+      { id: "output", executable: "python3", code: "import sys;sys.stdout.write('x'*1000)", timeoutMs: 1_000, maxOutputBytes: 8, reason: "PUBLIC_CHECK_OUTPUT_LIMIT" },
+      { id: "protocol", executable: "python3", code: "import sys;sys.stdout.write(chr(123))", timeoutMs: 1_000, maxOutputBytes: 1_000, reason: "PUBLIC_CHECK_RESULT_INVALID_JSON" },
+      { id: "exit", executable: "python3", code: "raise SystemExit(3)", timeoutMs: 1_000, maxOutputBytes: 1_000, reason: "PUBLIC_CHECK_NONZERO_EXIT" },
       { id: "spawn", executable: join(fixtureRoot, "missing-checker.exe"), code: "pass", timeoutMs: 1_000, maxOutputBytes: 1_000, reason: "PUBLIC_CHECK_SPAWN_FAILED" },
     ];
     for (const scenario of scenarios) {

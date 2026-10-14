@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "eng-005-long-cycle-maintenance",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "familyId": "eng-workflow-evolution",
   "capability": "engineering",
   "usage": "development",
@@ -23,11 +23,11 @@
     "public": [
       {
         "path": "instruction.md",
-        "sha256": "15879884efc2397126f80a2d66d8dabf8cceb65a208fedc25a761b8df9b66628"
+        "sha256": "f42127a6e2a9630cd11ef3339a4b83fb4e4d215f36598c7a402ac455e9128d96"
       },
       {
         "path": "public/project-brief.md",
-        "sha256": "55d960d08f2db583bd7e36ec80203eafb0c125045b0efadf869982bed60d2dc5"
+        "sha256": "bdbc3294013ff019589903c9ddf98b088d3783ebdf7987959b7c4745452a6610"
       }
     ],
     "trusted": [
@@ -124,7 +124,7 @@
       "files": [
         {
           "path": "stages/S1/instruction.md",
-          "sha256": "7cde3d76a820410a427c84ff7879abcff8e9bddfa16c84f7bfcd12712855e50b"
+          "sha256": "5f39cd480b36d0c6926d7cec508952148f571d678083ff15387dbef9b228667b"
         },
         {
           "path": "stages/S1/public/checker.py",
@@ -138,7 +138,7 @@
       ],
       "publicChecker": {
         "entryPoint": "stages/S1/public/checker.py",
-        "executable": "python",
+        "executable": "python3",
         "args": [
           "{entryPoint}",
           "--submission",
@@ -159,7 +159,7 @@
       "files": [
         {
           "path": "stages/S2/instruction.md",
-          "sha256": "91efefac06ef69cdbe5db7399fcdc425bc66468e7a917cf02e8dc407c3529e09"
+          "sha256": "724aabe6d2e02904fe1875775a8bab6b51ab8e810a87278c44461ba47bb4f608"
         },
         {
           "path": "stages/S2/public/checker.py",
@@ -174,7 +174,7 @@
       ],
       "publicChecker": {
         "entryPoint": "stages/S2/public/checker.py",
-        "executable": "python",
+        "executable": "python3",
         "args": [
           "{entryPoint}",
           "--submission",
@@ -195,7 +195,7 @@
       "files": [
         {
           "path": "stages/S3/instruction.md",
-          "sha256": "1d9489633cf055905fa53e193936f3b24be6c2b3b76d80f1f59c91cb275a5d2a"
+          "sha256": "7f791905810452cba30d1199a26494c565385d08bc43facafd90c949f428fa43"
         },
         {
           "path": "stages/S3/public/cases.json",
@@ -215,7 +215,7 @@
       ],
       "publicChecker": {
         "entryPoint": "stages/S3/public/checker.py",
-        "executable": "python",
+        "executable": "python3",
         "args": [
           "{entryPoint}",
           "--submission",
@@ -236,7 +236,7 @@
       "files": [
         {
           "path": "stages/S4/instruction.md",
-          "sha256": "a7a06d1e111253e58f03444698002bc4d4478ebd220fa4cf3297e75ae319da61"
+          "sha256": "50b5716422b413d99b0b85bef598efd8aeffc37fe99981a0805191a6fdc90bf2"
         },
         {
           "path": "stages/S4/public/checker.py",
@@ -257,7 +257,7 @@
       ],
       "publicChecker": {
         "entryPoint": "stages/S4/public/checker.py",
-        "executable": "python",
+        "executable": "python3",
         "args": [
           "{entryPoint}",
           "--submission",
@@ -278,7 +278,7 @@
       "files": [
         {
           "path": "stages/S5/instruction.md",
-          "sha256": "32c624893cb74d38e0e8c65f6945e45b4fc438c7f128aaf08d8faf3f286897cb"
+          "sha256": "0bfff1564e113b9f8c331e7579fb26509422f78b129da218d93263dc9e7b88a5"
         },
         {
           "path": "stages/S5/public/checker.py",
@@ -296,7 +296,7 @@
       ],
       "publicChecker": {
         "entryPoint": "stages/S5/public/checker.py",
-        "executable": "python",
+        "executable": "python3",
         "args": [
           "{entryPoint}",
           "--submission",
@@ -320,7 +320,7 @@
     "id": "eng005-checkpoint-grader",
     "version": "1.0.1",
     "entryPoint": "private/grader.py",
-    "executable": "python",
+    "executable": "python3",
     "args": [
       "{entryPoint}",
       "--request",

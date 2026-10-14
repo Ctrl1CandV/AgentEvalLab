@@ -1,7 +1,7 @@
 {
   "id": "eng-001-import-validator",
   "family_id": "eng-data-validation",
-  "draft_version": "0.2.0",
+  "draft_version": "0.3.0",
   "capability_tags": {
     "primary": "engineering",
     "sub": [
@@ -52,15 +52,15 @@
     "network": false
   },
   "content_hashes_sha256_16": {
-    "instruction.md": "428959f5db8e1a6c",
-    "rubric.md": "dc685e8da231fe31",
-    "calibration.md": "2fcfd80ead8c8744",
-    "environment/README.md": "9b6f096fe9229759",
-    "public/schema.json": "9a1ece75d4ca596e",
+    "instruction.md": "ba7fd43b4799937e",
+    "rubric.md": "7bc1d2b3e6eca1d4",
+    "calibration.md": "366761dd526a6f04",
+    "environment/README.md": "410bb0a5f4abcb4b",
+    "public/schema.json": "e3b7572aaec273d0",
     "public/data_clean.csv": "dc2da541307c87e3",
     "public/expected_dry_run_clean.jsonl": "ac9b88e0dfd696f2",
     "private/oracle.json": "71a4a95f0e6f739d",
-    "private/acceptance.py": "f6fabbb26e1fc2cd",
+    "private/acceptance.py": "605d32a2b152fec7",
     "private/ref_impl_a.py": "dca42193dbadb800",
     "private/ref_impl_b.py": "d4b2de8f43a78020",
     "private/make_fixtures.py": "ae07a631b413ace7"

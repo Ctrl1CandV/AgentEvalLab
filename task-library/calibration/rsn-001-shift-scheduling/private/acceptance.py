@@ -12,7 +12,7 @@ sys.path.insert(0, HERE)
 import verify  # noqa: E402
 
 TASK_ID = "rsn-001-shift-scheduling"
-TASK_VERSION = "0.2.1"
+TASK_VERSION = "0.3.0"
 GRADER_VERSION = "1.0.1"
 CHECKS = [("A", "REQ-A"), ("B", "REQ-B"), ("C", "REQ-C")]
 

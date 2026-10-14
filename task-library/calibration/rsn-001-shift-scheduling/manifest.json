@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "rsn-001-shift-scheduling",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "familyId": "rsn-constraint-csp",
   "capability": "reasoning",
   "usage": "development",
@@ -23,7 +23,7 @@
     "public": [
       {
         "path": "instruction.md",
-        "sha256": "fcbfc8961c7cb30cccc2f40eab04b24302b798d2ac55b48bf8ed1cb242bb5e7e"
+        "sha256": "48344f93851bf44eb260056e98a1771042fa94c06828efdf4e24a1ae5657bc9d"
       },
       {
         "path": "public/instances.json",
@@ -33,19 +33,19 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "373bdf1cc51af2a8cb7ff7d090acee9ce135c3393b2a5f1468c2d90cab009c3c"
+        "sha256": "c1b7f3ede4f344dc5b31944d17d5f145599372417b56619449321f9ee235b1b1"
       },
       {
         "path": "environment/README.md",
-        "sha256": "70b8bb5ea12357ed41deba317469f2764be02984f8aa25690d864ecf901a4b93"
+        "sha256": "92c0a865bea3a23fb5149e8a988b9f2fa2077ede9c5357eebbe2f27cf8ee1d04"
       },
       {
         "path": "metadata.json",
-        "sha256": "4bbe0f228260936430f7314bf72d77bfa2b2e664aabf77f20e9b0347b1d6b058"
+        "sha256": "e1182479b74f5d12de0e2d38201a7a5f358bb2b2e760e6ff60c0491ea76f0632"
       },
       {
         "path": "rubric.md",
-        "sha256": "e9613fe1161da042d4699d5b9dba233ba40459d9bc2e087329e5293e83c4e888"
+        "sha256": "ff0ae1bee94526069ea176113f17837759e549ad691b080294943384ba7e2e4a"
       },
       {
         "path": "logs/acceptance-self-calibration.log",
@@ -57,7 +57,7 @@
       },
       {
         "path": "private/acceptance.py",
-        "sha256": "0ee4d0bde52922e7c27990b5943b733a9b021c26adce70bb0170689271b588f8"
+        "sha256": "cb4cbbd8cb47dc582b2feaa2c639230ba459eac3bf29436293f568275b63f3a7"
       },
       {
         "path": "private/negatives.json",
@@ -106,7 +106,7 @@
     "id": "rsn001-acceptance",
     "version": "1.0.1",
     "entryPoint": "private/acceptance.py",
-    "executable": "C:/Program Files/LibreOffice/program/python-core-3.13.15/bin/python.exe",
+    "executable": "python3",
     "args": [
       "{entryPoint}",
       "--request",
@@ -117,15 +117,15 @@
     "answerSource": "execution-output"
   },
   "environment": {
-    "runtime": "Python 3.13.15",
+    "runtime": "Python 3.13",
     "dependencies": "Python standard library; no network",
     "network": false,
     "runtimeCheck": {
-      "executable": "C:/Program Files/LibreOffice/program/python-core-3.13.15/bin/python.exe",
+      "executable": "python3",
       "args": [
         "--version"
       ],
-      "expectedSubstring": "Python 3.13.15"
+      "expectedSubstring": "Python 3.13."
     }
   }
 }

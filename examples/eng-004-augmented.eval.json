@@ -27,7 +27,7 @@
     {
       "id": "eng004-augmented",
       "packagePath": "task-library/calibration/eng-004-resource-index",
-      "packageManifestSha256": "5ace614e2a812e27f7b23ac44e94b3a9e4467522ea069c63a281c40c3d280d38",
+      "packageManifestSha256": "c23776afc334cd35244f732d541771e473b51dde8deaf03ef411ef7ca59a8668",
       "input": {
         "prompt": "Implement the request in public/task-contract.md. Use the supplied workspace tools and run relevant checks before reporting."
       },

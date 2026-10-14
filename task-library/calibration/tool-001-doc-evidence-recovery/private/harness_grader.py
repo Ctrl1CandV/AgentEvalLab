@@ -6,7 +6,7 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TASK_ID = "tool-001-doc-evidence-recovery"
-TASK_VERSION = "0.2.1"
+TASK_VERSION = "0.3.0"
 GRADER_VERSION = "1.0.1"
 CHECKS = [("Q1", "REQ-Q1"), ("Q2", "REQ-Q2"), ("Q3", "REQ-Q3"), ("Q4a", "REQ-Q4A"), ("Q4b", "REQ-Q4B")]
 FORBIDDEN = {"write", "write_file", "edit", "edit_file", "delete", "remove"}

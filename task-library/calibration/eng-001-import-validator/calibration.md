@@ -21,3 +21,10 @@ The Pi integration exercised a synthetic offline loop using injected streams and
 ## Limits and status
 
 No real model requests, capability, cost, speed, or production routing have been measured. The maintenance-change task and budget pilot remain pending. The host execution is not a strong OS sandbox and does not guarantee termination of child process trees. Status: not frozen; formal measurement, budget selection, and user confirmation remain separate gates.
+
+
+## Version 0.3.0 (2026-10-13)
+
+The English task material in this repository is the canonical baseline; there is no earlier source text to reconcile against. Version 0.2.0 recorded digests for earlier bytes of the instruction and documentation files, so the package no longer passed preflight. This version re-pins every file digest and resolves the grader and public checkers as `python3` from PATH (Python 3.13 required) instead of a host-specific interpreter path. Grader logic is unchanged; only the TASK_VERSION constant in private/acceptance.py changed.
+
+Calibration results above were recorded against version 0.2.0 and remain historical. Recalibration under 0.3.0 is pending a provisioned Node.js 22 and Python 3.13 environment.
