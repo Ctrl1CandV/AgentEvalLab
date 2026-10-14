@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "rsn-002-derivation-check",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "familyId": "rsn-derivation-error-localization",
   "capability": "reasoning",
   "usage": "development",
@@ -32,7 +32,7 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "6747abec98027163b54e903635ccffe7967d760cc1b5de3d09f3cd9e081abf60"
+        "sha256": "e1619fdfeaef4f8246467cad0bb2dfafa2f96e1b462a9c9461acf7c00e36ab23"
       },
       {
         "path": "environment/README.md",
@@ -40,7 +40,7 @@
       },
       {
         "path": "metadata.json",
-        "sha256": "b1eddf128fa02a2c447d5da69b892639f32e22b3c4da35eccff1b61637064f48"
+        "sha256": "f28effc366caaa09357b60f738b92e34d3fba41a3cca60a315d4d12a7fbdd066"
       },
       {
         "path": "rubric.md",
@@ -56,7 +56,7 @@
       },
       {
         "path": "private/acceptance.py",
-        "sha256": "cc97ebdf20dc0bbff13e3d387dc542b3c58e87f31082b2a03a54067800facc02"
+        "sha256": "b76c949b10222b649e0c9beb8ec199de6b8ca5c7f6369647cabdb7962a73bc2f"
       },
       {
         "path": "private/oracle.json",
@@ -124,6 +124,14 @@
       "checkIds": [
         "explanation-quality-review"
       ]
+    },
+    {
+      "id": "REQ-FORMAT",
+      "critical": false,
+      "introducedAt": "rsn-002-derivation-check 0.4.0 answer-format reporting",
+      "checkIds": [
+        "answer-format"
+      ]
     }
   ],
   "toolProfiles": [
@@ -131,7 +139,7 @@
   ],
   "grader": {
     "id": "rsn002-acceptance",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "entryPoint": "private/acceptance.py",
     "executable": "python3",
     "args": [

@@ -14,7 +14,8 @@ import { prepareWorkspace } from "./workspace.js";
 import { projectPackage } from "./package.js";
 import { ArtifactLimitError, copyArtifacts, defaultArtifactLimits } from "./artifacts.js";
 import { validatePlan } from "./validate.js";
-import { markdownReport, summarize, summarizeInteractionClass } from "./report.js";
+import { buildReport, markdownReport } from "./report.js";
+import { seededRandom, shuffled } from "./statistics.js";
 import { preflightPlan } from "./preflight.js";
 import { evaluatedCondition, sha256 } from "./condition.js";
 import { BatchGuard, resolveBatchPolicy } from "./batch.js";
@@ -27,9 +28,19 @@ interface TrialSlot {
   repetition: number;
 }
 
-/** Every trial the plan asks for, in execution order. */
-function trialSchedule(plan: EvaluationPlan): TrialSlot[] {
-  return plan.models.flatMap(model => plan.cases.map(item => ({ model, item, repetition: 1 })));
+/**
+ * Every trial the plan asks for, in execution order: repetition by repetition and case by case,
+ * with the model order shuffled per case so time-dependent provider effects do not favour one model.
+ */
+function trialSchedule(plan: EvaluationPlan, seed: number): TrialSlot[] {
+  const random = seededRandom(seed);
+  const slots: TrialSlot[] = [];
+  for (let repetition = 1; repetition <= (plan.repetitions ?? 1); repetition++) {
+    for (const item of plan.cases) {
+      for (const model of shuffled(plan.models, random)) slots.push({ model, item, repetition });
+    }
+  }
+  return slots;
 }
 
 function trialKey(model: ModelSelection, caseId: string, repetition: number): string {
@@ -52,11 +63,14 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
     sha256: descriptor.manifestSha256,
     baselineCommit: descriptor.manifest?.baseline?.commit ?? null,
     toolProfiles: descriptor.manifest?.toolProfiles ?? ["workspace-basic"],
+    capability: descriptor.manifest?.capability ?? null,
   }));
+  const capabilities = Object.fromEntries(plan.cases.map(item => [item.id, taskPackages.get(item.id)?.manifest?.capability ?? "unspecified"]));
   const condition = await evaluatedCondition(plan, taskPackages);
   const fingerprint = sha256({ plan, packageFingerprints, condition });
   const batchPolicy = resolveBatchPolicy(plan);
-  const schedule = trialSchedule(plan);
+  const seed = plan.seed ?? Number.parseInt(fingerprint.slice(0, 8), 16);
+  const schedule = trialSchedule(plan, seed);
   const plannedRuns = schedule.length;
 
   // A resumed run reuses its directory only when the plan, packages and evaluated condition are identical.
@@ -70,7 +84,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
   } else {
     directory = resolve(options.outputRoot, randomUUID());
     await mkdir(directory, { recursive: true });
-    await writeFile(join(directory, "experiment.json"), JSON.stringify({ schemaVersion: 2, name: plan.name, fingerprint, packageFingerprints, condition, models: plan.models, caseIds: plan.cases.map(item => item.id), budget: plan.budget, artifactLimits, batch: batchPolicy, plannedRuns, isolation: plan.isolation ?? "sandbox", node: process.version, startedAt: new Date().toISOString() }, null, 2));
+    await writeFile(join(directory, "experiment.json"), JSON.stringify({ schemaVersion: 2, name: plan.name, fingerprint, packageFingerprints, condition, models: plan.models, caseIds: plan.cases.map(item => item.id), budget: plan.budget, artifactLimits, batch: batchPolicy, repetitions: plan.repetitions ?? 1, seed, schedule: schedule.map(slot => trialKey(slot.model, slot.item.id, slot.repetition)), plannedRuns, isolation: plan.isolation ?? "sandbox", node: process.version, startedAt: new Date().toISOString() }, null, 2));
   }
   const records: TrialRecord[] = [];
   const guard = new BatchGuard(batchPolicy);
@@ -79,12 +93,9 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
   let pending = Promise.resolve();
   let completed = false;
   const saveReport = async () => {
-    const report = { version: 1, plannedRuns, recordedRuns: records.length, completed, scoreRunPolicy: "latest-append-only-score-run-per-trial", batch: guard.summary(notRun), records, summary: summarize(records), byInteractionClass: {
-      candidate: summarizeInteractionClass(records, "candidate"),
-      probe: summarizeInteractionClass(records, "probe"),
-    }, byModel: plan.models.map(model => ({ model, summary: summarize(records.filter(record => record.model.provider === model.provider && record.model.id === model.id)) })) };
+    const report = buildReport(records, { plannedRuns, completed, models: plan.models, capabilities, repetitions: plan.repetitions ?? 1, batch: guard.summary(notRun) });
     await writeFile(join(directory, "report.json"), JSON.stringify(report, null, 2));
-    await writeFile(join(directory, "report.md"), markdownReport(records));
+    await writeFile(join(directory, "report.md"), markdownReport(report));
     return report;
   };
   for (const { model, item, repetition } of schedule) {

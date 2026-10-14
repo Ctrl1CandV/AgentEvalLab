@@ -50,6 +50,15 @@ export function validateBatchPolicy(value: unknown): void {
   }
 }
 
+export interface BatchSummary {
+  policy: BatchPolicy;
+  stopReason: string | null;
+  knownTokens: number;
+  knownCostUsd: number;
+  unknownUsageRequests: number;
+  notRun: Array<{ model: string; caseId: string; repetition: number }>;
+}
+
 /**
  * Tracks usage and failures across a batch and decides when to stop scheduling work.
  * Known usage only: requests whose usage the provider did not report are counted separately.
@@ -87,7 +96,7 @@ export class BatchGuard {
     else if (this.policy.maxCostUsd !== null && this.knownCostUsd >= this.policy.maxCostUsd) this.stopReason = "COST_CEILING";
   }
 
-  summary(notRun: Array<{ model: string; caseId: string; repetition: number }>) {
+  summary(notRun: Array<{ model: string; caseId: string; repetition: number }>): BatchSummary {
     return {
       policy: this.policy,
       stopReason: this.stopReason,

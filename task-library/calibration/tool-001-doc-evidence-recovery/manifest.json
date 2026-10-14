@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "tool-001-doc-evidence-recovery",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "familyId": "tool-evidence-recovery",
   "capability": "tool",
   "usage": "development",
@@ -57,7 +57,7 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "b429503a0c72a4d87e132cef1957fd6c30ad91f962a5e0eadd0cb2da3a65452f"
+        "sha256": "1b4a4f3e6dc1d0569b5fdbf9be9716bdfb62f0a94a93656d7c006690d4b28d06"
       },
       {
         "path": "environment/README.md",
@@ -65,7 +65,7 @@
       },
       {
         "path": "metadata.json",
-        "sha256": "de4985c0ba94b718b5b47deea7ccce247a697b6361cd207b683eed83c3012545"
+        "sha256": "111a85e2c9ee155d47a4f2980912d3671b6547ead4943d330b74d375bcdf8d63"
       },
       {
         "path": "rubric.md",
@@ -89,7 +89,7 @@
       },
       {
         "path": "private/harness_grader.py",
-        "sha256": "24add08f7165f6c084f83154abf348356b8fbdea1296b81418f28a6f6cc8144d"
+        "sha256": "681af573b5dc65e1e8841befd303cb2eddffe8e105aa801621008d670738fa6e"
       },
       {
         "path": "private/make_snapshot.py",
@@ -149,6 +149,14 @@
       "checkIds": [
         "Q4b"
       ]
+    },
+    {
+      "id": "REQ-FORMAT",
+      "critical": false,
+      "introducedAt": "tool-001-doc-evidence-recovery 0.4.0 answer-format reporting",
+      "checkIds": [
+        "answer-format"
+      ]
     }
   ],
   "toolProfiles": [
@@ -156,7 +164,7 @@
   ],
   "grader": {
     "id": "tool001-trace-acceptance",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "entryPoint": "private/harness_grader.py",
     "executable": "python3",
     "args": [

@@ -34,8 +34,9 @@ test("pending review is not a failed score and experiment completeness is explic
     assert.equal(result.report.completed, true);
     assert.equal(result.report.plannedRuns, 1);
     assert.equal(result.report.recordedRuns, 1);
-    assert.equal(result.report.summary.successRate, null);
-    assert.equal(result.report.summary.decidedSuccessRate, null);
+    assert.equal(result.report.byTask[0]!.decided, 0);
+    assert.equal(result.report.byTask[0]!.passRate, null, "pending review is not a decided trial");
+    assert.equal("successRate" in result.report.summary, false, "no cross-task rate is reported");
     assert.equal(summarize([]).reportedTokens, null);
   } finally { await rm(root, { recursive: true, force: true }); }
 });

@@ -42,6 +42,10 @@ export interface EvaluationPlan {
   isolation?: Isolation;
   /** Retries, failure containment and spending ceilings for the whole batch (see src/evaluation/batch.ts). */
   batch?: Partial<BatchPolicy>;
+  /** Independent trials per model and case (default 1). */
+  repetitions?: number;
+  /** Seed for the interleaved trial order; defaults to a value derived from the run fingerprint. */
+  seed?: number;
 }
 
 export type ExecutionPolicy =

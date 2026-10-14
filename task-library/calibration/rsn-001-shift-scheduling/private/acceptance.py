@@ -12,8 +12,8 @@ sys.path.insert(0, HERE)
 import verify  # noqa: E402
 
 TASK_ID = "rsn-001-shift-scheduling"
-TASK_VERSION = "0.3.0"
-GRADER_VERSION = "1.0.1"
+TASK_VERSION = "0.4.0"
+GRADER_VERSION = "1.1.0"
 CHECKS = [("A", "REQ-A"), ("B", "REQ-B"), ("C", "REQ-C")]
 
 
@@ -42,6 +42,18 @@ def grade(answer, evidence_root=None):
     return checks
 
 
+def format_check(answer, evidence_root=None):
+    """Non-critical check that the final answer parsed as one JSON object, so format failures are reported apart from wrong answers."""
+    passed = isinstance(answer, dict)
+    refs = []
+    if evidence_root:
+        with open(os.path.join(evidence_root, "answer-format.json"), "w", encoding="utf-8") as handle:
+            json.dump({"checkId": "answer-format", "passed": passed}, handle, ensure_ascii=False, sort_keys=True)
+            handle.write("\n")
+        refs.append("answer-format.json")
+    return {"id": "answer-format", "requirementId": "REQ-FORMAT", "status": "pass" if passed else "fail", "evidenceRefs": refs}
+
+
 def write_json(path, value):
     with open(path, "w", encoding="utf-8", newline="\n") as handle:
         json.dump(value, handle, ensure_ascii=False, sort_keys=True)
@@ -58,7 +70,8 @@ def grade_request(request_path, result_path):
     with open(request_path, encoding="utf-8") as handle:
         request = json.load(handle)
     answer_path = os.path.join(request["evidenceRoot"], request["answerRef"] or "")
-    checks = grade(load_answer(answer_path), request["evidenceRoot"])
+    answer = load_answer(answer_path)
+    checks = grade(answer, request["evidenceRoot"]) + [format_check(answer, request["evidenceRoot"])]
     write_json(result_path, grader_result(request, checks))
 
 
@@ -87,6 +100,8 @@ def self_calibrate():
             rows.append((f"negative-{instance_id}-{item['name']}", got == "fail"))
     rows.append(("malformed-json-value", all(c["status"] == "fail" for c in grade(None))))
     rows.append(("deterministic-repeat", grade(ref) == grade(ref)))
+    rows.append(("format-check-accepts-object", format_check(ref)["status"] == "pass"))
+    rows.append(("format-check-rejects-unparsed", format_check(None)["status"] == "fail"))
     for name, passed in rows:
         print(f"{name}: {'PASS' if passed else 'FAIL'}")
     print(f"RESULT: {'PASS' if all(ok for _, ok in rows) else 'FAIL'} ({sum(ok for _, ok in rows)}/{len(rows)})")

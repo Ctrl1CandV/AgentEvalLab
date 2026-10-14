@@ -1,20 +1,22 @@
+import type { ModelSelection } from "../types.js";
+import { pairedDifference, passAtK, passHatK, wilsonInterval } from "./statistics.js";
 import type { TrialRecord } from "./types.js";
+import type { BatchSummary } from "./batch.js";
 
+/**
+ * Operational counts across records. No cross-task success rate is computed: engineering,
+ * reasoning and tool tasks measure different things (SPEC rule 7); rates live in byTask.
+ */
 export function summarize(records: TrialRecord[]) {
   const known = records.filter(record => record.execution.reportedTokens !== null);
-  const passed = records.filter(record => record.evaluation.status === "passed").length;
-  const decided = records.filter(record => record.evaluation.status === "passed" || record.evaluation.status === "failed");
-  const acceptedDeliveries = records.filter(record => record.evaluation.status === "passed" && record.execution.status === "done" && record.cleanup === "cleaned").length;
   return {
     total: records.length,
-    passed,
-    decidedTrials: decided.length,
-    successRate: decided.length > 0 ? passed / decided.length : null,
-    decidedSuccessRate: decided.length > 0 ? passed / decided.length : null,
-    evaluationCoverage: records.length > 0 ? decided.length / records.length : null,
-    acceptedDeliveries,
-    deliveryRate: records.length > 0 ? acceptedDeliveries / records.length : null,
+    passed: records.filter(record => record.evaluation.status === "passed").length,
+    failed: records.filter(record => record.evaluation.status === "failed").length,
+    decidedTrials: records.filter(record => record.evaluation.status === "passed" || record.evaluation.status === "failed").length,
+    acceptedDeliveries: records.filter(record => record.evaluation.status === "passed" && record.execution.status === "done" && record.cleanup === "cleaned").length,
     executionFailures: records.filter(record => record.execution.status !== "done").length,
+    infrastructureFailures: records.filter(record => record.execution.failureKind === "infrastructure").length,
     pendingReviews: records.filter(record => record.evaluation.status === "pending").length,
     // Objective verdicts whose non-critical human-review checks are still open.
     pendingHumanChecks: records.filter(record => record.evaluation.review?.status === "pending").length,
@@ -67,10 +69,126 @@ export function summarizeInteractionClass(records: TrialRecord[], interactionCla
   };
 }
 
-export function markdownReport(records: TrialRecord[]): string {
-  const summary = summarize(records);
-  const rows = records.map(record => `| ${record.caseId} | ${record.model.provider}:${record.model.id} | ${record.interactionClass ?? "candidate"} | ${record.toolProfile ?? "workspace-basic"} | ${record.execution.status} | ${record.evaluation.status} | ${record.evaluation.review?.status ?? "—"} | ${record.execution.modelCalls} | ${record.execution.toolAttempts} | ${record.execution.toolIntercepts} | ${record.cleanup} |`);
-  return ["# Evaluation report", "", `Objective pass rate: ${summary.passed}/${summary.decidedTrials} decided trials (${summary.decidedSuccessRate ?? "n/a"}). Objective coverage: ${summary.evaluationCoverage ?? "n/a"}. Accepted delivery: ${summary.acceptedDeliveries}/${summary.total} (${summary.deliveryRate ?? "n/a"}). Pending reviews: ${summary.pendingReviews}; verdicts awaiting human checks: ${summary.pendingHumanChecks}; unscored: ${summary.unscoredRuns}; resource-limit runs: ${summary.resourceLimitRuns}; evaluator errors: ${summary.evaluatorErrors}. Unknown usage is not zero.`, "",
-    "| Case | Model | Request class | Tool profile | Execution | Evaluation | Human review | Model requests | Tool attempts | Intercepted | Cleanup |",
-    "| --- | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | --- |", ...rows, ""].join("\n");
+export interface ReportContext {
+  plannedRuns: number;
+  completed: boolean;
+  models: ModelSelection[];
+  /** Task capability per case ID; cases without a manifest are "unspecified". */
+  capabilities: Record<string, string>;
+  repetitions: number;
+  batch?: BatchSummary;
+}
+
+const modelKey = (model: ModelSelection) => `${model.provider}:${model.id}`;
+
+/** Per model and task: verdict counts, pass rates with Wilson intervals, pass@k/pass^k, and per-check rates. */
+export function taskResults(records: TrialRecord[], context: ReportContext) {
+  const groups = new Map<string, TrialRecord[]>();
+  for (const record of records) {
+    const key = `${modelKey(record.model)}\u0000${record.caseId}`;
+    groups.set(key, [...(groups.get(key) ?? []), record]);
+  }
+  return [...groups.values()].map(group => {
+    const first = group[0]!;
+    const decided = group.filter(record => record.evaluation.status === "passed" || record.evaluation.status === "failed");
+    const passes = decided.filter(record => record.evaluation.status === "passed").length;
+    const statuses: Record<string, number> = {};
+    for (const record of group) statuses[record.evaluation.status] = (statuses[record.evaluation.status] ?? 0) + 1;
+    const checkIds = [...new Set(group.flatMap(record => record.evaluation.checks.map(check => check.id)))].sort();
+    const checks = checkIds.map(id => {
+      const values = group.map(record => record.evaluation.checks.find(check => check.id === id)?.passed).filter(value => value !== undefined && value !== null);
+      const passed = values.filter(value => value === true).length;
+      return { id, passed, judged: values.length, rate: values.length ? passed / values.length : null };
+    });
+    const k = context.repetitions;
+    return {
+      model: modelKey(first.model),
+      caseId: first.caseId,
+      capability: context.capabilities[first.caseId] ?? "unspecified",
+      trials: group.length,
+      decided: decided.length,
+      passes,
+      passRate: decided.length ? passes / decided.length : null,
+      interval: wilsonInterval(passes, decided.length),
+      k,
+      passAtK: k > 1 ? passAtK(decided.length, passes, k) : null,
+      passHatK: k > 1 ? passHatK(decided.length, passes, k) : null,
+      statuses,
+      malformedAnswers: group.filter(record => record.evaluation.checks.some(check => check.id === "answer-format" && check.passed === false)).length,
+      reviewPending: group.filter(record => record.evaluation.review?.status === "pending").length,
+      checks,
+    };
+  }).sort((left, right) => left.caseId.localeCompare(right.caseId) || left.model.localeCompare(right.model));
+}
+
+/** Paired model differences in per-task pass rate, within one capability at a time. */
+export function pairedComparisons(rows: ReturnType<typeof taskResults>, models: ModelSelection[]) {
+  const keys = models.map(modelKey);
+  const capabilities = [...new Set(rows.map(row => row.capability))].sort();
+  const comparisons = [];
+  for (const capability of capabilities) {
+    const caseIds = [...new Set(rows.filter(row => row.capability === capability).map(row => row.caseId))];
+    for (let left = 0; left < keys.length; left++) {
+      for (let right = left + 1; right < keys.length; right++) {
+        const differences: number[] = [];
+        for (const caseId of caseIds) {
+          const a = rows.find(row => row.caseId === caseId && row.model === keys[left]);
+          const b = rows.find(row => row.caseId === caseId && row.model === keys[right]);
+          if (a?.passRate != null && b?.passRate != null) differences.push(a.passRate - b.passRate);
+        }
+        comparisons.push({ capability, modelA: keys[left]!, modelB: keys[right]!, ...pairedDifference(differences) });
+      }
+    }
+  }
+  return comparisons;
+}
+
+export function buildReport(records: TrialRecord[], context: ReportContext) {
+  const byTask = taskResults(records, context);
+  return {
+    version: 2,
+    plannedRuns: context.plannedRuns,
+    recordedRuns: records.length,
+    completed: context.completed,
+    repetitions: context.repetitions,
+    scoreRunPolicy: "latest-append-only-score-run-per-trial",
+    ...(context.batch !== undefined ? { batch: context.batch } : {}),
+    summary: summarize(records),
+    byTask,
+    pairedComparisons: pairedComparisons(byTask, context.models),
+    byInteractionClass: {
+      candidate: summarizeInteractionClass(records, "candidate"),
+      probe: summarizeInteractionClass(records, "probe"),
+    },
+    byModel: context.models.map(model => ({ model, summary: summarize(records.filter(record => modelKey(record.model) === modelKey(model))) })),
+    records,
+  };
+}
+
+const percent = (value: number | null | undefined) => value === null || value === undefined ? "n/a" : `${(value * 100).toFixed(1)}%`;
+const interval = (value: [number, number] | null) => value ? `${percent(value[0])}–${percent(value[1])}` : "n/a";
+
+export function markdownReport(report: ReturnType<typeof buildReport>): string {
+  const { summary } = report;
+  const lines = ["# Evaluation report", "",
+    `Trials: ${summary.total} of ${report.plannedRuns} planned${report.completed ? "" : " (incomplete)"}; repetitions per model and case: ${report.repetitions}. ` +
+    `Pending reviews: ${summary.pendingReviews}; verdicts awaiting human checks: ${summary.pendingHumanChecks}; unscored: ${summary.unscoredRuns}; ` +
+    `resource-limit runs: ${summary.resourceLimitRuns}; evaluator errors: ${summary.evaluatorErrors}; infrastructure failures: ${summary.infrastructureFailures}. Unknown usage is not zero.`,
+    "", "## Results by task", "",
+    `Pass rates count decided trials (passed or failed) only. Intervals are 95% Wilson intervals; pass@k and pass^k use k = ${report.repetitions}.`, "",
+    "| Task | Capability | Model | Decided/trials | Pass rate | 95% interval | pass@k | pass^k | Malformed answers | Review pending |",
+    "| --- | --- | --- | ---: | ---: | --- | ---: | ---: | ---: | ---: |",
+    ...report.byTask.map(row => `| ${row.caseId} | ${row.capability} | ${row.model} | ${row.decided}/${row.trials} | ${percent(row.passRate)} | ${interval(row.interval)} | ${percent(row.passAtK)} | ${percent(row.passHatK)} | ${row.malformedAnswers} | ${row.reviewPending} |`),
+    ""];
+  if (report.pairedComparisons.length) {
+    lines.push("## Paired model differences", "", "Mean per-task pass-rate difference (A − B) within one capability, with a 95% t interval over tasks; no interval with fewer than two tasks.", "",
+      "| Capability | Model A | Model B | Tasks | Mean difference | 95% interval |", "| --- | --- | --- | ---: | ---: | --- |",
+      ...report.pairedComparisons.map(row => `| ${row.capability} | ${row.modelA} | ${row.modelB} | ${row.tasks} | ${percent(row.mean)} | ${interval(row.interval)} |`), "");
+  }
+  lines.push("## Trials", "",
+    "| Case | Repetition | Model | Request class | Tool profile | Execution | Evaluation | Human review | Model requests | Tool attempts | Intercepted | Cleanup |",
+    "| --- | ---: | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | --- |",
+    ...report.records.map(record => `| ${record.caseId} | ${record.repetition ?? 1} | ${modelKey(record.model)} | ${record.interactionClass ?? "candidate"} | ${record.toolProfile ?? "workspace-basic"} | ${record.execution.status}${record.execution.error ? ` (${record.execution.error})` : ""} | ${record.evaluation.status} | ${record.evaluation.review?.status ?? "—"} | ${record.execution.modelCalls} | ${record.execution.toolAttempts} | ${record.execution.toolIntercepts} | ${record.cleanup} |`),
+    "");
+  return lines.join("\n");
 }

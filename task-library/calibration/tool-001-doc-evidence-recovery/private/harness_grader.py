@@ -6,8 +6,8 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TASK_ID = "tool-001-doc-evidence-recovery"
-TASK_VERSION = "0.3.0"
-GRADER_VERSION = "1.0.1"
+TASK_VERSION = "0.4.0"
+GRADER_VERSION = "1.1.0"
 CHECKS = [("Q1", "REQ-Q1"), ("Q2", "REQ-Q2"), ("Q3", "REQ-Q3"), ("Q4a", "REQ-Q4A"), ("Q4b", "REQ-Q4B")]
 FORBIDDEN = {"write", "write_file", "edit", "edit_file", "delete", "remove"}
 
@@ -235,6 +235,18 @@ def write_json(path, value):
         handle.write("\n")
 
 
+def format_check(answer, evidence_root=None):
+    """Non-critical check that the final answer parsed as one JSON object, so format failures are reported apart from wrong answers."""
+    passed = isinstance(answer, dict)
+    refs = []
+    if evidence_root:
+        with open(os.path.join(evidence_root, "answer-format.json"), "w", encoding="utf-8") as handle:
+            json.dump({"checkId": "answer-format", "passed": passed}, handle, ensure_ascii=False, sort_keys=True)
+            handle.write("\n")
+        refs.append("answer-format.json")
+    return {"id": "answer-format", "requirementId": "REQ-FORMAT", "status": "pass" if passed else "fail", "evidenceRefs": refs}
+
+
 def grade_request(request_path, result_path):
     request = read_json(request_path)
     if not isinstance(request, dict):
@@ -248,6 +260,7 @@ def grade_request(request_path, result_path):
         filename = qid + ".json"
         write_json(os.path.join(evidence_root, filename), {"checkId": qid, "passed": passed, "facts": facts})
         checks.append({"id": qid, "requirementId": dict(CHECKS)[qid], "status": "pass" if passed else "fail", "evidenceRefs": [filename]})
+    checks.append(format_check(answer, evidence_root))
     result = {"schemaVersion": 1, "requestId": request["requestId"], "taskId": TASK_ID,
               "taskVersion": TASK_VERSION, "graderVersion": GRADER_VERSION, "gradingStatus": "completed",
               "checks": checks, "dimensions": [], "unscoredCheckIds": [], "reason": None, "error": None}
@@ -325,6 +338,8 @@ def self_calibrate():
     lost_recovery = [row for row in positive if row.get("toolName") != "list"]
     rows.append(("missing-recovery-is-rejected", not grade(answers, lost_recovery)[2][1]))
     rows.append(("repeatable", grade(answers, positive) == grade(answers, positive)))
+    rows.append(("format-check-accepts-object", format_check(answers)["status"] == "pass"))
+    rows.append(("format-check-rejects-unparsed", format_check(None)["status"] == "fail"))
     for name, passed in rows:
         print(f"{name}: {'PASS' if passed else 'FAIL'}")
     print(f"RESULT: {'PASS' if all(ok for _, ok in rows) else 'FAIL'} ({sum(ok for _, ok in rows)}/{len(rows)})")

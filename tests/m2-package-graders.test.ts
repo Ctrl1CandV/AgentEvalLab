@@ -58,7 +58,7 @@ test("rsn-001 task grader accepts a different valid schedule and conditional ans
     const run = await runEvaluation(plan, { outputRoot: join(root, "runs"), runner: async () => ({ ...emptyExecution(), output: JSON.stringify(answer) }) });
     const record = run.report.records[0]!;
     assert.equal(record.evaluation.status, "passed", JSON.stringify(record.evaluation));
-    assert.deepEqual(record.evaluation.checks.map(check => [check.id, check.passed]), [["instance-A", true], ["instance-B", true], ["instance-C", true]]);
+    assert.deepEqual(record.evaluation.checks.map(check => [check.id, check.passed]), [["instance-A", true], ["instance-B", true], ["instance-C", true], ["answer-format", true]]);
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 
@@ -90,7 +90,8 @@ test("rsn-002 passes on critical certificates and records human review as an app
     // Critical certificates decide the verdict; the two human-review checks stay pending, not unscored.
     assert.equal(record.evaluation.status, "passed", JSON.stringify(record.evaluation));
     assert.deepEqual(record.evaluation.checks.slice(0, 5).map(check => check.passed), [true, true, true, true, true]);
-    assert.deepEqual(record.evaluation.checks.slice(5), [{ id: "explanation-quality-review", passed: null }, { id: "formula-equivalence-review", passed: null }]);
+    assert.deepEqual(record.evaluation.checks[5], { id: "answer-format", passed: true });
+    assert.deepEqual(record.evaluation.checks.slice(6), [{ id: "explanation-quality-review", passed: null }, { id: "formula-equivalence-review", passed: null }]);
     assert.equal(record.evaluation.review?.status, "pending");
     assert.deepEqual(record.evaluation.review?.pendingCheckIds, ["explanation-quality-review", "formula-equivalence-review"]);
     assert.equal(run.report.summary.pendingHumanChecks, 1);
@@ -106,7 +107,7 @@ test("rsn-002 passes on critical certificates and records human review as an app
     const reviewed = await importHumanReview(trialDirectory, plan, reviewPath, "independent review completed");
     assert.equal(reviewed.evaluation.status, "passed", "a failed non-critical review does not change the objective verdict");
     assert.deepEqual(reviewed.evaluation.review, { status: "complete", pendingCheckIds: [], reason: null });
-    assert.deepEqual(reviewed.evaluation.checks.slice(5), [{ id: "explanation-quality-review", passed: false }, { id: "formula-equivalence-review", passed: true }]);
+    assert.deepEqual(reviewed.evaluation.checks.slice(6), [{ id: "explanation-quality-review", passed: false }, { id: "formula-equivalence-review", passed: true }]);
     assert.equal(await readFile(join(trialDirectory, "result.json"), "utf8"), originalRecord, "the trial record stays immutable");
     const scoreRun = JSON.parse(await readFile(join(trialDirectory, "score-runs", reviewed.scoreRunId, "score.json"), "utf8")) as { scorer: { kind: string; reviewer: string }; previousScoreRunId: string };
     assert.equal(scoreRun.scorer.kind, "human-review");

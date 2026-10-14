@@ -22,6 +22,10 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
   if (typeof plan.trustedLocalExecution !== "boolean") throw new Error("INVALID_TRUST_SETTING");
   if (plan.isolation !== undefined && plan.isolation !== "sandbox" && plan.isolation !== "host") throw new Error("INVALID_ISOLATION");
   validateBatchPolicy(plan.batch);
+  if (plan.repetitions !== undefined && (typeof plan.repetitions !== "number" || !Number.isSafeInteger(plan.repetitions) || plan.repetitions < 1 || plan.repetitions > 50)) {
+    throw new Error("INVALID_REPETITIONS");
+  }
+  if (plan.seed !== undefined && (typeof plan.seed !== "number" || !Number.isSafeInteger(plan.seed) || plan.seed < 0 || plan.seed > 0xffffffff)) throw new Error("INVALID_SEED");
   validateBudget(object(plan.budget) as unknown as EvaluationPlan["budget"]);
   if (plan.execution !== undefined) {
     const execution = object(plan.execution);
@@ -32,6 +36,7 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
         throw new Error("INVALID_TRAJECTORY_POLICY");
       }
       validateBudget(object(execution.stageBudget) as unknown as EvaluationPlan["budget"]);
+      if (plan.repetitions !== undefined && plan.repetitions !== 1) throw new Error("TRAJECTORY_REPETITIONS_UNSUPPORTED");
     } else throw new Error("UNKNOWN_EXECUTION_POLICY");
   }
   if (plan.artifactLimits !== undefined) {

@@ -33,7 +33,12 @@ A package manifest identifies its task ID and version, family, capability, usage
 5. Persist the event trace and collect an immutable artifact manifest.
 6. Grade the frozen artifact snapshot.
 7. Clean up the workspace and record cleanup failures separately.
-8. Write per-trial and aggregate reports.
+8. Write per-trial records and a report. The report has operational counts and, for each model and task:
+   - decided trials, pass rate, and 95% Wilson interval;
+   - pass@k and pass^k for k = repetitions;
+   - per-check rates and malformed-answer counts.
+
+   Model differences are paired per task and compared only within one capability. No rate is pooled across unlike tasks. `--merge` combines run directories with identical fingerprints into one report.
 
 ## Events, privacy, and usage
 

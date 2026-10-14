@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "rsn-001-shift-scheduling",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "familyId": "rsn-constraint-csp",
   "capability": "reasoning",
   "usage": "development",
@@ -33,7 +33,7 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "c1b7f3ede4f344dc5b31944d17d5f145599372417b56619449321f9ee235b1b1"
+        "sha256": "553a44217f016cecd89c5abe9ba854e345838ba6f009dead88fc969b2dabe39d"
       },
       {
         "path": "environment/README.md",
@@ -41,7 +41,7 @@
       },
       {
         "path": "metadata.json",
-        "sha256": "e1182479b74f5d12de0e2d38201a7a5f358bb2b2e760e6ff60c0491ea76f0632"
+        "sha256": "a1a1b53dc99d96e632f1b7dd198e31945fd22bf73d4c3e056c0b375a06d32659"
       },
       {
         "path": "rubric.md",
@@ -57,7 +57,7 @@
       },
       {
         "path": "private/acceptance.py",
-        "sha256": "cb4cbbd8cb47dc582b2feaa2c639230ba459eac3bf29436293f568275b63f3a7"
+        "sha256": "4d55e2790e4c9e47b5936d69dbf4a538b6356254525a6108aaa8fbb86190bdf2"
       },
       {
         "path": "private/negatives.json",
@@ -97,6 +97,14 @@
       "checkIds": [
         "instance-C"
       ]
+    },
+    {
+      "id": "REQ-FORMAT",
+      "critical": false,
+      "introducedAt": "rsn-001-shift-scheduling 0.4.0 answer-format reporting",
+      "checkIds": [
+        "answer-format"
+      ]
     }
   ],
   "toolProfiles": [
@@ -104,7 +112,7 @@
   ],
   "grader": {
     "id": "rsn001-acceptance",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "entryPoint": "private/acceptance.py",
     "executable": "python3",
     "args": [

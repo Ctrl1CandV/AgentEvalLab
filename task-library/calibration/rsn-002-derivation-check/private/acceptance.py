@@ -10,8 +10,8 @@ sys.path.insert(0, HERE)
 import verify  # noqa: E402
 
 TASK_ID = "rsn-002-derivation-check"
-TASK_VERSION = "0.3.0"
-GRADER_VERSION = "1.0.0"
+TASK_VERSION = "0.4.0"
+GRADER_VERSION = "1.1.0"
 CHECK_REQUIREMENTS = {
     "sample-values": "REQ-NUMERIC",
     "wrong-step-location": "REQ-LOCALIZATION",
@@ -43,6 +43,18 @@ def grader_checks(answer, evidence_root):
     return checks
 
 
+def format_check(answer, evidence_root=None):
+    """Non-critical check that the final answer parsed as one JSON object, so format failures are reported apart from wrong answers."""
+    passed = isinstance(answer, dict)
+    refs = []
+    if evidence_root:
+        with open(os.path.join(evidence_root, "answer-format.json"), "w", encoding="utf-8") as handle:
+            json.dump({"checkId": "answer-format", "passed": passed}, handle, ensure_ascii=False, sort_keys=True)
+            handle.write("\n")
+        refs.append("answer-format.json")
+    return {"id": "answer-format", "requirementId": "REQ-FORMAT", "status": "pass" if passed else "fail", "evidenceRefs": refs}
+
+
 def make_result(request, checks):
     return {"schemaVersion": 1, "requestId": request["requestId"], "taskId": TASK_ID,
             "taskVersion": TASK_VERSION, "graderVersion": GRADER_VERSION, "gradingStatus": "unscored",
@@ -62,14 +74,20 @@ def grade_request(request_path, result_path):
         request = json.load(handle)
     answer_path = os.path.join(request["evidenceRoot"], request["answerRef"] or "")
     answer = load_answer(answer_path)
-    write_json(result_path, make_result(request, grader_checks(answer, request["evidenceRoot"])))
+    checks = grader_checks(answer, request["evidenceRoot"]) + [format_check(answer, request["evidenceRoot"])]
+    write_json(result_path, make_result(request, checks))
 
 
 def self_calibrate():
     code = verify.self_calibrate()
-    if code == 0:
-        print("grader-protocol: PASS (5 automated check IDs returned; 2 human check IDs explicitly unscored)")
-    return code
+    format_rows = [("format-check-accepts-object", format_check({"errorStepId": "S1"})["status"] == "pass"),
+                   ("format-check-rejects-unparsed", format_check(None)["status"] == "fail")]
+    for name, passed in format_rows:
+        print(f"{name}: {'PASS' if passed else 'FAIL'}")
+    if code == 0 and all(passed for _, passed in format_rows):
+        print("grader-protocol: PASS (5 automated check IDs and 1 answer-format check returned; 2 human check IDs explicitly unscored)")
+        return 0
+    return code or 1
 
 
 def main():

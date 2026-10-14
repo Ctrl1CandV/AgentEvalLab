@@ -5,7 +5,8 @@ import { tmpdir } from "node:os";
 import { defaultArtifactLimits, copyArtifacts } from "./artifacts.js";
 import { evaluate } from "./evaluator.js";
 import { preflightPlan } from "./preflight.js";
-import { markdownReport, summarize } from "./report.js";
+import { buildReport, markdownReport, type ReportContext } from "./report.js";
+import type { BatchSummary } from "./batch.js";
 import { validatePlan } from "./validate.js";
 import type { ArtifactLimits, ArtifactManifest, EvaluationPlan, EvaluationResult, TrialRecord } from "./types.js";
 import type { PackageDescriptor } from "./manifest.js";
@@ -198,6 +199,22 @@ export async function loadRecordedTrials(runDirectory: string): Promise<TrialRec
   return trials.filter(trial => !superseded.has(trial.id)).sort((left, right) => left.id.localeCompare(right.id));
 }
 
+/** Report context recorded in experiment.json, so reports can be rebuilt or merged without the plan. */
+function reportContext(experiment: Record<string, unknown>, trials: TrialRecord[], batch: BatchSummary | undefined): ReportContext {
+  const models = Array.isArray(experiment.models) ? experiment.models as ReportContext["models"] : [];
+  const caseCount = Array.isArray(experiment.caseIds) ? experiment.caseIds.length : 0;
+  const repetitions = typeof experiment.repetitions === "number" && Number.isSafeInteger(experiment.repetitions) ? experiment.repetitions : 1;
+  const plannedRuns = typeof experiment.plannedRuns === "number" && Number.isSafeInteger(experiment.plannedRuns)
+    ? experiment.plannedRuns : models.length * caseCount * repetitions;
+  const capabilities: Record<string, string> = {};
+  for (const value of Array.isArray(experiment.packageFingerprints) ? experiment.packageFingerprints : []) {
+    const entry = value && typeof value === "object" ? value as Record<string, unknown> : {};
+    if (typeof entry.caseId === "string") capabilities[entry.caseId] = typeof entry.capability === "string" ? entry.capability : "unspecified";
+  }
+  const notRun = Array.isArray(batch?.notRun) ? batch.notRun : [];
+  return { plannedRuns, completed: trials.length >= plannedRuns && notRun.length === 0, models, capabilities, repetitions, batch };
+}
+
 /** Rebuilds materialized reports from immutable trial records and append-only score runs. */
 export async function rebuildReports(runDirectory: string): Promise<unknown> {
   const root = resolve(runDirectory);
@@ -205,35 +222,32 @@ export async function rebuildReports(runDirectory: string): Promise<unknown> {
   const trials = await loadRecordedTrials(root);
   const oldReportInfo = await lstat(join(root, "report.json")).catch(() => null);
   const oldReport = oldReportInfo?.isFile() ? object(await readJson(join(root, "report.json"), MAX_TRIAL_JSON_BYTES)) : {};
-  const modelCount = Array.isArray(experiment.models) ? experiment.models.length : 0;
-  const plannedRuns = typeof experiment.plannedRuns === "number" && Number.isSafeInteger(experiment.plannedRuns)
-    ? experiment.plannedRuns
-    : (typeof oldReport.plannedRuns === "number" ? oldReport.plannedRuns : modelCount * (Array.isArray(experiment.caseIds) ? experiment.caseIds.length : 0));
-  const completed = typeof oldReport.completed === "boolean" && experiment.plannedRuns === undefined
-    ? oldReport.completed
-    : trials.length >= plannedRuns;
-  const byModel = new Map<string, TrialRecord[]>();
-  for (const trial of trials) {
-    const key = `${trial.model.provider}:${trial.model.id}`;
-    const group = byModel.get(key) ?? [];
-    group.push(trial);
-    byModel.set(key, group);
-  }
-  const report = {
-    version: 1,
-    plannedRuns,
-    recordedRuns: trials.length,
-    completed,
-    scoreRunPolicy: "latest-append-only-score-run-per-trial",
-    ...(oldReport.batch !== undefined ? { batch: oldReport.batch } : {}),
-    records: trials,
-    summary: summarize(trials),
-    byModel: [...byModel.entries()].sort(([left], [right]) => left.localeCompare(right))
-      .map(([, records]) => ({ model: records[0]!.model, summary: summarize(records) })),
-  };
+  const report = buildReport(trials, reportContext(experiment, trials, oldReport.batch as BatchSummary | undefined));
   await writeAtomic(join(root, "report.json"), JSON.stringify(report, null, 2));
-  await writeAtomic(join(root, "report.md"), markdownReport(trials));
+  await writeAtomic(join(root, "report.md"), markdownReport(report));
   return report;
+}
+
+/**
+ * Combines several run directories of the same plan and evaluated condition (identical
+ * fingerprints), for example a pilot split over days, into one report in a new directory.
+ */
+export async function mergeRunReports(runDirectories: string[], outputRoot: string): Promise<{ directory: string; report: ReturnType<typeof buildReport> }> {
+  if (runDirectories.length < 2) throw new Error("MERGE_REQUIRES_TWO_RUNS");
+  const experiments = await Promise.all(runDirectories.map(async directory => object(await readJson(join(resolve(directory), "experiment.json"), MAX_TRIAL_JSON_BYTES))));
+  const fingerprint = experiments[0]!.fingerprint;
+  if (typeof fingerprint !== "string" || experiments.some(experiment => experiment.fingerprint !== fingerprint)) throw new Error("MERGE_FINGERPRINT_MISMATCH");
+  const trials = (await Promise.all(runDirectories.map(directory => loadRecordedTrials(directory)))).flat();
+  const context = reportContext(experiments[0]!, trials, undefined);
+  // Each source run plans the full schedule; the merged report counts every planned trial once per source.
+  const report = buildReport(trials, { ...context, plannedRuns: context.plannedRuns * runDirectories.length,
+    completed: trials.length >= context.plannedRuns * runDirectories.length });
+  const directory = resolve(outputRoot, `merged-${randomUUID()}`);
+  await mkdir(directory, { recursive: true });
+  await writeFile(join(directory, "sources.json"), JSON.stringify({ fingerprint, runs: runDirectories.map(path => resolve(path)) }, null, 2), { encoding: "utf8", flag: "wx" });
+  await writeFile(join(directory, "report.json"), JSON.stringify(report, null, 2), { encoding: "utf8", flag: "wx" });
+  await writeFile(join(directory, "report.md"), markdownReport(report), { encoding: "utf8", flag: "wx" });
+  return { directory, report };
 }
 
 /** Resolves the plan case and pinned task package of a recorded trial and checks they still match the run. */

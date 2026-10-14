@@ -181,7 +181,8 @@ test("task grader receives only a frozen submission and must return a verified r
       return { ...emptyExecution() };
     } });
     assert.equal(result.report.summary.passed, 1, JSON.stringify(result.report.records[0]?.evaluation));
-    assert.equal(result.report.summary.deliveryRate, 1);
+    assert.equal(result.report.summary.acceptedDeliveries, 1);
+    assert.equal(result.report.byTask[0]!.passRate, 1);
     const record = result.report.records[0]!;
     const trialDirectory = join(result.directory, record.id);
     assert.ok(record.scoreRunId);

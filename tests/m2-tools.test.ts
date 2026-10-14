@@ -193,6 +193,6 @@ test("production doc-evidence bridge returns trace evidence accepted by the task
     assert.equal(run.exitCode, 0, run.stderr);
     const graded = JSON.parse(await readFile(resultPath, "utf8")) as { gradingStatus: string; checks: Array<{ id: string; status: string }> };
     assert.equal(graded.gradingStatus, "completed");
-    assert.deepEqual(graded.checks.map(check => [check.id, check.status]), [["Q1", "pass"], ["Q2", "pass"], ["Q3", "pass"], ["Q4a", "pass"], ["Q4b", "pass"]]);
+    assert.deepEqual(graded.checks.map(check => [check.id, check.status]), [["Q1", "pass"], ["Q2", "pass"], ["Q3", "pass"], ["Q4a", "pass"], ["Q4b", "pass"], ["answer-format", "pass"]]);
   } finally { await rm(root, { recursive: true, force: true }); }
 });

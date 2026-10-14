@@ -77,8 +77,8 @@ test("an authentication or balance error stops the batch and leaves the rest not
     const result = await runEvaluation(plan({}), { outputRoot: root, runner: async () => (++calls === 2 ? infra("PROVIDER_BALANCE") : ok()) });
     assert.equal(calls, 2);
     assert.equal(result.report.completed, false);
-    assert.equal(result.report.batch.stopReason, "PROVIDER_BALANCE");
-    assert.deepEqual(result.report.batch.notRun.map(entry => entry.caseId), ["case-3", "case-4"]);
+    assert.equal(result.report.batch!.stopReason, "PROVIDER_BALANCE");
+    assert.deepEqual(result.report.batch!.notRun.map(entry => entry.caseId), ["case-3", "case-4"]);
     assert.equal(result.report.recordedRuns, 2);
   } finally { await rm(root, { recursive: true, force: true }); }
 });
@@ -89,12 +89,12 @@ test("consecutive infrastructure failures and the token ceiling stop the batch",
     let calls = 0;
     const failures = await runEvaluation(plan({ maxConsecutiveInfrastructureFailures: 2 }), { outputRoot: root,
       runner: async () => (++calls === 1 ? ok() : infra("PROVIDER_UNAVAILABLE")) });
-    assert.equal(failures.report.batch.stopReason, "INFRASTRUCTURE_FAILURES");
+    assert.equal(failures.report.batch!.stopReason, "INFRASTRUCTURE_FAILURES");
     assert.equal(failures.report.recordedRuns, 3);
 
     const ceiling = await runEvaluation(plan({ maxTotalTokens: 1_000 }), { outputRoot: root, runner: async () => ok(600) });
-    assert.equal(ceiling.report.batch.stopReason, "TOKEN_CEILING");
-    assert.equal(ceiling.report.batch.knownTokens, 1_200);
+    assert.equal(ceiling.report.batch!.stopReason, "TOKEN_CEILING");
+    assert.equal(ceiling.report.batch!.knownTokens, 1_200);
     assert.equal(ceiling.report.recordedRuns, 2);
   } finally { await rm(root, { recursive: true, force: true }); }
 });
@@ -105,7 +105,7 @@ test("resume reruns only missing and infrastructure-failed trials of an identica
     const batchPlan = plan({ maxConsecutiveInfrastructureFailures: 1 });
     let calls = 0;
     const first = await runEvaluation(batchPlan, { outputRoot: root, runner: async () => (++calls === 2 ? infra("PROVIDER_UNAVAILABLE") : ok()) });
-    assert.equal(first.report.batch.stopReason, "INFRASTRUCTURE_FAILURES");
+    assert.equal(first.report.batch!.stopReason, "INFRASTRUCTURE_FAILURES");
     const failedTrial = first.report.records[1]!;
 
     await assert.rejects(runEvaluation({ ...batchPlan, name: "changed" }, { outputRoot: root, resumeDirectory: first.directory, runner: async () => ok() }),

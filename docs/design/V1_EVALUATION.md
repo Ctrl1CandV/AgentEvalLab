@@ -19,7 +19,7 @@ Runtime, request usage, tool counts, timeout, cleanup, and accepted delivery are
 
 ## Run conditions
 
-Each plan pins the model provider and ID, task package and manifest hash, tool profile, prompt, budget, and execution policy. Record environment details and package versions where they affect results. Use one independent trial per model and case unless a task explicitly requires a continuous session.
+Each plan pins the model provider and ID, task package and manifest hash, tool profile, prompt, budget, and execution policy. Record environment details and package versions where they affect results. Run `repetitions` independent trials per model and case (default 1). The trial order interleaves models with a recorded seed, so time-dependent provider effects do not favour one model. Continuous trajectories currently run once per model and case.
 
 Candidate, probe, and evaluator activity are labeled separately in usage records. Missing usage remains unknown. Validation-only preflight checks plans without loading credentials or sending requests.
 

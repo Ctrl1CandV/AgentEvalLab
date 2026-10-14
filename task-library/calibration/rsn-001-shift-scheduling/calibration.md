@@ -14,3 +14,8 @@ No real model answer has been run. These few synthetic instances do not represen
 The English task material in this repository is the canonical baseline; there is no earlier source text to reconcile against. Version 0.2.1 recorded digests for earlier bytes of the instruction and documentation files, so the package no longer passed preflight. This version re-pins every file digest and resolves the grader and public checkers as `python3` from PATH (Python 3.13 required) instead of a host-specific interpreter path. Grader logic is unchanged; only the TASK_VERSION constant in private/acceptance.py changed.
 
 Calibration results above were recorded against version 0.2.1 and remain historical. Recalibration under 0.3.0 is pending a provisioned Node.js 22 and Python 3.13 environment.
+
+
+## Version 0.4.0 (2026-10-14)
+
+The grader (now 1.1.0) adds a non-critical `answer-format` check under the new requirement `REQ-FORMAT`. The check passes when the final answer parsed as one JSON object, as the instructions require. Scoring stays strict: an answer that does not parse still fails every content check. The objective verdict depends on critical checks only, so the format check reports instruction-following failures separately from wrong answers. Self-calibration now also covers the format check; see `logs/self-calibration-0.4.0.log`.

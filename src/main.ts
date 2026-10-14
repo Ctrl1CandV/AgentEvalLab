@@ -9,7 +9,7 @@ import { runEvaluation } from "./evaluation/run.js";
 import { runTrajectoryEvaluation } from "./evaluation/trajectory.js";
 import { validatePlan } from "./evaluation/validate.js";
 import { preflightPlan } from "./evaluation/preflight.js";
-import { importHumanReview, regradeTrial, restoreTrialSnapshot } from "./evaluation/regrade.js";
+import { importHumanReview, mergeRunReports, regradeTrial, restoreTrialSnapshot } from "./evaluation/regrade.js";
 import { restoreTrajectorySnapshot } from "./evaluation/trajectory-snapshot.js";
 import type { EvaluationPlan } from "./evaluation/types.js";
 
@@ -31,6 +31,7 @@ async function main(): Promise<void> {
       "import-review": { type: "string" },
       review: { type: "string" },
       resume: { type: "string" },
+      merge: { type: "string", multiple: true },
       help: { type: "boolean" },
     },
   });
@@ -39,11 +40,21 @@ async function main(): Promise<void> {
     console.log([
       'npm run harness -- --model provider:id --prompt "..." [--out runs] [--validate-only]',
       "npm run harness -- --plan plan.eval.json [--out runs] [--validate-only] [--resume runs/<run>]",
+      "npm run harness -- --merge runs/<run-a> --merge runs/<run-b> [--out runs]",
       "npm run harness -- --plan plan.eval.json --regrade runs/<run>/<trial> --reason \"reason\"",
       "npm run harness -- --plan plan.eval.json --import-review runs/<run>/<trial> --review review.json --reason \"reason\"",
       "npm run harness -- --restore runs/<run>/<trial> --destination path/to/new-snapshot",
       "npm run harness -- --restore-trajectory runs/<run>/<trial> --stage S1 --cycle cycle-1 --destination path/to/new-snapshot",
     ].join("\n"));
+    return;
+  }
+
+  if (values.merge) {
+    if (values.plan || values.model || values.prompt || values.regrade || values.restore || values["restore-trajectory"] || values["import-review"] || values.resume) {
+      throw new Error("MERGE_ARGUMENTS_INVALID");
+    }
+    const result = await mergeRunReports(values.merge, values.out);
+    console.log(JSON.stringify({ directory: result.directory, recordedRuns: result.report.recordedRuns, plannedRuns: result.report.plannedRuns }, null, 2));
     return;
   }
 

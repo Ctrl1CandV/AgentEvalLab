@@ -1,6 +1,6 @@
 {
   "id": "tool-001-doc-evidence-recovery",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "familyId": "tool-evidence-recovery",
   "capability": "tool",
   "usage": "development",
