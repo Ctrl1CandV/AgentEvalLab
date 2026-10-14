@@ -9,9 +9,9 @@
     "precheck": "npm run prepare:eng005-baseline",
     "pretest": "npm run prepare:eng005-baseline",
     "preharness": "npm run prepare:eng005-baseline",
-    "test": "tsx --test tests/*.test.ts",
+    "test": "node --import tsx --test tests/*.test.ts",
     "check": "tsc --noEmit",
-    "harness": "tsx src/main.ts"
+    "harness": "node --import tsx src/main.ts"
   },
   "keywords": [],
   "author": "",
