@@ -9,6 +9,8 @@ import { redact, registerSecrets } from "../privacy.js";
 import { EventSinkError, guardEventSink } from "../events.js";
 import { validateBudget } from "../config.js";
 import { apiKeyEnvFor, createCustomProvider, lookupProviderConfig } from "../providers.js";
+import { classifyProviderFailure, failureOutcome } from "./provider-errors.js";
+import type { AssistantMessage } from "@earendil-works/pi-ai";
 
 // Use SDK providers for built-in catalogs; src/providers.ts registers custom providers.
 // Keep catalogs in memory; do not load credential or model files or refresh remote catalogs.
@@ -38,6 +40,10 @@ export interface PiRunnerOptions<Input extends RunInput> {
   trialId?: string;
   interactionClass?: InteractionClass;
   toolEvidenceMaxBytes?: number;
+  /** Provider retries per request (408/409/429/5xx and connection errors, before output streams). Default 0. */
+  maxRetries?: number;
+  /** Longest provider-requested retry delay to honour. */
+  maxRetryDelayMs?: number;
   toolProfile?: string;
   /** The returned tools form the allowlist for this run. */
   createTools?: (input: Input) => AgentTool[];
@@ -154,6 +160,7 @@ export function createPiRunner<Input extends RunInput = RunInput>(
 
     const finishRequest = (usage: RequestUsage, started: number, message?: { usage?: unknown; stopReason?: string }) => {
       usage.durationMs = performance.now() - started;
+      if (message?.stopReason === "error") usage.failureClass = classifyProviderFailure(message as AssistantMessage, model.contextWindow);
       if (!message || message.stopReason === "error" || message.stopReason === "aborted" || message.stopReason === "deferred") {
         usage.status = message?.stopReason === "error" ? "error" : "incomplete";
         usage.usageStatus = "missing";
@@ -277,6 +284,8 @@ export function createPiRunner<Input extends RunInput = RunInput>(
           reasoningTokens: null,
           totalTokens: null,
           costUsd: null,
+          attempts: 0,
+          failureClass: null,
         };
         result.requestUsage.push(usage);
         const requestStarted = performance.now();
@@ -290,7 +299,13 @@ export function createPiRunner<Input extends RunInput = RunInput>(
             apiKey: key,
             ...(requestOptions.temperature === null ? {} : { temperature: requestOptions.temperature }),
             maxTokens: budget.maxOutputTokensPerCall,
-            maxRetries: 0,
+            // Pi retries retryable failures before any output streams; each HTTP attempt is counted below.
+            maxRetries: options.maxRetries ?? 0,
+            ...(options.maxRetryDelayMs !== undefined ? { maxRetryDelayMs: options.maxRetryDelayMs } : {}),
+            fetch: (input: Parameters<typeof fetch>[0], init?: Parameters<typeof fetch>[1]) => {
+              usage.attempts++;
+              return fetch(input, init);
+            },
           });
         } catch (error) {
           finishRequest(usage, requestStarted, { stopReason: "error" });
@@ -465,11 +480,16 @@ export function createPiRunner<Input extends RunInput = RunInput>(
         limit("OUTPUT_TOKEN_LIMIT");
       }
 
-      // A normal run must end with stop; toolUse indicates a model failure, other endings indicate infrastructure failure.
+      // A normal run must end with stop. toolUse indicates a model failure; a provider error is classified
+      // (a full context window is part of the evaluated condition, the rest are infrastructure failures).
       if (result.status === "done" && last?.stopReason !== "stop") {
         result.status = "error";
-        result.failureKind = last?.stopReason === "toolUse" ? "model" : "infrastructure";
-        result.error = "PROVIDER_OR_RESPONSE_ERROR";
+        if (last?.stopReason === "error") {
+          Object.assign(result, failureOutcome(classifyProviderFailure(last, model.contextWindow)));
+        } else {
+          result.failureKind = last?.stopReason === "toolUse" ? "model" : "infrastructure";
+          result.error = "PROVIDER_OR_RESPONSE_ERROR";
+        }
       }
     } catch (error) {
       events.check();

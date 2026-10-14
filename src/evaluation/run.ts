@@ -4,7 +4,7 @@ import { randomUUID, createHash } from "node:crypto";
 import { createPiRunner } from "../harness/pi.js";
 import { evaluationTools } from "../harness/profiles.js";
 import type { ToolProfile } from "../harness/tools.js";
-import type { InteractionClass } from "../types.js";
+import type { InteractionClass, ModelSelection } from "../types.js";
 import { emptyExecution } from "../types.js";
 import { persistedExecution } from "../privacy.js";
 import { guardEventSink, EventSinkError } from "../events.js";
@@ -17,15 +17,34 @@ import { validatePlan } from "./validate.js";
 import { markdownReport, summarize, summarizeInteractionClass } from "./report.js";
 import { preflightPlan } from "./preflight.js";
 import { evaluatedCondition, sha256 } from "./condition.js";
+import { BatchGuard, resolveBatchPolicy } from "./batch.js";
+import { loadRecordedTrials } from "./regrade.js";
 import type { EvaluationOptions, EvaluationPlan, TrialRecord } from "./types.js";
+
+interface TrialSlot {
+  model: ModelSelection;
+  item: EvaluationPlan["cases"][number];
+  repetition: number;
+}
+
+/** Every trial the plan asks for, in execution order. */
+function trialSchedule(plan: EvaluationPlan): TrialSlot[] {
+  return plan.models.flatMap(model => plan.cases.map(item => ({ model, item, repetition: 1 })));
+}
+
+function trialKey(model: ModelSelection, caseId: string, repetition: number): string {
+  return `${model.provider}:${model.id}#${caseId}#${repetition}`;
+}
+
+async function countLines(path: string): Promise<number> {
+  try { return (await readFile(path, "utf8")).split("\n").filter(Boolean).length; }
+  catch { return 0; }
+}
 
 export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOptions) {
   validatePlan(plan);
   const artifactLimits = plan.artifactLimits ?? { ...defaultArtifactLimits };
   const taskPackages = await preflightPlan(plan);
-  const directory = resolve(options.outputRoot, randomUUID());
-  await mkdir(directory, { recursive: true });
-  const records: TrialRecord[] = [];
   const packageFingerprints = [...taskPackages].map(([caseId, descriptor]) => ({
     caseId,
     id: descriptor.manifest?.id ?? null,
@@ -36,13 +55,31 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
   }));
   const condition = await evaluatedCondition(plan, taskPackages);
   const fingerprint = sha256({ plan, packageFingerprints, condition });
-  const plannedRuns = plan.models.length * plan.cases.length;
-  await writeFile(join(directory, "experiment.json"), JSON.stringify({ schemaVersion: 2, name: plan.name, fingerprint, packageFingerprints, condition, models: plan.models, caseIds: plan.cases.map(item => item.id), budget: plan.budget, artifactLimits, plannedRuns, isolation: plan.isolation ?? "sandbox", node: process.version, startedAt: new Date().toISOString() }, null, 2));
-  let sequence = 0;
+  const batchPolicy = resolveBatchPolicy(plan);
+  const schedule = trialSchedule(plan);
+  const plannedRuns = schedule.length;
+
+  // A resumed run reuses its directory only when the plan, packages and evaluated condition are identical.
+  let directory: string;
+  const recorded = new Map<string, TrialRecord>();
+  if (options.resumeDirectory) {
+    directory = resolve(options.resumeDirectory);
+    const experiment = JSON.parse(await readFile(join(directory, "experiment.json"), "utf8")) as { fingerprint?: unknown };
+    if (experiment.fingerprint !== fingerprint) throw new Error("RESUME_FINGERPRINT_MISMATCH");
+    for (const record of await loadRecordedTrials(directory)) recorded.set(trialKey(record.model, record.caseId, record.repetition ?? 1), record);
+  } else {
+    directory = resolve(options.outputRoot, randomUUID());
+    await mkdir(directory, { recursive: true });
+    await writeFile(join(directory, "experiment.json"), JSON.stringify({ schemaVersion: 2, name: plan.name, fingerprint, packageFingerprints, condition, models: plan.models, caseIds: plan.cases.map(item => item.id), budget: plan.budget, artifactLimits, batch: batchPolicy, plannedRuns, isolation: plan.isolation ?? "sandbox", node: process.version, startedAt: new Date().toISOString() }, null, 2));
+  }
+  const records: TrialRecord[] = [];
+  const guard = new BatchGuard(batchPolicy);
+  const notRun: Array<{ model: string; caseId: string; repetition: number }> = [];
+  let sequence = await countLines(join(directory, "events.jsonl"));
   let pending = Promise.resolve();
   let completed = false;
   const saveReport = async () => {
-    const report = { version: 1, plannedRuns, recordedRuns: records.length, completed, scoreRunPolicy: "latest-append-only-score-run-per-trial", records, summary: summarize(records), byInteractionClass: {
+    const report = { version: 1, plannedRuns, recordedRuns: records.length, completed, scoreRunPolicy: "latest-append-only-score-run-per-trial", batch: guard.summary(notRun), records, summary: summarize(records), byInteractionClass: {
       candidate: summarizeInteractionClass(records, "candidate"),
       probe: summarizeInteractionClass(records, "probe"),
     }, byModel: plan.models.map(model => ({ model, summary: summarize(records.filter(record => record.model.provider === model.provider && record.model.id === model.id)) })) };
@@ -50,8 +87,19 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
     await writeFile(join(directory, "report.md"), markdownReport(records));
     return report;
   };
-  for (const model of plan.models) {
-    for (const item of plan.cases) {
+  for (const { model, item, repetition } of schedule) {
+      const previous = recorded.get(trialKey(model, item.id, repetition));
+      // Keep finished trials from an earlier attempt of this run; rerun only infrastructure failures.
+      if (previous && previous.execution.failureKind !== "infrastructure") {
+        guard.record(previous.execution);
+        records.push(previous);
+        continue;
+      }
+      if (previous) guard.record(previous.execution, { countFailure: false });
+      if (guard.stopped) {
+        notRun.push({ model: `${model.provider}:${model.id}`, caseId: item.id, repetition });
+        continue;
+      }
       const start = performance.now();
       const id = randomUUID();
       const trialDirectory = join(directory, id);
@@ -76,7 +124,9 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
         artifactManifest: null,
         toolProfile: toolProfile as ToolProfile,
         interactionClass: interactionClass as InteractionClass,
-        toolTrace: null };
+        toolTrace: null,
+        repetition,
+        supersedes: previous?.id ?? null };
       let workspace: Awaited<ReturnType<typeof prepareWorkspace>> | undefined;
       let fatal: unknown;
       let executionFinished = false;
@@ -94,6 +144,8 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
           interactionClass,
           toolEvidenceMaxBytes: artifactLimits.toolEvidenceMaxBytes,
           toolProfile,
+          maxRetries: batchPolicy.maxRetries,
+          maxRetryDelayMs: batchPolicy.maxRetryDelayMs,
           createTools: () => plan.trustedLocalExecution ? evaluationTools(
             toolProfile === "doc-evidence" ? join(workspace!.path, "public", "snapshot") : workspace!.path,
             toolProfile,
@@ -181,11 +233,11 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
         records.push(record);
         await writeFile(join(trialDirectory, "result.json"), JSON.stringify(record, null, 2));
       }
+      guard.record(record.execution);
       await saveReport();
       if (fatal) throw fatal;
       await events.emit("cleanup_completed", { failed: Number(record.cleanup === "error") });
-    }
   }
-  completed = true;
+  completed = notRun.length === 0;
   return { directory, report: await saveReport() };
 }

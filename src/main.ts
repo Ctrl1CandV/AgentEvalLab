@@ -30,6 +30,7 @@ async function main(): Promise<void> {
       reason: { type: "string" },
       "import-review": { type: "string" },
       review: { type: "string" },
+      resume: { type: "string" },
       help: { type: "boolean" },
     },
   });
@@ -37,6 +38,7 @@ async function main(): Promise<void> {
   if (values.help) {
     console.log([
       'npm run harness -- --model provider:id --prompt "..." [--out runs] [--validate-only]',
+      "npm run harness -- --plan plan.eval.json [--out runs] [--validate-only] [--resume runs/<run>]",
       "npm run harness -- --plan plan.eval.json --regrade runs/<run>/<trial> --reason \"reason\"",
       "npm run harness -- --plan plan.eval.json --import-review runs/<run>/<trial> --review review.json --reason \"reason\"",
       "npm run harness -- --restore runs/<run>/<trial> --destination path/to/new-snapshot",
@@ -47,7 +49,7 @@ async function main(): Promise<void> {
 
   if (values.regrade || values.restore || values["restore-trajectory"] || values["import-review"]) {
     const selectedOperations = [values.regrade, values.restore, values["restore-trajectory"], values["import-review"]].filter(Boolean).length;
-    if (selectedOperations !== 1 || values.model || values.prompt || values["validate-only"]) {
+    if (selectedOperations !== 1 || values.model || values.prompt || values["validate-only"] || values.resume) {
       throw new Error("INVALID_SNAPSHOT_OPERATION");
     }
     if (values["restore-trajectory"]) {
@@ -88,9 +90,13 @@ async function main(): Promise<void> {
     validatePlan(plan);
     await preflightPlan(plan);
     if (values["validate-only"]) {
+      if (values.resume) throw new Error("RESUME_ARGUMENTS_INVALID");
       console.log("Evaluation plan is valid. Credentials were not loaded and no API requests were sent.");
       return;
     }
+    // SPEC rule 8: no provider request without an explicit batch budget.
+    if (typeof plan.batch?.maxTotalTokens !== "number") throw new Error("BATCH_TOKEN_CEILING_REQUIRED");
+    if (values.resume && plan.execution?.kind === "trajectory") throw new Error("RESUME_UNSUPPORTED_FOR_TRAJECTORY");
     loadCredentials();
     if (plan.execution?.kind === "trajectory") {
       const result = await runTrajectoryEvaluation(plan, { outputRoot: values.out });
@@ -101,9 +107,9 @@ async function main(): Promise<void> {
       if (stopped) process.exitCode = 1;
       return;
     }
-    const result = await runEvaluation(plan, { outputRoot: values.out });
+    const result = await runEvaluation(plan, { outputRoot: values.out, resumeDirectory: values.resume });
     console.log(JSON.stringify({ directory: result.directory, summary: result.report.summary }, null, 2));
-    if (result.report.summary.executionFailures || result.report.summary.evaluatorErrors || result.report.summary.resourceLimitRuns || result.report.summary.cleanupFailures || result.report.records.some(record => record.evaluation.status === "failed")) process.exitCode = 1;
+    if (!result.report.completed || result.report.summary.executionFailures || result.report.summary.evaluatorErrors || result.report.summary.resourceLimitRuns || result.report.summary.cleanupFailures || result.report.records.some(record => record.evaluation.status === "failed")) process.exitCode = 1;
     return;
   }
 

@@ -2,6 +2,7 @@ import type { Budget, ExecutionResult, InteractionClass, ModelSelection, Runner,
 import type { TaskPackageManifest } from "./manifest.js";
 import type { ToolProfile } from "../harness/tools.js";
 import type { Isolation } from "../sandbox.js";
+import type { BatchPolicy } from "./batch.js";
 
 export interface CommandCheck {
   id: string;
@@ -39,6 +40,8 @@ export interface EvaluationPlan {
   trustedLocalExecution: boolean;
   /** Candidate-code isolation; omitted means "sandbox". "host" must be chosen explicitly. */
   isolation?: Isolation;
+  /** Retries, failure containment and spending ceilings for the whole batch (see src/evaluation/batch.ts). */
+  batch?: Partial<BatchPolicy>;
 }
 
 export type ExecutionPolicy =
@@ -151,10 +154,16 @@ export interface TrialRecord {
   toolProfile?: ToolProfile;
   interactionClass?: InteractionClass;
   toolTrace?: { path: string; bytes: number; sha256: string; truncated: boolean } | null;
+  /** 1-based repetition of this model and case within the plan. */
+  repetition?: number;
+  /** Earlier trial of the same model, case and repetition that this one replaces after a resumed batch. */
+  supersedes?: string | null;
 }
 
 export interface EvaluationOptions {
   outputRoot: string;
+  /** Continue an interrupted run directory instead of creating a new one (single-run plans only). */
+  resumeDirectory?: string;
   runner?: Runner<WorkspaceInput>;
   sessionFactory?: TrajectorySessionFactory;
 }

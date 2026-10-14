@@ -39,6 +39,11 @@
     "graderResultMaxBytes": 1048576,
     "toolEvidenceMaxBytes": 5242880
   },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokens": 10000000
+  },
   "trustedLocalExecution": true,
   "cases": [
     {

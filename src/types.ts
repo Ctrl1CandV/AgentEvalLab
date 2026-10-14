@@ -53,6 +53,10 @@ export interface RequestUsage {
   totalTokens: number | null;
   /** Null means the provider did not expose a trustworthy priced amount. */
   costUsd: number | null;
+  /** HTTP attempts for this request, including provider retries; 0 when no network request was made. */
+  attempts: number;
+  /** Classified provider failure for an errored request (see src/harness/provider-errors.ts). */
+  failureClass: import("./harness/provider-errors.js").ProviderFailure | null;
 }
 
 // Record execution outputs and process metrics.

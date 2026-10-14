@@ -1,5 +1,6 @@
 import { validateBudget, parseModel } from "../config.js";
 import { thinkingLevels } from "../types.js";
+import { validateBatchPolicy } from "./batch.js";
 import { resolveModel } from "../harness/pi.js";
 import { defaultArtifactLimits } from "./artifacts.js";
 import type { EvaluationPlan } from "./types.js";
@@ -20,6 +21,7 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
   if (typeof plan.name !== "string" || !plan.name.trim()) throw new Error("INVALID_PLAN");
   if (typeof plan.trustedLocalExecution !== "boolean") throw new Error("INVALID_TRUST_SETTING");
   if (plan.isolation !== undefined && plan.isolation !== "sandbox" && plan.isolation !== "host") throw new Error("INVALID_ISOLATION");
+  validateBatchPolicy(plan.batch);
   validateBudget(object(plan.budget) as unknown as EvaluationPlan["budget"]);
   if (plan.execution !== undefined) {
     const execution = object(plan.execution);

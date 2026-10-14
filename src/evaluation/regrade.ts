@@ -38,7 +38,8 @@ function validEvaluation(value: unknown): value is EvaluationResult {
     }) && (result.error === null || typeof result.error === "string");
 }
 
-async function loadTrial(trialDirectory: string): Promise<{ directory: string; record: TrialRecord; manifest: ArtifactManifest }> {
+/** Read and validate a trial's result.json; trials that failed before artifact export have no manifest. */
+async function loadTrialRecord(trialDirectory: string): Promise<{ directory: string; record: TrialRecord; rawRecord: Record<string, unknown> }> {
   const directory = resolve(trialDirectory);
   const info = await lstat(directory).catch(() => null);
   if (!info?.isDirectory() || info.isSymbolicLink()) throw new Error("TRIAL_DIRECTORY_INVALID");
@@ -56,10 +57,15 @@ async function loadTrial(trialDirectory: string): Promise<{ directory: string; r
       !(rawRecord.cleanup === "cleaned" || rawRecord.cleanup === "error") || !validEvaluation(rawRecord.evaluation)) {
     throw new Error("TRIAL_RECORD_INVALID");
   }
+  return { directory, record: rawRecord as unknown as TrialRecord, rawRecord };
+}
+
+async function loadTrial(trialDirectory: string): Promise<{ directory: string; record: TrialRecord; manifest: ArtifactManifest }> {
+  const { directory, record, rawRecord } = await loadTrialRecord(trialDirectory);
   const manifest = validateArtifactManifest(await readJson(join(directory, "artifact-manifest.json"), MAX_TRIAL_JSON_BYTES));
   const summary = object(rawRecord.artifactManifest);
   if (summary.sha256 !== manifest.sha256 || summary.totalBytes !== manifest.totalBytes) throw new Error("TRIAL_ARTIFACT_MANIFEST_MISMATCH");
-  return { directory, record: rawRecord as unknown as TrialRecord, manifest };
+  return { directory, record, manifest };
 }
 
 function validateArtifactManifest(value: unknown): ArtifactManifest {
@@ -160,20 +166,26 @@ async function writeAtomic(path: string, content: string): Promise<void> {
   }
 }
 
-/** Rebuilds materialized reports from immutable trial records and append-only score runs. */
-export async function rebuildReports(runDirectory: string): Promise<unknown> {
+/**
+ * Loads every recorded trial of a run with its latest append-only score run applied. Trials that a
+ * resumed batch replaced (named by a later record's `supersedes`) are left out but stay on disk.
+ */
+export async function loadRecordedTrials(runDirectory: string): Promise<TrialRecord[]> {
   const root = resolve(runDirectory);
   const rootInfo = await lstat(root).catch(() => null);
   if (!rootInfo?.isDirectory() || rootInfo.isSymbolicLink()) throw new Error("RUN_DIRECTORY_INVALID");
-  const experiment = object(await readJson(join(root, "experiment.json"), MAX_TRIAL_JSON_BYTES));
   const trials: TrialRecord[] = [];
   for (const entry of await readdir(root, { withFileTypes: true })) {
     if (!entry.isDirectory()) continue;
     const trialDirectory = join(root, entry.name);
     const trialInfo = await lstat(trialDirectory);
     if (trialInfo.isSymbolicLink()) throw new Error("TRIAL_DIRECTORY_INVALID");
-    const resultPath = join(trialDirectory, "result.json");
-    if (!(await lstat(resultPath).catch(() => null))) continue;
+    if (!(await lstat(join(trialDirectory, "result.json")).catch(() => null))) continue;
+    // Trials that stopped before artifact export have no manifest and therefore no score runs.
+    if (!(await lstat(join(trialDirectory, "artifact-manifest.json")).catch(() => null))) {
+      trials.push((await loadTrialRecord(trialDirectory)).record);
+      continue;
+    }
     const { record, manifest } = await loadTrial(trialDirectory);
     const latest = await latestScoreRun(trialDirectory, record, manifest);
     if (latest) {
@@ -182,7 +194,15 @@ export async function rebuildReports(runDirectory: string): Promise<unknown> {
     }
     trials.push(record);
   }
-  trials.sort((left, right) => left.id.localeCompare(right.id));
+  const superseded = new Set(trials.flatMap(trial => trial.supersedes ? [trial.supersedes] : []));
+  return trials.filter(trial => !superseded.has(trial.id)).sort((left, right) => left.id.localeCompare(right.id));
+}
+
+/** Rebuilds materialized reports from immutable trial records and append-only score runs. */
+export async function rebuildReports(runDirectory: string): Promise<unknown> {
+  const root = resolve(runDirectory);
+  const experiment = object(await readJson(join(root, "experiment.json"), MAX_TRIAL_JSON_BYTES));
+  const trials = await loadRecordedTrials(root);
   const oldReportInfo = await lstat(join(root, "report.json")).catch(() => null);
   const oldReport = oldReportInfo?.isFile() ? object(await readJson(join(root, "report.json"), MAX_TRIAL_JSON_BYTES)) : {};
   const modelCount = Array.isArray(experiment.models) ? experiment.models.length : 0;
@@ -205,6 +225,7 @@ export async function rebuildReports(runDirectory: string): Promise<unknown> {
     recordedRuns: trials.length,
     completed,
     scoreRunPolicy: "latest-append-only-score-run-per-trial",
+    ...(oldReport.batch !== undefined ? { batch: oldReport.batch } : {}),
     records: trials,
     summary: summarize(trials),
     byModel: [...byModel.entries()].sort(([left], [right]) => left.localeCompare(right))

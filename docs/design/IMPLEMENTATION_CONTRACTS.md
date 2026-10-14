@@ -49,6 +49,16 @@ The objective verdict depends on critical requirements only: a failed critical c
 
 A score run references the original artifact manifest and task version. Regrading appends a new score run; it does not replace the original result. Snapshot restoration verifies the file manifest and writes into a new, nonexistent destination.
 
+## Batch containment
+
+A plan's `batch` block (`src/evaluation/batch.ts`) bounds a whole run.
+- Provider requests are retried up to `maxRetries` times for 408/409/429/5xx and connection errors before any output streams; each HTTP attempt is recorded on the request.
+- Provider errors are classified. A full context window becomes `CONTEXT_LIMIT`, a budget outcome of the evaluated condition. Authentication, balance, and availability errors are infrastructure failures.
+- The batch stops immediately on `PROVIDER_AUTH` or `PROVIDER_BALANCE`, or after `maxConsecutiveInfrastructureFailures` infrastructure failures in a row. It also stops scheduling new work once known usage reaches `maxTotalTokens` or `maxCostUsd`. Usage that the provider did not report is counted separately, never as zero.
+- Unscheduled trials are listed under `batch.notRun`, and the report is marked incomplete.
+- `--resume <run>` continues a single-run batch only when the fingerprint is unchanged. It reruns missing and infrastructure-failed trials; each replacement names the trial it supersedes, which stays on disk.
+- The CLI refuses provider requests unless `batch.maxTotalTokens` is set.
+
 ## Continuous trajectories
 
 A trajectory is one trial with a shared workspace and agent session. Stage records retain cycle-level execution, public checks, snapshots, private grades, and active requirements. Stage budgets and the trajectory budget are enforced separately.

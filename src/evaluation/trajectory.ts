@@ -15,6 +15,7 @@ import { prepareWorkspace } from "./workspace.js";
 import { runTaskGrader } from "./grader.js";
 import { preflightPlan } from "./preflight.js";
 import { evaluatedCondition, sha256 } from "./condition.js";
+import { BatchGuard, resolveBatchPolicy, type BatchPolicy } from "./batch.js";
 import { sandboxLauncher, type Isolation } from "../sandbox.js";
 import type { EvaluationOptions, EvaluationPlan, PublicCheckResult, TrajectoryMetrics, TrajectoryRecord, TrajectorySession, TrajectoryStageResult } from "./types.js";
 
@@ -85,7 +86,8 @@ function accumulate(target: ExecutionResult, next: ExecutionResult): void {
 }
 
 function makeRunner(plan: EvaluationPlan, options: EvaluationOptions, model: EvaluationPlan["models"][number], trialId: string,
-  toolProfile: string, artifactLimits: typeof defaultArtifactLimits, workspacePath: string, item: EvaluationPlan["cases"][number]): TrajectorySession {
+  toolProfile: string, artifactLimits: typeof defaultArtifactLimits, workspacePath: string, item: EvaluationPlan["cases"][number],
+  batchPolicy: BatchPolicy): TrajectorySession {
   const createTools = (): AgentTool[] => plan.trustedLocalExecution ? evaluationTools(
     workspacePath,
     toolProfile as Parameters<typeof evaluationTools>[1],
@@ -97,6 +99,8 @@ function makeRunner(plan: EvaluationPlan, options: EvaluationOptions, model: Eva
     interactionClass: item.interactionClass ?? "candidate",
     toolEvidenceMaxBytes: artifactLimits.toolEvidenceMaxBytes,
     toolProfile,
+    maxRetries: batchPolicy.maxRetries,
+    maxRetryDelayMs: batchPolicy.maxRetryDelayMs,
     createTools,
   });
   return piSession;
@@ -287,15 +291,22 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
   const condition = await evaluatedCondition(plan, packages);
   const fingerprint = sha256({ plan, packageFingerprints, condition });
   const plannedRuns = plan.models.length * plan.cases.length;
+  const batchPolicy = resolveBatchPolicy(plan);
+  const guard = new BatchGuard(batchPolicy);
+  const notRun: Array<{ model: string; caseId: string; repetition: number }> = [];
   await writeFile(join(directory, "experiment.json"), JSON.stringify({
     schemaVersion: 2, name: plan.name, fingerprint, packageFingerprints, condition, execution: plan.execution, isolation: plan.isolation ?? "sandbox",
-    models: plan.models, caseIds: plan.cases.map(item => item.id), budget: plan.budget, artifactLimits,
+    models: plan.models, caseIds: plan.cases.map(item => item.id), budget: plan.budget, artifactLimits, batch: batchPolicy,
     plannedRuns, node: process.version, startedAt: new Date().toISOString(),
   }, null, 2));
   const records: TrajectoryRecord[] = [];
 
   for (const model of plan.models) {
     for (const item of plan.cases) {
+      if (guard.stopped) {
+        notRun.push({ model: `${model.provider}:${model.id}`, caseId: item.id, repetition: 1 });
+        continue;
+      }
       const id = randomUUID();
       const trialDirectory = join(directory, id);
       await mkdir(trialDirectory, { recursive: true });
@@ -339,7 +350,7 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
         if (projection.manifestSha256 !== descriptor.manifestSha256) throw new Error("PACKAGE_CHANGED_AFTER_PREFLIGHT");
         const commonInstruction = projection.instruction;
         executionStart = performance.now();
-        session = makeRunner(plan, options, model, id, profile, artifactLimits, workspace.path, item);
+        session = makeRunner(plan, options, model, id, profile, artifactLimits, workspace.path, item, batchPolicy);
         await events.emit("execution_started");
 
         for (const [index, stageInfo] of descriptor.manifest.stages.entries()) {
@@ -379,6 +390,7 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
               events.emit, { stageId: stageInfo.id, cycleId });
             outputChars += execution.output.length;
             accumulate(totalExecution, execution);
+            guard.record(execution);
             const cycle: TrajectoryStageResult["cycles"][number] = { cycleId, execution: persistedExecution(execution, budget.maxOutputChars), publicCheck: null, snapshot: null };
             stageRecord.cycles.push(cycle);
             await events.emit("trajectory_submission_completed", { modelCalls: totalExecution.modelCalls, toolCalls: totalExecution.toolCalls }, { stageId: stageInfo.id, cycleId, status: execution.status });
@@ -388,6 +400,8 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
               stop = true;
               break;
             }
+            // A batch ceiling or provider stop ends this trajectory after its current submission is graded.
+            const batchStop = guard.stopReason;
 
             const snapshotPath = join(trialDirectory, "snapshots", `${stageInfo.id}-${cycleId}`);
             let snapshotManifest: Awaited<ReturnType<typeof copyArtifacts>>;
@@ -454,6 +468,11 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
             }
             stageRecord.status = "completed";
             await persist();
+            if (batchStop) {
+              recordValue.stopReason = batchStop;
+              stop = true;
+              break;
+            }
           }
           stageRecord.durationMs = performance.now() - stageStart;
           if (stageRecord.status !== "stopped") stageRecord.status = "completed";
@@ -528,10 +547,10 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
       await writeFile(join(trialDirectory, "result.json"), JSON.stringify(recordValue, null, 2));
       records.push(recordValue);
       await events.emit("trajectory_record_completed", { modelCalls: totalExecution.modelCalls, toolCalls: totalExecution.toolCalls }, { status: recordValue.status });
-      await writeFile(join(directory, "report.json"), JSON.stringify({ version: 1, plannedRuns, recordedRuns: records.length, records }, null, 2));
+      await writeFile(join(directory, "report.json"), JSON.stringify({ version: 1, plannedRuns, recordedRuns: records.length, batch: guard.summary(notRun), records }, null, 2));
     }
   }
-  const report = { version: 1, plannedRuns, recordedRuns: records.length, completed: records.length === plannedRuns, records };
+  const report = { version: 1, plannedRuns, recordedRuns: records.length, completed: records.length === plannedRuns && notRun.length === 0, batch: guard.summary(notRun), records };
   await writeFile(join(directory, "report.json"), JSON.stringify(report, null, 2));
   await writeFile(join(directory, "report.md"), markdownTrajectoryReport(records));
   return { directory, report };
