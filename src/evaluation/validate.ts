@@ -18,6 +18,7 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
   if (plan.schemaVersion !== undefined && plan.schemaVersion !== 2) throw new Error("UNSUPPORTED_PLAN_VERSION");
   if (typeof plan.name !== "string" || !plan.name.trim()) throw new Error("INVALID_PLAN");
   if (typeof plan.trustedLocalExecution !== "boolean") throw new Error("INVALID_TRUST_SETTING");
+  if (plan.isolation !== undefined && plan.isolation !== "sandbox" && plan.isolation !== "host") throw new Error("INVALID_ISOLATION");
   validateBudget(object(plan.budget) as unknown as EvaluationPlan["budget"]);
   if (plan.execution !== undefined) {
     const execution = object(plan.execution);

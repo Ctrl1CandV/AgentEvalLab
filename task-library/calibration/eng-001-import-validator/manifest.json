@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "eng-001-import-validator",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "familyId": "eng-data-validation",
   "capability": "engineering",
   "usage": "development",
@@ -42,7 +42,7 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "366761dd526a6f04b946eb749758ba9bdc5f691cd7b462a2ea9dafce5e37d4eb"
+        "sha256": "99441844c87c801ec7360b045778b35463aef1debbfcff0eb284fa98a25a6a21"
       },
       {
         "path": "environment/README.md",
@@ -50,11 +50,11 @@
       },
       {
         "path": "metadata.json",
-        "sha256": "5249f8ee1d56dc7dec87c255b0e9638dc2035d2abbb203d72697466f410555e2"
+        "sha256": "e3de75868d433939bbdf477b3669546d6ebc98be6345b3ff1dc2e5675f28e343"
       },
       {
         "path": "private/acceptance.py",
-        "sha256": "605d32a2b152fec7d2a90a8fdcf1bee18d7cc6ced694143c88f2f2a84baf582c"
+        "sha256": "1260332c91abe30261074f11f94e56fc855d96e56b20710fe38e23e2be698db7"
       },
       {
         "path": "private/bad_impl_always_exit0.py",
@@ -211,7 +211,7 @@
   ],
   "grader": {
     "id": "eng001-acceptance",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "entryPoint": "private/acceptance.py",
     "executable": "python3",
     "args": [

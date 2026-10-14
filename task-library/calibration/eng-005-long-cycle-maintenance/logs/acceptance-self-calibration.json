@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "taskId": "eng-005-long-cycle-maintenance",
-  "taskVersion": "0.2.0",
-  "manifestSha256": "fc5d5bbbae5c7babe7be1056c6bffa0172d0dc2e85067cfd0253df44d1f520b3",
+  "taskVersion": "0.2.1",
+  "manifestSha256": "f39a201e2880d89dde792a84e730e9f4fdab01374f9d7147e726eb9d7180a7f0",
   "runtime": "v22.23.2",
   "references": [
     {

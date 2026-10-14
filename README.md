@@ -61,7 +61,7 @@ Offline reference runs and mutation checks cover only the stated task contracts.
 - Candidates receive only public task material.
 - Private graders and fixtures stay evaluator-side.
 - Candidate-written scores are not authoritative.
-- Task execution uses trusted host processes, not an operating-system sandbox.
+- Candidate code (the `execute_command` tool, `commands` checks, and programs that graders or public checkers start) runs in a bubblewrap sandbox: only its working directory is writable, and the host home directory, task packages, and network are unreachable. Graders and the harness themselves run as trusted host processes. A plan can opt out with `"isolation": "host"`, which is recorded with the run; preflight fails if bubblewrap is unavailable and no opt-out is given.
 - Validation-only commands do not send API requests.
 - Run records redact common credential formats and omit secret values.
 

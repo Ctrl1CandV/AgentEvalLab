@@ -1,12 +1,18 @@
 import { inspectPackage, type PackageDescriptor } from "./manifest.js";
 import { command } from "../command.js";
+import { sandboxAvailable } from "../sandbox.js";
 import type { EvaluationPlan } from "./types.js";
 import { realpath } from "node:fs/promises";
 import { join, resolve } from "node:path";
+import { tmpdir } from "node:os";
 
 /** Verifies every task package before credentials are loaded or an experiment is created. */
 export async function preflightPlan(plan: EvaluationPlan): Promise<Map<string, PackageDescriptor>> {
   const packages = new Map<string, PackageDescriptor>();
+  // Candidate code runs only under trusted local execution; refuse to run it unconfined by accident.
+  if (plan.trustedLocalExecution && (plan.isolation ?? "sandbox") === "sandbox" && !(await sandboxAvailable(tmpdir()))) {
+    throw new Error("SANDBOX_UNAVAILABLE");
+  }
   for (const item of plan.cases) {
     if (!item.packagePath) continue;
     const descriptor = await inspectPackage(

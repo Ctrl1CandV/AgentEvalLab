@@ -14,6 +14,7 @@ A package manifest identifies its task ID and version, family, capability, usage
 - Trusted files and private fixtures stay in the evaluator package.
 - Every listed file is checked against its SHA-256 digest.
 - The grader runs with bounded time and output and returns a schema-validated result.
+- Graders and public checkers that start candidate code prefix every such command with the sandbox launcher given in the grader request's `sandbox` field or the `{sandbox}` checker argument. The value is null or empty only when the plan sets `"isolation": "host"`.
 - Candidate-written checks or self-reported status are not trusted evidence.
 
 ## Run lifecycle

@@ -4,6 +4,7 @@ import argparse
 import json
 import shutil
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 
@@ -17,12 +18,18 @@ CHECKS = {
     "ERRORS_DOCS": ["errors.protocol", "errors.codes", "docs.usage"],
 }
 ALL_CHECKS = {check: requirement for requirement, ids in CHECKS.items() for check in ids}
+SANDBOX_LAUNCHER = None  # set from the grader request in main
+
+
+def sandboxed(command: list[str], root: Path) -> list[str]:
+    """Prefix candidate commands with the harness sandbox launcher when the request supplies one."""
+    return [sys.executable, SANDBOX_LAUNCHER, "--rw", str(root), "--", *command] if SANDBOX_LAUNCHER else command
 
 
 def invoke(root: Path, args: list[str]) -> subprocess.CompletedProcess[str]:
     command = ["node", "--disable-warning=ExperimentalWarning", "--experimental-strip-types", "src/cli.ts", *args]
     try:
-        return subprocess.run(command, cwd=root, text=True, encoding="utf-8", errors="replace",
+        return subprocess.run(sandboxed(command, root), cwd=root, text=True, encoding="utf-8", errors="replace",
                               capture_output=True, timeout=6, check=False)
     except subprocess.TimeoutExpired as error:
         stdout = error.stdout or ""
@@ -197,11 +204,14 @@ def data_preservation_check(submission: Path, fixture: dict) -> bool:
 
 
 def main() -> None:
+    global SANDBOX_LAUNCHER
     parser = argparse.ArgumentParser()
     parser.add_argument("--request", required=True, type=Path)
     parser.add_argument("--result", required=True, type=Path)
     args = parser.parse_args()
     request = json.loads(args.request.read_text(encoding="utf-8"))
+    sandbox = request.get("sandbox")
+    SANDBOX_LAUNCHER = sandbox.get("launcher") if isinstance(sandbox, dict) else None
     submission = Path(request["submission"]["directory"])
     active = request["context"]["activeRequirementIds"]
     selected = [check for requirement in active for check in CHECKS.get(requirement, [])]
@@ -224,7 +234,7 @@ def main() -> None:
     checks = [{"id": check_id, "requirementId": ALL_CHECKS[check_id], "status": "pass" if outcomes.get(check_id, False) else "fail", "evidenceRefs": []}
               for check_id in selected]
     result = {"schemaVersion": 1, "requestId": request["requestId"], "taskId": request["task"]["id"],
-              "taskVersion": request["task"]["version"], "graderVersion": "1.0.1", "gradingStatus": "completed",
+              "taskVersion": request["task"]["version"], "graderVersion": "1.1.0", "gradingStatus": "completed",
               "checks": checks, "dimensions": [], "unscoredCheckIds": [], "reason": None, "error": None}
     args.result.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 

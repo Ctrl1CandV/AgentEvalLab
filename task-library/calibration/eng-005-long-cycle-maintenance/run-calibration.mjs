@@ -12,6 +12,8 @@ const manifestBytes = await readFile(join(packageRoot, "manifest.json"));
 const manifest = JSON.parse(manifestBytes.toString("utf8"));
 const manifestSha256 = createHash("sha256").update(manifestBytes).digest("hex");
 const referencesRoot = join(calibrationDirectory, "references");
+// Calibrate the same sandboxed path that real runs use.
+const sandboxLauncher = join(repositoryRoot, "scripts", "sandbox_exec.py");
 
 function run(executable, args, cwd, timeout = 30_000) {
   const result = spawnSync(executable, args, { cwd, encoding: "utf8", timeout, maxBuffer: 2_000_000,
@@ -23,7 +25,7 @@ function run(executable, args, cwd, timeout = 30_000) {
 
 function publicCheck(submission, stageId) {
   const stage = manifest.stages.find(item => item.id === stageId);
-  const output = run("python3", [join(packageRoot, ...stage.publicChecker.entryPoint.split("/")), "--submission", submission, "--stage", stageId], repositoryRoot, stage.publicChecker.timeoutMs + 2_000);
+  const output = run("python3", [join(packageRoot, ...stage.publicChecker.entryPoint.split("/")), "--submission", submission, "--stage", stageId, "--sandbox-launcher", sandboxLauncher], repositoryRoot, stage.publicChecker.timeoutMs + 2_000);
   const result = JSON.parse(output);
   if (result.status !== "passed" || result.stageId !== stageId || JSON.stringify(result.checks.map(item => item.id).sort()) !== JSON.stringify([...stage.publicChecker.checkIds].sort())) {
     throw new Error(`PUBLIC_REFERENCE_FAILED:${stageId}:${JSON.stringify(result)}`);
@@ -50,6 +52,7 @@ async function privateGrade(submission, stageId, cycleId = "cycle-1", mustPass =
       traceRef: null,
       context: { stageId, cycleId, activeRequirementIds: stage.activeRequirementIds },
       evidenceRoot,
+      sandbox: { launcher: sandboxLauncher },
     }), "utf8");
     run("python3", [join(packageRoot, ...manifest.grader.entryPoint.split("/")), "--request", requestPath, "--result", resultPath], repositoryRoot, 60_000);
     const result = JSON.parse(await readFile(resultPath, "utf8"));

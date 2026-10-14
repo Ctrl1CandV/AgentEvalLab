@@ -3,6 +3,7 @@ import { copyFile } from "node:fs/promises";
 import { isAbsolute, join, relative, resolve, sep } from "node:path";
 import { command } from "../command.js";
 import { redact } from "../privacy.js";
+import { sandboxLauncher, type Isolation } from "../sandbox.js";
 import type { ArtifactManifest, EvaluationResult } from "./types.js";
 import type { PackageDescriptor, TaskPackageManifest } from "./manifest.js";
 
@@ -16,6 +17,8 @@ interface GraderRequest {
   traceRef: string | null;
   context: { stageId: string | null; cycleId: string | null; activeRequirementIds: string[] };
   evidenceRoot: string;
+  /** Launcher graders must prefix to every candidate command; null when the plan opted into host execution. */
+  sandbox: { launcher: string } | null;
 }
 
 interface ValidatedGraderResult {
@@ -39,6 +42,7 @@ export interface TaskGraderInput {
   answerText?: string;
   tracePath?: string;
   context?: { stageId: string | null; cycleId: string | null; activeRequirementIds: string[] };
+  isolation?: Isolation;
 }
 
 function object(value: unknown): Record<string, unknown> {
@@ -240,6 +244,7 @@ export async function runTaskGrader(input: TaskGraderInput): Promise<EvaluationR
         traceRef,
       context,
       evidenceRoot,
+      sandbox: (input.isolation ?? "sandbox") === "sandbox" ? { launcher: sandboxLauncher } : null,
     };
     const requestPath = join(graderDirectory, "request.json");
     const resultPath = join(graderDirectory, "result.json");

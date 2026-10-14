@@ -8,6 +8,8 @@ import type { ArtifactManifest } from "./types.js";
 import type { PackageDescriptor } from "./manifest.js";
 import { runTaskGrader } from "./grader.js";
 import type { EventSink } from "../types.js";
+import { isolatedCommand, type Isolation } from "../sandbox.js";
+import { realpath } from "node:fs/promises";
 
 export class EvaluatorCleanupError extends Error {}
 
@@ -19,6 +21,7 @@ export interface EvaluationContext {
   answerText?: string;
   tracePath?: string;
   emit?: EventSink;
+  isolation?: Isolation;
 }
 
 export const skippedEvaluation = (): EvaluationResult => ({
@@ -57,6 +60,7 @@ export async function evaluate(
       timeoutMs: spec.timeoutMs ?? 30_000,
       answerText: context.answerText,
       tracePath: context.tracePath,
+      isolation: context.isolation,
     });
   }
   const workspace = await prepareWorkspace(item.repository);
@@ -64,8 +68,10 @@ export async function evaluate(
     if (!item.repository && artifacts) await copyArtifacts(artifacts, workspace.path, artifactLimits);
     if (patch) await git(workspace.path, ["apply", "--binary", "--whitespace=nowarn", "-"], patch);
     const checks: EvaluationResult["checks"] = [];
+    const writable = [await realpath(workspace.path)];
     for (const check of spec.checks) {
-      const result = await command(check.executable, check.args, workspace.path, spec.timeoutMs ?? 10_000);
+      const isolated = isolatedCommand(check.executable, check.args, writable, context?.isolation);
+      const result = await command(isolated.executable, isolated.args, workspace.path, spec.timeoutMs ?? 10_000);
       if (result.status !== "completed" || result.exitCode === null) {
         return { status: "error", score: null, checks, error: "CHECK_EXECUTION_FAILED" };
       }

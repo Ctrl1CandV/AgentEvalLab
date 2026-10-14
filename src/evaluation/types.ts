@@ -1,6 +1,7 @@
 import type { Budget, ExecutionResult, InteractionClass, ModelSelection, Runner, RunInput } from "../types.js";
 import type { TaskPackageManifest } from "./manifest.js";
 import type { ToolProfile } from "../harness/tools.js";
+import type { Isolation } from "../sandbox.js";
 
 export interface CommandCheck {
   id: string;
@@ -36,6 +37,8 @@ export interface EvaluationPlan {
   artifactLimits?: ArtifactLimits;
   cases: EvaluationCase[];
   trustedLocalExecution: boolean;
+  /** Candidate-code isolation; omitted means "sandbox". "host" must be chosen explicitly. */
+  isolation?: Isolation;
 }
 
 export type ExecutionPolicy =

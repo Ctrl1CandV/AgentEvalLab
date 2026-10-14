@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "eng-004-resource-index",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "familyId": "eng-resource-index-maintenance",
   "capability": "engineering",
   "usage": "development",
@@ -37,7 +37,7 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "bcda6e456207e78ec4841482f5e63fc38799e723302fb41efd10c9029fafbe80"
+        "sha256": "89da282b8743d5f3cba64c9f7667fe1224e51bfa7846147a4bcc03dac6876ab5"
       },
       {
         "path": "environment/README.md",
@@ -45,7 +45,7 @@
       },
       {
         "path": "metadata.json",
-        "sha256": "cc2556bcda505853f57138480afc7daf411ac81b39f61d5005b4b2be669ab503"
+        "sha256": "5be5d87edb581c6ddd5e9bc3640123d0e99dc00cdafc70f1d831c6ddfbb56283"
       },
       {
         "path": "rubric.md",
@@ -57,7 +57,7 @@
       },
       {
         "path": "private/acceptance.py",
-        "sha256": "0e3b32e5ff1f2d0f7f4edb4bf027efc2153bc9a8c3795bf0e75fae93081f27b4"
+        "sha256": "cd56ee13feff6ba7368b5872b5e7b147b445ee079a123ba6a5663805755983bb"
       },
       {
         "path": "private/hidden_catalog.json",
@@ -144,7 +144,7 @@
   ],
   "grader": {
     "id": "eng004-acceptance",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "entryPoint": "private/acceptance.py",
     "executable": "python3",
     "args": [

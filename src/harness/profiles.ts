@@ -3,7 +3,7 @@ import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import { Type } from "typebox";
 import type { AgentTool } from "@earendil-works/pi-agent-core";
 import { command } from "../command.js";
-import { workspaceTools, type ToolProfile } from "./tools.js";
+import { workspaceTools, type ToolProfile, type WorkspaceToolOptions } from "./tools.js";
 
 const MAX_WORKSPACE_TEXT = 100_000;
 const MAX_SEARCH_RESULTS = 50;
@@ -59,7 +59,7 @@ function envelope(status: "success" | "warning" | "error", summary: string, data
 }
 
 /** Explicit tool conditions used by evaluation plans. No automatic dependency installation occurs. */
-export function evaluationTools(root: string, profile: ToolProfile, options: { readOnly?: boolean; execute?: boolean } = {}): AgentTool[] {
+export function evaluationTools(root: string, profile: ToolProfile, options: WorkspaceToolOptions = {}): AgentTool[] {
   if (profile === "workspace-basic") return workspaceTools(root, options);
   if (profile === "doc-evidence") return docEvidenceTools(root);
 

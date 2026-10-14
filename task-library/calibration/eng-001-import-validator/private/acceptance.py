@@ -34,12 +34,13 @@ def _find_python_launcher():
 
 
 PY = _find_python_launcher()
+SANDBOX_LAUNCHER = None  # set from the grader request by run_harness_protocol
 ORACLE = json.load(open(os.path.join(HERE, "oracle.json"), encoding="utf-8"))
 DEFAULT_SCHEMA = os.path.join(PKG, "public", "schema.json")
 TASK_ID = "eng-001-import-validator"
-TASK_VERSION = "0.3.0"
+TASK_VERSION = "0.3.1"
 GRADER_ID = "eng001-acceptance"
-GRADER_VERSION = "1.0.0"
+GRADER_VERSION = "1.1.0"
 MAX_CANDIDATE_OUTPUT = 200_000
 CANDIDATE_TIMEOUT_SECONDS = 5
 ROW_ERROR_CODES = {"missing_required", "type_mismatch", "constraint", "unique_violation"}
@@ -60,11 +61,18 @@ def _minimal_candidate_env():
     return env
 
 
+def _sandboxed(cmd, cwd):
+    """Prefix candidate commands with the harness sandbox launcher when the request supplies one."""
+    if not SANDBOX_LAUNCHER:
+        return cmd
+    return [sys.executable, SANDBOX_LAUNCHER, "--rw", str(cwd), "--", *cmd]
+
+
 def _run_bounded(cmd, cwd, timeout_seconds=CANDIDATE_TIMEOUT_SECONDS,
                  max_output=MAX_CANDIDATE_OUTPUT):
     """Run an untrusted candidate with a deadline and a combined stdout/stderr cap."""
     try:
-        proc = subprocess.Popen(cmd, cwd=cwd, stdin=subprocess.DEVNULL,
+        proc = subprocess.Popen(_sandboxed(cmd, cwd), cwd=cwd, stdin=subprocess.DEVNULL,
                                 stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                                 env=_minimal_candidate_env(), shell=False,
                                 creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
@@ -431,7 +439,7 @@ def _is_inside(path, parent):
 
 def _validate_grader_request(request):
     required = {"schemaVersion", "requestId", "trialId", "task", "submission", "answerRef",
-                "traceRef", "context", "evidenceRoot"}
+                "traceRef", "context", "evidenceRoot", "sandbox"}
     if not isinstance(request, dict) or set(request) != required or request["schemaVersion"] != 1:
         return None
     request_id = request["requestId"]
@@ -456,6 +464,12 @@ def _validate_grader_request(request):
             not isinstance(request["evidenceRoot"], str) or not os.path.isabs(request["evidenceRoot"])):
         return None
 
+    sandbox = request["sandbox"]
+    if sandbox is not None and (not isinstance(sandbox, dict) or set(sandbox) != {"launcher"} or
+                                not isinstance(sandbox["launcher"], str) or not os.path.isabs(sandbox["launcher"]) or
+                                not os.path.isfile(sandbox["launcher"])):
+        return None
+
     try:
         submission_root = os.path.realpath(submission["directory"])
         evidence_root = os.path.realpath(request["evidenceRoot"])
@@ -469,7 +483,7 @@ def _validate_grader_request(request):
     entry_point = os.path.join(submission_root, "import_validator.py")
     if os.path.islink(entry_point) or not os.path.isfile(entry_point):
         return None
-    return submission_root, entry_point, evidence_root
+    return submission_root, entry_point, evidence_root, sandbox["launcher"] if sandbox else None
 
 
 def _write_json_file(path, value):
@@ -482,6 +496,7 @@ def _write_json_file(path, value):
 
 def run_harness_protocol(request_path, result_path):
     """Adapter used by the TypeScript harness; answer material never enters the request."""
+    global SANDBOX_LAUNCHER
     request = None
     request_id = "invalid-request"
     try:
@@ -493,7 +508,7 @@ def run_harness_protocol(request_path, result_path):
         if validated is None:
             result = _grader_result(request_id, error_code="GRADER_REQUEST_INVALID", phase="request")
         else:
-            _submission_root, entry_point, evidence_root = validated
+            _submission_root, entry_point, evidence_root, SANDBOX_LAUNCHER = validated
             outcomes = run_suite(entry_point)
             checks = []
             for case_id, (passed, reason_code) in outcomes.items():

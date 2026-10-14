@@ -18,7 +18,7 @@ A limit failure is recorded with its failure kind. It is not silently converted 
 
 ## Tools
 
-Tools are selected by a named profile. Each run receives a fresh collection, and duplicate tool names are rejected. Tool implementations execute as trusted host code; profiles and output limits do not provide an operating-system sandbox.
+Tools are selected by a named profile. Each run receives a fresh collection, and duplicate tool names are rejected. Tool implementations execute as trusted host code, but `execute_command` runs the requested program through the bubblewrap sandbox launcher unless the plan sets `"isolation": "host"`.
 
 The evidence-recovery profile exposes bounded file and search operations. It records returned evidence and enforces path containment, page limits, and evidence-size limits.
 

@@ -1,13 +1,21 @@
 import { readFile, writeFile, mkdir, realpath, readdir } from "node:fs/promises";
 import { command } from "../command.js";
+import { isolatedCommand, type Isolation } from "../sandbox.js";
 import { dirname, isAbsolute, relative, resolve } from "node:path";
 import { Type } from "typebox";
 import type { AgentTool } from "@earendil-works/pi-agent-core";
 
 export type ToolProfile = "workspace-basic" | "workspace-augmented" | "doc-evidence";
 
-/** Trusted local repositories only; path checks are not an OS sandbox. */
-export function workspaceTools(root: string, options: { readOnly?: boolean; execute?: boolean } = {}): AgentTool[] {
+export interface WorkspaceToolOptions {
+  readOnly?: boolean;
+  execute?: boolean;
+  /** How execute_command runs candidate commands; defaults to the bubblewrap sandbox. */
+  isolation?: Isolation;
+}
+
+/** File tools are path-contained; execute_command relies on the sandbox for containment. */
+export function workspaceTools(root: string, options: WorkspaceToolOptions = {}): AgentTool[] {
   async function contained(path: string, writing: boolean): Promise<string> {
     const target = resolve(root, path);
     const inside = (value: string) => {
@@ -64,9 +72,10 @@ export function workspaceTools(root: string, options: { readOnly?: boolean; exec
   };
   const commandParameters = Type.Object({ executable: Type.String(), args: Type.Array(Type.String()) });
   const execute: AgentTool<typeof commandParameters> = {
-    name: "execute_command", label: "Execute command", description: "Run a trusted local command in the workspace (no shell).", parameters: commandParameters,
+    name: "execute_command", label: "Execute command", description: "Run a command in the workspace (no shell, no network).", parameters: commandParameters,
     async execute(_id, args) {
-      const result = await command(args.executable, args.args, root, 10_000, 16_000);
+      const sandboxed = isolatedCommand(args.executable, args.args, [await realpath(root)], options.isolation);
+      const result = await command(sandboxed.executable, sandboxed.args, root, 10_000, 16_000);
       return { content: [{ type: "text", text: JSON.stringify(result) }], details: {} };
     },
   };

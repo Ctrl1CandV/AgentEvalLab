@@ -14,6 +14,7 @@ import { projectPackage, projectTrajectoryStage, type PackageDescriptor } from "
 import { prepareWorkspace } from "./workspace.js";
 import { runTaskGrader } from "./grader.js";
 import { preflightPlan } from "./preflight.js";
+import { sandboxLauncher, type Isolation } from "../sandbox.js";
 import type { EvaluationOptions, EvaluationPlan, PublicCheckResult, TrajectoryMetrics, TrajectoryRecord, TrajectorySession, TrajectoryStageResult } from "./types.js";
 
 function record(value: unknown): Record<string, unknown> {
@@ -85,7 +86,7 @@ function makeRunner(plan: EvaluationPlan, options: EvaluationOptions, model: Eva
   const createTools = (): AgentTool[] => plan.trustedLocalExecution ? evaluationTools(
     workspacePath,
     toolProfile as Parameters<typeof evaluationTools>[1],
-    { readOnly: item.readOnly, execute: !item.readOnly },
+    { readOnly: item.readOnly, execute: !item.readOnly, isolation: plan.isolation },
   ) : [];
   if (options.sessionFactory) return options.sessionFactory(model, trialId, toolProfile as Parameters<typeof evaluationTools>[1], createTools);
   const piSession: PiAgentSession = createPiSession(model, {
@@ -103,12 +104,15 @@ async function publicCheck(
   stageId: string,
   submission: string,
   timeoutMs: number,
+  isolation: Isolation = "sandbox",
 ): Promise<PublicCheckResult> {
   const stage = descriptor.manifest?.stages?.find(candidate => candidate.id === stageId);
   if (!stage) throw new Error("PUBLIC_CHECK_STAGE_MISSING");
   const substitutions = new Map([
     ["{entryPoint}", join(descriptor.root, ...stage.publicChecker.entryPoint.split("/"))],
     ["{submission}", submission],
+    // Checkers prefix candidate commands with this launcher; empty means host execution.
+    ["{sandbox}", isolation === "sandbox" ? sandboxLauncher : ""],
   ]);
   const args = stage.publicChecker.args.map(argument => {
     let expanded = argument;
@@ -280,7 +284,7 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
   const fingerprint = createHash("sha256").update(JSON.stringify({ plan, packageFingerprints })).digest("hex");
   const plannedRuns = plan.models.length * plan.cases.length;
   await writeFile(join(directory, "experiment.json"), JSON.stringify({
-    schemaVersion: 1, name: plan.name, fingerprint, packageFingerprints, execution: plan.execution,
+    schemaVersion: 1, name: plan.name, fingerprint, packageFingerprints, execution: plan.execution, isolation: plan.isolation ?? "sandbox",
     models: plan.models, caseIds: plan.cases.map(item => item.id), budget: plan.budget, artifactLimits,
     plannedRuns, node: process.version, startedAt: new Date().toISOString(),
   }, null, 2));
@@ -421,7 +425,7 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
                 if (checkerManifest.sha256 !== snapshotManifest.sha256 || checkerManifest.totalBytes !== snapshotManifest.totalBytes) {
                   throw new Error("PUBLIC_CHECK_SNAPSHOT_MISMATCH");
                 }
-                cycle.publicCheck = await publicCheck(descriptor, stageInfo.id, checkerWorkspace, checkerBudget);
+                cycle.publicCheck = await publicCheck(descriptor, stageInfo.id, checkerWorkspace, checkerBudget, plan.isolation);
                 const archivedManifest = await inspectArtifacts(snapshotPath, artifactLimits);
                 if (archivedManifest.sha256 !== snapshotManifest.sha256 || archivedManifest.totalBytes !== snapshotManifest.totalBytes) {
                   throw new Error("PUBLIC_CHECK_MUTATED_SNAPSHOT");
@@ -505,6 +509,7 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
           answerText: snapshot.answer,
           tracePath: join(trialDirectory, "tool-trace.jsonl"),
           context: { stageId: snapshot.stageId, cycleId: snapshot.cycleId, activeRequirementIds: snapshot.activeRequirementIds },
+          isolation: plan.isolation,
         });
         const stageRecord = recordValue.stages.find(stage => stage.stageId === snapshot.stageId)!;
         const cycle = stageRecord.cycles.find(entry => entry.cycleId === snapshot.cycleId)!;

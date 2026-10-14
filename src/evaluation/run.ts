@@ -35,7 +35,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
   }));
   const fingerprint = createHash("sha256").update(JSON.stringify({ plan, packageFingerprints })).digest("hex");
   const plannedRuns = plan.models.length * plan.cases.length;
-  await writeFile(join(directory, "experiment.json"), JSON.stringify({ schemaVersion: 1, name: plan.name, fingerprint, packageFingerprints, models: plan.models, caseIds: plan.cases.map(item => item.id), budget: plan.budget, artifactLimits, plannedRuns, node: process.version, startedAt: new Date().toISOString() }, null, 2));
+  await writeFile(join(directory, "experiment.json"), JSON.stringify({ schemaVersion: 1, name: plan.name, fingerprint, packageFingerprints, models: plan.models, caseIds: plan.cases.map(item => item.id), budget: plan.budget, artifactLimits, plannedRuns, isolation: plan.isolation ?? "sandbox", node: process.version, startedAt: new Date().toISOString() }, null, 2));
   let sequence = 0;
   let pending = Promise.resolve();
   let completed = false;
@@ -95,7 +95,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
           createTools: () => plan.trustedLocalExecution ? evaluationTools(
             toolProfile === "doc-evidence" ? join(workspace!.path, "public", "snapshot") : workspace!.path,
             toolProfile,
-            { readOnly: item.readOnly, execute: !item.readOnly },
+            { readOnly: item.readOnly, execute: !item.readOnly, isolation: plan.isolation },
           ) : [],
         });
         record.execution = await runner({ ...item.input, prompt: [instruction, item.input.prompt].filter(Boolean).join("\n\n"), workspacePath: workspace.path }, model, plan.budget, events.emit);
@@ -133,6 +133,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
             answerText: persistedExecution(record.execution, plan.budget.maxOutputChars).output,
             tracePath: toolTracePath,
             emit: events.emit,
+            isolation: plan.isolation,
           });
         } catch (error) {
           if (error instanceof EvaluatorCleanupError) record.cleanup = "error";

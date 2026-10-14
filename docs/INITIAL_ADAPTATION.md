@@ -11,4 +11,4 @@ The execution path is:
 
 Start with `src/types.ts`, then inspect an example plan, the run lifecycle, and one task grader. Pi integration is in `src/harness/pi.ts`; provider configuration is in `src/providers.ts`.
 
-Budget limits define the evaluated condition. They are not security controls. Commands and tools execute with trusted host permissions.
+Budget limits define the evaluated condition. They are not security controls. Candidate commands run in a bubblewrap sandbox (`scripts/sandbox_exec.py`, `src/sandbox.ts`); the harness, tools, and graders run with trusted host permissions.

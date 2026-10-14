@@ -262,6 +262,7 @@ export async function regradeTrial(trialDirectory: string, plan: EvaluationPlan,
         scoreRunDirectory: pendingDirectory,
         packageDescriptor: descriptor,
         submissionManifest: verifiedManifest,
+        isolation: plan.isolation,
       });
     } catch {
       evaluation = { status: "error", score: null, checks: [], error: "REGRADE_EVALUATOR_FAILED" };

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "eng-005-long-cycle-maintenance",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "familyId": "eng-workflow-evolution",
   "capability": "engineering",
   "usage": "development",
@@ -37,7 +37,7 @@
       },
       {
         "path": "private/grader.py",
-        "sha256": "602bd2302b7207024db5816e79b2ff60c25c8e3d258dcd90f4f074ee5f34355f"
+        "sha256": "a580208a476d8c2086e16967308d4c22eac87f4ce7cdccb9ba776c08cc5d4be3"
       },
       {
         "path": "private/v1-fixture.json",
@@ -128,7 +128,7 @@
         },
         {
           "path": "stages/S1/public/checker.py",
-          "sha256": "1ece8fadeb2829ce921fd86c98a13dac2cf7561838df6ba56724fbf798fe0e8e"
+          "sha256": "35d6cc6b543cadb6af7a13a32314556d7a72a9b53bccfdcfbf800c0b7802001c"
         }
       ],
       "activeRequirementIds": [
@@ -144,7 +144,9 @@
           "--submission",
           "{submission}",
           "--stage",
-          "S1"
+          "S1",
+          "--sandbox-launcher",
+          "{sandbox}"
         ],
         "timeoutMs": 25000,
         "maxOutputBytes": 100000,
@@ -163,7 +165,7 @@
         },
         {
           "path": "stages/S2/public/checker.py",
-          "sha256": "0f26fa6782bf5d79d75001cd3d0d7ed5f6d0e028a0b3a874a0184b7edc524f38"
+          "sha256": "bf03f1087491fb2d875b18af4ffa040864bc19a6adfab19745e29366c0015f65"
         }
       ],
       "activeRequirementIds": [
@@ -180,7 +182,9 @@
           "--submission",
           "{submission}",
           "--stage",
-          "S2"
+          "S2",
+          "--sandbox-launcher",
+          "{sandbox}"
         ],
         "timeoutMs": 25000,
         "maxOutputBytes": 100000,
@@ -203,7 +207,7 @@
         },
         {
           "path": "stages/S3/public/checker.py",
-          "sha256": "106ee1f7e3ec7b4d7936f03999fc8d87e4672c8761b6c399f121640a48fb8e57"
+          "sha256": "da409ccf2d0992a7ee1491cd519da33806d9fafcba49958d05ddaca42bf47e1b"
         }
       ],
       "activeRequirementIds": [
@@ -221,7 +225,9 @@
           "--submission",
           "{submission}",
           "--stage",
-          "S3"
+          "S3",
+          "--sandbox-launcher",
+          "{sandbox}"
         ],
         "timeoutMs": 25000,
         "maxOutputBytes": 100000,
@@ -240,7 +246,7 @@
         },
         {
           "path": "stages/S4/public/checker.py",
-          "sha256": "8cbe96c800ea70fce8a17de5f1fbf6ce3540d631719ae1bebdcf9bb6b531485f"
+          "sha256": "3bca8949c4c6e0ae81868cc1b3cef5c324a36d6ea34d972caa6d2b6ad522d8c9"
         },
         {
           "path": "stages/S4/public/v1-fixture.json",
@@ -263,7 +269,9 @@
           "--submission",
           "{submission}",
           "--stage",
-          "S4"
+          "S4",
+          "--sandbox-launcher",
+          "{sandbox}"
         ],
         "timeoutMs": 25000,
         "maxOutputBytes": 100000,
@@ -282,7 +290,7 @@
         },
         {
           "path": "stages/S5/public/checker.py",
-          "sha256": "dd15966f566d445036cdd92862c2a11cdc38f621c7bd23c14ba10022254fa513"
+          "sha256": "f1a79ff434127b9c06ad5e0380712ff0e91f3df2ea5a0b8df815dd238e2c5edd"
         }
       ],
       "activeRequirementIds": [
@@ -302,7 +310,9 @@
           "--submission",
           "{submission}",
           "--stage",
-          "S5"
+          "S5",
+          "--sandbox-launcher",
+          "{sandbox}"
         ],
         "timeoutMs": 25000,
         "maxOutputBytes": 100000,
@@ -318,7 +328,7 @@
   ],
   "grader": {
     "id": "eng005-checkpoint-grader",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

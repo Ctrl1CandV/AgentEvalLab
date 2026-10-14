@@ -16,9 +16,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PKG = os.path.dirname(HERE)
 HIDDEN = os.path.join(HERE, "hidden_catalog.json")
 NODE = shutil.which("node") or "node"
+SANDBOX_LAUNCHER = None  # set from the grader request by grade_request
 TASK_ID = "eng-004-resource-index"
-TASK_VERSION = "0.2.0"
-GRADER_VERSION = "1.0.1"
+TASK_VERSION = "0.2.1"
+GRADER_VERSION = "1.1.0"
 CHECKS = [
     ("search-filter", "REQ-SEARCH"),
     ("default-pagination", "REQ-SEARCH"),
@@ -28,6 +29,13 @@ CHECKS = [
     ("index-compatibility", "REQ-REGRESSION"),
     ("csv-rfc4180", "REQ-CSV"),
 ]
+
+
+def _sandboxed(cmd, cwd):
+    """Prefix candidate commands with the harness sandbox launcher when the request supplies one."""
+    if not SANDBOX_LAUNCHER:
+        return cmd
+    return [sys.executable, SANDBOX_LAUNCHER, "--rw", str(cwd), "--", *cmd]
 
 
 def hidden_catalog():
@@ -40,7 +48,7 @@ def run_cli(submission, command, options=(), source=None):
     argv.extend(options)
     try:
         run = subprocess.run(
-            argv,
+            _sandboxed(argv, submission),
             cwd=submission,
             input=json.dumps(source, ensure_ascii=False).encode("utf-8") if source is not None else b"{}",
             stdout=subprocess.PIPE,
@@ -282,8 +290,11 @@ def write_json(path, value):
 
 
 def grade_request(request_path, result_path):
+    global SANDBOX_LAUNCHER
     with open(request_path, encoding="utf-8") as handle:
         request = json.load(handle)
+    sandbox = request.get("sandbox")
+    SANDBOX_LAUNCHER = sandbox.get("launcher") if isinstance(sandbox, dict) else None
     submission = request["submission"]["directory"]
     checks = run_checks(submission, request["evidenceRoot"])
     write_json(result_path, grader_result(request, checks))
