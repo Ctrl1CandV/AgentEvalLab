@@ -1,0 +1,20 @@
+Task eng-004-resource-index version 0.2.0; date 2026-10-13; Python 3.13.15; Node v22.23.2; host Linux (WSL2 Ubuntu 22.04)
+No model API or credentials were used.
+
+$ python3 private/acceptance.py --self-calibrate
+csv_record_endings_crlf-records: PASS
+csv_record_endings_lf-record-with-final-crlf: PASS
+csv_record_endings_quoted-field-lf: PASS
+csv_valid_rfc4180_output: PASS
+csv_lf_records_with_final_crlf_rejected: PASS
+reference_A_repeat_1: 1/7 FAIL
+reference_B_repeat_1: 1/7 FAIL
+reference_A_repeat_2: 1/7 FAIL
+reference_B_repeat_2: 1/7 FAIL
+reference_A_repeat_3: 1/7 FAIL
+reference_B_repeat_3: 1/7 FAIL
+mutant_off-by-one-page: REJECTED
+mutant_bad-csv-quoting: REJECTED
+mutant_wrong-next-offset: REJECTED
+RESULT: FAIL (6 reference runs, 3 targeted mutants, 3 CSV delimiter cases)
+exit=1

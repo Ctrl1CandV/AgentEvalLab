@@ -1,0 +1,61 @@
+Task eng-001-import-validator version 0.3.0; date 2026-10-13; Python 3.13.15; Node v22.23.2; host Linux (WSL2 Ubuntu 22.04)
+No model API or credentials were used.
+
+$ python3 private/acceptance.py --self-calibrate
+Import-validator self-calibration
+-- ref_impl_a.py: 22/22 checks passed
+   [PASS] clean_dry: ok
+   [PASS] embedded_dry: ok
+   [PASS] multiline_pos_dry: ok
+   [PASS] type_errors_dry: ok
+   [PASS] missing_required_dry: ok
+   [PASS] constraints_dry: ok
+   [PASS] unique_dup_dry: ok
+   [PASS] nan_inf_dry: ok
+   [PASS] bom_dry: ok
+   [PASS] header_only_dry: ok
+   [PASS] empty_input: ok
+   [PASS] extra_column: ok
+   [PASS] missing_column: ok
+   [PASS] duplicate_header: ok
+   [PASS] malformed_csv: ok
+   [PASS] bad_schema_unknown_type: ok
+   [PASS] bad_schema_pk_missing: ok
+   [PASS] bad_schema_invalid: ok
+   [PASS] clean_apply: ok
+   [PASS] mixed_apply_all_or_nothing: ok
+   [PASS] dryrun_must_not_create_db: ok
+   [PASS] idempotency: ok
+Reference A passed: True
+-- ref_impl_b.py: 22/22 checks passed
+   [PASS] clean_dry: ok
+   [PASS] embedded_dry: ok
+   [PASS] multiline_pos_dry: ok
+   [PASS] type_errors_dry: ok
+   [PASS] missing_required_dry: ok
+   [PASS] constraints_dry: ok
+   [PASS] unique_dup_dry: ok
+   [PASS] nan_inf_dry: ok
+   [PASS] bom_dry: ok
+   [PASS] header_only_dry: ok
+   [PASS] empty_input: ok
+   [PASS] extra_column: ok
+   [PASS] missing_column: ok
+   [PASS] duplicate_header: ok
+   [PASS] malformed_csv: ok
+   [PASS] bad_schema_unknown_type: ok
+   [PASS] bad_schema_pk_missing: ok
+   [PASS] bad_schema_invalid: ok
+   [PASS] clean_apply: ok
+   [PASS] mixed_apply_all_or_nothing: ok
+   [PASS] dryrun_must_not_create_db: ok
+   [PASS] idempotency: ok
+Reference B passed: True
+bad_impl_naive_split.py: 5/22 checks; REJECTED
+bad_impl_always_exit0.py: 7/22 checks; REJECTED
+bad_impl_dryrun_writes.py: 20/22 checks; REJECTED
+bad_impl_insert_only.py: 21/22 checks; REJECTED
+bad_impl_empty.py: 0/22 checks; REJECTED
+Reference results are repeatable: True
+RESULT: PASS
+exit=0

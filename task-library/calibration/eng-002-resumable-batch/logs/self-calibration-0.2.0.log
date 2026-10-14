@@ -1,0 +1,28 @@
+Task eng-002-resumable-batch version 0.2.0; date 2026-10-13; Python 3.13.15; Node v22.23.2; host Linux (WSL2 Ubuntu 22.04)
+No model API or credentials were used.
+
+$ python3 private/acceptance.py --self-calibrate
+Resumable-batch self-calibration
+Reference implementation checks
+-- ref_impl.py: 7/7 cases passed
+   [PASS] empty: ok
+   [PASS] complete: ok
+   [PASS] missing_output: ok
+   [PASS] corrupt_output: ok
+   [PASS] bad_journal: ok
+   [PASS] input_changed: ok
+   [PASS] stale_tmp: ok
+Reference scenarios passed: True
+Interruption recovery checks
+   [PASS] before_journal:a.txt: Recovered successfully after interruption
+   [PASS] stale_temp:a.txt: Recovered successfully after interruption
+   [PASS] after_n:2: Recovered successfully after interruption
+Interruption scenarios passed: True
+Mutant rejection checks
+   bad_trusts_journal.py: 5/7 cases; REJECTED
+   bad_input_hash_ignored.py: 6/7 cases; REJECTED
+   bad_empty.py: 0/7 cases; REJECTED
+Repeatability check
+Reference results are repeatable: True
+RESULT: PASS
+exit=0

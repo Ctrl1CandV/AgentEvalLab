@@ -1,0 +1,28 @@
+Task eng-003-resource-manager version 0.1.0; date 2026-10-13; Python 3.13.15; Node v22.23.2; host Linux (WSL2 Ubuntu 22.04)
+No model API or credentials were used.
+
+$ python3 private/acceptance.py --self-calibrate
+Resource-manager self-calibration
+-- ref_store.py: 14/14 scenarios passed
+   [PASS] add_valid: ok
+   [PASS] add_invalid_title: ok
+   [PASS] add_invalid_url: ok
+   [PASS] edit: ok
+   [PASS] delete: ok
+   [PASS] list_filters: ok
+   [PASS] export_roundtrip: ok
+   [PASS] import_merge: ok
+   [PASS] import_all_or_nothing: ok
+   [PASS] import_dup_ids: ok
+   [PASS] import_corrupt: ok
+   [PASS] import_csv: ok
+   [PASS] persistence_reload: ok
+   [PASS] corrupt_store_recovery: ok
+Reference scenarios passed: True
+[HTTP reference smoke] PASS: POST=201 list=1 index_html=True
+bad_store_novalidation.py: 11/14 scenarios; REJECTED
+bad_store_import_partial.py: 10/14 scenarios; REJECTED
+bad_store_empty.py: 0/14 scenarios; REJECTED
+Reference results are repeatable: True
+RESULT: PASS
+exit=0
