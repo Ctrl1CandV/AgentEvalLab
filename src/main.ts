@@ -9,7 +9,7 @@ import { runEvaluation } from "./evaluation/run.js";
 import { runTrajectoryEvaluation } from "./evaluation/trajectory.js";
 import { validatePlan } from "./evaluation/validate.js";
 import { preflightPlan } from "./evaluation/preflight.js";
-import { regradeTrial, restoreTrialSnapshot } from "./evaluation/regrade.js";
+import { importHumanReview, regradeTrial, restoreTrialSnapshot } from "./evaluation/regrade.js";
 import { restoreTrajectorySnapshot } from "./evaluation/trajectory-snapshot.js";
 import type { EvaluationPlan } from "./evaluation/types.js";
 
@@ -28,6 +28,8 @@ async function main(): Promise<void> {
       cycle: { type: "string" },
       destination: { type: "string" },
       reason: { type: "string" },
+      "import-review": { type: "string" },
+      review: { type: "string" },
       help: { type: "boolean" },
     },
   });
@@ -36,14 +38,15 @@ async function main(): Promise<void> {
     console.log([
       'npm run harness -- --model provider:id --prompt "..." [--out runs] [--validate-only]',
       "npm run harness -- --plan plan.eval.json --regrade runs/<run>/<trial> --reason \"reason\"",
+      "npm run harness -- --plan plan.eval.json --import-review runs/<run>/<trial> --review review.json --reason \"reason\"",
       "npm run harness -- --restore runs/<run>/<trial> --destination path/to/new-snapshot",
       "npm run harness -- --restore-trajectory runs/<run>/<trial> --stage S1 --cycle cycle-1 --destination path/to/new-snapshot",
     ].join("\n"));
     return;
   }
 
-  if (values.regrade || values.restore || values["restore-trajectory"]) {
-    const selectedOperations = [values.regrade, values.restore, values["restore-trajectory"]].filter(Boolean).length;
+  if (values.regrade || values.restore || values["restore-trajectory"] || values["import-review"]) {
+    const selectedOperations = [values.regrade, values.restore, values["restore-trajectory"], values["import-review"]].filter(Boolean).length;
     if (selectedOperations !== 1 || values.model || values.prompt || values["validate-only"]) {
       throw new Error("INVALID_SNAPSHOT_OPERATION");
     }
@@ -54,13 +57,22 @@ async function main(): Promise<void> {
       console.log(JSON.stringify(result, null, 2));
       return;
     }
+    if (values["import-review"]) {
+      if (!values.plan || !values.review || !values.reason || values.destination || values.stage || values.cycle) throw new Error("IMPORT_REVIEW_ARGUMENTS_INVALID");
+      const path = resolve(values.plan);
+      if (!basename(path).endsWith(".eval.json")) throw new Error("PLAN_EXTENSION_REQUIRED");
+      const plan = JSON.parse(await readFile(path, "utf8")) as EvaluationPlan;
+      const result = await importHumanReview(values["import-review"], plan, values.review, values.reason);
+      console.log(JSON.stringify(result, null, 2));
+      return;
+    }
     if (values.restore) {
-      if (!values.destination || values.plan || values.reason || values.stage || values.cycle) throw new Error("RESTORE_ARGUMENTS_INVALID");
+      if (!values.destination || values.plan || values.reason || values.review || values.stage || values.cycle) throw new Error("RESTORE_ARGUMENTS_INVALID");
       const result = await restoreTrialSnapshot(values.restore, values.destination);
       console.log(JSON.stringify(result, null, 2));
       return;
     }
-    if (!values.plan || !values.reason || values.destination || values.stage || values.cycle) throw new Error("REGRADE_ARGUMENTS_INVALID");
+    if (!values.plan || !values.reason || values.review || values.destination || values.stage || values.cycle) throw new Error("REGRADE_ARGUMENTS_INVALID");
     const path = resolve(values.plan);
     if (!basename(path).endsWith(".eval.json")) throw new Error("PLAN_EXTENSION_REQUIRED");
     const plan = JSON.parse(await readFile(path, "utf8")) as EvaluationPlan;

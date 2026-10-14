@@ -122,6 +122,18 @@ export interface EvaluationResult {
   score: number | null;
   checks: { id: string; passed: boolean | null }[];
   error: string | null;
+  /**
+   * Human review of non-critical checks, kept apart from the objective verdict above.
+   * Absent when the task has no unscored non-critical checks.
+   */
+  review?: ReviewStatus;
+}
+
+export interface ReviewStatus {
+  status: "pending" | "complete";
+  /** Non-critical checks still awaiting a human judgment. */
+  pendingCheckIds: string[];
+  reason: string | null;
 }
 
 export interface TrialRecord {

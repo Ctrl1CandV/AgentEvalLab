@@ -16,6 +16,8 @@ export function summarize(records: TrialRecord[]) {
     deliveryRate: records.length > 0 ? acceptedDeliveries / records.length : null,
     executionFailures: records.filter(record => record.execution.status !== "done").length,
     pendingReviews: records.filter(record => record.evaluation.status === "pending").length,
+    // Objective verdicts whose non-critical human-review checks are still open.
+    pendingHumanChecks: records.filter(record => record.evaluation.review?.status === "pending").length,
     evaluatorErrors: records.filter(record => record.evaluation.status === "error").length,
     unscoredRuns: records.filter(record => record.evaluation.status === "unscored").length,
     resourceLimitRuns: records.filter(record => record.evaluation.status === "resource_limit").length,
@@ -67,8 +69,8 @@ export function summarizeInteractionClass(records: TrialRecord[], interactionCla
 
 export function markdownReport(records: TrialRecord[]): string {
   const summary = summarize(records);
-  const rows = records.map(record => `| ${record.caseId} | ${record.model.provider}:${record.model.id} | ${record.interactionClass ?? "candidate"} | ${record.toolProfile ?? "workspace-basic"} | ${record.execution.status} | ${record.evaluation.status} | ${record.execution.modelCalls} | ${record.execution.toolAttempts} | ${record.execution.toolIntercepts} | ${record.cleanup} |`);
-  return ["# Evaluation report", "", `Objective pass rate: ${summary.passed}/${summary.decidedTrials} decided trials (${summary.decidedSuccessRate ?? "n/a"}). Objective coverage: ${summary.evaluationCoverage ?? "n/a"}. Accepted delivery: ${summary.acceptedDeliveries}/${summary.total} (${summary.deliveryRate ?? "n/a"}). Pending reviews: ${summary.pendingReviews}; unscored: ${summary.unscoredRuns}; resource-limit runs: ${summary.resourceLimitRuns}; evaluator errors: ${summary.evaluatorErrors}. Unknown usage is not zero.`, "",
-    "| Case | Model | Request class | Tool profile | Execution | Evaluation | Model requests | Tool attempts | Intercepted | Cleanup |",
-    "| --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | --- |", ...rows, ""].join("\n");
+  const rows = records.map(record => `| ${record.caseId} | ${record.model.provider}:${record.model.id} | ${record.interactionClass ?? "candidate"} | ${record.toolProfile ?? "workspace-basic"} | ${record.execution.status} | ${record.evaluation.status} | ${record.evaluation.review?.status ?? "—"} | ${record.execution.modelCalls} | ${record.execution.toolAttempts} | ${record.execution.toolIntercepts} | ${record.cleanup} |`);
+  return ["# Evaluation report", "", `Objective pass rate: ${summary.passed}/${summary.decidedTrials} decided trials (${summary.decidedSuccessRate ?? "n/a"}). Objective coverage: ${summary.evaluationCoverage ?? "n/a"}. Accepted delivery: ${summary.acceptedDeliveries}/${summary.total} (${summary.deliveryRate ?? "n/a"}). Pending reviews: ${summary.pendingReviews}; verdicts awaiting human checks: ${summary.pendingHumanChecks}; unscored: ${summary.unscoredRuns}; resource-limit runs: ${summary.resourceLimitRuns}; evaluator errors: ${summary.evaluatorErrors}. Unknown usage is not zero.`, "",
+    "| Case | Model | Request class | Tool profile | Execution | Evaluation | Human review | Model requests | Tool attempts | Intercepted | Cleanup |",
+    "| --- | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | --- |", ...rows, ""].join("\n");
 }

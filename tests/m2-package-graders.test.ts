@@ -6,6 +6,7 @@ import { tmpdir } from "node:os";
 import { defaultBudget } from "../src/config.js";
 import { emptyExecution } from "../src/types.js";
 import { runEvaluation } from "../src/evaluation/run.js";
+import { importHumanReview } from "../src/evaluation/regrade.js";
 import { evaluationTools } from "../src/harness/profiles.js";
 import type { EvaluationPlan, WorkspaceInput } from "../src/evaluation/types.js";
 import type { EventSink } from "../src/types.js";
@@ -61,7 +62,7 @@ test("rsn-001 task grader accepts a different valid schedule and conditional ans
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 
-test("rsn-002 keeps human formula and explanation review explicitly unscored", async () => {
+test("rsn-002 passes on critical certificates and records human review as an append-only score run", async () => {
   const root = await mkdtemp(join(tmpdir(), "m2-rsn002-grader-"));
   try {
     const samples = [
@@ -86,9 +87,34 @@ test("rsn-002 keeps human formula and explanation review explicitly unscored", a
     const plan = await packagePlan("rsn-002-derivation-check", "rsn002", "Return the requested numerical certificates.", root);
     const run = await runEvaluation(plan, { outputRoot: join(root, "runs"), runner: async () => ({ ...emptyExecution(), output: JSON.stringify(answer) }) });
     const record = run.report.records[0]!;
-    assert.equal(record.evaluation.status, "unscored", JSON.stringify(record.evaluation));
+    // Critical certificates decide the verdict; the two human-review checks stay pending, not unscored.
+    assert.equal(record.evaluation.status, "passed", JSON.stringify(record.evaluation));
     assert.deepEqual(record.evaluation.checks.slice(0, 5).map(check => check.passed), [true, true, true, true, true]);
     assert.deepEqual(record.evaluation.checks.slice(5), [{ id: "explanation-quality-review", passed: null }, { id: "formula-equivalence-review", passed: null }]);
+    assert.equal(record.evaluation.review?.status, "pending");
+    assert.deepEqual(record.evaluation.review?.pendingCheckIds, ["explanation-quality-review", "formula-equivalence-review"]);
+    assert.equal(run.report.summary.pendingHumanChecks, 1);
+
+    const trialDirectory = join(run.directory, record.id);
+    const originalRecord = await readFile(join(trialDirectory, "result.json"), "utf8");
+    const reviewPath = join(root, "review.json");
+    await writeFile(reviewPath, JSON.stringify({ schemaVersion: 1, reviewer: "test reviewer",
+      checks: [{ id: "formula-equivalence-review", status: "pass" }, { id: "explanation-quality-review", status: "fail", note: "Too brief." }] }));
+    await writeFile(join(root, "bad-review.json"), JSON.stringify({ schemaVersion: 1, reviewer: "test reviewer", checks: [{ id: "S-localization", status: "pass" }] }));
+    await assert.rejects(importHumanReview(trialDirectory, plan, join(root, "bad-review.json"), "review"), /REVIEW_CHECK_NOT_PENDING/);
+
+    const reviewed = await importHumanReview(trialDirectory, plan, reviewPath, "independent review completed");
+    assert.equal(reviewed.evaluation.status, "passed", "a failed non-critical review does not change the objective verdict");
+    assert.deepEqual(reviewed.evaluation.review, { status: "complete", pendingCheckIds: [], reason: null });
+    assert.deepEqual(reviewed.evaluation.checks.slice(5), [{ id: "explanation-quality-review", passed: false }, { id: "formula-equivalence-review", passed: true }]);
+    assert.equal(await readFile(join(trialDirectory, "result.json"), "utf8"), originalRecord, "the trial record stays immutable");
+    const scoreRun = JSON.parse(await readFile(join(trialDirectory, "score-runs", reviewed.scoreRunId, "score.json"), "utf8")) as { scorer: { kind: string; reviewer: string }; previousScoreRunId: string };
+    assert.equal(scoreRun.scorer.kind, "human-review");
+    assert.equal(scoreRun.previousScoreRunId, record.scoreRunId);
+    const report = JSON.parse(await readFile(join(run.directory, "report.json"), "utf8")) as { records: Array<{ scoreRunId: string }>; summary: { pendingHumanChecks: number } };
+    assert.equal(report.records[0]!.scoreRunId, reviewed.scoreRunId);
+    assert.equal(report.summary.pendingHumanChecks, 0);
+    await assert.rejects(importHumanReview(trialDirectory, plan, reviewPath, "again"), /REVIEW_NOT_PENDING/);
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 

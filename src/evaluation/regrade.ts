@@ -8,6 +8,7 @@ import { preflightPlan } from "./preflight.js";
 import { markdownReport, summarize } from "./report.js";
 import { validatePlan } from "./validate.js";
 import type { ArtifactLimits, ArtifactManifest, EvaluationPlan, EvaluationResult, TrialRecord } from "./types.js";
+import type { PackageDescriptor } from "./manifest.js";
 
 const MAX_TRIAL_JSON_BYTES = 8 * 1024 * 1024;
 const MAX_SCORE_JSON_BYTES = 1024 * 1024;
@@ -214,12 +215,9 @@ export async function rebuildReports(runDirectory: string): Promise<unknown> {
   return report;
 }
 
-/** Appends a new grading result for the exact frozen submission, without rerunning the model. */
-export async function regradeTrial(trialDirectory: string, plan: EvaluationPlan, reason: string): Promise<{ scoreRunId: string; evaluation: EvaluationResult; runDirectory: string }> {
-  validatePlan(plan);
-  if (typeof reason !== "string" || !reason.trim() || reason.length > 500) throw new Error("REGRADE_REASON_REQUIRED");
-  const { directory, record, manifest } = await loadTrial(trialDirectory);
-  if (record.execution.status !== "done") throw new Error("REGRADE_EXECUTION_INCOMPLETE");
+/** Resolves the plan case and pinned task package of a recorded trial and checks they still match the run. */
+async function trialTaskPackage(directory: string, record: TrialRecord, plan: EvaluationPlan):
+  Promise<{ item: EvaluationPlan["cases"][number]; descriptor: PackageDescriptor & { manifest: NonNullable<PackageDescriptor["manifest"]> } }> {
   const item = plan.cases.find(candidate => candidate.id === record.caseId);
   if (!item || item.evaluator.kind !== "task-package" || !item.packagePath) throw new Error("REGRADE_TASK_PACKAGE_REQUIRED");
   const descriptor = (await preflightPlan(plan)).get(item.id);
@@ -233,6 +231,16 @@ export async function regradeTrial(trialDirectory: string, plan: EvaluationPlan,
   if (!originalPackage || originalPackage.id !== descriptor.manifest.id || originalPackage.version !== descriptor.manifest.version) {
     throw new Error("REGRADE_TASK_IDENTITY_MISMATCH");
   }
+  return { item, descriptor: descriptor as PackageDescriptor & { manifest: NonNullable<PackageDescriptor["manifest"]> } };
+}
+
+/** Appends a new grading result for the exact frozen submission, without rerunning the model. */
+export async function regradeTrial(trialDirectory: string, plan: EvaluationPlan, reason: string): Promise<{ scoreRunId: string; evaluation: EvaluationResult; runDirectory: string }> {
+  validatePlan(plan);
+  if (typeof reason !== "string" || !reason.trim() || reason.length > 500) throw new Error("REGRADE_REASON_REQUIRED");
+  const { directory, record, manifest } = await loadTrial(trialDirectory);
+  if (record.execution.status !== "done") throw new Error("REGRADE_EXECUTION_INCOMPLETE");
+  const { item, descriptor } = await trialTaskPackage(directory, record, plan);
 
   const limits = plan.artifactLimits ?? { ...defaultArtifactLimits };
   const artifactDirectory = join(directory, "artifacts");
@@ -341,4 +349,89 @@ export async function restoreTrialSnapshot(trialDirectory: string, destinationPa
       }
     }
   }
+}
+
+interface HumanReviewFile {
+  schemaVersion: 1;
+  reviewer: string;
+  checks: Array<{ id: string; status: "pass" | "fail"; note?: string }>;
+}
+
+function parseReviewFile(value: unknown): HumanReviewFile {
+  const review = object(value);
+  if (review.schemaVersion !== 1 || typeof review.reviewer !== "string" || !review.reviewer.trim() || review.reviewer.length > 200 ||
+      !Array.isArray(review.checks) || review.checks.length === 0) throw new Error("REVIEW_FILE_INVALID");
+  const seen = new Set<string>();
+  const checks = review.checks.map(raw => {
+    const check = object(raw);
+    if (typeof check.id !== "string" || seen.has(check.id) || (check.status !== "pass" && check.status !== "fail") ||
+        (check.note !== undefined && (typeof check.note !== "string" || check.note.length > 2_000))) throw new Error("REVIEW_FILE_INVALID");
+    seen.add(check.id);
+    return { id: check.id, status: check.status, ...(check.note !== undefined ? { note: check.note as string } : {}) };
+  });
+  return { schemaVersion: 1, reviewer: review.reviewer.trim(), checks: checks as HumanReviewFile["checks"] };
+}
+
+/**
+ * Records human judgments for pending non-critical checks as a new append-only score run.
+ * The objective verdict, the original trial record and earlier score runs stay unchanged.
+ */
+export async function importHumanReview(trialDirectory: string, plan: EvaluationPlan, reviewPath: string, reason: string):
+  Promise<{ scoreRunId: string; evaluation: EvaluationResult; runDirectory: string }> {
+  validatePlan(plan);
+  if (typeof reason !== "string" || !reason.trim() || reason.length > 500) throw new Error("REVIEW_REASON_REQUIRED");
+  const { directory, record, manifest } = await loadTrial(trialDirectory);
+  const { item, descriptor } = await trialTaskPackage(directory, record, plan);
+  const review = parseReviewFile(await readJson(resolve(reviewPath), MAX_SCORE_JSON_BYTES));
+
+  const latest = await latestScoreRun(directory, record, manifest);
+  if (!latest) throw new Error("REVIEW_SCORE_RUN_REQUIRED");
+  const previous = latest.evaluation as EvaluationResult;
+  const pending = new Set(previous.review?.status === "pending" ? previous.review.pendingCheckIds : []);
+  if (pending.size === 0) throw new Error("REVIEW_NOT_PENDING");
+  // Only checks the grader left pending can be reviewed; pending checks are never critical.
+  if (!review.checks.every(check => pending.has(check.id))) throw new Error("REVIEW_CHECK_NOT_PENDING");
+
+  const judged = new Map(review.checks.map(check => [check.id, check.status === "pass"]));
+  const remaining = [...pending].filter(id => !judged.has(id));
+  const evaluation: EvaluationResult = {
+    ...previous,
+    checks: previous.checks.map(check => judged.has(check.id) ? { id: check.id, passed: judged.get(check.id)! } : check),
+    review: { status: remaining.length ? "pending" : "complete", pendingCheckIds: remaining, reason: remaining.length ? previous.review!.reason : null },
+  };
+
+  const scoreRunsDirectory = join(directory, "score-runs");
+  const scoreRunId = randomUUID();
+  const pendingDirectory = join(scoreRunsDirectory, `.pending-${scoreRunId}`);
+  const previousTime = typeof latest.createdAt === "string" ? Date.parse(latest.createdAt) : 0;
+  let appended = false;
+  try {
+    await mkdir(pendingDirectory);
+    await writeFile(join(pendingDirectory, "review.json"), JSON.stringify(review, null, 2), { encoding: "utf8", flag: "wx" });
+    await writeFile(join(pendingDirectory, "score.json"), JSON.stringify({
+      schemaVersion: 1,
+      scoreRunId,
+      trialId: record.id,
+      caseId: record.caseId,
+      createdAt: new Date(Math.max(Date.now(), previousTime + 1)).toISOString(),
+      reason: reason.trim(),
+      previousScoreRunId: latest.scoreRunId ?? null,
+      submission: { snapshotPath: "../../artifacts", artifactManifestSha256: manifest.sha256 },
+      scorer: {
+        kind: "human-review",
+        reviewer: review.reviewer,
+        taskId: descriptor.manifest.id,
+        taskVersion: descriptor.manifest.version,
+        taskManifestSha256: descriptor.manifestSha256,
+        caseEvaluator: item.evaluator.kind,
+      },
+      evaluation,
+    }, null, 2), { encoding: "utf8", flag: "wx" });
+    await rename(pendingDirectory, join(scoreRunsDirectory, scoreRunId));
+    appended = true;
+  } finally {
+    if (!appended) await rm(pendingDirectory, { recursive: true, force: true });
+  }
+  await rebuildReports(dirname(directory));
+  return { scoreRunId, evaluation, runDirectory: dirname(directory) };
 }

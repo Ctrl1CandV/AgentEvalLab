@@ -38,6 +38,8 @@ Usage is attributed to candidate, probe, or another declared interaction. Missin
 
 A task grader receives a bounded request containing the trial ID, submission directory, and task-specific context. It returns checks with stable requirement IDs and pass, fail, or unknown values.
 
+The objective verdict depends on critical requirements only: a failed critical check means `failed`, a missing critical check means `unscored`, and otherwise the trial `passed`. Missing non-critical checks, such as human-review items, do not change the verdict. They are reported as `review: pending`. A reviewer records them with `--import-review` (`src/evaluation/regrade.ts`), which appends a `human-review` score run that cites the previous run. The trial record and earlier score runs are never rewritten.
+
 A score run references the original artifact manifest and task version. Regrading appends a new score run; it does not replace the original result. Snapshot restoration verifies the file manifest and writes into a new, nonexistent destination.
 
 ## Continuous trajectories

@@ -278,11 +278,15 @@ export async function runTaskGrader(input: TaskGraderInput): Promise<EvaluationR
     const criticalChecks = new Set(manifest.requirements.filter(requirement => requirement.critical && activeRequirements.has(requirement.id)).flatMap(requirement => requirement.checkIds));
     const knownCriticalFailure = validated.checks.some(check => criticalChecks.has(check.id) && !check.passed);
     const unknownCriticalCheck = validated.missingCheckIds.some(checkId => criticalChecks.has(checkId));
-    const status = knownCriticalFailure ? "failed" : validated.gradingStatus === "unscored" || unknownCriticalCheck ? "unscored" : "passed";
+    // The objective verdict depends on critical checks only. Missing non-critical checks
+    // (such as human-review items) leave the verdict intact and are reported as pending review.
+    const status = knownCriticalFailure ? "failed" : unknownCriticalCheck ? "unscored" : "passed";
     const checks: EvaluationResult["checks"] = validated.checks.map(check => ({ id: check.id, passed: check.passed }));
     for (const checkId of validated.missingCheckIds) checks.push({ id: checkId, passed: null });
     const score = status === "passed" ? 1 : status === "failed" ? 0 : null;
-    return { status, score, checks, error: validated.reason };
+    const pendingCheckIds = validated.missingCheckIds.filter(checkId => !criticalChecks.has(checkId));
+    const review = pendingCheckIds.length > 0 ? { status: "pending" as const, pendingCheckIds, reason: validated.reason } : undefined;
+    return { status, score, checks, error: status === "unscored" ? validated.reason : null, ...(review ? { review } : {}) };
   } catch {
     return graderError("GRADER_IO_FAILED");
   }
