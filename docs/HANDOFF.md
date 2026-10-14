@@ -20,7 +20,7 @@ The only live model requests so far are the small provider checks of 2026-10-14.
 
 ## Next steps
 
-1. After the user confirms its conditions, run the [pilot](../experiments/pilot-2026-10/README.md) from a clean commit. Its models are `gpt-6-luna` and `glm-5.3-flash`, both checked in the [provider check](reviews/2026-10-14-provider-check.md).
+1. Run the [pilot](../experiments/pilot-2026-10/README.md) from a clean commit; the user confirmed its conditions on 2026-10-14. Its models are `gpt-6-luna` (reasoning effort `medium`) and `glm-5.3-flash` (thinking always on), both checked in the [provider check](reviews/2026-10-14-provider-check.md).
 2. Review the pilot reports, set per-task budgets, and freeze the first task set.
 3. Rebuild the eng-004 baseline as a project-owned bundle; the previously pinned commit is unavailable.
 4. Limit conclusions to the observed task versions, models, prompts, tools, and budgets.

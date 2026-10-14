@@ -138,8 +138,9 @@ All tests pass, and every runnable package recalibrates under the sandbox. The r
 
 ## Phase 4: Pilot and first frozen set
 
-1. **Pilot protocol.** [experiments/pilot-2026-10](../../experiments/pilot-2026-10/README.md) is ready, with null-agent baselines run; launching it awaits user confirmation.
-   - **Models:** `supergpt:gpt-6-luna` and `supercn:glm-5.3-flash`, both with `provider-default` thinking and temperature 0. The second pilot model changed because AliPlan's quota is exhausted until 2026-10-19.
+1. **Pilot protocol.** [experiments/pilot-2026-10](../../experiments/pilot-2026-10/README.md) is ready, with null-agent baselines run. The user confirmed its conditions on 2026-10-14.
+   - **Models:** `supergpt:gpt-6-luna` with reasoning effort `medium`, and `supercn:glm-5.3-flash` with `provider-default` thinking (always on), both at temperature 0. The second pilot model changed because AliPlan's quota is exhausted until 2026-10-19.
+   - **Condition decision (user, 2026-10-14):** thinking levels need not match across models, because each provider controls thinking differently. Each model runs at a stated level, and reports append the level to the model label, as public leaderboards do. Temperature is the same for all models. The pilot budgets stay generous, because the pilot's job is to measure token use before budgets are set.
    - **Scope:** rsn-001, rsn-002, tool-001, and eng-001, with 3 repetitions each, under token ceilings totalling 6M (about 3M per model). eng-005 is excluded until its cost is estimated from the pilot.
    - **Use of results:** set per-task budgets. Inspect outliers for harness or grader bugs before trusting any score (ABC T.10).
 2. Mark the calibrated tasks `pilot`, freeze the first task set, then run the multi-model comparison.

@@ -4,12 +4,12 @@ The first live run (PLAN-004 phase 4). Its purpose is to calibrate per-task budg
 
 ## Conditions
 
-| Model | Endpoint | Thinking | Temperature | Notes |
-| --- | --- | --- | --- | --- |
-| `supergpt:gpt-6-luna` | SuperGPT relay, OpenAI protocol | `provider-default` (reasoning effort `medium`) | 0 | The relay ignores output-token limits; the harness enforces the cap from reported usage. |
-| `supercn:glm-5.3-flash` | SuperCN relay, Anthropic protocol | `provider-default` (thinking always on) | 0 | Thinking cannot be disabled. The relay does not report reasoning tokens separately. |
+| Model | Report label | Endpoint | Thinking | Temperature | Notes |
+| --- | --- | --- | --- | --- | --- |
+| `supergpt:gpt-6-luna` | `supergpt:gpt-6-luna-medium` | SuperGPT relay, OpenAI protocol | `medium` (sent explicitly; also the model's default) | 0 | The relay ignores output-token limits; the harness enforces the cap from reported usage. |
+| `supercn:glm-5.3-flash` | `supercn:glm-5.3-flash-default` | SuperCN relay, Anthropic protocol | `provider-default` (thinking always on) | 0 | Thinking cannot be disabled and has no level to set. The relay does not report reasoning tokens separately. |
 
-Both models run with their provider's default reasoning, because GLM-5.3-Flash cannot disable thinking. This keeps the two conditions symmetric, and both conditions are recorded in `experiment.json`. Both models passed the live provider check of 2026-10-14; see `docs/reviews/2026-10-14-provider-check.md`.
+Thinking levels are not forced to match: each provider controls thinking differently, and GLM-5.3-Flash has no level to set. Each model runs at a stated level instead, and reports append that level to the model label, as public leaderboards do (user decision, 2026-10-14). Temperature is 0 for both. Both conditions are recorded in `experiment.json`. Both models passed the live provider checks of 2026-10-14, including luna reasoning at `medium` with tools attached; see `docs/reviews/2026-10-14-provider-check.md`.
 
 ## Plans
 
@@ -51,5 +51,5 @@ Each run directory contains `experiment.json` (plan, fingerprint, condition, sch
 ## Decisions the pilot feeds
 
 - **Per-task budgets for the first frozen set:** roughly the maximum observed usage plus headroom, keeping budget stops rare but possible.
-- **Whether `provider-default` thinking stays the comparison condition.**
+- **Which thinking level each model uses in the frozen comparison.** The pilot shows what luna `medium` and GLM's always-on thinking cost per task.
 - **The eng-005 trajectory cost estimate.**

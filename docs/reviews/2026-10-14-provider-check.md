@@ -42,6 +42,22 @@ Further findings and changes:
   - GPT-6 Luna needs `thinkingLevelMap: { off: "none" }` for thinking "off" to reach the API.
   - GLM-5.3-Flash is declared `always-on`. Validation rejects thinking "off" for it, and plans use `provider-default`, which sends no thinking parameter at all.
 
+## Explicit reasoning effort for GPT-6 Luna (third check, 2026-10-14)
+
+The user decided that thinking levels need not match across models; each model runs at a stated level, and reports label it, as in `gpt-6-luna-medium`. Luna therefore moves from `provider-default` to an explicit `medium`, so the label reflects what was sent rather than the relay's default.
+
+OpenAI's model page states that "Chat Completions supports function calling only with `reasoning_effort` set to `none`", and the SuperGPT provider uses Chat Completions. Every task needs tools, so a probe sent a question that needs reasoning (the smallest n with n mod 7 = 3, n mod 11 = 5, n mod 13 = 9; the answer is 269) with and without a tool definition attached:
+
+| Reasoning effort | Reasoning tokens, no tools / with tools | Answers |
+| --- | --- | --- |
+| `none` (thinking "off") | 0 / 0 | 432, 581 (wrong) |
+| `medium` | 118 / 148 | 269, 269 |
+| `high` | 145 / 166 | 269, 269 |
+
+The relay accepts reasoning together with tools and applies the requested effort. `provider-check` now includes this probe as the check `thinkingWithTools` for any explicit thinking level, and `supergpt:gpt-6-luna?thinking=medium` passed all five checks.
+
+Reading Pi's request code turned up another defect: **Pi clamps an undeclared thinking level to the nearest supported one without notice.** A plan saying `max` for luna, whose metadata then declared only `off`, would have sent `high`. Luna now declares its full range (`none`, `low`, `medium`, `high`, `xhigh`, `max`, and no `minimal`), and validation rejects any level the resolved model does not support (`THINKING_LEVEL_UNSUPPORTED`).
+
 ## Limits
 
 Five requests per model cannot show variance, long-context behaviour, or context-overflow messages. Live context-limit classification is still unverified for both providers.
