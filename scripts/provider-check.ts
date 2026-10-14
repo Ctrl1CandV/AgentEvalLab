@@ -1,6 +1,7 @@
 // Live provider check for PLAN-004 WP7. Sends at most five small requests per model through the
 // harness's own Pi runner and reports usage, output-cap, tool round-trip and error classification.
-// Usage: node --import tsx scripts/provider-check.ts provider:model [provider:model ...]
+// Usage: npm run provider-check -- provider:model[?thinking=off&temperature=0|omit] [...]
+// thinking accepts a plan thinking level (default "off"); temperature "omit" sends no temperature.
 // Credentials come from .env; no key is printed or written.
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
@@ -9,7 +10,7 @@ import type { AgentTool } from "@earendil-works/pi-agent-core";
 import { defaultBudget, parseModel } from "../src/config.js";
 import { createPiRunner } from "../src/harness/pi.js";
 import { loadCredentials } from "../src/providers.js";
-import type { Budget, ExecutionResult, ModelSelection } from "../src/types.js";
+import { thinkingLevels, type Budget, type ExecutionResult, type ModelSelection, type PlanThinkingLevel } from "../src/types.js";
 
 const checkBudget: Budget = { ...defaultBudget, timeoutMs: 90_000, maxTurns: 3, maxModelCalls: 3, maxToolCalls: 1, maxOutputTokensPerCall: 256 };
 
@@ -48,20 +49,33 @@ async function check(selection: ModelSelection) {
   return {
     model: `${selection.provider}:${selection.id}`,
     thinkingLevel: selection.thinkingLevel,
+    temperature: selection.temperature,
     checks: {
       usageReported: usage.status === "done" && usageRequest?.usageStatus === "reported" && (usageRequest.totalTokens ?? 0) > 0,
       outputCapEnforced: cap.status === "budget_exceeded" && cap.error === "OUTPUT_TOKEN_LIMIT",
       toolRoundTrip: tool.status === "done" && tool.toolCalls === 1 && tool.output.includes("7310"),
       authErrorClassified: auth.status === "error" && auth.error === "PROVIDER_AUTH",
       // With thinking "off" a model should spend no reasoning tokens; null means the provider did not report the field.
-      thinkingOff: [usage, tool].flatMap(result => result.requestUsage).every(request => request.reasoningTokens === null || request.reasoningTokens === 0),
+      ...(selection.thinkingLevel === "off" ? {
+        thinkingOff: [usage, tool].flatMap(result => result.requestUsage).every(request => request.reasoningTokens === null || request.reasoningTokens === 0),
+      } : {}),
     },
+    reasoningTokensObserved: [usage, tool].flatMap(result => result.requestUsage).map(request => request.reasoningTokens),
     details: { usage: summary(usage), outputCap: summary(cap), toolRoundTrip: summary(tool), invalidKey: summary(auth) },
   };
 }
 
 async function main() {
-  const models = process.argv.slice(2).map(value => ({ ...parseModel(value), thinkingLevel: "off" as const, temperature: 0 }));
+  const models = process.argv.slice(2).map((value): ModelSelection => {
+    const [spec, query = ""] = value.split("?", 2);
+    const options = new URLSearchParams(query);
+    const thinkingLevel = (options.get("thinking") ?? "off") as PlanThinkingLevel;
+    if (!thinkingLevels.includes(thinkingLevel)) throw new Error("INVALID_THINKING_LEVEL");
+    const temperatureOption = options.get("temperature") ?? "0";
+    const temperature = temperatureOption === "omit" ? null : Number(temperatureOption);
+    if (temperature !== null && !Number.isFinite(temperature)) throw new Error("INVALID_TEMPERATURE");
+    return { ...parseModel(spec!), thinkingLevel, temperature };
+  });
   if (!models.length) throw new Error("MODEL_REQUIRED");
   loadCredentials();
   const results = [];

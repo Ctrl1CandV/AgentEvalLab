@@ -25,8 +25,10 @@ export function resolveModel(selection: ModelSelection) {
     if (!config) throw new Error("UNKNOWN_PROVIDER");
     models.setProvider(createCustomProvider(config));
   }
-  const model = models.getModel(selection.provider, selection.id);
-  if (!model) throw new Error("UNKNOWN_MODEL");
+  const found = models.getModel(selection.provider, selection.id);
+  if (!found) throw new Error("UNKNOWN_MODEL");
+  // With "provider-default", Pi must send no thinking parameter; it only sends one for reasoning models.
+  const model = selection.thinkingLevel === "provider-default" ? { ...found, reasoning: false } : found;
   return { models, model };
 }
 
@@ -251,7 +253,7 @@ export function createPiRunner<Input extends RunInput = RunInput>(
     const configuredAgent = new Agent({
       initialState: {
         model,
-        thinkingLevel: requestOptions.thinkingLevel,
+        thinkingLevel: requestOptions.thinkingLevel === "provider-default" ? "off" : requestOptions.thinkingLevel,
         systemPrompt: input.systemPrompt ?? "",
         tools,
       },
@@ -339,8 +341,10 @@ export function createPiRunner<Input extends RunInput = RunInput>(
       finishTurn: ({ message }) => {
         result.turns++;
 
-        // Stop immediately when an intermediate response is truncated due to the output limit.
-        if (message.stopReason === "length") {
+        // Stop immediately when a response is truncated by the output limit, or when it exceeds the limit
+        // because the endpoint ignored it: every provider then runs under the same per-request cap.
+        const reportedOutput = finiteNonNegative((message.usage as { output?: unknown } | undefined)?.output);
+        if (message.stopReason === "length" || (reportedOutput !== null && reportedOutput > budget.maxOutputTokensPerCall)) {
           limit("OUTPUT_TOKEN_LIMIT");
           return { action: "end" };
         }
@@ -371,7 +375,7 @@ export function createPiRunner<Input extends RunInput = RunInput>(
       agent.prepareNextTurn = configuredAgent.prepareNextTurn;
       agent.prepareNextTurnWithContext = configuredAgent.prepareNextTurnWithContext;
       agent.state.model = model;
-      agent.state.thinkingLevel = requestOptions.thinkingLevel;
+      agent.state.thinkingLevel = requestOptions.thinkingLevel === "provider-default" ? "off" : requestOptions.thinkingLevel;
       agent.state.tools = tools;
       if ((input.systemPrompt ?? "") !== (options.sessionState.systemPrompt ?? input.systemPrompt ?? "")) {
         throw new Error("SESSION_SYSTEM_PROMPT_CHANGED");

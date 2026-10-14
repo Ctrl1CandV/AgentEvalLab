@@ -6,7 +6,7 @@ import { tmpdir } from "node:os";
 import type { AgentTool } from "@earendil-works/pi-agent-core";
 import { AssistantMessageEventStream } from "@earendil-works/pi-ai/utils/event-stream";
 import { Type } from "typebox";
-import { createPiRunner } from "../src/harness/pi.js";
+import { createPiRunner, resolveModel } from "../src/harness/pi.js";
 import { defaultBudget, parseModel } from "../src/config.js";
 import { emptyExecution, type ModelSelection } from "../src/types.js";
 import { validatePlan } from "../src/evaluation/validate.js";
@@ -15,7 +15,7 @@ import type { EvaluationPlan } from "../src/evaluation/types.js";
 
 type StreamOptions = { temperature?: number; reasoning?: unknown };
 
-function scriptedStream(steps: Array<{ toolCall?: { name: string; arguments: Record<string, unknown> }; text?: string }>,
+function scriptedStream(steps: Array<{ toolCall?: { name: string; arguments: Record<string, unknown> }; text?: string; outputTokens?: number }>,
   observe: (context: { messages: Array<{ role: string; content: unknown }> }, options: StreamOptions) => void) {
   let call = 0;
   return (selected: { api: string; provider: string; id: string }, context: never, options: StreamOptions) => {
@@ -25,7 +25,7 @@ function scriptedStream(steps: Array<{ toolCall?: { name: string; arguments: Rec
       ? [{ type: "toolCall" as const, id: `call-${call}`, name: step.toolCall.name, arguments: step.toolCall.arguments }]
       : [{ type: "text" as const, text: step.text ?? "done" }];
     const message = { role: "assistant" as const, content, api: selected.api, provider: selected.provider, model: selected.id,
-      usage: { input: 1, output: 1, cacheRead: 0, cacheWrite: 0, totalTokens: 2, cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, total: 0 } },
+      usage: { input: 1, output: step.outputTokens ?? 1, cacheRead: 0, cacheWrite: 0, totalTokens: 1 + (step.outputTokens ?? 1), cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, total: 0 } },
       stopReason: step.toolCall ? "toolUse" as const : "stop" as const, timestamp: Date.now() };
     const stream = new AssistantMessageEventStream();
     stream.push({ type: "start", partial: { ...message, content: [], stopReason: "pending" } } as never);
@@ -108,10 +108,29 @@ test("experiment.json records the evaluated condition and fingerprints it", asyn
     assert.deepEqual(condition.models[0], {
       provider: "deepseek", id: "deepseek-flash", thinkingLevel: "off", temperature: 0, api: "openai-completions",
       baseUrl: "https://api.deepseek.com", contextWindow: 1_000_000, maxTokens: 384_000, reasoning: true,
-      pricesDeclared: false, metadataVerified: true,
+      pricesDeclared: false, metadataVerified: true, thinkingControl: "configurable",
     });
     assert.deepEqual(condition.tools[0]!.toolNames, ["read_file", "list_directory", "write_file", "execute_command"]);
     assert.match(condition.tools[0]!.definitionsSha256, /^[a-f0-9]{64}$/);
     assert.equal(condition.isolation.mode, "sandbox");
   } finally { await rm(root, { recursive: true, force: true }); }
+});
+
+test("a response over the per-request output cap ends the run even when the endpoint ignored the cap", async () => {
+  const runner = createPiRunner({ apiKey: "offline", stream: scriptedStream([{ text: "long answer", outputTokens: 50 }], () => {}) as never });
+  const result = await runner({ prompt: "go" }, parseModel("anthropic:claude-sonnet-4-6"), { ...defaultBudget, maxOutputTokensPerCall: 16 }, async () => {});
+  assert.equal(result.status, "budget_exceeded");
+  assert.equal(result.error, "OUTPUT_TOKEN_LIMIT");
+});
+
+test("thinking conditions a model cannot run under are rejected", () => {
+  const plan = (thinkingLevel: string) => ({
+    name: "thinking", models: [{ provider: "supercn", id: "glm-5.3-flash", thinkingLevel }], budget: { ...defaultBudget }, trustedLocalExecution: false,
+    cases: [{ id: "case", input: { prompt: "text" }, evaluator: { kind: "exact-match", expected: "ok" } }],
+  });
+  assert.throws(() => validatePlan(plan("off")), /THINKING_OFF_UNSUPPORTED/, "GLM-5.3-Flash cannot disable thinking");
+  validatePlan(plan("provider-default"));
+  assert.equal(resolveModel({ provider: "supergpt", id: "gpt-6-luna" }).model.reasoning, true);
+  assert.equal(resolveModel({ provider: "supergpt", id: "gpt-6-luna", thinkingLevel: "provider-default" }).model.reasoning, false,
+    "provider-default sends no thinking parameter");
 });

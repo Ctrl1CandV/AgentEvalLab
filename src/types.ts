@@ -18,20 +18,22 @@ export interface Budget {
 }
 
 export type ThinkingLevel = "off" | "minimal" | "low" | "medium" | "high" | "xhigh" | "max";
-export const thinkingLevels: readonly ThinkingLevel[] = ["off", "minimal", "low", "medium", "high", "xhigh", "max"];
+/** "provider-default" sends no thinking parameter at all, for models whose thinking cannot be switched off. */
+export type PlanThinkingLevel = ThinkingLevel | "provider-default";
+export const thinkingLevels: readonly PlanThinkingLevel[] = ["off", "minimal", "low", "medium", "high", "xhigh", "max", "provider-default"];
 
 // Select a built-in provider ("anthropic" or "openai") or a custom provider registered in src/providers.ts.
 // Request options are part of the evaluated condition; omitted values mean thinking "off" and temperature 0.
 export interface ModelSelection {
   provider: string;
   id: string;
-  thinkingLevel?: ThinkingLevel;
+  thinkingLevel?: PlanThinkingLevel;
   /** null omits the parameter for models that reject an explicit temperature. */
   temperature?: number | null;
 }
 
 /** Resolve request options with their documented defaults. */
-export function modelOptions(selection: ModelSelection): { thinkingLevel: ThinkingLevel; temperature: number | null } {
+export function modelOptions(selection: ModelSelection): { thinkingLevel: PlanThinkingLevel; temperature: number | null } {
   return { thinkingLevel: selection.thinkingLevel ?? "off", temperature: selection.temperature === undefined ? 0 : selection.temperature };
 }
 

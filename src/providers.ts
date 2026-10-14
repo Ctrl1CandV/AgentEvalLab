@@ -1,6 +1,6 @@
 import { anthropicMessagesApi } from "@earendil-works/pi-ai/api/anthropic-messages.lazy";
 import { openAICompletionsApi } from "@earendil-works/pi-ai/api/openai-completions.lazy";
-import { createProvider, envApiKeyAuth, type Model, type Provider } from "@earendil-works/pi-ai";
+import { createProvider, envApiKeyAuth, type Model, type Provider, type ThinkingLevelMap } from "@earendil-works/pi-ai";
 
 // Load .env from the project root. Keep credentials there, never in source files or Git.
 // Skip silently when the file is absent; the later MISSING_API_KEY check reports missing credentials.
@@ -24,12 +24,21 @@ export interface ModelPrices {
   cacheWrite: number;
 }
 
+/**
+ * How a model's thinking can be controlled. "always-on" models cannot run with thinking "off"; plans
+ * must use "provider-default" or an explicit level. "unknown" is used until the model is checked.
+ */
+export type ThinkingControl = "configurable" | "always-on" | "none" | "unknown";
+
 /** Per-model metadata. Pi uses contextWindow to clamp output tokens and prices to compute cost. */
 export interface CustomModelConfig {
   id: string;
   contextWindow: number;
   maxTokens: number;
   reasoning: boolean;
+  thinking: ThinkingControl;
+  /** Provider values Pi sends per thinking level, for example { off: "none" } for OpenAI reasoning_effort. */
+  thinkingLevelMap?: ThinkingLevelMap;
   /** Without prices, request cost stays unknown (null), never zero. */
   prices: ModelPrices | null;
   /** False until the values have been checked against the provider (PLAN-004 WP7). */
@@ -42,15 +51,28 @@ export interface CustomModelConfig {
 // Checked 2026-10-14 against https://api-docs.deepseek.com/quick_start/pricing: 1M context, 384K maximum
 // output, thinking on by default. Prices change between peak and off-peak hours, so cost stays unknown and
 // batches are bounded by tokens.
-const deepseekFlash: CustomModelConfig = { id: "deepseek-flash", contextWindow: 1_000_000, maxTokens: 384_000, reasoning: true, prices: null, verified: true };
+const deepseekFlash: CustomModelConfig = { id: "deepseek-flash", contextWindow: 1_000_000, maxTokens: 384_000, reasoning: true, thinking: "configurable", prices: null, verified: true };
 
 // Checked 2026-10-14 against https://help.aliyun.com/zh/model-studio/qwen3-8-flash: 1M context, 131,072
 // maximum output, thinking supported. AliPlan bills through a token plan, so no per-token prices are declared.
-const qwen38Flash: CustomModelConfig = { id: "qwen3.8-flash", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: true, prices: null, verified: true };
+const qwen38Flash: CustomModelConfig = { id: "qwen3.8-flash", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: true, thinking: "configurable", prices: null, verified: true };
+
+// Checked 2026-10-14 against https://developers.openai.com/api/docs/models/gpt-6-luna: 1,050,000 context
+// (922,000 input), 128,000 maximum output, reasoning effort none to max with default "medium". Thinking "off"
+// is sent as reasoning_effort "none". Served through the SuperGPT relay, whose prices are not published here and
+// which ignores both max_tokens and max_completion_tokens; the runner enforces the output cap from reported usage.
+const gpt6Luna: CustomModelConfig = { id: "gpt-6-luna", contextWindow: 1_050_000, maxTokens: 128_000, reasoning: true, thinking: "configurable",
+  thinkingLevelMap: { off: "none" }, prices: null, verified: true };
+
+// Checked 2026-10-14 against https://docs.bigmodel.cn/cn/guide/models/vlm/glm-5.3-flash: 1M context, 128K
+// maximum output, and thinking that cannot be disabled (thinking.type only "enabled"). Declared without
+// reasoning so Pi sends no thinking parameter; plans must say "provider-default". Served through the SuperCN relay.
+const glm53Flash: CustomModelConfig = { id: "glm-5.3-flash", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: false, thinking: "always-on",
+  prices: null, verified: true };
 
 // Conservative placeholders used until a model's metadata is checked against its provider.
 function unverified(id: string): CustomModelConfig {
-  return { id, contextWindow: 128_000, maxTokens: 8_192, reasoning: false, prices: null, verified: false };
+  return { id, contextWindow: 128_000, maxTokens: 8_192, reasoning: false, thinking: "unknown", prices: null, verified: false };
 }
 
 /** An endpoint entry: protocol, base URL, and API key environment variable. */
@@ -96,7 +118,7 @@ export const providerConfigs: readonly ProviderConfig[] = [
   {
     id: "supercn", name: "SuperCN", api: "anthropic-messages",
     baseUrl: "https://api.airy.work", apiKeyEnv: "SUPERCN_APIKEY",
-    models: [unverified("glm-5.3"), unverified("glm-5.3-flash"), unverified("kimi-k3"), unverified("kimi-k2.8-preview"), unverified("MiniMax-M3.1-Flash-Preview")],
+    models: [unverified("glm-5.3"), glm53Flash, unverified("kimi-k3"), unverified("kimi-k2.8-preview"), unverified("MiniMax-M3.1-Flash-Preview")],
   },
   {
     id: "supercn-openai", name: "SuperCN (OpenAI)", api: "openai-completions",
@@ -107,7 +129,7 @@ export const providerConfigs: readonly ProviderConfig[] = [
   {
     id: "supergpt", name: "SuperGPT", api: "openai-completions",
     baseUrl: "https://api.airy.work/v1", apiKeyEnv: "SUPERGPT_APIKEY",
-    models: [unverified("gpt-6-astra"), unverified("gpt-6-sol"), unverified("gpt-6-luna"), unverified("gpt-5.6-sol")],
+    models: [unverified("gpt-6-astra"), unverified("gpt-6-sol"), gpt6Luna, unverified("gpt-5.6-sol")],
   },
   {
     id: "supergpt-anthropic", name: "SuperGPT (Anthropic)", api: "anthropic-messages",
@@ -135,6 +157,7 @@ function buildModel(config: ProviderConfig, entry: CustomModelConfig): Model<Cus
     provider: config.id,
     baseUrl: config.baseUrl,
     reasoning: entry.reasoning,
+    ...(entry.thinkingLevelMap ? { thinkingLevelMap: entry.thinkingLevelMap } : {}),
     input: ["text"],
     // Zero prices make Pi report zero cost, which the runner records as unknown rather than free.
     cost: entry.prices ?? { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },

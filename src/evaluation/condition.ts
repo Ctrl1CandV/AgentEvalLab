@@ -67,6 +67,7 @@ export async function evaluatedCondition(plan: EvaluationPlan, packages: Map<str
       pricesDeclared: declared ? declared.prices !== null : null,
       // Built-in provider catalogs ship their own metadata; custom entries carry a verified flag.
       metadataVerified: declared ? declared.verified : null,
+      thinkingControl: declared ? declared.thinking : null,
     };
   });
   const tools = plan.cases.map(item => {
