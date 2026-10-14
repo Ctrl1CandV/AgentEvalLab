@@ -92,7 +92,7 @@ test("rsn-002 keeps human formula and explanation review explicitly unscored", a
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 
-test("eng-004 runs a pinned candidate worktree through the hidden CLI grader", async () => {
+test("eng-004 runs a pinned candidate clone through the hidden CLI grader", async () => {
   const root = await mkdtemp(join(tmpdir(), "m2-eng004-grader-"));
   try {
     const packageRoot = resolve("task-library/calibration/eng-004-resource-index");

@@ -1,8 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { access, mkdtemp, readFile, rename, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { defaultBudget, parseModel, validateBudget } from "../src/config.js";
 import { EventSinkError, guardEventSink } from "../src/events.js";
 import { emptyExecution } from "../src/types.js";
@@ -62,19 +62,62 @@ test("Pi validates inputs before attempting a request", async () => {
   await assert.rejects(runner({ prompt: "test" }, model, { ...defaultBudget, timeoutMs: -1 }, async () => {}), /INVALID_BUDGET/);
 });
 
-test("worktree preserves source and only cleans owned workspaces", async () => {
-  const repository = await mkdtemp(join(tmpdir(), "harness-git-test-"));
+async function baseRepository(prefix: string): Promise<string> {
+  const repository = await mkdtemp(join(tmpdir(), prefix));
+  await git(repository, ["init", "-q"]);
+  await writeFile(join(repository, "base.txt"), "base");
+  await git(repository, ["add", "."]);
+  await git(repository, ["-c", "user.name=Test", "-c", "user.email=test@example.invalid", "commit", "-qm", "base"]);
+  return repository;
+}
+
+test("workspace clone preserves source and only cleans owned workspaces", async () => {
+  const repository = await baseRepository("harness-git-test-");
   try {
-    await git(repository, ["init"]);
-    await writeFile(join(repository, "base.txt"), "base");
-    await git(repository, ["add", "."]);
-    await git(repository, ["-c", "user.name=Test", "-c", "user.email=test@example.invalid", "commit", "-m", "base"]);
     const workspace = await createWorkspace(repository, "HEAD");
     try {
       await writeFile(join(workspace.path, "new.txt"), "new");
       assert.match(await collectPatch(workspace), /new.txt/);
       assert.equal((await git(repository, ["status", "--porcelain"])).trim(), "");
+      assert.equal((await git(workspace.path, ["remote"])).trim(), "", "the clone must not point back to the source");
       await assert.rejects(cleanupWorkspace({ ...workspace }), /UNOWNED_WORKSPACE/);
     } finally { await cleanupWorkspace(workspace); }
+    await assert.rejects(access(workspace.path));
+  } finally { await rm(repository, { recursive: true, force: true }); }
+});
+
+test("candidate commits are collected from the pinned commit without touching the source", async () => {
+  const repository = await baseRepository("harness-git-commit-test-");
+  try {
+    const sourceRefs = await git(repository, ["for-each-ref", "--format=%(refname) %(objectname)"]);
+    const sourceObjects = await git(repository, ["count-objects", "-v"]);
+    const workspace = await createWorkspace(repository, "HEAD");
+    try {
+      const identity = ["-c", "user.name=Candidate", "-c", "user.email=candidate@example.invalid"];
+      await writeFile(join(workspace.path, "committed.txt"), "committed");
+      await git(workspace.path, ["add", "committed.txt"]);
+      await git(workspace.path, [...identity, "commit", "-qm", "candidate work"]);
+      await git(workspace.path, [...identity, "checkout", "-qb", "candidate-branch"]);
+      await writeFile(join(workspace.path, "uncommitted.txt"), "uncommitted");
+      const patch = await collectPatch(workspace);
+      assert.match(patch, /committed.txt/);
+      assert.match(patch, /uncommitted.txt/);
+      assert.doesNotMatch(patch, /base.txt/);
+    } finally { await cleanupWorkspace(workspace); }
+    assert.equal(await git(repository, ["for-each-ref", "--format=%(refname) %(objectname)"]), sourceRefs);
+    assert.equal(await git(repository, ["count-objects", "-v"]), sourceObjects);
+  } finally { await rm(repository, { recursive: true, force: true }); }
+});
+
+test("a workspace whose Git metadata points elsewhere is rejected", async () => {
+  const repository = await baseRepository("harness-git-replaced-test-");
+  try {
+    const workspace = await createWorkspace(repository, "HEAD");
+    const gitDir = join(workspace.path, ".git");
+    await rename(gitDir, `${gitDir}-moved`);
+    await writeFile(gitDir, `gitdir: ${join(repository, ".git")}\n`);
+    await assert.rejects(collectPatch(workspace), /WORKSPACE_REPLACED/);
+    await assert.rejects(cleanupWorkspace(workspace), /WORKSPACE_REPLACED/);
+    await rm(dirname(workspace.path), { recursive: true, force: true });
   } finally { await rm(repository, { recursive: true, force: true }); }
 });

@@ -50,7 +50,7 @@ test("runner failures do not prevent subsequent cases", async () => {
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 
-test("repository execution exports changes to independent evaluator and cleans worktree", async () => {
+test("repository execution exports changes to independent evaluator and cleans the workspace", async () => {
   const root = await mkdtemp(join(tmpdir(), "eval-repo-"));
   const repository = join(root, "source");
   const { mkdir } = await import("node:fs/promises");

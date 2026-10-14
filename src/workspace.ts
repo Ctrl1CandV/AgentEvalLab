@@ -1,4 +1,4 @@
-import { mkdtemp, realpath, rmdir, lstat } from "node:fs/promises";
+import { mkdtemp, realpath, rm, rmdir, lstat } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { git } from "./command.js";
@@ -16,11 +16,12 @@ interface Owned {
   path: string;
   repository: string;
   commit: string;
-  common: string;
+  gitDir: string;
 }
 const owned = new WeakMap<Workspace, Owned>();
 
-// Create a detached worktree at the requested commit without checking out or resetting the source worktree.
+// Clone the pinned commit into a private repository so candidate Git operations
+// (commits, branches, resets) never touch the source repository or other trials.
 export async function createWorkspace(repository: string, commit: string): Promise<Workspace> {
   if (!/^[A-Za-z0-9][A-Za-z0-9._/-]*$/.test(commit))
     throw new Error("INVALID_COMMIT");
@@ -31,69 +32,65 @@ export async function createWorkspace(repository: string, commit: string): Promi
   ).trim();
   if (!/^[a-f0-9]{40,64}$/.test(sha)) throw new Error("INVALID_COMMIT");
 
-  const common = await realpath(
-    (await git(
-      repo, ["rev-parse", "--path-format=absolute", "--git-common-dir"]
-    )).trim(),
-  );
-
-  const root = await mkdtemp(join(tmpdir(), "agent-eval-"));
-  const path = join(root, "worktree");
+  const root = await realpath(await mkdtemp(join(tmpdir(), "agent-eval-")));
+  const path = join(root, "workspace");
   try {
-    await git(repo, ["worktree", "add", "--detach", path, sha]);
+    await git(root, ["clone", "--quiet", "--no-hardlinks", "--no-checkout", "--", repo, path]);
+    await git(path, ["checkout", "--quiet", "--detach", sha]);
+    // Without a remote the candidate cannot push back into the source repository.
+    await git(path, ["remote", "remove", "origin"]);
   } catch {
-    // Do not blindly delete a partially created worktree.
-    throw new Error("WORKTREE_CREATE_FAILED");
+    // Leave a partially created clone in place for inspection rather than deleting blindly.
+    throw new Error("WORKSPACE_CREATE_FAILED");
   }
 
   const workspace = Object.freeze({
     path, repository: repo, commit: sha
   });
   owned.set(workspace, {
-    root, path, repository: repo, commit: sha, common
+    root, path, repository: repo, commit: sha, gitDir: join(path, ".git")
   });
   return workspace;
 }
 
-// Before cleanup, accept only a workspace created by this process and not replaced or modified.
+// Before collection or cleanup, accept only a workspace created by this process whose
+// directories and Git metadata have not been replaced. HEAD may move: candidates may commit.
 async function verify(workspace: Workspace): Promise<Owned> {
   const state = owned.get(workspace);
   if (!state || resolve(workspace.path) !== resolve(state.path))
     throw new Error("UNOWNED_WORKSPACE");
 
   // Treat a symlink or a path pointing elsewhere as a replaced workspace.
-  if ((await lstat(state.root)).isSymbolicLink() || (await lstat(state.path)).isSymbolicLink()) {
-    throw new Error("WORKSPACE_REPLACED");
+  for (const path of [state.root, state.path, state.gitDir]) {
+    const info = await lstat(path);
+    if (info.isSymbolicLink() || !info.isDirectory()) throw new Error("WORKSPACE_REPLACED");
   }
-  if (await realpath(state.path) !== resolve(state.path)) throw new Error("WORKSPACE_REPLACED");
+  if (await realpath(state.path) !== state.path) throw new Error("WORKSPACE_REPLACED");
 
-  // Treat moved Git metadata or a changed HEAD as a replaced workspace.
-  const common = await realpath(
-    (await git(state.path, ["rev-parse", "--path-format=absolute", "--git-common-dir"])).trim(),
-  );
-  if (common !== state.common || (await git(state.path, ["rev-parse", "HEAD"])).trim() !== state.commit) {
-    throw new Error("WORKSPACE_REPLACED");
-  }
+  // Treat Git metadata that resolves outside the private clone as a replaced workspace.
+  const gitDir = (await git(state.path, ["rev-parse", "--absolute-git-dir"])).trim();
+  if (await realpath(gitDir) !== state.gitDir) throw new Error("WORKSPACE_REPLACED");
 
   return state;
 }
 
-// Collect tracked changes and non-ignored files as a binary-safe patch.
+// Collect every change from the pinned commit to the final working tree as a binary-safe
+// patch, including changes the candidate committed itself.
 export async function collectPatch(workspace: Workspace): Promise<string> {
-  await verify(workspace);
-  // Stage new files in the temporary worktree index without changing the source repository index.
-  await git(workspace.path, ["add", "--all", "--", "."]);
+  const state = await verify(workspace);
+  // Stage new files in the private clone's index; the source repository is never touched.
+  await git(state.path, ["add", "--all", "--", "."]);
   return git(
-    workspace.path,
-    ["diff", "--cached", "--binary", "--no-ext-diff", "--no-textconv", workspace.commit, "--"],
+    state.path,
+    ["diff", "--cached", "--binary", "--no-ext-diff", "--no-textconv", state.commit, "--"],
   );
 }
 
-// Remove the worktree and temporary root created by this process.
+// Remove the private clone, then the temporary root created by this process.
 export async function cleanupWorkspace(workspace: Workspace): Promise<void> {
   const state = await verify(workspace);
-  await git(state.repository, ["worktree", "remove", "--force", state.path]);
+  await rm(state.path, { recursive: true, force: true });
   owned.delete(workspace);
-  // Remove only the unique temporary root created by this process; never recursively delete an arbitrary path.
+  // Remove only the unique temporary root; unexpected extra files make cleanup fail visibly.
   await rmdir(state.root);
 }
