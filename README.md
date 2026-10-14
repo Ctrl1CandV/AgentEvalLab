@@ -50,6 +50,7 @@ Results are written under `runs/<run-id>/`. Networked commands go through the ho
 - `task-library/candidates/`: task cards and candidate packages
 - `task-library/calibration/`: versioned task packages and offline calibration
 - `examples/`: sample evaluation plans
+- `experiments/`: plans for live runs, each with its protocol README
 - `docs/HANDOFF.md`: current state and next steps
 
 ## Evidence limits

@@ -20,6 +20,28 @@ AliPlan returned `429 Your token-plan 1-month quota has been exhausted. The quot
 - **Node's fetch ignored the proxy.** This host allows outbound traffic only through the configured proxy. Node's built-in fetch ignores `HTTPS_PROXY` unless `NODE_USE_ENV_PROXY=1` is set. Every request had therefore failed as a network error; the failure was retried and counted (2 attempts each), and the batch guard would have stopped. The `harness` and `provider-check` npm scripts now set the variable.
 - **Exhausted quotas were classified as rate limiting.** The AliPlan message was classified `rate_limit`, so a batch would have stopped only after three consecutive failures. Exhausted quotas and plans now classify as `balance` (`PROVIDER_BALANCE`), which stops the batch at once.
 
+## Pilot models (second check, 2026-10-14)
+
+The user chose `supergpt:gpt-6-luna` and `supercn:glm-5.3-flash` for the pilot. Their metadata was declared from provider documentation:
+- [OpenAI GPT-6 Luna](https://developers.openai.com/api/docs/models/gpt-6-luna): 1,050,000 context, 128,000 maximum output, reasoning effort `none` to `max`, default `medium`.
+- [Zhipu GLM-5.3-Flash](https://docs.bigmodel.cn/cn/guide/models/vlm/glm-5.3-flash): 1M context, 128K maximum output; thinking cannot be disabled.
+
+| Check | gpt-6-luna, thinking off | gpt-6-luna, provider-default | glm-5.3-flash, provider-default |
+| --- | --- | --- | --- |
+| Usage reported | pass | pass | pass |
+| Output cap ends the run | pass (enforced by the harness) | pass (enforced by the harness) | pass (empty answer: thinking used all 16 tokens) |
+| Tool round trip | pass | pass | pass |
+| Invalid key gives `PROVIDER_AUTH` | pass | pass | pass |
+| Reasoning tokens | 0 | 0 to 25 | not reported (121 output tokens to answer "OK") |
+| Temperature 0 accepted | yes | yes | yes |
+
+Further findings and changes:
+
+- **The SuperGPT relay ignores output caps.** It ignores both `max_completion_tokens` and `max_tokens`: luna returned 603 tokens with a 16-token cap. The runner now ends a run with `OUTPUT_TOKEN_LIMIT` whenever a response reports more output tokens than the cap, so every provider runs under the same per-request limit. Tokens past the cap are still billed.
+- **Thinking control is now metadata.**
+  - GPT-6 Luna needs `thinkingLevelMap: { off: "none" }` for thinking "off" to reach the API.
+  - GLM-5.3-Flash is declared `always-on`. Validation rejects thinking "off" for it, and plans use `provider-default`, which sends no thinking parameter at all.
+
 ## Limits
 
 Five requests per model cannot show variance, long-context behaviour, or context-overflow messages. Live context-limit classification is still unverified for both providers.

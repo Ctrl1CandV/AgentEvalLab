@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 3,
+  "name": "pilot-2026-10-reasoning",
+  "models": [
+    {
+      "provider": "supergpt",
+      "id": "gpt-6-luna",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "glm-5.3-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 3,
+  "budget": {
+    "timeoutMs": 600000,
+    "maxTurns": 8,
+    "maxModelCalls": 8,
+    "maxToolCalls": 8,
+    "maxOutputChars": 32768,
+    "maxOutputTokensPerCall": 32768,
+    "maxToolResultChars": 100000
+  },
+  "artifactLimits": {
+    "maxFiles": 1000,
+    "maxFileBytes": 10485760,
+    "maxTrialBytes": 52428800,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokens": 500000
+  },
+  "trustedLocalExecution": true,
+  "cases": [
+    {
+      "id": "rsn001-schedule",
+      "packagePath": "task-library/calibration/rsn-001-shift-scheduling",
+      "packageManifestSha256": "187e1c382b7d85037e1939fc09e8e747d505df744ec94c2ac0d6a648898b0731",
+      "input": {
+        "prompt": "Read the files you need with the tools, then reply with only the required JSON object for A, B, and C as your final message."
+      },
+      "toolProfile": "workspace-basic",
+      "readOnly": true,
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 180000,
+        "maxOutputBytes": 100000
+      }
+    },
+    {
+      "id": "rsn002-derivation",
+      "packagePath": "task-library/calibration/rsn-002-derivation-check",
+      "packageManifestSha256": "d5dc5cb6b236edbf19167bb90280c7a6bb8043e6c5385a6529ca6a9411493e06",
+      "input": {
+        "prompt": "Read public/samples.json with the tools, then reply with only the required JSON object as your final message."
+      },
+      "toolProfile": "workspace-basic",
+      "readOnly": true,
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 180000,
+        "maxOutputBytes": 100000
+      }
+    }
+  ]
+}

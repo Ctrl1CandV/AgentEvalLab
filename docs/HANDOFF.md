@@ -1,6 +1,6 @@
 # Project Handoff
 
-Updated 2026-10-13.
+Updated 2026-10-14.
 
 ## Current state
 
@@ -20,8 +20,8 @@ The only live model requests so far are the small provider checks of 2026-10-14.
 
 ## Next steps
 
-1. Choose the second pilot model: wait for the AliPlan quota reset (2026-10-19 16:00 UTC) and rerun `npm run provider-check`, or check a replacement. See the [provider check](reviews/2026-10-14-provider-check.md).
-2. Run the pilot (PLAN-004 phase 4) with a batch token ceiling, then set budgets and freeze the first task set.
+1. After the user confirms its conditions, run the [pilot](../experiments/pilot-2026-10/README.md) from a clean commit. Its models are `gpt-6-luna` and `glm-5.3-flash`, both checked in the [provider check](reviews/2026-10-14-provider-check.md).
+2. Review the pilot reports, set per-task budgets, and freeze the first task set.
 3. Rebuild the eng-004 baseline as a project-owned bundle; the previously pinned commit is unavailable.
 4. Limit conclusions to the observed task versions, models, prompts, tools, and budgets.
 

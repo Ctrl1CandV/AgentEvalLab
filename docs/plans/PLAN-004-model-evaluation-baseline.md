@@ -138,12 +138,12 @@ All tests pass, and every runnable package recalibrates under the sandbox. The r
 
 ## Phase 4: Pilot and first frozen set
 
-1. Pilot protocol:
-   - Run the pilot models on rsn-001, rsn-002, tool-001, and eng-001 with 3 repetitions each, under a batch token ceiling. eng-005 is excluded; its cost is estimated from the pilot first.
-   - Credentials: use dedicated keys with provider-side spending limits, stored in `.env`.
-   - Use the results to set per-task budgets. Inspect outliers for harness or grader bugs before trusting any score (ABC T.10).
+1. **Pilot protocol.** [experiments/pilot-2026-10](../../experiments/pilot-2026-10/README.md) is ready, with null-agent baselines run; launching it awaits user confirmation.
+   - **Models:** `supergpt:gpt-6-luna` and `supercn:glm-5.3-flash`, both with `provider-default` thinking and temperature 0. The second pilot model changed because AliPlan's quota is exhausted until 2026-10-19.
+   - **Scope:** rsn-001, rsn-002, tool-001, and eng-001, with 3 repetitions each, under token ceilings totalling 6M (about 3M per model). eng-005 is excluded until its cost is estimated from the pilot.
+   - **Use of results:** set per-task budgets. Inspect outliers for harness or grader bugs before trusting any score (ABC T.10).
 2. Mark the calibrated tasks `pilot`, freeze the first task set, then run the multi-model comparison.
-3. Add instance generators for the reasoning and tool families, canary strings, and null-agent baselines (F10–F12).
+3. Add instance generators for the reasoning and tool families and canary strings (F10, F11). Null-agent baselines (F12) are available through `scripts/null-agent-baseline.ts`.
 4. Convert the manifest-less packages afterwards: eng-002 first, then eng-003. vis-001 needs browser rendering and human review, so it comes last.
 
 ## Evidence limits
