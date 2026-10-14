@@ -28,8 +28,8 @@ export interface EvaluationCase {
 }
 
 export interface EvaluationPlan {
-  /** Omitted plans use the original single-run schema; version 2 requires pinned task manifests. */
-  schemaVersion?: 2;
+  /** Omitted plans use the original single-run schema; version 3 requires pinned task manifests and a tool-result limit. */
+  schemaVersion?: 3;
   name: string;
   models: ModelSelection[];
   budget: Budget;

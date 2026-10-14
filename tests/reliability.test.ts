@@ -22,7 +22,7 @@ test("untrusted JSON structures and incorrectly typed flags fail before executio
   }
   validatePlan(plan);
   assert.throws(() => validatePlan({ ...plan, schemaVersion: 1 }), /UNSUPPORTED_PLAN_VERSION/);
-  assert.throws(() => validatePlan({ ...plan, schemaVersion: 2, artifactLimits: { maxFiles: 1, maxFileBytes: 1, maxTrialBytes: 1, graderResultMaxBytes: 1, toolEvidenceMaxBytes: 1 }, trustedLocalExecution: true, cases: [{
+  assert.throws(() => validatePlan({ ...plan, schemaVersion: 3, artifactLimits: { maxFiles: 1, maxFileBytes: 1, maxTrialBytes: 1, graderResultMaxBytes: 1, toolEvidenceMaxBytes: 1 }, trustedLocalExecution: true, cases: [{
     ...plan.cases[0], packagePath: "./task", packageManifestSha256: undefined,
   }] }), /PACKAGE_MANIFEST_PIN_REQUIRED/);
 });

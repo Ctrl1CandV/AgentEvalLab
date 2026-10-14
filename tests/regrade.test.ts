@@ -64,7 +64,7 @@ test("regrade appends a new score run and restores the exact frozen snapshot", a
     let manifestBytes = JSON.stringify(manifest);
     await writeFile(join(packagePath, "manifest.json"), manifestBytes);
     const plan: EvaluationPlan = {
-      schemaVersion: 2,
+      schemaVersion: 3,
       name: "regrade-restore",
       models: [{ provider: "anthropic", id: "claude-sonnet-4-6" }],
       budget: { ...defaultBudget },

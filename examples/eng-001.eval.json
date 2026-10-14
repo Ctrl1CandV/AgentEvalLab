@@ -1,10 +1,12 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "name": "eng-001-development-smoke",
   "models": [
     {
       "provider": "anthropic",
-      "id": "claude-sonnet-4-6"
+      "id": "claude-sonnet-4-6",
+      "thinkingLevel": "off",
+      "temperature": 0
     }
   ],
   "budget": {
@@ -13,7 +15,8 @@
     "maxModelCalls": 6,
     "maxToolCalls": 8,
     "maxOutputTokensPerCall": 512,
-    "maxOutputChars": 8192
+    "maxOutputChars": 8192,
+    "maxToolResultChars": 100000
   },
   "artifactLimits": {
     "maxFiles": 500,

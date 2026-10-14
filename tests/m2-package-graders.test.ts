@@ -36,7 +36,7 @@ async function packagePlan(taskId: string, caseId: string, prompt: string, root:
     ...(options.readOnly !== undefined ? { readOnly: options.readOnly } : {}),
   };
   return {
-    schemaVersion: 2,
+    schemaVersion: 3,
     name: `${taskId}-offline-grader-test`,
     models: [model],
     budget: { ...defaultBudget },

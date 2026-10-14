@@ -16,6 +16,7 @@ import { ArtifactLimitError, copyArtifacts, defaultArtifactLimits } from "./arti
 import { validatePlan } from "./validate.js";
 import { markdownReport, summarize, summarizeInteractionClass } from "./report.js";
 import { preflightPlan } from "./preflight.js";
+import { evaluatedCondition, sha256 } from "./condition.js";
 import type { EvaluationOptions, EvaluationPlan, TrialRecord } from "./types.js";
 
 export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOptions) {
@@ -33,9 +34,10 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
     baselineCommit: descriptor.manifest?.baseline?.commit ?? null,
     toolProfiles: descriptor.manifest?.toolProfiles ?? ["workspace-basic"],
   }));
-  const fingerprint = createHash("sha256").update(JSON.stringify({ plan, packageFingerprints })).digest("hex");
+  const condition = await evaluatedCondition(plan, taskPackages);
+  const fingerprint = sha256({ plan, packageFingerprints, condition });
   const plannedRuns = plan.models.length * plan.cases.length;
-  await writeFile(join(directory, "experiment.json"), JSON.stringify({ schemaVersion: 1, name: plan.name, fingerprint, packageFingerprints, models: plan.models, caseIds: plan.cases.map(item => item.id), budget: plan.budget, artifactLimits, plannedRuns, isolation: plan.isolation ?? "sandbox", node: process.version, startedAt: new Date().toISOString() }, null, 2));
+  await writeFile(join(directory, "experiment.json"), JSON.stringify({ schemaVersion: 2, name: plan.name, fingerprint, packageFingerprints, condition, models: plan.models, caseIds: plan.cases.map(item => item.id), budget: plan.budget, artifactLimits, plannedRuns, isolation: plan.isolation ?? "sandbox", node: process.version, startedAt: new Date().toISOString() }, null, 2));
   let sequence = 0;
   let pending = Promise.resolve();
   let completed = false;
@@ -83,7 +85,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
         await events.emit("workspace_started");
         workspace = await prepareWorkspace(item.repository);
         record.baseline = workspace.git?.commit ?? null;
-        const projection = item.packagePath ? await projectPackage(item.packagePath, workspace.path, item.packageManifestSha256, plan.schemaVersion === 2) : null;
+        const projection = item.packagePath ? await projectPackage(item.packagePath, workspace.path, item.packageManifestSha256, plan.schemaVersion === 3) : null;
         if (projection && projection.manifestSha256 !== (packageDescriptor?.manifestSha256 ?? null)) throw new Error("PACKAGE_CHANGED_AFTER_PREFLIGHT");
         const instruction = projection?.instruction ?? "";
         await events.emit("execution_started");

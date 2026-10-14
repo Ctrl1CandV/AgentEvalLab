@@ -18,7 +18,7 @@ export async function preflightPlan(plan: EvaluationPlan): Promise<Map<string, P
     const descriptor = await inspectPackage(
       item.packagePath,
       item.packageManifestSha256,
-      plan.schemaVersion === 2,
+      plan.schemaVersion === 3,
     );
     const runtimeCheck = descriptor.manifest?.environment.runtimeCheck;
     if (runtimeCheck) {

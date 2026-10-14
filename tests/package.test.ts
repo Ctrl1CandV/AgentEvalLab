@@ -72,7 +72,7 @@ test("versioned package pins its manifest and projects only hashed public files"
     await assert.rejects(access(join(workspace, "manifest.json")));
     await assert.rejects(projectPackage(pkg, workspace, "0".repeat(64), true), /PACKAGE_MANIFEST_HASH_MISMATCH/);
     await assert.rejects(preflightPlan({
-      schemaVersion: 2,
+      schemaVersion: 3,
       name: "runtime-preflight",
       models: [{ provider: "anthropic", id: "claude-sonnet-4-6" }],
       budget: { ...defaultBudget },
@@ -160,7 +160,7 @@ test("task grader receives only a frozen submission and must return a verified r
     const manifestBytes = JSON.stringify(manifest);
     await writeFile(join(pkg, "manifest.json"), manifestBytes);
     const result = await runEvaluation({
-      schemaVersion: 2,
+      schemaVersion: 3,
       name: "versioned-task-grader",
       models: [{ provider: "anthropic", id: "claude-sonnet-4-6" }],
       budget: { ...defaultBudget },
@@ -207,7 +207,7 @@ test("eng-001 runs read, failed public check, repair, and grading through Pi off
     const python = manifest.environment.runtimeCheck?.executable;
     assert.ok(python);
     const plan: EvaluationPlan = {
-      schemaVersion: 2,
+      schemaVersion: 3,
       name: "eng-001-offline-pi-calibration",
       models: [{ provider: "anthropic", id: "claude-sonnet-4-6" }],
       budget: { ...defaultBudget },

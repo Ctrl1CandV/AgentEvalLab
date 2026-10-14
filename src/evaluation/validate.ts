@@ -1,4 +1,5 @@
 import { validateBudget, parseModel } from "../config.js";
+import { thinkingLevels } from "../types.js";
 import { resolveModel } from "../harness/pi.js";
 import { defaultArtifactLimits } from "./artifacts.js";
 import type { EvaluationPlan } from "./types.js";
@@ -15,7 +16,7 @@ function identifier(value: unknown): value is string {
 /** Validates external JSON before any credentials, directories or requests are used. */
 export function validatePlan(value: unknown): asserts value is EvaluationPlan {
   const plan = object(value);
-  if (plan.schemaVersion !== undefined && plan.schemaVersion !== 2) throw new Error("UNSUPPORTED_PLAN_VERSION");
+  if (plan.schemaVersion !== undefined && plan.schemaVersion !== 3) throw new Error("UNSUPPORTED_PLAN_VERSION");
   if (typeof plan.name !== "string" || !plan.name.trim()) throw new Error("INVALID_PLAN");
   if (typeof plan.trustedLocalExecution !== "boolean") throw new Error("INVALID_TRUST_SETTING");
   if (plan.isolation !== undefined && plan.isolation !== "sandbox" && plan.isolation !== "host") throw new Error("INVALID_ISOLATION");
@@ -25,7 +26,7 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
     if (execution.kind === "single") {
       // Explicit legacy-compatible form.
     } else if (execution.kind === "trajectory") {
-      if (plan.schemaVersion !== 2 || execution.contextPolicy !== "continuous" || execution.publicRepairMax !== 1) {
+      if (plan.schemaVersion !== 3 || execution.contextPolicy !== "continuous" || execution.publicRepairMax !== 1) {
         throw new Error("INVALID_TRAJECTORY_POLICY");
       }
       validateBudget(object(execution.stageBudget) as unknown as EvaluationPlan["budget"]);
@@ -37,7 +38,7 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
       const value = limits[key];
       if (typeof value !== "number" || !Number.isSafeInteger(value) || value < 1 || value > 2_147_483_647) throw new Error(`INVALID_ARTIFACT_LIMIT:${key}`);
     }
-  } else if (plan.schemaVersion === 2) throw new Error("ARTIFACT_LIMITS_REQUIRED");
+  } else if (plan.schemaVersion === 3) throw new Error("ARTIFACT_LIMITS_REQUIRED");
   if (!Array.isArray(plan.models) || !plan.models.length || !Array.isArray(plan.cases) || !plan.cases.length) throw new Error("EMPTY_PLAN");
   const identities = new Set<string>();
   for (const value of plan.models) {
@@ -47,6 +48,11 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
     const selection = parseModel(identity);
     resolveModel(selection);
     if (identities.has(identity)) throw new Error("DUPLICATE_MODEL");
+    if (model.thinkingLevel !== undefined && !thinkingLevels.includes(model.thinkingLevel as never)) throw new Error("INVALID_THINKING_LEVEL");
+    if (model.temperature !== undefined && model.temperature !== null &&
+        (typeof model.temperature !== "number" || !Number.isFinite(model.temperature) || model.temperature < 0 || model.temperature > 2)) {
+      throw new Error("INVALID_TEMPERATURE");
+    }
     identities.add(identity);
   }
   const ids = new Set<string>();
@@ -69,7 +75,7 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
     }
     if (item.packagePath !== undefined && (typeof item.packagePath !== "string" || !item.packagePath.trim() || !plan.trustedLocalExecution)) throw new Error("INVALID_PACKAGE");
     if (item.packageManifestSha256 !== undefined && (typeof item.packageManifestSha256 !== "string" || !/^[a-f0-9]{64}$/i.test(item.packageManifestSha256) || typeof item.packagePath !== "string")) throw new Error("INVALID_PACKAGE_MANIFEST_HASH");
-    if (plan.schemaVersion === 2 && typeof item.packagePath === "string" && item.packageManifestSha256 === undefined) throw new Error("PACKAGE_MANIFEST_PIN_REQUIRED");
+    if (plan.schemaVersion === 3 && typeof item.packagePath === "string" && item.packageManifestSha256 === undefined) throw new Error("PACKAGE_MANIFEST_PIN_REQUIRED");
     const evaluator = object(item.evaluator);
     if (object(plan.execution ?? { kind: "single" }).kind === "trajectory" &&
         (evaluator.kind !== "task-package" || typeof item.packagePath !== "string" || item.repository === undefined ||
@@ -89,7 +95,7 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
       }
       if (evaluator.timeoutMs !== undefined && (typeof evaluator.timeoutMs !== "number" || !Number.isSafeInteger(evaluator.timeoutMs) || evaluator.timeoutMs < 1 || evaluator.timeoutMs > 2_147_483_647)) throw new Error("INVALID_CHECK_TIMEOUT");
     } else if (evaluator.kind === "task-package") {
-      if (!plan.trustedLocalExecution || typeof item.packagePath !== "string" || plan.schemaVersion !== 2) throw new Error("TASK_PACKAGE_GRADER_REQUIRES_V2_PACKAGE");
+      if (!plan.trustedLocalExecution || typeof item.packagePath !== "string" || plan.schemaVersion !== 3) throw new Error("TASK_PACKAGE_GRADER_REQUIRES_V2_PACKAGE");
       if (evaluator.timeoutMs !== undefined && (typeof evaluator.timeoutMs !== "number" || !Number.isSafeInteger(evaluator.timeoutMs) || evaluator.timeoutMs < 1 || evaluator.timeoutMs > 2_147_483_647)) throw new Error("INVALID_CHECK_TIMEOUT");
       if (evaluator.maxOutputBytes !== undefined && (typeof evaluator.maxOutputBytes !== "number" || !Number.isSafeInteger(evaluator.maxOutputBytes) || evaluator.maxOutputBytes < 1 || evaluator.maxOutputBytes > 2_147_483_647)) throw new Error("INVALID_GRADER_OUTPUT_LIMIT");
     } else if (evaluator.kind === "human") {

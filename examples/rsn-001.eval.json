@@ -1,10 +1,12 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "name": "rsn-001-reasoning-development",
   "models": [
     {
       "provider": "anthropic",
-      "id": "claude-sonnet-4-6"
+      "id": "claude-sonnet-4-6",
+      "thinkingLevel": "off",
+      "temperature": 0
     }
   ],
   "budget": {
@@ -13,7 +15,8 @@
     "maxModelCalls": 3,
     "maxToolCalls": 0,
     "maxOutputTokensPerCall": 1024,
-    "maxOutputChars": 12000
+    "maxOutputChars": 12000,
+    "maxToolResultChars": 100000
   },
   "artifactLimits": {
     "maxFiles": 1000,

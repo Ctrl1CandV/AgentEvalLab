@@ -1,10 +1,12 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "name": "eng-005-long-cycle-development",
   "models": [
     {
       "provider": "anthropic",
-      "id": "claude-sonnet-4-6"
+      "id": "claude-sonnet-4-6",
+      "thinkingLevel": "off",
+      "temperature": 0
     }
   ],
   "execution": {
@@ -16,7 +18,8 @@
       "maxModelCalls": 36,
       "maxToolCalls": 100,
       "maxOutputTokensPerCall": 4096,
-      "maxOutputChars": 60000
+      "maxOutputChars": 60000,
+      "maxToolResultChars": 100000
     },
     "publicRepairMax": 1
   },
@@ -26,7 +29,8 @@
     "maxModelCalls": 160,
     "maxToolCalls": 400,
     "maxOutputTokensPerCall": 4096,
-    "maxOutputChars": 60000
+    "maxOutputChars": 60000,
+    "maxToolResultChars": 100000
   },
   "artifactLimits": {
     "maxFiles": 500,

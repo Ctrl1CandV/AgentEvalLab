@@ -45,7 +45,7 @@ test("Pi trajectory session carries transcript and request context across sends"
   });
   const emitted: Array<{ type: string; details?: Record<string, unknown> }> = [];
   const emit = async (type: string, _counts?: Record<string, number>, details?: Record<string, unknown>) => { emitted.push({ type, details }); };
-  const budget = { timeoutMs: 5_000, maxTurns: 2, maxModelCalls: 2, maxToolCalls: 0, maxOutputTokensPerCall: 64, maxOutputChars: 1_000 };
+  const budget = { timeoutMs: 5_000, maxTurns: 2, maxModelCalls: 2, maxToolCalls: 0, maxOutputTokensPerCall: 64, maxOutputChars: 1_000, maxToolResultChars: 1_000 };
   try {
     const first = await session.send({ prompt: "stage one", systemPrompt: "fixed system" }, budget, emit, { stageId: "S1", cycleId: "cycle-1" });
     const second = await session.send({ prompt: "repair one", systemPrompt: "fixed system" }, budget, emit, { stageId: "S1", cycleId: "cycle-2" });

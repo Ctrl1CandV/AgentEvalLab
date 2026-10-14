@@ -4,6 +4,13 @@
 
 A plan pins its schema version, case IDs, models, budgets, task-package paths and hashes, tool profiles, and execution policy. Validate the complete plan before creating a run directory or loading credentials.
 
+Plans use schema version 3. Each model entry may set `thinkingLevel` (default `"off"`) and `temperature` (default 0; `null` omits the parameter). Budgets include `maxToolResultChars`; a larger tool result is returned to the model as a `TOOL_RESULT_TOO_LARGE` tool error, and the run continues. At run start, `experiment.json` records the evaluated condition (`src/evaluation/condition.ts`) and includes it in the run fingerprint:
+- git commit and dirty flag;
+- Node and Python versions, and Pi package versions;
+- resolved model metadata and request options, including whether prices and metadata are verified;
+- a digest of each case's tool definitions;
+- candidate isolation.
+
 A case selects one supported evaluator. Human evaluation remains pending until a reviewer supplies a score. Pending is neither pass nor fail.
 
 ## Task-package boundary

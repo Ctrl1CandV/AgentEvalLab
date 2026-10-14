@@ -9,6 +9,7 @@ export const defaultBudget: Readonly<Budget> = Object.freeze({
   maxToolCalls: 8, // Tool execution attempts (zero is allowed)
   maxOutputTokensPerCall: 512, // Output token limit per model request
   maxOutputChars: 8192, // Cumulative output character limit
+  maxToolResultChars: 100_000, // Characters in one tool result, matching the 100 KB file-read limit
 });
 
 /** Require safe integers within range; maxToolCalls may be zero. */

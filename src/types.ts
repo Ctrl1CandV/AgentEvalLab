@@ -4,7 +4,8 @@ export interface RunInput {
   systemPrompt?: string;
 }
 
-// Bound runtime, turns, model requests, tool requests, output tokens per request, and output characters.
+// Bound runtime, turns, model requests, tool requests, output tokens per request, output characters,
+// and the size of a single tool result.
 export interface Budget {
   timeoutMs: number;
   maxTurns: number;
@@ -12,12 +13,26 @@ export interface Budget {
   maxToolCalls: number;
   maxOutputTokensPerCall: number;
   maxOutputChars: number;
+  /** Characters one tool result may return; larger results become a recoverable tool error. */
+  maxToolResultChars: number;
 }
 
+export type ThinkingLevel = "off" | "minimal" | "low" | "medium" | "high" | "xhigh" | "max";
+export const thinkingLevels: readonly ThinkingLevel[] = ["off", "minimal", "low", "medium", "high", "xhigh", "max"];
+
 // Select a built-in provider ("anthropic" or "openai") or a custom provider registered in src/providers.ts.
+// Request options are part of the evaluated condition; omitted values mean thinking "off" and temperature 0.
 export interface ModelSelection {
   provider: string;
   id: string;
+  thinkingLevel?: ThinkingLevel;
+  /** null omits the parameter for models that reject an explicit temperature. */
+  temperature?: number | null;
+}
+
+/** Resolve request options with their documented defaults. */
+export function modelOptions(selection: ModelSelection): { thinkingLevel: ThinkingLevel; temperature: number | null } {
+  return { thinkingLevel: selection.thinkingLevel ?? "off", temperature: selection.temperature === undefined ? 0 : selection.temperature };
 }
 
 export type InteractionClass = "candidate" | "probe";

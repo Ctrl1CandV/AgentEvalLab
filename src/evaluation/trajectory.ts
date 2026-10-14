@@ -14,6 +14,7 @@ import { projectPackage, projectTrajectoryStage, type PackageDescriptor } from "
 import { prepareWorkspace } from "./workspace.js";
 import { runTaskGrader } from "./grader.js";
 import { preflightPlan } from "./preflight.js";
+import { evaluatedCondition, sha256 } from "./condition.js";
 import { sandboxLauncher, type Isolation } from "../sandbox.js";
 import type { EvaluationOptions, EvaluationPlan, PublicCheckResult, TrajectoryMetrics, TrajectoryRecord, TrajectorySession, TrajectoryStageResult } from "./types.js";
 
@@ -47,6 +48,7 @@ function remainingBudget(
   const maxModelCalls = min(total.maxModelCalls - aggregate.modelCalls, stage.maxModelCalls - stageUsed.modelCalls);
   const maxToolCalls = min(total.maxToolCalls - aggregate.toolCalls, stage.maxToolCalls - stageUsed.toolCalls);
   const maxOutputChars = min(total.maxOutputChars - totalOutputChars, stage.maxOutputChars - stageOutputChars);
+  const maxToolResultChars = min(total.maxToolResultChars, stage.maxToolResultChars);
   if (timeoutMs < 1 || maxTurns < 1 || maxModelCalls < 1 || maxToolCalls < 0 || maxOutputChars < 1) return null;
   return {
     timeoutMs: Math.floor(timeoutMs),
@@ -55,6 +57,7 @@ function remainingBudget(
     maxToolCalls,
     maxOutputTokensPerCall: min(total.maxOutputTokensPerCall, stage.maxOutputTokensPerCall),
     maxOutputChars,
+    maxToolResultChars,
   };
 }
 
@@ -281,10 +284,11 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
     sha256: descriptor.manifestSha256,
     baselineCommit: descriptor.manifest?.baseline?.commit ?? null,
   }));
-  const fingerprint = createHash("sha256").update(JSON.stringify({ plan, packageFingerprints })).digest("hex");
+  const condition = await evaluatedCondition(plan, packages);
+  const fingerprint = sha256({ plan, packageFingerprints, condition });
   const plannedRuns = plan.models.length * plan.cases.length;
   await writeFile(join(directory, "experiment.json"), JSON.stringify({
-    schemaVersion: 1, name: plan.name, fingerprint, packageFingerprints, execution: plan.execution, isolation: plan.isolation ?? "sandbox",
+    schemaVersion: 2, name: plan.name, fingerprint, packageFingerprints, condition, execution: plan.execution, isolation: plan.isolation ?? "sandbox",
     models: plan.models, caseIds: plan.cases.map(item => item.id), budget: plan.budget, artifactLimits,
     plannedRuns, node: process.version, startedAt: new Date().toISOString(),
   }, null, 2));

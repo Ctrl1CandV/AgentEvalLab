@@ -1,10 +1,12 @@
 {
-  "schemaVersion": 2,
+  "schemaVersion": 3,
   "name": "eng-004-augmented-tools-development",
   "models": [
     {
       "provider": "anthropic",
-      "id": "claude-sonnet-4-6"
+      "id": "claude-sonnet-4-6",
+      "thinkingLevel": "off",
+      "temperature": 0
     }
   ],
   "budget": {
@@ -13,7 +15,8 @@
     "maxModelCalls": 10,
     "maxToolCalls": 40,
     "maxOutputTokensPerCall": 2048,
-    "maxOutputChars": 32768
+    "maxOutputChars": 32768,
+    "maxToolResultChars": 100000
   },
   "artifactLimits": {
     "maxFiles": 1000,

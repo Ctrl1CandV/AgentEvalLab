@@ -4,7 +4,7 @@ import { Agent, type AgentEvent, type AgentTool, type StreamFn } from "@earendil
 import { createModels } from "@earendil-works/pi-ai";
 import { createHash, randomUUID } from "node:crypto";
 
-import { emptyExecution, type InteractionClass, type RequestUsage, type Runner, type ModelSelection, type RunInput } from "../types.js";
+import { emptyExecution, modelOptions, type InteractionClass, type RequestUsage, type Runner, type ModelSelection, type RunInput } from "../types.js";
 import { redact, registerSecrets } from "../privacy.js";
 import { EventSinkError, guardEventSink } from "../events.js";
 import { validateBudget } from "../config.js";
@@ -81,6 +81,7 @@ export function createPiRunner<Input extends RunInput = RunInput>(
 
     // ---- Resolve model and credentials ----
     const { models, model } = resolveModel(selection);
+    const requestOptions = modelOptions(selection);
     const envKey = apiKeyEnvFor(selection.provider);
     const key = options.apiKey ?? (envKey ? process.env[envKey] : undefined);
     if (!key) throw new Error("MISSING_API_KEY");
@@ -207,10 +208,8 @@ export function createPiRunner<Input extends RunInput = RunInput>(
             (sum, block) => sum + (block.type === "text" ? block.text.length : 0),
             0,
           );
-          if (chars > budget.maxOutputChars) {
-            limit("TOOL_OUTPUT_LIMIT");
-            throw new Error("TOOL_OUTPUT_LIMIT");
-          }
+          // An oversized result is returned to the model as a recoverable tool error; the run continues.
+          if (chars > budget.maxToolResultChars) throw new Error("TOOL_RESULT_TOO_LARGE");
           const content = output.content.map(block => block.type === "text" ? { type: "text", text: block.text } : { type: block.type });
           await trace("execution_returned", {
             requestId: currentRequestId,
@@ -245,7 +244,7 @@ export function createPiRunner<Input extends RunInput = RunInput>(
     const configuredAgent = new Agent({
       initialState: {
         model,
-        thinkingLevel: "off",
+        thinkingLevel: requestOptions.thinkingLevel,
         systemPrompt: input.systemPrompt ?? "",
         tools,
       },
@@ -260,7 +259,7 @@ export function createPiRunner<Input extends RunInput = RunInput>(
         }
       },
 
-      // Send the streaming request with temperature fixed at 0 for reproducibility.
+      // Send the streaming request with the plan's temperature (0 by default; null omits it).
       streamFn: (selected, context, streamOptions) => {
         if (requestState.active) finishRequest(requestState.active.usage, requestState.active.started);
         result.modelCalls++;
@@ -289,7 +288,7 @@ export function createPiRunner<Input extends RunInput = RunInput>(
           return stream(selected, context, {
             ...streamOptions,
             apiKey: key,
-            temperature: 0,
+            ...(requestOptions.temperature === null ? {} : { temperature: requestOptions.temperature }),
             maxTokens: budget.maxOutputTokensPerCall,
             maxRetries: 0,
           });
@@ -300,9 +299,10 @@ export function createPiRunner<Input extends RunInput = RunInput>(
         }
       },
 
-      // Before each tool call, stop if it is not allowlisted, the run has failed, or the budget is exhausted.
+      // Before each tool call, stop if the run has failed or the budget is exhausted. Pi answers calls to
+      // tools outside the profile with an error result itself and never invokes this hook for them.
       beforeToolCall: async ({ toolCall }) => {
-        if (result.status !== "done" || !allowedTools.has(toolCall.name) || result.toolCalls >= budget.maxToolCalls) {
+        if (result.status !== "done" || result.toolCalls >= budget.maxToolCalls) {
           limit("TOOL_LIMIT");
           if (!interceptedCalls.has(toolCall.id)) result.toolIntercepts++;
           interceptedCalls.add(toolCall.id);
@@ -311,7 +311,7 @@ export function createPiRunner<Input extends RunInput = RunInput>(
             toolCallId: toolCall.id,
             toolName: toolCall.name,
             toolVersion,
-            reason: !allowedTools.has(toolCall.name) ? "unknown_tool" : result.toolCalls >= budget.maxToolCalls ? "tool_budget" : "execution_stopped",
+            reason: result.toolCalls >= budget.maxToolCalls ? "tool_budget" : "execution_stopped",
             args: toolCall.arguments,
           });
           return { block: true, terminate: true, reason: "TOOL_BLOCKED" };
@@ -356,6 +356,7 @@ export function createPiRunner<Input extends RunInput = RunInput>(
       agent.prepareNextTurn = configuredAgent.prepareNextTurn;
       agent.prepareNextTurnWithContext = configuredAgent.prepareNextTurnWithContext;
       agent.state.model = model;
+      agent.state.thinkingLevel = requestOptions.thinkingLevel;
       agent.state.tools = tools;
       if ((input.systemPrompt ?? "") !== (options.sessionState.systemPrompt ?? input.systemPrompt ?? "")) {
         throw new Error("SESSION_SYSTEM_PROMPT_CHANGED");
