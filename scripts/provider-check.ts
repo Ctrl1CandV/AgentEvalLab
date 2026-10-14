@@ -1,5 +1,7 @@
-// Live provider check for PLAN-004 WP7. Sends at most five small requests per model through the
-// harness's own Pi runner and reports usage, output-cap, tool round-trip and error classification.
+// Live provider check for PLAN-004 WP7. Sends at most six small requests per model through the
+// harness's own Pi runner and reports usage, output-cap, tool round-trip and error classification. With an
+// explicit thinking level it also checks that the model still reasons when tools are present, because some
+// endpoints drop reasoning parameters on requests that carry tools.
 // Usage: npm run provider-check -- provider:model[?thinking=off&temperature=0|omit] [...]
 // thinking accepts a plan thinking level (default "off"); temperature "omit" sends no temperature.
 // Credentials come from .env; no key is printed or written.
@@ -45,6 +47,11 @@ async function check(selection: ModelSelection) {
   const cap = await run("Write the integers from 1 to 300, separated by single spaces.", { ...checkBudget, maxModelCalls: 1, maxOutputTokensPerCall: 16 });
   const tool = await run("Call the get_secret_number tool once, then reply with only the number it returned.", checkBudget, { tools: true });
   const auth = await run("Reply with OK.", { ...checkBudget, maxModelCalls: 1 }, { apiKey: "invalid-provider-check-key" });
+  const explicitThinking = selection.thinkingLevel !== "off" && selection.thinkingLevel !== "provider-default";
+  const reasoning = explicitThinking ? await run(
+    "Without calling any tool, find the smallest positive integer n with n mod 7 = 3, n mod 11 = 5 and n mod 13 = 9. Reply with only the number.",
+    { ...checkBudget, maxModelCalls: 1, maxOutputTokensPerCall: 4096 }, { tools: true }) : null;
+  const reasoningTokens = reasoning?.requestUsage[0]?.reasoningTokens ?? null;
   const usageRequest = usage.requestUsage[0];
   return {
     model: `${selection.provider}:${selection.id}`,
@@ -59,9 +66,12 @@ async function check(selection: ModelSelection) {
       ...(selection.thinkingLevel === "off" ? {
         thinkingOff: [usage, tool].flatMap(result => result.requestUsage).every(request => request.reasoningTokens === null || request.reasoningTokens === 0),
       } : {}),
+      // Omitted when the provider does not report reasoning tokens, since the level cannot be observed then.
+      ...(reasoning && reasoningTokens !== null ? { thinkingWithTools: reasoning.status === "done" && reasoningTokens > 0 } : {}),
     },
     reasoningTokensObserved: [usage, tool].flatMap(result => result.requestUsage).map(request => request.reasoningTokens),
-    details: { usage: summary(usage), outputCap: summary(cap), toolRoundTrip: summary(tool), invalidKey: summary(auth) },
+    details: { usage: summary(usage), outputCap: summary(cap), toolRoundTrip: summary(tool), invalidKey: summary(auth),
+      ...(reasoning ? { thinkingWithTools: { ...summary(reasoning), expectedAnswer: "269" } } : {}) },
   };
 }
 
