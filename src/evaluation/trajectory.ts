@@ -18,6 +18,7 @@ import { evaluatedCondition, sha256 } from "./condition.js";
 import { BatchGuard, resolveBatchPolicy, type BatchPolicy } from "./batch.js";
 import { sandboxLauncher, type Isolation } from "../sandbox.js";
 import type { EvaluationOptions, EvaluationPlan, PublicCheckResult, TrajectoryMetrics, TrajectoryRecord, TrajectorySession, TrajectoryStageResult } from "./types.js";
+import { modelLabel } from "./report.js";
 
 function record(value: unknown): Record<string, unknown> {
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("PUBLIC_CHECK_PROTOCOL_INVALID");
@@ -559,7 +560,7 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
 function markdownTrajectoryReport(records: TrajectoryRecord[]): string {
   const lines = ["# Long-horizon trajectory report", "", "| Case | Model | Status | Stages released | Model calls | Turns | Stop reason |", "|---|---|---:|---:|---:|---:|---|"];
   for (const record of records) {
-    lines.push(`| ${record.caseId} | ${record.model.provider}:${record.model.id} | ${record.status} | ${record.stages.filter(stage => stage.status !== "not_reached").length}/${record.stages.length} | ${record.aggregateExecution.modelCalls} | ${record.aggregateExecution.turns} | ${record.stopReason ?? "—"} |`);
+    lines.push(`| ${record.caseId} | ${modelLabel(record.model)} | ${record.status} | ${record.stages.filter(stage => stage.status !== "not_reached").length}/${record.stages.length} | ${record.aggregateExecution.modelCalls} | ${record.aggregateExecution.turns} | ${record.stopReason ?? "—"} |`);
   }
   lines.push("", "Stage snapshots are individually graded after candidate execution ends. A trajectory is one sample; stage checkpoints are not independent runs.", "");
   return lines.join("\n");

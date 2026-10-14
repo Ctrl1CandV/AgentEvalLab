@@ -1,4 +1,4 @@
-import type { ModelSelection } from "../types.js";
+import { modelOptions, type ModelSelection } from "../types.js";
 import { pairedDifference, passAtK, passHatK, wilsonInterval } from "./statistics.js";
 import type { TrialRecord } from "./types.js";
 import type { BatchSummary } from "./batch.js";
@@ -81,6 +81,15 @@ export interface ReportContext {
 
 const modelKey = (model: ModelSelection) => `${model.provider}:${model.id}`;
 
+/**
+ * Display label: the model with its thinking condition appended, as in supergpt:gpt-6-luna-medium. "default" means
+ * no thinking parameter was sent, so the provider's default applied. Temperature is listed in the report's model table.
+ */
+export function modelLabel(model: ModelSelection): string {
+  const { thinkingLevel } = modelOptions(model);
+  return `${modelKey(model)}-${thinkingLevel === "provider-default" ? "default" : thinkingLevel}`;
+}
+
 /** Median and maximum of known values; trials with unknown values are counted, never treated as zero. */
 function distribution(values: Array<number | null>) {
   const known = values.filter((value): value is number => value !== null).sort((left, right) => left - right);
@@ -124,6 +133,7 @@ export function taskResults(records: TrialRecord[], context: ReportContext) {
     }
     return {
       model: modelKey(first.model),
+      label: modelLabel(first.model),
       caseId: first.caseId,
       capability: context.capabilities[first.caseId] ?? "unspecified",
       trials: group.length,
@@ -164,7 +174,8 @@ export function pairedComparisons(rows: ReturnType<typeof taskResults>, models: 
           const b = rows.find(row => row.caseId === caseId && row.model === keys[right]);
           if (a?.passRate != null && b?.passRate != null) differences.push(a.passRate - b.passRate);
         }
-        comparisons.push({ capability, modelA: keys[left]!, modelB: keys[right]!, ...pairedDifference(differences) });
+        comparisons.push({ capability, modelA: keys[left]!, modelB: keys[right]!, labelA: modelLabel(models[left]!), labelB: modelLabel(models[right]!),
+          ...pairedDifference(differences) });
       }
     }
   }
@@ -188,7 +199,7 @@ export function buildReport(records: TrialRecord[], context: ReportContext) {
       candidate: summarizeInteractionClass(records, "candidate"),
       probe: summarizeInteractionClass(records, "probe"),
     },
-    byModel: context.models.map(model => ({ model, summary: summarize(records.filter(record => modelKey(record.model) === modelKey(model))) })),
+    byModel: context.models.map(model => ({ model, label: modelLabel(model), summary: summarize(records.filter(record => modelKey(record.model) === modelKey(model))) })),
     records,
   };
 }
@@ -202,28 +213,35 @@ export function markdownReport(report: ReturnType<typeof buildReport>): string {
     `Trials: ${summary.total} of ${report.plannedRuns} planned${report.completed ? "" : " (incomplete)"}; repetitions per model and case: ${report.repetitions}. ` +
     `Pending reviews: ${summary.pendingReviews}; verdicts awaiting human checks: ${summary.pendingHumanChecks}; unscored: ${summary.unscoredRuns}; ` +
     `resource-limit runs: ${summary.resourceLimitRuns}; evaluator errors: ${summary.evaluatorErrors}; infrastructure failures: ${summary.infrastructureFailures}. Unknown usage is not zero.`,
+    "", "## Models", "",
+    "Labels append the thinking level; \"default\" means no thinking parameter was sent and the provider's default applied.", "",
+    "| Label | Model | Thinking | Temperature |", "| --- | --- | --- | --- |",
+    ...report.byModel.map(({ model }) => {
+      const options = modelOptions(model);
+      return `| ${modelLabel(model)} | ${modelKey(model)} | ${options.thinkingLevel} | ${options.temperature ?? "provider default"} |`;
+    }),
     "", "## Results by task", "",
     `Pass rates count decided trials (passed or failed) only. Intervals are 95% Wilson intervals; pass@k and pass^k use k = ${report.repetitions}.`, "",
     "| Task | Capability | Model | Decided/trials | Pass rate | 95% interval | pass@k | pass^k | Malformed answers | Review pending |",
     "| --- | --- | --- | ---: | ---: | --- | ---: | ---: | ---: | ---: |",
-    ...report.byTask.map(row => `| ${row.caseId} | ${row.capability} | ${row.model} | ${row.decided}/${row.trials} | ${percent(row.passRate)} | ${interval(row.interval)} | ${percent(row.passAtK)} | ${percent(row.passHatK)} | ${row.malformedAnswers} | ${row.reviewPending} |`),
+    ...report.byTask.map(row => `| ${row.caseId} | ${row.capability} | ${row.label} | ${row.decided}/${row.trials} | ${percent(row.passRate)} | ${interval(row.interval)} | ${percent(row.passAtK)} | ${percent(row.passHatK)} | ${row.malformedAnswers} | ${row.reviewPending} |`),
     ""];
   const range = (value: { median: number | null; max: number | null; unknown: number }, scale = 1, digits = 0) =>
     value.median === null ? "unknown" : `${(value.median / scale).toFixed(digits)} / ${(value.max! / scale).toFixed(digits)}${value.unknown ? ` (+${value.unknown} unknown)` : ""}`;
   lines.push("## Usage by task", "", "Median / maximum per trial. Execution outcomes show how trials ended; budget stops such as MODEL_CALL_LIMIT or OUTPUT_TOKEN_LIMIT indicate a binding budget.", "",
     "| Task | Model | Model calls | Tool calls | Tokens (thousands) | Duration (s) | Execution outcomes |",
     "| --- | --- | --- | --- | --- | --- | --- |",
-    ...report.byTask.map(row => `| ${row.caseId} | ${row.model} | ${range(row.usage.modelCalls)} | ${range(row.usage.toolCalls)} | ${range(row.usage.totalTokens, 1000, 1)} | ${range(row.usage.durationMs, 1000, 1)} | ${Object.entries(row.executionOutcomes).map(([key, count]) => `${key} ${count}`).join(", ")} |`),
+    ...report.byTask.map(row => `| ${row.caseId} | ${row.label} | ${range(row.usage.modelCalls)} | ${range(row.usage.toolCalls)} | ${range(row.usage.totalTokens, 1000, 1)} | ${range(row.usage.durationMs, 1000, 1)} | ${Object.entries(row.executionOutcomes).map(([key, count]) => `${key} ${count}`).join(", ")} |`),
     "");
   if (report.pairedComparisons.length) {
     lines.push("## Paired model differences", "", "Mean per-task pass-rate difference (A − B) within one capability, with a 95% t interval over tasks; no interval with fewer than two tasks.", "",
       "| Capability | Model A | Model B | Tasks | Mean difference | 95% interval |", "| --- | --- | --- | ---: | ---: | --- |",
-      ...report.pairedComparisons.map(row => `| ${row.capability} | ${row.modelA} | ${row.modelB} | ${row.tasks} | ${percent(row.mean)} | ${interval(row.interval)} |`), "");
+      ...report.pairedComparisons.map(row => `| ${row.capability} | ${row.labelA} | ${row.labelB} | ${row.tasks} | ${percent(row.mean)} | ${interval(row.interval)} |`), "");
   }
   lines.push("## Trials", "",
     "| Case | Repetition | Model | Request class | Tool profile | Execution | Evaluation | Human review | Model requests | Tool attempts | Intercepted | Cleanup |",
     "| --- | ---: | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | --- |",
-    ...report.records.map(record => `| ${record.caseId} | ${record.repetition ?? 1} | ${modelKey(record.model)} | ${record.interactionClass ?? "candidate"} | ${record.toolProfile ?? "workspace-basic"} | ${record.execution.status}${record.execution.error ? ` (${record.execution.error})` : ""} | ${record.evaluation.status} | ${record.evaluation.review?.status ?? "—"} | ${record.execution.modelCalls} | ${record.execution.toolAttempts} | ${record.execution.toolIntercepts} | ${record.cleanup} |`),
+    ...report.records.map(record => `| ${record.caseId} | ${record.repetition ?? 1} | ${modelLabel(record.model)} | ${record.interactionClass ?? "candidate"} | ${record.toolProfile ?? "workspace-basic"} | ${record.execution.status}${record.execution.error ? ` (${record.execution.error})` : ""} | ${record.evaluation.status} | ${record.evaluation.review?.status ?? "—"} | ${record.execution.modelCalls} | ${record.execution.toolAttempts} | ${record.execution.toolIntercepts} | ${record.cleanup} |`),
     "");
   return lines.join("\n");
 }

@@ -47,7 +47,7 @@ const rsn001 = { A: { feasible: false, conflict_set: ["availability", "per_perso
 test("repetitions are interleaved by seed and reported per task with format failures and paired comparisons", async () => {
   const root = await mkdtemp(join(tmpdir(), "report-test-"));
   try {
-    const models = [{ provider: "deepseek", id: "deepseek-flash" }, { provider: "aliplan", id: "qwen3.8-flash" }];
+    const models = [{ provider: "deepseek", id: "deepseek-flash", thinkingLevel: "high" as const }, { provider: "aliplan", id: "qwen3.8-flash" }];
     const plan = await reasoningPlan(models, 2, 7);
     // deepseek answers rsn-001 correctly once and in a Markdown fence once; qwen always answers plainly.
     let deepseekRsn001 = 0;
@@ -73,6 +73,7 @@ test("repetitions are interleaved by seed and reported per task with format fail
 
     const deepseek = report.byTask.find(row => row.caseId === "rsn001" && row.model === "deepseek:deepseek-flash")!;
     assert.equal(deepseek.trials, 2);
+    assert.equal(deepseek.label, "deepseek:deepseek-flash-high", "labels append the thinking level");
     assert.equal(deepseek.passes, 1);
     assert.equal(deepseek.malformedAnswers, 1);
     assert.deepEqual(deepseek.executionOutcomes, { done: 2 });
@@ -86,7 +87,10 @@ test("repetitions are interleaved by seed and reported per task with format fail
     const comparison = report.pairedComparisons.find(row => row.capability === "reasoning")!;
     assert.equal(comparison.tasks, 2);
     assert.equal("successRate" in report.summary, false);
-    assert.match(await readFile(join(result.directory, "report.md"), "utf8"), /## Results by task/);
+    const markdown = await readFile(join(result.directory, "report.md"), "utf8");
+    assert.match(markdown, /## Results by task/);
+    assert.match(markdown, /\| aliplan:qwen3\.8-flash-off \| aliplan:qwen3\.8-flash \| off \| 0 \|/, "the model table lists each condition");
+    assert.equal(comparison.labelA, "deepseek:deepseek-flash-high");
 
     const merged = await mergeRunReports([result.directory, again.directory], root);
     assert.equal(merged.report.recordedRuns, 16);
