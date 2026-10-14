@@ -118,7 +118,10 @@ async function main(): Promise<void> {
   if (result.execution.status !== "done") process.exitCode = 1;
 }
 
-main().catch(() => {
-  console.error("HARNESS_FAILED: Check the model, input, environment credentials, and output directory permissions.");
+main().catch(error => {
+  // Report stable error codes such as PACKAGE_FILE_HASH_MISMATCH; free-form messages may carry provider or path details.
+  const message = error instanceof Error ? error.message : "";
+  const code = /^[A-Z][A-Z0-9_]*(?::[A-Za-z0-9_]+)?$/.test(message) ? message : "UNCLASSIFIED_ERROR";
+  console.error(`HARNESS_FAILED: ${code}. Check the model, input, environment credentials, and output directory permissions.`);
   process.exitCode = 1;
 });
