@@ -234,7 +234,7 @@ export function markdownReport(report: ReturnType<typeof buildReport>): string {
     ...report.byTask.map(row => `| ${row.caseId} | ${row.label} | ${range(row.usage.modelCalls)} | ${range(row.usage.toolCalls)} | ${range(row.usage.totalTokens, 1000, 1)} | ${range(row.usage.durationMs, 1000, 1)} | ${Object.entries(row.executionOutcomes).map(([key, count]) => `${key} ${count}`).join(", ")} |`),
     "");
   if (report.pairedComparisons.length) {
-    lines.push("## Paired model differences", "", "Mean per-task pass-rate difference (A − B) within one capability, with a 95% t interval over tasks; no interval with fewer than two tasks.", "",
+    lines.push("## Paired model differences", "", "Mean per-task pass-rate difference (A − B) within one capability, with a 95% t interval over tasks, clipped to ±100%; no interval with fewer than two tasks. With few tasks the interval is wide by construction.", "",
       "| Capability | Model A | Model B | Tasks | Mean difference | 95% interval |", "| --- | --- | --- | ---: | ---: | --- |",
       ...report.pairedComparisons.map(row => `| ${row.capability} | ${row.labelA} | ${row.labelB} | ${row.tasks} | ${percent(row.mean)} | ${interval(row.interval)} |`), "");
   }

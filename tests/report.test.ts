@@ -25,7 +25,7 @@ test("estimators match hand-computed values", () => {
   assert.equal(passHatK(1, 1, 2), null, "k larger than the number of trials has no estimate");
   assert.deepEqual(pairedDifference([0.5]), { tasks: 1, mean: 0.5, interval: null });
   const paired = pairedDifference([0.2, 0.4]);
-  near(paired.mean, 0.3); near(paired.interval![0], -0.9706); near(paired.interval![1], 1.5706);
+  near(paired.mean, 0.3); near(paired.interval![0], -0.9706); near(paired.interval![1], 1, "clipped to the range of a rate difference");
 });
 
 async function reasoningPlan(models: EvaluationPlan["models"], repetitions: number, seed?: number): Promise<EvaluationPlan> {

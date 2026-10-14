@@ -44,7 +44,8 @@ export function pairedDifference(differences: number[]): { tasks: number; mean: 
   if (n < 2) return { tasks: n, mean, interval: null };
   const variance = differences.reduce((sum, value) => sum + (value - mean) ** 2, 0) / (n - 1);
   const half = (tQuantiles[n - 2] ?? 1.959964) * Math.sqrt(variance / n);
-  return { tasks: n, mean, interval: [mean - half, mean + half] };
+  // A difference of two rates lies in [-1, 1]; clipping to that range keeps the interval's coverage.
+  return { tasks: n, mean, interval: [Math.max(-1, mean - half), Math.min(1, mean + half)] };
 }
 
 /** Deterministic 32-bit PRNG (mulberry32) for reproducible trial ordering. */
