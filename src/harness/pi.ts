@@ -74,6 +74,17 @@ function finiteNonNegative(value: unknown): number | null {
   return typeof value === "number" && Number.isFinite(value) && value >= 0 ? value : null;
 }
 
+function contentChars(content: unknown): RequestUsage["contentChars"] {
+  if (!Array.isArray(content)) return null;
+  const chars = { thinking: 0, text: 0, toolCall: 0 };
+  for (const block of content as Array<Record<string, unknown> | null>) {
+    if (block?.type === "thinking" && typeof block.thinking === "string") chars.thinking += block.thinking.length;
+    else if (block?.type === "text" && typeof block.text === "string") chars.text += block.text.length;
+    else if (block?.type === "toolCall") chars.toolCall += JSON.stringify(block.arguments ?? {}).length;
+  }
+  return chars;
+}
+
 /** Pi Agent runner with budget enforcement, event reporting, and usage metrics. */
 export function createPiRunner<Input extends RunInput = RunInput>(
   options: PiRunnerOptions<Input> = {},
@@ -160,8 +171,9 @@ export function createPiRunner<Input extends RunInput = RunInput>(
       }).catch(() => { /* events.check() below rethrows the sticky sink failure */ });
     };
 
-    const finishRequest = (usage: RequestUsage, started: number, message?: { usage?: unknown; stopReason?: string }) => {
+    const finishRequest = (usage: RequestUsage, started: number, message?: { usage?: unknown; stopReason?: string; content?: unknown }) => {
       usage.durationMs = performance.now() - started;
+      usage.contentChars = contentChars(message?.content);
       if (message?.stopReason === "error") usage.failureClass = classifyProviderFailure(message as AssistantMessage, model.contextWindow);
       if (!message || message.stopReason === "error" || message.stopReason === "aborted" || message.stopReason === "deferred") {
         usage.status = message?.stopReason === "error" ? "error" : "incomplete";
@@ -288,6 +300,7 @@ export function createPiRunner<Input extends RunInput = RunInput>(
           costUsd: null,
           attempts: 0,
           failureClass: null,
+          contentChars: null,
         };
         result.requestUsage.push(usage);
         const requestStarted = performance.now();

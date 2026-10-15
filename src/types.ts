@@ -59,6 +59,11 @@ export interface RequestUsage {
   attempts: number;
   /** Classified provider failure for an errored request (see src/harness/provider-errors.ts). */
   failureClass: import("./harness/provider-errors.js").ProviderFailure | null;
+  /**
+   * Characters in the response by content type (tool-call arguments as JSON); null without a response.
+   * Shows where output tokens went when a provider does not report reasoning tokens separately.
+   */
+  contentChars?: { thinking: number; text: number; toolCall: number } | null;
 }
 
 // Record execution outputs and process metrics.

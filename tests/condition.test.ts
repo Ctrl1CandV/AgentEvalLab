@@ -123,6 +123,20 @@ test("a response over the per-request output cap ends the run even when the endp
   assert.equal(result.error, "OUTPUT_TOKEN_LIMIT");
 });
 
+test("request usage records response characters by content type", async () => {
+  const parameters = Type.Object({ path: Type.String() });
+  const echo: AgentTool<typeof parameters> = { name: "echo", label: "Echo", description: "Echo.", parameters,
+    async execute() { return { content: [{ type: "text", text: "ok" }], details: {} }; } };
+  const runner = createPiRunner({ apiKey: "offline", createTools: () => [echo as unknown as AgentTool],
+    stream: scriptedStream([{ toolCall: { name: "echo", arguments: { path: "a.txt" } } }, { text: "final" }], () => {}) as never });
+  const result = await runner({ prompt: "go" }, parseModel("anthropic:claude-sonnet-4-6"), { ...defaultBudget }, async () => {});
+  assert.equal(result.status, "done", result.error ?? "");
+  assert.deepEqual(result.requestUsage.map(request => request.contentChars), [
+    { thinking: 0, text: 0, toolCall: JSON.stringify({ path: "a.txt" }).length },
+    { thinking: 0, text: "final".length, toolCall: 0 },
+  ]);
+});
+
 test("thinking conditions a model cannot run under are rejected", () => {
   const plan = (thinkingLevel: string) => ({
     name: "thinking", models: [{ provider: "supercn", id: "glm-5.3-flash", thinkingLevel }], budget: { ...defaultBudget }, trustedLocalExecution: false,
