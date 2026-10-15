@@ -73,4 +73,4 @@ A plan's `batch` block (`src/evaluation/batch.ts`) bounds a whole run.
 
 A trajectory is one trial with a shared workspace and agent session. Stage records retain cycle-level execution, public checks, snapshots, private grades, and active requirements. Stage budgets and the trajectory budget are enforced separately.
 
-Public checkers run against disposable copies, so they cannot alter the archived submission. Candidate timeout is a task outcome; grader timeout or protocol failure is an evaluator error.
+Public checkers run against disposable copies, so they cannot alter the archived submission. Candidate timeout is a task outcome; grader timeout or protocol failure is an evaluator error. A trial whose execution ended with a budget stop, a timeout, or another model-side failure (`failureKind` `budget` or `model`) is graded on its final state, and its verdict counts toward pass rates. Only infrastructure failures are skipped and excluded; `--resume` reruns them.

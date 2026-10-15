@@ -221,7 +221,7 @@ export function markdownReport(report: ReturnType<typeof buildReport>): string {
       return `| ${modelLabel(model)} | ${modelKey(model)} | ${options.thinkingLevel} | ${options.temperature ?? "provider default"} |`;
     }),
     "", "## Results by task", "",
-    `Pass rates count decided trials (passed or failed) only. Intervals are 95% Wilson intervals; pass@k and pass^k use k = ${report.repetitions}.`, "",
+    `Pass rates count decided trials (passed or failed). Budget stops and timeouts are graded and count; infrastructure failures are skipped and excluded. Intervals are 95% Wilson intervals; pass@k and pass^k use k = ${report.repetitions}.`, "",
     "| Task | Capability | Model | Decided/trials | Pass rate | 95% interval | pass@k | pass^k | Malformed answers | Review pending |",
     "| --- | --- | --- | ---: | ---: | --- | ---: | ---: | ---: | ---: |",
     ...report.byTask.map(row => `| ${row.caseId} | ${row.capability} | ${row.label} | ${row.decided}/${row.trials} | ${percent(row.passRate)} | ${interval(row.interval)} | ${percent(row.passAtK)} | ${percent(row.passHatK)} | ${row.malformedAnswers} | ${row.reviewPending} |`),

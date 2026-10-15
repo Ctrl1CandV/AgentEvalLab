@@ -50,6 +50,22 @@ test("runner failures do not prevent subsequent cases", async () => {
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 
+test("budget stops and timeouts are graded and count; infrastructure failures are skipped", async () => {
+  const root = await mkdtemp(join(tmpdir(), "eval-budget-"));
+  try {
+    const cases = ["budget-pass", "timeout-fail", "infrastructure"].map(id => ({ ...base.cases[0], id, input: { prompt: id } }));
+    const result = await runEvaluation({ ...base, cases }, { outputRoot: root, runner: async input => {
+      if (input.prompt.includes("budget-pass")) return { ...emptyExecution(), status: "budget_exceeded" as const, failureKind: "budget" as const, error: "MODEL_CALL_LIMIT", output: "token=public" };
+      if (input.prompt.includes("timeout-fail")) return { ...emptyExecution(), status: "timeout" as const, failureKind: "budget" as const, error: "TIMEOUT", output: "" };
+      return { ...emptyExecution(), status: "error" as const, failureKind: "infrastructure" as const, error: "PROVIDER_UNAVAILABLE" };
+    } });
+    const status = Object.fromEntries(result.report.records.map(record => [record.caseId, record.evaluation.status]));
+    assert.deepEqual(status, { "budget-pass": "passed", "timeout-fail": "failed", infrastructure: "skipped" },
+      "a budget stop delivers what it has; only infrastructure failures leave the pass-rate denominator");
+    assert.equal(result.report.summary.decidedTrials, 2);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});
+
 test("repository execution exports changes to independent evaluator and cleans the workspace", async () => {
   const root = await mkdtemp(join(tmpdir(), "eval-repo-"));
   const repository = join(root, "source");

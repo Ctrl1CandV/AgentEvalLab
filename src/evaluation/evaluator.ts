@@ -28,6 +28,15 @@ export const skippedEvaluation = (): EvaluationResult => ({
   status: "skipped", score: null, checks: [], error: "EXECUTION_INCOMPLETE",
 });
 
+/**
+ * Whether a trial's final state is graded. A budget stop, timeout or other model-side failure is a task outcome:
+ * the model did not deliver within the evaluated condition, so the final state is graded and the verdict counts,
+ * as in SWE-bench and Terminal-Bench. Only infrastructure failures are skipped; --resume reruns them.
+ */
+export function gradable(execution: ExecutionResult): boolean {
+  return execution.status === "done" || execution.failureKind === "budget" || execution.failureKind === "model";
+}
+
 export async function evaluate(
   item: EvaluationCase,
   execution: ExecutionResult,
@@ -36,7 +45,7 @@ export async function evaluate(
   artifactLimits?: ArtifactLimits,
   context?: EvaluationContext,
 ): Promise<EvaluationResult> {
-  if (execution.status !== "done") return skippedEvaluation();
+  if (!gradable(execution)) return skippedEvaluation();
   const spec = item.evaluator;
   if (spec.kind === "exact-match") {
     const passed = execution.output.trim() === spec.expected.trim();

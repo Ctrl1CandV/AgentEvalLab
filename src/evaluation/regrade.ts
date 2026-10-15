@@ -3,7 +3,7 @@ import { lstat, mkdir, mkdtemp, open, readFile, readdir, realpath, rename, rm, w
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import { tmpdir } from "node:os";
 import { defaultArtifactLimits, copyArtifacts } from "./artifacts.js";
-import { evaluate } from "./evaluator.js";
+import { evaluate, gradable } from "./evaluator.js";
 import { preflightPlan } from "./preflight.js";
 import { buildReport, markdownReport, type ReportContext } from "./report.js";
 import type { BatchSummary } from "./batch.js";
@@ -274,7 +274,7 @@ export async function regradeTrial(trialDirectory: string, plan: EvaluationPlan,
   validatePlan(plan);
   if (typeof reason !== "string" || !reason.trim() || reason.length > 500) throw new Error("REGRADE_REASON_REQUIRED");
   const { directory, record, manifest } = await loadTrial(trialDirectory);
-  if (record.execution.status !== "done") throw new Error("REGRADE_EXECUTION_INCOMPLETE");
+  if (!gradable(record.execution)) throw new Error("REGRADE_EXECUTION_INCOMPLETE");
   const { item, descriptor } = await trialTaskPackage(directory, record, plan);
 
   const limits = plan.artifactLimits ?? { ...defaultArtifactLimits };
