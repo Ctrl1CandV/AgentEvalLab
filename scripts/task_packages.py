@@ -4,15 +4,15 @@
 Mirrors the preflight rules in src/evaluation/manifest.ts:
 - every file listed in a manifest exists and matches its SHA-256 digest;
 - public/, private/ (excluding Python caches) and stages/ contain exactly the declared files;
-- example plans pin the current manifest digest.
+- example and experiment plans pin the current manifest digest.
 
 Usage:
   python3 scripts/task_packages.py check
   python3 scripts/task_packages.py rehash <package-dir> [<package-dir> ...]
 
 rehash rewrites digests for files already listed in a manifest, refreshes
-metadata.json "content_hashes_sha256_16" prefixes, then updates example-plan
-pins. It never adds or removes manifest entries; a file-set mismatch is an error
+metadata.json "content_hashes_sha256_16" prefixes, then updates example- and
+experiment-plan pins. It never adds or removes manifest entries; a file-set mismatch is an error
 that needs a deliberate manifest edit.
 """
 import argparse
@@ -97,7 +97,9 @@ def check_package(package):
 
 def example_pins():
     pins = []
-    for plan_path in sorted(glob.glob(os.path.join(ROOT, "examples", "*.eval.json"))):
+    plan_paths = glob.glob(os.path.join(ROOT, "examples", "*.eval.json")) + \
+        glob.glob(os.path.join(ROOT, "experiments", "**", "*.eval.json"), recursive=True)
+    for plan_path in sorted(plan_paths):
         plan = load_json(plan_path)
         for index, case in enumerate(plan.get("cases", [])):
             if isinstance(case.get("packagePath"), str):
@@ -124,7 +126,7 @@ def check(_args):
             print("FAILED %s case %d: stale manifest pin" % (relative(plan_path), index))
             failed = True
     if not failed:
-        print("All manifests, package file sets and example pins are consistent.")
+        print("All manifests, package file sets and plan pins are consistent.")
     return 1 if failed else 0
 
 
