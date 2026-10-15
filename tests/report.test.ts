@@ -100,6 +100,23 @@ test("repetitions are interleaved by seed and reported per task with format fail
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 
+test("usage by task separates uncached input, cache reads and output", async () => {
+  const root = await mkdtemp(join(tmpdir(), "report-tokens-"));
+  try {
+    const plan = await reasoningPlan([{ provider: "deepseek", id: "deepseek-flash" }], 1);
+    const request = { requestId: "r", interactionClass: "candidate" as const, status: "completed" as const, usageStatus: "reported" as const,
+      durationMs: 1, inputTokens: 10, outputTokens: 5, cacheReadTokens: 90, cacheWriteTokens: 0, reasoningTokens: null, totalTokens: 105,
+      costUsd: null, attempts: 1, failureClass: null };
+    const result = await runEvaluation(plan, { outputRoot: root, runner: async () => ({ ...emptyExecution(), output: "{}", modelCalls: 2, requestUsage: [request, request] }) });
+    const row = result.report.byTask[0]!;
+    assert.equal(row.usage.totalTokens.median, 210);
+    assert.equal(row.usage.inputTokens.median, 20);
+    assert.equal(row.usage.cacheReadTokens.median, 180);
+    assert.equal(row.usage.outputTokens.median, 10);
+    assert.match(await readFile(join(result.directory, "report.md"), "utf8"), /\| Total tokens \| Uncached input \| Cache reads \| Output \|/);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});
+
 test("repetitions and seeds are validated", async () => {
   const plan = await reasoningPlan([{ provider: "deepseek", id: "deepseek-flash" }], 1);
   validatePlan({ ...plan, repetitions: 50, seed: 0 });

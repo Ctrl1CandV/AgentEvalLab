@@ -98,11 +98,13 @@ function distribution(values: Array<number | null>) {
   return { median, max: known.length ? known[known.length - 1]! : null, unknown: values.length - known.length };
 }
 
-/** Total reported tokens of one trial, or null when any request lacks reported usage. */
-function trialTokens(record: TrialRecord): number | null {
+type TokenField = "totalTokens" | "inputTokens" | "cacheReadTokens" | "outputTokens";
+
+/** One trial's reported tokens of one kind, or null when any request lacks that figure. */
+function trialTokens(record: TrialRecord, field: TokenField = "totalTokens"): number | null {
   const requests = record.execution.requestUsage ?? [];
-  return requests.length > 0 && requests.every(request => request.totalTokens !== null)
-    ? requests.reduce((sum, request) => sum + request.totalTokens!, 0) : null;
+  return requests.length > 0 && requests.every(request => request[field] !== null)
+    ? requests.reduce((sum, request) => sum + request[field]!, 0) : null;
 }
 
 /** Per model and task: verdict counts, pass rates with Wilson intervals, pass@k/pass^k, and per-check rates. */
@@ -151,7 +153,11 @@ export function taskResults(records: TrialRecord[], context: ReportContext) {
       usage: {
         modelCalls: distribution(group.map(record => record.execution.modelCalls)),
         toolCalls: distribution(group.map(record => record.execution.toolCalls)),
-        totalTokens: distribution(group.map(trialTokens)),
+        totalTokens: distribution(group.map(record => trialTokens(record))),
+        // Cache reads are usually billed at a discount, so the parts are reported separately.
+        inputTokens: distribution(group.map(record => trialTokens(record, "inputTokens"))),
+        cacheReadTokens: distribution(group.map(record => trialTokens(record, "cacheReadTokens"))),
+        outputTokens: distribution(group.map(record => trialTokens(record, "outputTokens"))),
         durationMs: distribution(group.map(record => record.durationMs)),
       },
       checks,
@@ -228,10 +234,10 @@ export function markdownReport(report: ReturnType<typeof buildReport>): string {
     ""];
   const range = (value: { median: number | null; max: number | null; unknown: number }, scale = 1, digits = 0) =>
     value.median === null ? "unknown" : `${(value.median / scale).toFixed(digits)} / ${(value.max! / scale).toFixed(digits)}${value.unknown ? ` (+${value.unknown} unknown)` : ""}`;
-  lines.push("## Usage by task", "", "Median / maximum per trial. Execution outcomes show how trials ended; budget stops such as MODEL_CALL_LIMIT or OUTPUT_TOKEN_LIMIT indicate a binding budget.", "",
-    "| Task | Model | Model calls | Tool calls | Tokens (thousands) | Duration (s) | Execution outcomes |",
-    "| --- | --- | --- | --- | --- | --- | --- |",
-    ...report.byTask.map(row => `| ${row.caseId} | ${row.label} | ${range(row.usage.modelCalls)} | ${range(row.usage.toolCalls)} | ${range(row.usage.totalTokens, 1000, 1)} | ${range(row.usage.durationMs, 1000, 1)} | ${Object.entries(row.executionOutcomes).map(([key, count]) => `${key} ${count}`).join(", ")} |`),
+  lines.push("## Usage by task", "", "Median / maximum per trial. Token columns are in thousands; total = uncached input + cache reads + cache writes + output, and cache reads are usually billed at a discount. Execution outcomes show how trials ended; budget stops such as MODEL_CALL_LIMIT or OUTPUT_TOKEN_LIMIT indicate a binding budget.", "",
+    "| Task | Model | Model calls | Tool calls | Total tokens | Uncached input | Cache reads | Output | Duration (s) | Execution outcomes |",
+    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+    ...report.byTask.map(row => `| ${row.caseId} | ${row.label} | ${range(row.usage.modelCalls)} | ${range(row.usage.toolCalls)} | ${range(row.usage.totalTokens, 1000, 1)} | ${range(row.usage.inputTokens, 1000, 1)} | ${range(row.usage.cacheReadTokens, 1000, 1)} | ${range(row.usage.outputTokens, 1000, 1)} | ${range(row.usage.durationMs, 1000, 1)} | ${Object.entries(row.executionOutcomes).map(([key, count]) => `${key} ${count}`).join(", ")} |`),
     "");
   if (report.pairedComparisons.length) {
     lines.push("## Paired model differences", "", "Mean per-task pass-rate difference (A − B) within one capability, with a 95% t interval over tasks, clipped to ±100%; no interval with fewer than two tasks. With few tasks the interval is wide by construction.", "",
