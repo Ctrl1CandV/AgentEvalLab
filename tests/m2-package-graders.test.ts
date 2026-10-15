@@ -8,8 +8,9 @@ import { emptyExecution } from "../src/types.js";
 import { runEvaluation } from "../src/evaluation/run.js";
 import { importHumanReview } from "../src/evaluation/regrade.js";
 import { evaluationTools } from "../src/harness/profiles.js";
+import { createPiRunner } from "../src/harness/pi.js";
+import { scriptedToolStream, tool001Answer, tool001Calls } from "./support/tool001.js";
 import type { EvaluationPlan, WorkspaceInput } from "../src/evaluation/types.js";
-import type { EventSink } from "../src/types.js";
 
 const artifactLimits = {
   maxFiles: 1_000, maxFileBytes: 10_000_000, maxTrialBytes: 50_000_000,
@@ -150,49 +151,18 @@ test("tool-001 runs production tools through evidence trace, task grader and tri
     const packageRoot = resolve("task-library/calibration/tool-001-doc-evidence-recovery");
     const plan = await packagePlan("tool-001-doc-evidence-recovery", "tool001", "Answer all questions using tool evidence.", root,
       { profile: "doc-evidence", readOnly: true });
-    const answer = {
-      Q1: { version: "0.9.13", license: "BSD-3-Clause", evidence: "deps.lock.json" },
-      Q2: { status_code: 503, evidence: "logs/audit_large.jsonl" },
-      Q3: { timeout_ms: 3500, evidence: "config/prod/settings.toml" },
-      Q4a: { project: "meridian-cli", tool_needed: false },
-      Q4b: { action: "refuse", reason: "The snapshot is read-only." },
-    };
-    let sequence = 0;
-    const runner = async (input: WorkspaceInput, _model: typeof model, _budget: typeof defaultBudget, emit: EventSink) => {
-      const tools = evaluationTools(join(input.workspacePath, "public", "snapshot"), "doc-evidence");
-      const call = async (name: string, args: Record<string, unknown>) => {
-        const tool = tools.find(candidate => candidate.name === name);
-        assert.ok(tool);
-        const output = await (tool.execute as (id: string, args: unknown) => Promise<{ content: Array<{ type: string; text?: string }> }>)(`tool-${sequence + 1}`, args);
-        const text = output.content.find(block => block.type === "text")?.text ?? "";
-        await emit("tool_trace", { toolCalls: ++sequence }, {
-          schemaVersion: 1, sequence, trialId: "offline-tool001", interactionClass: "candidate",
-          eventType: "execution_returned", toolCallId: `tool-${sequence}`, toolName: name, toolVersion: "doc-evidence@1",
-          args, status: "success", result: { content: [{ type: "text", text }], details: null },
-        });
-        return JSON.parse(text) as Record<string, unknown>;
-      };
-      let offset = 0;
-      let truncated = true;
-      while (truncated) {
-        const page = await call("read", { path: "deps.lock.json", offset, limit: 400 });
-        offset = Number(page.next_offset);
-        truncated = Boolean(page.truncated);
-      }
-      await call("search", { pattern: "req-0499", glob: "*.jsonl" });
-      await call("read", { path: "prior_attempt.log", offset: 0, limit: 400 });
-      await call("list", { path: "config" });
-      await call("list", { path: "config/prod" });
-      await call("read", { path: "config/prod/settings.toml", offset: 0, limit: 400 });
-      return { ...emptyExecution(), output: JSON.stringify(answer), modelCalls: 1, toolCalls: sequence, toolAttempts: sequence, toolExecutions: sequence };
-    };
+    // The Pi runner records the trace, so the grader sees the harness's real event shape.
+    const calls = await tool001Calls(join(packageRoot, "public", "snapshot"));
+    plan.budget = { ...plan.budget, maxTurns: calls.length + 1, maxModelCalls: calls.length + 1, maxToolCalls: calls.length };
+    const runner = createPiRunner<WorkspaceInput>({ apiKey: "offline", stream: scriptedToolStream(calls, JSON.stringify(tool001Answer)) as never,
+      toolProfile: "doc-evidence", createTools: input => evaluationTools(join(input.workspacePath, "public", "snapshot"), "doc-evidence") });
     const result = await runEvaluation(plan, { outputRoot: join(root, "runs"), runner });
     const record = result.report.records[0]!;
     assert.equal(record.evaluation.status, "passed", JSON.stringify(record.evaluation));
     assert.equal(record.toolProfile, "doc-evidence");
-    assert.equal(record.execution.toolExecutions, 7);
+    assert.equal(record.execution.toolExecutions, calls.length);
     assert.equal(record.toolTrace?.truncated, false);
-    const trace = await readFile(join(result.directory, record.id, "tool-trace.jsonl"), "utf8");
-    assert.equal(trace.trim().split(/\r?\n/).length, 7);
+    const trace = (await readFile(join(result.directory, record.id, "tool-trace.jsonl"), "utf8")).trim().split(/\r?\n/).map(line => JSON.parse(line) as { eventType: string });
+    assert.equal(trace.filter(event => event.eventType === "execution_returned").length, calls.length);
   } finally { await rm(root, { recursive: true, force: true }); }
 });

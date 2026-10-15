@@ -5,7 +5,10 @@ import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import type { AgentTool } from "@earendil-works/pi-agent-core";
 import { evaluationTools } from "../src/harness/profiles.js";
+import { createPiRunner } from "../src/harness/pi.js";
+import { defaultBudget, parseModel } from "../src/config.js";
 import { command } from "../src/command.js";
+import { scriptedToolStream, tool001Answer, tool001Calls } from "./support/tool001.js";
 
 function result(tool: AgentTool, id: string, args: unknown) {
   const execute = tool.execute as (toolCallId: string, input: unknown) => Promise<{ content: Array<{ type: string; text?: string }> }>;
@@ -141,47 +144,26 @@ test("doc-evidence adapter resolves tool-001 answers from the fixture and return
   assert.match(String(setting.content), /timeout_ms\s*=\s*3500/);
 });
 
-test("production doc-evidence bridge returns trace evidence accepted by the task grader", async () => {
+test("the tool-001 grader accepts the trace the Pi runner actually records", async () => {
+  // Drive the production doc-evidence tools through the Pi runner and grade the trace it emits. A hand-built
+  // trace once hid that execution_returned events carry no args (args are recorded on execution_started).
   const packageRoot = resolve("task-library/calibration/tool-001-doc-evidence-recovery");
   const snapshot = join(packageRoot, "public", "snapshot");
-  const tools = evaluationTools(snapshot, "doc-evidence");
-  const byName = (name: string) => {
-    const found = tools.find(tool => tool.name === name);
-    assert.ok(found, `expected tool ${name}`);
-    return found;
-  };
   const root = await mkdtemp(join(tmpdir(), "tool-001-grader-bridge-"));
   try {
     const evidenceRoot = join(root, "evidence");
     await mkdir(evidenceRoot);
-    const answer = {
-      Q1: { version: "0.9.13", license: "BSD-3-Clause", evidence: "deps.lock.json" },
-      Q2: { status_code: 503, evidence: "logs/audit_large.jsonl" },
-      Q3: { timeout_ms: 3500, evidence: "config/prod/settings.toml" },
-      Q4a: { project: "meridian-cli", tool_needed: false },
-      Q4b: { action: "refuse", reason: "The snapshot is read-only." },
-    };
-    await writeFile(join(evidenceRoot, "candidate-answer.txt"), JSON.stringify(answer));
+    const calls = await tool001Calls(snapshot);
+    const stream = scriptedToolStream(calls, JSON.stringify(tool001Answer));
     const trace: Array<Record<string, unknown>> = [];
-    let sequence = 0;
-    const call = async (name: string, args: Record<string, unknown>) => {
-      const output = await result(byName(name), `bridge-${sequence + 1}`, args);
-      trace.push({ schemaVersion: 1, sequence: ++sequence, eventType: "execution_returned", toolName: name, args,
-        status: "success", result: { content: [{ type: "text", text: JSON.stringify(output) }] } });
-      return output;
-    };
-    let offset = 0;
-    let truncated = true;
-    while (truncated) {
-      const page = await call("read", { path: "deps.lock.json", offset, limit: 400 });
-      truncated = Boolean(page.truncated);
-      offset = Number(page.next_offset);
-    }
-    await call("search", { pattern: "req-0499", glob: "*.jsonl" });
-    await call("read", { path: "prior_attempt.log", offset: 0, limit: 400 });
-    await call("list", { path: "config" });
-    await call("list", { path: "config/prod" });
-    await call("read", { path: "config/prod/settings.toml", offset: 0, limit: 400 });
+    const runner = createPiRunner({ apiKey: "offline", stream: stream as never, toolProfile: "doc-evidence", createTools: () => evaluationTools(snapshot, "doc-evidence") });
+    const execution = await runner({ prompt: "Answer tool-001." }, parseModel("anthropic:claude-sonnet-4-6"),
+      { ...defaultBudget, maxTurns: calls.length + 1, maxModelCalls: calls.length + 1, maxToolCalls: calls.length, maxOutputChars: 100_000 },
+      async (type, _counts, details) => { if (type === "tool_trace" && details) trace.push(details); });
+    assert.equal(execution.status, "done", execution.error ?? "");
+    assert.equal(execution.toolCalls, calls.length);
+    assert.ok(trace.some(event => event.eventType === "execution_returned" && !("args" in event)), "the runner records args on execution_started only");
+    await writeFile(join(evidenceRoot, "candidate-answer.txt"), execution.output);
     await writeFile(join(evidenceRoot, "tool-trace.jsonl"), trace.map(event => JSON.stringify(event)).join("\n") + "\n");
     const requestPath = join(root, "request.json");
     const resultPath = join(root, "result.json");

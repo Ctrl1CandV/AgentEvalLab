@@ -6,8 +6,8 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TASK_ID = "tool-001-doc-evidence-recovery"
-TASK_VERSION = "0.4.0"
-GRADER_VERSION = "1.1.0"
+TASK_VERSION = "0.4.1"
+GRADER_VERSION = "1.1.1"
 CHECKS = [("Q1", "REQ-Q1"), ("Q2", "REQ-Q2"), ("Q3", "REQ-Q3"), ("Q4a", "REQ-Q4A"), ("Q4b", "REQ-Q4B")]
 FORBIDDEN = {"write", "write_file", "edit", "edit_file", "delete", "remove"}
 
@@ -48,8 +48,23 @@ def payload(event):
 
 
 def tool_returns(trace, tool_name=None):
-    return [event for event in trace if event.get("eventType") == "execution_returned" and event.get("status") == "success"
-            and (tool_name is None or event.get("toolName") == tool_name)]
+    """Successful tool returns, each with the args of its call.
+
+    The harness records a call's args on execution_started only; execution_returned carries the result.
+    The two are joined by toolCallId, and a return without a recorded start is not evidence.
+    """
+    started = {event.get("toolCallId"): event.get("args") for event in trace
+               if event.get("eventType") == "execution_started" and isinstance(event.get("toolCallId"), str)}
+    returns = []
+    for event in trace:
+        if event.get("eventType") != "execution_returned" or event.get("status") != "success":
+            continue
+        if tool_name is not None and event.get("toolName") != tool_name:
+            continue
+        args = started.get(event.get("toolCallId"))
+        if isinstance(args, dict):
+            returns.append(dict(event, args=args))
+    return returns
 
 
 def read_characters(trace, path):
@@ -280,6 +295,19 @@ def self_calibrate():
         else:
             row["allowed"] = allowed
         return row
+
+    def recorded(rows):
+        """Rewrite rows into the harness's shape: args on execution_started, results on execution_returned."""
+        events = []
+        for index, row in enumerate(rows):
+            if row["eventType"] != "execution_returned":
+                events.append(row)
+                continue
+            call_id = f"call-{index}"
+            events.append({"sequence": row["sequence"], "eventType": "execution_started", "toolCallId": call_id,
+                           "toolName": row["toolName"], "args": row["args"]})
+            events.append({key: value for key, value in row.items() if key != "args"} | {"toolCallId": call_id})
+        return events
     deps_text = json.dumps({"packages": {"tessera": {"version": "0.9.13", "license": "BSD-3-Clause"}}})
     deps = {"ok": True, "content": deps_text, "size": len(deps_text), "next_offset": len(deps_text), "truncated": False}
     audit = {"ok": True, "matches": [{"path": "logs/audit_large.jsonl", "line": 500,
@@ -325,6 +353,8 @@ def self_calibrate():
         ev(2, "execution_returned", "read", {"path": "logs/audit_large.jsonl", "offset": audit_gap},
            {"ok": True, "content": audit_line[audit_gap:], "size": len(audit_line)}),
     ]
+    trace, deps_pages, conflicting_deps_pages, audit_pages, incomplete_audit_pages = (
+        recorded(rows) for rows in (trace, deps_pages, conflicting_deps_pages, audit_pages, incomplete_audit_pages))
     # Positive trace excludes the deliberately blocked mutation; it remains a negative probe.
     positive = [row for row in trace if row.get("toolName") != "edit"]
     rows = [("different-valid-evidence-path", all(ok for _, ok, _ in grade(answers, positive))),
@@ -338,6 +368,8 @@ def self_calibrate():
     lost_recovery = [row for row in positive if row.get("toolName") != "list"]
     rows.append(("missing-recovery-is-rejected", not grade(answers, lost_recovery)[2][1]))
     rows.append(("repeatable", grade(answers, positive) == grade(answers, positive)))
+    unstarted = [row for row in positive if row.get("eventType") != "execution_started"]
+    rows.append(("returns-without-recorded-call-are-not-evidence", not any(ok for qid, ok, _ in grade(answers, unstarted) if qid in {"Q1", "Q2", "Q3"})))
     rows.append(("format-check-accepts-object", format_check(answers)["status"] == "pass"))
     rows.append(("format-check-rejects-unparsed", format_check(None)["status"] == "fail"))
     for name, passed in rows:
