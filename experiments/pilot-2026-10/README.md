@@ -2,6 +2,8 @@
 
 The first live run (PLAN-004 phase 4). Its purpose is to calibrate per-task budgets and confirm that the harness, providers, graders, and reports behave as expected under real model traffic. It is not a model comparison: three trials per task cannot rank models.
 
+**Status (2026-10-15):** reasoning and tool batches complete; the engineering batch stopped after one trial per model at the token budget. See [the pilot results](../../docs/reviews/2026-10-15-pilot-results.md).
+
 ## Conditions
 
 | Model | Report label | Endpoint | Thinking | Temperature | Notes |
