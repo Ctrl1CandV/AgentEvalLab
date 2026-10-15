@@ -2,7 +2,7 @@
 
 The first live run (PLAN-004 phase 4). Its purpose is to calibrate per-task budgets and confirm that the harness, providers, graders, and reports behave as expected under real model traffic. It is not a model comparison: three trials per task cannot rank models.
 
-**Status (2026-10-15):** the first round with glm-5.3-flash is recorded in [the pilot results](../../docs/reviews/2026-10-15-pilot-results.md). Its engineering batch stopped after one trial per model at the token budget. The pilot now continues with glm-5.3 in place of glm-5.3-flash (user decision), under per-trial and per-model token caps.
+**Status (2026-10-15):** both rounds are recorded in [the pilot results](../../docs/reviews/2026-10-15-pilot-results.md). Round 1 used glm-5.3-flash. Round 2 used glm-5.3 at `max` under per-trial and per-model token caps (all batches complete; glm-5.3's third engineering trial did not fit its token ceiling).
 
 ## Conditions
 
