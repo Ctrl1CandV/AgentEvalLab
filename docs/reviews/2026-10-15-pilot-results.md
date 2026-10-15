@@ -122,3 +122,14 @@ Budgets stay identical for all models, because they are part of the evaluated co
 3. **Format diagnostic.** Should reports also show, for answer-graded tasks, whether a malformed answer's content would have passed? This is like Aider's well-formed rate: strict scores stay official, and format failures become distinguishable from wrong answers. It was 3 of 3 glm-5.3 rsn-002 trials in round 2.
 4. **Per-call output cap (32,768).** glm-5.3-max's largest responses reached 28.7K, close to the cap; glm-5.3-flash once hit it.
 5. **eng-005 cost.** At round-2 rates, a five-stage trajectory would cost roughly 0.15–0.3M tokens for luna and 5M or more for glm-5.3-max. This is an extrapolation, not a measurement.
+
+## Follow-up (2026-10-15)
+
+The user reviewed these results and set the principles of [PLAN-005](../plans/PLAN-005-discriminating-attributable-evaluation.md). It replaces the decision list above:
+
+- A recoverable format violation such as glm-5.3's fenced rsn-002 answers is deducted, not failed.
+- Each task gets one generous budget, the same for every model and stated to the model; it is not raised for glm's overthinking.
+- Thinking runs at a middle level: glm-5.3 at `high`, luna at `medium`.
+- The tasks must become harder.
+
+An offline replay of the eng-001 trials, recorded in PLAN-005, shows that glm reached a correct solution within 300K tokens in all three replayed trials.

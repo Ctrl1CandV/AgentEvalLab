@@ -20,8 +20,8 @@ The 2026-10 pilot ran in two rounds on 2026-10-14 and 2026-10-15: luna-medium wi
 
 ## Next steps
 
-1. Get the user's decisions listed in the [pilot results](reviews/2026-10-15-pilot-results.md#decisions-for-the-user): grader changes F2 and F7, glm-5.3's level and the eng-001 trial cap, a format diagnostic, and the per-call output cap.
-2. Set per-task budgets and freeze the first task set, then grow the task set (instance generators, F10): with four tasks, comparisons cannot separate models.
+1. Follow [PLAN-005](plans/PLAN-005-discriminating-attributable-evaluation.md). After the pilot the user set its principles: deductions must be attributable to the model; a recoverable format slip is deducted, not failed; there is one generous budget per task, stated to the model; thinking runs at a middle level; and the tasks must become harder. Its five open decisions come first.
+2. The pilot's own decision list is superseded by PLAN-005.
 3. Rebuild the eng-004 baseline as a project-owned bundle; the previously pinned commit is unavailable.
 4. Limit conclusions to the observed task versions, models, prompts, tools, and budgets.
 
