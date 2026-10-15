@@ -2,28 +2,28 @@
 
 The first live run (PLAN-004 phase 4). Its purpose is to calibrate per-task budgets and confirm that the harness, providers, graders, and reports behave as expected under real model traffic. It is not a model comparison: three trials per task cannot rank models.
 
-**Status (2026-10-15):** reasoning and tool batches complete; the engineering batch stopped after one trial per model at the token budget. See [the pilot results](../../docs/reviews/2026-10-15-pilot-results.md).
+**Status (2026-10-15):** the first round with glm-5.3-flash is recorded in [the pilot results](../../docs/reviews/2026-10-15-pilot-results.md). Its engineering batch stopped after one trial per model at the token budget. The pilot now continues with glm-5.3 in place of glm-5.3-flash (user decision), under per-trial and per-model token caps.
 
 ## Conditions
 
 | Model | Report label | Endpoint | Thinking | Temperature | Notes |
 | --- | --- | --- | --- | --- | --- |
 | `supergpt:gpt-6-luna` | `supergpt:gpt-6-luna-medium` | SuperGPT relay, OpenAI protocol | `medium` (sent explicitly; also the model's default) | 0 | The relay ignores output-token limits; the harness enforces the cap from reported usage. |
-| `supercn:glm-5.3-flash` | `supercn:glm-5.3-flash-default` | SuperCN relay, Anthropic protocol | `provider-default` (thinking always on) | 0 | Thinking cannot be disabled and has no level to set. The relay does not report reasoning tokens separately. |
+| `supercn:glm-5.3` | `supercn:glm-5.3-max` | SuperCN relay, Anthropic protocol | `max` (sent explicitly as adaptive thinking with effort `max`; also the model's default) | 0 | Thinking is always on; effort is `low`, `high` or `max`. The relay does not report reasoning tokens; reports count thinking characters instead. |
 
-Thinking levels are not forced to match: each provider controls thinking differently, and GLM-5.3-Flash has no level to set. Each model runs at a stated level instead, and reports append that level to the model label, as public leaderboards do (user decision, 2026-10-14). Temperature is 0 for both. Both conditions are recorded in `experiment.json`. Both models passed the live provider checks of 2026-10-14, including luna reasoning at `medium` with tools attached; see `docs/reviews/2026-10-14-provider-check.md`.
+Thinking levels are not forced to match: each provider controls thinking differently. Each model runs at its vendor's default level, sent explicitly so the label states what the provider received, and reports append that level to the model label, as public leaderboards do (user decisions, 2026-10-14 and 2026-10-15). Temperature is 0 for both. Both conditions are recorded in `experiment.json`. Both models passed live provider checks, including reasoning with tools attached; see `docs/reviews/2026-10-14-provider-check.md`.
 
 ## Plans
 
 Every plan uses 3 repetitions, 2 provider retries per request, a stop after 3 consecutive infrastructure failures, and candidate sandboxing.
 
-| Plan | Cases | Timeout | Turns / model calls | Tool calls | Output tokens per call | Batch token ceiling |
-| --- | --- | --- | --- | --- | --- | --- |
-| `reasoning.eval.json` | rsn001-schedule, rsn002-derivation (read-only) | 10 min | 8 / 8 | 8 | 32,768 | 500,000 |
-| `tool.eval.json` | tool001-evidence (doc-evidence, read-only) | 15 min | 30 / 30 | 60 | 32,768 | 2,000,000 |
-| `engineering.eval.json` | eng001-import-validator | 30 min | 40 / 40 | 60 | 32,768 | 3,500,000 |
+| Plan | Cases | Timeout | Turns / model calls | Tool calls | Output tokens per call | Tokens per trial | Tokens per model |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `reasoning.eval.json` | rsn001-schedule, rsn002-derivation (read-only) | 10 min | 8 / 8 | 8 | 32,768 | 100,000 | 400,000 |
+| `tool.eval.json` | tool001-evidence (doc-evidence, read-only) | 15 min | 30 / 30 | 60 | 32,768 | 100,000 | 300,000 |
+| `engineering.eval.json` | eng001-import-validator | 30 min | 40 / 40 | 60 | 32,768 | 1,000,000 | 2,300,000 |
 
-The ceilings total 6,000,000 tokens, about 3,000,000 per model. A ceiling stops scheduling new trials; it does not cut off a running trial. The budgets are deliberately generous, because the pilot measures what tasks need.
+Tokens are fixed units: every reported token counts once, cached input included, and no prices are used. The per-model ceilings total 3,000,000 tokens per model, the budget the user approved. A trial starts only when its model's ceiling has room for a whole trial, so a ceiling is exceeded by at most one request, and one model reaching its ceiling does not stop the other. A trial over its per-trial cap ends with `TRIAL_TOKEN_LIMIT`, a budget stop that is graded. The other budgets stay generous, because the pilot measures what tasks need; the per-trial caps are far above what luna and glm-5.3-flash needed on reasoning and tool tasks, but glm-5.3-flash's one complete engineering trial (2.7M tokens) would have hit the engineering cap.
 
 The pilot excludes eng-005, whose five-stage trajectory needs its own cost estimate from these results, and eng-004, whose baseline must be rebuilt first.
 

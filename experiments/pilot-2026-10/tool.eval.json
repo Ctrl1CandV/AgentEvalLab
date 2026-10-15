@@ -10,8 +10,8 @@
     },
     {
       "provider": "supercn",
-      "id": "glm-5.3-flash",
-      "thinkingLevel": "provider-default",
+      "id": "glm-5.3",
+      "thinkingLevel": "max",
       "temperature": 0
     }
   ],
@@ -23,7 +23,8 @@
     "maxToolCalls": 60,
     "maxOutputChars": 32768,
     "maxOutputTokensPerCall": 32768,
-    "maxToolResultChars": 100000
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 100000
   },
   "artifactLimits": {
     "maxFiles": 1000,
@@ -35,7 +36,7 @@
   "batch": {
     "maxRetries": 2,
     "maxConsecutiveInfrastructureFailures": 3,
-    "maxTotalTokens": 2000000
+    "maxTotalTokensPerModel": 300000
   },
   "trustedLocalExecution": true,
   "cases": [
