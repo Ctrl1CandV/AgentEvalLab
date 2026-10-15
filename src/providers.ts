@@ -39,7 +39,13 @@ export interface CustomModelConfig {
   thinking: ThinkingControl;
   /** Provider values Pi sends per thinking level, for example { off: "none" } for OpenAI reasoning_effort. */
   thinkingLevelMap?: ThinkingLevelMap;
-  /** Without prices, request cost stays unknown (null), never zero. */
+  /** Anthropic-protocol models whose effort is sent as adaptive thinking with output_config.effort. */
+  adaptiveThinking?: boolean;
+  /**
+   * Without prices, request cost stays unknown (null), never zero. Evaluations measure usage in fixed token units
+   * and deliberately declare no prices (user decision, 2026-10-15): prices are set outside the model and would
+   * bring the provider's pricing into the comparison.
+   */
   prices: ModelPrices | null;
   /** False until the values have been checked against the provider (PLAN-004 WP7). */
   verified: boolean;
@@ -70,6 +76,14 @@ const gpt6Luna: CustomModelConfig = { id: "gpt-6-luna", contextWindow: 1_050_000
 // Checked 2026-10-14 against https://docs.bigmodel.cn/cn/guide/models/vlm/glm-5.3-flash: 1M context, 128K
 // maximum output, and thinking that cannot be disabled (thinking.type only "enabled"). Declared without
 // reasoning so Pi sends no thinking parameter; plans must say "provider-default". Served through the SuperCN relay.
+// Checked 2026-10-15 against https://docs.bigmodel.cn/cn/guide/models/text/glm-5.3: 1M context, 128K maximum
+// output, thinking always on, and reasoning_effort low, high or max with default "max". Through the SuperCN relay's
+// Anthropic endpoint the effort is sent as adaptive thinking with output_config.effort; a probe on 2026-10-15 showed
+// the relay applies it. GLM has no off, minimal, medium or xhigh level, so those are declared null and rejected.
+const glm53: CustomModelConfig = { id: "glm-5.3", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: true, thinking: "always-on",
+  thinkingLevelMap: { off: null, minimal: null, low: "low", medium: null, high: "high", xhigh: null, max: "max" }, adaptiveThinking: true,
+  prices: null, verified: true };
+
 const glm53Flash: CustomModelConfig = { id: "glm-5.3-flash", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: false, thinking: "always-on",
   prices: null, verified: true };
 
@@ -121,7 +135,7 @@ export const providerConfigs: readonly ProviderConfig[] = [
   {
     id: "supercn", name: "SuperCN", api: "anthropic-messages",
     baseUrl: "https://api.airy.work", apiKeyEnv: "SUPERCN_APIKEY",
-    models: [unverified("glm-5.3"), glm53Flash, unverified("kimi-k3"), unverified("kimi-k2.8-preview"), unverified("MiniMax-M3.1-Flash-Preview")],
+    models: [glm53, glm53Flash, unverified("kimi-k3"), unverified("kimi-k2.8-preview"), unverified("MiniMax-M3.1-Flash-Preview")],
   },
   {
     id: "supercn-openai", name: "SuperCN (OpenAI)", api: "openai-completions",
@@ -161,6 +175,7 @@ function buildModel(config: ProviderConfig, entry: CustomModelConfig): Model<Cus
     baseUrl: config.baseUrl,
     reasoning: entry.reasoning,
     ...(entry.thinkingLevelMap ? { thinkingLevelMap: entry.thinkingLevelMap } : {}),
+    ...(entry.adaptiveThinking ? { compat: { forceAdaptiveThinking: true } as Model<CustomApi>["compat"] } : {}),
     input: ["text"],
     // Zero prices make Pi report zero cost, which the runner records as unknown rather than free.
     cost: entry.prices ?? { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
