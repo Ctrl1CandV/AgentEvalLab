@@ -42,7 +42,7 @@
     {
       "id": "tool001-evidence",
       "packagePath": "task-library/calibration/tool-001-doc-evidence-recovery",
-      "packageManifestSha256": "6f3cc50f88635aed5bb2705054f06a2f0f08f9f09913afc6af8f1fb55bb78033",
+      "packageManifestSha256": "fa2f9291d8704fa50de952157b1d5f27d7280333f97e8c43e7fb65d37db01531",
       "input": {
         "prompt": "Answer all questions using only evidence returned by the read-only tools. Reply with only the required JSON object as your final message."
       },

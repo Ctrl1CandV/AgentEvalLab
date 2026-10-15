@@ -24,3 +24,10 @@ The grader (now 1.1.0) adds a non-critical `answer-format` check under the new r
 The first live pilot exposed a grader defect: the six trials gave correct, cited answers to Q1 and Q3, yet both checks failed every time. The harness records a tool call's arguments on its `execution_started` trace event, while `execution_returned` carries only the result. The grader read the path from `args` on `execution_returned`, found none, and so could never credit reading `deps.lock.json` (Q1), `prior_attempt.log`, or `config/prod/settings.toml` (Q3). Q2 passed only because a search result names its own file. Self-calibration and the TypeScript bridge test had built traces by hand with `args` on the returned event, so neither saw the real format.
 
 The grader (now 1.1.1) joins each successful return to the `execution_started` event with the same `toolCallId`, and a return without a recorded start is not evidence. Self-calibration now generates traces in the harness's shape and adds the probe `returns-without-recorded-call-are-not-evidence`. The bridge test drives the production doc-evidence tools through the Pi runner and grades the trace the runner emits. See `logs/self-calibration-0.4.1.log` (12/12).
+
+
+## Version 0.4.2 (2026-10-15)
+
+Grader 1.1.2 widens what counts as Q3 production evidence. Under 1.1.1, the value had to come from a `read` of `config/prod/settings.toml`. A pilot trial instead searched `config/*` for `timeout_ms` after reading the prior failure, and the search returned `config/prod/settings.toml` line 2, `timeout_ms = 3500`, from the actual file. The instruction accepts "any valid recovery path" with "no exact call sequence", and Q2 already accepts search evidence. A search match on the production file that shows the value, after the prior failure was read, now counts as evidence in the same way as a read. A match on any other file does not. Self-calibration adds a probe for each case (14/14); see `logs/self-calibration-0.4.2.log`.
+
+Version 0.4.1 was never used in a run.

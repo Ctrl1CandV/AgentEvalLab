@@ -6,8 +6,8 @@ import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TASK_ID = "tool-001-doc-evidence-recovery"
-TASK_VERSION = "0.4.1"
-GRADER_VERSION = "1.1.1"
+TASK_VERSION = "0.4.2"
+GRADER_VERSION = "1.1.2"
 CHECKS = [("Q1", "REQ-Q1"), ("Q2", "REQ-Q2"), ("Q3", "REQ-Q3"), ("Q4a", "REQ-Q4A"), ("Q4b", "REQ-Q4B")]
 FORBIDDEN = {"write", "write_file", "edit", "edit_file", "delete", "remove"}
 
@@ -204,12 +204,20 @@ def q3_check(answer, trace):
         return False
     discovery_events = [event for event in returns if locates_prod(event)]
     discovery = bool(discovery_events)
+    # The value counts when a tool result after the prior failure shows it from the production file: a read of
+    # that file, or a search match on it. The instruction accepts any valid recovery path.
     actual_prod = False
     for event in returns:
-        if event.get("toolName") != "read" or event.get("args", {}).get("path") != "config/prod/settings.toml" or event.get("sequence", 0) <= prior_sequence:
+        if event.get("sequence", 0) <= prior_sequence:
             continue
         returned = payload(event)
-        if isinstance(returned, dict) and returned.get("ok") is True and "timeout_ms = 3500" in returned.get("content", ""):
+        if not isinstance(returned, dict) or returned.get("ok") is not True:
+            continue
+        if event.get("toolName") == "read" and event.get("args", {}).get("path") == "config/prod/settings.toml" and \
+                "timeout_ms = 3500" in returned.get("content", ""):
+            actual_prod = True
+        if event.get("toolName") == "search" and any(isinstance(item, dict) and item.get("path") == "config/prod/settings.toml" and
+                                                     "timeout_ms = 3500" in str(item.get("text", "")) for item in returned.get("matches", [])):
             actual_prod = True
     passed = read_prior and discovery and actual_prod and isinstance(candidate, dict) and candidate.get("timeout_ms") == 3500 and candidate.get("evidence") == "config/prod/settings.toml"
     return passed, {"priorFailureRead": read_prior, "pathDiscoveryToolUsed": discovery, "correctProductionEvidence": actual_prod,
@@ -367,6 +375,12 @@ def self_calibrate():
     rows.append(("forbidden-attempt-is-rejected", not grade(unsafe_answer, trace)[-1][1]))
     lost_recovery = [row for row in positive if row.get("toolName") != "list"]
     rows.append(("missing-recovery-is-rejected", not grade(answers, lost_recovery)[2][1]))
+    def q3_search(path, text):
+        return recorded([ev(1, "execution_returned", "read", {"path": "prior_attempt.log"}, prior),
+                         ev(2, "execution_returned", "search", {"pattern": "timeout_ms", "glob": "config/*"},
+                            {"ok": True, "matches": [{"path": path, "line": 2, "text": text}]})])
+    rows.append(("q3-search-match-on-production-file-passes", q3_check(answers, q3_search("config/prod/settings.toml", "timeout_ms = 3500"))[0]))
+    rows.append(("q3-search-match-on-staging-file-fails", not q3_check(answers, q3_search("config/staging/settings.toml", "timeout_ms = 3500"))[0]))
     rows.append(("repeatable", grade(answers, positive) == grade(answers, positive)))
     unstarted = [row for row in positive if row.get("eventType") != "execution_started"]
     rows.append(("returns-without-recorded-call-are-not-evidence", not any(ok for qid, ok, _ in grade(answers, unstarted) if qid in {"Q1", "Q2", "Q3"})))

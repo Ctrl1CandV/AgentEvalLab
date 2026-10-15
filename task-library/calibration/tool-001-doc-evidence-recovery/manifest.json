@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "tool-001-doc-evidence-recovery",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "familyId": "tool-evidence-recovery",
   "capability": "tool",
   "usage": "development",
@@ -57,7 +57,7 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "642bad12211304303521834268c61af8ae433f65305ee816d08fbcf89c0599ce"
+        "sha256": "67d1d9b049af801e4825d9018add85bca6b63b44904fa75e73bf4c46b229c223"
       },
       {
         "path": "environment/README.md",
@@ -65,7 +65,7 @@
       },
       {
         "path": "metadata.json",
-        "sha256": "43af0d2a8ba7ea3fc82860db1d715636c69516defcf1529736488f3fb37d3ae2"
+        "sha256": "a8a6b773b3f5ddf683ed7b874931ef01aee7eb8fbbfa612ff8c8f0e1b668ffbc"
       },
       {
         "path": "rubric.md",
@@ -89,7 +89,7 @@
       },
       {
         "path": "private/harness_grader.py",
-        "sha256": "bd60880fc9764f3db547f9bb472475b0a9d00f20d915a087e1b195f562501390"
+        "sha256": "ede4881a111a96cbd34acf7b5a5be1a1ce8c77389bb86d1cbe0e13ab1fd02217"
       },
       {
         "path": "private/make_snapshot.py",
@@ -164,7 +164,7 @@
   ],
   "grader": {
     "id": "tool001-trace-acceptance",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "entryPoint": "private/harness_grader.py",
     "executable": "python3",
     "args": [
