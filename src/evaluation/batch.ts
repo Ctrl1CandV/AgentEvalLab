@@ -10,8 +10,13 @@ export interface BatchPolicy {
   maxRetryDelayMs: number;
   /** Stop after this many trials (or trajectory cycles) in a row end in an infrastructure failure. */
   maxConsecutiveInfrastructureFailures: number;
-  /** Stop scheduling new work once known token usage reaches this total; null means no ceiling. */
+  /**
+   * Token ceilings in fixed units: every reported token counts once, cached input included; prices never enter.
+   * maxTotalTokens bounds the batch; maxTotalTokensPerModel bounds each model separately, so a model that uses
+   * many tokens cannot use up another model's share. Null means no ceiling.
+   */
   maxTotalTokens: number | null;
+  maxTotalTokensPerModel: number | null;
   /** Stop scheduling new work once known cost reaches this amount; null means no ceiling. */
   maxCostUsd: number | null;
 }
@@ -21,6 +26,7 @@ export const defaultBatchPolicy: Readonly<BatchPolicy> = Object.freeze({
   maxRetryDelayMs: 30_000,
   maxConsecutiveInfrastructureFailures: 3,
   maxTotalTokens: null,
+  maxTotalTokensPerModel: null,
   maxCostUsd: null,
 });
 
@@ -44,19 +50,30 @@ export function validateBatchPolicy(value: unknown): void {
   integer("maxRetryDelayMs", 0, 300_000);
   integer("maxConsecutiveInfrastructureFailures", 1, 1_000);
   if (policy.maxTotalTokens !== undefined && policy.maxTotalTokens !== null) integer("maxTotalTokens", 1, Number.MAX_SAFE_INTEGER);
+  if (policy.maxTotalTokensPerModel !== undefined && policy.maxTotalTokensPerModel !== null) integer("maxTotalTokensPerModel", 1, Number.MAX_SAFE_INTEGER);
   if (policy.maxCostUsd !== undefined && policy.maxCostUsd !== null &&
       (typeof policy.maxCostUsd !== "number" || !Number.isFinite(policy.maxCostUsd) || policy.maxCostUsd <= 0)) {
     throw new Error("INVALID_BATCH_POLICY:maxCostUsd");
   }
 }
 
+/** A scheduled trial that did not start, and why (a batch stop reason or MODEL_TOKEN_CEILING). */
+export interface NotRunEntry {
+  model: string;
+  caseId: string;
+  repetition: number;
+  reason?: string;
+}
+
 export interface BatchSummary {
   policy: BatchPolicy;
   stopReason: string | null;
   knownTokens: number;
+  /** Known tokens per provider:id model. */
+  tokensByModel?: Record<string, number>;
   knownCostUsd: number;
   unknownUsageRequests: number;
-  notRun: Array<{ model: string; caseId: string; repetition: number }>;
+  notRun: NotRunEntry[];
 }
 
 /**
@@ -65,6 +82,7 @@ export interface BatchSummary {
  */
 export class BatchGuard {
   knownTokens = 0;
+  tokensByModel: Record<string, number> = {};
   knownCostUsd = 0;
   unknownUsageRequests = 0;
   consecutiveInfrastructureFailures = 0;
@@ -80,10 +98,13 @@ export class BatchGuard {
    * Account one finished trial or trajectory cycle. A trial that a resumed batch reruns still
    * counts toward usage (`countFailure: false`), but its failure no longer counts toward stopping.
    */
-  record(execution: ExecutionResult, options: { countFailure?: boolean } = {}): void {
+  record(execution: ExecutionResult, options: { countFailure?: boolean; model?: string } = {}): void {
     for (const request of execution.requestUsage) {
       if (request.totalTokens === null) this.unknownUsageRequests++;
-      else this.knownTokens += request.totalTokens;
+      else {
+        this.knownTokens += request.totalTokens;
+        if (options.model) this.tokensByModel[options.model] = (this.tokensByModel[options.model] ?? 0) + request.totalTokens;
+      }
       if (request.costUsd !== null) this.knownCostUsd += request.costUsd;
     }
     if (options.countFailure === false) return;
@@ -96,11 +117,25 @@ export class BatchGuard {
     else if (this.policy.maxCostUsd !== null && this.knownCostUsd >= this.policy.maxCostUsd) this.stopReason = "COST_CEILING";
   }
 
-  summary(notRun: Array<{ model: string; caseId: string; repetition: number }>): BatchSummary {
+  /**
+   * Why a trial of this model may not start, or null. A ceiling that has been reached blocks; so does one that the
+   * next trial could cross, when `reserve` (the plan's per-trial token cap) is given. With a per-trial cap, a ceiling
+   * is therefore exceeded by at most the last request of a trial.
+   */
+  blockedReason(model: string, reserve = 0): string | null {
+    if (this.stopReason) return this.stopReason;
+    const exceeds = (used: number, ceiling: number | null) => ceiling !== null && (used >= ceiling || used + reserve > ceiling);
+    if (exceeds(this.knownTokens, this.policy.maxTotalTokens)) return "TOKEN_CEILING";
+    if (exceeds(this.tokensByModel[model] ?? 0, this.policy.maxTotalTokensPerModel)) return "MODEL_TOKEN_CEILING";
+    return null;
+  }
+
+  summary(notRun: NotRunEntry[]): BatchSummary {
     return {
       policy: this.policy,
       stopReason: this.stopReason,
       knownTokens: this.knownTokens,
+      tokensByModel: this.tokensByModel,
       knownCostUsd: this.knownCostUsd,
       unknownUsageRequests: this.unknownUsageRequests,
       notRun,

@@ -65,9 +65,11 @@ A plan's `batch` block (`src/evaluation/batch.ts`) bounds a whole run.
 - Provider requests are retried up to `maxRetries` times for 408/409/429/5xx and connection errors before any output streams; each HTTP attempt is recorded on the request.
 - Provider errors are classified. A full context window becomes `CONTEXT_LIMIT`, a budget outcome of the evaluated condition. Authentication, balance, and availability errors are infrastructure failures.
 - The batch stops immediately on `PROVIDER_AUTH` or `PROVIDER_BALANCE`, or after `maxConsecutiveInfrastructureFailures` infrastructure failures in a row. It also stops scheduling new work once known usage reaches `maxTotalTokens` or `maxCostUsd`. Usage that the provider did not report is counted separately, never as zero.
+- Tokens are fixed units: every reported token counts once, cached input included, and no prices are used (user decision, 2026-10-15). `maxTotalTokensPerModel` bounds each model separately; a model that reaches it stops (`MODEL_TOKEN_CEILING` in `notRun`) while the other models continue.
+- The optional budget field `maxTrialTokens` caps one trial (one cycle in a trajectory). Before a further request, a trial over the cap ends with `TRIAL_TOKEN_LIMIT`, a budget stop that is still graded. When the cap is set, a trial starts only if every applicable ceiling still has room for a whole trial, so a ceiling is exceeded by at most the last request of a trial.
 - Unscheduled trials are listed under `batch.notRun`, and the report is marked incomplete.
 - `--resume <run>` continues a single-run batch only when the fingerprint is unchanged. It reruns missing and infrastructure-failed trials; each replacement names the trial it supersedes, which stays on disk.
-- The CLI refuses provider requests unless `batch.maxTotalTokens` is set.
+- The CLI refuses provider requests unless `batch.maxTotalTokens` or `batch.maxTotalTokensPerModel` is set.
 
 ## Continuous trajectories
 

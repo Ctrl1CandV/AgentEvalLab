@@ -16,9 +16,14 @@ export const defaultBudget: Readonly<Budget> = Object.freeze({
 export function validateBudget(budget: Budget): void {
   for (const key of Object.keys(defaultBudget) as (keyof Budget)[]) {
     const minimum = key === "maxToolCalls" ? 0 : 1;
-    if (!Number.isSafeInteger(budget[key]) || budget[key] < minimum || budget[key] > 2_147_483_647) {
+    const value = budget[key] as number;
+    if (!Number.isSafeInteger(value) || value < minimum || value > 2_147_483_647) {
       throw new Error(`INVALID_BUDGET:${key}`);
     }
+  }
+  const trialTokens = budget.maxTrialTokens;
+  if (trialTokens !== undefined && trialTokens !== null && (!Number.isSafeInteger(trialTokens) || trialTokens < 1)) {
+    throw new Error("INVALID_BUDGET:maxTrialTokens");
   }
 }
 

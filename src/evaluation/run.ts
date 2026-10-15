@@ -18,7 +18,7 @@ import { buildReport, markdownReport } from "./report.js";
 import { seededRandom, shuffled } from "./statistics.js";
 import { preflightPlan } from "./preflight.js";
 import { evaluatedCondition, sha256 } from "./condition.js";
-import { BatchGuard, resolveBatchPolicy } from "./batch.js";
+import { BatchGuard, resolveBatchPolicy, type NotRunEntry } from "./batch.js";
 import { loadRecordedTrials } from "./regrade.js";
 import type { EvaluationOptions, EvaluationPlan, TrialRecord } from "./types.js";
 
@@ -88,7 +88,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
   }
   const records: TrialRecord[] = [];
   const guard = new BatchGuard(batchPolicy);
-  const notRun: Array<{ model: string; caseId: string; repetition: number }> = [];
+  const notRun: NotRunEntry[] = [];
   let sequence = await countLines(join(directory, "events.jsonl"));
   let pending = Promise.resolve();
   let completed = false;
@@ -100,15 +100,17 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
   };
   for (const { model, item, repetition } of schedule) {
       const previous = recorded.get(trialKey(model, item.id, repetition));
+      const modelId = `${model.provider}:${model.id}`;
       // Keep finished trials from an earlier attempt of this run; rerun only infrastructure failures.
       if (previous && previous.execution.failureKind !== "infrastructure") {
-        guard.record(previous.execution);
+        guard.record(previous.execution, { model: modelId });
         records.push(previous);
         continue;
       }
-      if (previous) guard.record(previous.execution, { countFailure: false });
-      if (guard.stopped) {
-        notRun.push({ model: `${model.provider}:${model.id}`, caseId: item.id, repetition });
+      if (previous) guard.record(previous.execution, { countFailure: false, model: modelId });
+      const blocked = guard.blockedReason(modelId, plan.budget.maxTrialTokens ?? 0);
+      if (blocked) {
+        notRun.push({ model: modelId, caseId: item.id, repetition, reason: blocked });
         continue;
       }
       const start = performance.now();
@@ -244,7 +246,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
         records.push(record);
         await writeFile(join(trialDirectory, "result.json"), JSON.stringify(record, null, 2));
       }
-      guard.record(record.execution);
+      guard.record(record.execution, { model: modelId });
       await saveReport();
       if (fatal) throw fatal;
       await events.emit("cleanup_completed", { failed: Number(record.cleanup === "error") });

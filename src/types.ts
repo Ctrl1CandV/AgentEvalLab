@@ -15,6 +15,12 @@ export interface Budget {
   maxOutputChars: number;
   /** Characters one tool result may return; larger results become a recoverable tool error. */
   maxToolResultChars: number;
+  /**
+   * Reported tokens one runner invocation (a trial, or one trajectory cycle) may use, in fixed units with cached
+   * input counted in full. Exceeding it before another request ends the run with TRIAL_TOKEN_LIMIT, a budget stop
+   * that is still graded. Optional; null or absent means no cap.
+   */
+  maxTrialTokens?: number | null;
 }
 
 export type ThinkingLevel = "off" | "minimal" | "low" | "medium" | "high" | "xhigh" | "max";

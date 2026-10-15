@@ -128,8 +128,52 @@ test("resume reruns only missing and infrastructure-failed trials of an identica
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 
+test("a per-model ceiling stops only that model, and a per-trial cap is reserved before a trial starts", async () => {
+  const root = await mkdtemp(join(tmpdir(), "batch-per-model-"));
+  try {
+    const twoModels = (batch: EvaluationPlan["batch"], maxTrialTokens?: number): EvaluationPlan => ({ ...plan(batch, 3),
+      models: [{ provider: "deepseek", id: "deepseek-flash" }, { provider: "aliplan", id: "qwen3.8-flash" }],
+      budget: { ...defaultBudget, ...(maxTrialTokens ? { maxTrialTokens } : {}) } });
+    const heavy = async (_input: unknown, model: { provider: string }) => ok(model.provider === "deepseek" ? 600 : 10);
+    const perModel = await runEvaluation(twoModels({ maxTotalTokensPerModel: 1_000 }), { outputRoot: root, runner: heavy as never });
+    assert.equal(perModel.report.batch!.stopReason, null, "a model's ceiling does not stop the batch");
+    assert.deepEqual(perModel.report.batch!.notRun.map(entry => [entry.model, entry.reason]), [["deepseek:deepseek-flash", "MODEL_TOKEN_CEILING"]]);
+    assert.equal(perModel.report.records.filter(record => record.model.provider === "aliplan").length, 3, "the other model keeps running");
+    assert.deepEqual(perModel.report.batch!.tokensByModel, { "deepseek:deepseek-flash": 1_200, "aliplan:qwen3.8-flash": 30 });
+
+    // With a 600-token trial cap, a second deepseek trial could cross the 1,000-token ceiling, so it never starts.
+    const reserved = await runEvaluation(twoModels({ maxTotalTokensPerModel: 1_000 }, 600), { outputRoot: root, runner: heavy as never });
+    assert.equal(reserved.report.batch!.tokensByModel!["deepseek:deepseek-flash"], 600);
+    assert.equal(reserved.report.batch!.notRun.length, 2);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});
+
+test("the runner ends a trial with TRIAL_TOKEN_LIMIT before a request that would follow the cap", async () => {
+  let call = 0;
+  const stream = (selected: { api: string; provider: string; id: string }) => {
+    call++;
+    const content = call < 5 ? [{ type: "toolCall" as const, id: `c${call}`, name: "noop", arguments: {} }] : [{ type: "text" as const, text: "done" }];
+    const message = { role: "assistant" as const, content, api: selected.api, provider: selected.provider, model: selected.id,
+      usage: { input: 0, output: 100, cacheRead: 300, cacheWrite: 0, totalTokens: 400, cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, total: 0 } },
+      stopReason: call < 5 ? "toolUse" as const : "stop" as const, timestamp: Date.now() };
+    const events = new AssistantMessageEventStream();
+    events.push({ type: "start", partial: { ...message, content: [], stopReason: "pending" } } as never);
+    events.push({ type: "done", reason: message.stopReason, message } as never);
+    return events;
+  };
+  const noop = { name: "noop", label: "Noop", description: "Do nothing.", parameters: { type: "object", properties: {} },
+    async execute() { return { content: [{ type: "text", text: "ok" }], details: {} }; } };
+  const runner = createPiRunner({ apiKey: "offline", stream: stream as never, createTools: () => [noop as never] });
+  const result = await runner({ prompt: "go" }, parseModel("anthropic:claude-sonnet-4-6"), { ...defaultBudget, maxTrialTokens: 1_000 }, async () => {});
+  assert.equal(result.status, "budget_exceeded");
+  assert.equal(result.error, "TRIAL_TOKEN_LIMIT");
+  assert.equal(result.modelCalls, 3, "cached input counts in full: 3 x 400 tokens passes the 1,000-token cap");
+});
+
 test("batch policies are validated", () => {
-  validatePlan(plan({ maxRetries: 3, maxTotalTokens: 5_000_000, maxCostUsd: 20 }));
+  validatePlan(plan({ maxRetries: 3, maxTotalTokens: 5_000_000, maxTotalTokensPerModel: 3_000_000, maxCostUsd: 20 }));
+  assert.throws(() => validatePlan(plan({ maxTotalTokensPerModel: 0 })), /INVALID_BATCH_POLICY:maxTotalTokensPerModel/);
+  assert.throws(() => validatePlan({ ...plan({}), budget: { ...defaultBudget, maxTrialTokens: -1 } }), /INVALID_BUDGET:maxTrialTokens/);
   assert.throws(() => validatePlan(plan({ maxRetries: 9 })), /INVALID_BATCH_POLICY:maxRetries/);
   assert.throws(() => validatePlan(plan({ unknown: 1 } as never)), /INVALID_BATCH_POLICY/);
 });

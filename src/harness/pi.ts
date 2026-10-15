@@ -364,6 +364,12 @@ export function createPiRunner<Input extends RunInput = RunInput>(
         if (result.status !== "done") {
           return { action: "end" };
         }
+        // Before another request, enforce the per-trial token cap; every reported token counts, cached input included.
+        if (budget.maxTrialTokens != null && message.stopReason === "toolUse" &&
+            result.requestUsage.reduce((sum, request) => sum + (request.totalTokens ?? 0), 0) > budget.maxTrialTokens) {
+          limit("TRIAL_TOKEN_LIMIT");
+          return { action: "end" };
+        }
 
         // Stop if the agent requests another tool after exhausting its turn or call budget.
         if (message.stopReason === "toolUse" && result.turns >= budget.maxTurns) {

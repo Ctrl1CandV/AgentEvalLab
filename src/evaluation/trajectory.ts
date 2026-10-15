@@ -15,7 +15,7 @@ import { prepareWorkspace } from "./workspace.js";
 import { runTaskGrader } from "./grader.js";
 import { preflightPlan } from "./preflight.js";
 import { evaluatedCondition, sha256 } from "./condition.js";
-import { BatchGuard, resolveBatchPolicy, type BatchPolicy } from "./batch.js";
+import { BatchGuard, resolveBatchPolicy, type BatchPolicy, type NotRunEntry } from "./batch.js";
 import { sandboxLauncher, type Isolation } from "../sandbox.js";
 import type { EvaluationOptions, EvaluationPlan, PublicCheckResult, TrajectoryMetrics, TrajectoryRecord, TrajectorySession, TrajectoryStageResult } from "./types.js";
 import { modelLabel } from "./report.js";
@@ -294,7 +294,7 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
   const plannedRuns = plan.models.length * plan.cases.length;
   const batchPolicy = resolveBatchPolicy(plan);
   const guard = new BatchGuard(batchPolicy);
-  const notRun: Array<{ model: string; caseId: string; repetition: number }> = [];
+  const notRun: NotRunEntry[] = [];
   await writeFile(join(directory, "experiment.json"), JSON.stringify({
     schemaVersion: 2, name: plan.name, fingerprint, packageFingerprints, condition, execution: plan.execution, isolation: plan.isolation ?? "sandbox",
     models: plan.models, caseIds: plan.cases.map(item => item.id), budget: plan.budget, artifactLimits, batch: batchPolicy,
@@ -304,8 +304,9 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
 
   for (const model of plan.models) {
     for (const item of plan.cases) {
-      if (guard.stopped) {
-        notRun.push({ model: `${model.provider}:${model.id}`, caseId: item.id, repetition: 1 });
+      const blocked = guard.blockedReason(`${model.provider}:${model.id}`);
+      if (blocked) {
+        notRun.push({ model: `${model.provider}:${model.id}`, caseId: item.id, repetition: 1, reason: blocked });
         continue;
       }
       const id = randomUUID();
@@ -391,7 +392,7 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
               events.emit, { stageId: stageInfo.id, cycleId });
             outputChars += execution.output.length;
             accumulate(totalExecution, execution);
-            guard.record(execution);
+            guard.record(execution, { model: `${model.provider}:${model.id}` });
             const cycle: TrajectoryStageResult["cycles"][number] = { cycleId, execution: persistedExecution(execution, budget.maxOutputChars), publicCheck: null, snapshot: null };
             stageRecord.cycles.push(cycle);
             await events.emit("trajectory_submission_completed", { modelCalls: totalExecution.modelCalls, toolCalls: totalExecution.toolCalls }, { stageId: stageInfo.id, cycleId, status: execution.status });

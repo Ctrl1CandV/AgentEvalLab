@@ -41,7 +41,7 @@ Validate a plan without loading credentials or sending requests:
 npm run harness -- --plan examples/eng-001.eval.json --validate-only
 ```
 
-Results are written under `runs/<run-id>/`. Networked commands go through the host proxy: the `harness` and `provider-check` npm scripts set `NODE_USE_ENV_PROXY=1` so Node's fetch honours `HTTPS_PROXY`. Check a provider with `npm run provider-check -- provider:model`, which sends at most six small requests. A live run requires `batch.maxTotalTokens` in the plan and a clean, committed worktree (`--allow-dirty` overrides; the commit and dirty flag are recorded either way). An interrupted single-run batch can be continued with `--resume runs/<run-id>`. `node --import tsx scripts/null-agent-baseline.ts <plan>` runs a plan offline with an agent that does nothing, as a trivial baseline and an end-to-end check.
+Results are written under `runs/<run-id>/`. Networked commands go through the host proxy: the `harness` and `provider-check` npm scripts set `NODE_USE_ENV_PROXY=1` so Node's fetch honours `HTTPS_PROXY`. Check a provider with `npm run provider-check -- provider:model`, which sends at most six small requests. A live run requires a token ceiling in the plan (`batch.maxTotalTokens` or `batch.maxTotalTokensPerModel`; tokens are fixed units, without prices) and a clean, committed worktree (`--allow-dirty` overrides; the commit and dirty flag are recorded either way). An interrupted single-run batch can be continued with `--resume runs/<run-id>`. `node --import tsx scripts/null-agent-baseline.ts <plan>` runs a plan offline with an agent that does nothing, as a trivial baseline and an end-to-end check.
 
 ## Project map
 

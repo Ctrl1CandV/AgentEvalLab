@@ -109,7 +109,7 @@ async function main(): Promise<void> {
       return;
     }
     // SPEC rule 8: no provider request without an explicit batch budget.
-    if (typeof plan.batch?.maxTotalTokens !== "number") throw new Error("BATCH_TOKEN_CEILING_REQUIRED");
+    if (typeof plan.batch?.maxTotalTokens !== "number" && typeof plan.batch?.maxTotalTokensPerModel !== "number") throw new Error("BATCH_TOKEN_CEILING_REQUIRED");
     if (values.resume && plan.execution?.kind === "trajectory") throw new Error("RESUME_UNSUPPORTED_FOR_TRAJECTORY");
     // A live run must map to one committed code revision; the fingerprint records the commit and dirty flag.
     const repositoryRoot = fileURLToPath(new URL("../", import.meta.url));
