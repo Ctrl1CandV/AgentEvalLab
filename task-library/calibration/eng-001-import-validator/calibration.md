@@ -35,3 +35,10 @@ Calibration results above were recorded against version 0.2.0 and remain histori
 Candidate code started by the grader now runs through the harness sandbox launcher (`scripts/sandbox_exec.py`, bubblewrap): only the candidate's working directory is writable, and the host home directory, the task package (including `private/`), and the network are unreachable. The launcher path comes from the grader request's `sandbox` field, which the request validator now requires; when a plan opts into `"isolation": "host"`, the field is null and candidates run as before. The task contract and check logic are unchanged; the grader version is now 1.1.0.
 
 Recalibration under 0.3.1 is recorded in `logs/self-calibration-0.3.1.log`.
+
+
+## Version 0.3.2 (2026-10-15)
+
+In the 2026-10 pilot, one gpt-6-luna trial failed 14 of 22 checks with `output_protocol_invalid`. Its summary line listed every error code, with zero counts for codes that did not occur (`"by_code": {"missing_required": 0, ...}`). Grader 1.1.0 required every `by_code` count to be at least 1. The instruction gives `by_code` only as `{<code>: <int>}` and does not say whether absent codes are omitted; the public example's `{}` for clean input is consistent with either reading. The grader had imposed an unstated requirement, and a zero count states the same fact as an absent code.
+
+Grader 1.1.1 accepts zero counts and treats them as absent; negative counts are still invalid. Self-calibration adds a copy of reference A that lists all codes with zero counts; it passes 22/22, and the five faulty implementations score as before (5, 7, 20, 21 and 0 of 22). The pilot trial's submission scores 22/22 under 1.1.1. See `logs/self-calibration-0.3.2.log`.

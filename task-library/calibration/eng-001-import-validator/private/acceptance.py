@@ -38,9 +38,9 @@ SANDBOX_LAUNCHER = None  # set from the grader request by run_harness_protocol
 ORACLE = json.load(open(os.path.join(HERE, "oracle.json"), encoding="utf-8"))
 DEFAULT_SCHEMA = os.path.join(PKG, "public", "schema.json")
 TASK_ID = "eng-001-import-validator"
-TASK_VERSION = "0.3.1"
+TASK_VERSION = "0.3.2"
 GRADER_ID = "eng001-acceptance"
-GRADER_VERSION = "1.1.0"
+GRADER_VERSION = "1.1.1"
 MAX_CANDIDATE_OUTPUT = 200_000
 CANDIDATE_TIMEOUT_SECONDS = 5
 ROW_ERROR_CODES = {"missing_required", "type_mismatch", "constraint", "unique_violation"}
@@ -202,10 +202,12 @@ def parse_candidate_output(stdout):
                     any(isinstance(data[name], bool) or not isinstance(data[name], int) or data[name] < 0
                         for name in ("records", "errors")) or not isinstance(data["by_code"], dict) or
                     any(not isinstance(code, str) or code not in ROW_ERROR_CODES or
-                        isinstance(count, bool) or not isinstance(count, int) or count < 1
+                        isinstance(count, bool) or not isinstance(count, int) or count < 0
                         for code, count in data["by_code"].items())):
                 return None
-            summary = data
+            # The instruction gives by_code as {<code>: <int>} without saying whether codes that did not occur are
+            # listed, so a zero count is read as an absent code.
+            summary = dict(data, by_code={code: count for code, count in data["by_code"].items() if count})
         elif set(value) == {"error"}:
             if len(parsed) != 1:
                 return None
@@ -573,6 +575,23 @@ def self_calibrate():
         rejected = npass < len(res)
         print(f"{os.path.basename(b)}: {npass}/{len(res)} checks; {'REJECTED' if rejected else 'NOT REJECTED'}")
         allok &= rejected
+
+    # A copy of reference A that also lists codes with a zero count must pass every check.
+    zero_dir = tempfile.mkdtemp(prefix="eng001-zero-counts-")
+    try:
+        zero_impl = os.path.join(zero_dir, "ref_impl_zero_counts.py")
+        source = open(ref_a, encoding="utf-8").read()
+        listed = "    by_code = {}\n"
+        if source.count(listed) != 1:
+            raise SystemExit("reference A no longer builds by_code as expected")
+        with open(zero_impl, "w", encoding="utf-8") as handle:
+            handle.write(source.replace(listed, "    by_code = {code: 0 for code in ('missing_required', 'type_mismatch', 'constraint', 'unique_violation')}\n"))
+        rz = run_suite(zero_impl)
+        z_all = all(ok for ok, _ in rz.values())
+        print("Reference A with zero-count codes passed:", z_all)
+        allok &= z_all
+    finally:
+        shutil.rmtree(zero_dir, ignore_errors=True)
 
     ra2 = run_suite(ref_a)
     repeatable = {k: v[0] for k, v in ra.items()} == {k: v[0] for k, v in ra2.items()}

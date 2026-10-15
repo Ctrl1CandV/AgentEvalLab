@@ -35,7 +35,7 @@
     {
       "id": "eng001-import-validator",
       "packagePath": "task-library/calibration/eng-001-import-validator",
-      "packageManifestSha256": "2a0aae626ea784d7c42f49f8725e3d4124163e114ba19ed4fdebd2d2eb5bceb3",
+      "packageManifestSha256": "a6397fb11e33c9f23a680961d4a3abcc31ec58f2ec79c8fcb43fcfb18cd9a30f",
       "input": {
         "prompt": "Complete the task in the instruction. Use the provided workspace tools and deliver import_validator.py at the workspace root."
       },
