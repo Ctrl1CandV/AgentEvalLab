@@ -100,20 +100,24 @@ test("repetitions are interleaved by seed and reported per task with format fail
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 
-test("usage by task separates uncached input, cache reads and output", async () => {
+test("usage by task reports output, all processed input, cache reads and peak context in fixed tokens", async () => {
   const root = await mkdtemp(join(tmpdir(), "report-tokens-"));
   try {
     const plan = await reasoningPlan([{ provider: "deepseek", id: "deepseek-flash" }], 1);
     const request = { requestId: "r", interactionClass: "candidate" as const, status: "completed" as const, usageStatus: "reported" as const,
       durationMs: 1, inputTokens: 10, outputTokens: 5, cacheReadTokens: 90, cacheWriteTokens: 0, reasoningTokens: null, totalTokens: 105,
       costUsd: null, attempts: 1, failureClass: null };
-    const result = await runEvaluation(plan, { outputRoot: root, runner: async () => ({ ...emptyExecution(), output: "{}", modelCalls: 2, requestUsage: [request, request] }) });
+    const larger = { ...request, inputTokens: 30, cacheReadTokens: 170, totalTokens: 205 };
+    const result = await runEvaluation(plan, { outputRoot: root, runner: async () => ({ ...emptyExecution(), output: "{}", modelCalls: 2, requestUsage: [request, larger] }) });
     const row = result.report.byTask[0]!;
-    assert.equal(row.usage.totalTokens.median, 210);
-    assert.equal(row.usage.inputTokens.median, 20);
-    assert.equal(row.usage.cacheReadTokens.median, 180);
+    assert.equal(row.usage.totalTokens.median, 310);
     assert.equal(row.usage.outputTokens.median, 10);
-    assert.match(await readFile(join(result.directory, "report.md"), "utf8"), /\| Total tokens \| Uncached input \| Cache reads \| Output \|/);
+    assert.equal(row.usage.inputTokens.median, 300, "input counts cached and uncached context alike");
+    assert.equal(row.usage.cacheReadTokens.median, 260);
+    assert.equal(row.usage.peakContextTokens.median, 200);
+    const markdown = await readFile(join(result.directory, "report.md"), "utf8");
+    assert.match(markdown, /\| Output \| Input \| of which cache reads \| Peak context \| Total \|/);
+    assert.match(markdown, /## Token use by model/);
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 

@@ -1,4 +1,4 @@
-import { modelOptions, type ModelSelection } from "../types.js";
+import { modelOptions, type ModelSelection, type RequestUsage } from "../types.js";
 import { pairedDifference, passAtK, passHatK, wilsonInterval } from "./statistics.js";
 import type { TrialRecord } from "./types.js";
 import type { BatchSummary } from "./batch.js";
@@ -98,13 +98,25 @@ function distribution(values: Array<number | null>) {
   return { median, max: known.length ? known[known.length - 1]! : null, unknown: values.length - known.length };
 }
 
-type TokenField = "totalTokens" | "inputTokens" | "cacheReadTokens" | "outputTokens";
+/**
+ * Context tokens one request processed: uncached input, cache reads and cache writes, or null when any part is
+ * unreported. Whether input hits a cache depends on the endpoint, so the sum, not the split, describes the model's run.
+ */
+function requestContext(request: RequestUsage): number | null {
+  return request.inputTokens !== null && request.cacheReadTokens !== null && request.cacheWriteTokens !== null
+    ? request.inputTokens + request.cacheReadTokens + request.cacheWriteTokens : null;
+}
 
 /** One trial's reported tokens of one kind, or null when any request lacks that figure. */
-function trialTokens(record: TrialRecord, field: TokenField = "totalTokens"): number | null {
-  const requests = record.execution.requestUsage ?? [];
-  return requests.length > 0 && requests.every(request => request[field] !== null)
-    ? requests.reduce((sum, request) => sum + request[field]!, 0) : null;
+function trialTokens(record: TrialRecord, value: (request: RequestUsage) => number | null = request => request.totalTokens): number | null {
+  const values = (record.execution.requestUsage ?? []).map(value);
+  return values.length > 0 && values.every(item => item !== null) ? values.reduce((sum, item) => sum + item!, 0) : null;
+}
+
+/** The largest context one request of the trial processed. */
+function peakContext(record: TrialRecord): number | null {
+  const values = (record.execution.requestUsage ?? []).map(requestContext);
+  return values.length > 0 && values.every(item => item !== null) ? Math.max(...values as number[]) : null;
 }
 
 /** Per model and task: verdict counts, pass rates with Wilson intervals, pass@k/pass^k, and per-check rates. */
@@ -153,11 +165,13 @@ export function taskResults(records: TrialRecord[], context: ReportContext) {
       usage: {
         modelCalls: distribution(group.map(record => record.execution.modelCalls)),
         toolCalls: distribution(group.map(record => record.execution.toolCalls)),
+        // Tokens are fixed units; prices never enter. Output is what the model generated (reasoning included);
+        // input is every context token processed, of which cache reads are shown for information.
         totalTokens: distribution(group.map(record => trialTokens(record))),
-        // Cache reads are usually billed at a discount, so the parts are reported separately.
-        inputTokens: distribution(group.map(record => trialTokens(record, "inputTokens"))),
-        cacheReadTokens: distribution(group.map(record => trialTokens(record, "cacheReadTokens"))),
-        outputTokens: distribution(group.map(record => trialTokens(record, "outputTokens"))),
+        outputTokens: distribution(group.map(record => trialTokens(record, request => request.outputTokens))),
+        inputTokens: distribution(group.map(record => trialTokens(record, requestContext))),
+        cacheReadTokens: distribution(group.map(record => trialTokens(record, request => request.cacheReadTokens))),
+        peakContextTokens: distribution(group.map(peakContext)),
         durationMs: distribution(group.map(record => record.durationMs)),
       },
       checks,
@@ -234,11 +248,26 @@ export function markdownReport(report: ReturnType<typeof buildReport>): string {
     ""];
   const range = (value: { median: number | null; max: number | null; unknown: number }, scale = 1, digits = 0) =>
     value.median === null ? "unknown" : `${(value.median / scale).toFixed(digits)} / ${(value.max! / scale).toFixed(digits)}${value.unknown ? ` (+${value.unknown} unknown)` : ""}`;
-  lines.push("## Usage by task", "", "Median / maximum per trial. Token columns are in thousands; total = uncached input + cache reads + cache writes + output, and cache reads are usually billed at a discount. Execution outcomes show how trials ended; budget stops such as MODEL_CALL_LIMIT or OUTPUT_TOKEN_LIMIT indicate a binding budget.", "",
-    "| Task | Model | Model calls | Tool calls | Total tokens | Uncached input | Cache reads | Output | Duration (s) | Execution outcomes |",
-    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
-    ...report.byTask.map(row => `| ${row.caseId} | ${row.label} | ${range(row.usage.modelCalls)} | ${range(row.usage.toolCalls)} | ${range(row.usage.totalTokens, 1000, 1)} | ${range(row.usage.inputTokens, 1000, 1)} | ${range(row.usage.cacheReadTokens, 1000, 1)} | ${range(row.usage.outputTokens, 1000, 1)} | ${range(row.usage.durationMs, 1000, 1)} | ${Object.entries(row.executionOutcomes).map(([key, count]) => `${key} ${count}`).join(", ")} |`),
+  lines.push("## Usage by task", "", "Median / maximum per trial. Tokens are fixed units in thousands, without prices. Output is generated text, tool calls and reasoning. Input counts every context token each request processed, cached or not; whether input hits a cache depends on the endpoint, so cache reads are shown for information only. Peak context is the largest single request. Total = input + output. Execution outcomes show how trials ended; budget stops such as MODEL_CALL_LIMIT, OUTPUT_TOKEN_LIMIT or TRIAL_TOKEN_LIMIT indicate a binding budget.", "",
+    "| Task | Model | Model calls | Tool calls | Output | Input | of which cache reads | Peak context | Total | Duration (s) | Execution outcomes |",
+    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+    ...report.byTask.map(row => `| ${row.caseId} | ${row.label} | ${range(row.usage.modelCalls)} | ${range(row.usage.toolCalls)} | ${range(row.usage.outputTokens, 1000, 1)} | ${range(row.usage.inputTokens, 1000, 1)} | ${range(row.usage.cacheReadTokens, 1000, 1)} | ${range(row.usage.peakContextTokens, 1000, 1)} | ${range(row.usage.totalTokens, 1000, 1)} | ${range(row.usage.durationMs, 1000, 1)} | ${Object.entries(row.executionOutcomes).map(([key, count]) => `${key} ${count}`).join(", ")} |`),
     "");
+  const sum = (values: Array<number | null>) => values.reduce<number>((total, value) => total + (value ?? 0), 0);
+  const thousands = (value: number) => (value / 1000).toFixed(1);
+  lines.push("## Token use by model", "", "Sums over recorded trials, in thousands; requests without reported usage add nothing and are counted under the batch.", "",
+    "| Model | Trials | Output | Input | of which cache reads | Total |", "| --- | ---: | ---: | ---: | ---: | ---: |",
+    ...report.byModel.map(({ model, label }) => {
+      const requests = report.records.filter(record => modelKey(record.model) === modelKey(model)).flatMap(record => record.execution.requestUsage ?? []);
+      const trials = report.records.filter(record => modelKey(record.model) === modelKey(model)).length;
+      return `| ${label} | ${trials} | ${thousands(sum(requests.map(request => request.outputTokens)))} | ${thousands(sum(requests.map(requestContext)))} | ${thousands(sum(requests.map(request => request.cacheReadTokens)))} | ${thousands(sum(requests.map(request => request.totalTokens)))} |`;
+    }), "");
+  if (report.batch) {
+    const { policy, stopReason, knownTokens, unknownUsageRequests, notRun } = report.batch;
+    const reasons = [...new Set(notRun.map(entry => entry.reason ?? stopReason ?? "unknown"))];
+    lines.push(`Batch: ${thousands(knownTokens)}k known tokens (ceiling ${policy.maxTotalTokens == null ? "none" : `${thousands(policy.maxTotalTokens)}k`}; per model ${policy.maxTotalTokensPerModel == null ? "none" : `${thousands(policy.maxTotalTokensPerModel)}k`}); ` +
+      `requests without usage: ${unknownUsageRequests}; stop reason: ${stopReason ?? "none"}; trials not run: ${notRun.length}${reasons.length ? ` (${reasons.join(", ")})` : ""}.`, "");
+  }
   if (report.pairedComparisons.length) {
     lines.push("## Paired model differences", "", "Mean per-task pass-rate difference (A − B) within one capability, with a 95% t interval over tasks, clipped to ±100%; no interval with fewer than two tasks. With few tasks the interval is wide by construction.", "",
       "| Capability | Model A | Model B | Tasks | Mean difference | 95% interval |", "| --- | --- | --- | ---: | ---: | --- |",
