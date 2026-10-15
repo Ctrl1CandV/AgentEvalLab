@@ -58,6 +58,25 @@ The relay accepts reasoning together with tools and applies the requested effort
 
 Reading Pi's request code turned up another defect: **Pi clamps an undeclared thinking level to the nearest supported one without notice.** A plan saying `max` for luna, whose metadata then declared only `off`, would have sent `high`. Luna now declares its full range (`none`, `low`, `medium`, `high`, `xhigh`, `max`, and no `minimal`), and validation rejects any level the resolved model does not support (`THINKING_LEVEL_UNSUPPORTED`).
 
+## GLM-5.3 replaces GLM-5.3-Flash (fourth check, 2026-10-15)
+
+After the first pilot round, the user replaced `glm-5.3-flash` with `supercn:glm-5.3`. [Zhipu's model page](https://docs.bigmodel.cn/cn/guide/models/text/glm-5.3) gives 1M context and 128K maximum output. Thinking is always on, with `reasoning_effort` `low`, `high` or `max`, and the default is `max`. The model is declared with exactly those levels; on the Anthropic protocol Pi sends them as `thinking: {type: "adaptive"}` with `output_config.effort`.
+
+Probes on 2026-10-15 sent one easy question per configuration. Effort reached the model on both protocols:
+
+| Configuration | Sent | Output tokens | Thinking characters |
+| --- | --- | --- | --- |
+| Anthropic, nothing sent | — | 274 | 657 |
+| Anthropic, `low` | `output_config.effort: low` | 91 | 150 |
+| Anthropic, `max` | `output_config.effort: max` | 445 | 1,023 |
+| OpenAI, nothing sent | — | 304 | 640 |
+| OpenAI, `low` | `reasoning_effort: low` | 82 | 147 |
+| OpenAI, `max` | `reasoning_effort: max` | 320 | 670 |
+
+Two rounds on a harder puzzle varied more between samples than between levels: `low` once answered wrongly after 1.8K output tokens and once used 11.6K. Single samples therefore cannot order the levels, but they show the parameter takes effect. A further probe confirmed that the relay returns signed thinking blocks, so Pi sends GLM's reasoning back during tool calls as genuine thinking. Zhipu requires this for interleaved thinking, and it is why each thinking token is read again on every later turn.
+
+`npm run provider-check -- 'supercn:glm-5.3?thinking=max'` passed every check: usage reported, output cap enforced, tool round trip, `PROVIDER_AUTH` for an invalid key, and thinking with tools attached (646 thinking characters, correct answer). Because the relay reports no reasoning tokens, that last check now falls back to the length of the returned thinking text.
+
 ## Limits
 
 Five requests per model cannot show variance, long-context behaviour, or context-overflow messages. Live context-limit classification is still unverified for both providers.

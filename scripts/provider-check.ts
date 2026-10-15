@@ -52,6 +52,9 @@ async function check(selection: ModelSelection) {
     "Without calling any tool, find the smallest positive integer n with n mod 7 = 3, n mod 11 = 5 and n mod 13 = 9. Reply with only the number.",
     { ...checkBudget, maxModelCalls: 1, maxOutputTokensPerCall: 4096 }, { tools: true }) : null;
   const reasoningTokens = reasoning?.requestUsage[0]?.reasoningTokens ?? null;
+  // Endpoints that do not report reasoning tokens still return the thinking text; its length is the fallback signal.
+  const thinkingChars = reasoning?.requestUsage[0]?.contentChars?.thinking ?? null;
+  const thinkingObserved = reasoningTokens !== null ? reasoningTokens > 0 : thinkingChars !== null ? thinkingChars > 0 : null;
   const usageRequest = usage.requestUsage[0];
   return {
     model: `${selection.provider}:${selection.id}`,
@@ -66,12 +69,12 @@ async function check(selection: ModelSelection) {
       ...(selection.thinkingLevel === "off" ? {
         thinkingOff: [usage, tool].flatMap(result => result.requestUsage).every(request => request.reasoningTokens === null || request.reasoningTokens === 0),
       } : {}),
-      // Omitted when the provider does not report reasoning tokens, since the level cannot be observed then.
-      ...(reasoning && reasoningTokens !== null ? { thinkingWithTools: reasoning.status === "done" && reasoningTokens > 0 } : {}),
+      // Omitted only when neither reasoning tokens nor thinking text is reported, since thinking cannot be observed then.
+      ...(reasoning && thinkingObserved !== null ? { thinkingWithTools: reasoning.status === "done" && thinkingObserved } : {}),
     },
     reasoningTokensObserved: [usage, tool].flatMap(result => result.requestUsage).map(request => request.reasoningTokens),
     details: { usage: summary(usage), outputCap: summary(cap), toolRoundTrip: summary(tool), invalidKey: summary(auth),
-      ...(reasoning ? { thinkingWithTools: { ...summary(reasoning), expectedAnswer: "269" } } : {}) },
+      ...(reasoning ? { thinkingWithTools: { ...summary(reasoning), thinkingChars, expectedAnswer: "269" } } : {}) },
   };
 }
 
