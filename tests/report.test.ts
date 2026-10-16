@@ -41,7 +41,8 @@ test("trial scores give partial credit, apply the format penalty, and manifests 
   near(trialScore([{ id: "a", passed: true }, { id: "b", passed: false }, { id: "pending", passed: null }], { weights: { a: 3 } }), 0.75, "weights; pending checks excluded");
   assert.equal(trialScore([{ id: "pending", passed: null }], undefined), null);
   const interval = meanInterval([0.8, 1, 1])!;
-  near(interval.mean, 0.9333); assert.equal(interval.interval![1], 1, "clipped to 1");
+  near(interval.mean, 0.9333); near(interval.interval![0], wilsonInterval(2.8, 3)![0]);
+  assert.ok(meanInterval([1, 1, 1]).interval![0] < 0.6, "three agreeing trials do not give a zero-width interval");
 
   const manifest = JSON.parse(await readFile(resolve("task-library/calibration/rsn-001-shift-scheduling/manifest.json"), "utf8"));
   validateTaskPackageManifest(manifest);

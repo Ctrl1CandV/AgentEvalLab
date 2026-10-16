@@ -49,17 +49,15 @@ export function pairedDifference(differences: number[]): { tasks: number; mean: 
 }
 
 /**
- * Mean of values in [0, 1] with a 95% t interval clipped to [0, 1]; no interval for fewer than two values.
- * Used for partial-credit trial scores, which are not binary and so have no Wilson interval.
+ * Mean of partial-credit scores in [0, 1] with a conservative 95% interval: the Wilson interval of the score sum.
+ * A variable in [0, 1] with mean mu has variance at most mu(1 - mu), the binomial case, so the interval stays honest
+ * when a few trials happen to agree. A t interval over three identical scores would claim zero width.
  */
 export function meanInterval(values: number[]): { mean: number | null; interval: [number, number] | null } {
   const n = values.length;
   if (n === 0) return { mean: null, interval: null };
-  const mean = values.reduce((sum, value) => sum + value, 0) / n;
-  if (n < 2) return { mean, interval: null };
-  const variance = values.reduce((sum, value) => sum + (value - mean) ** 2, 0) / (n - 1);
-  const half = (tQuantiles[n - 2] ?? 1.959964) * Math.sqrt(variance / n);
-  return { mean, interval: [Math.max(0, mean - half), Math.min(1, mean + half)] };
+  const sum = values.reduce((total, value) => total + value, 0);
+  return { mean: sum / n, interval: wilsonInterval(sum, n) };
 }
 
 /** Deterministic 32-bit PRNG (mulberry32) for reproducible trial ordering. */
