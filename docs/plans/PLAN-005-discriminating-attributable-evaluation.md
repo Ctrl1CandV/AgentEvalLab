@@ -1,6 +1,6 @@
 # PLAN-005: Attributable Scores, Stated Budgets, and Discriminating Tasks
 
-Updated 2026-10-15. Follows [PLAN-004](PLAN-004-model-evaluation-baseline.md), whose phases 1–4 are complete; see the [pilot results](../reviews/2026-10-15-pilot-results.md).
+Updated 2026-10-16. Follows [PLAN-004](PLAN-004-model-evaluation-baseline.md), whose phases 1–4 are complete; see the [pilot results](../reviews/2026-10-15-pilot-results.md).
 
 ## Scope
 
@@ -50,20 +50,23 @@ This plan fixes the scoring and budget rules first, then rebuilds the task set f
 
 ## Work packages
 
-### WP1. Attribution safeguards
+### WP1. Attribution safeguards (scaled down, 2026-10-16)
 
-- **Instruction traceability.** Every manifest requirement gains an `instructionClause`, a verbatim quote of the instruction sentence it enforces. `task_packages.py check` and a test fail when the quote is missing or not found in `instruction.md`. A check that enforces something no clause states is a grader defect by definition; F7 would have been caught this way.
-- **Alternative-reading references.** Each package lists the details its instruction leaves open, such as listing zero counts, JSON key order and separators, or an evidence path written as `./deps.lock.json`. It also gains reference variants that take the other reading. Self-calibration requires every variant to pass.
-- **Real traces.** Every grader that reads the tool trace is tested against a trace emitted by the Pi runner, as tool-001 now is.
-- **Failure audit gate.** Before a task's results count, every failed critical check in its pilot is labelled in the pilot review as one of four causes:
-  - model error;
-  - grader defect;
-  - task ambiguity;
-  - infrastructure.
+The user decided that graders improve through repeated testing, so heavy up-front machinery is not warranted. What remains:
 
-  A task with an open grader or ambiguity label cannot be frozen.
+- **Failure audit after every pilot.** Each failed check is traced to model, grader, task ambiguity or infrastructure before results count, as in the 2026-10 pilot. Defects are fixed with a version bump.
+- **Real traces.** A grader that reads the tool trace is tested against a trace emitted by the Pi runner, as tool-001 now is.
+- **Alternative readings on demand.** When an audit finds an ambiguity, add a reference variant for the other reading, as eng-001 0.3.2 did for zero counts.
 
-### WP2. Trial scores: format deduction and partial credit
+Dropped as up-front requirements:
+
+- a verbatim instruction clause for every requirement, enforced by `task_packages.py`;
+- reference variants for every open detail of every package;
+- a hard gate that blocks freezing a task until every failure is labelled.
+
+### WP2. Trial scores: format deduction and partial credit (done 2026-10-16)
+
+Implemented in `73b8b05` (harness) and `d6408b2` (rsn-001, rsn-002 and tool-001 0.5.0) with a format penalty of 0.2, by the user's decision. Under the new graders, glm-5.3's three fenced rsn-002 answers pass every content check and score 0.8.
 
 - **Shared recovery rule** for answer-graded tasks (rsn-001, rsn-002, tool-001, and later families). Surrounding whitespace and exactly one enclosing Markdown code fence, optionally labelled `json`, may be removed. Nothing else is recovered: prose around the answer, several objects, or an edited structure still fails. The rule is stated in each instruction.
 - **Grading.** When the strict parse fails and the recovery rule succeeds, content checks run on the recovered answer. `answer-format` then fails with reason `recovered`.
@@ -82,7 +85,9 @@ This plan fixes the scoring and budget rules first, then rebuilds the task set f
   - format compliance rate;
   - the share of failures that are format-only.
 
-### WP3. Budgets stated to the model
+### WP3. Budgets stated to the model (done 2026-10-16)
+
+Implemented in `9f1c66b`. The budget is stated once in the prompt. Reminders arrive after passing 50%, 75% and 90% of any limit rather than every turn, by the user's decision, so that models do not fixate on the budget. The values in the table below were set by Claude, as the user asked, and are recorded in [the budget pilot](../../experiments/budget-pilot-2026-10/README.md).
 
 - **Budget per task**, identical for every model:
   - `maxTrialTokens`: all input and output tokens of the trial, cached input and reasoning included;
@@ -90,7 +95,7 @@ This plan fixes the scoring and budget rules first, then rebuilds the task set f
   - wall-clock timeout;
   - the per-request output cap.
 - **Stated once.** The harness appends one fixed budget paragraph, the same template for every task and model, to the task prompt.
-- **Stated each turn.** Before each further request, a short status message reports tokens used and remaining, calls used, and time used (decision 3). It is injected through Pi's steering hook, so tool results stay byte-identical and trace-based graders are unaffected. Without this feedback a model cannot act on a token budget, because it cannot count re-read context.
+- **Reminders.** After usage first passes 50%, 75% and 90% of any limit, a short status message reports tokens, calls and time used. It is injected through Pi's steering hook, so tool results stay byte-identical and trace-based graders are unaffected. Without this feedback a model cannot act on a token budget, because it cannot count re-read context.
 - **At the budget** the trial ends with `TRIAL_TOKEN_LIMIT` (or the matching limit) and is graded as it stands. This is implemented in PLAN-004 (F3, F8).
 - **Setting values.** Budgets come from normal usage: about 10 times the median and at least 3 times the maximum of non-outlier pilot trials, rounded up. A budget-replay tool (the offline replay above, generalised) shows how each candidate cap would have scored past trials. Proposed values, under decision 4:
 
@@ -101,7 +106,7 @@ This plan fixes the scoring and budget rules first, then rebuilds the task set f
   | eng-001 | 300K | luna maximum 60K; in the replay glm reached a correct solution within 300K in all three trials |
 
 - **Spending fuses.** `--validate-only` prints the worst-case spend: planned trials × `maxTrialTokens`, plus at most one request each. Batch and per-model ceilings default to that figure, so they bind only on a harness bug.
-- **Efficiency reporting.** Report tokens per trial, the share of trials that ran out of budget, and tokens per resolved trial. Whether staying within budget but spending most of it should also lower the score is decision 5.
+- **Efficiency reporting.** Report tokens per trial, the share of trials that ran out of budget, and tokens per resolved trial. Efficiency never enters the score (user decision, 2026-10-16): it shows a problem, such as glm finishing early and spending most tokens on re-checking, but is not itself a key capability.
 - **Known limit.** Token counts depend on each model's tokenizer, so equal token budgets are only approximately equal work. Generous budgets keep the effect small.
 
 ### WP4. Conditions for the next runs
@@ -123,18 +128,42 @@ This plan fixes the scoring and budget rules first, then rebuilds the task set f
   - rebuild the eng-004 baseline;
   - run the eng-005 five-stage trajectory under a stated budget.
 - **Difficulty calibration.** Compute per-item pass rates across at least three models, with a discrimination index. Item response theory comes once there are enough items and models.
+- **Follow mainstream benchmarks.** Model the task forms on established benchmarks: SWE-bench-style repository repair against hidden tests, Terminal-Bench-style command-line tasks, τ-bench-style tool use under policies, and reasoning sets with generated instances. Where raising difficulty or adding edge cases does not make a task discriminate, replace it or add new tasks instead of forcing it (user decision, 2026-10-16).
+- **Other scoring criteria.** Besides completion, tasks may score further qualities that separate solutions, such as code quality or documentation, through checks or judged dimensions.
 - **Design first.** This package starts with a design document that surveys task designs from established benchmarks and proposes concrete families. The user reviews it before any build.
+
+### WP6. Visual quality through a vision-model judge
+
+vis-001 (an original landing page) currently has static structure and contrast checks and a human pairwise review form. Rendering is still blocked, and it has no manifest. The user proposed handing aesthetic judgement to a third-party model with vision.
+
+- **Rendering.** Headless Chromium, through Playwright (browser binaries already exist in `~/.cache/ms-playwright`), renders each submission in the sandbox. It covers fixed viewports (desktop 1440×900, phone 390×844 at DPR 2), every form state, and the long-content variant. Rendered checks (horizontal overflow, computed contrast, axe-core) become objective checks. Visual appeal never offsets them.
+- **Judge skill.** A versioned judging package in the task's `private/` directory:
+  - a `SKILL.md`-style instruction with the rubric (fit to brief, visual hierarchy and clarity, consistency, responsive quality, polish);
+  - the procedure;
+  - a JSON output schema with evidence for each judgement.
+
+  The judge receives the screenshots and the brief, never the model's name.
+- **Comparison against anchors.** Each submission is compared pairwise with fixed anchor designs of known quality, the private reference and known-weak variants, in both orders to cancel position bias. Its score is the fraction of comparisons won. This keeps grading per trial; ranking all submissions against each other can come later.
+- **Independence and calibration.** The judge comes from a vendor other than the evaluated models; its model, version and prompt digest are recorded in the run condition. Before its scores count, the judge must:
+  - rank the anchors in their known order;
+  - be stable under order swaps;
+  - agree with a small set of human pairwise labels.
+- **Open points:** which vision model serves as judge, and whether the user approves adding Playwright as a dependency.
+
 
 ## Order
 
-1. WP1 and WP2: scoring correctness. Re-calibrate the affected packages.
-2. WP3: stated budgets; re-pilot on the current tasks with the WP4 conditions. This run is cheap and checks the mechanics, not difficulty.
-3. WP5: design document, user review, build, pilot, and freeze the first comparison set.
+1. WP2 and WP3: done 2026-10-16.
+2. Re-pilot on the current tasks with the WP4 conditions ([budget pilot](../../experiments/budget-pilot-2026-10/README.md)). It checks the mechanics, not difficulty.
+3. WP5 design document, then WP6; user review; build, pilot, and freeze the first comparison set.
 
-## Decisions for the user
+## Decisions (user, 2026-10-16)
 
-1. **Format penalty for a recoverable violation:** 0.25 proposed, so the trial keeps 75% of its content score.
-2. **Partial credit:** should the trial score be the fraction of content checks passed, alongside the binary resolved rate?
-3. **Per-turn budget status:** should the model see its remaining budget before each request, or only once at the start?
-4. **Per-task token budgets:** 50K for reasoning, 100K for tool, 300K for eng-001 (table in WP3).
-5. **Efficiency in the score:** should a model that finishes within budget but uses most of it lose points? Or should cost show only in the efficiency columns, and in the score only when the budget cuts the model off?
+1. **Format penalty:** 0.2. A format slip shows lapsed attention, not a large failure.
+2. **Partial credit:** yes. Completion degrees count, and other criteria may be added to separate solutions.
+3. **Budget status:** state the budget at the start; remind every few turns rather than every turn. Implemented as reminders after 50%, 75% and 90% of any limit.
+4. **Budget values:** left to Claude, based on each task and the pilot results (WP3 table).
+5. **Efficiency:** reported as a parameter, never part of the score.
+6. **Graders:** improve them through testing; no heavy up-front safeguards (WP1 scaled down).
+7. **Task difficulty:** follow mainstream benchmark forms; replace or add tasks where hardening does not work (WP5).
+8. **Aesthetics:** a vision-model judge, written as a judging skill (WP6).
