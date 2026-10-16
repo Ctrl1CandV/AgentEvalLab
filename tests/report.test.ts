@@ -9,7 +9,9 @@ import { emptyExecution } from "../src/types.js";
 import { runEvaluation } from "../src/evaluation/run.js";
 import { mergeRunReports } from "../src/evaluation/regrade.js";
 import { validatePlan } from "../src/evaluation/validate.js";
-import { pairedDifference, passAtK, passHatK, wilsonInterval } from "../src/evaluation/statistics.js";
+import { meanInterval, pairedDifference, passAtK, passHatK, wilsonInterval } from "../src/evaluation/statistics.js";
+import { trialScore } from "../src/evaluation/grader.js";
+import { validateTaskPackageManifest } from "../src/evaluation/manifest.js";
 import type { EvaluationPlan } from "../src/evaluation/types.js";
 
 const near = (actual: number | null | undefined, expected: number, message?: string) => {
@@ -26,6 +28,26 @@ test("estimators match hand-computed values", () => {
   assert.deepEqual(pairedDifference([0.5]), { tasks: 1, mean: 0.5, interval: null });
   const paired = pairedDifference([0.2, 0.4]);
   near(paired.mean, 0.3); near(paired.interval![0], -0.9706); near(paired.interval![1], 1, "clipped to the range of a rate difference");
+});
+
+test("trial scores give partial credit, apply the format penalty, and manifests declare scoring", async () => {
+  const scoring = { formatCheckId: "answer-format", formatPenalty: 0.2 };
+  const checks = (passed: boolean[], format: boolean | null) => [
+    ...passed.map((value, index) => ({ id: `c${index}`, passed: value })), ...(format === null ? [] : [{ id: "answer-format", passed: format }])];
+  near(trialScore(checks([true, true, true, true], true), scoring), 1);
+  near(trialScore(checks([true, true, true, false], true), scoring), 0.75, "partial credit");
+  near(trialScore(checks([true, true, true, true], false), scoring), 0.8, "a recovered answer loses 20%");
+  near(trialScore(checks([false, false], false), scoring), 0, "an unparsed answer fails every content check");
+  near(trialScore([{ id: "a", passed: true }, { id: "b", passed: false }, { id: "pending", passed: null }], { weights: { a: 3 } }), 0.75, "weights; pending checks excluded");
+  assert.equal(trialScore([{ id: "pending", passed: null }], undefined), null);
+  const interval = meanInterval([0.8, 1, 1])!;
+  near(interval.mean, 0.9333); assert.equal(interval.interval![1], 1, "clipped to 1");
+
+  const manifest = JSON.parse(await readFile(resolve("task-library/calibration/rsn-001-shift-scheduling/manifest.json"), "utf8"));
+  validateTaskPackageManifest(manifest);
+  assert.throws(() => validateTaskPackageManifest({ ...manifest, scoring: { formatCheckId: "instance-A", formatPenalty: 0.2 } }), /INVALID_PACKAGE_SCORING/,
+    "the format check must belong to a non-critical requirement");
+  assert.throws(() => validateTaskPackageManifest({ ...manifest, scoring: { formatCheckId: "answer-format", formatPenalty: 1.5 } }), /INVALID_PACKAGE_SCORING/);
 });
 
 async function reasoningPlan(models: EvaluationPlan["models"], repetitions: number, seed?: number): Promise<EvaluationPlan> {
@@ -76,6 +98,7 @@ test("repetitions are interleaved by seed and reported per task with format fail
     assert.equal(deepseek.label, "deepseek:deepseek-flash-high", "labels append the thinking level");
     assert.equal(deepseek.passes, 1);
     assert.equal(deepseek.malformedAnswers, 1);
+    near(deepseek.meanScore, 0.5, "mean of 1 and 0: an unparsed answer scores 0");
     assert.deepEqual(deepseek.executionOutcomes, { done: 2 });
     assert.equal(deepseek.usage.totalTokens.unknown, 2, "trials without reported usage are unknown, not zero");
     assert.match(await readFile(join(result.directory, "report.md"), "utf8"), /## Usage by task/);

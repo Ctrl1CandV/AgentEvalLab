@@ -1,5 +1,5 @@
 import { modelOptions, type ModelSelection, type RequestUsage } from "../types.js";
-import { pairedDifference, passAtK, passHatK, wilsonInterval } from "./statistics.js";
+import { meanInterval, pairedDifference, passAtK, passHatK, wilsonInterval } from "./statistics.js";
 import type { TrialRecord } from "./types.js";
 import type { BatchSummary } from "./batch.js";
 
@@ -113,6 +113,12 @@ function trialTokens(record: TrialRecord, value: (request: RequestUsage) => numb
   return values.length > 0 && values.every(item => item !== null) ? values.reduce((sum, item) => sum + item!, 0) : null;
 }
 
+/** Reported tokens of all trials in a group, or null when any trial lacks reported usage. */
+function trialTokensSum(records: TrialRecord[]): number | null {
+  const values = records.map(record => trialTokens(record));
+  return values.every(value => value !== null) ? values.reduce<number>((sum, value) => sum + value!, 0) : null;
+}
+
 /** The largest context one request of the trial processed. */
 function peakContext(record: TrialRecord): number | null {
   const values = (record.execution.requestUsage ?? []).map(requestContext);
@@ -145,6 +151,10 @@ export function taskResults(records: TrialRecord[], context: ReportContext) {
       const outcome = record.execution.status === "done" ? "done" : record.execution.error ?? record.execution.status;
       executionOutcomes[outcome] = (executionOutcomes[outcome] ?? 0) + 1;
     }
+    // Partial-credit scores of graded trials; trials without a score (skipped, unscored, errors) are excluded.
+    const scores = group.map(record => record.evaluation.score).filter((score): score is number => typeof score === "number");
+    const score = meanInterval(scores);
+    const resolvedTokens = trialTokensSum(group);
     return {
       model: modelKey(first.model),
       label: modelLabel(first.model),
@@ -155,6 +165,12 @@ export function taskResults(records: TrialRecord[], context: ReportContext) {
       passes,
       passRate: decided.length ? passes / decided.length : null,
       interval: wilsonInterval(passes, decided.length),
+      scored: scores.length,
+      meanScore: score.mean,
+      scoreInterval: score.interval,
+      // Efficiency is reported, never scored: tokens spent per resolved trial, and trials stopped by a budget.
+      tokensPerResolved: passes > 0 && resolvedTokens !== null ? resolvedTokens / passes : null,
+      budgetStops: group.filter(record => record.execution.failureKind === "budget").length,
       k,
       passAtK: k > 1 ? passAtK(decided.length, passes, k) : null,
       passHatK: k > 1 ? passHatK(decided.length, passes, k) : null,
@@ -179,7 +195,7 @@ export function taskResults(records: TrialRecord[], context: ReportContext) {
   }).sort((left, right) => left.caseId.localeCompare(right.caseId) || left.model.localeCompare(right.model));
 }
 
-/** Paired model differences in per-task pass rate, within one capability at a time. */
+/** Paired model differences in per-task mean score, within one capability at a time. */
 export function pairedComparisons(rows: ReturnType<typeof taskResults>, models: ModelSelection[]) {
   const keys = models.map(modelKey);
   const capabilities = [...new Set(rows.map(row => row.capability))].sort();
@@ -192,7 +208,7 @@ export function pairedComparisons(rows: ReturnType<typeof taskResults>, models: 
         for (const caseId of caseIds) {
           const a = rows.find(row => row.caseId === caseId && row.model === keys[left]);
           const b = rows.find(row => row.caseId === caseId && row.model === keys[right]);
-          if (a?.passRate != null && b?.passRate != null) differences.push(a.passRate - b.passRate);
+          if (a?.meanScore != null && b?.meanScore != null) differences.push(a.meanScore - b.meanScore);
         }
         comparisons.push({ capability, modelA: keys[left]!, modelB: keys[right]!, labelA: modelLabel(models[left]!), labelB: modelLabel(models[right]!),
           ...pairedDifference(differences) });
@@ -241,17 +257,17 @@ export function markdownReport(report: ReturnType<typeof buildReport>): string {
       return `| ${modelLabel(model)} | ${modelKey(model)} | ${options.thinkingLevel} | ${options.temperature ?? "provider default"} |`;
     }),
     "", "## Results by task", "",
-    `Pass rates count decided trials (passed or failed). Budget stops and timeouts are graded and count; infrastructure failures are skipped and excluded. Intervals are 95% Wilson intervals; pass@k and pass^k use k = ${report.repetitions}.`, "",
-    "| Task | Capability | Model | Decided/trials | Pass rate | 95% interval | pass@k | pass^k | Malformed answers | Review pending |",
-    "| --- | --- | --- | ---: | ---: | --- | ---: | ---: | ---: | ---: |",
-    ...report.byTask.map(row => `| ${row.caseId} | ${row.capability} | ${row.label} | ${row.decided}/${row.trials} | ${percent(row.passRate)} | ${interval(row.interval)} | ${percent(row.passAtK)} | ${percent(row.passHatK)} | ${row.malformedAnswers} | ${row.reviewPending} |`),
+    `Score is partial credit: the fraction of content checks a trial passed, less the task's format penalty when the answer had to be recovered; its interval is a 95% t interval over trials. A trial is resolved when every critical check passes; the resolved rate counts decided trials and uses a 95% Wilson interval, and pass@k and pass^k use k = ${report.repetitions}. Budget stops and timeouts are graded and count; infrastructure failures are skipped and excluded.`, "",
+    "| Task | Capability | Model | Mean score | 95% interval | Resolved | Resolved/decided | 95% interval | pass@k | pass^k | Format failures | Review pending |",
+    "| --- | --- | --- | ---: | --- | ---: | ---: | --- | ---: | ---: | ---: | ---: |",
+    ...report.byTask.map(row => `| ${row.caseId} | ${row.capability} | ${row.label} | ${percent(row.meanScore)} | ${interval(row.scoreInterval)} | ${percent(row.passRate)} | ${row.passes}/${row.decided} | ${interval(row.interval)} | ${percent(row.passAtK)} | ${percent(row.passHatK)} | ${row.malformedAnswers} | ${row.reviewPending} |`),
     ""];
   const range = (value: { median: number | null; max: number | null; unknown: number }, scale = 1, digits = 0) =>
     value.median === null ? "unknown" : `${(value.median / scale).toFixed(digits)} / ${(value.max! / scale).toFixed(digits)}${value.unknown ? ` (+${value.unknown} unknown)` : ""}`;
-  lines.push("## Usage by task", "", "Median / maximum per trial. Tokens are fixed units in thousands, without prices. Output is generated text, tool calls and reasoning. Input counts every context token each request processed, cached or not; whether input hits a cache depends on the endpoint, so cache reads are shown for information only. Peak context is the largest single request. Total = input + output. Execution outcomes show how trials ended; budget stops such as MODEL_CALL_LIMIT, OUTPUT_TOKEN_LIMIT or TRIAL_TOKEN_LIMIT indicate a binding budget.", "",
-    "| Task | Model | Model calls | Tool calls | Output | Input | of which cache reads | Peak context | Total | Duration (s) | Execution outcomes |",
-    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
-    ...report.byTask.map(row => `| ${row.caseId} | ${row.label} | ${range(row.usage.modelCalls)} | ${range(row.usage.toolCalls)} | ${range(row.usage.outputTokens, 1000, 1)} | ${range(row.usage.inputTokens, 1000, 1)} | ${range(row.usage.cacheReadTokens, 1000, 1)} | ${range(row.usage.peakContextTokens, 1000, 1)} | ${range(row.usage.totalTokens, 1000, 1)} | ${range(row.usage.durationMs, 1000, 1)} | ${Object.entries(row.executionOutcomes).map(([key, count]) => `${key} ${count}`).join(", ")} |`),
+  lines.push("## Usage by task", "", "Median / maximum per trial. Tokens are fixed units in thousands, without prices. Output is generated text, tool calls and reasoning. Input counts every context token each request processed, cached or not; whether input hits a cache depends on the endpoint, so cache reads are shown for information only. Peak context is the largest single request. Total = input + output. Tokens per resolved trial divides all tokens of the row by its resolved trials; efficiency is reported for information and never enters the score. Execution outcomes show how trials ended; budget stops such as MODEL_CALL_LIMIT, OUTPUT_TOKEN_LIMIT or TRIAL_TOKEN_LIMIT indicate a binding budget.", "",
+    "| Task | Model | Model calls | Tool calls | Output | Input | of which cache reads | Peak context | Total | Tokens per resolved trial | Duration (s) | Execution outcomes |",
+    "| --- | --- | --- | --- | --- | --- | --- | --- | --- | ---: | --- | --- |",
+    ...report.byTask.map(row => `| ${row.caseId} | ${row.label} | ${range(row.usage.modelCalls)} | ${range(row.usage.toolCalls)} | ${range(row.usage.outputTokens, 1000, 1)} | ${range(row.usage.inputTokens, 1000, 1)} | ${range(row.usage.cacheReadTokens, 1000, 1)} | ${range(row.usage.peakContextTokens, 1000, 1)} | ${range(row.usage.totalTokens, 1000, 1)} | ${row.tokensPerResolved === null ? "n/a" : (row.tokensPerResolved / 1000).toFixed(1)} | ${range(row.usage.durationMs, 1000, 1)} | ${Object.entries(row.executionOutcomes).map(([key, count]) => `${key} ${count}`).join(", ")} |`),
     "");
   const sum = (values: Array<number | null>) => values.reduce<number>((total, value) => total + (value ?? 0), 0);
   const thousands = (value: number) => (value / 1000).toFixed(1);
@@ -269,7 +285,7 @@ export function markdownReport(report: ReturnType<typeof buildReport>): string {
       `requests without usage: ${unknownUsageRequests}; stop reason: ${stopReason ?? "none"}; trials not run: ${notRun.length}${reasons.length ? ` (${reasons.join(", ")})` : ""}.`, "");
   }
   if (report.pairedComparisons.length) {
-    lines.push("## Paired model differences", "", "Mean per-task pass-rate difference (A − B) within one capability, with a 95% t interval over tasks, clipped to ±100%; no interval with fewer than two tasks. With few tasks the interval is wide by construction.", "",
+    lines.push("## Paired model differences", "", "Mean per-task score difference (A − B) within one capability, with a 95% t interval over tasks, clipped to ±100%; no interval with fewer than two tasks. With few tasks the interval is wide by construction.", "",
       "| Capability | Model A | Model B | Tasks | Mean difference | 95% interval |", "| --- | --- | --- | ---: | ---: | --- |",
       ...report.pairedComparisons.map(row => `| ${row.capability} | ${row.labelA} | ${row.labelB} | ${row.tasks} | ${percent(row.mean)} | ${interval(row.interval)} |`), "");
   }

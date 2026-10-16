@@ -5,7 +5,7 @@ import { command } from "../command.js";
 import { redact } from "../privacy.js";
 import { sandboxLauncher, type Isolation } from "../sandbox.js";
 import type { ArtifactManifest, EvaluationResult } from "./types.js";
-import type { PackageDescriptor, TaskPackageManifest } from "./manifest.js";
+import type { ManifestScoring, PackageDescriptor, TaskPackageManifest } from "./manifest.js";
 
 interface GraderRequest {
   schemaVersion: 1;
@@ -201,6 +201,21 @@ function graderError(code: string): EvaluationResult {
 }
 
 /** Runs a pinned external grader with bounded process I/O and validates its result file. */
+/**
+ * Partial-credit trial score in [0, 1]: the weighted fraction of judged content checks that passed, reduced by the
+ * format penalty when the format check failed. An answer that could not be parsed fails every content check, so it
+ * scores 0 whatever the penalty. Null when no content check was judged.
+ */
+export function trialScore(checks: Array<{ id: string; passed: boolean | null }>, scoring: ManifestScoring | undefined): number | null {
+  const content = checks.filter(check => check.passed !== null && check.id !== scoring?.formatCheckId);
+  const weight = (id: string) => scoring?.weights?.[id] ?? 1;
+  const total = content.reduce((sum, check) => sum + weight(check.id), 0);
+  if (total === 0) return null;
+  const passed = content.reduce((sum, check) => sum + (check.passed ? weight(check.id) : 0), 0);
+  const formatFailed = scoring?.formatCheckId !== undefined && checks.some(check => check.id === scoring.formatCheckId && check.passed === false);
+  return (passed / total) * (formatFailed ? 1 - (scoring?.formatPenalty ?? 0) : 1);
+}
+
 export async function runTaskGrader(input: TaskGraderInput): Promise<EvaluationResult> {
   const descriptor = input.packageDescriptor;
   const manifest = descriptor.manifest;
@@ -283,7 +298,7 @@ export async function runTaskGrader(input: TaskGraderInput): Promise<EvaluationR
     const status = knownCriticalFailure ? "failed" : unknownCriticalCheck ? "unscored" : "passed";
     const checks: EvaluationResult["checks"] = validated.checks.map(check => ({ id: check.id, passed: check.passed }));
     for (const checkId of validated.missingCheckIds) checks.push({ id: checkId, passed: null });
-    const score = status === "passed" ? 1 : status === "failed" ? 0 : null;
+    const score = status === "unscored" ? null : trialScore(checks, manifest.scoring);
     const pendingCheckIds = validated.missingCheckIds.filter(checkId => !criticalChecks.has(checkId));
     const review = pendingCheckIds.length > 0 ? { status: "pending" as const, pendingCheckIds, reason: validated.reason } : undefined;
     return { status, score, checks, error: status === "unscored" ? validated.reason : null, ...(review ? { review } : {}) };

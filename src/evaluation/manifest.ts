@@ -19,6 +19,19 @@ export interface ManifestRequirement {
   checkIds: string[];
 }
 
+/**
+ * How the harness turns a grader's checks into a trial score. Absent fields mean equal weights and no format check.
+ * The score counts the grader's objective checks; human-review checks are recorded separately.
+ */
+export interface ManifestScoring {
+  /** A non-critical check that passes only when the answer followed the instructed format exactly. */
+  formatCheckId?: string;
+  /** Fraction of the content score lost when the format check fails (0 to 1). */
+  formatPenalty?: number;
+  /** Relative weights of content checks; unlisted checks weigh 1. */
+  weights?: Record<string, number>;
+}
+
 export interface ManifestDimension {
   id: string;
   minimum: number;
@@ -54,6 +67,7 @@ export interface TaskPackageManifest {
   requirements: ManifestRequirement[];
   stages?: ManifestTrajectoryStage[];
   dimensions?: ManifestDimension[];
+  scoring?: ManifestScoring;
   /** Profiles fixed for this task; omitted legacy manifests permit only workspace-basic. */
   toolProfiles?: ToolProfile[];
   /** A local git baseline pinned by its commit hash. */
@@ -214,6 +228,20 @@ export function validateTaskPackageManifest(value: unknown): asserts value is Ta
   }
   if (!manifest.requirements.some(requirement => record(requirement).critical === true)) {
     throw new PackageManifestError("PACKAGE_HAS_NO_CRITICAL_REQUIREMENTS");
+  }
+  if (manifest.scoring !== undefined) {
+    const scoring = record(manifest.scoring);
+    const requirements = manifest.requirements as ManifestRequirement[];
+    const formatOwner = requirements.find(requirement => requirement.checkIds.includes(String(scoring.formatCheckId)));
+    const weights = scoring.weights === undefined ? {} : record(scoring.weights);
+    if (Object.keys(scoring).some(key => !["formatCheckId", "formatPenalty", "weights"].includes(key)) ||
+        (scoring.formatCheckId !== undefined && (!formatOwner || formatOwner.critical)) ||
+        (scoring.formatPenalty !== undefined && (typeof scoring.formatPenalty !== "number" || !(scoring.formatPenalty >= 0 && scoring.formatPenalty <= 1) ||
+          scoring.formatCheckId === undefined)) ||
+        Object.entries(weights).some(([checkId, weight]) => !checkIds.has(checkId) || checkId === scoring.formatCheckId ||
+          typeof weight !== "number" || !Number.isFinite(weight) || weight <= 0)) {
+      throw new PackageManifestError("INVALID_PACKAGE_SCORING");
+    }
   }
   if (manifest.dimensions !== undefined) {
     if (!Array.isArray(manifest.dimensions)) throw new PackageManifestError("INVALID_PACKAGE_DIMENSIONS");
