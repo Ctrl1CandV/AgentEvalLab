@@ -130,7 +130,7 @@ Implemented in `9f1c66b`. The budget is stated once in the prompt. Reminders arr
 - **Difficulty calibration.** Compute per-item pass rates across at least three models, with a discrimination index. Item response theory comes once there are enough items and models.
 - **Follow mainstream benchmarks.** Model the task forms on established benchmarks: SWE-bench-style repository repair against hidden tests, Terminal-Bench-style command-line tasks, τ-bench-style tool use under policies, and reasoning sets with generated instances. Where raising difficulty or adding edge cases does not make a task discriminate, replace it or add new tasks instead of forcing it (user decision, 2026-10-16).
 - **Other scoring criteria.** Besides completion, tasks may score further qualities that separate solutions, such as code quality or documentation, through checks or judged dimensions.
-- **Design first.** This package starts with a design document that surveys task designs from established benchmarks and proposes concrete families. The user reviews it before any build.
+- **Design first.** This package starts with a design document that surveys task designs from established benchmarks and proposes concrete families; the user reviews it before any build. The proposal is [Task Set v2](../design/TASK_SET_V2.md), which also covers WP6.
 
 ### WP6. Visual quality through a vision-model judge
 
