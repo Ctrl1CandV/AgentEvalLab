@@ -15,6 +15,16 @@ import type { EvaluationPlan } from "./evaluation/types.js";
 import { fileURLToPath } from "node:url";
 import { git } from "./command.js";
 
+/** The most tokens a single-run plan can spend: planned trials times the per-trial budget, plus one request each. */
+function worstCaseSpend(plan: EvaluationPlan): string {
+  if (plan.execution?.kind === "trajectory") return "Worst-case token spend: not computed for trajectory plans.";
+  const trials = plan.models.length * plan.cases.length * (plan.repetitions ?? 1);
+  const perTrial = plan.budget.maxTrialTokens;
+  if (typeof perTrial !== "number") return `Worst-case token spend: unbounded per trial (${trials} trials, no maxTrialTokens); only batch ceilings apply.`;
+  return `Worst-case token spend: ${trials} trials x ${perTrial.toLocaleString("en-US")} tokens = ${(trials * perTrial).toLocaleString("en-US")} ` +
+    `(${(plan.cases.length * (plan.repetitions ?? 1) * perTrial).toLocaleString("en-US")} per model), plus at most the last request of each trial.`;
+}
+
 async function main(): Promise<void> {
   const { values } = parseArgs({
     options: {
@@ -106,10 +116,12 @@ async function main(): Promise<void> {
     if (values["validate-only"]) {
       if (values.resume) throw new Error("RESUME_ARGUMENTS_INVALID");
       console.log("Evaluation plan is valid. Credentials were not loaded and no API requests were sent.");
+      console.log(worstCaseSpend(plan));
       return;
     }
-    // SPEC rule 8: no provider request without an explicit batch budget.
-    if (typeof plan.batch?.maxTotalTokens !== "number" && typeof plan.batch?.maxTotalTokensPerModel !== "number") throw new Error("BATCH_TOKEN_CEILING_REQUIRED");
+    // SPEC rule 8: no provider request without bounded spending, by a per-trial token budget or a batch ceiling.
+    if (typeof plan.budget.maxTrialTokens !== "number" && typeof plan.batch?.maxTotalTokens !== "number" &&
+        typeof plan.batch?.maxTotalTokensPerModel !== "number") throw new Error("BATCH_TOKEN_CEILING_REQUIRED");
     if (values.resume && plan.execution?.kind === "trajectory") throw new Error("RESUME_UNSUPPORTED_FOR_TRAJECTORY");
     // A live run must map to one committed code revision; the fingerprint records the commit and dirty flag.
     const repositoryRoot = fileURLToPath(new URL("../", import.meta.url));

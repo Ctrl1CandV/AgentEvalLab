@@ -19,6 +19,7 @@ import { seededRandom, shuffled } from "./statistics.js";
 import { preflightPlan } from "./preflight.js";
 import { evaluatedCondition, sha256 } from "./condition.js";
 import { BatchGuard, resolveBatchPolicy, type NotRunEntry } from "./batch.js";
+import { budgetStatement, defaultReminderThresholds } from "../harness/budget-notice.js";
 import { loadRecordedTrials } from "./regrade.js";
 import type { EvaluationOptions, EvaluationPlan, TrialRecord } from "./types.js";
 
@@ -41,6 +42,12 @@ function trialSchedule(plan: EvaluationPlan, seed: number): TrialSlot[] {
     }
   }
   return slots;
+}
+
+/** The plan's budget notice with defaults filled in, or null when the budget is not stated to the model. */
+export function resolveBudgetNotice(plan: EvaluationPlan): { reminders: readonly number[] } | null {
+  if (!plan.budgetNotice) return null;
+  return { reminders: plan.budgetNotice === true ? defaultReminderThresholds : plan.budgetNotice.reminders };
 }
 
 function trialKey(model: ModelSelection, caseId: string, repetition: number): string {
@@ -88,6 +95,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
   }
   const records: TrialRecord[] = [];
   const guard = new BatchGuard(batchPolicy);
+  const notice = resolveBudgetNotice(plan);
   const notRun: NotRunEntry[] = [];
   let sequence = await countLines(join(directory, "events.jsonl"));
   let pending = Promise.resolve();
@@ -153,6 +161,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
         const instruction = projection?.instruction ?? "";
         await events.emit("execution_started");
         const runner = options.runner ?? createPiRunner({
+          ...(notice ? { budgetReminders: notice.reminders } : {}),
           trialId: id,
           interactionClass,
           toolEvidenceMaxBytes: artifactLimits.toolEvidenceMaxBytes,
@@ -165,7 +174,8 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
             { readOnly: item.readOnly, execute: !item.readOnly, isolation: plan.isolation },
           ) : [],
         });
-        record.execution = await runner({ ...item.input, prompt: [instruction, item.input.prompt].filter(Boolean).join("\n\n"), workspacePath: workspace.path }, model, plan.budget, events.emit);
+        const prompt = [instruction, item.input.prompt, notice ? budgetStatement(plan.budget, notice.reminders) : ""].filter(Boolean).join("\n\n");
+        record.execution = await runner({ ...item.input, prompt, workspacePath: workspace.path }, model, plan.budget, events.emit);
         executionFinished = true;
         await pending;
         events.check();

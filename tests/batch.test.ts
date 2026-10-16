@@ -7,6 +7,7 @@ import type { AssistantMessage } from "@earendil-works/pi-ai";
 import { AssistantMessageEventStream } from "@earendil-works/pi-ai/utils/event-stream";
 import { classifyProviderFailure, failureOutcome } from "../src/harness/provider-errors.js";
 import { createPiRunner } from "../src/harness/pi.js";
+import { budgetStatement, defaultReminderThresholds } from "../src/harness/budget-notice.js";
 import { defaultBudget, parseModel } from "../src/config.js";
 import { emptyExecution, type ExecutionResult, type RequestUsage } from "../src/types.js";
 import { runEvaluation } from "../src/evaluation/run.js";
@@ -168,6 +169,61 @@ test("the runner ends a trial with TRIAL_TOKEN_LIMIT before a request that would
   assert.equal(result.status, "budget_exceeded");
   assert.equal(result.error, "TRIAL_TOKEN_LIMIT");
   assert.equal(result.modelCalls, 3, "cached input counts in full: 3 x 400 tokens passes the 1,000-token cap");
+});
+
+test("the budget is stated in the prompt and reminders arrive only after passing 50%, 75% and 90%", async () => {
+  const budget = { ...defaultBudget, maxTurns: 40, maxModelCalls: 40, maxToolCalls: 40, timeoutMs: 600_000, maxTrialTokens: 2_000 };
+  const statement = budgetStatement(budget, defaultReminderThresholds);
+  assert.match(statement, /Tokens: at most 2,000 for the whole task/);
+  assert.match(statement, /graded as it stands/);
+  assert.match(statement, /after you pass 50%, 75% and 90% of any limit/);
+
+  // Each response costs 100 of 2,000 tokens, so responses 10, 15 and 18 pass 50%, 75% and 90%; response 19 answers.
+  let call = 0;
+  const statusSeen: Array<[number, string]> = [];
+  const stream = (selected: { api: string; provider: string; id: string }, context: { messages: Array<{ role: string; content: unknown }> }) => {
+    call++;
+    const last = context.messages.at(-1);
+    if (last?.role === "user" && typeof last.content === "string" && last.content.startsWith("[Budget status]")) statusSeen.push([call, last.content]);
+    const content = call < 19 ? [{ type: "toolCall" as const, id: `c${call}`, name: "noop", arguments: {} }] : [{ type: "text" as const, text: "done" }];
+    const message = { role: "assistant" as const, content, api: selected.api, provider: selected.provider, model: selected.id,
+      usage: { input: 50, output: 50, cacheRead: 0, cacheWrite: 0, totalTokens: 100, cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, total: 0 } },
+      stopReason: call < 19 ? "toolUse" as const : "stop" as const, timestamp: Date.now() };
+    const events = new AssistantMessageEventStream();
+    events.push({ type: "start", partial: { ...message, content: [], stopReason: "pending" } } as never);
+    events.push({ type: "done", reason: message.stopReason, message } as never);
+    return events;
+  };
+  const noop = { name: "noop", label: "Noop", description: "Do nothing.", parameters: { type: "object", properties: {} },
+    async execute() { return { content: [{ type: "text", text: "ok" }], details: {} }; } };
+  const notices: Array<{ threshold: number }> = [];
+  const runner = createPiRunner({ apiKey: "offline", stream: stream as never, createTools: () => [noop as never], budgetReminders: defaultReminderThresholds });
+  const result = await runner({ prompt: "go" }, parseModel("anthropic:claude-sonnet-4-6"), budget,
+    async (type, _counts, details) => { if (type === "budget_notice") notices.push(details as { threshold: number }); });
+  assert.equal(result.status, "done", result.error ?? "");
+  assert.deepEqual(notices.map(notice => notice.threshold), [0.5, 0.75, 0.9]);
+  assert.deepEqual(statusSeen.map(([at]) => at), [11, 16, 19], "each status precedes the request after the response that passed a threshold");
+  assert.match(statusSeen[0]![1], /1,000 of 2,000 tokens \(50%\), 10 of 40 model responses, 10 of 40 tool calls/);
+
+  // Without reminders configured, no status is ever sent.
+  call = 0; statusSeen.length = 0;
+  await createPiRunner({ apiKey: "offline", stream: stream as never, createTools: () => [noop as never] })({ prompt: "go" }, parseModel("anthropic:claude-sonnet-4-6"), budget, async () => {});
+  assert.equal(statusSeen.length, 0);
+});
+
+test("a plan's budgetNotice appends the statement to the prompt and is validated", async () => {
+  const root = await mkdtemp(join(tmpdir(), "batch-notice-"));
+  try {
+    const prompts: string[] = [];
+    const noticePlan: EvaluationPlan = { ...plan({ maxTotalTokens: 1_000_000 }, 1), budgetNotice: true, budget: { ...defaultBudget, maxTrialTokens: 50_000 } };
+    validatePlan(noticePlan);
+    await runEvaluation(noticePlan, { outputRoot: root, runner: async input => { prompts.push(input.prompt); return ok(); } });
+    assert.match(prompts[0]!, /^p\n\nBudget for this task, the same for every model:\n- Tokens: at most 50,000/);
+    await runEvaluation(plan({ maxTotalTokens: 1_000_000 }, 1), { outputRoot: root, runner: async input => { prompts.push(input.prompt); return ok(); } });
+    assert.equal(prompts[1], "p", "without budgetNotice the prompt is unchanged");
+    assert.throws(() => validatePlan({ ...noticePlan, budgetNotice: { reminders: [0.9, 0.5] } } as never), /INVALID_BUDGET_NOTICE/);
+    validatePlan({ ...noticePlan, budgetNotice: { reminders: [0.8] } });
+  } finally { await rm(root, { recursive: true, force: true }); }
 });
 
 test("batch policies are validated", () => {

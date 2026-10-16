@@ -46,6 +46,11 @@ export interface EvaluationPlan {
   repetitions?: number;
   /** Seed for the interleaved trial order; defaults to a value derived from the run fingerprint. */
   seed?: number;
+  /**
+   * State the budget to the model (PLAN-005 WP3): a fixed paragraph appended to the task prompt, and one status
+   * message after usage passes each reminder threshold (default 50%, 75% and 90% of any limit). Single runs only.
+   */
+  budgetNotice?: boolean | { reminders: number[] };
 }
 
 export type ExecutionPolicy =

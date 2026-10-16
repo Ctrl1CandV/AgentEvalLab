@@ -2,6 +2,7 @@ import { getSupportedThinkingLevels } from "@earendil-works/pi-ai";
 import { validateBudget, parseModel } from "../config.js";
 import { thinkingLevels } from "../types.js";
 import { validateBatchPolicy } from "./batch.js";
+import { validReminderThresholds } from "../harness/budget-notice.js";
 import { lookupModelConfig } from "../providers.js";
 import { resolveModel } from "../harness/pi.js";
 import { defaultArtifactLimits } from "./artifacts.js";
@@ -23,6 +24,10 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
   if (typeof plan.name !== "string" || !plan.name.trim()) throw new Error("INVALID_PLAN");
   if (typeof plan.trustedLocalExecution !== "boolean") throw new Error("INVALID_TRUST_SETTING");
   if (plan.isolation !== undefined && plan.isolation !== "sandbox" && plan.isolation !== "host") throw new Error("INVALID_ISOLATION");
+  const notice = plan.budgetNotice as unknown;
+  if (notice !== undefined && typeof notice !== "boolean" &&
+      !(notice && typeof notice === "object" && !Array.isArray(notice) && Object.keys(notice).every(key => key === "reminders") &&
+        validReminderThresholds((notice as { reminders?: unknown }).reminders))) throw new Error("INVALID_BUDGET_NOTICE");
   validateBatchPolicy(plan.batch);
   if (plan.repetitions !== undefined && (typeof plan.repetitions !== "number" || !Number.isSafeInteger(plan.repetitions) || plan.repetitions < 1 || plan.repetitions > 50)) {
     throw new Error("INVALID_REPETITIONS");
@@ -39,6 +44,7 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
       }
       validateBudget(object(execution.stageBudget) as unknown as EvaluationPlan["budget"]);
       if (plan.repetitions !== undefined && plan.repetitions !== 1) throw new Error("TRAJECTORY_REPETITIONS_UNSUPPORTED");
+      if (plan.budgetNotice !== undefined && plan.budgetNotice !== false) throw new Error("TRAJECTORY_BUDGET_NOTICE_UNSUPPORTED");
     } else throw new Error("UNKNOWN_EXECUTION_POLICY");
   }
   if (plan.artifactLimits !== undefined) {

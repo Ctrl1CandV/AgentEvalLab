@@ -1,4 +1,5 @@
 import { anthropicProvider } from "@earendil-works/pi-ai/providers/anthropic";
+import { budgetFraction, budgetStatus } from "./budget-notice.js";
 import { openaiProvider } from "@earendil-works/pi-ai/providers/openai";
 import { Agent, type AgentEvent, type AgentTool, type StreamFn } from "@earendil-works/pi-agent-core";
 import { createModels } from "@earendil-works/pi-ai";
@@ -51,6 +52,11 @@ export interface PiRunnerOptions<Input extends RunInput> {
   createTools?: (input: Input) => AgentTool[];
   /** Internal state shared only by the explicit continuous trajectory session. */
   sessionState?: PiSessionState;
+  /**
+   * Fractions of any limit after which the model receives one budget status message (PLAN-005 WP3).
+   * Absent means no reminders. The statement of the budget itself belongs to the task prompt.
+   */
+  budgetReminders?: readonly number[];
 }
 
 export interface PiSessionState {
@@ -115,6 +121,7 @@ export function createPiRunner<Input extends RunInput = RunInput>(
     const traceBytesAtStart = traceBytes;
     let requestEventPending = Promise.resolve();
     const interceptedCalls = new Set<string>();
+    let remindedThreshold = 0;
     const requestState: { active: { usage: RequestUsage; started: number } | null } = { active: null };
     let currentRequestId: string | null = null;
 
@@ -351,7 +358,7 @@ export function createPiRunner<Input extends RunInput = RunInput>(
       },
 
       // Account for turns and budgets when each assistant response ends.
-      finishTurn: ({ message }) => {
+      finishTurn: async ({ message }) => {
         result.turns++;
 
         // Stop immediately when a response is truncated by the output limit, or when it exceeds the limit
@@ -379,6 +386,19 @@ export function createPiRunner<Input extends RunInput = RunInput>(
         if (message.stopReason === "toolUse" && result.modelCalls >= budget.maxModelCalls) {
           limit("MODEL_CALL_LIMIT");
           return { action: "end" };
+        }
+        // The run continues: send one budget status when usage has passed a new reminder threshold.
+        if (message.stopReason === "toolUse" && options.budgetReminders?.length) {
+          const use = { tokens: result.requestUsage.reduce((sum, request) => sum + (request.totalTokens ?? 0), 0),
+            modelCalls: result.modelCalls, toolCalls: result.toolCalls, elapsedMs: performance.now() - start };
+          const fraction = budgetFraction(budget, use);
+          const threshold = options.budgetReminders.filter(value => value <= fraction && value > remindedThreshold).at(-1);
+          if (threshold !== undefined) {
+            remindedThreshold = threshold;
+            const text = budgetStatus(budget, use);
+            agent.steer({ role: "user", content: text, timestamp: Date.now() });
+            await events.emit("budget_notice", { modelCalls: result.modelCalls, toolCalls: result.toolCalls }, { threshold, fraction, text });
+          }
         }
       },
     });
