@@ -154,8 +154,8 @@ vis-001 (an original landing page) currently has static structure and contrast c
 ## Order
 
 1. WP2 and WP3: done 2026-10-16.
-2. Re-pilot on the current tasks with the WP4 conditions ([budget pilot](../../experiments/budget-pilot-2026-10/README.md)). It checks the mechanics, not difficulty.
-3. WP5 design document, then WP6; user review; build, pilot, and freeze the first comparison set.
+2. Re-pilot on the current tasks with the WP4 conditions: done 2026-10-16, see [the budget pilot results](../reviews/2026-10-16-budget-pilot.md). The mechanics work, every task scored at least 93% for both models, and no failure came from a grader.
+3. WP5 and WP6: the design proposal [Task Set v2](../design/TASK_SET_V2.md) awaits user review; then build, pilot, and freeze the first comparison set.
 
 ## Decisions (user, 2026-10-16)
 

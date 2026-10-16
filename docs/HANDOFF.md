@@ -1,6 +1,6 @@
 # Project Handoff
 
-Updated 2026-10-15.
+Updated 2026-10-16.
 
 ## Current state
 
@@ -20,7 +20,12 @@ The 2026-10 pilot ran in two rounds on 2026-10-14 and 2026-10-15: luna-medium wi
 
 ## Next steps
 
-1. Follow [PLAN-005](plans/PLAN-005-discriminating-attributable-evaluation.md). After the pilot the user set its principles: deductions must be attributable to the model; a recoverable format slip is deducted, not failed; there is one generous budget per task, stated to the model; thinking runs at a middle level; and the tasks must become harder. Its five open decisions come first.
+1. Follow [PLAN-005](plans/PLAN-005-discriminating-attributable-evaluation.md). As of 2026-10-16:
+   - partial-credit scoring with a 20% format deduction is done, and budgets are stated to the model with reminders at 50%, 75% and 90%;
+   - the [budget pilot](reviews/2026-10-16-budget-pilot.md) confirmed both;
+   - the next step is the user's review of [Task Set v2](design/TASK_SET_V2.md).
+
+   Background: after the pilot the user set its principles: deductions must be attributable to the model; a recoverable format slip is deducted, not failed; there is one generous budget per task, stated to the model; thinking runs at a middle level; and the tasks must become harder. The user settled its open decisions on 2026-10-16.
 2. The pilot's own decision list is superseded by PLAN-005.
 3. Rebuild the eng-004 baseline as a project-owned bundle; the previously pinned commit is unavailable.
 4. Limit conclusions to the observed task versions, models, prompts, tools, and budgets.
