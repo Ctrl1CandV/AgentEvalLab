@@ -1,0 +1,25 @@
+Task rsn-002-derivation-check version 0.5.0 (grader 1.2.0); date 2026-10-16; Python 3.13.15; Node v22.23.2; host Linux (WSL2 Ubuntu 22.04)
+No model API or credentials were used.
+
+$ python3 private/acceptance.py --self-calibrate
+reference-answer: PASS ['counterexample-certificate', 'dimension-certificate', 'limit-certificate', 'sample-values', 'wrong-step-location']
+alternative-parameters: PASS ['counterexample-certificate', 'dimension-certificate', 'limit-certificate', 'sample-values', 'wrong-step-location']
+reject-wrong-step: PASS ['counterexample-certificate', 'dimension-certificate', 'limit-certificate', 'sample-values']
+reject-student-numbers: PASS ['counterexample-certificate', 'dimension-certificate', 'limit-certificate', 'wrong-step-location']
+reject-invalid-counterexample: PASS ['dimension-certificate', 'limit-certificate', 'sample-values', 'wrong-step-location']
+reject-bad-limit-certificate: PASS ['counterexample-certificate', 'dimension-certificate', 'sample-values', 'wrong-step-location']
+reject-missing-dimensions: PASS ['counterexample-certificate', 'limit-certificate', 'sample-values', 'wrong-step-location']
+reject-malformed: PASS 
+repeatable: PASS 
+human-review: formula-equivalence and explanation-quality remain unscored by design
+RESULT: PASS (9/9)
+parse-strict-object: PASS
+parse-recovers-one-json-fence: PASS
+parse-recovers-one-unlabelled-fence: PASS
+parse-rejects-prose-around-fence: PASS
+parse-rejects-two-fences: PASS
+format-check-accepts-strict: PASS
+format-check-fails-recovered: PASS
+format-check-rejects-unparsed: PASS
+grader-protocol: PASS (5 automated check IDs and 1 answer-format check returned; 2 human check IDs explicitly unscored)
+exit=0

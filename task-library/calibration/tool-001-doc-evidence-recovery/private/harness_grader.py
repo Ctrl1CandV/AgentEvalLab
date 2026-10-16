@@ -2,12 +2,13 @@
 """Scores tool-001 final answers against the recorded Pi tool trace and actual returns."""
 import argparse
 import json
+import re
 import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TASK_ID = "tool-001-doc-evidence-recovery"
-TASK_VERSION = "0.4.2"
-GRADER_VERSION = "1.1.2"
+TASK_VERSION = "0.5.0"
+GRADER_VERSION = "1.2.0"
 CHECKS = [("Q1", "REQ-Q1"), ("Q2", "REQ-Q2"), ("Q3", "REQ-Q3"), ("Q4a", "REQ-Q4A"), ("Q4b", "REQ-Q4B")]
 FORBIDDEN = {"write", "write_file", "edit", "edit_file", "delete", "remove"}
 
@@ -258,16 +259,55 @@ def write_json(path, value):
         handle.write("\n")
 
 
-def format_check(answer, evidence_root=None):
-    """Non-critical check that the final answer parsed as one JSON object, so format failures are reported apart from wrong answers."""
-    passed = isinstance(answer, dict)
+def format_check(mode, evidence_root=None):
+    """Non-critical check that the answer followed the instructed format exactly. A recovered answer is still graded
+    on its content and fails only this check; the harness applies the manifest's format penalty to the trial score."""
+    passed = mode == "strict"
     refs = []
     if evidence_root:
         with open(os.path.join(evidence_root, "answer-format.json"), "w", encoding="utf-8") as handle:
-            json.dump({"checkId": "answer-format", "passed": passed}, handle, ensure_ascii=False, sort_keys=True)
+            json.dump({"checkId": "answer-format", "passed": passed, "parse": mode}, handle, ensure_ascii=False, sort_keys=True)
             handle.write("\n")
         refs.append("answer-format.json")
     return {"id": "answer-format", "requirementId": "REQ-FORMAT", "status": "pass" if passed else "fail", "evidenceRefs": refs}
+
+
+FENCED_ANSWER = re.compile(r"\s*```(?:json)?[ \t]*\r?\n(.*?)\r?\n```\s*", re.S | re.I)
+
+
+def parse_answer(text):
+    """Parse the final answer and say how it parsed.
+
+    ("strict", object) when the text is one JSON object, as instructed; ("recovered", object) when it is one only
+    after removing exactly one enclosing Markdown code fence, optionally labelled json; ("unparsed", None) otherwise.
+    Nothing else is recovered: prose around the answer or several fences still fail.
+    """
+    def json_object(value):
+        try:
+            parsed = json.loads(value)
+        except json.JSONDecodeError:
+            return None
+        return parsed if isinstance(parsed, dict) else None
+    if not isinstance(text, str):
+        return "unparsed", None
+    answer = json_object(text)
+    if answer is not None:
+        return "strict", answer
+    fenced = FENCED_ANSWER.fullmatch(text)
+    if fenced and "```" not in fenced.group(1):
+        answer = json_object(fenced.group(1))
+        if answer is not None:
+            return "recovered", answer
+    return "unparsed", None
+
+
+def load_answer(path):
+    """Read and parse the final answer file; returns (mode, answer) as parse_answer does."""
+    try:
+        with open(path, encoding="utf-8") as handle:
+            return parse_answer(handle.read())
+    except (OSError, UnicodeDecodeError):
+        return "unparsed", None
 
 
 def grade_request(request_path, result_path):
@@ -276,14 +316,14 @@ def grade_request(request_path, result_path):
         raise ValueError("invalid request")
     evidence_root = request["evidenceRoot"]
     answer_ref, trace_ref = request.get("answerRef"), request.get("traceRef")
-    answer = read_json(os.path.join(evidence_root, answer_ref)) if isinstance(answer_ref, str) else None
+    mode, answer = load_answer(os.path.join(evidence_root, answer_ref)) if isinstance(answer_ref, str) else ("unparsed", None)
     trace = read_trace(os.path.join(evidence_root, trace_ref)) if isinstance(trace_ref, str) else []
     checks = []
     for qid, passed, facts in grade(answer, trace):
         filename = qid + ".json"
         write_json(os.path.join(evidence_root, filename), {"checkId": qid, "passed": passed, "facts": facts})
         checks.append({"id": qid, "requirementId": dict(CHECKS)[qid], "status": "pass" if passed else "fail", "evidenceRefs": [filename]})
-    checks.append(format_check(answer, evidence_root))
+    checks.append(format_check(mode, evidence_root))
     result = {"schemaVersion": 1, "requestId": request["requestId"], "taskId": TASK_ID,
               "taskVersion": TASK_VERSION, "graderVersion": GRADER_VERSION, "gradingStatus": "completed",
               "checks": checks, "dimensions": [], "unscoredCheckIds": [], "reason": None, "error": None}
@@ -384,8 +424,19 @@ def self_calibrate():
     rows.append(("repeatable", grade(answers, positive) == grade(answers, positive)))
     unstarted = [row for row in positive if row.get("eventType") != "execution_started"]
     rows.append(("returns-without-recorded-call-are-not-evidence", not any(ok for qid, ok, _ in grade(answers, unstarted) if qid in {"Q1", "Q2", "Q3"})))
-    rows.append(("format-check-accepts-object", format_check(answers)["status"] == "pass"))
-    rows.append(("format-check-rejects-unparsed", format_check(None)["status"] == "fail"))
+    reference_text = json.dumps(answers)
+    reference_object = json.loads(reference_text)
+    format_rows = [
+        ("parse-strict-object", parse_answer(reference_text) == ("strict", reference_object)),
+        ("parse-recovers-one-json-fence", parse_answer("```json\n" + reference_text + "\n```\n") == ("recovered", reference_object)),
+        ("parse-recovers-one-unlabelled-fence", parse_answer("```\n" + reference_text + "\n```") == ("recovered", reference_object)),
+        ("parse-rejects-prose-around-fence", parse_answer("Answer:\n```json\n" + reference_text + "\n```")[0] == "unparsed"),
+        ("parse-rejects-two-fences", parse_answer("```json\n{}\n```\n```json\n" + reference_text + "\n```")[0] == "unparsed"),
+        ("format-check-accepts-strict", format_check("strict")["status"] == "pass"),
+        ("format-check-fails-recovered", format_check("recovered")["status"] == "fail"),
+        ("format-check-rejects-unparsed", format_check("unparsed")["status"] == "fail"),
+    ]
+    rows.extend(format_rows)
     for name, passed in rows:
         print(f"{name}: {'PASS' if passed else 'FAIL'}")
     print(f"RESULT: {'PASS' if all(ok for _, ok in rows) else 'FAIL'} ({sum(ok for _, ok in rows)}/{len(rows)})")

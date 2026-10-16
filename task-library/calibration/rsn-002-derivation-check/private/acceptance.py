@@ -2,6 +2,7 @@
 """Task grader adapter. Automated evidence is scored; human formula review stays unscored."""
 import argparse
 import json
+import re
 import os
 import sys
 
@@ -10,8 +11,8 @@ sys.path.insert(0, HERE)
 import verify  # noqa: E402
 
 TASK_ID = "rsn-002-derivation-check"
-TASK_VERSION = "0.4.0"
-GRADER_VERSION = "1.1.0"
+TASK_VERSION = "0.5.0"
+GRADER_VERSION = "1.2.0"
 CHECK_REQUIREMENTS = {
     "sample-values": "REQ-NUMERIC",
     "wrong-step-location": "REQ-LOCALIZATION",
@@ -22,13 +23,42 @@ CHECK_REQUIREMENTS = {
 HUMAN_UNSCORED = ["formula-equivalence-review", "explanation-quality-review"]
 
 
+FENCED_ANSWER = re.compile(r"\s*```(?:json)?[ \t]*\r?\n(.*?)\r?\n```\s*", re.S | re.I)
+
+
+def parse_answer(text):
+    """Parse the final answer and say how it parsed.
+
+    ("strict", object) when the text is one JSON object, as instructed; ("recovered", object) when it is one only
+    after removing exactly one enclosing Markdown code fence, optionally labelled json; ("unparsed", None) otherwise.
+    Nothing else is recovered: prose around the answer or several fences still fail.
+    """
+    def json_object(value):
+        try:
+            parsed = json.loads(value)
+        except json.JSONDecodeError:
+            return None
+        return parsed if isinstance(parsed, dict) else None
+    if not isinstance(text, str):
+        return "unparsed", None
+    answer = json_object(text)
+    if answer is not None:
+        return "strict", answer
+    fenced = FENCED_ANSWER.fullmatch(text)
+    if fenced and "```" not in fenced.group(1):
+        answer = json_object(fenced.group(1))
+        if answer is not None:
+            return "recovered", answer
+    return "unparsed", None
+
+
 def load_answer(path):
+    """Read and parse the final answer file; returns (mode, answer) as parse_answer does."""
     try:
         with open(path, encoding="utf-8") as handle:
-            value = json.load(handle)
-        return value if isinstance(value, dict) else None
-    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
-        return None
+            return parse_answer(handle.read())
+    except (OSError, UnicodeDecodeError):
+        return "unparsed", None
 
 
 def grader_checks(answer, evidence_root):
@@ -43,13 +73,14 @@ def grader_checks(answer, evidence_root):
     return checks
 
 
-def format_check(answer, evidence_root=None):
-    """Non-critical check that the final answer parsed as one JSON object, so format failures are reported apart from wrong answers."""
-    passed = isinstance(answer, dict)
+def format_check(mode, evidence_root=None):
+    """Non-critical check that the answer followed the instructed format exactly. A recovered answer is still graded
+    on its content and fails only this check; the harness applies the manifest's format penalty to the trial score."""
+    passed = mode == "strict"
     refs = []
     if evidence_root:
         with open(os.path.join(evidence_root, "answer-format.json"), "w", encoding="utf-8") as handle:
-            json.dump({"checkId": "answer-format", "passed": passed}, handle, ensure_ascii=False, sort_keys=True)
+            json.dump({"checkId": "answer-format", "passed": passed, "parse": mode}, handle, ensure_ascii=False, sort_keys=True)
             handle.write("\n")
         refs.append("answer-format.json")
     return {"id": "answer-format", "requirementId": "REQ-FORMAT", "status": "pass" if passed else "fail", "evidenceRefs": refs}
@@ -73,15 +104,25 @@ def grade_request(request_path, result_path):
     with open(request_path, encoding="utf-8") as handle:
         request = json.load(handle)
     answer_path = os.path.join(request["evidenceRoot"], request["answerRef"] or "")
-    answer = load_answer(answer_path)
-    checks = grader_checks(answer, request["evidenceRoot"]) + [format_check(answer, request["evidenceRoot"])]
+    mode, answer = load_answer(answer_path)
+    checks = grader_checks(answer, request["evidenceRoot"]) + [format_check(mode, request["evidenceRoot"])]
     write_json(result_path, make_result(request, checks))
 
 
 def self_calibrate():
     code = verify.self_calibrate()
-    format_rows = [("format-check-accepts-object", format_check({"errorStepId": "S1"})["status"] == "pass"),
-                   ("format-check-rejects-unparsed", format_check(None)["status"] == "fail")]
+    reference_text = json.dumps({"errorStepId": "S1"})
+    reference_object = json.loads(reference_text)
+    format_rows = [
+        ("parse-strict-object", parse_answer(reference_text) == ("strict", reference_object)),
+        ("parse-recovers-one-json-fence", parse_answer("```json\n" + reference_text + "\n```\n") == ("recovered", reference_object)),
+        ("parse-recovers-one-unlabelled-fence", parse_answer("```\n" + reference_text + "\n```") == ("recovered", reference_object)),
+        ("parse-rejects-prose-around-fence", parse_answer("Answer:\n```json\n" + reference_text + "\n```")[0] == "unparsed"),
+        ("parse-rejects-two-fences", parse_answer("```json\n{}\n```\n```json\n" + reference_text + "\n```")[0] == "unparsed"),
+        ("format-check-accepts-strict", format_check("strict")["status"] == "pass"),
+        ("format-check-fails-recovered", format_check("recovered")["status"] == "fail"),
+        ("format-check-rejects-unparsed", format_check("unparsed")["status"] == "fail"),
+    ]
     for name, passed in format_rows:
         print(f"{name}: {'PASS' if passed else 'FAIL'}")
     if code == 0 and all(passed for _, passed in format_rows):

@@ -5,3 +5,8 @@ The automated checker validates the identified step, sample speeds, dimensional 
 Numeric answers use one shared tolerance: absolute error at most 0.005 m/s or relative error at most 0.1%. Correct-formula symbolic equivalence and explanation quality remain unscored and must not be described as fully validated based only on numeric checks.
 
 The task is a small synthetic physics derivation check. It is not evidence of general physics ability. Human review may assess whether the explanation and formula correctly identify the reasoning error.
+
+
+## Trial score and answer format
+
+The trial score is the fraction of content checks passed, which gives partial credit. The trial is resolved when every critical check passes. The answer must be one JSON object, as the instruction says. Exactly one enclosing Markdown code fence (optionally labelled `json`) and surrounding whitespace are removed before grading; nothing else is recovered. A recovered answer is graded on its content, fails the non-critical `answer-format` check, and loses 20% of its score. An answer that cannot be parsed fails every content check.

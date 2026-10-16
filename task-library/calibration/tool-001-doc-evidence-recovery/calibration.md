@@ -31,3 +31,13 @@ The grader (now 1.1.1) joins each successful return to the `execution_started` e
 Grader 1.1.2 widens what counts as Q3 production evidence. Under 1.1.1, the value had to come from a `read` of `config/prod/settings.toml`. A pilot trial instead searched `config/*` for `timeout_ms` after reading the prior failure, and the search returned `config/prod/settings.toml` line 2, `timeout_ms = 3500`, from the actual file. The instruction accepts "any valid recovery path" with "no exact call sequence", and Q2 already accepts search evidence. A search match on the production file that shows the value, after the prior failure was read, now counts as evidence in the same way as a read. A match on any other file does not. Self-calibration adds a probe for each case (14/14); see `logs/self-calibration-0.4.2.log`.
 
 Version 0.4.1 was never used in a run.
+
+## Version 0.5.0 (2026-10-16)
+
+Grader 1.2.0 parses the final answer in one of three ways:
+
+- **strict:** one JSON object, as instructed;
+- **recovered:** one JSON object once exactly one enclosing Markdown code fence, optionally labelled `json`, and surrounding whitespace are removed;
+- **unparsed:** anything else, including prose around a fence or several fences.
+
+Content checks run on strict and recovered answers. `answer-format` passes only for strict answers, and its evidence records the parse mode. The manifest's new `scoring` block declares a format penalty of 0.2, so the harness scores a recovered trial at 80% of its content score. The score is now partial credit: the fraction of content checks passed. This follows the user's decision of 2026-10-16 after the pilot, in which glm-5.3 fenced all three rsn-002 answers; all three pass every content check under 1.2.0. Self-calibration adds parse and format probes; see `logs/self-calibration-0.5.0.log`.

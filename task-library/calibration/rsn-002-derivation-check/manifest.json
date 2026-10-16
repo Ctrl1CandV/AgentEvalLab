@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "rsn-002-derivation-check",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "familyId": "rsn-derivation-error-localization",
   "capability": "reasoning",
   "usage": "development",
@@ -32,7 +32,7 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "e1619fdfeaef4f8246467cad0bb2dfafa2f96e1b462a9c9461acf7c00e36ab23"
+        "sha256": "c02e09f19ef9c60b9b4e90b27eba4db9455e99dbabfb0ab00b3ba9d44b1034ff"
       },
       {
         "path": "environment/README.md",
@@ -40,11 +40,11 @@
       },
       {
         "path": "metadata.json",
-        "sha256": "f28effc366caaa09357b60f738b92e34d3fba41a3cca60a315d4d12a7fbdd066"
+        "sha256": "7dd107fcea081b86d16ea710eb49b0b43acbaa9514c8adba90dcc104afcb61fb"
       },
       {
         "path": "rubric.md",
-        "sha256": "506e99dbb58e5d8179f382566274fffcb77aa3d7efd44a5832cd5a68e84e81b3"
+        "sha256": "3e2d9539dc580216b3534029bb63e8c0f252acd0f728eff8ced44351f428ae34"
       },
       {
         "path": "logs/acceptance-self-calibration.log",
@@ -56,7 +56,7 @@
       },
       {
         "path": "private/acceptance.py",
-        "sha256": "b76c949b10222b649e0c9beb8ec199de6b8ca5c7f6369647cabdb7962a73bc2f"
+        "sha256": "bd3c3fb4021a371294637958240fe747094e630b41d3d9fa88705625285d1ce0"
       },
       {
         "path": "private/oracle.json",
@@ -134,12 +134,16 @@
       ]
     }
   ],
+  "scoring": {
+    "formatCheckId": "answer-format",
+    "formatPenalty": 0.2
+  },
   "toolProfiles": [
     "workspace-basic"
   ],
   "grader": {
     "id": "rsn002-acceptance",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "entryPoint": "private/acceptance.py",
     "executable": "python3",
     "args": [

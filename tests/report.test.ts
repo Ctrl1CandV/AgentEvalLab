@@ -71,7 +71,7 @@ test("repetitions are interleaved by seed and reported per task with format fail
   try {
     const models = [{ provider: "deepseek", id: "deepseek-flash", thinkingLevel: "high" as const }, { provider: "aliplan", id: "qwen3.8-flash" }];
     const plan = await reasoningPlan(models, 2, 7);
-    // deepseek answers rsn-001 correctly once and in a Markdown fence once; qwen always answers plainly.
+    // deepseek answers rsn-001 plainly once and in a Markdown fence once; qwen always answers plainly.
     let deepseekRsn001 = 0;
     const result = await runEvaluation(plan, { outputRoot: root, runner: async (input, model) => {
       if (!input.prompt.includes("scheduling") && !input.prompt.includes("instances")) return { ...emptyExecution(), output: "{}" };
@@ -96,14 +96,15 @@ test("repetitions are interleaved by seed and reported per task with format fail
     const deepseek = report.byTask.find(row => row.caseId === "rsn001" && row.model === "deepseek:deepseek-flash")!;
     assert.equal(deepseek.trials, 2);
     assert.equal(deepseek.label, "deepseek:deepseek-flash-high", "labels append the thinking level");
-    assert.equal(deepseek.passes, 1);
+    // The fenced answer is recovered: graded on content, resolved, and scored at 80% for the format slip.
+    assert.equal(deepseek.passes, 2, "a fenced but correct answer is resolved");
     assert.equal(deepseek.malformedAnswers, 1);
-    near(deepseek.meanScore, 0.5, "mean of 1 and 0: an unparsed answer scores 0");
+    near(deepseek.meanScore, 0.9, "mean of 1.0 and 0.8");
     assert.deepEqual(deepseek.executionOutcomes, { done: 2 });
     assert.equal(deepseek.usage.totalTokens.unknown, 2, "trials without reported usage are unknown, not zero");
     assert.match(await readFile(join(result.directory, "report.md"), "utf8"), /## Usage by task/);
-    near(deepseek.passHatK, 0, "pass^2 with one of two passes");
-    near(deepseek.passAtK, 1, "pass@2 with one of two passes");
+    near(deepseek.passHatK, 1, "pass^2 with two of two resolved");
+    near(deepseek.passAtK, 1, "pass@2 with two of two resolved");
     const qwen = report.byTask.find(row => row.caseId === "rsn001" && row.model === "aliplan:qwen3.8-flash")!;
     assert.equal(qwen.passes, 2);
     assert.equal(qwen.capability, "reasoning");

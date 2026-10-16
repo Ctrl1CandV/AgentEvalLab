@@ -21,3 +21,8 @@ Different valid MUS reasoning methods, valid schedule witnesses, and either clar
 ## Not scored
 
 Soft constraints, optimality, hidden chain-of-thought, and answer length are not scored.
+
+
+## Trial score and answer format
+
+The trial score is the fraction of content checks passed, which gives partial credit. The trial is resolved when every critical check passes. The answer must be one JSON object, as the instruction says. Exactly one enclosing Markdown code fence (optionally labelled `json`) and surrounding whitespace are removed before grading; nothing else is recovered. A recovered answer is graded on its content, fails the non-critical `answer-format` check, and loses 20% of its score. An answer that cannot be parsed fails every content check.

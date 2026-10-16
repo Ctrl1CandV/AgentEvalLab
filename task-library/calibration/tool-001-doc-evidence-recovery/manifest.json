@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "tool-001-doc-evidence-recovery",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "familyId": "tool-evidence-recovery",
   "capability": "tool",
   "usage": "development",
@@ -57,7 +57,7 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "67d1d9b049af801e4825d9018add85bca6b63b44904fa75e73bf4c46b229c223"
+        "sha256": "52f2ddc2b380a3b2f98a6444d82581a479ea92079cf63e57c32a41cdc571d265"
       },
       {
         "path": "environment/README.md",
@@ -65,11 +65,11 @@
       },
       {
         "path": "metadata.json",
-        "sha256": "a8a6b773b3f5ddf683ed7b874931ef01aee7eb8fbbfa612ff8c8f0e1b668ffbc"
+        "sha256": "f587597ecce396107c2470a1df6dbdddafe23154db33158e4781e7ccecd65b93"
       },
       {
         "path": "rubric.md",
-        "sha256": "ecdc82c78316816880d2b9dd190b35051e4560d8a6cb45bff41e86dd1cd5b5a5"
+        "sha256": "02feadcbf48415ec06aa33bb811753a788a490cb196097f0ae3ee408c7debfa4"
       },
       {
         "path": "logs/acceptance-self-calibration.log",
@@ -89,7 +89,7 @@
       },
       {
         "path": "private/harness_grader.py",
-        "sha256": "ede4881a111a96cbd34acf7b5a5be1a1ce8c77389bb86d1cbe0e13ab1fd02217"
+        "sha256": "2ab836cb14b65912b8dcb0f15646d8dbe33fb0e26a82cea1b13b681fd327e7c0"
       },
       {
         "path": "private/make_snapshot.py",
@@ -159,12 +159,16 @@
       ]
     }
   ],
+  "scoring": {
+    "formatCheckId": "answer-format",
+    "formatPenalty": 0.2
+  },
   "toolProfiles": [
     "doc-evidence"
   ],
   "grader": {
     "id": "tool001-trace-acceptance",
-    "version": "1.1.2",
+    "version": "1.2.0",
     "entryPoint": "private/harness_grader.py",
     "executable": "python3",
     "args": [

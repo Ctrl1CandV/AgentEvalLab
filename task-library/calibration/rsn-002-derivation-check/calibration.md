@@ -17,3 +17,13 @@ Calibration results above were recorded against version 0.2.0 and remain histori
 ## Version 0.4.0 (2026-10-14)
 
 The grader (now 1.1.0) adds a non-critical `answer-format` check under the new requirement `REQ-FORMAT`. The check passes when the final answer parsed as one JSON object, as the instructions require. Scoring stays strict: an answer that does not parse still fails every content check. The objective verdict depends on critical checks only, so the format check reports instruction-following failures separately from wrong answers. Self-calibration now also covers the format check; see `logs/self-calibration-0.4.0.log`.
+
+## Version 0.5.0 (2026-10-16)
+
+Grader 1.2.0 parses the final answer in one of three ways:
+
+- **strict:** one JSON object, as instructed;
+- **recovered:** one JSON object once exactly one enclosing Markdown code fence, optionally labelled `json`, and surrounding whitespace are removed;
+- **unparsed:** anything else, including prose around a fence or several fences.
+
+Content checks run on strict and recovered answers. `answer-format` passes only for strict answers, and its evidence records the parse mode. The manifest's new `scoring` block declares a format penalty of 0.2, so the harness scores a recovered trial at 80% of its content score. The score is now partial credit: the fraction of content checks passed. This follows the user's decision of 2026-10-16 after the pilot, in which glm-5.3 fenced all three rsn-002 answers; all three pass every content check under 1.2.0. Self-calibration adds parse and format probes; see `logs/self-calibration-0.5.0.log`.
