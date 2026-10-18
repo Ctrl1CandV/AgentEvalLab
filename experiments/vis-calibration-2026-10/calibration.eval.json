@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 3,
+  "name": "vis-calibration-2026-10",
+  "models": [
+    {
+      "provider": "supergpt",
+      "id": "gpt-6-luna",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "glm-5.3",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "step-5-preview",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 2,
+  "budget": {
+    "timeoutMs": 1800000,
+    "maxTurns": 30,
+    "maxModelCalls": 30,
+    "maxToolCalls": 40,
+    "maxOutputChars": 32768,
+    "maxOutputTokensPerCall": 32768,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 300000
+  },
+  "artifactLimits": {
+    "maxFiles": 200,
+    "maxFileBytes": 2097152,
+    "maxTrialBytes": 10485760,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 2000000,
+    "concurrency": 4
+  },
+  "trustedLocalExecution": true,
+  "budgetNotice": true,
+  "cases": [
+    {
+      "id": "vis-001",
+      "packagePath": "task-library/calibration/vis-001-original-landing",
+      "packageManifestSha256": "cc54542959f1ba3aa320c3969e1bdf5fd9729adec9148f044f56991a21679281",
+      "input": {
+        "prompt": "Build the page as described above. Write index.html, style.css, app.js and README.md at the workspace root, check them, and end with a short summary."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 120000
+      }
+    }
+  ]
+}
