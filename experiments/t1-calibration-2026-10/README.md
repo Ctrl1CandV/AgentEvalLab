@@ -29,4 +29,3 @@ npm run harness -- --plan experiments/t1-calibration-2026-10/calibration.eval.js
 | L4 rerun | `l4-rerun.eval.json`, `maxFiles` 500 | L4 |
 
 The first plan copied artifact limits of 50 files from the R3 plan, below the 53 files an L4 snapshot projects. This was a plan error, not a model or grader error. Preflight now refuses limits that cannot hold a trial's own starting files (`PLAN_ARTIFACT_LIMIT_TOO_LOW`).
-
