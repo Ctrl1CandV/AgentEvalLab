@@ -1,6 +1,7 @@
 # Runtime for the harness, task graders, public checkers and candidate code.
-# Keep it to interpreters only: task contracts require the Python standard
-# library, so third-party packages here would hide contract violations.
+# Keep it to interpreters and the native libraries that headless Chromium needs:
+# task contracts require the Python standard library, so third-party Python
+# packages here would hide contract violations.
 #   mamba env create -f environment.yml && conda activate agenteval
 name: agenteval
 channels:
@@ -8,3 +9,7 @@ channels:
 dependencies:
   - python=3.13.15
   - nodejs=22.23.2
+  # Shared libraries for headless Chromium (visual rendering, PLAN-005 WP6); not importable from Python.
+  - nss=3.118
+  - nspr=4.40
+  - alsa-lib=1.2.16.1

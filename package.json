@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@types/node": "22.20.4",
+    "playwright-core": "1.55.0",
     "tsx": "4.23.15",
     "typescript": "7.0.2"
   }
