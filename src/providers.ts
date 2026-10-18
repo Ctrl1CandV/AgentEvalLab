@@ -57,7 +57,11 @@ export interface CustomModelConfig {
 // Checked 2026-10-14 against https://api-docs.deepseek.com/quick_start/pricing: 1M context, 384K maximum
 // output, thinking on by default. Prices change between peak and off-peak hours, so cost stays unknown and
 // batches are bounded by tokens.
-const deepseekFlash: CustomModelConfig = { id: "deepseek-flash", contextWindow: 1_000_000, maxTokens: 384_000, reasoning: true, thinking: "configurable", prices: null, verified: true };
+const deepseekFlash: CustomModelConfig = { id: "deepseek-flash", contextWindow: 1_000_000, maxTokens: 384_000, reasoning: true, thinking: "configurable",
+  // Checked 2026-10-18 against https://api-docs.deepseek.com/guides/thinking_mode/: effort low, high or max (default
+  // high); other names are silently remapped, so they are declared null and rejected by validation. Temperature has
+  // no effect in thinking mode.
+  thinkingLevelMap: { minimal: null, low: "low", medium: null, high: "high", xhigh: null, max: "max" }, prices: null, verified: true };
 
 // Checked 2026-10-14 against https://help.aliyun.com/zh/model-studio/qwen3-8-flash: 1M context, 131,072
 // maximum output, thinking supported. AliPlan bills through a token plan, so no per-token prices are declared.
@@ -81,6 +85,22 @@ const gpt6Luna: CustomModelConfig = { id: "gpt-6-luna", contextWindow: 1_050_000
 // Anthropic endpoint the effort is sent as adaptive thinking with output_config.effort; a probe on 2026-10-15 showed
 // the relay applies it. GLM has no off, minimal, medium or xhigh level, so those are declared null and rejected.
 const glm53: CustomModelConfig = { id: "glm-5.3", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: true, thinking: "always-on",
+  thinkingLevelMap: { off: null, minimal: null, low: "low", medium: null, high: "high", xhigh: null, max: "max" }, adaptiveThinking: true,
+  prices: null, verified: true };
+
+// Checked 2026-10-18 against https://platform.stepfun.ai/docs/en/guides/models/step-5-preview: 1M context, 64K
+// maximum output, reasoning effort low, medium or high, sent as output_config.effort on the Messages API. Disabling
+// thinking is not documented, so "off" is rejected. Served through the SuperCN relay.
+const step5Preview: CustomModelConfig = { id: "step-5-preview", contextWindow: 1_000_000, maxTokens: 64_000, reasoning: true, thinking: "always-on",
+  thinkingLevelMap: { off: null, minimal: null, low: "low", medium: "medium", high: "high", xhigh: null, max: null }, adaptiveThinking: true,
+  prices: null, verified: true };
+
+// Checked 2026-10-18 against third-party guides citing Moonshot's documentation (no official page was reachable):
+// 1,048,576 context, 131,072 default maximum output, thinking always on, reasoning effort low, high or max (default
+// max). Costs more than the other models. Every request carries about 2,080 input tokens that the model did not
+// write ("Reply with exactly OK." costs 2,090 input tokens on both SuperCN protocols, uncached); they count toward
+// token budgets.
+const kimiK3: CustomModelConfig = { id: "kimi-k3", contextWindow: 1_048_576, maxTokens: 131_072, reasoning: true, thinking: "always-on",
   thinkingLevelMap: { off: null, minimal: null, low: "low", medium: null, high: "high", xhigh: null, max: "max" }, adaptiveThinking: true,
   prices: null, verified: true };
 
@@ -135,7 +155,7 @@ export const providerConfigs: readonly ProviderConfig[] = [
   {
     id: "supercn", name: "SuperCN", api: "anthropic-messages",
     baseUrl: "https://api.airy.work", apiKeyEnv: "SUPERCN_APIKEY",
-    models: [glm53, glm53Flash, unverified("kimi-k3"), unverified("kimi-k2.8-preview"), unverified("MiniMax-M3.1-Flash-Preview")],
+    models: [glm53, glm53Flash, kimiK3, unverified("kimi-k2.8-preview"), unverified("MiniMax-M3.1-Flash-Preview"), step5Preview],
   },
   {
     id: "supercn-openai", name: "SuperCN (OpenAI)", api: "openai-completions",

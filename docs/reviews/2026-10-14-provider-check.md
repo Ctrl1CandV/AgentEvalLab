@@ -77,6 +77,20 @@ Two rounds on a harder puzzle varied more between samples than between levels: `
 
 `npm run provider-check -- 'supercn:glm-5.3?thinking=max'` passed every check: usage reported, output cap enforced, tool round trip, `PROVIDER_AUTH` for an invalid key, and thinking with tools attached (646 thinking characters, correct answer). Because the relay reports no reasoning tokens, that last check now falls back to the length of the returned thinking text.
 
+## Calibration models (fifth check, 2026-10-18)
+
+The user made `deepseek:deepseek-flash`, `supercn:step-5-preview` and `supercn:kimi-k3` available for difficulty calibration. Each runs at its middle level (PLAN-005):
+
+| Model | Source | Context / output | Levels | Middle | Sent |
+| --- | --- | --- | --- | --- | --- |
+| deepseek-flash | [DeepSeek thinking mode](https://api-docs.deepseek.com/guides/thinking_mode/) | 1M / 384K | low, high, max (default high); other names silently remapped | high | `thinking: enabled`, `reasoning_effort: high` |
+| step-5-preview | [StepFun docs](https://platform.stepfun.ai/docs/en/guides/models/step-5-preview) | 1M / 64K | low, medium, high | medium | `output_config.effort: medium` |
+| kimi-k3 | third-party guides citing Moonshot ([reapi](https://reapi.ai/blog/kimi-k3-complete-guide), [morphllm](https://www.morphllm.com/kimi-k3)) | 1,048,576 / 131,072 | low, high, max (default max) | high | `output_config.effort: high` |
+
+Levels a model lacks are declared null, so validation rejects them instead of letting the provider remap them silently. All three passed every `provider-check` check at their middle level, including reasoning with tools attached. kimi-k3's first usage request hit a transient network error and passed on rerun.
+
+**kimi-k3 request overhead.** "Reply with exactly OK." costs kimi-k3 2,090 input tokens, uncached, on both SuperCN protocols. The same request costs deepseek-flash 40 and step-5-preview 31. About 2,080 tokens of injected context therefore come with every kimi request and count toward its token budgets. That is roughly 4K of a 50K reasoning budget and up to 40K of a 300K eng-001 budget over 20 requests. The budgets have at least five times headroom, so this is recorded rather than corrected; it is revisited if kimi trials hit their budgets.
+
 ## Limits
 
 Five requests per model cannot show variance, long-context behaviour, or context-overflow messages. Live context-limit classification is still unverified for both providers.

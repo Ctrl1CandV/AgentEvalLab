@@ -155,7 +155,12 @@ test("thinking conditions a model cannot run under are rejected", () => {
   assert.throws(() => validatePlan(glm53("off")), /THINKING_OFF_UNSUPPORTED/);
   assert.throws(() => validatePlan(glm53("medium")), /THINKING_LEVEL_UNSUPPORTED/, "GLM-5.3 has no medium effort");
   assert.equal((resolveModel({ provider: "supercn", id: "glm-5.3" }).model as { compat?: { forceAdaptiveThinking?: boolean } }).compat?.forceAdaptiveThinking, true);
-  const unverified = { ...plan("high"), models: [{ provider: "supercn", id: "kimi-k3", thinkingLevel: "high" }] };
+  // Middle levels for the calibration models (PLAN-005): deepseek-flash high, step-5-preview medium, kimi-k3 high.
+  for (const [provider, id, level, rejected] of [["deepseek", "deepseek-flash", "high", "medium"], ["supercn", "step-5-preview", "medium", "max"], ["supercn", "kimi-k3", "high", "medium"]] as const) {
+    validatePlan({ ...plan(level), models: [{ provider, id, thinkingLevel: level }] });
+    assert.throws(() => validatePlan({ ...plan(rejected), models: [{ provider, id, thinkingLevel: rejected }] }), /THINKING_LEVEL_UNSUPPORTED/, `${id} has no ${rejected} level`);
+  }
+  const unverified = { ...plan("high"), models: [{ provider: "supercn", id: "kimi-k2.8-preview", thinkingLevel: "high" }] };
   assert.throws(() => validatePlan(unverified), /THINKING_LEVEL_UNSUPPORTED/, "models without declared reasoning cannot claim a level");
   assert.equal(resolveModel({ provider: "supergpt", id: "gpt-6-luna" }).model.reasoning, true);
   assert.equal(resolveModel({ provider: "supergpt", id: "gpt-6-luna", thinkingLevel: "provider-default" }).model.reasoning, false,
