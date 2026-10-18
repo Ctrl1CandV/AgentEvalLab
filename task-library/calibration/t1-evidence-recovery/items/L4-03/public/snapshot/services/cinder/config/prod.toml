@@ -1,0 +1,4 @@
+[cinder]
+cache_ttl_s = 41
+pool_size = 11
+queue_depth = 34

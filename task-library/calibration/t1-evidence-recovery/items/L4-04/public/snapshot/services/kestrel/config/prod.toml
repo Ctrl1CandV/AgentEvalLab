@@ -1,0 +1,4 @@
+[kestrel]
+batch_size = 27
+queue_depth = 16
+cache_ttl_s = 20

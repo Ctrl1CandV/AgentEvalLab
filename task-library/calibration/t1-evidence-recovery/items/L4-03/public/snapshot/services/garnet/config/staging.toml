@@ -1,0 +1,4 @@
+[garnet]
+max_retries = 52
+batch_size = 36
+cache_ttl_s = 35

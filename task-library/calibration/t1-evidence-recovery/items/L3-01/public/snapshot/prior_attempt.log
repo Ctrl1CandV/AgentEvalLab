@@ -1,0 +1,2 @@
+2026-09-30T09:12:01Z read config/garnet.toml -> ERROR not_found
+2026-09-30T09:12:01Z note: the production batch_size of garnet is needed; the path was wrong.

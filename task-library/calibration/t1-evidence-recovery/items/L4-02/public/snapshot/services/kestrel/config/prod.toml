@@ -1,0 +1,4 @@
+[kestrel]
+batch_size = 26
+queue_depth = 23
+max_retries = 11

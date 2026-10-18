@@ -1,0 +1,4 @@
+[kestrel]
+timeout_ms = 1000
+cache_ttl_s = 20
+pool_size = 38

@@ -1,0 +1,4 @@
+[harbor]
+timeout_ms = 3010
+max_retries = 51
+queue_depth = 41

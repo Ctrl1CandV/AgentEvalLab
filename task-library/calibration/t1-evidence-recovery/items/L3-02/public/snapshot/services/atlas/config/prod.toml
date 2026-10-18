@@ -1,0 +1,4 @@
+[atlas]
+queue_depth = 14
+pool_size = 7
+batch_size = 22

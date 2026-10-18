@@ -1,0 +1,4 @@
+[cinder]
+cache_ttl_s = 45
+timeout_ms = 1516
+max_retries = 16

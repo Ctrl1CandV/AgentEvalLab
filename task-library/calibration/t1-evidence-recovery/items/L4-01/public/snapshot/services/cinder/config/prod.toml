@@ -1,0 +1,4 @@
+[cinder]
+batch_size = 23
+pool_size = 29
+queue_depth = 31

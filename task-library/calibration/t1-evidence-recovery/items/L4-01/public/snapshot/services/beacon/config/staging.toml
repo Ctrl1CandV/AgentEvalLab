@@ -1,0 +1,4 @@
+[beacon]
+cache_ttl_s = 45
+pool_size = 29
+max_retries = 57

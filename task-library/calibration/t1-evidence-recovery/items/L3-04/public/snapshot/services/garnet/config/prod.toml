@@ -1,0 +1,4 @@
+[garnet]
+timeout_ms = 6000
+pool_size = 16
+cache_ttl_s = 32

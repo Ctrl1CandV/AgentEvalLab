@@ -1,0 +1,4 @@
+[beacon]
+timeout_ms = 200
+max_retries = 15
+batch_size = 37

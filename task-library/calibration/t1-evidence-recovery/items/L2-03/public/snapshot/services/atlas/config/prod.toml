@@ -1,0 +1,4 @@
+[atlas]
+timeout_ms = 3000
+queue_depth = 25
+batch_size = 18

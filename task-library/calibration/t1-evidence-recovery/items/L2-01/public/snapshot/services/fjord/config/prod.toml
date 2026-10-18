@@ -1,0 +1,4 @@
+[fjord]
+max_retries = 43
+pool_size = 19
+batch_size = 39

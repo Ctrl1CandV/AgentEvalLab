@@ -1,0 +1,4 @@
+[ember]
+cache_ttl_s = 11
+batch_size = 18
+queue_depth = 20

@@ -1,0 +1,4 @@
+[garnet]
+pool_size = 41
+queue_depth = 37
+max_retries = 25

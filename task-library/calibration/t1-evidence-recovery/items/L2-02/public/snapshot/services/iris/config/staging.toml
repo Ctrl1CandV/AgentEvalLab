@@ -1,0 +1,4 @@
+[iris]
+batch_size = 45
+max_retries = 25
+pool_size = 53

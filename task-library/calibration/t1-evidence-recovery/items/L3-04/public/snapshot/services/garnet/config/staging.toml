@@ -1,0 +1,4 @@
+[garnet]
+batch_size = 31
+queue_depth = 39
+cache_ttl_s = 50

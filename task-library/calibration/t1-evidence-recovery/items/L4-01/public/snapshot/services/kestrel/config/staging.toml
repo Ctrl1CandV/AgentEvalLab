@@ -1,0 +1,4 @@
+[kestrel]
+timeout_ms = 121
+batch_size = 36
+pool_size = 47

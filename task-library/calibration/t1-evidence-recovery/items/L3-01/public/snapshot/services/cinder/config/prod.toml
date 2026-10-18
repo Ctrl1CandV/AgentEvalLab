@@ -1,0 +1,4 @@
+[cinder]
+pool_size = 20
+batch_size = 4
+cache_ttl_s = 21

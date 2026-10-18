@@ -1,0 +1,4 @@
+[cinder]
+timeout_ms = 200
+cache_ttl_s = 38
+batch_size = 40

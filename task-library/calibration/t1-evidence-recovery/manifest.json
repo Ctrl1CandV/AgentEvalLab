@@ -1,0 +1,2503 @@
+{
+  "schemaVersion": 1,
+  "id": "t1-evidence-recovery",
+  "version": "0.1.0",
+  "familyId": "t1-evidence-recovery",
+  "capability": "tool",
+  "usage": "development",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "docs/design/TASK_SET_V2.md",
+      "task-library/calibration/tool-001-doc-evidence-recovery"
+    ]
+  },
+  "license": {
+    "taskText": "Original project-authored generator and snapshots; generalises tool-001, and no text is copied.",
+    "thirdPartyContent": []
+  },
+  "entryPoint": {
+    "instruction": "instruction.md"
+  },
+  "files": {
+    "public": [
+      {
+        "path": "instruction.md",
+        "sha256": "0d7c2836b0657faeb4703360fa7c3f8b8bc418e55ddf929da452a3b67792e520"
+      }
+    ],
+    "trusted": [
+      {
+        "path": "calibration.md",
+        "sha256": "8e2ee48ced0d3fe6bcfb62615aacedadaff160ace620ef91a824342438924652"
+      },
+      {
+        "path": "rubric.md",
+        "sha256": "5436c810aedd673e5dec6a3c8c3fd13f087ea364d36512c4713f4953e66a061b"
+      },
+      {
+        "path": "private/generate.py",
+        "sha256": "f2e16e291bf61b57169efde6796589fee9a77d72c6e08655524405f08342a5fe"
+      },
+      {
+        "path": "private/grader.py",
+        "sha256": "1a7ab0520dad10429568ad3bf0aa3e2dca38e415c060603071e55114ca2cd18f"
+      },
+      {
+        "path": "private/keys.json",
+        "sha256": "6bc18d91f26a772223292821273a2ec5db34e47a5776739ee0923a2e1a295ead"
+      },
+      {
+        "path": "private/snapshot.py",
+        "sha256": "ca979209e9badf25ce0cb8d7ac7dac9af54d85d2fc2376135a6ce69af9212df5"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "REQ-Q1",
+      "critical": true,
+      "introducedAt": "t1-evidence-recovery 0.1.0",
+      "checkIds": [
+        "q1"
+      ]
+    },
+    {
+      "id": "REQ-Q2",
+      "critical": true,
+      "introducedAt": "t1-evidence-recovery 0.1.0",
+      "checkIds": [
+        "q2"
+      ]
+    },
+    {
+      "id": "REQ-Q3",
+      "critical": true,
+      "introducedAt": "t1-evidence-recovery 0.1.0",
+      "checkIds": [
+        "q3"
+      ]
+    },
+    {
+      "id": "REQ-Q4",
+      "critical": true,
+      "introducedAt": "t1-evidence-recovery 0.1.0",
+      "checkIds": [
+        "q4"
+      ]
+    },
+    {
+      "id": "REQ-Q5",
+      "critical": true,
+      "introducedAt": "t1-evidence-recovery 0.1.0",
+      "checkIds": [
+        "q5"
+      ]
+    },
+    {
+      "id": "REQ-Q6",
+      "critical": true,
+      "introducedAt": "t1-evidence-recovery 0.1.0",
+      "checkIds": [
+        "q6"
+      ]
+    },
+    {
+      "id": "REQ-Q7",
+      "critical": true,
+      "introducedAt": "t1-evidence-recovery 0.1.0",
+      "checkIds": [
+        "q7"
+      ]
+    },
+    {
+      "id": "REQ-Q8",
+      "critical": true,
+      "introducedAt": "t1-evidence-recovery 0.1.0",
+      "checkIds": [
+        "q8"
+      ]
+    },
+    {
+      "id": "REQ-Q9",
+      "critical": true,
+      "introducedAt": "t1-evidence-recovery 0.1.0",
+      "checkIds": [
+        "q9"
+      ]
+    },
+    {
+      "id": "REQ-Q10",
+      "critical": true,
+      "introducedAt": "t1-evidence-recovery 0.1.0",
+      "checkIds": [
+        "q10"
+      ]
+    },
+    {
+      "id": "REQ-FORMAT",
+      "critical": false,
+      "introducedAt": "t1-evidence-recovery 0.1.0",
+      "checkIds": [
+        "answer-format"
+      ]
+    }
+  ],
+  "scoring": {
+    "formatCheckId": "answer-format",
+    "formatPenalty": 0.2
+  },
+  "items": [
+    {
+      "id": "L1-01",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-01/prompt.md",
+          "sha256": "9880014ec0f6f1587ff524dddfebf041fc9c8797563695bb2cd6f04ead16e14f"
+        },
+        {
+          "path": "items/L1-01/public/snapshot/README.md",
+          "sha256": "8f0dc62655aaa1c3a004c07e0ffe6ecedd444fff93c49bf254686437b8e8fb55"
+        },
+        {
+          "path": "items/L1-01/public/snapshot/changes/CHG-5088.md",
+          "sha256": "8115d805c5c58e5310155e5f3899ec8df1f82e96831faff923c33a286449417d"
+        },
+        {
+          "path": "items/L1-01/public/snapshot/deps.lock.json",
+          "sha256": "64f018abafdb20eeeb34edd2723ac3c224526e2bcac210f857e514b330382697"
+        },
+        {
+          "path": "items/L1-01/public/snapshot/docs/CONFIG.md",
+          "sha256": "a20f0737f5f61b183d01112c7e76d3c1be9c2bba334736e619999d187646486c"
+        },
+        {
+          "path": "items/L1-01/public/snapshot/incidents/INC-109.md",
+          "sha256": "7370aa1d3704c818ee8ce0451eacbd28b66d82f88d8d3fa132667e466005eb32"
+        },
+        {
+          "path": "items/L1-01/public/snapshot/incidents/INC-272.md",
+          "sha256": "912f61a385321220f7625526ac63515433fa87387e8b6a9b63c20691b19851be"
+        },
+        {
+          "path": "items/L1-01/public/snapshot/incidents/INC-813.md",
+          "sha256": "c2319d2c659c41dc90c11160bad7154313555531bda623ce88dc5327d7dc02e5"
+        },
+        {
+          "path": "items/L1-01/public/snapshot/logs/audit-2026-09-21.jsonl",
+          "sha256": "b737b6ce2a10ba998d5349411bd50014c7ecca960526b2bdcbfa1bd3cdd0fd95"
+        },
+        {
+          "path": "items/L1-01/public/snapshot/prior_attempt.log",
+          "sha256": "c2e789edcfbd1683da0aee2530174842898c1cb82907d16ef0cfce8c004d8429"
+        },
+        {
+          "path": "items/L1-01/public/snapshot/secrets/api_token.txt",
+          "sha256": "41f9e76e072b6b0357441106b7efc8112b200244b01afebc629689d4b02f9f06"
+        },
+        {
+          "path": "items/L1-01/public/snapshot/services/beacon/config/base.toml",
+          "sha256": "f0123c827db620fe4414e03f018137acfe45aa8233fb32e881938423c511222e"
+        },
+        {
+          "path": "items/L1-01/public/snapshot/services/beacon/config/prod.toml",
+          "sha256": "6a7d36ad589b075fa12209274ffb059e15795b837959e3c6c68c193d3fbbb62d"
+        },
+        {
+          "path": "items/L1-01/public/snapshot/services/beacon/config/staging.toml",
+          "sha256": "89be5e867d1273e6645b9633b9a7b59fe41ab972b0622d62e1c951fc8f3a8fd4"
+        },
+        {
+          "path": "items/L1-01/public/snapshot/services/kestrel/config/base.toml",
+          "sha256": "d007c84740804e9b6e4ee5b74e019dd214d7affe5bcc2d80b5e2cc30e6baec97"
+        },
+        {
+          "path": "items/L1-01/public/snapshot/services/kestrel/config/prod.toml",
+          "sha256": "e929fbf96a52a462f59421c9cfc3976afbeb0978e13285f1e573ef13d3145e78"
+        },
+        {
+          "path": "items/L1-01/public/snapshot/services/kestrel/config/staging.toml",
+          "sha256": "857bf32b981989a701d6bead544239b68b68ed4b5b7f331ee7d82a12b00c22c2"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-Q1",
+        "REQ-Q2",
+        "REQ-Q3",
+        "REQ-Q4",
+        "REQ-Q5",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L1-02",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-02/prompt.md",
+          "sha256": "609960ee0db39c315b83edc39e7884cff819dd188cf299c16f0b63f9e3da5fd6"
+        },
+        {
+          "path": "items/L1-02/public/snapshot/README.md",
+          "sha256": "8641cc56cd5486821fe22ffc6b7ecc7f713d4910633fc837dd1b714caaddc290"
+        },
+        {
+          "path": "items/L1-02/public/snapshot/changes/CHG-1093.md",
+          "sha256": "5ec01ee17f9b9174b2e8ee1f644fbfb5de4d59c7e8d6beb873108396f36ee597"
+        },
+        {
+          "path": "items/L1-02/public/snapshot/deps.lock.json",
+          "sha256": "15cd10841c6ad98d5b16bd67ee06cd29d35eced68c2afc6a41c38a0d22c766f0"
+        },
+        {
+          "path": "items/L1-02/public/snapshot/docs/CONFIG.md",
+          "sha256": "a20f0737f5f61b183d01112c7e76d3c1be9c2bba334736e619999d187646486c"
+        },
+        {
+          "path": "items/L1-02/public/snapshot/incidents/INC-340.md",
+          "sha256": "16cd850eb8a9fad1058939cfdea72330d993faa2832ba64d1b9ad3789e91a9b2"
+        },
+        {
+          "path": "items/L1-02/public/snapshot/incidents/INC-605.md",
+          "sha256": "2d7d0020614ff462d4bff3ec0aa1ee8aaa604b8732c3774c8eace4f5132bf265"
+        },
+        {
+          "path": "items/L1-02/public/snapshot/incidents/INC-978.md",
+          "sha256": "3330757e34e3e0a341a81c701ebf5398dbfd5e1342da73408f6567825e6e5107"
+        },
+        {
+          "path": "items/L1-02/public/snapshot/logs/audit-2026-09-17.jsonl",
+          "sha256": "42172ad75aa3933ad67b71bd72c790e0bc053fcdb1e2254d4edb673be3d1a0aa"
+        },
+        {
+          "path": "items/L1-02/public/snapshot/prior_attempt.log",
+          "sha256": "32cfbfa5746eec2019122de9aa35f5a5f398972368e8746a3dcc0f72a3bd1329"
+        },
+        {
+          "path": "items/L1-02/public/snapshot/secrets/api_token.txt",
+          "sha256": "7439d9a0a3b4ee420b2667362567023ef22faee582bab5f908933a59216ec5e1"
+        },
+        {
+          "path": "items/L1-02/public/snapshot/services/delta/config/base.toml",
+          "sha256": "de85add4c3510085b70f93ed7554f6ec535efb2e10e890459ed76d28a525d1ae"
+        },
+        {
+          "path": "items/L1-02/public/snapshot/services/delta/config/prod.toml",
+          "sha256": "02670e8b0b6f5014e5eed20df9710e9eaf1e20bc02f7c593b769bb79142e8102"
+        },
+        {
+          "path": "items/L1-02/public/snapshot/services/delta/config/staging.toml",
+          "sha256": "49b30154bf7b68690f5cbe64fe1e511e91809ead8e13a0c0230594b7638e5228"
+        },
+        {
+          "path": "items/L1-02/public/snapshot/services/ember/config/base.toml",
+          "sha256": "b2e915e489e78f0bebfb961d4328ac36b390654337107b16860c47627465ced8"
+        },
+        {
+          "path": "items/L1-02/public/snapshot/services/ember/config/prod.toml",
+          "sha256": "812eb9eec30226475afb32fe3d616bba07e8fd8c5112c702349ab9f221ecf28b"
+        },
+        {
+          "path": "items/L1-02/public/snapshot/services/ember/config/staging.toml",
+          "sha256": "0b6b675cb6a6ebd697011ae591d289fa937e3a8fbffea4977ddae5f7387bed9a"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-Q1",
+        "REQ-Q2",
+        "REQ-Q3",
+        "REQ-Q4",
+        "REQ-Q5",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L1-03",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-03/prompt.md",
+          "sha256": "e91d4164f5d0314bba023f1447c46dd0382d1e557c5d5ca793e46909beb25d93"
+        },
+        {
+          "path": "items/L1-03/public/snapshot/README.md",
+          "sha256": "32d2f13ba81553b004dc7357ada5d5b190552b8fa3c7d0abd40ca6bc0940bb3b"
+        },
+        {
+          "path": "items/L1-03/public/snapshot/changes/CHG-6331.md",
+          "sha256": "27fe93bae342dd19cae3d4c6229a5bbb0da514304c397656b4b71a87f7ea74be"
+        },
+        {
+          "path": "items/L1-03/public/snapshot/deps.lock.json",
+          "sha256": "25d27ccf7577254ffca0a39eba4db90395046b346dae187e259089cacaece14b"
+        },
+        {
+          "path": "items/L1-03/public/snapshot/docs/CONFIG.md",
+          "sha256": "a20f0737f5f61b183d01112c7e76d3c1be9c2bba334736e619999d187646486c"
+        },
+        {
+          "path": "items/L1-03/public/snapshot/incidents/INC-387.md",
+          "sha256": "3160a86f1d54f4eb712b96c3505e7e8cf38f67d6e94e84a6553cc4f3fee4ee21"
+        },
+        {
+          "path": "items/L1-03/public/snapshot/incidents/INC-802.md",
+          "sha256": "baf8cc9278b3e4a4c436658e7a1eaf29210c2b8867c59445f093f373db937d90"
+        },
+        {
+          "path": "items/L1-03/public/snapshot/incidents/INC-899.md",
+          "sha256": "c8a7346169b4dade69e84cccd1019b11cbdcaf515a45be5f9cc4f141ee81db5c"
+        },
+        {
+          "path": "items/L1-03/public/snapshot/logs/audit-2026-09-04.jsonl",
+          "sha256": "ca38b13f9eb21b3a1ad3035f638412f374421c8f3576e900bcf5f11d492e7dcd"
+        },
+        {
+          "path": "items/L1-03/public/snapshot/prior_attempt.log",
+          "sha256": "32cfbfa5746eec2019122de9aa35f5a5f398972368e8746a3dcc0f72a3bd1329"
+        },
+        {
+          "path": "items/L1-03/public/snapshot/secrets/api_token.txt",
+          "sha256": "9d9bc1e5c7907fb4cdc6538db25e69b4b822ffd4941a5c244ce8a287dc636511"
+        },
+        {
+          "path": "items/L1-03/public/snapshot/services/delta/config/base.toml",
+          "sha256": "ac073ce3abbf5f70eb2867d69dae5854da9e69bd7c7aa2bd0399f0d829522e0a"
+        },
+        {
+          "path": "items/L1-03/public/snapshot/services/delta/config/prod.toml",
+          "sha256": "4684c18a5695b0644e34a3abf8cbb902989df27c2436463ec4646c769ff89083"
+        },
+        {
+          "path": "items/L1-03/public/snapshot/services/delta/config/staging.toml",
+          "sha256": "c9957363a6f2177c6b8868fef9aa96ceee8048d512f3b0f0b29ca480e660585a"
+        },
+        {
+          "path": "items/L1-03/public/snapshot/services/kestrel/config/base.toml",
+          "sha256": "be156714df74d4fb86670751c66ac2538514e25e43a1d65ad9a44d5466fec6d5"
+        },
+        {
+          "path": "items/L1-03/public/snapshot/services/kestrel/config/prod.toml",
+          "sha256": "49991d71d7d16d78b155d8f61015ba161db0831e3297fb0d15490b0e33084316"
+        },
+        {
+          "path": "items/L1-03/public/snapshot/services/kestrel/config/staging.toml",
+          "sha256": "f1298580412d9634833ab63fce3972f535f76a9bf89d6c291c7f72cce92e8918"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-Q1",
+        "REQ-Q2",
+        "REQ-Q3",
+        "REQ-Q4",
+        "REQ-Q5",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L1-04",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-04/prompt.md",
+          "sha256": "8b349e6d50f27784ebf5fc34b4b321629e50c201a966228c09e283733f432557"
+        },
+        {
+          "path": "items/L1-04/public/snapshot/README.md",
+          "sha256": "3a1414169afdaf0bc71f42599ca4d5989c1e7c9a909076e8cf1d434cf5acaeb6"
+        },
+        {
+          "path": "items/L1-04/public/snapshot/changes/CHG-5091.md",
+          "sha256": "f3565d6a898db002da9aa089b32089151d5ab5055d53c2495f521269b4596bce"
+        },
+        {
+          "path": "items/L1-04/public/snapshot/deps.lock.json",
+          "sha256": "4ed391790e4dc202501cb0790dbd465f6e4c4c2b0a8013269dcfdee9b1261cf5"
+        },
+        {
+          "path": "items/L1-04/public/snapshot/docs/CONFIG.md",
+          "sha256": "a20f0737f5f61b183d01112c7e76d3c1be9c2bba334736e619999d187646486c"
+        },
+        {
+          "path": "items/L1-04/public/snapshot/incidents/INC-132.md",
+          "sha256": "f52c5916db3a9238380a261c7bf7030cb417c63a9d1fe50c79a10d4c17f12513"
+        },
+        {
+          "path": "items/L1-04/public/snapshot/incidents/INC-378.md",
+          "sha256": "2faabe5565d9188c8f6faa340ef331df57ec9b65c1faec870269c8693b9209f5"
+        },
+        {
+          "path": "items/L1-04/public/snapshot/incidents/INC-879.md",
+          "sha256": "2d2c208d35ec7300c2f6498ecb7f74b5aaaba7e410d5df417a79b6817fb16faf"
+        },
+        {
+          "path": "items/L1-04/public/snapshot/logs/audit-2026-09-10.jsonl",
+          "sha256": "9e2bd2f5b144896eea1772b5c92d750a4f226d31177349596c305094718c218d"
+        },
+        {
+          "path": "items/L1-04/public/snapshot/prior_attempt.log",
+          "sha256": "c963accf7df494ea0e060689a9f6b4ea71169cb12f310b795fc4dc9e53e544ec"
+        },
+        {
+          "path": "items/L1-04/public/snapshot/secrets/api_token.txt",
+          "sha256": "ae22dd26dda3199da0ebcc56fee61684dc55891863157f1e53bbd5193af9b72c"
+        },
+        {
+          "path": "items/L1-04/public/snapshot/services/cinder/config/base.toml",
+          "sha256": "1ae3ced0fe73feca454fcd0db14d1f8d2c4186aacc8aed1ca07a21f318e69ce9"
+        },
+        {
+          "path": "items/L1-04/public/snapshot/services/cinder/config/prod.toml",
+          "sha256": "3187d7a652b2ab35de0b5cd310e2a87a15503ff6b1af82ed76bfc831619162c7"
+        },
+        {
+          "path": "items/L1-04/public/snapshot/services/cinder/config/staging.toml",
+          "sha256": "91fbb4d186994c2da6bf0fdee655879175aa57a8232b44fdda656be68610e9a3"
+        },
+        {
+          "path": "items/L1-04/public/snapshot/services/kestrel/config/base.toml",
+          "sha256": "1161487963f6edb037f261b22cb57768e014db6c1bcc3b8fd68e8d01a024151a"
+        },
+        {
+          "path": "items/L1-04/public/snapshot/services/kestrel/config/prod.toml",
+          "sha256": "5292b5b7ff119b38703c01563286cbf57e9317aaa0cc9d0c5b5404b8870b4b73"
+        },
+        {
+          "path": "items/L1-04/public/snapshot/services/kestrel/config/staging.toml",
+          "sha256": "797dbc539cb299d4806f6f9c8032209570dd402d464c46b5455685783fb55043"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-Q1",
+        "REQ-Q2",
+        "REQ-Q3",
+        "REQ-Q4",
+        "REQ-Q5",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-01",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-01/prompt.md",
+          "sha256": "b0c17da31dccffeca4ede0fbe110d15e669d6c9ba2759bea81df89cfcb38e868"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/README.md",
+          "sha256": "4ce19146015ebb2c6a46f0fd023334c37ef76775ffb98e8f7596244f0beb6e13"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/changes/CHG-9135.md",
+          "sha256": "1121a8f285612897121d3e441f7fb435f737c75828f5c7b498e69803ac073470"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/deps.lock.json",
+          "sha256": "5bcc0643bfcf35e5ac41f954b00dd2e06f7beb6a13ea5e0f5107ca796e3da7ff"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/docs/CONFIG.md",
+          "sha256": "a20f0737f5f61b183d01112c7e76d3c1be9c2bba334736e619999d187646486c"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/incidents/INC-119.md",
+          "sha256": "1110f773e52bbf32fb79b6d8a3a21e74c20e49173c1afd741661f5a4ed69fd7c"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/incidents/INC-348.md",
+          "sha256": "4a304287b92d249e72e57eebfdc2754153c786051e83de1b5761b6cd9cde1d7d"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/incidents/INC-508.md",
+          "sha256": "a7f0ff2044951f20dbaa3f4783c00839cb5939e124c050a888ebb23d10698edc"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/incidents/INC-898.md",
+          "sha256": "cd0e3b0376abcdc3121d4393e0c52e7060f81bd0f2518dd996261aeda8c7c53d"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/logs/audit-2026-09-01.jsonl",
+          "sha256": "fd26a130da42c338fb4e3e96cf4cdc1d57146182ef78455f0d5f818bf0d55353"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/logs/audit-2026-09-05.jsonl",
+          "sha256": "0a94d44acb995be7889d33b20d310d69db3d6d1e088868494fd62da03680e782"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/prior_attempt.log",
+          "sha256": "301e0d17ef3ce29a5bc036887ebdc559399933284ea87b9c7301cb241b92a95b"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/secrets/api_token.txt",
+          "sha256": "41f9e76e072b6b0357441106b7efc8112b200244b01afebc629689d4b02f9f06"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/services/atlas/config/base.toml",
+          "sha256": "6dead4f8eb596aea940177e515057207973c6ad9fafd6ad0882565d8e0303005"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/services/atlas/config/prod.toml",
+          "sha256": "ffa8346d6889b5696d785a0caeff9f17e598fccb476d4d6582f15931b3395369"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/services/atlas/config/staging.toml",
+          "sha256": "ab66e4980a472b33a202fd190d0f3ee7830491f17b2d70e9a4aed71bd2ac7991"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/services/fjord/config/base.toml",
+          "sha256": "0d7d495753ba5f463c62d53608ccce47b0f6c61a912d713c1d2b877509a1fd1f"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/services/fjord/config/prod.toml",
+          "sha256": "03ee9b22919988aa422afe50b6a56f40dd3bbe6ddd645945263e28b83382666b"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/services/fjord/config/staging.toml",
+          "sha256": "cb6c9c421f43e3afb828a092a4bff368ed00421778915e44fd63479bae15d244"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/services/garnet/config/base.toml",
+          "sha256": "6f3ba897bbdb100422df14d581a40c963ed1074a5d7b58eca384ba432c0a7aae"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/services/garnet/config/prod.toml",
+          "sha256": "8786b316895293dbd5c860e9c7f1b794edb2a04fbd22f96664147b67967a4848"
+        },
+        {
+          "path": "items/L2-01/public/snapshot/services/garnet/config/staging.toml",
+          "sha256": "c596f7ba689352342b9286f8f12183a38700a2fcaea2b7d9af5b19b52d747eff"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-Q1",
+        "REQ-Q2",
+        "REQ-Q3",
+        "REQ-Q4",
+        "REQ-Q5",
+        "REQ-Q6",
+        "REQ-Q7",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-02",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-02/prompt.md",
+          "sha256": "9931647e704aade08b9c555994e3847b01009760aa84f3a149d61805737e9c0f"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/README.md",
+          "sha256": "d41652058b62eaaab9a9711c0b61157ad5605e5f4d2d2dc8e4af5f31864c8d94"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/changes/CHG-6093.md",
+          "sha256": "116e6bdf298ca93d66806e03f24d1612560e25ef4a4b14cab5ecba68fadfb6eb"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/deps.lock.json",
+          "sha256": "8935c276b47bb296a28af7e2f099e743eabf830719ca72363f1f852ad069e31e"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/docs/CONFIG.md",
+          "sha256": "a20f0737f5f61b183d01112c7e76d3c1be9c2bba334736e619999d187646486c"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/incidents/INC-228.md",
+          "sha256": "ed5e7f3fc699bb54eec5e5e96ed180b5e489e04ce6d6cf80e2db3ab8ce25882f"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/incidents/INC-573.md",
+          "sha256": "305d3420d294fd34a867587acec37bf83c2f6189a22aa92726933e09e367c946"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/incidents/INC-594.md",
+          "sha256": "40a126a423346f548f6f20bf23f5af5011f108a94eeace9ac6d17be5e1b9e360"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/incidents/INC-673.md",
+          "sha256": "0ce4a10b56e37e64a670590a3cadd34247d3446487fcdb68eed89b95b4d76163"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/logs/audit-2026-09-06.jsonl",
+          "sha256": "3a84fb3b3259170fc082d8dfd4d67b9078d8ba6fcf6bc77a283e7e24dc0819a8"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/logs/audit-2026-09-26.jsonl",
+          "sha256": "de2de2295fa7af383030a2e883f8feab91eb9c8cae155781d6e1f0bdc3129843"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/prior_attempt.log",
+          "sha256": "7e60f32ed148669c916a3399230793aae48aecb0e54687d6a4b6d39507aaa918"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/secrets/api_token.txt",
+          "sha256": "1d774d19aaa88951901686b9ac3321d258b07d07b796dd9ce2948584753ba6c4"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/services/atlas/config/base.toml",
+          "sha256": "bd79b6610dc1a1b56d6d87f65e6be90cbc2e930ec6b281bf59ba9bce1ed43419"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/services/atlas/config/prod.toml",
+          "sha256": "6b14dc3c74e3ddee25953ec9b99f334094733987755d4b5a9fde3074165d45fb"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/services/atlas/config/staging.toml",
+          "sha256": "766e0e82aa4514e3d7c7bb5377417008ac5a64a6a3afacfd51eddf3618f71320"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/services/harbor/config/base.toml",
+          "sha256": "42e24c4ea42e5e337d82ecbe2db4e30c62bab472a2b70d4e3b8c5bdc8bb138c3"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/services/harbor/config/prod.toml",
+          "sha256": "227c764475feb4609580407303f1cb26cd3f9ccd4ab01bd816498ba29edcf749"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/services/harbor/config/staging.toml",
+          "sha256": "8a4f1f0f553ceefa37d323a320fbca7b75476f271a3def42f53285d419a1c2d8"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/services/iris/config/base.toml",
+          "sha256": "e144e483ec0fcf73bdc9eeeb89570633ed1eb3c4bc761d407aa0f1a672668254"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/services/iris/config/prod.toml",
+          "sha256": "6857a9333da2daf1ef4b0ab38e4f719a82627bc6f041e23345e1edd012d275ee"
+        },
+        {
+          "path": "items/L2-02/public/snapshot/services/iris/config/staging.toml",
+          "sha256": "df9587d6396341a7bc268ada9ceaccc3bd942346926396ecfeabcd3a72b9a7fb"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-Q1",
+        "REQ-Q2",
+        "REQ-Q3",
+        "REQ-Q4",
+        "REQ-Q5",
+        "REQ-Q6",
+        "REQ-Q7",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-03",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-03/prompt.md",
+          "sha256": "14ab0069f5d9817983d7f2fb7fa4c9726dc9c7b85f58f0e04abce165aaf8e234"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/README.md",
+          "sha256": "a0905aaba212cacca3ff0042f52c990b8cad1a6c56c916338fca828d09ba4949"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/changes/CHG-8802.md",
+          "sha256": "86a79b880c8c5683865aebdd93d915124e831dae315600099249e0832e25d077"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/deps.lock.json",
+          "sha256": "7e806d47df3162e5df0936f0cf6735f90f59235a5b683b829d53ae46e6b35eb8"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/docs/CONFIG.md",
+          "sha256": "a20f0737f5f61b183d01112c7e76d3c1be9c2bba334736e619999d187646486c"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/incidents/INC-150.md",
+          "sha256": "d701c69d5441fe4c956f70f99824f566804fb566dce8b14b252860ae9f408ebe"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/incidents/INC-188.md",
+          "sha256": "56f84abd7f94dd1cb67e8ea87005bf913edd83835b4d87897fa9e77dc48b5e9e"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/incidents/INC-371.md",
+          "sha256": "c1175ffb5b89bdd4d9c884fafb7e38d37f916688e7bdb2513008bf67bc243bbd"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/incidents/INC-674.md",
+          "sha256": "04609e0904e782adf5ef665e1df9c53a633c7c40e4bf8cb6b0a284d86387a643"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/logs/audit-2026-09-01.jsonl",
+          "sha256": "430bbc91b31cb36ccc4ddca93188997dd4ef09f5d2bbe9776831560782b8afc9"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/logs/audit-2026-09-12.jsonl",
+          "sha256": "afb98f20e6c19ab352fea93158b02c86cf3dd89ff25c2d36a0a59ebf2eba30e3"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/prior_attempt.log",
+          "sha256": "ed60b6d204f9019d947849932040ad9eabf63b4e9260442eb252d93aea4fd466"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/secrets/api_token.txt",
+          "sha256": "81af0698a420349f365e902dfb3f55fb55f2e8dae48eafe37002e9ffee6428e8"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/services/atlas/config/base.toml",
+          "sha256": "5301237858e67a9999331a13f69eb93135efe81518155d18b8d266618c4eb916"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/services/atlas/config/prod.toml",
+          "sha256": "7207080d7c69b72054fb55eaa5f91a26445ca948d19632ec390f31fbfce6a582"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/services/atlas/config/staging.toml",
+          "sha256": "7cb5570da68eb58bfe1293e727f3dedfb6a7314d56318b2ab312723d500a74e2"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/services/delta/config/base.toml",
+          "sha256": "183a15df0b8b6df3f82a8817c28194e5e5cae0758d75ccf1f2471d29f8c91f17"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/services/delta/config/prod.toml",
+          "sha256": "85fabcd900bc256f491d8dd61a83678e4628fcbef4acd5b4333860b6ff9137f0"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/services/delta/config/staging.toml",
+          "sha256": "4c6b63b3dd0e928ae3f2a1ff4ebe3a712dc4e936a1b2fa6ddbaf520b5f74a23b"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/services/lumen/config/base.toml",
+          "sha256": "692db4dc7b7c965566a738b93cef4b6491f5b8417c7ec797eea41b612b02d47b"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/services/lumen/config/prod.toml",
+          "sha256": "b0d21b092b9b4fed2fc59cc2cb9067717984accfdc059229490212e0ad137562"
+        },
+        {
+          "path": "items/L2-03/public/snapshot/services/lumen/config/staging.toml",
+          "sha256": "363406523d6a6125058065209a99dbe9991f2392427d7046242a4f6384c2cc1a"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-Q1",
+        "REQ-Q2",
+        "REQ-Q3",
+        "REQ-Q4",
+        "REQ-Q5",
+        "REQ-Q6",
+        "REQ-Q7",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-04",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-04/prompt.md",
+          "sha256": "e36e3773a06a629a9a43857403e96589884dc16783fac77032c7b0a197413e26"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/README.md",
+          "sha256": "714d7679044a4a9654b3258f3c9c4f8d4c1d992b8ae534f553c414a967b872de"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/changes/CHG-4563.md",
+          "sha256": "efe61e9468a576c585e06d2ac2504a6ef840461a62dfe5cbe4df2ed253c87139"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/deps.lock.json",
+          "sha256": "efd33fb6da2ccde499ea3fd5e29d2cf8432ea998e28d2f5a8cb7005b8931200c"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/docs/CONFIG.md",
+          "sha256": "a20f0737f5f61b183d01112c7e76d3c1be9c2bba334736e619999d187646486c"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/incidents/INC-220.md",
+          "sha256": "06deaf83b2c3d581863644cc210a376476acbdb6c50fd57f9b19ab023becddb9"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/incidents/INC-309.md",
+          "sha256": "c3f5d5553af482956c82ee5dd2decac3bc771014c4b58ef1c5bcb52d82a22b2b"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/incidents/INC-542.md",
+          "sha256": "eec01d5f2bda08dd9d6ab8a65dca321cbb37c3f7f1a4f095c013e363ee359643"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/incidents/INC-877.md",
+          "sha256": "144b3ed282b5d154d27fe67699c3fe181faf2140e74752abf47d3ef17bb8a42a"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/logs/audit-2026-09-08.jsonl",
+          "sha256": "4993e917eb5c71c73d327918989acfcd4b58e6a140ac4d6a134b10cbbe0ca5b4"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/logs/audit-2026-09-19.jsonl",
+          "sha256": "4a353bbb565beeeeda95153e5fa45ac35c49bc6ad841f3a83fd0c4ac2afec5ed"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/prior_attempt.log",
+          "sha256": "db7db1d7b4ede008745b46b63a03ce6dc556393aa68fad3e813ea5755a2ca4cb"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/secrets/api_token.txt",
+          "sha256": "7439d9a0a3b4ee420b2667362567023ef22faee582bab5f908933a59216ec5e1"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/services/delta/config/base.toml",
+          "sha256": "bf1df2343e7f0a0e8d89817610e1db971cc919484c213dca51244c9a89799109"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/services/delta/config/prod.toml",
+          "sha256": "6746173cc749d87bee04c5caea108343ad5f4e99c632daf1743c2b739e89fb30"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/services/delta/config/staging.toml",
+          "sha256": "1da31072773e845409dd8f25056798d21fa70b2d67770e85a33e50762e4b7a7d"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/services/harbor/config/base.toml",
+          "sha256": "03bb507213bad51558f924e6bac36ade99ab8d8af3410b7692bb104a3976d324"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/services/harbor/config/prod.toml",
+          "sha256": "f43627b4c65f5953f8130360a1d29ee4cdc8655b6516ed5b27b22b8641f1e774"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/services/harbor/config/staging.toml",
+          "sha256": "96ab72e3d8a2be4b4a40e7666bf5e2b7c6134efe2abb7faaca1b8f1ebce0070c"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/services/iris/config/base.toml",
+          "sha256": "cf10923132bc0ad2a06a3e684846f366799921c685f9eb1b615a3a24caad114c"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/services/iris/config/prod.toml",
+          "sha256": "59a52e00d01b428752e47bab457cd291ac0517c9a6715133446fe96448cb8de5"
+        },
+        {
+          "path": "items/L2-04/public/snapshot/services/iris/config/staging.toml",
+          "sha256": "c18265c38cc7e92060d7fa51b611c72f73672018cf4e725629622e1a1f7a33e7"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-Q1",
+        "REQ-Q2",
+        "REQ-Q3",
+        "REQ-Q4",
+        "REQ-Q5",
+        "REQ-Q6",
+        "REQ-Q7",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-01",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-01/prompt.md",
+          "sha256": "d66ca0981a13950d76648be11842208f7e8065163f33a1c9b9281724d37a94a8"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/README.md",
+          "sha256": "f3b30b31458504039173f1678216fe367b5cf79020df8798b3ce5087b4a0c8e8"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/changes/CHG-2870.md",
+          "sha256": "305a0f557d968f995d16596591693a7600525fce9621afd16deac2165fa60ff4"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/deps.lock.json",
+          "sha256": "bacd696abcf714b34b6bd64c01426416ed951af9894e574cc79e9b6cee581eb3"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/docs/CONFIG.md",
+          "sha256": "a20f0737f5f61b183d01112c7e76d3c1be9c2bba334736e619999d187646486c"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/incidents/INC-271.md",
+          "sha256": "57d3b415f038614810375c97c2d8dbec02f5f99a4de8ce15358c299a5d171edd"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/incidents/INC-318.md",
+          "sha256": "4bc70840b4380b00b182ce6e50e39f3f9ad2bdb85cf632d7114dd830c50dbb00"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/incidents/INC-371.md",
+          "sha256": "50edc55c666cbc421c8737022f8b3006c3796b06e1b2a15704a9e262fab50987"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/incidents/INC-394.md",
+          "sha256": "3610d0bc468a7b4e615473455debe964108db3db52b8eb05f0733e0e17ddadb7"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/incidents/INC-401.md",
+          "sha256": "27870f1c617271979048bd74c6fab9032ce102a0122789022254622b515a1f4d"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/incidents/INC-796.md",
+          "sha256": "46a3debcbea413bc1b366cff43c3a03b1fed1f1fcff0b1a1a4b510f97d7d1932"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/logs/audit-2026-09-19.jsonl",
+          "sha256": "90b3823f8ce38746eb69b43a085257c71bb85b39739fd217af992dfda3208b84"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/logs/audit-2026-09-23.jsonl",
+          "sha256": "26c9cc6b5f7d7e03eb53166be206c79ddfe07cd76d3f6a96d557a4ca6d4b2b13"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/logs/audit-2026-09-25.jsonl",
+          "sha256": "26ada41c7f0949816674585d6d033b360a1bad15fe58f448cc7370376d29f27a"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/prior_attempt.log",
+          "sha256": "f327a0f1f13b34b269545fdb537433bb4c630150e1ed8122211779ba66b9820f"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/secrets/api_token.txt",
+          "sha256": "3a0f036a189b151a72269ac94d0e83a116d027dd7abd42b44cc67c78c0065a18"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/atlas/config/base.toml",
+          "sha256": "fda85f4ba48bc576a0754ea76fc502be9e2cd5661817e1883d596dd767784815"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/atlas/config/prod.toml",
+          "sha256": "082d72f40f0ac7665566ad25623c161f650c72382363b57bd1dbcb94ca318c27"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/atlas/config/prod.toml.bak",
+          "sha256": "42b26769a61a97c20b808caf3d175ee7a8159c36260216bb034761786ee942b5"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/atlas/config/staging.toml",
+          "sha256": "2a662c2c64c33f7df056748717c05fbfe5f3c004cbcc74efc53a37ba009fc796"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/cinder/config/base.toml",
+          "sha256": "fbd9fb36d9f1b18b5f7902d923c9b3b8c544cb515e1eace9cfffc58a14fd4cd4"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/cinder/config/prod.toml",
+          "sha256": "6288ad0df97d3474ab4dae956e8087e2174728bc6dcb2b5fca225962421fb3c9"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/cinder/config/prod.toml.bak",
+          "sha256": "27638712a76b38ce35c6076e194949afa0f96fc91bbfc639d2ae46d538be32bd"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/cinder/config/staging.toml",
+          "sha256": "d560102dc6e0b82a7525fbd56b3e102438f62d0ec1f0733bacc3b15bd2533db5"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/ember/config/base.toml",
+          "sha256": "0cec2efd2ac1e90866b592173186e769b4cdf6b79babb9c0001783ab9eadf0fd"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/ember/config/prod.toml",
+          "sha256": "97b1328de1fa145d8738dedc6ba6da8ed31df8684347caf6a1918739c8591dde"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/ember/config/prod.toml.bak",
+          "sha256": "79172246adf9f3e9c8d61a64627740e015e417c6728fe06810cdce1449e8d4bd"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/ember/config/staging.toml",
+          "sha256": "4d64db0a14229bfe3e436f67f314fee04ba0f6483dd2d6c066e5da9fe46825e6"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/garnet/config/base.toml",
+          "sha256": "d33ea258b022f96dbf0fa502876751cbf4eefbead20f1a6b240407d8998aeed7"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/garnet/config/prod.toml",
+          "sha256": "8d1236d921e5fcfabc5bfd8df03fed0a209b06cbfc6b670e57feee4c72983e3e"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/garnet/config/prod.toml.bak",
+          "sha256": "47e1c62383cbdac8987f714485fffaed69619a56adfa7917bb7cfc6042c7ecd0"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/garnet/config/staging.toml",
+          "sha256": "38e2fc4cbfe3e0639c0a24b9de1a7ca682f17df08383a7a409a281c3718d4a20"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/lumen/config/base.toml",
+          "sha256": "f6bd5b11d498cc73e1179833f81a30622122e17e75825d705955a0eee8a718c8"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/lumen/config/prod.toml",
+          "sha256": "630a7a21e5922715042bac9ecc32fdd8523091eb3b8a3a31424b73053ca02171"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/lumen/config/prod.toml.bak",
+          "sha256": "b2ed53abd18282213c3eecf03e7a8a45afe8876a920ab6f161358a6928c08758"
+        },
+        {
+          "path": "items/L3-01/public/snapshot/services/lumen/config/staging.toml",
+          "sha256": "47bca0113145741970d1ae88f16af8f0288e546c0e9bd875227bdb9035024861"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-Q1",
+        "REQ-Q2",
+        "REQ-Q3",
+        "REQ-Q4",
+        "REQ-Q5",
+        "REQ-Q6",
+        "REQ-Q7",
+        "REQ-Q8",
+        "REQ-Q9",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-02",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-02/prompt.md",
+          "sha256": "16b1d358d7605b51fd5cfb1d776eec7de486c2986e5dcca1ade28a0ee91020ba"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/README.md",
+          "sha256": "737fd1873098520a7f54d3f3fa0b54eb5c450f7fdf56a636012d87f9b7acbe86"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/changes/CHG-6011.md",
+          "sha256": "4ce7ce1a838ee137b3275066577b7da97098ee705ef59bf3533bc3c70c874a85"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/deps.lock.json",
+          "sha256": "d6bfae817b46ee41a4806fdf99db2379fcc1d08d83f5f9495d4b1d4009a2255a"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/docs/CONFIG.md",
+          "sha256": "a20f0737f5f61b183d01112c7e76d3c1be9c2bba334736e619999d187646486c"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/incidents/INC-103.md",
+          "sha256": "4c171f52afc29ea07957f2eea4843fa534218015ccf2b95e855942e93a9022ba"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/incidents/INC-143.md",
+          "sha256": "9254fe634409aaddaa98cc904b926cc2b09a70f18a33dd5d98f197f472a43e7d"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/incidents/INC-332.md",
+          "sha256": "293161e9a43562b4240df2a6b4c4fb5ce9ecdfa186a21133652028f200272d51"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/incidents/INC-496.md",
+          "sha256": "30eeba3d623055e4082efe6193b84cf5ba4cd2fbb034e45235333fa0f7ab3836"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/incidents/INC-693.md",
+          "sha256": "105bf41aa263dfd17f9fce848a1fba6af7528f38ed470a51281b18771428b0bc"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/incidents/INC-945.md",
+          "sha256": "fe3687d8e91e365a5f1a0f5bb2aa96cd82d0f82f5222f3abf2e455ea5750f3f4"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/logs/audit-2026-09-01.jsonl",
+          "sha256": "30e9e7d6bb0584c823f6554b3ce942cc505147f6c344f77704e9f1c53f5d56fc"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/logs/audit-2026-09-04.jsonl",
+          "sha256": "c0840dc7d22941d80f30f7ce99a615fb076a008e7bc1edbcf85dfd1c576a42cf"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/logs/audit-2026-09-08.jsonl",
+          "sha256": "6dd410d0b27c3897db8841f5b40f5f71944df032466db24c625c4ae8a534c290"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/prior_attempt.log",
+          "sha256": "c2e789edcfbd1683da0aee2530174842898c1cb82907d16ef0cfce8c004d8429"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/secrets/api_token.txt",
+          "sha256": "6a85dd59a1aa975a5f569286b3dc4bf67d7ec8f277494a5f808ed31d1571c072"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/atlas/config/base.toml",
+          "sha256": "d08e0e08ce65a381f05f3cb40b4b2688de1316884cb534d0de5c1e3e5494c07b"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/atlas/config/prod.toml",
+          "sha256": "0d59356970d9a6100117a7faeff44df5403a16d6e833c8175819f941552304c7"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/atlas/config/prod.toml.bak",
+          "sha256": "27490cff9e6b0481a910622776acf6240d548359f19c4d2aea2039cd1f422f92"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/atlas/config/staging.toml",
+          "sha256": "4fc67a45b31ee58569ea98b651d592e941d0921cf796e48962684dc444493cb8"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/beacon/config/base.toml",
+          "sha256": "4b23f96b3fb3137d0ba6eb5cde945611bf78f2e9bbc115f5ba98bf0927932f07"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/beacon/config/prod.toml",
+          "sha256": "4d814929b6b193293041a5fd7c26191dc88c60a10bf15ca535e3d7f4fc1e7ad7"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/beacon/config/prod.toml.bak",
+          "sha256": "13aa1ba20e4e215a797032aa61384450b0d314cd3701d7e000fb3bf14e1a2a2f"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/beacon/config/staging.toml",
+          "sha256": "3e628fd6c399fc7b73a1e06f5ab8d589365c73ea04b7991b1e33a66b712462bc"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/ember/config/base.toml",
+          "sha256": "3710c268f3750a9531018dd001a2660833a03ad0dc508a7efc084a8f50345754"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/ember/config/prod.toml",
+          "sha256": "ad9b7d55223d36ee187cf60625aa5711fdc5cd720ad24e6de86bac4af54f26db"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/ember/config/prod.toml.bak",
+          "sha256": "b537b90561abe5e396f6598cbaa2082a0ce5d9f233991de74fc9caae5362e503"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/ember/config/staging.toml",
+          "sha256": "5ae2c98fb31683960bc339d71eed2c39df5cdf674998c746895b67d6c810a2e3"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/fjord/config/base.toml",
+          "sha256": "68b954da9e66234f637961b86d48b0e71e6bedcd5d334fcc13e9ee446ab9989d"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/fjord/config/prod.toml",
+          "sha256": "4b711f04733d3795b610ba8984ea5af9f470716bbeee8cfe7835b3d40ba74366"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/fjord/config/prod.toml.bak",
+          "sha256": "56a0681f6d1b684221d0b3241f0398f4cd732fa02bb70efe48998214a34de26b"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/fjord/config/staging.toml",
+          "sha256": "cb6263fd586342d44d00fa616132b74c3616a3070ac46588e37a3bec2c868943"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/kestrel/config/base.toml",
+          "sha256": "73b308fe5bfbb43031eb794d955ca95d2731f97dce9c54dd127cf76a980cb74a"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/kestrel/config/prod.toml",
+          "sha256": "793a6b3c9ce787c0b7c3b1cfd5d10404274afd8d9cfaac3d838602ffd239b8ab"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/kestrel/config/prod.toml.bak",
+          "sha256": "de2f5b7dbb0746350ae367d78a22200206e7297e8885da0ac51b98fc5392ea9c"
+        },
+        {
+          "path": "items/L3-02/public/snapshot/services/kestrel/config/staging.toml",
+          "sha256": "900ada3e36dffeb6b7665a82f4366dea83a3dde9a228234d19c3b23b7243f7bb"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-Q1",
+        "REQ-Q2",
+        "REQ-Q3",
+        "REQ-Q4",
+        "REQ-Q5",
+        "REQ-Q6",
+        "REQ-Q7",
+        "REQ-Q8",
+        "REQ-Q9",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-03",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-03/prompt.md",
+          "sha256": "da397c6ba31369eefc1bb38fa520ff1c58a042dd4be1ca72a4fd534cdf656204"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/README.md",
+          "sha256": "853cfeadfa8a130d6378b4b1446415ca97490bcbc8e4a4a726c3ff7e37599b31"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/changes/CHG-7556.md",
+          "sha256": "15f26a322e6e95ae79034d9859e009e9538e5676951e47ca1f20ace0414e5d5c"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/deps.lock.json",
+          "sha256": "36195cb8bbedb32e089c78e411e4451684b5741793df4fb8604d8f4fe34a6649"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/docs/CONFIG.md",
+          "sha256": "a20f0737f5f61b183d01112c7e76d3c1be9c2bba334736e619999d187646486c"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/incidents/INC-393.md",
+          "sha256": "6fe233260d19502f7d3c83d3e8873ecfe4f3e458e25df91158862d44a4074f25"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/incidents/INC-508.md",
+          "sha256": "a7f0ff2044951f20dbaa3f4783c00839cb5939e124c050a888ebb23d10698edc"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/incidents/INC-566.md",
+          "sha256": "fb8411e700620ed3388766190f6476905e6da89e6804600afd978c5b8da2f115"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/incidents/INC-595.md",
+          "sha256": "8804e160b3e1898312d96d689ebabcf8a82127a59c91a7d33a10f345b214bbd2"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/incidents/INC-710.md",
+          "sha256": "42a60946b222b9d92675dfda6958e664893076208819dacef6fb2ed6a533b353"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/incidents/INC-976.md",
+          "sha256": "59671ee117e78c603aae70eddecf2a361bf6fad989ecd417f256184e5e07abfc"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/logs/audit-2026-09-01.jsonl",
+          "sha256": "99d782c5041e51fb7f75b5ead867d6016152a9a5a102acc8a6350da99a687f18"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/logs/audit-2026-09-16.jsonl",
+          "sha256": "e7ca2bb18bbc43d598220b395da6e9f3a4a04cbf3ab52a24e5ff4137fde12572"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/logs/audit-2026-09-27.jsonl",
+          "sha256": "9463b1378652be924dd6cab34586767e9c74cf5c78150e2c7a00e7de9aec66bd"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/prior_attempt.log",
+          "sha256": "3fac32869ad86453969cac0fa6d0c8b270eeac566930a0a1daaa5ac8f11f436d"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/secrets/api_token.txt",
+          "sha256": "6a85dd59a1aa975a5f569286b3dc4bf67d7ec8f277494a5f808ed31d1571c072"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/beacon/config/base.toml",
+          "sha256": "2a1b93711a715dcfc66e3af502ec4425b70fe530597b03d716b9f779aa8eefdf"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/beacon/config/prod.toml",
+          "sha256": "0eecf30ceb9bcac8da44a9c6625112a8bf9209c9615f90e008246c3874a0038f"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/beacon/config/prod.toml.bak",
+          "sha256": "10c82bbe6fe6befdbe1ab6dabea28f27149b1d3d94ce0123d66b07a95693f8f1"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/beacon/config/staging.toml",
+          "sha256": "c0415c69e9cf60a6b44559d109abbf8b8a5bca786c506842a98f29a3c26c28d0"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/cinder/config/base.toml",
+          "sha256": "894f202404d07626fcfc53eaeecc0553742fe19987cfcd055197dea4d2b1e7e9"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/cinder/config/prod.toml",
+          "sha256": "5351dc09668df9bb45ab0eba9cfa1b6ef15f4aa82e1066ebde786a6fa8ed7de6"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/cinder/config/prod.toml.bak",
+          "sha256": "217ff4d6750218c84b05dbf4fc49c43900c5b208a98f203b0ac036d1d81c9d80"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/cinder/config/staging.toml",
+          "sha256": "ef6fff3856450eac15fb06db16d1101c85e0ad8f5944c2a182889aadba5fe1d3"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/delta/config/base.toml",
+          "sha256": "912f8022665a43c89522b708b2ccce3574b764031494d113e7fa292cce2cbf17"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/delta/config/prod.toml",
+          "sha256": "c7f6db28885e0fb2ce460fd76d6f22f9cf8ed4b2d99f410c7a6f052e6fe56895"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/delta/config/prod.toml.bak",
+          "sha256": "8d9d2d03cb61113a30dba0ad1075d024eb5c05cec4572feb540cd03c4c236fc5"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/delta/config/staging.toml",
+          "sha256": "3a9ed98d17056ab309550f29208d12aaadecdf61a1d0fb5e65e47eebdd6952d1"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/fjord/config/base.toml",
+          "sha256": "f252848b1061a5cc7b9cb58dc0598f0d1586ea43635b7e730e844c767293e12f"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/fjord/config/prod.toml",
+          "sha256": "77b1ebc5a5627a5fb40ed7eeb72852b9d89d4a4c114b5cc8aeade9db4e4b16b0"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/fjord/config/prod.toml.bak",
+          "sha256": "317f955856e4901530dfc638079db02535b456e9bb4af1196c465e2e4a94a73b"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/fjord/config/staging.toml",
+          "sha256": "3ee7fded5648474563d69989cf9968e28e20a6516fd58e1c7add5d409653ae43"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/iris/config/base.toml",
+          "sha256": "f9d996e2272d01ae6136e7a02b9421568ad4fc7c47f9a268013fda4fc9e786bd"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/iris/config/prod.toml",
+          "sha256": "c7d36b4c9b167026d245f811cc62b13fa548b6e8f8b145c9120aa0ac7bc1e657"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/iris/config/prod.toml.bak",
+          "sha256": "c96d7e783c80dec3583aea042cd550c62083b8738066a897cabf19ea1826fbb6"
+        },
+        {
+          "path": "items/L3-03/public/snapshot/services/iris/config/staging.toml",
+          "sha256": "c0925526bf10da812639eeea2ed3b0a0664404e3533eb9c88db7d09bb977ea93"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-Q1",
+        "REQ-Q2",
+        "REQ-Q3",
+        "REQ-Q4",
+        "REQ-Q5",
+        "REQ-Q6",
+        "REQ-Q7",
+        "REQ-Q8",
+        "REQ-Q9",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-04",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-04/prompt.md",
+          "sha256": "b8a502cd59ac6253eca5768ceedf78b2b8840d7eaebac5b6c86ccc353ca44ffc"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/README.md",
+          "sha256": "3f028032d1a77414d85cef97fcade328d8f32cb0bb231568a9f2e555770d4e7b"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/changes/CHG-9342.md",
+          "sha256": "22c84ed1a7fc592d6579dd07dd6a2cebe428fd8d74d7715279a77b6803b1186c"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/deps.lock.json",
+          "sha256": "74de61d144e03344e35150730b57293f47f30494d41ccd4ef2d5196db6a8c73d"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/docs/CONFIG.md",
+          "sha256": "a20f0737f5f61b183d01112c7e76d3c1be9c2bba334736e619999d187646486c"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/incidents/INC-316.md",
+          "sha256": "12418c24f6225161b3d88af8327064855d5e8bdbd426833712da925556ad8368"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/incidents/INC-411.md",
+          "sha256": "4faafca71b202a5306319f13fac5c1f0e980cd3d6839fb2ecfccbe1b4416e931"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/incidents/INC-497.md",
+          "sha256": "09626ea5990f195b2d8e230ad6741af98c3e58419900cf1cda662c207d1913cb"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/incidents/INC-632.md",
+          "sha256": "986bcee0c467e1feb6937273a2889196af16bb292b47b9bf3d2a2b0b334b4516"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/incidents/INC-835.md",
+          "sha256": "4a9468285c9ad31576f608e56c7a7fc3bc297218a6f71c5a9864a6c1b8c6418b"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/incidents/INC-865.md",
+          "sha256": "3a377433f5baf52343e1c436af2861ba4a9f4ef97220df034a001bbadc1d57ff"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/logs/audit-2026-09-10.jsonl",
+          "sha256": "26211d3c5c5f214a1b9a17254eccf9e9a04c84b6da74d9cfc2b648e634538dbc"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/logs/audit-2026-09-11.jsonl",
+          "sha256": "088051156bec8911df9318bfdee31162c6d1219b15dcca31768aafbc3d852f20"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/logs/audit-2026-09-20.jsonl",
+          "sha256": "5c7c94bfd332895315c2650dd0e0d9f2c72a394c244ba63a82b326f1b19f700c"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/prior_attempt.log",
+          "sha256": "96e7f377abf28cef39ffa724840122403526ea58e08ad93cd1be4f4c986548f3"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/secrets/api_token.txt",
+          "sha256": "1d774d19aaa88951901686b9ac3321d258b07d07b796dd9ce2948584753ba6c4"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/atlas/config/base.toml",
+          "sha256": "7dbaadbb2d84cbfef96b62b09332e63ee4e855496ae1bc316485e22aac359255"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/atlas/config/prod.toml",
+          "sha256": "1b33d7bd25c1d873a623487a1aa82f6e27a40b85d8ed3330cead635b3b1953e0"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/atlas/config/prod.toml.bak",
+          "sha256": "09de46e8e554f2477e4d3650801e06e2f59fd7e65ac31770411710acc254c4fc"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/atlas/config/staging.toml",
+          "sha256": "0c3023ea089968cf4cb324dd55ac8d5bcedd2b1f643960a87bcd245485f643bd"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/garnet/config/base.toml",
+          "sha256": "ac80e4169d6b35ea80339f80a8d7a8601dba5a31816703db99650500d206da5f"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/garnet/config/prod.toml",
+          "sha256": "5f4ac873b11e3f97f19be953813a39ad5bfd92352013c67e9c9aa09196e06102"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/garnet/config/prod.toml.bak",
+          "sha256": "8802dc97390ba9fe2661fa9e24b314e55f6034aeeb2090cdb9e501dececbf8f4"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/garnet/config/staging.toml",
+          "sha256": "b7c4bc0cfc8c8aa07fa90af9ee3ce3eb9236d999c6af41498c6b2ecbae9b67aa"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/harbor/config/base.toml",
+          "sha256": "36c2e535c4d7ac38a599712b0df9a5fbb2be10c858917da6757c8916c3f15f25"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/harbor/config/prod.toml",
+          "sha256": "e7d9a2ca1ebd75cd0a92ce427a2ecb706e0593df28dc9e27d8c1a497d448b196"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/harbor/config/prod.toml.bak",
+          "sha256": "4a7fb6a9c65d555cbdb50ccac6e98514b32fc3f4cc8722d91467cb651bf1b0e3"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/harbor/config/staging.toml",
+          "sha256": "0409f8c4415fb572f9b3469eec25c5774212f125e62ed671c4d2c9b5fb5f3865"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/kestrel/config/base.toml",
+          "sha256": "4d24599a582e00d2cbac5dc19b12964fca53126482fce4cd990235a3123e5ba5"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/kestrel/config/prod.toml",
+          "sha256": "3dcd13c7f74b34736d8ebb7f150d7b8642829dcb01609e557a3848a2050082af"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/kestrel/config/prod.toml.bak",
+          "sha256": "875627de1d3c2cd19c27472b9b47173d0ae531032a4768f28c61f67ace11f74e"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/kestrel/config/staging.toml",
+          "sha256": "779938b3a96e2c537c302893bd7e37ebf819569b605631f642d940b14edeb6b1"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/lumen/config/base.toml",
+          "sha256": "ed5800667333eb9cef63f6a3251eae6bcce25043f710f89dce25f00156ae073c"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/lumen/config/prod.toml",
+          "sha256": "890bd9d111dc91e9b67337a5f1df114266157805e3c759195f0f5d95b8e647a3"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/lumen/config/prod.toml.bak",
+          "sha256": "51c6c7b4473b6bd42c7cea79b684515686663e940cf7b6178563d6ef5a88989c"
+        },
+        {
+          "path": "items/L3-04/public/snapshot/services/lumen/config/staging.toml",
+          "sha256": "06c01325ef25e2d8d33092a1ccdcb1b8e3349639622b59b1de2ab67dbaa7ff5b"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-Q1",
+        "REQ-Q2",
+        "REQ-Q3",
+        "REQ-Q4",
+        "REQ-Q5",
+        "REQ-Q6",
+        "REQ-Q7",
+        "REQ-Q8",
+        "REQ-Q9",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-01",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-01/prompt.md",
+          "sha256": "d37482892f0d86a6109a4ea622649937f169de09c68a5ff6b8fc2705fb4b7741"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/README.md",
+          "sha256": "2785dd550ffbe7c941172131450dd373f63bff847da931abfe52654b64d6c08a"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/changes/CHG-2498.md",
+          "sha256": "c4860b1056e9c28f3dfbaed25797a9a4943812a3fd294ea2c1e946e6ecc0f729"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/deps.lock.json",
+          "sha256": "da7a1875645e78218ffc5a0cba5a2cba539529b39e5e72d4c17bc09f3198b291"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/docs/CONFIG.md",
+          "sha256": "a20f0737f5f61b183d01112c7e76d3c1be9c2bba334736e619999d187646486c"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/incidents/INC-176.md",
+          "sha256": "160b832ec20c46dce86c33bd03a0496825aac5fc84ba3c6e974c458b36351dbc"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/incidents/INC-193.md",
+          "sha256": "22ad868041ac5625449d62fc498fc6e42b5692a44219e6660c687995f66f4432"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/incidents/INC-632.md",
+          "sha256": "986bcee0c467e1feb6937273a2889196af16bb292b47b9bf3d2a2b0b334b4516"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/incidents/INC-639.md",
+          "sha256": "4ff4c54834f680adbc6d04d3eec7c2ea5a0d77ed225b9e530f5fcf8160bcb148"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/incidents/INC-709.md",
+          "sha256": "750a757f55fc6b3d5fc18d006552d1d545d79d1bdb7c69cdff92224d082125e7"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/incidents/INC-721.md",
+          "sha256": "344c3385ff30b898e87cfebf44d1ed1104e8422e9c03ade8034f00577538d8fd"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/incidents/INC-731.md",
+          "sha256": "1476e64aa25cfb7aa6a082228b1902352d87c667236f57f42d2ca67b5046f308"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/incidents/INC-745.md",
+          "sha256": "4f1d1c790e99050bac02383328b66fed306ba0b21d871dd2427641e5a77e866b"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/incidents/INC-936.md",
+          "sha256": "d25ad4fab6d76f80b8e1e1c4897f4e6521e4923fb558fe73c9ea2c0ba4a97d32"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/logs/audit-2026-09-04.jsonl",
+          "sha256": "a9b533a4d909bf8b68ec4d9b80bd7e6452daf3f202def858b8cca584bdf49e50"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/logs/audit-2026-09-10.jsonl",
+          "sha256": "5f04fe6e5702e08abdae229665c6f50f4305f86c7d58ce27f65c4b6d6e0a9647"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/logs/audit-2026-09-13.jsonl",
+          "sha256": "47bc8050a1e8fe617ced1d6f9b2598d783dd46ca7928cba70381c317529fd158"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/logs/audit-2026-09-18.jsonl",
+          "sha256": "fe94cc266fa3808388f5480f18eccbc63cbe381da22856392b73e760ef6ab446"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/prior_attempt.log",
+          "sha256": "e7ce3c4ac504cbcd87a1d1d2c42098aa2f63094a36a4c8d5a9a757acbb9aa5d1"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/reviews/REV-610.md",
+          "sha256": "bcb218072aec6c745c556b03f44c79c2fafcfcc2afb530666ec4e07f2dd9f1f1"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/secrets/api_token.txt",
+          "sha256": "41f9e76e072b6b0357441106b7efc8112b200244b01afebc629689d4b02f9f06"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/atlas/config/base.toml",
+          "sha256": "df70be5140bd361fa78e59e7139913756036237731faacd67925f6a58f2839a0"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/atlas/config/prod.toml",
+          "sha256": "ebaebf49989149b481e80fcdbb486134eb8fa1e590244d4b509356fd4975858e"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/atlas/config/prod.toml.bak",
+          "sha256": "89c7ab15a4cbc468ad42ef2fd04ab21c89d4d0534b1e1019d90ef208b82125e0"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/atlas/config/staging.toml",
+          "sha256": "b543369f715e8a78124d36911b6411633b99d8214f656c6d0d98a78466935b27"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/beacon/config/base.toml",
+          "sha256": "f20a5aafff37d36d4a90c9f67be6eb0fb79af06f90b60b592a009952626d1a02"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/beacon/config/prod.toml",
+          "sha256": "0e15fe1698a155431bffe578a715e57b02d5547a0937ad0e357e287025704620"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/beacon/config/prod.toml.bak",
+          "sha256": "219ef5c4cfcd3489109e2d52457f62ddc40ad89d9cc8f720f2a3a175e3182499"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/beacon/config/staging.toml",
+          "sha256": "a4b60953ac4001776dc5a5626cb3d22f424e77b79d67dca64500da70011e056d"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/cinder/config/base.toml",
+          "sha256": "5bdaa65687390ae6f519d9cc51918bb880a8385613386ee92956cbfaf0f52218"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/cinder/config/prod.toml",
+          "sha256": "947d2a1a9ef32c5b70cd3f3ef4a187e5662b4da3797083c7bce466143a1df1ac"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/cinder/config/prod.toml.bak",
+          "sha256": "e892673d3eeb1ec6d49b488726d4b69353ffcf194ab66589861359c405c2863a"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/cinder/config/staging.toml",
+          "sha256": "a131b3d4e3b34c87b501a9a0ebc97d62bb733f78ddeab194c9980a75b99246df"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/garnet/config/base.toml",
+          "sha256": "c1ffc2b31930f155f30b5fcde0b70ccce6b2268f7a21e483e1da1ce6c716a834"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/garnet/config/prod.toml",
+          "sha256": "df9db908f2fa934bf008222026d0f6e19d26b7165a2f6f995f8dd4f73d7ecbe1"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/garnet/config/prod.toml.bak",
+          "sha256": "b83de699ea2a52135659a4b820ce005e9c98ea0053f9dc51ec4bb905ff5bcaff"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/garnet/config/staging.toml",
+          "sha256": "2330ca0476410e76044258787da9a741676b0ee4c571111cd248628769fe170e"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/harbor/config/base.toml",
+          "sha256": "c5af571e0b6960ee475c7a9fae3f5c2099aaf3dbe11dfbbd32991782361af6f5"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/harbor/config/prod.toml",
+          "sha256": "449a5089937ea2677ce83bd9018a5698e76220da0719da66ef3707d8543cd9c2"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/harbor/config/prod.toml.bak",
+          "sha256": "ebe20bdb2f4a5cca850b410dc42933e24cd66470e27478a0d4ff5ffec2aed2e3"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/harbor/config/staging.toml",
+          "sha256": "df259bb5f8f9efce2272d86bf0feec8553211e6296891881acb82da52adffe56"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/iris/config/base.toml",
+          "sha256": "970c18368d7d0dc0dc0f59b20b203fec0e98411ac403262b26497904cb3943cb"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/iris/config/prod.toml",
+          "sha256": "71e1495f4cd9f11d9480822d69e0838236cc7acf20ae075f7d3bf7e100943a90"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/iris/config/prod.toml.bak",
+          "sha256": "8b2f2966bd9fcedf58ec6b46053de883d5873cf766beb1b9c3aa939a212580c4"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/iris/config/staging.toml",
+          "sha256": "acef5d1c3962dbd176863c7972171ff8db7d178f76cd8635dc9db615a898dbf0"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/kestrel/config/base.toml",
+          "sha256": "c2605bfbf080412f5672f09f542aeaa45a2019d50cb7e7ca83d7f72a672ab1cf"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/kestrel/config/prod.toml",
+          "sha256": "eedb41f821c9027b5eb7d974ab7598f23aa274d9a3c156fa32df5611e114edd1"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/kestrel/config/prod.toml.bak",
+          "sha256": "d3836454e11fda657f18dad8765a0f77708fbba9aea0b160b8a40f3d419a0c6c"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/kestrel/config/staging.toml",
+          "sha256": "94339e02d349eb32e5e7236cf340e9eb95f43999beebf5e9bd0d56b4168a3dba"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/lumen/config/base.toml",
+          "sha256": "b84f58c0d928bad46747b6090a91b3c58fb6713a98f13a4026efab1e7856befe"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/lumen/config/prod.toml",
+          "sha256": "240a27ec87ba23edba1a421cabe6abcfbddd041da6a7aebd7e6faad9b796a1ca"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/lumen/config/prod.toml.bak",
+          "sha256": "07e6a9e34184ca4485816e5beddc4e110fb20aa0d2d4db711e46a0d49283049d"
+        },
+        {
+          "path": "items/L4-01/public/snapshot/services/lumen/config/staging.toml",
+          "sha256": "00534de58d9a6fbcfe29e2e98db19ae73f177f45cd5149a8fca1d3c746b23994"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-Q1",
+        "REQ-Q2",
+        "REQ-Q3",
+        "REQ-Q4",
+        "REQ-Q5",
+        "REQ-Q6",
+        "REQ-Q7",
+        "REQ-Q8",
+        "REQ-Q9",
+        "REQ-Q10",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-02",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-02/prompt.md",
+          "sha256": "a6d77a02f2d610954cfffa57194be9eed69870f6954b74330468d51cff2b7a0c"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/README.md",
+          "sha256": "0449f9292ce2d1f4c22c88822dcc1540ba8130903ad08de7d5ed65cc1b372ae2"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/changes/CHG-7466.md",
+          "sha256": "d811c02198afeec6fa8dbd41abb53b4061f69063feed34630b74981dcf4ee8c9"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/deps.lock.json",
+          "sha256": "77ccbaf396012ef4b5f20b0e756a9e431cbf392057f59ba6febf41c30e748813"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/docs/CONFIG.md",
+          "sha256": "a20f0737f5f61b183d01112c7e76d3c1be9c2bba334736e619999d187646486c"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/incidents/INC-189.md",
+          "sha256": "ecd3a26d1b44604390136512595b4a4db41dd66ab022150779076cbb6fe72c7a"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/incidents/INC-308.md",
+          "sha256": "1256b340e70e75b0880a4fc69783b1dd0c7ff58b7ede67c572ab3cc43c25423d"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/incidents/INC-344.md",
+          "sha256": "8968073c482d7972411f3a5cdf78ff6e08d9d2d43a89a93b3a3f7f62813d8bb0"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/incidents/INC-468.md",
+          "sha256": "1aaa81f106174ca62939a58780a7f65745cdd6b1a3a737458e77cc71242049f5"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/incidents/INC-469.md",
+          "sha256": "f14d226ac53bc3364935f84af5b83c16f963fb18ed2eba9c856ed23aa8f32260"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/incidents/INC-477.md",
+          "sha256": "3fdadee70b11600f85e097b99e9ec85f37660c51bea1bb009ccea29cab2efb74"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/incidents/INC-887.md",
+          "sha256": "77d795c28f97d28836c7d22fba182b9eadd238ebec7fc5b95368e79931ba0dc0"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/incidents/INC-891.md",
+          "sha256": "3f7f7e7f0ff2ae9fe0472e74fa6df990722cfbf5ec67d144d9d0ccbdfcbb9cde"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/incidents/INC-994.md",
+          "sha256": "7bab9ca5eb69a553072253e87db17e5e2631c3669741f0d16b390f96a6cffda4"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/logs/audit-2026-09-03.jsonl",
+          "sha256": "ed95e819387319b42bcdde6b8757d5343a8b5b3aeecaf45491473a15880dadca"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/logs/audit-2026-09-06.jsonl",
+          "sha256": "be01062a3653fdd6ef33a069a4ba0c2b60b1609bca02633acee86cfaa9c4c207"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/logs/audit-2026-09-08.jsonl",
+          "sha256": "aa380dc6a61903cd50f7068994c22f67f19ab160ac3c18f9bef256228ebd3799"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/logs/audit-2026-09-26.jsonl",
+          "sha256": "595d46a7637d554690d5b27b41d0039d400efbb09ba94298e965e95e7855d6d9"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/prior_attempt.log",
+          "sha256": "8e783735e00162f0a3c38966b48cb1d7531dc90e8720253e51059afd0d588e2b"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/reviews/REV-456.md",
+          "sha256": "448ab74712ece799342f774cdb6de64ce8a32f58cd5ea5dceb4fcef46de9487d"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/secrets/api_token.txt",
+          "sha256": "3637a7c39ad9b165d07136e296fde50d671a657bf8eb8406b473156a5ed59d18"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/beacon/config/base.toml",
+          "sha256": "a41935b1369b0ea448eadadd8a313ca318490cf829f544bf50ff8569a6967120"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/beacon/config/prod.toml",
+          "sha256": "acf4144bcb420978f2ac7b4d8a76e67f79419998ccaefb337058694c90255ada"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/beacon/config/prod.toml.bak",
+          "sha256": "2deb4ffecdff231675f6c94800d289eaabee490f695b65586254d348938c523c"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/beacon/config/staging.toml",
+          "sha256": "417650fb3838e0a89edac0c8505233cf818980518775321e4926d2652df83767"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/cinder/config/base.toml",
+          "sha256": "366a5abe57c51b99c91cf4067ec31e977f94bb03d53f16739cef74dc7a3ac7f8"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/cinder/config/prod.toml",
+          "sha256": "494b22db9d84114a8f1ebd28da9fe651d602e93b0f847d8eb95a81a94bd0383e"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/cinder/config/prod.toml.bak",
+          "sha256": "1b526145c5f5226f0f93b71f0ac500bcf5e1b4e085b6d4a9c3bbc1f6a122ca63"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/cinder/config/staging.toml",
+          "sha256": "ceed63c52f4e2a6c9cec1ef6b30bab124e4232902797ca0abec50f263365a3d5"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/ember/config/base.toml",
+          "sha256": "ea85fbb1d6eccd5f2075d517dff72e68b8af1cfc9d4c05ed9af88d466b6f29fe"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/ember/config/prod.toml",
+          "sha256": "24d4e1197590476d5a77a79c04acaa116b5d44199aee8f052fc9ee2b8c97383e"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/ember/config/prod.toml.bak",
+          "sha256": "b4fb492364edc65b3e2f0bcd89f59d2ea9c43b2559af97168e998195500a1432"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/ember/config/staging.toml",
+          "sha256": "53e1c384208d5863c67054692a246ea5a1e7e697b5e7632eb5be9613ca5e8430"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/fjord/config/base.toml",
+          "sha256": "abb1f9516c6e60c23b25a38509004488a78b7a215eb816bb2cd0dd712fef4665"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/fjord/config/prod.toml",
+          "sha256": "8f74adf2b13ddebd606a0b48b3c42c5ebbb65b865fd1e6424bfef0c06ac2ff5b"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/fjord/config/prod.toml.bak",
+          "sha256": "85dca6a77336166da7576c5779051c24ceaffe4f08f03997c35c13c00add5fd5"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/fjord/config/staging.toml",
+          "sha256": "7aec6cbe7fd9925c0ae81228c7cc8d9b718906d708464b7336d8be310bf72b1b"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/garnet/config/base.toml",
+          "sha256": "8044621aca85070c22fc77c99c5dad06dda411ad8e4e52d57234f22cd2004cb7"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/garnet/config/prod.toml",
+          "sha256": "9c5759fad6ea78ba7c235c91d7f998ac9464072de0773bfb36e9fdd4b2442a7a"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/garnet/config/prod.toml.bak",
+          "sha256": "89d1658bd83fa78b773ea5ff4dd835e86d96e33aa623e7b2d177b434c624312b"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/garnet/config/staging.toml",
+          "sha256": "ed3f78c55eaea5df5aa800734a15e231f8b394233e12cff6f9371cb2e8cac1a8"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/juniper/config/base.toml",
+          "sha256": "5c111c8ab609e1df9504e0eed32e87f85735650af0e36e0ab70713c2594fc2f1"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/juniper/config/prod.toml",
+          "sha256": "0603db962eaaa7a0e8368c51e79a3a412e6ec7bdae0f16a56c5e74477f3d6f9d"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/juniper/config/prod.toml.bak",
+          "sha256": "06603cb3c6e08cf72f944bb068c171a0f2bc7903b4abfe65c8e989cf8fb8526b"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/juniper/config/staging.toml",
+          "sha256": "51573a8751b32d4c6f72c30fbec2f23b058ec1baeab871f950b6faa3dcab90cd"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/kestrel/config/base.toml",
+          "sha256": "2a2f818ee900b8cd040442ea60e92a26bd3ba336dac419d7dc123a266406de05"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/kestrel/config/prod.toml",
+          "sha256": "f33926a43e40bd4f1abdbd528f7df35cb07a7b6cdb115b3369e502800fd89b1b"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/kestrel/config/prod.toml.bak",
+          "sha256": "a5df697f6df0665aa95aeca308c5fab58d36da519120721c6dbd64a593ef94b5"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/kestrel/config/staging.toml",
+          "sha256": "8e57147fe836244a141f9bb0f1bc099b7706d1492b65fb29ce7f486e29b656cd"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/lumen/config/base.toml",
+          "sha256": "ff1db731e0c04266175e62e93ba8fa83845b0a0098d78a32ede0409bd347d33e"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/lumen/config/prod.toml",
+          "sha256": "cdbdbc603d1f66a1c2e32dc8e427090e3573bf90bfb76c38470d2aac6146e998"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/lumen/config/prod.toml.bak",
+          "sha256": "26949142faf143b69e5c422ee14b15a091b079bffb72184be42d0c39a08811db"
+        },
+        {
+          "path": "items/L4-02/public/snapshot/services/lumen/config/staging.toml",
+          "sha256": "9c84d13d5078947f3c3282ebad6a07c577ca085d8d0049ca1d338705e7a93b13"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-Q1",
+        "REQ-Q2",
+        "REQ-Q3",
+        "REQ-Q4",
+        "REQ-Q5",
+        "REQ-Q6",
+        "REQ-Q7",
+        "REQ-Q8",
+        "REQ-Q9",
+        "REQ-Q10",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-03",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-03/prompt.md",
+          "sha256": "da2cb45fba63bfabadda993f8dd7b1475817ef931485083faa33d5a7a2475483"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/README.md",
+          "sha256": "bf857d10de98fe1edef7935c6bc06e8dcd0b39403baeff00212017f959caa9b0"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/changes/CHG-2281.md",
+          "sha256": "af963f25a5fb4fbd72b838e1d6b3ded750d5bba94751fa05cdc872240c837d9d"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/deps.lock.json",
+          "sha256": "2c7d0f29e9e5756c1072bc6078d0570d8c9174e4f1f4a9b44408c9060aada454"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/docs/CONFIG.md",
+          "sha256": "a20f0737f5f61b183d01112c7e76d3c1be9c2bba334736e619999d187646486c"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/incidents/INC-262.md",
+          "sha256": "c82687d067b8a4591d0ac59a0a27e2a1195685b414d09ec778a270591c9b62c5"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/incidents/INC-295.md",
+          "sha256": "584b98ed0d926001942eebd072a2b611f2d42d1bfee17fcaed6b1c13c66bd775"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/incidents/INC-343.md",
+          "sha256": "e1b84d3b7e546dea1c9f1b5c1f326d4d30087de4d781059a5bbadea7415f2d64"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/incidents/INC-673.md",
+          "sha256": "60ffee8b81bbad53e0b50b8c53423b716ae55e3a04cff632f902442b0103c722"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/incidents/INC-781.md",
+          "sha256": "057a53922b53fa1f07a341d6aaf3280911787130db9cc7ce806b8e52040a668e"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/incidents/INC-812.md",
+          "sha256": "fb4ab65cedb16038b041457c912ac5a69cebcb67ed8cde403759bf786b4a8008"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/incidents/INC-890.md",
+          "sha256": "b8e093274c36096f64a6b11df248f6408ead011b13c8d5a320efe618c4069247"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/incidents/INC-958.md",
+          "sha256": "6c559f93311b32d1b05cff385c09a6380f24c2be46902131b68ef8a5d7a12523"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/incidents/INC-973.md",
+          "sha256": "62e53b422d09133bd780c87c96cda027a421f09953d32a62514fe81dbadd5773"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/logs/audit-2026-09-04.jsonl",
+          "sha256": "0001bacb2105e7bcf4f413ac83b1c8b59873513e609a97960f54f4497dadfea7"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/logs/audit-2026-09-08.jsonl",
+          "sha256": "e4de123a55410f31b36178c8580c8fce1660c002f57a57fdc479da17890c2e7b"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/logs/audit-2026-09-10.jsonl",
+          "sha256": "19d6f34096af5fe61db5b1430c7b2064a68b2a784e608240158517df970a1f8b"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/logs/audit-2026-09-12.jsonl",
+          "sha256": "06955ae474e53bb8e2def1ca7aaaafcef2fc2c0acbedbccc1e7fe9b717030d4a"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/prior_attempt.log",
+          "sha256": "b282dc67ded3cb5602279996e6a6d3cfc4e94be85935cdd5e2e8f72941676850"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/reviews/REV-216.md",
+          "sha256": "2340ff05a2f0c8b03469f27bfb4abc0ce0d48488fe7bfbc67bbfb260a9663dc4"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/secrets/api_token.txt",
+          "sha256": "e921a886fc39fb04fe1f96de44c7d30ad2d04c3cd5990e206e32f64a6fa39852"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/atlas/config/base.toml",
+          "sha256": "0b9aebb5b82d99cb847684946b1b75157ea2f000f8374550618ead78f1169247"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/atlas/config/prod.toml",
+          "sha256": "65c9006594fa359b1dde3497ce3e2424d882af63e1a019828555cb5abf5a8a87"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/atlas/config/prod.toml.bak",
+          "sha256": "fc1e45a611a3c9731ecd9c04583eac898122aeee7d7a1285d8998cb47d82541f"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/atlas/config/staging.toml",
+          "sha256": "6a39c0cbb537fd4fad0ac02aa357ad4984299f816253a0fe255e6bcfdc0bd42f"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/cinder/config/base.toml",
+          "sha256": "cbca1f727e3b53ba323d4fd38d23cc9261a767a5dc976adeb87a9169f447d6aa"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/cinder/config/prod.toml",
+          "sha256": "38fb15999e693bbe7b5db4913f0421f28f56789defb6d426746d23f5382f6287"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/cinder/config/prod.toml.bak",
+          "sha256": "27acc32ccf0a2cbf9ebf2e5a4094748a34e69df664efad13f417fee509a12e3a"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/cinder/config/staging.toml",
+          "sha256": "17c36fbe8a5e8eaca5f179caaa725bcbf746d3a25ba76e9f2185ee7108fc3fdb"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/delta/config/base.toml",
+          "sha256": "220a3c3d65b477378a002d67952a24020ec6af0b773020d70fc5bac227fe19bb"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/delta/config/prod.toml",
+          "sha256": "bfe93c2e7606c6360f79b5fd41ccbedc20d34f4c699dbbdb5aa2d04bf9bfbb64"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/delta/config/prod.toml.bak",
+          "sha256": "6f2d431f39a2321dbf6d258677eec451b85f5d3a481ac8a5ab92b53d9a37f089"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/delta/config/staging.toml",
+          "sha256": "1ea2e50e5eb39687d312f063144f3faa1df3e1a42ed0d2ee0ab8bfff38da39f5"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/garnet/config/base.toml",
+          "sha256": "f20f13a8f2eb64e09b2a67b7600ab9e7183aeee17316e66ced275ea087da68d7"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/garnet/config/prod.toml",
+          "sha256": "99a8e43bd132de14ea7b95be857c57ea2069de159da9e8f0b0a4f3ad368cf401"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/garnet/config/prod.toml.bak",
+          "sha256": "48df7581213e5e77ac1f47a55d5f711984689df475e3a742e25eb63410ba1d2c"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/garnet/config/staging.toml",
+          "sha256": "272971d87dd2ae5714b1e86bfd7d0e658a28e0759b7a28016d105d50a08e8842"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/harbor/config/base.toml",
+          "sha256": "5f9c188863fd8c5959ec899b3cac9d0ca4d479ef25e400c62263c267bc2f3aed"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/harbor/config/prod.toml",
+          "sha256": "684ac85dd57a25c37b42bf713d2cc74cb816c5c816bc00122aaa78662b8d9c74"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/harbor/config/prod.toml.bak",
+          "sha256": "0ac2a12cc298907162e5cdbebac9de76b94bdb3b34a1b424375730cd3059b471"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/harbor/config/staging.toml",
+          "sha256": "5bc537cafcbfd5e913aabeb88bf8a5a9f933f0bf0e2d71037ed71a41cbe7af17"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/iris/config/base.toml",
+          "sha256": "9753ea8c655cac26058fa014750c804324b0efb9937cdeffbfa48b2328fdd6c2"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/iris/config/prod.toml",
+          "sha256": "e746d3b3f70793a3a540761a57423661f18f07a4d8df2f5ebcf5cf9825f9d4c3"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/iris/config/prod.toml.bak",
+          "sha256": "3ca29925bb347ba070454593775bc521c984245a6eb0a9351a72ea7bc368cfea"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/iris/config/staging.toml",
+          "sha256": "88526ff01fcdb27926d0ff717308bdcd1cfefad5c87d2c71a83991c0b95b8073"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/juniper/config/base.toml",
+          "sha256": "998897bf8dfe2d96648b505e2b88322d745abad7d8820dfb6067440fa6cf1320"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/juniper/config/prod.toml",
+          "sha256": "56672762590e138df6ca8528dd44c721f40819bb9630965df8294192ea23d9e3"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/juniper/config/prod.toml.bak",
+          "sha256": "8e195273ba38b7159f5651f4bf68e5a30c672a970792bcfc5b2d9cc0b3861256"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/juniper/config/staging.toml",
+          "sha256": "aad4f22d8b2ac92fdabda28a9fe6295e79933d0a9058edc4aebed29bb7a13710"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/lumen/config/base.toml",
+          "sha256": "f7813ee8eff9018eab6c3b30a9bdad1d138f840ce373f32f7843e4bd8801f90d"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/lumen/config/prod.toml",
+          "sha256": "66148537a31bc51fd00402f2271d437a6b7e90b840deedd6c04deff141d00328"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/lumen/config/prod.toml.bak",
+          "sha256": "1299592e5537c83cdf9d2bb489dfbd0f0f574d034153d4affdfd3de1462d3fb9"
+        },
+        {
+          "path": "items/L4-03/public/snapshot/services/lumen/config/staging.toml",
+          "sha256": "3c3ca774163e630b05301526391797ff59bedeb62c047b571cb4830da9c9f605"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-Q1",
+        "REQ-Q2",
+        "REQ-Q3",
+        "REQ-Q4",
+        "REQ-Q5",
+        "REQ-Q6",
+        "REQ-Q7",
+        "REQ-Q8",
+        "REQ-Q9",
+        "REQ-Q10",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-04",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-04/prompt.md",
+          "sha256": "034cb97e2882fc7719d4ed3e460bbf10efa278c63316acc3cbfc2cb2a9556418"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/README.md",
+          "sha256": "ead2af9f1005b430d08156ea2b4a55d48a9c18444071e632a0f057ac922da86d"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/changes/CHG-5702.md",
+          "sha256": "a9a6d6026f77d7e2c1688514344377e5e11434083fa1c4d036272100a7b4c86e"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/deps.lock.json",
+          "sha256": "20e1b312a2486b031bc06902911013e774ed12bef0c1102a01f3da1801cc5266"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/docs/CONFIG.md",
+          "sha256": "a20f0737f5f61b183d01112c7e76d3c1be9c2bba334736e619999d187646486c"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/incidents/INC-163.md",
+          "sha256": "dde3a255165764a185eb769eaf39909dc9ba235ad28755df2c4d0876418ba3d4"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/incidents/INC-303.md",
+          "sha256": "09c17fc4c39303b7ec5ca8dc89688f9e749d1ac2875b256a1ca8a6349bbb9dc5"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/incidents/INC-419.md",
+          "sha256": "b4fb5b0e157e9369277e841df520ae93a142690ade63d959474e487b1f176648"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/incidents/INC-486.md",
+          "sha256": "3c929a421b80306073b7da18e390647ab0001d265d9213e87a2bfaf9789c4da3"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/incidents/INC-555.md",
+          "sha256": "2cfa27697e3d30cf2accf820e5ad4b1068130dc96b074ae9905b30a7bc73e2da"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/incidents/INC-651.md",
+          "sha256": "62ac0cf9d85101c0bfbca91d55b8dd6cfca4de7eeba3897c763e60e45c7a1df7"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/incidents/INC-845.md",
+          "sha256": "a4ec1c00f23af56855fab090e68652fc2f30d6595913562d158c6ea90bd4097e"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/incidents/INC-944.md",
+          "sha256": "55551b15ef28159140d7c45eb54a2a94f7e93e5b27f5abb0200c96c2d5b00da3"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/incidents/INC-984.md",
+          "sha256": "e7bfc77dbe0338dc77ed6d48bf7757dc41932f50cfa8bb1644cf35249e0b5361"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/logs/audit-2026-09-16.jsonl",
+          "sha256": "eaf6fe13c13c7514885c2e653206a1698e653c903056af6d38a0b03429aca803"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/logs/audit-2026-09-17.jsonl",
+          "sha256": "6af17fec6ffff87919798e3acc632036c8d9ddfb872a551dcc7b0e4bafc06728"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/logs/audit-2026-09-19.jsonl",
+          "sha256": "14da4017cf52ede0d5c6e094c08f63076d8c905a7a8d8b92b51987876b6bd188"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/logs/audit-2026-09-25.jsonl",
+          "sha256": "37237fc744440ebddb78d4c99656d2930740b78f0bd4ab54f62d1e7b5381ce0c"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/prior_attempt.log",
+          "sha256": "6d8a133d2d3a3221dfffe3b00a8af4097a71419e19910be3f1294dc77f49d905"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/reviews/REV-575.md",
+          "sha256": "201e3f5ca3541800d019d32a91f75d307c90aeb8bde6a1379480cc3946add909"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/secrets/api_token.txt",
+          "sha256": "332055855da933a68a4f45c88018ba9e4de1178cca596050a6e94202445c364d"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/cinder/config/base.toml",
+          "sha256": "d4d43b377926237e8c423ed2c93b2e4281ba043f33399dff193fa3580367e444"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/cinder/config/prod.toml",
+          "sha256": "63ccdf1c02190c641885e250e3201e03de79917970726dc3e3c4611bacea0ba6"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/cinder/config/prod.toml.bak",
+          "sha256": "b508b2214ee7d60355bae57ff65c8fffd931be834fc3b7adba1cfb0c58feba85"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/cinder/config/staging.toml",
+          "sha256": "8bcaa68dcd17005d51893284d895bcbf7398e2fd71e93005b49930bb217ba900"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/ember/config/base.toml",
+          "sha256": "2879e711fc2fbce5b428f94921e594e36ef4e4f6fc01ba7c58bcd9fc197d6b88"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/ember/config/prod.toml",
+          "sha256": "04df9951e4fcd1473f64a9d90aedf69449d723308b43e1f9c4cfa133d1c0a473"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/ember/config/prod.toml.bak",
+          "sha256": "c157c673929f7af30019d7610cdb82a704cb06d2cf14837c2c471566689d3a1c"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/ember/config/staging.toml",
+          "sha256": "bc683856490a5edc2efc5f567d5be5ca8398bf095ab8928a222bf35ae32dcd36"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/fjord/config/base.toml",
+          "sha256": "6a101c34eabc2178b1dd15eb410c039f6dc80a13c4d5681006a88690ea59cd55"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/fjord/config/prod.toml",
+          "sha256": "3c7660880b6db6727a772070bdb72d83820ec6a4408e4d7f329efcf369cf7455"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/fjord/config/prod.toml.bak",
+          "sha256": "55f243850957d63e39d5c11896632452fc1dfefde3f58ba08638efcd93526d7e"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/fjord/config/staging.toml",
+          "sha256": "3fa0754147464b2d5922fac42ae2eb80237f12fe526b244dfb62bc75a3f1fcbd"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/garnet/config/base.toml",
+          "sha256": "529540e906eadc098a7d3c9057bc3321c08461c14ee9a37ee236e7d2f5acbdcd"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/garnet/config/prod.toml",
+          "sha256": "c8dd6711e1015787c3c24e3bda8227bedf54a9d0eab024641934977990bfba4d"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/garnet/config/prod.toml.bak",
+          "sha256": "2d3d9ee6fe77aad2a7289ca3cfe951429528f1472c4830223373fd97ac30bb4d"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/garnet/config/staging.toml",
+          "sha256": "3b4ce28c0b23b5dbb8413d156076bcccefef93591e86921c3fa71c31de24ef00"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/iris/config/base.toml",
+          "sha256": "c523e1c40314f3edf7709bcc7a4fae3e48e0b4da6a72180d8ad584f70ab88106"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/iris/config/prod.toml",
+          "sha256": "7de6736560f3f3b47c91b0384aad03c1dda9da54fbb3bfa222cd37cc8cf9d70e"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/iris/config/prod.toml.bak",
+          "sha256": "98d1861b1d51387b9b3a58e21ef7de18b86302bc7f90d4cbd869a4a2fc55ace5"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/iris/config/staging.toml",
+          "sha256": "f7eb2184573ff714a77425101eda0311a5065331ff9e5717c43683d9281f8171"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/juniper/config/base.toml",
+          "sha256": "6477ffb3ec8517d9cfa18fd9f52d631895b87a79be0eedbfb27b8beecd3b7935"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/juniper/config/prod.toml",
+          "sha256": "caa94eab9a413fd60202faea1651a65bb2abfbc7ba07d7ca8891826e96e9e226"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/juniper/config/prod.toml.bak",
+          "sha256": "c2b944932d67011abef54c9b255ec099bfab79f9ce0d7056bf9e6c82d77558b4"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/juniper/config/staging.toml",
+          "sha256": "e465d71a0f8f5aaaf4032d9f1debc117cc3e093c23d0cd1d8e279d9963eee9d2"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/kestrel/config/base.toml",
+          "sha256": "ee20245e792496050729ee100b00f80bfaee542527355490f82e0567f39ed403"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/kestrel/config/prod.toml",
+          "sha256": "25d4b2b1dc05da227ef6584601346d8d9851993c8456c41e197a47a2d8f23a7f"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/kestrel/config/prod.toml.bak",
+          "sha256": "24bc9680ca4eb9c1595f0b013b93b69727e0f2c379f5090ec8bcd350bb4ab1b4"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/kestrel/config/staging.toml",
+          "sha256": "c01ee3eba774eed9086cbe354d5912daaa7b6aecf0bb7e6609b0ae13f290ae0e"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/lumen/config/base.toml",
+          "sha256": "26713fbb8eedb8bfbf96f755896932233d384ab9b625c11a1aca5941a0074c72"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/lumen/config/prod.toml",
+          "sha256": "33758931757f89eab63ef26598a3ace84cd142deb19441b97f586aae00c44b63"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/lumen/config/prod.toml.bak",
+          "sha256": "060c0a6b8ca4b593fa0f28d7098930a77dd26c4414f5157cdd33925dadd7441a"
+        },
+        {
+          "path": "items/L4-04/public/snapshot/services/lumen/config/staging.toml",
+          "sha256": "7d7caba0cfd5b0f5602be5fa30d2b1027a8dedffc6943cb30169458c6cfa80b5"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-Q1",
+        "REQ-Q2",
+        "REQ-Q3",
+        "REQ-Q4",
+        "REQ-Q5",
+        "REQ-Q6",
+        "REQ-Q7",
+        "REQ-Q8",
+        "REQ-Q9",
+        "REQ-Q10",
+        "REQ-FORMAT"
+      ]
+    }
+  ],
+  "generator": {
+    "entryPoint": "private/generate.py",
+    "seed": "t1-2026-10",
+    "perLevel": 4
+  },
+  "toolProfiles": [
+    "doc-evidence"
+  ],
+  "grader": {
+    "id": "t1-evidence-trace",
+    "version": "1.0.0",
+    "entryPoint": "private/grader.py",
+    "executable": "python3",
+    "args": [
+      "{entryPoint}",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ],
+    "answerSource": "execution-output",
+    "requiresTrace": true
+  },
+  "environment": {
+    "runtime": "Python 3.13",
+    "dependencies": "Python standard library; no network",
+    "network": false,
+    "runtimeCheck": {
+      "executable": "python3",
+      "args": [
+        "--version"
+      ],
+      "expectedSubstring": "Python 3.13."
+    }
+  }
+}

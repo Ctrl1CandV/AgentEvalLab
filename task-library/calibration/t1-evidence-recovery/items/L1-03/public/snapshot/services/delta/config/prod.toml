@@ -1,0 +1,4 @@
+[delta]
+batch_size = 15
+timeout_ms = 200
+cache_ttl_s = 17

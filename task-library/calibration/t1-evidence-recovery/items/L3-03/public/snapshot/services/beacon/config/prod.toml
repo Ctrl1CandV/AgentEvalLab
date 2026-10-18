@@ -1,0 +1,4 @@
+[beacon]
+queue_depth = 20
+max_retries = 37
+timeout_ms = 4000

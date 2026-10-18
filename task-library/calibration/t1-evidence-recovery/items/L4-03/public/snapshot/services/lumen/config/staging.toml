@@ -1,0 +1,4 @@
+[lumen]
+pool_size = 65
+max_retries = 36
+timeout_ms = 767

@@ -1,0 +1,4 @@
+[cinder]
+max_retries = 44
+pool_size = 34
+batch_size = 47

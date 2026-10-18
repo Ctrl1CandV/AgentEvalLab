@@ -1,0 +1,7 @@
+[harbor]
+batch_size = 19
+pool_size = 48
+queue_depth = 32
+timeout_ms = 511
+max_retries = 15
+cache_ttl_s = 43

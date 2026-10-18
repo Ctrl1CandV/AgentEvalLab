@@ -1,0 +1,4 @@
+[cinder]
+max_retries = 33
+batch_size = 17
+queue_depth = 41

@@ -1,0 +1,4 @@
+[atlas]
+cache_ttl_s = 30
+timeout_ms = 3020
+pool_size = 37

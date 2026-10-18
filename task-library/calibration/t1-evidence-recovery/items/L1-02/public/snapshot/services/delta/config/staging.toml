@@ -1,0 +1,4 @@
+[delta]
+pool_size = 40
+batch_size = 35
+max_retries = 64

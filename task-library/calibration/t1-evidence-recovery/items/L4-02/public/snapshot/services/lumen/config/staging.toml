@@ -1,0 +1,4 @@
+[lumen]
+max_retries = 48
+pool_size = 15
+batch_size = 19

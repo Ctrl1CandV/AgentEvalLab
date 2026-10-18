@@ -1,0 +1,4 @@
+[kestrel]
+queue_depth = 28
+batch_size = 40
+pool_size = 32

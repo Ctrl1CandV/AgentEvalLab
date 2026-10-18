@@ -1,0 +1,4 @@
+[garnet]
+pool_size = 37
+timeout_ms = 2012
+queue_depth = 23

@@ -1,0 +1,4 @@
+[kestrel]
+cache_ttl_s = 45
+timeout_ms = 527
+queue_depth = 58

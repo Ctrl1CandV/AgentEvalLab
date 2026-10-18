@@ -1,0 +1,4 @@
+[delta]
+batch_size = 28
+cache_ttl_s = 25
+pool_size = 40

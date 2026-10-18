@@ -1,0 +1,7 @@
+[atlas]
+timeout_ms = 3007
+pool_size = 34
+max_retries = 45
+queue_depth = 17
+batch_size = 42
+cache_ttl_s = 50

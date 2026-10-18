@@ -1,0 +1,4 @@
+[cinder]
+queue_depth = 35
+timeout_ms = 3000
+cache_ttl_s = 31

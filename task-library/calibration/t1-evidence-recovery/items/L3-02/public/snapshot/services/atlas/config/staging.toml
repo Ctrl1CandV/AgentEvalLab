@@ -1,0 +1,4 @@
+[atlas]
+timeout_ms = 3013
+pool_size = 26
+max_retries = 47

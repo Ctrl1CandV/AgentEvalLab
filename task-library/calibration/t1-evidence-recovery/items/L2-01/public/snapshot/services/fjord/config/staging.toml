@@ -1,0 +1,4 @@
+[fjord]
+cache_ttl_s = 54
+pool_size = 31
+timeout_ms = 3029

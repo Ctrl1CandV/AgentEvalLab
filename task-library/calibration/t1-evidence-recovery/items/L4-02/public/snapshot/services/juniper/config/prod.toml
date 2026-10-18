@@ -1,0 +1,4 @@
+[juniper]
+max_retries = 43
+timeout_ms = 1500
+pool_size = 11

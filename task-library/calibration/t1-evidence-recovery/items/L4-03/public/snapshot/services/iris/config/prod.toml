@@ -1,0 +1,4 @@
+[iris]
+queue_depth = 19
+batch_size = 33
+max_retries = 13

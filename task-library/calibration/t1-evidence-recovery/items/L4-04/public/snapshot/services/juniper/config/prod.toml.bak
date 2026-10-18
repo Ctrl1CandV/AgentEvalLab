@@ -1,0 +1,7 @@
+[juniper]
+pool_size = 48
+cache_ttl_s = 32
+timeout_ms = 507
+max_retries = 17
+queue_depth = 42
+batch_size = 30

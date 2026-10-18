@@ -1,0 +1,4 @@
+[atlas]
+cache_ttl_s = 58
+queue_depth = 18
+timeout_ms = 1528

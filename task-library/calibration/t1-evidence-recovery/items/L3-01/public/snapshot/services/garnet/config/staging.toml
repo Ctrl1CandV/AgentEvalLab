@@ -1,0 +1,4 @@
+[garnet]
+queue_depth = 36
+pool_size = 42
+cache_ttl_s = 46

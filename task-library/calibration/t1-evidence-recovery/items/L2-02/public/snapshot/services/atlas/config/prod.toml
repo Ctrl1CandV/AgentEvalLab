@@ -1,0 +1,4 @@
+[atlas]
+pool_size = 40
+batch_size = 35
+cache_ttl_s = 4

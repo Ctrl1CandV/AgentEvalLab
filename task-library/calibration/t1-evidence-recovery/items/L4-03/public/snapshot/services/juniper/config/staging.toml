@@ -1,0 +1,4 @@
+[juniper]
+max_retries = 40
+queue_depth = 54
+cache_ttl_s = 38

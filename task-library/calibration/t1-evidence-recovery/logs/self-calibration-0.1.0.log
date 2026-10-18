@@ -1,0 +1,6 @@
+Task t1-evidence-recovery version 0.1.0 (grader 1.0.0); date 2026-10-18; Python 3.13.15; host Linux (WSL2 Ubuntu 22.04)
+No model API or credentials were used.
+
+$ python3 private/grader.py --self-calibrate
+RESULT: PASS (224/224)
+exit=0

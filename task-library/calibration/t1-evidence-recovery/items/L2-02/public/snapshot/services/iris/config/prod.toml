@@ -1,0 +1,4 @@
+[iris]
+timeout_ms = 3000
+max_retries = 11
+batch_size = 34

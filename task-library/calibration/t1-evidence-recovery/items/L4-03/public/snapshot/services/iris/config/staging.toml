@@ -1,0 +1,4 @@
+[iris]
+max_retries = 34
+timeout_ms = 1522
+pool_size = 57

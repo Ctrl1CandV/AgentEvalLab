@@ -1,0 +1,4 @@
+[ember]
+batch_size = 36
+queue_depth = 26
+max_retries = 35

@@ -1,0 +1,4 @@
+[cinder]
+max_retries = 28
+queue_depth = 24
+pool_size = 38

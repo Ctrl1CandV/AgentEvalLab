@@ -1,0 +1,4 @@
+[kestrel]
+timeout_ms = 279
+queue_depth = 31
+max_retries = 33

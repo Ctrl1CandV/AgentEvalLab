@@ -1,0 +1,4 @@
+[kestrel]
+pool_size = 55
+queue_depth = 33
+max_retries = 16

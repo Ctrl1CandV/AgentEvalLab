@@ -1,0 +1,4 @@
+[delta]
+pool_size = 18
+max_retries = 23
+timeout_ms = 200

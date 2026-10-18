@@ -1,0 +1,4 @@
+[kestrel]
+max_retries = 33
+timeout_ms = 3022
+batch_size = 56

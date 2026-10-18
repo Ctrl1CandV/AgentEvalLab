@@ -1,0 +1,4 @@
+[fjord]
+pool_size = 34
+max_retries = 39
+timeout_ms = 3000

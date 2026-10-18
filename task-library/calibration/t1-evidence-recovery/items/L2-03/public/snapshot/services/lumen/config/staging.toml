@@ -1,0 +1,4 @@
+[lumen]
+max_retries = 40
+batch_size = 63
+queue_depth = 34

@@ -1,0 +1,4 @@
+[ember]
+timeout_ms = 6000
+cache_ttl_s = 40
+max_retries = 43

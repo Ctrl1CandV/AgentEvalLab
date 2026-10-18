@@ -1,0 +1,4 @@
+[beacon]
+queue_depth = 33
+batch_size = 18
+max_retries = 16

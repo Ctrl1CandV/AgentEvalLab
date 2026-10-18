@@ -1,0 +1,4 @@
+[harbor]
+timeout_ms = 2013
+cache_ttl_s = 46
+pool_size = 50

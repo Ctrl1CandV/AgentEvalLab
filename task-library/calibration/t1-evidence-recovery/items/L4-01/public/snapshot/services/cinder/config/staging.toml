@@ -1,0 +1,4 @@
+[cinder]
+batch_size = 42
+queue_depth = 48
+cache_ttl_s = 44

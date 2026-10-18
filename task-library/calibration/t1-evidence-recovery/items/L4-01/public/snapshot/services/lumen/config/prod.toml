@@ -1,0 +1,4 @@
+[lumen]
+pool_size = 23
+queue_depth = 7
+cache_ttl_s = 5

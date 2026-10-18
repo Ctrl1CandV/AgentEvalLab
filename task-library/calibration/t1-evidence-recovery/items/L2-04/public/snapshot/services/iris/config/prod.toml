@@ -1,0 +1,4 @@
+[iris]
+pool_size = 41
+max_retries = 23
+cache_ttl_s = 21

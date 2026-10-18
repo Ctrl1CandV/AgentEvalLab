@@ -1,0 +1,4 @@
+[garnet]
+queue_depth = 19
+timeout_ms = 6000
+cache_ttl_s = 23

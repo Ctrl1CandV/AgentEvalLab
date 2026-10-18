@@ -1,0 +1,4 @@
+[ember]
+cache_ttl_s = 28
+queue_depth = 18
+pool_size = 37

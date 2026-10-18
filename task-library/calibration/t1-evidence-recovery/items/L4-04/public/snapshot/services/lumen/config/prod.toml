@@ -1,0 +1,4 @@
+[lumen]
+max_retries = 36
+batch_size = 38
+timeout_ms = 500

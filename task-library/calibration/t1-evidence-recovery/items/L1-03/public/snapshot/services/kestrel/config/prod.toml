@@ -1,0 +1,4 @@
+[kestrel]
+batch_size = 41
+pool_size = 35
+max_retries = 29

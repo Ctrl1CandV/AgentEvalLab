@@ -1,0 +1,4 @@
+[garnet]
+cache_ttl_s = 15
+pool_size = 52
+batch_size = 48

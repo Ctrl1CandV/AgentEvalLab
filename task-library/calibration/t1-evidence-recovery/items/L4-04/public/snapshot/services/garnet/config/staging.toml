@@ -1,0 +1,4 @@
+[garnet]
+queue_depth = 41
+max_retries = 56
+cache_ttl_s = 37

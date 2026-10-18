@@ -1,0 +1,4 @@
+[delta]
+max_retries = 57
+batch_size = 47
+timeout_ms = 3017
