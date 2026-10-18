@@ -91,6 +91,21 @@ Levels a model lacks are declared null, so validation rejects them instead of le
 
 **kimi-k3 request overhead.** "Reply with exactly OK." costs kimi-k3 2,090 input tokens, uncached, on both SuperCN protocols. The same request costs deepseek-flash 40 and step-5-preview 31. About 2,080 tokens of injected context therefore come with every kimi request and count toward its token budgets. That is roughly 4K of a 50K reasoning budget and up to 40K of a 300K eng-001 budget over 20 requests. The budgets have at least five times headroom, so this is recorded rather than corrected; it is revisited if kimi trials hit their budgets.
 
+## Image input (2026-10-18)
+
+The vision-model judge of PLAN-005 WP6 needs models that actually see images. Each model received a 390x844 screenshot showing "BookLoop" on a blue background and was asked for the heading and the background colour:
+
+| Model | Answer | Input tokens |
+| --- | --- | --- |
+| supergpt:gpt-6-luna | BookLoop; blue | 446 |
+| supercn:step-5-preview | BookLoop; blue | 367 |
+| supercn:kimi-k3 | BookLoop; blue | 2,546 |
+| deepseek:deepseek-flash | BookLoop; blue | 282 |
+| supercn:glm-5.3-flash | BookLoop; blue | 466 |
+| supercn:glm-5.3 | "HelloWorld" on black | 187 |
+
+glm-5.3 is a text model. The relay dropped the image without an error, and the model then described an image it never received. Models now declare `vision: true` only when this probe passed, and only those may judge visual work. An unverified judge would invent its verdicts.
+
 ## Limits
 
 Five requests per model cannot show variance, long-context behaviour, or context-overflow messages. Live context-limit classification is still unverified for both providers.

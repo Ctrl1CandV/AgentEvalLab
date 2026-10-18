@@ -42,6 +42,11 @@ export interface CustomModelConfig {
   /** Anthropic-protocol models whose effort is sent as adaptive thinking with output_config.effort. */
   adaptiveThinking?: boolean;
   /**
+   * Image input verified through this endpoint (2026-10-18 probe). Only verified models may judge visual work:
+   * glm-5.3 drops images on the SuperCN relay and then describes an image it never received.
+   */
+  vision?: boolean;
+  /**
    * Without prices, request cost stays unknown (null), never zero. Evaluations measure usage in fixed token units
    * and deliberately declare no prices (user decision, 2026-10-15): prices are set outside the model and would
    * bring the provider's pricing into the comparison.
@@ -61,7 +66,7 @@ const deepseekFlash: CustomModelConfig = { id: "deepseek-flash", contextWindow: 
   // Checked 2026-10-18 against https://api-docs.deepseek.com/guides/thinking_mode/: effort low, high or max (default
   // high); other names are silently remapped, so they are declared null and rejected by validation. Temperature has
   // no effect in thinking mode.
-  thinkingLevelMap: { minimal: null, low: "low", medium: null, high: "high", xhigh: null, max: "max" }, prices: null, verified: true };
+  thinkingLevelMap: { minimal: null, low: "low", medium: null, high: "high", xhigh: null, max: "max" }, prices: null, verified: true, vision: true };
 
 // Checked 2026-10-14 against https://help.aliyun.com/zh/model-studio/qwen3-8-flash: 1M context, 131,072
 // maximum output, thinking supported. AliPlan bills through a token plan, so no per-token prices are declared.
@@ -75,7 +80,7 @@ const qwen38Flash: CustomModelConfig = { id: "qwen3.8-flash", contextWindow: 1_0
 // only with "none". The relay's prices are not published here, and it ignores both max_tokens and
 // max_completion_tokens; the runner enforces the output cap from reported usage.
 const gpt6Luna: CustomModelConfig = { id: "gpt-6-luna", contextWindow: 1_050_000, maxTokens: 128_000, reasoning: true, thinking: "configurable",
-  thinkingLevelMap: { off: "none", minimal: null, xhigh: "xhigh", max: "max" }, prices: null, verified: true };
+  thinkingLevelMap: { off: "none", minimal: null, xhigh: "xhigh", max: "max" }, prices: null, verified: true, vision: true };
 
 // Checked 2026-10-14 against https://docs.bigmodel.cn/cn/guide/models/vlm/glm-5.3-flash: 1M context, 128K
 // maximum output, and thinking that cannot be disabled (thinking.type only "enabled"). Declared without
@@ -93,7 +98,7 @@ const glm53: CustomModelConfig = { id: "glm-5.3", contextWindow: 1_000_000, maxT
 // thinking is not documented, so "off" is rejected. Served through the SuperCN relay.
 const step5Preview: CustomModelConfig = { id: "step-5-preview", contextWindow: 1_000_000, maxTokens: 64_000, reasoning: true, thinking: "always-on",
   thinkingLevelMap: { off: null, minimal: null, low: "low", medium: "medium", high: "high", xhigh: null, max: null }, adaptiveThinking: true,
-  prices: null, verified: true };
+  prices: null, verified: true, vision: true };
 
 // Checked 2026-10-18 against third-party guides citing Moonshot's documentation (no official page was reachable):
 // 1,048,576 context, 131,072 default maximum output, thinking always on, reasoning effort low, high or max (default
@@ -102,10 +107,10 @@ const step5Preview: CustomModelConfig = { id: "step-5-preview", contextWindow: 1
 // token budgets.
 const kimiK3: CustomModelConfig = { id: "kimi-k3", contextWindow: 1_048_576, maxTokens: 131_072, reasoning: true, thinking: "always-on",
   thinkingLevelMap: { off: null, minimal: null, low: "low", medium: null, high: "high", xhigh: null, max: "max" }, adaptiveThinking: true,
-  prices: null, verified: true };
+  prices: null, verified: true, vision: true };
 
 const glm53Flash: CustomModelConfig = { id: "glm-5.3-flash", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: false, thinking: "always-on",
-  prices: null, verified: true };
+  prices: null, verified: true, vision: true };
 
 // Conservative placeholders used until a model's metadata is checked against its provider.
 function unverified(id: string): CustomModelConfig {
@@ -196,7 +201,7 @@ function buildModel(config: ProviderConfig, entry: CustomModelConfig): Model<Cus
     reasoning: entry.reasoning,
     ...(entry.thinkingLevelMap ? { thinkingLevelMap: entry.thinkingLevelMap } : {}),
     ...(entry.adaptiveThinking ? { compat: { forceAdaptiveThinking: true } as Model<CustomApi>["compat"] } : {}),
-    input: ["text"],
+    input: entry.vision ? ["text", "image"] : ["text"],
     // Zero prices make Pi report zero cost, which the runner records as unknown rather than free.
     cost: entry.prices ?? { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
     contextWindow: entry.contextWindow,
