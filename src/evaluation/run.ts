@@ -50,6 +50,16 @@ export function trialSchedule(plan: EvaluationPlan, seed: number, packages: Map<
   return slots;
 }
 
+/**
+ * The plan as it enters the run fingerprint. Concurrency only changes how many trials run at once, not what any model
+ * sees, so it is left out: a run can be resumed or merged with a different concurrency.
+ */
+export function fingerprintedPlan(plan: EvaluationPlan): EvaluationPlan {
+  if (plan.batch?.concurrency === undefined) return plan;
+  const { concurrency: _concurrency, ...batch } = plan.batch;
+  return { ...plan, batch };
+}
+
 /** The plan's budget notice with defaults filled in, or null when the budget is not stated to the model. */
 export function resolveBudgetNotice(plan: EvaluationPlan): { reminders: readonly number[] } | null {
   if (!plan.budgetNotice) return null;
@@ -80,7 +90,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
   }));
   const capabilities = Object.fromEntries(plan.cases.map(item => [item.id, taskPackages.get(item.id)?.manifest?.capability ?? "unspecified"]));
   const condition = await evaluatedCondition(plan, taskPackages);
-  const fingerprint = sha256({ plan, packageFingerprints, condition });
+  const fingerprint = sha256({ plan: fingerprintedPlan(plan), packageFingerprints, condition });
   const batchPolicy = resolveBatchPolicy(plan);
   const seed = plan.seed ?? Number.parseInt(fingerprint.slice(0, 8), 16);
   const schedule = trialSchedule(plan, seed, taskPackages);
@@ -112,21 +122,25 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
     await writeFile(join(directory, "report.md"), markdownReport(report));
     return report;
   };
-  for (const { model, item, repetition, packageItem } of schedule) {
+  // Serialise report writes: with concurrent trials, two saves must not interleave their files.
+  let reportChain: Promise<unknown> = Promise.resolve();
+  const saveReportSerially = () => (reportChain = reportChain.then(saveReport, saveReport));
+  const runSlot = async ({ model, item, repetition, packageItem }: TrialSlot): Promise<void> => {
       const previous = recorded.get(trialKey(model, item.id, repetition, packageItem?.id));
       const modelId = `${model.provider}:${model.id}`;
       // Keep finished trials from an earlier attempt of this run; rerun only infrastructure failures.
       if (previous && previous.execution.failureKind !== "infrastructure") {
         guard.record(previous.execution, { model: modelId });
         records.push(previous);
-        continue;
+        return;
       }
       if (previous) guard.record(previous.execution, { countFailure: false, model: modelId });
       const blocked = guard.blockedReason(modelId, plan.budget.maxTrialTokens ?? 0);
       if (blocked) {
         notRun.push({ model: modelId, caseId: item.id, repetition, ...(packageItem ? { itemId: packageItem.id } : {}), reason: blocked });
-        continue;
+        return;
       }
+      const release = guard.reserve(modelId, plan.budget.maxTrialTokens ?? 0);
       const start = performance.now();
       const id = randomUUID();
       const trialDirectory = join(directory, id);
@@ -266,11 +280,24 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
         records.push(record);
         await writeFile(join(trialDirectory, "result.json"), JSON.stringify(record, null, 2));
       }
+      release();
       guard.record(record.execution, { model: modelId });
-      await saveReport();
+      await saveReportSerially();
       if (fatal) throw fatal;
       await events.emit("cleanup_completed", { failed: Number(record.cleanup === "error") });
-  }
+  };
+  // Workers take slots in schedule order; a fatal error stops every worker from starting another trial.
+  let nextSlot = 0;
+  let fatalError: unknown = null;
+  const worker = async () => {
+    while (fatalError === null && nextSlot < schedule.length) {
+      const slot = schedule[nextSlot++]!;
+      try { await runSlot(slot); } catch (error) { fatalError ??= error; }
+    }
+  };
+  await Promise.all(Array.from({ length: Math.max(1, Math.min(batchPolicy.concurrency, schedule.length)) }, worker));
+  await reportChain;
+  if (fatalError !== null) throw fatalError;
   completed = notRun.length === 0;
   return { directory, report: await saveReport() };
 }

@@ -19,6 +19,8 @@ export interface BatchPolicy {
   maxTotalTokensPerModel: number | null;
   /** Stop scheduling new work once known cost reaches this amount; null means no ceiling. */
   maxCostUsd: number | null;
+  /** Trials run at the same time (single-run plans). Each running trial reserves its token budget against the ceilings. */
+  concurrency: number;
 }
 
 export const defaultBatchPolicy: Readonly<BatchPolicy> = Object.freeze({
@@ -28,6 +30,7 @@ export const defaultBatchPolicy: Readonly<BatchPolicy> = Object.freeze({
   maxTotalTokens: null,
   maxTotalTokensPerModel: null,
   maxCostUsd: null,
+  concurrency: 1,
 });
 
 export function resolveBatchPolicy(plan: EvaluationPlan): BatchPolicy {
@@ -49,6 +52,7 @@ export function validateBatchPolicy(value: unknown): void {
   integer("maxRetries", 0, 5);
   integer("maxRetryDelayMs", 0, 300_000);
   integer("maxConsecutiveInfrastructureFailures", 1, 1_000);
+  integer("concurrency", 1, 16);
   if (policy.maxTotalTokens !== undefined && policy.maxTotalTokens !== null) integer("maxTotalTokens", 1, Number.MAX_SAFE_INTEGER);
   if (policy.maxTotalTokensPerModel !== undefined && policy.maxTotalTokensPerModel !== null) integer("maxTotalTokensPerModel", 1, Number.MAX_SAFE_INTEGER);
   if (policy.maxCostUsd !== undefined && policy.maxCostUsd !== null &&
@@ -84,6 +88,9 @@ export interface BatchSummary {
 export class BatchGuard {
   knownTokens = 0;
   tokensByModel: Record<string, number> = {};
+  /** Token budgets reserved by trials that are running, in total and per model. */
+  reservedTokens = 0;
+  reservedByModel: Record<string, number> = {};
   knownCostUsd = 0;
   unknownUsageRequests = 0;
   consecutiveInfrastructureFailures = 0;
@@ -126,9 +133,22 @@ export class BatchGuard {
   blockedReason(model: string, reserve = 0): string | null {
     if (this.stopReason) return this.stopReason;
     const exceeds = (used: number, ceiling: number | null) => ceiling !== null && (used >= ceiling || used + reserve > ceiling);
-    if (exceeds(this.knownTokens, this.policy.maxTotalTokens)) return "TOKEN_CEILING";
-    if (exceeds(this.tokensByModel[model] ?? 0, this.policy.maxTotalTokensPerModel)) return "MODEL_TOKEN_CEILING";
+    if (exceeds(this.knownTokens + this.reservedTokens, this.policy.maxTotalTokens)) return "TOKEN_CEILING";
+    if (exceeds((this.tokensByModel[model] ?? 0) + (this.reservedByModel[model] ?? 0), this.policy.maxTotalTokensPerModel)) return "MODEL_TOKEN_CEILING";
     return null;
+  }
+
+  /** Hold a running trial's token budget against the ceilings until it is recorded; returns the release function. */
+  reserve(model: string, tokens: number): () => void {
+    this.reservedTokens += tokens;
+    this.reservedByModel[model] = (this.reservedByModel[model] ?? 0) + tokens;
+    let released = false;
+    return () => {
+      if (released) return;
+      released = true;
+      this.reservedTokens -= tokens;
+      this.reservedByModel[model]! -= tokens;
+    };
   }
 
   summary(notRun: NotRunEntry[]): BatchSummary {

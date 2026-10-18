@@ -226,9 +226,39 @@ test("a plan's budgetNotice appends the statement to the prompt and is validated
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 
+test("concurrent trials run up to the limit, record every trial, and reserve their budgets against ceilings", async () => {
+  const root = await mkdtemp(join(tmpdir(), "batch-concurrency-"));
+  try {
+    let running = 0, peak = 0;
+    const slow = async () => {
+      running++; peak = Math.max(peak, running);
+      await new Promise(resolveDelay => setTimeout(resolveDelay, 30));
+      running--;
+      return ok(10);
+    };
+    const parallel = await runEvaluation(plan({ concurrency: 3, maxTotalTokens: 1_000_000 }, 7), { outputRoot: root, runner: slow });
+    assert.equal(parallel.report.recordedRuns, 7);
+    assert.equal(peak, 3, "three trials run at once");
+    assert.deepEqual(parallel.report.records.map(record => record.caseId).sort(), Array.from({ length: 7 }, (_, index) => `case-${index + 1}`).sort());
+    const sequential = await runEvaluation(plan({ maxTotalTokens: 1_000_000 }, 7), { outputRoot: root, runner: async () => ok(10) });
+    const fingerprintOf = async (directory: string) => (JSON.parse(await readFile(join(directory, "experiment.json"), "utf8")) as { fingerprint: string }).fingerprint;
+    assert.equal(await fingerprintOf(parallel.directory), await fingerprintOf(sequential.directory), "concurrency does not enter the fingerprint");
+    const saved = JSON.parse(await readFile(join(parallel.directory, "report.json"), "utf8")) as { recordedRuns: number };
+    assert.equal(saved.recordedRuns, 7, "the last report write wins with every trial");
+
+    // Each running trial holds its 600-token budget: with a 1,000-token ceiling only one may start at a time.
+    running = 0; peak = 0;
+    const reserved = await runEvaluation({ ...plan({ concurrency: 3, maxTotalTokensPerModel: 1_000 }, 3), budget: { ...defaultBudget, maxTrialTokens: 600 } },
+      { outputRoot: root, runner: async () => { running++; peak = Math.max(peak, running); await new Promise(r => setTimeout(r, 20)); running--; return ok(10); } });
+    assert.equal(peak, 1, "reservations keep concurrent trials within the ceiling");
+    assert.equal(reserved.report.batch!.notRun.length, 2);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});
+
 test("batch policies are validated", () => {
   validatePlan(plan({ maxRetries: 3, maxTotalTokens: 5_000_000, maxTotalTokensPerModel: 3_000_000, maxCostUsd: 20 }));
   assert.throws(() => validatePlan(plan({ maxTotalTokensPerModel: 0 })), /INVALID_BATCH_POLICY:maxTotalTokensPerModel/);
+  assert.throws(() => validatePlan(plan({ concurrency: 0 })), /INVALID_BATCH_POLICY:concurrency/);
   assert.throws(() => validatePlan({ ...plan({}), budget: { ...defaultBudget, maxTrialTokens: -1 } }), /INVALID_BUDGET:maxTrialTokens/);
   assert.throws(() => validatePlan(plan({ maxRetries: 9 })), /INVALID_BATCH_POLICY:maxRetries/);
   assert.throws(() => validatePlan(plan({ unknown: 1 } as never)), /INVALID_BATCH_POLICY/);
