@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 3,
+  "name": "r3-calibration-2026-10",
+  "models": [
+    {
+      "provider": "supergpt",
+      "id": "gpt-6-luna",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "glm-5.3",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "step-5-preview",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 1,
+  "budget": {
+    "timeoutMs": 1800000,
+    "maxTurns": 4,
+    "maxModelCalls": 4,
+    "maxToolCalls": 2,
+    "maxOutputChars": 32768,
+    "maxOutputTokensPerCall": 65536,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 100000
+  },
+  "artifactLimits": {
+    "maxFiles": 50,
+    "maxFileBytes": 1048576,
+    "maxTrialBytes": 5242880,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 1048576
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 2500000
+  },
+  "trustedLocalExecution": true,
+  "budgetNotice": true,
+  "cases": [
+    {
+      "id": "r3-logic-grid",
+      "packagePath": "task-library/calibration/r3-logic-grid",
+      "packageManifestSha256": "1f6e837404223c9b108b291fa22bc22e2fc798e25ed5fb07af5bb9aa5cdd049a",
+      "readOnly": true,
+      "input": {
+        "prompt": "Solve the puzzle and give the JSON answer described above."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 120000
+      },
+      "items": "all"
+    }
+  ]
+}

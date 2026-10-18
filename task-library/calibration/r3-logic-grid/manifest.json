@@ -1,0 +1,2658 @@
+{
+  "schemaVersion": 1,
+  "id": "r3-logic-grid",
+  "version": "0.1.0",
+  "familyId": "r3-logic-grid",
+  "capability": "reasoning",
+  "usage": "development",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "docs/design/TASK_SET_V2.md",
+      "https://arxiv.org/pdf/2502.01100"
+    ]
+  },
+  "license": {
+    "taskText": "Original project-authored generator and puzzles; ZebraLogic inspired the form, and no text is copied.",
+    "thirdPartyContent": []
+  },
+  "entryPoint": {
+    "instruction": "instruction.md"
+  },
+  "files": {
+    "public": [
+      {
+        "path": "instruction.md",
+        "sha256": "ec21ddefd13093d46157151ce7944f9c71dd4b2386916b9ed443f093e7482193"
+      }
+    ],
+    "trusted": [
+      {
+        "path": "calibration.md",
+        "sha256": "4818038d429fda460ab24eec4b5091e673682917f3aa032b983d362cf06ad916"
+      },
+      {
+        "path": "rubric.md",
+        "sha256": "1debf24f200cc9cbf9d0385f13434d203b3a5b9221f1e2301607f10d6800bbb3"
+      },
+      {
+        "path": "private/generate.py",
+        "sha256": "9a075584b7ce244c6bc2ac8c52f52596bd59e98334743975955b5b4f38d29720"
+      },
+      {
+        "path": "private/grader.py",
+        "sha256": "4b5a1ea11742d63a55b9c605e0318b7f9834f3d7c99eb71a9ffeb171e393a2a0"
+      },
+      {
+        "path": "private/keys.json",
+        "sha256": "fe18a4026b9bceb3e7e2044a47e298b3e763e90fc8255e71ca658ad705456eb3"
+      },
+      {
+        "path": "private/logic_grid.py",
+        "sha256": "f9d1bb07089ba1813e6884753ba6228cfc6d90d5de838b91844126350c0c71a9"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "REQ-H1-A1",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h1-a1"
+      ]
+    },
+    {
+      "id": "REQ-H1-A2",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h1-a2"
+      ]
+    },
+    {
+      "id": "REQ-H1-A3",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h1-a3"
+      ]
+    },
+    {
+      "id": "REQ-H1-A4",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h1-a4"
+      ]
+    },
+    {
+      "id": "REQ-H1-A5",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h1-a5"
+      ]
+    },
+    {
+      "id": "REQ-H1-A6",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h1-a6"
+      ]
+    },
+    {
+      "id": "REQ-H1-A7",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h1-a7"
+      ]
+    },
+    {
+      "id": "REQ-H1-A8",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h1-a8"
+      ]
+    },
+    {
+      "id": "REQ-H2-A1",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h2-a1"
+      ]
+    },
+    {
+      "id": "REQ-H2-A2",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h2-a2"
+      ]
+    },
+    {
+      "id": "REQ-H2-A3",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h2-a3"
+      ]
+    },
+    {
+      "id": "REQ-H2-A4",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h2-a4"
+      ]
+    },
+    {
+      "id": "REQ-H2-A5",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h2-a5"
+      ]
+    },
+    {
+      "id": "REQ-H2-A6",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h2-a6"
+      ]
+    },
+    {
+      "id": "REQ-H2-A7",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h2-a7"
+      ]
+    },
+    {
+      "id": "REQ-H2-A8",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h2-a8"
+      ]
+    },
+    {
+      "id": "REQ-H3-A1",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h3-a1"
+      ]
+    },
+    {
+      "id": "REQ-H3-A2",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h3-a2"
+      ]
+    },
+    {
+      "id": "REQ-H3-A3",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h3-a3"
+      ]
+    },
+    {
+      "id": "REQ-H3-A4",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h3-a4"
+      ]
+    },
+    {
+      "id": "REQ-H3-A5",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h3-a5"
+      ]
+    },
+    {
+      "id": "REQ-H3-A6",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h3-a6"
+      ]
+    },
+    {
+      "id": "REQ-H3-A7",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h3-a7"
+      ]
+    },
+    {
+      "id": "REQ-H3-A8",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h3-a8"
+      ]
+    },
+    {
+      "id": "REQ-H4-A1",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h4-a1"
+      ]
+    },
+    {
+      "id": "REQ-H4-A2",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h4-a2"
+      ]
+    },
+    {
+      "id": "REQ-H4-A3",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h4-a3"
+      ]
+    },
+    {
+      "id": "REQ-H4-A4",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h4-a4"
+      ]
+    },
+    {
+      "id": "REQ-H4-A5",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h4-a5"
+      ]
+    },
+    {
+      "id": "REQ-H4-A6",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h4-a6"
+      ]
+    },
+    {
+      "id": "REQ-H4-A7",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h4-a7"
+      ]
+    },
+    {
+      "id": "REQ-H4-A8",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h4-a8"
+      ]
+    },
+    {
+      "id": "REQ-H5-A1",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h5-a1"
+      ]
+    },
+    {
+      "id": "REQ-H5-A2",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h5-a2"
+      ]
+    },
+    {
+      "id": "REQ-H5-A3",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h5-a3"
+      ]
+    },
+    {
+      "id": "REQ-H5-A4",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h5-a4"
+      ]
+    },
+    {
+      "id": "REQ-H5-A5",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h5-a5"
+      ]
+    },
+    {
+      "id": "REQ-H5-A6",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h5-a6"
+      ]
+    },
+    {
+      "id": "REQ-H5-A7",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h5-a7"
+      ]
+    },
+    {
+      "id": "REQ-H5-A8",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h5-a8"
+      ]
+    },
+    {
+      "id": "REQ-H6-A1",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h6-a1"
+      ]
+    },
+    {
+      "id": "REQ-H6-A2",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h6-a2"
+      ]
+    },
+    {
+      "id": "REQ-H6-A3",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h6-a3"
+      ]
+    },
+    {
+      "id": "REQ-H6-A4",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h6-a4"
+      ]
+    },
+    {
+      "id": "REQ-H6-A5",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h6-a5"
+      ]
+    },
+    {
+      "id": "REQ-H6-A6",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h6-a6"
+      ]
+    },
+    {
+      "id": "REQ-H6-A7",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h6-a7"
+      ]
+    },
+    {
+      "id": "REQ-H6-A8",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h6-a8"
+      ]
+    },
+    {
+      "id": "REQ-H7-A1",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h7-a1"
+      ]
+    },
+    {
+      "id": "REQ-H7-A2",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h7-a2"
+      ]
+    },
+    {
+      "id": "REQ-H7-A3",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h7-a3"
+      ]
+    },
+    {
+      "id": "REQ-H7-A4",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h7-a4"
+      ]
+    },
+    {
+      "id": "REQ-H7-A5",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h7-a5"
+      ]
+    },
+    {
+      "id": "REQ-H7-A6",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h7-a6"
+      ]
+    },
+    {
+      "id": "REQ-H7-A7",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h7-a7"
+      ]
+    },
+    {
+      "id": "REQ-H7-A8",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h7-a8"
+      ]
+    },
+    {
+      "id": "REQ-H8-A1",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h8-a1"
+      ]
+    },
+    {
+      "id": "REQ-H8-A2",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h8-a2"
+      ]
+    },
+    {
+      "id": "REQ-H8-A3",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h8-a3"
+      ]
+    },
+    {
+      "id": "REQ-H8-A4",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h8-a4"
+      ]
+    },
+    {
+      "id": "REQ-H8-A5",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h8-a5"
+      ]
+    },
+    {
+      "id": "REQ-H8-A6",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h8-a6"
+      ]
+    },
+    {
+      "id": "REQ-H8-A7",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h8-a7"
+      ]
+    },
+    {
+      "id": "REQ-H8-A8",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "cell-h8-a8"
+      ]
+    },
+    {
+      "id": "REQ-FORMAT",
+      "critical": false,
+      "introducedAt": "r3-logic-grid 0.1.0",
+      "checkIds": [
+        "answer-format"
+      ]
+    }
+  ],
+  "scoring": {
+    "formatCheckId": "answer-format",
+    "formatPenalty": 0.2
+  },
+  "items": [
+    {
+      "id": "L1-01",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-01/prompt.md",
+          "sha256": "a7ee8b9ae7f8409410eacd4020e36d5d13aab13289c95f7d2cff6f5922376426"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L1-02",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-02/prompt.md",
+          "sha256": "b4203c80cbe85523c2feec92b793892c42683f8d2073a5922af54b9c28e09a2f"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L1-03",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-03/prompt.md",
+          "sha256": "0a0de19ae117d9eae9e7cd3f0ec9e12a2cbfb3dbd533925e36d0b1beef52385e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L1-04",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-04/prompt.md",
+          "sha256": "02fbea8f3d2d83811291461dfb85ca56c408ea1462de4e9b9d2cd53750bd62b8"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L1-05",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-05/prompt.md",
+          "sha256": "a88e783db2160d5f8356e3369a5dd944672020204a2645d23d057c70442b491a"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L1-06",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-06/prompt.md",
+          "sha256": "cbaee1c56fefda5ed0b93b96fe81e530ebd1a8eb5e180939b5f4b08389f85c6f"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L1-07",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-07/prompt.md",
+          "sha256": "7f47adb4c9a06919e726351f4b6dbe96d44ae842e2b9541aec4782e326d8ea5f"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L1-08",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-08/prompt.md",
+          "sha256": "30108bf1e21a009ef6cd3b1c41dd664967a9a1bb56a35c6b876b30212f8adddd"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-01",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-01/prompt.md",
+          "sha256": "6bb28b254acea77f5c7200e14e8cb0dae6d8063a6b18d1efe121f22b17efe1c9"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-02",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-02/prompt.md",
+          "sha256": "b0ebef3a899f06da54a2270ac769be3884768e67f984a4f2723b70e47fc1044e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-03",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-03/prompt.md",
+          "sha256": "70fdc154739b79399502d0fe30b57fbc9d9850a09405ae6ad4b904b3391c9952"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-04",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-04/prompt.md",
+          "sha256": "aafbc6626d02418260f069b7727aff1fd5320a866f08aa0de0c79269d60eb804"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-05",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-05/prompt.md",
+          "sha256": "f02b8d6a04a4d7a0f8e2842bf2a6604f47a3febd4110c7189d6ab1cdcf923a4d"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-06",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-06/prompt.md",
+          "sha256": "5d6ca26df8d40192f99067257a164f7f034fdb8783473314b82bad07925b2e62"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-07",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-07/prompt.md",
+          "sha256": "ed98d6921534eab4598278fdb813df441bf1e2d0e527e8c562deb089918612a6"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-08",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-08/prompt.md",
+          "sha256": "3b4c91f56bfc67c3258d5be3a1fb041a9e1d8dbdf90d5cd1b0f967029500d326"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-01",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-01/prompt.md",
+          "sha256": "b884e0e260ce72ff4787e7556649218aa9a27ad6ff22f5f371d8e7ce1bc3f213"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-02",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-02/prompt.md",
+          "sha256": "22bd385841bdebb8dcf999f7f1545452b7367b3ee2478b9d0b4822f7e1696bcf"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-03",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-03/prompt.md",
+          "sha256": "d93c4224d2c7d3627d6da0014b0e8f0521bbc4a4c8c88689f82397e32039cbb4"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-04",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-04/prompt.md",
+          "sha256": "690b004410c629823a3fe6c5fbf524b83af5585efc169013c173e20dcff91c94"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-05",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-05/prompt.md",
+          "sha256": "1be7b368db330bb9bbdf22f754eab336f7c1a1a5cdff34e4c87d841157d04e00"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-06",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-06/prompt.md",
+          "sha256": "7e5b3a99a879d77420ed2ba2167be51e50d65d988477a504fe8610193ed28ab9"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-07",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-07/prompt.md",
+          "sha256": "a982d8aa95e8ee067e7454dc1932c4b757a8ddc477b12af474af2022e228cd78"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-08",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-08/prompt.md",
+          "sha256": "56fdbf5ab97f696bffc1e8cb4927a072e02dc4679ee54ab3296354288a37f723"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-01",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-01/prompt.md",
+          "sha256": "a2cb0f81d5ac0d99d5bd2a7a6e232ec884db099bd6bee5b5bad539f3534dc93f"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-02",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-02/prompt.md",
+          "sha256": "e6510ef9e1f2daa6d019d9cded6960f0109f8c669d00d68b6d901d77218e342f"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-03",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-03/prompt.md",
+          "sha256": "c70f27aceae56bffd3bfd44f6963b63f4e5c9f7651b270c275f9f65127d0adfb"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-04",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-04/prompt.md",
+          "sha256": "2af14618c763a8aece07d4f887db0b43f4298b904ff621b7b50937f16086d9ce"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-05",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-05/prompt.md",
+          "sha256": "c94a9667e9ead70c097cab7b3c1e2bc90955f63991212dd23cac04464c554759"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-06",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-06/prompt.md",
+          "sha256": "03133a317308b3c0d33fc9d2c99257deee2fc6f3879ba2484d95297e783b16de"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-07",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-07/prompt.md",
+          "sha256": "f81338b7efe241a1cf6763f65ef0baee0f5b4e6f73d8a12dc5b9e46b8cbd4808"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-08",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-08/prompt.md",
+          "sha256": "c579937bbede38fe13b5ef41c085b28cd83c61edbca857838cbf0b5a9b8b2319"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L5-01",
+      "level": "L5",
+      "files": [
+        {
+          "path": "items/L5-01/prompt.md",
+          "sha256": "d184f02932b6ee5ac5dd1bd789acb9bb7dd9d0d9bde3977ce157b1453938d6c9"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H1-A8",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H2-A8",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H3-A8",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H4-A8",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H5-A8",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H6-A8",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-H7-A8",
+        "REQ-H8-A1",
+        "REQ-H8-A2",
+        "REQ-H8-A3",
+        "REQ-H8-A4",
+        "REQ-H8-A5",
+        "REQ-H8-A6",
+        "REQ-H8-A7",
+        "REQ-H8-A8",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L5-02",
+      "level": "L5",
+      "files": [
+        {
+          "path": "items/L5-02/prompt.md",
+          "sha256": "de692c36d6812ffca5177df33c47623ebd576901010d64de4d0bb3199bfd8585"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H1-A8",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H2-A8",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H3-A8",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H4-A8",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H5-A8",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H6-A8",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-H7-A8",
+        "REQ-H8-A1",
+        "REQ-H8-A2",
+        "REQ-H8-A3",
+        "REQ-H8-A4",
+        "REQ-H8-A5",
+        "REQ-H8-A6",
+        "REQ-H8-A7",
+        "REQ-H8-A8",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L5-03",
+      "level": "L5",
+      "files": [
+        {
+          "path": "items/L5-03/prompt.md",
+          "sha256": "2c76fccc6a28f5271eb7dd4347a2c753a777e2cc8ab04fb94f39e21c9dee8e10"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H1-A8",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H2-A8",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H3-A8",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H4-A8",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H5-A8",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H6-A8",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-H7-A8",
+        "REQ-H8-A1",
+        "REQ-H8-A2",
+        "REQ-H8-A3",
+        "REQ-H8-A4",
+        "REQ-H8-A5",
+        "REQ-H8-A6",
+        "REQ-H8-A7",
+        "REQ-H8-A8",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L5-04",
+      "level": "L5",
+      "files": [
+        {
+          "path": "items/L5-04/prompt.md",
+          "sha256": "d95e6e1ab43e8642eee0bb34a8abede9e0920e529629f6e5b10232d7276410c7"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H1-A8",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H2-A8",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H3-A8",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H4-A8",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H5-A8",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H6-A8",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-H7-A8",
+        "REQ-H8-A1",
+        "REQ-H8-A2",
+        "REQ-H8-A3",
+        "REQ-H8-A4",
+        "REQ-H8-A5",
+        "REQ-H8-A6",
+        "REQ-H8-A7",
+        "REQ-H8-A8",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L5-05",
+      "level": "L5",
+      "files": [
+        {
+          "path": "items/L5-05/prompt.md",
+          "sha256": "b91baef7c51531a83bc1f4f5727bc899fab7c7e1cac70bd2097a98568916fd19"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H1-A8",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H2-A8",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H3-A8",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H4-A8",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H5-A8",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H6-A8",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-H7-A8",
+        "REQ-H8-A1",
+        "REQ-H8-A2",
+        "REQ-H8-A3",
+        "REQ-H8-A4",
+        "REQ-H8-A5",
+        "REQ-H8-A6",
+        "REQ-H8-A7",
+        "REQ-H8-A8",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L5-06",
+      "level": "L5",
+      "files": [
+        {
+          "path": "items/L5-06/prompt.md",
+          "sha256": "144b89f9e46ca9fb6a07b11a51a345b0fa31612d3d90bd5f0c91788974259ed4"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H1-A8",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H2-A8",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H3-A8",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H4-A8",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H5-A8",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H6-A8",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-H7-A8",
+        "REQ-H8-A1",
+        "REQ-H8-A2",
+        "REQ-H8-A3",
+        "REQ-H8-A4",
+        "REQ-H8-A5",
+        "REQ-H8-A6",
+        "REQ-H8-A7",
+        "REQ-H8-A8",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L5-07",
+      "level": "L5",
+      "files": [
+        {
+          "path": "items/L5-07/prompt.md",
+          "sha256": "777a861081b4522c9a0a8172752f6a7f6ada97470e16b9a069b0f1adf448a705"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H1-A8",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H2-A8",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H3-A8",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H4-A8",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H5-A8",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H6-A8",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-H7-A8",
+        "REQ-H8-A1",
+        "REQ-H8-A2",
+        "REQ-H8-A3",
+        "REQ-H8-A4",
+        "REQ-H8-A5",
+        "REQ-H8-A6",
+        "REQ-H8-A7",
+        "REQ-H8-A8",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L5-08",
+      "level": "L5",
+      "files": [
+        {
+          "path": "items/L5-08/prompt.md",
+          "sha256": "5b4b38817670220599d0fa44347908e9366a0700962c1e92cd66278e01b40329"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H1-A8",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H2-A8",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H3-A8",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H4-A8",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H5-A8",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H6-A8",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-H7-A8",
+        "REQ-H8-A1",
+        "REQ-H8-A2",
+        "REQ-H8-A3",
+        "REQ-H8-A4",
+        "REQ-H8-A5",
+        "REQ-H8-A6",
+        "REQ-H8-A7",
+        "REQ-H8-A8",
+        "REQ-FORMAT"
+      ]
+    }
+  ],
+  "generator": {
+    "entryPoint": "private/generate.py",
+    "seed": "r3-2026-10",
+    "perLevel": 8
+  },
+  "toolProfiles": [
+    "workspace-basic"
+  ],
+  "grader": {
+    "id": "r3-logic-grid-cells",
+    "version": "1.0.0",
+    "entryPoint": "private/grader.py",
+    "executable": "python3",
+    "args": [
+      "{entryPoint}",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ],
+    "answerSource": "execution-output"
+  },
+  "environment": {
+    "runtime": "Python 3.13",
+    "dependencies": "Python standard library; no network",
+    "network": false,
+    "runtimeCheck": {
+      "executable": "python3",
+      "args": [
+        "--version"
+      ],
+      "expectedSubstring": "Python 3.13."
+    }
+  }
+}
