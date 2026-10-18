@@ -1,6 +1,6 @@
 # Task Set v2: Design Proposal
 
-Status: proposal for user review (PLAN-005 WP5 and WP6), 2026-10-16. Nothing here is built yet.
+Status: approved by the user on 2026-10-18 (PLAN-005 WP5 and WP6); building starts with R3 and R1.
 
 ## Problem
 
@@ -88,8 +88,8 @@ Design:
 - **Judge skill.** A versioned `private/judge/SKILL.md` holds the brief, a decomposed checklist, the procedure and a JSON output schema. The checklist covers fit to the brief, hierarchy, clarity, consistency, responsive quality and polish, with evidence for every item.
 - **Inputs and comparison.** The judge receives screenshots and source, never the model's name. It compares the submission pairwise with fixed anchors of known quality, in both orders. The score is the share of comparisons won, with a disagreement between orders counted as a tie.
 - **Reporting.** Aesthetic scores are a separate, clearly labelled dimension with the judge's measured agreement next to them. They never offset objective defects, given the judge's reliability.
-- **Gates before use.** The judge must order the anchors correctly and stay stable under order swaps. It must also agree with a small set of human pairwise labels; the existing review form collects them.
-- **Independence.** The judge comes from a vendor other than the evaluated models. Its model, version and the skill's digest are recorded in the run condition.
+- **Gates before use.** The judge must order the anchors correctly and stay stable under order swaps. Where several judges are used, they must also agree with each other. The user's comments on a sample serve as a reference, not as a gate (decision 4 below).
+- **Independence.** No model judges its own vendor's pages. When every available vendor is also evaluated, a panel of judges is used and a page's own vendor is excluded from its panel. The judges' models, versions and the skill's digest are recorded in the run condition.
 
 ## Proposed order
 
@@ -99,9 +99,9 @@ Design:
 4. **T2** and **E3**.
 5. **WP6**, in parallel once a judge model and the Playwright dependency are approved.
 
-## Decisions for the user
+## Decisions (user, 2026-10-18)
 
-1. **Scope:** are the families above the right mix? Should any be dropped or added?
-2. **Order:** start with reasoning generators (R3, R1) as proposed, or with engineering?
-3. **Third model** for difficulty calibration: deepseek-flash now, or qwen3.8-flash after its quota resets on 2026-10-19?
-4. **WP6:** which vision model is the judge? Is adding Playwright as a project dependency approved?
+1. **Scope and order:** the families and the order above are approved.
+2. **Calibration models:** available now are `deepseek:deepseek-flash`, `supercn:glm-5.3`, `supergpt:gpt-6-luna`, `supercn:step-5-preview` and `supercn:kimi-k3`. Use kimi-k3 sparingly, because it costs more; revisit qwen after its quota resets on 2026-10-19.
+3. **WP6:** Playwright may be added, and the judge model is Claude's choice.
+4. **Human review:** the project has one reviewer, the user, who is not a design expert. Expert-agreement gates are therefore not feasible, and judging is delegated to models. The user's comments on a sample of pages are recorded as a reference for the judge, not as ground truth. The judge is checked instead for anchor ordering, order-swap stability and agreement between judges.

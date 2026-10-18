@@ -167,3 +167,10 @@ vis-001 (an original landing page) currently has static structure and contrast c
 6. **Graders:** improve them through testing; no heavy up-front safeguards (WP1 scaled down).
 7. **Task difficulty:** follow mainstream benchmark forms; replace or add tasks where hardening does not work (WP5).
 8. **Aesthetics:** a vision-model judge, written as a judging skill (WP6).
+
+## Decisions (user, 2026-10-18)
+
+- [Task Set v2](../design/TASK_SET_V2.md) is approved as proposed, starting with R3 and R1.
+- Calibration models: deepseek-flash, glm-5.3, gpt-6-luna, step-5-preview and kimi-k3. Use kimi-k3 sparingly, because it costs more; qwen after 2026-10-19.
+- Aesthetics are judged by models. The user's own comments serve as a reference, because a single non-expert reviewer cannot supply expert labels.
+- Commits continue as usual; the user pushes by date.
