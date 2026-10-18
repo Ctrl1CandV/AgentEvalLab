@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "vis-001-original-landing",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "familyId": "vis-original-frontend",
   "capability": "aesthetics",
   "usage": "development",
@@ -37,7 +37,7 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "62e5efc488436f30084537e4cc9035865f36ac58f2b1cacfe232c74418976299"
+        "sha256": "61b780bc04ea732f49f7b5fbcf53fda55b542ef882b3b952f7f50ab4f390f95a"
       },
       {
         "path": "rubric.md",
@@ -49,7 +49,7 @@
       },
       {
         "path": "private/build_manifest.py",
-        "sha256": "cce5b28fbba95865c69be82ebcde723e63f8a04d9bacc05e3798355471105c2b"
+        "sha256": "5743d6339368a44c058f390dc89083353d82434e7440a0fe86a606f9c0bc7cb5"
       },
       {
         "path": "private/frontend/app.js",
@@ -65,7 +65,7 @@
       },
       {
         "path": "private/grader.py",
-        "sha256": "2928430a0f98862e7c14bfaab785c867e7247a1275f97d6dc5301e60908492a7"
+        "sha256": "2208586833971b58d3d2dffc09ef18010dfd925b06fac2cba2b73f460cee717a"
       },
       {
         "path": "private/human_eval_form.csv",
@@ -93,7 +93,7 @@
       },
       {
         "path": "private/verify_frontend.py",
-        "sha256": "eb68d5944a866345ece23da42ad290e513321721c26635d1989b606521d85b97"
+        "sha256": "daee33002639bfdfe47f68bf40b55d6f44c1770f2eb3ccbcc876fec2be0b6eb8"
       }
     ]
   },
@@ -152,7 +152,7 @@
   ],
   "grader": {
     "id": "vis001-structure",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

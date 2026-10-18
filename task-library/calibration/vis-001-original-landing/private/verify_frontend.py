@@ -21,30 +21,60 @@ CONTENT = json.load(open(os.path.join(PKG, "public", "content.json"), encoding="
 REF = os.path.join(HERE, "frontend")
 
 
+# Block-level elements separate text; inline elements (span, em, a, strong, ...) do not, as in a rendered page.
+BLOCK_TAGS = {"address", "article", "aside", "blockquote", "br", "dd", "div", "dl", "dt", "fieldset", "figcaption", "figure", "footer",
+              "form", "h1", "h2", "h3", "h4", "h5", "h6", "header", "hr", "legend", "li", "main", "nav", "ol", "p", "section", "table",
+              "td", "th", "tr", "ul", "option", "label", "button", "select", "textarea", "title", "script", "style"}
+
+
 class Doc(HTMLParser):
     def __init__(self):
-        super().__init__()
+        super().__init__(convert_charrefs=True)
         self.roles = {}
         self.labels_for = set()
         self.controls = []
         self.has_legend = False
         self.text = []
+        self.flow = []
+        self.label_depth = 0
+        self.skip = 0
 
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
         if "data-role" in a:
             self.roles[a["data-role"]] = self.roles.get(a["data-role"], 0) + 1
-        if tag == "label" and a.get("for"):
-            self.labels_for.add(a["for"])
+        if tag == "label":
+            self.label_depth += 1
+            if a.get("for"):
+                self.labels_for.add(a["for"])
         if tag == "legend":
             self.has_legend = True
+        if tag in ("script", "style"):
+            self.skip += 1
+        if tag in BLOCK_TAGS:
+            self.flow.append(" | ")
         if tag in ("input", "select", "textarea"):
-            self.controls.append({"tag": tag, "id": a.get("id"), "name": a.get("name"),
-                                   "type": a.get("type"), "required": "required" in a})
+            # A control inside a <label> is associated with it, as the instruction allows ("or a wrapping label").
+            self.controls.append({"tag": tag, "id": a.get("id"), "name": a.get("name"), "type": a.get("type"),
+                                   "wrapped": self.label_depth > 0})
+
+    def handle_endtag(self, tag):
+        if tag == "label" and self.label_depth:
+            self.label_depth -= 1
+        if tag in ("script", "style") and self.skip:
+            self.skip -= 1
+        if tag in BLOCK_TAGS:
+            self.flow.append(" | ")
 
     def handle_data(self, data):
         if data.strip():
             self.text.append(data.strip())
+        if not self.skip:
+            self.flow.append(data)
+
+    def rendered_text(self):
+        """Text as a page shows it: inline pieces joined, entities decoded, whitespace collapsed; blocks separated."""
+        return re.sub(r"\s+", " ", "".join(self.flow))
 
 
 def parse_dir(d):
@@ -52,6 +82,7 @@ def parse_dir(d):
     doc = Doc()
     doc.feed(html)
     doc.fulltext = "\n".join(doc.text)
+    doc.rendered = doc.rendered_text()
     doc.html = html
     css = open(os.path.join(d, "style.css"), encoding="utf-8").read() if os.path.isfile(os.path.join(d, "style.css")) else ""
     js = open(os.path.join(d, "app.js"), encoding="utf-8").read() if os.path.isfile(os.path.join(d, "app.js")) else ""
@@ -95,7 +126,10 @@ def check(d):
         required_copy += [f["title"], f["body"]]
     required_copy += [CONTENT["form"]["legend"], CONTENT["form"]["states"]["empty"],
                       CONTENT["form"]["states"]["error"], CONTENT["form"]["states"]["success"]]
-    hay = doc.html + "\n" + js + "\n" + doc.fulltext
+    # Copy counts when it appears as rendered text (inline markup and character entities allowed), anywhere in the raw
+    # HTML (for example a data-* attribute that a script displays), or in app.js; 0.3.0 required it contiguous in the
+    # raw HTML or in newline-joined text fragments.
+    hay = doc.rendered + "\n" + doc.html + "\n" + js
     miss_copy = [c for c in required_copy if c not in hay]
     res["all fixed copy present"] = (not miss_copy, f"missing {miss_copy[:3]}" if miss_copy else "ok")
     # Form fields and label associations
@@ -104,12 +138,15 @@ def check(d):
         by_name.setdefault(c["name"], []).append(c)
     ok_fields = True
     detail = []
+    labelled = lambda control: control.get("wrapped") or (control.get("id") is not None and control.get("id") in doc.labels_for)
+    # Names and types come from content.json. "Required" is behaviour, checked through the error state; the HTML
+    # required attribute is one way to implement it, not a stated requirement, so 0.3.1 no longer demands it.
     for fname, ftype in [("title", "text"), ("email", "email")]:
         c = (by_name.get(fname) or [{}])[0]
-        if c.get("type") != ftype or not c.get("required") or c.get("id") not in doc.labels_for:
+        if (c.get("type") or "text") != ftype or not labelled(c):
             ok_fields = False; detail.append(fname)
     sel = (by_name.get("district") or [{}])[0]
-    if sel.get("tag") != "select" or not sel.get("required") or sel.get("id") not in doc.labels_for:
+    if sel.get("tag") != "select" or not labelled(sel):
         ok_fields = False; detail.append("district")
     if not by_name.get("condition") or not doc.has_legend:
         ok_fields = False; detail.append("condition/legend")
@@ -141,16 +178,25 @@ def _mutate(src, dst, kind):
         feats = re.findall(r'<li data-role="feature">.*?</li>', html, re.S)
         for f in feats[1:]:
             html = html.replace(f, "", 1)
-        open(ip, "w", encoding="utf-8").write(html)
     elif kind == "low_contrast":
         css = css.replace("--muted:#555555", "--muted:#CCCCCC")
-        open(cp, "w", encoding="utf-8").write(css)
     elif kind == "unlabeled":
         html = html.replace('<label for="f-email">Email</label>', "<span>Email</span>")
-        open(ip, "w", encoding="utf-8").write(html)
     elif kind == "copy_changed":
         html = html.replace(CONTENT["hero"]["cta_primary"], "Sign up now")
-        open(ip, "w", encoding="utf-8").write(html)
+    elif kind == "inline_heading":
+        html = html.replace("meet its next reader.</h1>", 'meet its <span class="mark">next\n   reader</span>.</h1>')
+    elif kind == "linked_footer":
+        html = re.sub(r"(<footer[^>]*>).*?(</footer>)", lambda m: m.group(1) + '<p>&#169; 2026 BookLoop &#183; <a href="#r">Rules</a> &middot; '
+                      '<a href="#p">Privacy</a> · <a href="#c">Contact</a></p>' + m.group(2), html, flags=re.S)
+    elif kind == "wrapping_label":
+        html = html.replace('<label for="f-email">Email</label>', "").replace('<input id="f-email" name="email" type="email" required />',
+                                                                            '<label>Email <input name="email" type="email" required /></label>')
+    elif kind == "no_required_attribute":
+        html = html.replace(" required", "")
+    # Write both files once, whatever the kind, so no branch can skip its write.
+    open(ip, "w", encoding="utf-8").write(html)
+    open(cp, "w", encoding="utf-8").write(css)
     return dst
 
 
@@ -175,8 +221,21 @@ def self_calibrate():
             allok &= rejected
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
+    # Legitimate ways of writing the page that must pass (0.3.1): inline markup inside fixed copy, a footer split into
+    # links with character entities, a wrapping label without for/id, and required fields without the HTML attribute.
+    for kind in ("inline_heading", "linked_footer", "wrapping_label", "no_required_attribute"):
+        tmp = tempfile.mkdtemp(prefix="vis001_")
+        try:
+            d = os.path.join(tmp, "fe")
+            _mutate(REF, d, kind)
+            r = check(d)
+            accepted = all(ok for ok, _ in r.values())
+            print(f"   [{'PASS' if accepted else 'FAIL'}] variant {kind} accepted" + ("" if accepted else f": {[k for k, (ok, _) in r.items() if not ok]}"))
+            allok &= accepted
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
     print("RESULT:", "PASS" if allok else "FAIL")
-    print("Note: responsive layout, long content, visual quality, and full axe-core checks remain blocked pending a rendering backend and human review (see rubric/calibration).")
+    print("Note: rendered checks and visual quality belong to the judging step (scripts/judge-visual.ts), not to these browser-free checks.")
     return 0 if allok else 1
 
 

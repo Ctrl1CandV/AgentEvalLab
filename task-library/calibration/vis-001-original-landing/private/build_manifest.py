@@ -18,14 +18,14 @@ def main():
         str(path.relative_to(ROOT)) for path in (ROOT / "private").rglob("*")
         if path.is_file() and "__pycache__" not in path.parts and not path.name.endswith(".pyc"))
     manifest = {
-        "schemaVersion": 1, "id": "vis-001-original-landing", "version": "0.3.0", "familyId": "vis-original-frontend", "capability": "aesthetics", "usage": "development",
+        "schemaVersion": 1, "id": "vis-001-original-landing", "version": "0.3.1", "familyId": "vis-original-frontend", "capability": "aesthetics", "usage": "development",
         "source": {"kind": "original-design", "references": ["https://www.w3.org/TR/WCAG22/", "docs/design/TASK_SET_V2.md"]},
         "license": {"taskText": "Original project-authored task material; no third-party text is copied.", "thirdPartyContent": []},
         "entryPoint": {"instruction": "instruction.md"},
         "files": {"public": [{"path": path, "sha256": digest(path)} for path in PUBLIC], "trusted": [{"path": path, "sha256": digest(path)} for path in trusted]},
         "requirements": [{"id": requirement, "critical": True, "introducedAt": "vis-001-original-landing 0.3.0", "checkIds": [check]} for requirement, check in CHECKS],
         "toolProfiles": ["workspace-basic"],
-        "grader": {"id": "vis001-structure", "version": "1.0.0", "entryPoint": "private/grader.py", "executable": "python3",
+        "grader": {"id": "vis001-structure", "version": "1.0.1", "entryPoint": "private/grader.py", "executable": "python3",
                    "args": ["{entryPoint}", "--request", "{request}", "--result", "{result}"]},
         "environment": {"runtime": "Python 3.13", "dependencies": "Python standard library; no network", "network": False,
                         "runtimeCheck": {"executable": "python3", "args": ["--version"], "expectedSubstring": "Python 3.13."}},

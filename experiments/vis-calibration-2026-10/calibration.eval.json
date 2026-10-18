@@ -57,7 +57,7 @@
     {
       "id": "vis-001",
       "packagePath": "task-library/calibration/vis-001-original-landing",
-      "packageManifestSha256": "cc54542959f1ba3aa320c3969e1bdf5fd9729adec9148f044f56991a21679281",
+      "packageManifestSha256": "23f90b7e7935e61f498c8dc7cb7a1ac0a7e4bb704999f8f2f871dfd38ec3cea4",
       "input": {
         "prompt": "Build the page as described above. Write index.html, style.css, app.js and README.md at the workspace root, check them, and end with a short summary."
       },

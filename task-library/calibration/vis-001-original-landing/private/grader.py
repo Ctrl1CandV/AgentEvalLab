@@ -13,8 +13,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import verify_frontend  # noqa: E402
 
 TASK_ID = "vis-001-original-landing"
-TASK_VERSION = "0.3.0"
-GRADER_VERSION = "1.0.0"
+TASK_VERSION = "0.3.1"
+GRADER_VERSION = "1.0.1"
 CHECKS = [("semantic structure and roles", "roles", "REQ-ROLES"), ("at least three features", "features", "REQ-FEATURES"),
           ("all fixed copy present", "copy", "REQ-COPY"), ("form fields and label associations", "form", "REQ-FORM"),
           ("form states (empty/error/success)", "states", "REQ-STATES"), ("contrast (WCAG 2.2)", "contrast", "REQ-CONTRAST")]

@@ -15,3 +15,14 @@ The package gains a manifest and a grader in the harness protocol (`private/grad
 - **Visual quality.** Visual quality is no longer human-reviewed. A judging step renders each submission in headless Chromium (playwright-core 1.55.0, Chromium revision 1187, in the bwrap sandbox), and vision-model judges compare it pairwise with anchor designs, following `private/judge/SKILL.md`. The instruction's acceptance section says so.
 
 Self-calibration (`python3 private/grader.py --self-calibrate`, 3/3) checks three things: the reference frontend passes, the targeted mutations are rejected, and a submission without index.html fails every check.
+
+## Version 0.3.1 (2026-10-18)
+
+The first model run (`experiments/vis-calibration-2026-10`) exposed three grader defects. Each failed submissions that met the instruction:
+
+- **Copy split by inline markup.** The copy check needed each fixed string contiguous in the raw HTML or in text fragments joined by newlines. A heading such as `Let a finished book meet its <span>next reader</span>.` failed, and so did a footer whose Rules, Privacy and Contact are links, or which uses character entities (`&#169;`, `&#183;`). Copy is now matched against the text as a page renders it: inline pieces joined, entities decoded, whitespace collapsed, and blocks separated. The raw HTML (where a script may read state messages from `data-*` attributes) and app.js are still searched too.
+- **Wrapping labels ignored.** The instruction allows "label[for] or a wrapping label", but only `label[for]` was recognised. A control inside a `<label>` now counts as labelled.
+- **HTML `required` attribute demanded.** "Required" in the instruction describes behaviour, and the form's error state, which the renderer checks, tests that behaviour. The attribute is one implementation and is no longer demanded. Field names and types, given in content.json, are still checked.
+
+Self-calibration adds four variants that must pass: an inline heading, a linked footer with entities, a wrapping label, and no `required` attributes. A misplaced write in the mutation helper had left some mutations unapplied while they were being added; it now writes both files once for every kind. Result: 3/3; see `logs/self-calibration-0.3.1.log`.
+
