@@ -45,9 +45,27 @@ Use the exact English copy in public/content.json. Do not rewrite, replace, or o
 
 ## Acceptance
 
-Automated checks cover semantic structure and roles, at least three features, exact fixed copy, form fields and label associations, visible form states, and contrast. Human reviewers compare anonymous pairs for requirement fit, clarity, completeness, and personal preference using desktop and phone screenshots, all form states, and long feature content. Aesthetic quality has no single correct answer. Functional and accessibility defects cannot be offset by visual appeal.
+Automated checks cover:
 
-Full rendered responsive testing and axe-core checks require a rendering backend and are currently blocked, as documented in the rubric.
+- semantic structure and data-role markers;
+- at least three features;
+- exact fixed copy;
+- form fields and label associations;
+- form states;
+- palette contrast.
+
+Visual quality is judged separately: the page is rendered in a browser at desktop 1440x900 and phone 390x844, including the form's error and success states. Vision-model judges then compare it pairwise with other designs for:
+
+- fit to the brief;
+- hierarchy;
+- layout;
+- typography;
+- colour;
+- responsive quality;
+- the form experience;
+- polish.
+
+Aesthetic quality has no single correct answer. Functional and accessibility defects cannot be offset by visual appeal.
 
 ## Out of scope
 

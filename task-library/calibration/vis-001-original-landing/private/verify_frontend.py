@@ -82,7 +82,9 @@ def check(d):
     doc, css, js = parse_dir(d)
     pal = palette(css)
     res = {}
-    need_roles = ["nav", "hero", "hero-h1", "cta-primary", "features", "feature-list", "signup-form", "form-state", "footer"]
+    # The markers named in the instruction; "feature" is counted separately below. Version 0.2.0 also required a
+    # "feature-list" marker that no public material names, which 0.3.0 removed as a grader defect.
+    need_roles = ["nav", "hero", "hero-h1", "cta-primary", "features", "signup-form", "form-state", "footer"]
     miss = [r for r in need_roles if r not in doc.roles]
     res["semantic structure and roles"] = (not miss, f"missing {miss}" if miss else "ok")
     res["at least three features"] = (doc.roles.get("feature", 0) >= 3, f"feature={doc.roles.get('feature',0)}")

@@ -1,0 +1,20 @@
+Task vis-001-original-landing version 0.3.0 (grader 1.0.0); date 2026-10-18; Python 3.13.15; host Linux (WSL2 Ubuntu 22.04)
+No model API or credentials were used.
+
+$ python3 private/grader.py --self-calibrate
+== vis-001 structure and accessibility self-calibration (browser-free checks) ==
+-- reference frontend: 6/6 passed
+   [PASS] semantic structure and roles: ok
+   [PASS] at least three features: feature=3
+   [PASS] all fixed copy present: ok
+   [PASS] form fields and label associations: ok
+   [PASS] form states (empty/error/success): app.js must switch all three states and include a form-state element
+   [PASS] contrast (WCAG 2.2): ok
+   [PASS] mutation missing_features → at least three features rejected as expected
+   [PASS] mutation low_contrast → contrast (WCAG 2.2) rejected as expected
+   [PASS] mutation unlabeled → form fields and label associations rejected as expected
+   [PASS] mutation copy_changed → all fixed copy present rejected as expected
+RESULT: PASS
+Note: responsive layout, long content, visual quality, and full axe-core checks remain blocked pending a rendering backend and human review (see rubric/calibration).
+RESULT: PASS (3/3)
+exit=0

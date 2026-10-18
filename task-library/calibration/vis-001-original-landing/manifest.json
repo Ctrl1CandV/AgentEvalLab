@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "id": "vis-001-original-landing",
+  "version": "0.3.0",
+  "familyId": "vis-original-frontend",
+  "capability": "aesthetics",
+  "usage": "development",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "https://www.w3.org/TR/WCAG22/",
+      "docs/design/TASK_SET_V2.md"
+    ]
+  },
+  "license": {
+    "taskText": "Original project-authored task material; no third-party text is copied.",
+    "thirdPartyContent": []
+  },
+  "entryPoint": {
+    "instruction": "instruction.md"
+  },
+  "files": {
+    "public": [
+      {
+        "path": "instruction.md",
+        "sha256": "7bedc2ae58530db00ac77c2e154e318efd2129ab3e527ebd10ba91dcf7d9e2b1"
+      },
+      {
+        "path": "public/content.json",
+        "sha256": "a22d452e045139356ad8366f507ae8477ffda08fdabb7f215d68d6efcd6036b3"
+      },
+      {
+        "path": "public/content_long.json",
+        "sha256": "e2576c515fb635ea72e255384d870d6f9619f30f297de72aa490f7630dd5a382"
+      }
+    ],
+    "trusted": [
+      {
+        "path": "calibration.md",
+        "sha256": "62e5efc488436f30084537e4cc9035865f36ac58f2b1cacfe232c74418976299"
+      },
+      {
+        "path": "rubric.md",
+        "sha256": "d46aa96cdabd395b442d7d9699d56da51c422f9c2e0cb095524082871400715e"
+      },
+      {
+        "path": "environment/README.md",
+        "sha256": "07d705258f0397698e0bccfe95d9edf0a4f35ddbe422f16a729065dfd1ed6fc5"
+      },
+      {
+        "path": "private/build_manifest.py",
+        "sha256": "cce5b28fbba95865c69be82ebcde723e63f8a04d9bacc05e3798355471105c2b"
+      },
+      {
+        "path": "private/frontend/app.js",
+        "sha256": "9992eb32057a1fadc047ee70129e07777e2c38d534f57a7cee165c48772f8f75"
+      },
+      {
+        "path": "private/frontend/index.html",
+        "sha256": "8369ba8abec6e0fd986565bcc8534f45500d299dd3138e72a7ce89fe7b2bce5f"
+      },
+      {
+        "path": "private/frontend/style.css",
+        "sha256": "a89ce1d037912e673bdb50e2a04fcf3c62e94b06f5e08257aa189ad35ab14f66"
+      },
+      {
+        "path": "private/grader.py",
+        "sha256": "2928430a0f98862e7c14bfaab785c867e7247a1275f97d6dc5301e60908492a7"
+      },
+      {
+        "path": "private/human_eval_form.csv",
+        "sha256": "38ff8d4a8c74dce685c9dd8e579768b3209fa2374db3831f01767beeeebb4812"
+      },
+      {
+        "path": "private/human_eval_form.md",
+        "sha256": "4b8cdafa68d51b6181a37f2557ec61c5b9b5f2f9b2d17c5e525a50f430503ec8"
+      },
+      {
+        "path": "private/judge/SKILL.md",
+        "sha256": "eb9cd0e07ec7f97d8414785c227171dc8fcc32377d0479e9c1eb0724cff3fb84"
+      },
+      {
+        "path": "private/judge/anchors/README.md",
+        "sha256": "30967e778ac7a6f82c9a00d81810714e85d504a7edcf0eee75df84574c2a5033"
+      },
+      {
+        "path": "private/judge/anchors/plain/app.js",
+        "sha256": "9992eb32057a1fadc047ee70129e07777e2c38d534f57a7cee165c48772f8f75"
+      },
+      {
+        "path": "private/judge/anchors/plain/index.html",
+        "sha256": "0af31f549d0f12eb86c5b6f428a8ae2c5b0800ea2ffd1452889862906517f9dc"
+      },
+      {
+        "path": "private/verify_frontend.py",
+        "sha256": "eb68d5944a866345ece23da42ad290e513321721c26635d1989b606521d85b97"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "REQ-ROLES",
+      "critical": true,
+      "introducedAt": "vis-001-original-landing 0.3.0",
+      "checkIds": [
+        "roles"
+      ]
+    },
+    {
+      "id": "REQ-FEATURES",
+      "critical": true,
+      "introducedAt": "vis-001-original-landing 0.3.0",
+      "checkIds": [
+        "features"
+      ]
+    },
+    {
+      "id": "REQ-COPY",
+      "critical": true,
+      "introducedAt": "vis-001-original-landing 0.3.0",
+      "checkIds": [
+        "copy"
+      ]
+    },
+    {
+      "id": "REQ-FORM",
+      "critical": true,
+      "introducedAt": "vis-001-original-landing 0.3.0",
+      "checkIds": [
+        "form"
+      ]
+    },
+    {
+      "id": "REQ-STATES",
+      "critical": true,
+      "introducedAt": "vis-001-original-landing 0.3.0",
+      "checkIds": [
+        "states"
+      ]
+    },
+    {
+      "id": "REQ-CONTRAST",
+      "critical": true,
+      "introducedAt": "vis-001-original-landing 0.3.0",
+      "checkIds": [
+        "contrast"
+      ]
+    }
+  ],
+  "toolProfiles": [
+    "workspace-basic"
+  ],
+  "grader": {
+    "id": "vis001-structure",
+    "version": "1.0.0",
+    "entryPoint": "private/grader.py",
+    "executable": "python3",
+    "args": [
+      "{entryPoint}",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ]
+  },
+  "environment": {
+    "runtime": "Python 3.13",
+    "dependencies": "Python standard library; no network",
+    "network": false,
+    "runtimeCheck": {
+      "executable": "python3",
+      "args": [
+        "--version"
+      ],
+      "expectedSubstring": "Python 3.13."
+    }
+  }
+}

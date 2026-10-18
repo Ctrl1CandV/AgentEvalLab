@@ -1,7 +1,7 @@
 {
   "id": "vis-001-original-landing",
   "family_id": "vis-original-frontend",
-  "draft_version": "0.2.0",
+  "draft_version": "0.3.0",
   "capability_tags": {
     "primary": "aesthetics",
     "sub": [
