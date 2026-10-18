@@ -20,3 +20,13 @@ Each trial gets 300,000 tokens, 60 responses, 80 tool calls and 30 minutes, stat
 ```bash
 npm run harness -- --plan experiments/t1-calibration-2026-10/calibration.eval.json
 ```
+
+## Runs
+
+| Run | Plan | Levels used |
+| --- | --- | --- |
+| `e239c8f3` | `calibration.eval.json`, `maxFiles` 50 | L1 to L3. Every L4 trial ran, then failed artifact export (`ARTIFACT_FILE_LIMIT`), so the run was stopped. |
+| L4 rerun | `l4-rerun.eval.json`, `maxFiles` 500 | L4 |
+
+The first plan copied artifact limits of 50 files from the R3 plan, below the 53 files an L4 snapshot projects. This was a plan error, not a model or grader error. Preflight now refuses limits that cannot hold a trial's own starting files (`PLAN_ARTIFACT_LIMIT_TOO_LOW`).
+
