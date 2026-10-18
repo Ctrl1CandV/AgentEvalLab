@@ -27,3 +27,7 @@ Grader 1.2.0 parses the final answer in one of three ways:
 - **unparsed:** anything else, including prose around a fence or several fences.
 
 Content checks run on strict and recovered answers. `answer-format` passes only for strict answers, and its evidence records the parse mode. The manifest's new `scoring` block declares a format penalty of 0.2, so the harness scores a recovered trial at 80% of its content score. The score is now partial credit: the fraction of content checks passed. This follows the user's decision of 2026-10-16 after the pilot, in which glm-5.3 fenced all three rsn-002 answers; all three pass every content check under 1.2.0. Self-calibration adds parse and format probes; see `logs/self-calibration-0.5.0.log`.
+
+## Version 0.5.1 (2026-10-18)
+
+Grader 1.2.1 widens recovery, by the user's rule that a format slip costs 20% rather than the whole score. A first R3 smoke test showed glm-5.3 writing a short explanation before a correct JSON answer; the 0.5.0 rule recovered only an enclosing fence, so such an answer scored 0. An answer that is not one JSON object is now recovered when exactly one JSON object can be found in it: the only fenced block that holds one, or else the only top-level object in surrounding prose. With no candidate, or with several, the answer stays unparsed, so the grader never chooses between candidate answers. Self-calibration adds probes for prose around one fence, prose around one object, two fenced objects, two bare objects and no object; see `logs/self-calibration-0.5.1.log`.

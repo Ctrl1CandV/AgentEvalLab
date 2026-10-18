@@ -13,20 +13,20 @@ sys.path.insert(0, HERE)
 import verify  # noqa: E402
 
 TASK_ID = "rsn-001-shift-scheduling"
-TASK_VERSION = "0.5.0"
-GRADER_VERSION = "1.2.0"
+TASK_VERSION = "0.5.1"
+GRADER_VERSION = "1.2.1"
 CHECKS = [("A", "REQ-A"), ("B", "REQ-B"), ("C", "REQ-C")]
 
 
-FENCED_ANSWER = re.compile(r"\s*```(?:json)?[ \t]*\r?\n(.*?)\r?\n```\s*", re.S | re.I)
+FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)
 
 
 def parse_answer(text):
     """Parse the final answer and say how it parsed.
 
-    ("strict", object) when the text is one JSON object, as instructed; ("recovered", object) when it is one only
-    after removing exactly one enclosing Markdown code fence, optionally labelled json; ("unparsed", None) otherwise.
-    Nothing else is recovered: prose around the answer or several fences still fail.
+    ("strict", object) when the text is one JSON object, as instructed. ("recovered", object) when exactly one JSON
+    object can be found: the only fenced block that holds one, or else the only top-level object in surrounding prose.
+    ("unparsed", None) when there is none or several, so the grader never chooses between candidate answers.
     """
     def json_object(value):
         try:
@@ -39,12 +39,19 @@ def parse_answer(text):
     answer = json_object(text)
     if answer is not None:
         return "strict", answer
-    fenced = FENCED_ANSWER.fullmatch(text)
-    if fenced and "```" not in fenced.group(1):
-        answer = json_object(fenced.group(1))
-        if answer is not None:
-            return "recovered", answer
-    return "unparsed", None
+    fenced = [found for found in (json_object(block) for block in FENCED_BLOCK.findall(text)) if found is not None]
+    if fenced:
+        return ("recovered", fenced[0]) if len(fenced) == 1 else ("unparsed", None)
+    decoder, objects, index = json.JSONDecoder(), [], 0
+    while (start := text.find("{", index)) >= 0:
+        try:
+            value, index = decoder.raw_decode(text, start)
+        except json.JSONDecodeError:
+            index = start + 1
+            continue
+        if isinstance(value, dict):
+            objects.append(value)
+    return ("recovered", objects[0]) if len(objects) == 1 else ("unparsed", None)
 
 
 def load_answer(path):
@@ -137,8 +144,11 @@ def self_calibrate():
         ("parse-strict-object", parse_answer(reference_text) == ("strict", reference_object)),
         ("parse-recovers-one-json-fence", parse_answer("```json\n" + reference_text + "\n```\n") == ("recovered", reference_object)),
         ("parse-recovers-one-unlabelled-fence", parse_answer("```\n" + reference_text + "\n```") == ("recovered", reference_object)),
-        ("parse-rejects-prose-around-fence", parse_answer("Answer:\n```json\n" + reference_text + "\n```")[0] == "unparsed"),
-        ("parse-rejects-two-fences", parse_answer("```json\n{}\n```\n```json\n" + reference_text + "\n```")[0] == "unparsed"),
+        ("parse-recovers-prose-around-one-fence", parse_answer("Answer:\n```json\n" + reference_text + "\n```\nDone.") == ("recovered", reference_object)),
+        ("parse-recovers-prose-around-one-object", parse_answer("I solved it as follows.\n\n" + reference_text + "\n") == ("recovered", reference_object)),
+        ("parse-rejects-two-fenced-objects", parse_answer("```json\n{\"draft\": 1}\n```\n```json\n" + reference_text + "\n```")[0] == "unparsed"),
+        ("parse-rejects-two-bare-objects", parse_answer("Draft: {\"draft\": 1}\nFinal: " + reference_text)[0] == "unparsed"),
+        ("parse-rejects-no-object", parse_answer("I could not solve it.")[0] == "unparsed"),
         ("format-check-accepts-strict", format_check("strict")["status"] == "pass"),
         ("format-check-fails-recovered", format_check("recovered")["status"] == "fail"),
         ("format-check-rejects-unparsed", format_check("unparsed")["status"] == "fail"),

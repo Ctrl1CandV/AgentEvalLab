@@ -35,7 +35,7 @@
     {
       "id": "rsn001-schedule",
       "packagePath": "task-library/calibration/rsn-001-shift-scheduling",
-      "packageManifestSha256": "63acde64bac2fa06b5d7d61e93cda1c58ee14d29ccd07c7b11f7a626200ea29a",
+      "packageManifestSha256": "90cf89bfdce39f91c17b71104b1e2db8ce309d493a60586793e7ce2dc38f9bbc",
       "input": {
         "prompt": "Answer A, B, and C using the required JSON response only."
       },

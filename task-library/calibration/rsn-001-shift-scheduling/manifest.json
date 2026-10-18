@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "rsn-001-shift-scheduling",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "familyId": "rsn-constraint-csp",
   "capability": "reasoning",
   "usage": "development",
@@ -33,7 +33,7 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "c0a5124bd0c131e0d54426c2c47f49f266d45a9a0789092c90eb5b6801dabc44"
+        "sha256": "c5114261a2405e7cca2b665f7c47687078f2a6d07d516ddf019bcb3e0269d396"
       },
       {
         "path": "environment/README.md",
@@ -41,11 +41,11 @@
       },
       {
         "path": "metadata.json",
-        "sha256": "3e15da5c5848f7a6ef2f934619ef71c14df5f8154712d28ba41bfd6427e822df"
+        "sha256": "f75058df651c0e965a7f521495d29c6d74c40804d60e705b4672bd5c73426a71"
       },
       {
         "path": "rubric.md",
-        "sha256": "d68b17af215ca0c6eca11ecf3278ddae8e6e9c227ab397cc91038fba0f8f0020"
+        "sha256": "a7e4995b9ed7598b5ae90b88b964f22224eb304ca8030dae7503ecf372b81cef"
       },
       {
         "path": "logs/acceptance-self-calibration.log",
@@ -57,7 +57,7 @@
       },
       {
         "path": "private/acceptance.py",
-        "sha256": "8f7f7850a7671c2d2598dbf56f928c94d4b87939338d92eed44a70e3006c968c"
+        "sha256": "03a7d53ae4b32f1860b76bc4265cab11efd4057a7d80f60967ff11cfa96708d6"
       },
       {
         "path": "private/negatives.json",
@@ -116,7 +116,7 @@
   ],
   "grader": {
     "id": "rsn001-acceptance",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "entryPoint": "private/acceptance.py",
     "executable": "python3",
     "args": [

@@ -43,7 +43,7 @@
     {
       "id": "rsn001-schedule",
       "packagePath": "task-library/calibration/rsn-001-shift-scheduling",
-      "packageManifestSha256": "63acde64bac2fa06b5d7d61e93cda1c58ee14d29ccd07c7b11f7a626200ea29a",
+      "packageManifestSha256": "90cf89bfdce39f91c17b71104b1e2db8ce309d493a60586793e7ce2dc38f9bbc",
       "input": {
         "prompt": "Read the files you need with the tools, then reply with only the required JSON object for A, B, and C as your final message."
       },
@@ -58,7 +58,7 @@
     {
       "id": "rsn002-derivation",
       "packagePath": "task-library/calibration/rsn-002-derivation-check",
-      "packageManifestSha256": "3f806db3ed39b8a7e433af2dd14dc6b1d0e4f58e61b553ab0c37688f06c0ab60",
+      "packageManifestSha256": "17d5c41af753fe2b3caa03d717769f86d9f40a8e19793b259556bf185f205aee",
       "input": {
         "prompt": "Read public/samples.json with the tools, then reply with only the required JSON object as your final message."
       },
