@@ -1,4 +1,5 @@
 import { inspectPackage, type PackageDescriptor } from "./manifest.js";
+import { resolveCaseItems } from "./items.js";
 import { command } from "../command.js";
 import { sandboxAvailable } from "../sandbox.js";
 import type { EvaluationPlan } from "./types.js";
@@ -55,6 +56,7 @@ export async function preflightPlan(plan: EvaluationPlan): Promise<Map<string, P
     if (manifest?.grader.requiresTrace && !descriptor.manifest?.grader.answerSource) {
       throw new Error("PACKAGE_TRACE_GRADER_REQUIRES_ANSWER_SOURCE");
     }
+    resolveCaseItems(item, descriptor);
     packages.set(item.id, descriptor);
   }
   return packages;

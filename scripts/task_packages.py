@@ -60,6 +60,8 @@ def manifest_entries(manifest):
     entries = manifest["files"]["public"] + manifest["files"]["trusted"]
     for stage in manifest.get("stages", []):
         entries = entries + stage["files"]
+    for item in manifest.get("items", []):
+        entries = entries + item["files"]
     return entries
 
 
@@ -83,10 +85,12 @@ def check_package(package):
     declared_public = sorted(e["path"] for e in manifest["files"]["public"] if e["path"].startswith("public/"))
     declared_private = sorted(e["path"] for e in manifest["files"]["trusted"] if e["path"].startswith("private/"))
     declared_stages = sorted(e["path"] for stage in manifest.get("stages", []) for e in stage["files"])
+    declared_items = sorted(e["path"] for item in manifest.get("items", []) for e in item["files"])
     for label, declared, actual in (
         ("public", declared_public, list_files(package, "public")),
         ("private", declared_private, list_files(package, "private", skip_python_caches=True)),
         ("stages", declared_stages, list_files(package, "stages")),
+        ("items", declared_items, list_files(package, "items")),
     ):
         for path in sorted(set(actual) - set(declared)):
             problems.append("undeclared %s file: %s" % (label, path))

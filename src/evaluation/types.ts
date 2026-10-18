@@ -26,7 +26,14 @@ export interface EvaluationCase {
   readOnly?: boolean;
   toolProfile?: ToolProfile;
   interactionClass?: InteractionClass;
+  /**
+   * For a package with generated items (Task Set v2): which items to run, one trial per item. "all" takes every item,
+   * a list names items, and { levels } takes every item of those levels. Required for item packages.
+   */
+  items?: CaseItems;
 }
+
+export type CaseItems = "all" | string[] | { levels: string[] };
 
 export interface EvaluationPlan {
   /** Omitted plans use the original single-run schema; version 3 requires pinned task manifests and a tool-result limit. */
@@ -165,6 +172,9 @@ export interface TrialRecord {
   toolTrace?: { path: string; bytes: number; sha256: string; truncated: boolean } | null;
   /** 1-based repetition of this model and case within the plan. */
   repetition?: number;
+  /** The generated item this trial received, and its difficulty level (item packages only). */
+  itemId?: string;
+  itemLevel?: string;
   /** Earlier trial of the same model, case and repetition that this one replaces after a resumed batch. */
   supersedes?: string | null;
 }

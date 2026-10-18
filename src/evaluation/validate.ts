@@ -3,6 +3,7 @@ import { validateBudget, parseModel } from "../config.js";
 import { thinkingLevels } from "../types.js";
 import { validateBatchPolicy } from "./batch.js";
 import { validReminderThresholds } from "../harness/budget-notice.js";
+import { validCaseItems } from "./items.js";
 import { lookupModelConfig } from "../providers.js";
 import { resolveModel } from "../harness/pi.js";
 import { defaultArtifactLimits } from "./artifacts.js";
@@ -85,6 +86,8 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
     if (typeof input.prompt !== "string" || !input.prompt.trim()) throw new Error("INVALID_INPUT");
     if (input.systemPrompt !== undefined && typeof input.systemPrompt !== "string") throw new Error("INVALID_SYSTEM_PROMPT");
     if (item.readOnly !== undefined && typeof item.readOnly !== "boolean") throw new Error("INVALID_READ_ONLY");
+    if (item.items !== undefined && (!validCaseItems(item.items) || typeof item.packagePath !== "string" ||
+        object(item.evaluator).kind !== "task-package" || (plan.execution as { kind?: unknown } | undefined)?.kind === "trajectory")) throw new Error("INVALID_CASE_ITEMS");
     if (item.toolProfile !== undefined && !["workspace-basic", "workspace-augmented", "doc-evidence"].includes(String(item.toolProfile))) throw new Error("INVALID_TOOL_PROFILE");
     if (item.toolProfile !== undefined && !plan.trustedLocalExecution) throw new Error("TRUST_REQUIRED");
     if (item.toolProfile === "doc-evidence" && typeof item.packagePath !== "string") throw new Error("DOC_EVIDENCE_PACKAGE_REQUIRED");

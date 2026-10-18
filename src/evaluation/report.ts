@@ -129,7 +129,7 @@ function peakContext(record: TrialRecord): number | null {
 export function taskResults(records: TrialRecord[], context: ReportContext) {
   const groups = new Map<string, TrialRecord[]>();
   for (const record of records) {
-    const key = `${modelKey(record.model)}\u0000${record.caseId}`;
+    const key = `${modelKey(record.model)}\u0000${record.caseId}\u0000${record.itemLevel ?? ""}`;
     groups.set(key, [...(groups.get(key) ?? []), record]);
   }
   return [...groups.values()].map(group => {
@@ -159,6 +159,9 @@ export function taskResults(records: TrialRecord[], context: ReportContext) {
       model: modelKey(first.model),
       label: modelLabel(first.model),
       caseId: first.caseId,
+      /** Difficulty level of the generated items in this row; null for packages without items. */
+      level: first.itemLevel ?? null,
+      items: new Set(group.map(record => record.itemId).filter(Boolean)).size,
       capability: context.capabilities[first.caseId] ?? "unspecified",
       trials: group.length,
       decided: decided.length,
@@ -192,30 +195,76 @@ export function taskResults(records: TrialRecord[], context: ReportContext) {
       },
       checks,
     };
-  }).sort((left, right) => left.caseId.localeCompare(right.caseId) || left.model.localeCompare(right.model));
+  }).sort((left, right) => left.caseId.localeCompare(right.caseId) || (left.level ?? "").localeCompare(right.level ?? "") || left.model.localeCompare(right.model));
 }
 
-/** Paired model differences in per-task mean score, within one capability at a time. */
-export function pairedComparisons(rows: ReturnType<typeof taskResults>, models: ModelSelection[]) {
-  const keys = models.map(modelKey);
-  const capabilities = [...new Set(rows.map(row => row.capability))].sort();
+/** Mean score per evaluation unit and model: a unit is a case, or one generated item of a case. */
+function unitScores(records: TrialRecord[]) {
+  const sums = new Map<string, { caseId: string; itemId: string | null; level: string | null; model: string; total: number; count: number }>();
+  for (const record of records) {
+    if (typeof record.evaluation.score !== "number") continue;
+    const unit = `${record.caseId}${record.itemId ? `@${record.itemId}` : ""}`;
+    const key = `${unit}\u0000${modelKey(record.model)}`;
+    const entry = sums.get(key) ?? { caseId: record.caseId, itemId: record.itemId ?? null, level: record.itemLevel ?? null, model: modelKey(record.model), total: 0, count: 0 };
+    entry.total += record.evaluation.score;
+    entry.count++;
+    sums.set(key, entry);
+  }
+  return [...sums.values()].map(entry => ({ ...entry, unit: `${entry.caseId}${entry.itemId ? `@${entry.itemId}` : ""}`, mean: entry.total / entry.count }));
+}
+
+/**
+ * Paired model differences in mean score within one capability. Units are paired across models: each case, or each
+ * generated item, contributes one difference, so the interval reflects variation between units.
+ */
+export function pairedComparisons(records: TrialRecord[], context: ReportContext) {
+  const keys = context.models.map(modelKey);
+  const scores = unitScores(records);
+  const capabilities = [...new Set(scores.map(score => context.capabilities[score.caseId] ?? "unspecified"))].sort();
   const comparisons = [];
   for (const capability of capabilities) {
-    const caseIds = [...new Set(rows.filter(row => row.capability === capability).map(row => row.caseId))];
+    const units = [...new Set(scores.filter(score => (context.capabilities[score.caseId] ?? "unspecified") === capability).map(score => score.unit))];
     for (let left = 0; left < keys.length; left++) {
       for (let right = left + 1; right < keys.length; right++) {
         const differences: number[] = [];
-        for (const caseId of caseIds) {
-          const a = rows.find(row => row.caseId === caseId && row.model === keys[left]);
-          const b = rows.find(row => row.caseId === caseId && row.model === keys[right]);
-          if (a?.meanScore != null && b?.meanScore != null) differences.push(a.meanScore - b.meanScore);
+        for (const unit of units) {
+          const a = scores.find(score => score.unit === unit && score.model === keys[left]);
+          const b = scores.find(score => score.unit === unit && score.model === keys[right]);
+          if (a && b) differences.push(a.mean - b.mean);
         }
-        comparisons.push({ capability, modelA: keys[left]!, modelB: keys[right]!, labelA: modelLabel(models[left]!), labelB: modelLabel(models[right]!),
+        comparisons.push({ capability, modelA: keys[left]!, modelB: keys[right]!, labelA: modelLabel(context.models[left]!), labelB: modelLabel(context.models[right]!),
           ...pairedDifference(differences) });
       }
     }
   }
   return comparisons;
+}
+
+/**
+ * Item statistics for generated families, per case and level: how many items every model solved fully, how many no
+ * model scored on, and how many separate the models. Only items scored for every model count.
+ */
+export function itemSummary(records: TrialRecord[], context: ReportContext) {
+  const keys = context.models.map(modelKey);
+  const scores = unitScores(records.filter(record => record.itemId));
+  const groups = new Map<string, { caseId: string; level: string | null; units: Set<string> }>();
+  for (const score of scores) {
+    const key = `${score.caseId}\u0000${score.level ?? ""}`;
+    const group = groups.get(key) ?? { caseId: score.caseId, level: score.level, units: new Set<string>() };
+    group.units.add(score.unit);
+    groups.set(key, group);
+  }
+  return [...groups.values()].map(group => {
+    let complete = 0, allSolved = 0, noneScored = 0;
+    for (const unit of group.units) {
+      const means = keys.map(model => scores.find(score => score.unit === unit && score.model === model)?.mean);
+      if (means.some(mean => mean === undefined)) continue;
+      complete++;
+      if (means.every(mean => mean === 1)) allSolved++;
+      else if (means.every(mean => mean === 0)) noneScored++;
+    }
+    return { caseId: group.caseId, level: group.level, items: group.units.size, scoredByAllModels: complete, allSolved, noneScored, separating: complete - allSolved - noneScored };
+  }).sort((left, right) => left.caseId.localeCompare(right.caseId) || (left.level ?? "").localeCompare(right.level ?? ""));
 }
 
 export function buildReport(records: TrialRecord[], context: ReportContext) {
@@ -230,7 +279,8 @@ export function buildReport(records: TrialRecord[], context: ReportContext) {
     ...(context.batch !== undefined ? { batch: context.batch } : {}),
     summary: summarize(records),
     byTask,
-    pairedComparisons: pairedComparisons(byTask, context.models),
+    pairedComparisons: pairedComparisons(records, context),
+    items: itemSummary(records, context),
     byInteractionClass: {
       candidate: summarizeInteractionClass(records, "candidate"),
       probe: summarizeInteractionClass(records, "probe"),
@@ -260,14 +310,14 @@ export function markdownReport(report: ReturnType<typeof buildReport>): string {
     `Score is partial credit: the fraction of content checks a trial passed, less the task's format penalty when the answer had to be recovered; its 95% interval is the Wilson interval of the score sum, which is conservative for scores in [0, 1]. A trial is resolved when every critical check passes; the resolved rate counts decided trials and uses a 95% Wilson interval, and pass@k and pass^k use k = ${report.repetitions}. Budget stops and timeouts are graded and count; infrastructure failures are skipped and excluded.`, "",
     "| Task | Capability | Model | Mean score | 95% interval | Resolved | Resolved/decided | 95% interval | pass@k | pass^k | Format failures | Review pending |",
     "| --- | --- | --- | ---: | --- | ---: | ---: | --- | ---: | ---: | ---: | ---: |",
-    ...report.byTask.map(row => `| ${row.caseId} | ${row.capability} | ${row.label} | ${percent(row.meanScore)} | ${interval(row.scoreInterval)} | ${percent(row.passRate)} | ${row.passes}/${row.decided} | ${interval(row.interval)} | ${percent(row.passAtK)} | ${percent(row.passHatK)} | ${row.malformedAnswers} | ${row.reviewPending} |`),
+    ...report.byTask.map(row => `| ${row.caseId}${row.level ? ` (${row.level}, ${row.items} items)` : ""} | ${row.capability} | ${row.label} | ${percent(row.meanScore)} | ${interval(row.scoreInterval)} | ${percent(row.passRate)} | ${row.passes}/${row.decided} | ${interval(row.interval)} | ${percent(row.passAtK)} | ${percent(row.passHatK)} | ${row.malformedAnswers} | ${row.reviewPending} |`),
     ""];
   const range = (value: { median: number | null; max: number | null; unknown: number }, scale = 1, digits = 0) =>
     value.median === null ? "unknown" : `${(value.median / scale).toFixed(digits)} / ${(value.max! / scale).toFixed(digits)}${value.unknown ? ` (+${value.unknown} unknown)` : ""}`;
   lines.push("## Usage by task", "", "Median / maximum per trial. Tokens are fixed units in thousands, without prices. Output is generated text, tool calls and reasoning. Input counts every context token each request processed, cached or not; whether input hits a cache depends on the endpoint, so cache reads are shown for information only. Peak context is the largest single request. Total = input + output. Tokens per resolved trial divides all tokens of the row by its resolved trials; efficiency is reported for information and never enters the score. Execution outcomes show how trials ended; budget stops such as MODEL_CALL_LIMIT, OUTPUT_TOKEN_LIMIT or TRIAL_TOKEN_LIMIT indicate a binding budget.", "",
     "| Task | Model | Model calls | Tool calls | Output | Input | of which cache reads | Peak context | Total | Tokens per resolved trial | Duration (s) | Execution outcomes |",
     "| --- | --- | --- | --- | --- | --- | --- | --- | --- | ---: | --- | --- |",
-    ...report.byTask.map(row => `| ${row.caseId} | ${row.label} | ${range(row.usage.modelCalls)} | ${range(row.usage.toolCalls)} | ${range(row.usage.outputTokens, 1000, 1)} | ${range(row.usage.inputTokens, 1000, 1)} | ${range(row.usage.cacheReadTokens, 1000, 1)} | ${range(row.usage.peakContextTokens, 1000, 1)} | ${range(row.usage.totalTokens, 1000, 1)} | ${row.tokensPerResolved === null ? "n/a" : (row.tokensPerResolved / 1000).toFixed(1)} | ${range(row.usage.durationMs, 1000, 1)} | ${Object.entries(row.executionOutcomes).map(([key, count]) => `${key} ${count}`).join(", ")} |`),
+    ...report.byTask.map(row => `| ${row.caseId}${row.level ? ` (${row.level}, ${row.items} items)` : ""} | ${row.label} | ${range(row.usage.modelCalls)} | ${range(row.usage.toolCalls)} | ${range(row.usage.outputTokens, 1000, 1)} | ${range(row.usage.inputTokens, 1000, 1)} | ${range(row.usage.cacheReadTokens, 1000, 1)} | ${range(row.usage.peakContextTokens, 1000, 1)} | ${range(row.usage.totalTokens, 1000, 1)} | ${row.tokensPerResolved === null ? "n/a" : (row.tokensPerResolved / 1000).toFixed(1)} | ${range(row.usage.durationMs, 1000, 1)} | ${Object.entries(row.executionOutcomes).map(([key, count]) => `${key} ${count}`).join(", ")} |`),
     "");
   const sum = (values: Array<number | null>) => values.reduce<number>((total, value) => total + (value ?? 0), 0);
   const thousands = (value: number) => (value / 1000).toFixed(1);
@@ -285,14 +335,19 @@ export function markdownReport(report: ReturnType<typeof buildReport>): string {
       `requests without usage: ${unknownUsageRequests}; stop reason: ${stopReason ?? "none"}; trials not run: ${notRun.length}${reasons.length ? ` (${reasons.join(", ")})` : ""}.`, "");
   }
   if (report.pairedComparisons.length) {
-    lines.push("## Paired model differences", "", "Mean per-task score difference (A − B) within one capability, with a 95% t interval over tasks, clipped to ±100%; no interval with fewer than two tasks. With few tasks the interval is wide by construction.", "",
-      "| Capability | Model A | Model B | Tasks | Mean difference | 95% interval |", "| --- | --- | --- | ---: | ---: | --- |",
+    lines.push("## Paired model differences", "", "Mean score difference (A − B) within one capability, paired by unit: a unit is a task, or one generated item of a task. The interval is a 95% t interval over units, clipped to ±100%; there is none with fewer than two units, and with few units it is wide by construction.", "",
+      "| Capability | Model A | Model B | Units | Mean difference | 95% interval |", "| --- | --- | --- | ---: | ---: | --- |",
       ...report.pairedComparisons.map(row => `| ${row.capability} | ${row.labelA} | ${row.labelB} | ${row.tasks} | ${percent(row.mean)} | ${interval(row.interval)} |`), "");
   }
+  if (report.items.length) {
+    lines.push("## Items", "", "Generated items scored for every model, per task and level: solved fully by every model, scored 0 by every model, or separating the models. Items that every model solves, or none does, carry no comparative information.", "",
+      "| Task | Level | Items | Scored for all models | Solved by all | Scored 0 by all | Separating |", "| --- | --- | ---: | ---: | ---: | ---: | ---: |",
+      ...report.items.map(row => `| ${row.caseId} | ${row.level ?? "—"} | ${row.items} | ${row.scoredByAllModels} | ${row.allSolved} | ${row.noneScored} | ${row.separating} |`), "");
+  }
   lines.push("## Trials", "",
-    "| Case | Repetition | Model | Request class | Tool profile | Execution | Evaluation | Human review | Model requests | Tool attempts | Intercepted | Cleanup |",
-    "| --- | ---: | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | --- |",
-    ...report.records.map(record => `| ${record.caseId} | ${record.repetition ?? 1} | ${modelLabel(record.model)} | ${record.interactionClass ?? "candidate"} | ${record.toolProfile ?? "workspace-basic"} | ${record.execution.status}${record.execution.error ? ` (${record.execution.error})` : ""} | ${record.evaluation.status} | ${record.evaluation.review?.status ?? "—"} | ${record.execution.modelCalls} | ${record.execution.toolAttempts} | ${record.execution.toolIntercepts} | ${record.cleanup} |`),
+    "| Case | Item | Repetition | Model | Request class | Tool profile | Execution | Evaluation | Human review | Model requests | Tool attempts | Intercepted | Cleanup |",
+    "| --- | --- | ---: | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | --- |",
+    ...report.records.map(record => `| ${record.caseId} | ${record.itemId ?? "—"} | ${record.repetition ?? 1} | ${modelLabel(record.model)} | ${record.interactionClass ?? "candidate"} | ${record.toolProfile ?? "workspace-basic"} | ${record.execution.status}${record.execution.error ? ` (${record.execution.error})` : ""} | ${record.evaluation.status} | ${record.evaluation.review?.status ?? "—"} | ${record.execution.modelCalls} | ${record.execution.toolAttempts} | ${record.execution.toolIntercepts} | ${record.cleanup} |`),
     "");
   return lines.join("\n");
 }

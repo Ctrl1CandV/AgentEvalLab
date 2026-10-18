@@ -62,6 +62,7 @@ export interface NotRunEntry {
   model: string;
   caseId: string;
   repetition: number;
+  itemId?: string;
   reason?: string;
 }
 

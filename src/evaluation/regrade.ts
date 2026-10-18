@@ -298,6 +298,17 @@ export async function regradeTrial(trialDirectory: string, plan: EvaluationPlan,
     const createdAt = new Date(Math.max(Date.now(), previousTime + 1)).toISOString();
     await mkdir(pendingDirectory);
     pendingCreated = true;
+    // Answer-graded and trace-reading graders need the trial's recorded answer and tool trace: the answer is the
+    // persisted output that the original grading also saw, and the trace must still match its recorded digest.
+    let tracePath: string | undefined;
+    if (descriptor.manifest.grader.requiresTrace) {
+      const candidate = join(directory, "tool-trace.jsonl");
+      const digest = createHash("sha256").update(await readFile(candidate).catch(() => Buffer.alloc(0))).digest("hex");
+      if (!record.toolTrace || digest !== record.toolTrace.sha256) throw new Error("REGRADE_TRACE_HASH_MISMATCH");
+      tracePath = candidate;
+    }
+    const packageItem = record.itemId ? descriptor.manifest.items?.find(candidate => candidate.id === record.itemId) : undefined;
+    if (record.itemId && !packageItem) throw new Error("REGRADE_ITEM_UNKNOWN");
     let evaluation: EvaluationResult;
     try {
       evaluation = await evaluate(item, record.execution, "", verifiedSnapshot, limits, {
@@ -306,6 +317,9 @@ export async function regradeTrial(trialDirectory: string, plan: EvaluationPlan,
         packageDescriptor: descriptor,
         submissionManifest: verifiedManifest,
         isolation: plan.isolation,
+        ...(descriptor.manifest.grader.answerSource === "execution-output" ? { answerText: record.execution.output } : {}),
+        ...(tracePath ? { tracePath } : {}),
+        ...(packageItem ? { item: { id: packageItem.id, activeRequirementIds: packageItem.activeRequirementIds } } : {}),
       });
     } catch {
       evaluation = { status: "error", score: null, checks: [], error: "REGRADE_EVALUATOR_FAILED" };

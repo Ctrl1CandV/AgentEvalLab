@@ -38,6 +38,19 @@ export interface ManifestDimension {
   maximum: number;
 }
 
+/**
+ * One item of a generated task family (Task Set v2). A trial receives exactly one item: its `items/<id>/prompt.md` is
+ * appended to the task prompt, and its `items/<id>/public/...` files are projected without the `items/<id>/` prefix.
+ */
+export interface ManifestItem {
+  id: string;
+  /** Difficulty level; reports group trials by case and level. */
+  level: string;
+  files: ManifestFile[];
+  /** Requirements this item activates; their checks are the checks expected for the item. */
+  activeRequirementIds: string[];
+}
+
 export interface ManifestTrajectoryStage {
   id: string;
   instruction: string;
@@ -66,6 +79,7 @@ export interface TaskPackageManifest {
   files: { public: ManifestFile[]; trusted: ManifestFile[] };
   requirements: ManifestRequirement[];
   stages?: ManifestTrajectoryStage[];
+  items?: ManifestItem[];
   dimensions?: ManifestDimension[];
   scoring?: ManifestScoring;
   /** Profiles fixed for this task; omitted legacy manifests permit only workspace-basic. */
@@ -131,6 +145,19 @@ function validateFileList(value: unknown, kind: "public" | "trusted"): value is 
     if (kind === "public" && item.path !== "instruction.md" && !item.path.startsWith("public/")) return false;
     if (kind === "trusted" && (item.path === "instruction.md" || item.path.startsWith("public/") || item.path === "manifest.json")) return false;
     paths.add(item.path);
+  }
+  return true;
+}
+
+function validateItemFileList(value: unknown, itemId: string): value is ManifestFile[] {
+  if (!Array.isArray(value) || value.length === 0) return false;
+  const paths = new Set<string>();
+  const prefix = `items/${itemId}/`;
+  for (const fileValue of value) {
+    const file = record(fileValue);
+    if (typeof file.path !== "string" || !file.path.startsWith(prefix) || !isSha256(file.sha256) || paths.has(file.path) ||
+        (file.path !== `${prefix}prompt.md` && !file.path.startsWith(`${prefix}public/`))) return false;
+    paths.add(file.path);
   }
   return true;
 }
@@ -255,6 +282,22 @@ export function validateTaskPackageManifest(value: unknown): asserts value is Ta
       dimensionIds.add(dimension.id);
     }
   }
+  if (manifest.items !== undefined) {
+    if (manifest.stages !== undefined || !Array.isArray(manifest.items) || manifest.items.length === 0) throw new PackageManifestError("INVALID_PACKAGE_ITEMS");
+    const requirements = new Map((manifest.requirements as ManifestRequirement[]).map(requirement => [requirement.id, requirement]));
+    const itemIds = new Set<string>();
+    for (const itemValue of manifest.items) {
+      const item = record(itemValue);
+      if (!isIdentifier(item.id) || itemIds.has(item.id) || !isIdentifier(item.level) || !validateItemFileList(item.files, item.id) ||
+          !Array.isArray(item.activeRequirementIds) || item.activeRequirementIds.length === 0 ||
+          new Set(item.activeRequirementIds).size !== item.activeRequirementIds.length ||
+          !item.activeRequirementIds.every(id => requirements.has(String(id))) ||
+          !item.activeRequirementIds.some(id => requirements.get(String(id))!.critical)) {
+        throw new PackageManifestError("INVALID_PACKAGE_ITEM");
+      }
+      itemIds.add(item.id);
+    }
+  }
   if (manifest.stages !== undefined) {
     if (!Array.isArray(manifest.stages) || manifest.stages.length < 2) throw new PackageManifestError("INVALID_PACKAGE_STAGES");
     const stageIds = new Set<string>();
@@ -341,7 +384,9 @@ async function listFilesUnder(root: string, directoryName: string, excludePython
   return results.sort();
 }
 
+/** Public files shared by every trial; a package whose material is all in generated items may have none. */
 async function listPublicFiles(root: string): Promise<string[]> {
+  if (!await lstat(join(root, "public")).catch(() => null)) return [];
   return listFilesUnder(root, "public");
 }
 
@@ -400,6 +445,20 @@ export async function inspectPackage(
   } else if (await lstat(join(root, "stages")).catch(() => null)) {
     throw new PackageManifestError("UNDECLARED_PACKAGE_STAGES");
   }
+  if (manifest.items) {
+    for (const item of manifest.items) {
+      for (const file of item.files) {
+        const path = await assertRegularFile(root, file.path);
+        if (await sha256(path) !== file.sha256.toLowerCase()) throw new PackageManifestError("PACKAGE_FILE_HASH_MISMATCH");
+      }
+    }
+    const itemsInfo = await lstat(join(root, "items")).catch(() => null);
+    if (!itemsInfo?.isDirectory() || itemsInfo.isSymbolicLink()) throw new PackageManifestError("PACKAGE_ITEM_DIRECTORY_INVALID");
+    const declaredItemFiles = manifest.items.flatMap(item => item.files.map(file => file.path)).sort();
+    if (JSON.stringify(await listFilesUnder(root, "items")) !== JSON.stringify(declaredItemFiles)) throw new PackageManifestError("PACKAGE_ITEM_FILE_SET_MISMATCH");
+  } else if (await lstat(join(root, "items")).catch(() => null)) {
+    throw new PackageManifestError("UNDECLARED_PACKAGE_ITEMS");
+  }
   const declaredPublic = manifest.files.public.map(file => file.path).filter(path => path.startsWith("public/")).sort();
   if (JSON.stringify(await listPublicFiles(root)) !== JSON.stringify(declaredPublic)) {
     throw new PackageManifestError("PACKAGE_PUBLIC_FILE_SET_MISMATCH");
@@ -429,6 +488,29 @@ export async function projectTrajectoryStage(
     await copyFile(source, destination, constants.COPYFILE_EXCL);
   }
   return await readFile(await assertRegularFile(descriptor.root, stage.instruction), "utf8");
+}
+
+/**
+ * Releases one item of a generated family: its public files land in the workspace without the `items/<id>/` prefix,
+ * and its prompt text, if any, is returned for appending to the task prompt. Other items stay out of the workspace.
+ */
+export async function projectPackageItem(descriptor: PackageDescriptor, workspace: string, itemId: string): Promise<{ prompt: string; item: ManifestItem }> {
+  const item = descriptor.manifest?.items?.find(candidate => candidate.id === itemId);
+  if (!item) throw new PackageManifestError("UNKNOWN_PACKAGE_ITEM");
+  let prompt = "";
+  for (const file of item.files) {
+    const source = await assertRegularFile(descriptor.root, file.path);
+    if (await sha256(source) !== file.sha256.toLowerCase()) throw new PackageManifestError("PACKAGE_FILE_HASH_MISMATCH");
+    const relativePath = file.path.slice(`items/${item.id}/`.length);
+    if (relativePath === "prompt.md") {
+      prompt = await readFile(source, "utf8");
+      continue;
+    }
+    const destination = join(workspace, ...relativePath.split("/"));
+    await mkdir(dirname(destination), { recursive: true });
+    await copyFile(source, destination, constants.COPYFILE_EXCL);
+  }
+  return { prompt, item };
 }
 
 /** Projects only instruction and explicitly hashed public files into the candidate workspace. */

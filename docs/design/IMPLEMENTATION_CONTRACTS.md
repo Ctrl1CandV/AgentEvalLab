@@ -29,6 +29,26 @@ A package manifest identifies its task ID and version, family, capability, usage
 - Graders and public checkers that start candidate code prefix every such command with the sandbox launcher given in the grader request's `sandbox` field or the `{sandbox}` checker argument. The value is null or empty only when the plan sets `"isolation": "host"`.
 - Candidate-written checks or self-reported status are not trusted evidence.
 
+## Generated items
+
+A package of a generated family (Task Set v2) declares `items`. Each item has:
+
+- an identifier and a difficulty `level`;
+- files under `items/<id>/`: an optional `prompt.md` and `public/...` files;
+- the requirements it activates.
+
+Items and trajectory stages are mutually exclusive, and every item must activate at least one critical requirement. Preflight hashes every item file, and the `items/` tree must match the declaration exactly.
+
+A plan case selects items with `items`: `"all"`, a list of item IDs, or `{ "levels": [...] }`. A package with items requires a selection, and an unknown item or level is an error. The case expands into one trial per item (per repetition and model). Each trial is projected as follows:
+
+- the package's shared public files;
+- the item's `public/` files, without the `items/<id>/` prefix (a collision with a shared file is an error);
+- the prompt: package instruction, item prompt, case prompt and budget statement, in that order.
+
+The grader request's context carries `itemId` and the item's `activeRequirementIds`; packages without items keep the earlier context unchanged. Records carry `itemId` and `itemLevel`.
+
+Reports group rows by case and level. Paired model differences pair by item, and an Items section counts the items every model solved, none scored on, and those that separate the models. Regrading reuses the item's requirements, together with the trial's recorded answer and verified tool trace.
+
 ## Run lifecycle
 
 1. Validate the plan and preflight package hashes.

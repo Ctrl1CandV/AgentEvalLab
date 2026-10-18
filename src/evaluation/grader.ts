@@ -15,7 +15,8 @@ interface GraderRequest {
   submission: { snapshotId: string; directory: string; manifestSha256: string };
   answerRef: string | null;
   traceRef: string | null;
-  context: { stageId: string | null; cycleId: string | null; activeRequirementIds: string[] };
+  /** itemId is present only for packages with generated items, so earlier graders see an unchanged context. */
+  context: { stageId: string | null; cycleId: string | null; itemId?: string; activeRequirementIds: string[] };
   evidenceRoot: string;
   /** Launcher graders must prefix to every candidate command; null when the plan opted into host execution. */
   sandbox: { launcher: string } | null;
@@ -41,7 +42,7 @@ export interface TaskGraderInput {
   timeoutMs: number;
   answerText?: string;
   tracePath?: string;
-  context?: { stageId: string | null; cycleId: string | null; activeRequirementIds: string[] };
+  context?: { stageId: string | null; cycleId: string | null; itemId?: string; activeRequirementIds: string[] };
   isolation?: Isolation;
 }
 
@@ -248,7 +249,8 @@ export async function runTaskGrader(input: TaskGraderInput): Promise<EvaluationR
         new Set(context.activeRequirementIds).size !== context.activeRequirementIds.length ||
         !context.activeRequirementIds.every(id => knownRequirements.has(id)) ||
         (context.stageId !== null && !isIdentifier(context.stageId)) ||
-        (context.cycleId !== null && !isIdentifier(context.cycleId))) return graderError("GRADER_CONTEXT_INVALID");
+        (context.cycleId !== null && !isIdentifier(context.cycleId)) ||
+        (context.itemId !== undefined && !manifest.items?.some(item => item.id === context.itemId))) return graderError("GRADER_CONTEXT_INVALID");
     const request: GraderRequest = {
       schemaVersion: 1,
       requestId,

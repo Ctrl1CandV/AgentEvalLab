@@ -22,6 +22,8 @@ export interface EvaluationContext {
   tracePath?: string;
   emit?: EventSink;
   isolation?: Isolation;
+  /** The generated item of this trial; its requirements replace the package's for grading. */
+  item?: { id: string; activeRequirementIds: string[] };
 }
 
 export const skippedEvaluation = (): EvaluationResult => ({
@@ -70,6 +72,7 @@ export async function evaluate(
       answerText: context.answerText,
       tracePath: context.tracePath,
       isolation: context.isolation,
+      ...(context.item ? { context: { stageId: null, cycleId: null, itemId: context.item.id, activeRequirementIds: context.item.activeRequirementIds } } : {}),
     });
   }
   const workspace = await prepareWorkspace(item.repository);

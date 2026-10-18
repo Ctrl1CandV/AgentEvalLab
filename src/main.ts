@@ -5,7 +5,8 @@ import { runHarness } from "./run.js";
 import { readFile } from "node:fs/promises";
 import { basename, resolve } from "node:path";
 import { loadCredentials } from "./providers.js";
-import { runEvaluation } from "./evaluation/run.js";
+import { runEvaluation, trialSchedule } from "./evaluation/run.js";
+import type { PackageDescriptor } from "./evaluation/manifest.js";
 import { runTrajectoryEvaluation } from "./evaluation/trajectory.js";
 import { validatePlan } from "./evaluation/validate.js";
 import { preflightPlan } from "./evaluation/preflight.js";
@@ -16,13 +17,13 @@ import { fileURLToPath } from "node:url";
 import { git } from "./command.js";
 
 /** The most tokens a single-run plan can spend: planned trials times the per-trial budget, plus one request each. */
-function worstCaseSpend(plan: EvaluationPlan): string {
+function worstCaseSpend(plan: EvaluationPlan, packages: Map<string, PackageDescriptor>): string {
   if (plan.execution?.kind === "trajectory") return "Worst-case token spend: not computed for trajectory plans.";
-  const trials = plan.models.length * plan.cases.length * (plan.repetitions ?? 1);
+  const trials = trialSchedule(plan, 0, packages).length;
   const perTrial = plan.budget.maxTrialTokens;
   if (typeof perTrial !== "number") return `Worst-case token spend: unbounded per trial (${trials} trials, no maxTrialTokens); only batch ceilings apply.`;
   return `Worst-case token spend: ${trials} trials x ${perTrial.toLocaleString("en-US")} tokens = ${(trials * perTrial).toLocaleString("en-US")} ` +
-    `(${(plan.cases.length * (plan.repetitions ?? 1) * perTrial).toLocaleString("en-US")} per model), plus at most the last request of each trial.`;
+    `(${(trials / plan.models.length * perTrial).toLocaleString("en-US")} per model), plus at most the last request of each trial.`;
 }
 
 async function main(): Promise<void> {
@@ -112,11 +113,11 @@ async function main(): Promise<void> {
     if (!basename(path).endsWith(".eval.json")) throw new Error("PLAN_EXTENSION_REQUIRED");
     const plan = JSON.parse(await readFile(path, "utf8")) as EvaluationPlan;
     validatePlan(plan);
-    await preflightPlan(plan);
+    const packages = await preflightPlan(plan);
     if (values["validate-only"]) {
       if (values.resume) throw new Error("RESUME_ARGUMENTS_INVALID");
       console.log("Evaluation plan is valid. Credentials were not loaded and no API requests were sent.");
-      console.log(worstCaseSpend(plan));
+      console.log(worstCaseSpend(plan, packages));
       return;
     }
     // SPEC rule 8: no provider request without bounded spending, by a per-trial token budget or a batch ceiling.
