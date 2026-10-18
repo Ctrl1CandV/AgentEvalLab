@@ -1,9 +1,10 @@
-import { inspectPackage, type PackageDescriptor } from "./manifest.js";
+import { inspectPackage, type ManifestItem, type PackageDescriptor } from "./manifest.js";
+import { defaultArtifactLimits } from "./artifacts.js";
 import { resolveCaseItems } from "./items.js";
 import { command } from "../command.js";
 import { sandboxAvailable } from "../sandbox.js";
 import type { EvaluationPlan } from "./types.js";
-import { realpath } from "node:fs/promises";
+import { realpath, stat } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 
@@ -56,8 +57,24 @@ export async function preflightPlan(plan: EvaluationPlan): Promise<Map<string, P
     if (manifest?.grader.requiresTrace && !descriptor.manifest?.grader.answerSource) {
       throw new Error("PACKAGE_TRACE_GRADER_REQUIRES_ANSWER_SOURCE");
     }
-    resolveCaseItems(item, descriptor);
+    await checkProjectedArtifacts(plan, descriptor, resolveCaseItems(item, descriptor));
     packages.set(item.id, descriptor);
   }
   return packages;
+}
+
+/**
+ * Refuse a plan whose artifact limits cannot hold even the files a trial starts with: the package's public files plus
+ * the largest selected item's files. Such a plan would run every trial and then fail every artifact export.
+ */
+async function checkProjectedArtifacts(plan: EvaluationPlan, descriptor: PackageDescriptor, items: ManifestItem[] | null): Promise<void> {
+  const limits = plan.artifactLimits ?? defaultArtifactLimits;
+  const sizes = async (paths: string[]) => Promise.all(paths.map(async path => (await stat(join(descriptor.root, ...path.split("/")))).size));
+  const shared = await sizes((descriptor.manifest?.files.public ?? []).map(file => file.path).filter(path => path !== "instruction.md"));
+  const perItem = items ? await Promise.all(items.map(entry => sizes(entry.files.map(file => file.path).filter(path => !path.endsWith("/prompt.md"))))) : [[]];
+  for (const own of perItem) {
+    const files = [...shared, ...own];
+    if (files.length > limits.maxFiles || files.some(size => size > limits.maxFileBytes) ||
+        files.reduce((sum, size) => sum + size, 0) > limits.maxTrialBytes) throw new Error("PLAN_ARTIFACT_LIMIT_TOO_LOW");
+  }
 }

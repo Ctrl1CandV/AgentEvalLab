@@ -45,7 +45,7 @@ A plan case selects items with `items`: `"all"`, a list of item IDs, or `{ "leve
 - the item's `public/` files, without the `items/<id>/` prefix (a collision with a shared file is an error);
 - the prompt: package instruction, item prompt, case prompt and budget statement, in that order.
 
-The grader request's context carries `itemId` and the item's `activeRequirementIds`; packages without items keep the earlier context unchanged. Records carry `itemId` and `itemLevel`.
+Preflight refuses a plan whose artifact limits cannot hold a trial's starting files: the package's public files plus the largest selected item's files (`PLAN_ARTIFACT_LIMIT_TOO_LOW`). Without this check, every trial would run and then fail artifact export. The grader request's context carries `itemId` and the item's `activeRequirementIds`; packages without items keep the earlier context unchanged. Records carry `itemId` and `itemLevel`.
 
 Reports group rows by case and level. Paired model differences pair by item, and an Items section counts the items every model solved, none scored on, and those that separate the models. Regrading reuses the item's requirements, together with the trial's recorded answer and verified tool trace.
 

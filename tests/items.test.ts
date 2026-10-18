@@ -129,6 +129,9 @@ test("item selections are validated against the package", async () => {
     await assert.rejects(preflightPlan(itemPlan(pkg, ["i9"])), /UNKNOWN_CASE_ITEM/);
     await assert.rejects(preflightPlan(itemPlan(pkg, { levels: ["L9"] })), /UNKNOWN_CASE_ITEM_LEVEL/);
     assert.throws(() => validatePlan(itemPlan(pkg, { levels: [] })), /INVALID_CASE_ITEMS/);
+    const tight = itemPlan(pkg, "all");
+    await assert.rejects(preflightPlan({ ...tight, artifactLimits: { ...tight.artifactLimits!, maxFiles: 0 } }), /PLAN_ARTIFACT_LIMIT_TOO_LOW/,
+      "limits that cannot hold an item's own files are refused before any request");
     const only = await runEvaluation(itemPlan(pkg, { levels: ["L2"] }), { outputRoot: join(root, "runs"), runner: async () => ({ ...emptyExecution(), output: "i2 +b" }) });
     assert.deepEqual([...new Set(only.report.records.map(record => record.itemId))], ["i2"]);
   } finally { await rm(root, { recursive: true, force: true }); }
