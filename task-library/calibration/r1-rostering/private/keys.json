@@ -1,0 +1,3886 @@
+{
+ "L1-01": {
+  "people": [
+   "Ada",
+   "Esme",
+   "Finn",
+   "Kai"
+  ],
+  "days": 4,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "availability",
+   "senior"
+  ],
+  "unavailable": [
+   [
+    "Esme",
+    0
+   ],
+   [
+    "Finn",
+    1
+   ],
+   [
+    "Finn",
+    2
+   ]
+  ],
+  "seniors": [
+   "Finn"
+  ],
+  "apart": [
+   [
+    "Ada",
+    "Kai"
+   ],
+   [
+    "Finn",
+    "Kai"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "senior": true,
+   "apart+availability": true,
+   "apart+senior": true,
+   "availability+senior": false,
+   "apart+availability+senior": false
+  },
+  "feasible": false,
+  "conflicts": [
+   [
+    "availability",
+    "senior"
+   ]
+  ]
+ },
+ "L1-02": {
+  "people": [
+   "Ada",
+   "Gia",
+   "Hugo",
+   "Iris"
+  ],
+  "days": 4,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "one_per_day",
+   "rest"
+  ],
+  "apart": [
+   [
+    "Ada",
+    "Iris"
+   ],
+   [
+    "Hugo",
+    "Iris"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "one_per_day": true,
+   "rest": true,
+   "apart+one_per_day": true,
+   "apart+rest": true,
+   "one_per_day+rest": true,
+   "apart+one_per_day+rest": true
+  },
+  "feasible": true,
+  "example": {
+   "Day 1": {
+    "early": [
+     "Ada"
+    ],
+    "late": [
+     "Gia"
+    ]
+   },
+   "Day 2": {
+    "early": [
+     "Hugo"
+    ],
+    "late": [
+     "Iris"
+    ]
+   },
+   "Day 3": {
+    "early": [
+     "Ada"
+    ],
+    "late": [
+     "Gia"
+    ]
+   },
+   "Day 4": {
+    "early": [
+     "Hugo"
+    ],
+    "late": [
+     "Iris"
+    ]
+   }
+  }
+ },
+ "L1-03": {
+  "people": [
+   "Bram",
+   "Hugo",
+   "Iris",
+   "Lena"
+  ],
+  "days": 4,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "max_shifts",
+   "min_shifts",
+   "one_per_day"
+  ],
+  "max_shifts": 3,
+  "min_shifts": 1,
+  "subsets": {
+   "-": true,
+   "max_shifts": true,
+   "min_shifts": true,
+   "one_per_day": true,
+   "max_shifts+min_shifts": true,
+   "max_shifts+one_per_day": true,
+   "min_shifts+one_per_day": true,
+   "max_shifts+min_shifts+one_per_day": true
+  },
+  "feasible": true,
+  "example": {
+   "Day 1": {
+    "early": [
+     "Bram"
+    ],
+    "late": [
+     "Hugo"
+    ]
+   },
+   "Day 2": {
+    "early": [
+     "Iris"
+    ],
+    "late": [
+     "Lena"
+    ]
+   },
+   "Day 3": {
+    "early": [
+     "Bram"
+    ],
+    "late": [
+     "Hugo"
+    ]
+   },
+   "Day 4": {
+    "early": [
+     "Iris"
+    ],
+    "late": [
+     "Lena"
+    ]
+   }
+  }
+ },
+ "L1-04": {
+  "people": [
+   "Bram",
+   "Esme",
+   "Jude",
+   "Kai"
+  ],
+  "days": 4,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "availability",
+   "rest",
+   "senior"
+  ],
+  "unavailable": [
+   [
+    "Jude",
+    3
+   ]
+  ],
+  "seniors": [
+   "Kai"
+  ],
+  "subsets": {
+   "-": true,
+   "availability": true,
+   "rest": true,
+   "senior": true,
+   "availability+rest": true,
+   "availability+senior": true,
+   "rest+senior": false,
+   "availability+rest+senior": false
+  },
+  "feasible": false,
+  "conflicts": [
+   [
+    "rest",
+    "senior"
+   ]
+  ]
+ },
+ "L1-05": {
+  "people": [
+   "Ada",
+   "Cleo",
+   "Iris",
+   "Kai"
+  ],
+  "days": 4,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "min_shifts",
+   "one_per_day",
+   "senior"
+  ],
+  "min_shifts": 1,
+  "seniors": [
+   "Ada"
+  ],
+  "subsets": {
+   "-": true,
+   "min_shifts": true,
+   "one_per_day": true,
+   "senior": true,
+   "min_shifts+one_per_day": true,
+   "min_shifts+senior": false,
+   "one_per_day+senior": false,
+   "min_shifts+one_per_day+senior": false
+  },
+  "feasible": false,
+  "conflicts": [
+   [
+    "min_shifts",
+    "senior"
+   ],
+   [
+    "one_per_day",
+    "senior"
+   ]
+  ]
+ },
+ "L1-06": {
+  "people": [
+   "Dov",
+   "Finn",
+   "Hugo",
+   "Iris"
+  ],
+  "days": 4,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "availability",
+   "min_shifts"
+  ],
+  "unavailable": [
+   [
+    "Dov",
+    3
+   ],
+   [
+    "Hugo",
+    0
+   ],
+   [
+    "Hugo",
+    2
+   ],
+   [
+    "Hugo",
+    3
+   ],
+   [
+    "Iris",
+    0
+   ]
+  ],
+  "min_shifts": 2,
+  "apart": [
+   [
+    "Finn",
+    "Hugo"
+   ],
+   [
+    "Finn",
+    "Iris"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "min_shifts": true,
+   "apart+availability": true,
+   "apart+min_shifts": true,
+   "availability+min_shifts": true,
+   "apart+availability+min_shifts": true
+  },
+  "feasible": true,
+  "example": {
+   "Day 1": {
+    "early": [
+     "Dov"
+    ],
+    "late": [
+     "Finn"
+    ]
+   },
+   "Day 2": {
+    "early": [
+     "Hugo"
+    ],
+    "late": [
+     "Hugo"
+    ]
+   },
+   "Day 3": {
+    "early": [
+     "Iris"
+    ],
+    "late": [
+     "Dov"
+    ]
+   },
+   "Day 4": {
+    "early": [
+     "Finn"
+    ],
+    "late": [
+     "Iris"
+    ]
+   }
+  }
+ },
+ "L1-07": {
+  "people": [
+   "Ada",
+   "Dov",
+   "Gia",
+   "Hugo"
+  ],
+  "days": 4,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "max_shifts",
+   "one_per_day",
+   "rest"
+  ],
+  "max_shifts": 2,
+  "subsets": {
+   "-": true,
+   "max_shifts": true,
+   "one_per_day": true,
+   "rest": true,
+   "max_shifts+one_per_day": true,
+   "max_shifts+rest": true,
+   "one_per_day+rest": true,
+   "max_shifts+one_per_day+rest": true
+  },
+  "feasible": true,
+  "example": {
+   "Day 1": {
+    "early": [
+     "Ada"
+    ],
+    "late": [
+     "Dov"
+    ]
+   },
+   "Day 2": {
+    "early": [
+     "Gia"
+    ],
+    "late": [
+     "Hugo"
+    ]
+   },
+   "Day 3": {
+    "early": [
+     "Ada"
+    ],
+    "late": [
+     "Dov"
+    ]
+   },
+   "Day 4": {
+    "early": [
+     "Gia"
+    ],
+    "late": [
+     "Hugo"
+    ]
+   }
+  }
+ },
+ "L1-08": {
+  "people": [
+   "Dov",
+   "Gia",
+   "Jude",
+   "Kai"
+  ],
+  "days": 4,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "max_shifts",
+   "senior"
+  ],
+  "max_shifts": 2,
+  "seniors": [
+   "Kai"
+  ],
+  "apart": [
+   [
+    "Dov",
+    "Jude"
+   ],
+   [
+    "Gia",
+    "Jude"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "max_shifts": true,
+   "senior": true,
+   "apart+max_shifts": true,
+   "apart+senior": true,
+   "max_shifts+senior": false,
+   "apart+max_shifts+senior": false
+  },
+  "feasible": false,
+  "conflicts": [
+   [
+    "max_shifts",
+    "senior"
+   ]
+  ]
+ },
+ "L2-01": {
+  "people": [
+   "Cleo",
+   "Dov",
+   "Esme",
+   "Gia",
+   "Hugo"
+  ],
+  "days": 5,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "availability",
+   "rest",
+   "senior"
+  ],
+  "unavailable": [
+   [
+    "Cleo",
+    1
+   ],
+   [
+    "Cleo",
+    3
+   ],
+   [
+    "Dov",
+    2
+   ],
+   [
+    "Esme",
+    4
+   ],
+   [
+    "Gia",
+    1
+   ],
+   [
+    "Hugo",
+    3
+   ]
+  ],
+  "seniors": [
+   "Gia"
+  ],
+  "apart": [
+   [
+    "Cleo",
+    "Dov"
+   ],
+   [
+    "Dov",
+    "Esme"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "rest": true,
+   "senior": true,
+   "apart+availability": true,
+   "apart+rest": true,
+   "apart+senior": true,
+   "availability+rest": true,
+   "availability+senior": false,
+   "rest+senior": false,
+   "apart+availability+rest": true,
+   "apart+availability+senior": false,
+   "apart+rest+senior": false,
+   "availability+rest+senior": false,
+   "apart+availability+rest+senior": false
+  },
+  "feasible": false,
+  "conflicts": [
+   [
+    "availability",
+    "senior"
+   ],
+   [
+    "rest",
+    "senior"
+   ]
+  ]
+ },
+ "L2-02": {
+  "people": [
+   "Dov",
+   "Gia",
+   "Iris",
+   "Jude",
+   "Lena"
+  ],
+  "days": 5,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "min_shifts",
+   "rest",
+   "senior"
+  ],
+  "min_shifts": 2,
+  "seniors": [
+   "Dov"
+  ],
+  "apart": [
+   [
+    "Gia",
+    "Jude"
+   ],
+   [
+    "Iris",
+    "Jude"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "min_shifts": true,
+   "rest": true,
+   "senior": true,
+   "apart+min_shifts": true,
+   "apart+rest": true,
+   "apart+senior": true,
+   "min_shifts+rest": true,
+   "min_shifts+senior": false,
+   "rest+senior": false,
+   "apart+min_shifts+rest": true,
+   "apart+min_shifts+senior": false,
+   "apart+rest+senior": false,
+   "min_shifts+rest+senior": false,
+   "apart+min_shifts+rest+senior": false
+  },
+  "feasible": false,
+  "conflicts": [
+   [
+    "min_shifts",
+    "senior"
+   ],
+   [
+    "rest",
+    "senior"
+   ]
+  ]
+ },
+ "L2-03": {
+  "people": [
+   "Bram",
+   "Cleo",
+   "Dov",
+   "Hugo",
+   "Jude"
+  ],
+  "days": 5,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "availability",
+   "max_shifts",
+   "min_shifts"
+  ],
+  "unavailable": [
+   [
+    "Bram",
+    1
+   ],
+   [
+    "Dov",
+    0
+   ],
+   [
+    "Hugo",
+    3
+   ],
+   [
+    "Jude",
+    1
+   ],
+   [
+    "Jude",
+    4
+   ]
+  ],
+  "max_shifts": 2,
+  "min_shifts": 1,
+  "apart": [
+   [
+    "Bram",
+    "Hugo"
+   ],
+   [
+    "Dov",
+    "Jude"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "max_shifts": true,
+   "min_shifts": true,
+   "apart+availability": true,
+   "apart+max_shifts": true,
+   "apart+min_shifts": true,
+   "availability+max_shifts": true,
+   "availability+min_shifts": true,
+   "max_shifts+min_shifts": true,
+   "apart+availability+max_shifts": true,
+   "apart+availability+min_shifts": true,
+   "apart+max_shifts+min_shifts": true,
+   "availability+max_shifts+min_shifts": true,
+   "apart+availability+max_shifts+min_shifts": true
+  },
+  "feasible": true,
+  "example": {
+   "Day 1": {
+    "early": [
+     "Bram"
+    ],
+    "late": [
+     "Cleo"
+    ]
+   },
+   "Day 2": {
+    "early": [
+     "Dov"
+    ],
+    "late": [
+     "Hugo"
+    ]
+   },
+   "Day 3": {
+    "early": [
+     "Jude"
+    ],
+    "late": [
+     "Bram"
+    ]
+   },
+   "Day 4": {
+    "early": [
+     "Cleo"
+    ],
+    "late": [
+     "Jude"
+    ]
+   },
+   "Day 5": {
+    "early": [
+     "Dov"
+    ],
+    "late": [
+     "Hugo"
+    ]
+   }
+  }
+ },
+ "L2-04": {
+  "people": [
+   "Ada",
+   "Esme",
+   "Gia",
+   "Hugo",
+   "Jude"
+  ],
+  "days": 5,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "availability",
+   "one_per_day",
+   "rest"
+  ],
+  "unavailable": [
+   [
+    "Ada",
+    2
+   ],
+   [
+    "Ada",
+    4
+   ],
+   [
+    "Esme",
+    0
+   ],
+   [
+    "Gia",
+    3
+   ],
+   [
+    "Hugo",
+    1
+   ],
+   [
+    "Jude",
+    1
+   ],
+   [
+    "Jude",
+    3
+   ]
+  ],
+  "apart": [
+   [
+    "Ada",
+    "Jude"
+   ],
+   [
+    "Hugo",
+    "Jude"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "one_per_day": true,
+   "rest": true,
+   "apart+availability": true,
+   "apart+one_per_day": true,
+   "apart+rest": true,
+   "availability+one_per_day": true,
+   "availability+rest": true,
+   "one_per_day+rest": true,
+   "apart+availability+one_per_day": true,
+   "apart+availability+rest": true,
+   "apart+one_per_day+rest": true,
+   "availability+one_per_day+rest": true,
+   "apart+availability+one_per_day+rest": true
+  },
+  "feasible": true,
+  "example": {
+   "Day 1": {
+    "early": [
+     "Ada"
+    ],
+    "late": [
+     "Gia"
+    ]
+   },
+   "Day 2": {
+    "early": [
+     "Esme"
+    ],
+    "late": [
+     "Ada"
+    ]
+   },
+   "Day 3": {
+    "early": [
+     "Hugo"
+    ],
+    "late": [
+     "Jude"
+    ]
+   },
+   "Day 4": {
+    "early": [
+     "Esme"
+    ],
+    "late": [
+     "Hugo"
+    ]
+   },
+   "Day 5": {
+    "early": [
+     "Gia"
+    ],
+    "late": [
+     "Jude"
+    ]
+   }
+  }
+ },
+ "L2-05": {
+  "people": [
+   "Ada",
+   "Cleo",
+   "Dov",
+   "Hugo",
+   "Iris"
+  ],
+  "days": 5,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "availability",
+   "min_shifts",
+   "senior"
+  ],
+  "unavailable": [
+   [
+    "Cleo",
+    0
+   ],
+   [
+    "Cleo",
+    3
+   ],
+   [
+    "Dov",
+    3
+   ],
+   [
+    "Hugo",
+    1
+   ],
+   [
+    "Iris",
+    1
+   ]
+  ],
+  "min_shifts": 1,
+  "seniors": [
+   "Cleo"
+  ],
+  "apart": [
+   [
+    "Cleo",
+    "Hugo"
+   ],
+   [
+    "Dov",
+    "Iris"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "min_shifts": true,
+   "senior": true,
+   "apart+availability": true,
+   "apart+min_shifts": true,
+   "apart+senior": true,
+   "availability+min_shifts": true,
+   "availability+senior": false,
+   "min_shifts+senior": false,
+   "apart+availability+min_shifts": true,
+   "apart+availability+senior": false,
+   "apart+min_shifts+senior": false,
+   "availability+min_shifts+senior": false,
+   "apart+availability+min_shifts+senior": false
+  },
+  "feasible": false,
+  "conflicts": [
+   [
+    "availability",
+    "senior"
+   ],
+   [
+    "min_shifts",
+    "senior"
+   ]
+  ]
+ },
+ "L2-06": {
+  "people": [
+   "Ada",
+   "Bram",
+   "Cleo",
+   "Kai",
+   "Lena"
+  ],
+  "days": 5,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "availability",
+   "max_shifts",
+   "one_per_day"
+  ],
+  "unavailable": [
+   [
+    "Ada",
+    1
+   ],
+   [
+    "Bram",
+    1
+   ],
+   [
+    "Bram",
+    4
+   ],
+   [
+    "Cleo",
+    3
+   ],
+   [
+    "Kai",
+    2
+   ],
+   [
+    "Kai",
+    3
+   ],
+   [
+    "Lena",
+    0
+   ],
+   [
+    "Lena",
+    1
+   ]
+  ],
+  "max_shifts": 2,
+  "apart": [
+   [
+    "Ada",
+    "Kai"
+   ],
+   [
+    "Bram",
+    "Cleo"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "max_shifts": true,
+   "one_per_day": true,
+   "apart+availability": true,
+   "apart+max_shifts": true,
+   "apart+one_per_day": true,
+   "availability+max_shifts": true,
+   "availability+one_per_day": true,
+   "max_shifts+one_per_day": true,
+   "apart+availability+max_shifts": true,
+   "apart+availability+one_per_day": true,
+   "apart+max_shifts+one_per_day": true,
+   "availability+max_shifts+one_per_day": true,
+   "apart+availability+max_shifts+one_per_day": true
+  },
+  "feasible": true,
+  "example": {
+   "Day 1": {
+    "early": [
+     "Ada"
+    ],
+    "late": [
+     "Bram"
+    ]
+   },
+   "Day 2": {
+    "early": [
+     "Cleo"
+    ],
+    "late": [
+     "Kai"
+    ]
+   },
+   "Day 3": {
+    "early": [
+     "Lena"
+    ],
+    "late": [
+     "Ada"
+    ]
+   },
+   "Day 4": {
+    "early": [
+     "Bram"
+    ],
+    "late": [
+     "Lena"
+    ]
+   },
+   "Day 5": {
+    "early": [
+     "Cleo"
+    ],
+    "late": [
+     "Kai"
+    ]
+   }
+  }
+ },
+ "L2-07": {
+  "people": [
+   "Finn",
+   "Gia",
+   "Hugo",
+   "Jude",
+   "Kai"
+  ],
+  "days": 5,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "availability",
+   "min_shifts",
+   "one_per_day"
+  ],
+  "unavailable": [
+   [
+    "Gia",
+    1
+   ],
+   [
+    "Hugo",
+    1
+   ],
+   [
+    "Jude",
+    0
+   ],
+   [
+    "Jude",
+    1
+   ],
+   [
+    "Jude",
+    2
+   ]
+  ],
+  "min_shifts": 1,
+  "apart": [
+   [
+    "Finn",
+    "Kai"
+   ],
+   [
+    "Hugo",
+    "Kai"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "min_shifts": true,
+   "one_per_day": true,
+   "apart+availability": true,
+   "apart+min_shifts": true,
+   "apart+one_per_day": true,
+   "availability+min_shifts": true,
+   "availability+one_per_day": true,
+   "min_shifts+one_per_day": true,
+   "apart+availability+min_shifts": true,
+   "apart+availability+one_per_day": true,
+   "apart+min_shifts+one_per_day": true,
+   "availability+min_shifts+one_per_day": true,
+   "apart+availability+min_shifts+one_per_day": true
+  },
+  "feasible": true,
+  "example": {
+   "Day 1": {
+    "early": [
+     "Finn"
+    ],
+    "late": [
+     "Gia"
+    ]
+   },
+   "Day 2": {
+    "early": [
+     "Kai"
+    ],
+    "late": [
+     "Finn"
+    ]
+   },
+   "Day 3": {
+    "early": [
+     "Hugo"
+    ],
+    "late": [
+     "Gia"
+    ]
+   },
+   "Day 4": {
+    "early": [
+     "Jude"
+    ],
+    "late": [
+     "Hugo"
+    ]
+   },
+   "Day 5": {
+    "early": [
+     "Jude"
+    ],
+    "late": [
+     "Kai"
+    ]
+   }
+  }
+ },
+ "L2-08": {
+  "people": [
+   "Esme",
+   "Gia",
+   "Hugo",
+   "Jude",
+   "Kai"
+  ],
+  "days": 5,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "max_shifts",
+   "min_shifts",
+   "rest",
+   "senior"
+  ],
+  "max_shifts": 2,
+  "min_shifts": 2,
+  "seniors": [
+   "Hugo"
+  ],
+  "subsets": {
+   "-": true,
+   "max_shifts": true,
+   "min_shifts": true,
+   "rest": true,
+   "senior": true,
+   "max_shifts+min_shifts": true,
+   "max_shifts+rest": true,
+   "max_shifts+senior": false,
+   "min_shifts+rest": true,
+   "min_shifts+senior": false,
+   "rest+senior": false,
+   "max_shifts+min_shifts+rest": true,
+   "max_shifts+min_shifts+senior": false,
+   "max_shifts+rest+senior": false,
+   "min_shifts+rest+senior": false,
+   "max_shifts+min_shifts+rest+senior": false
+  },
+  "feasible": false,
+  "conflicts": [
+   [
+    "max_shifts",
+    "senior"
+   ],
+   [
+    "min_shifts",
+    "senior"
+   ],
+   [
+    "rest",
+    "senior"
+   ]
+  ]
+ },
+ "L3-01": {
+  "people": [
+   "Ada",
+   "Bram",
+   "Cleo",
+   "Finn",
+   "Jude",
+   "Kai"
+  ],
+  "days": 6,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 2,
+  "rules": [
+   "apart",
+   "availability",
+   "one_per_day",
+   "rest",
+   "senior"
+  ],
+  "unavailable": [
+   [
+    "Ada",
+    4
+   ],
+   [
+    "Bram",
+    2
+   ],
+   [
+    "Jude",
+    3
+   ]
+  ],
+  "seniors": [
+   "Cleo",
+   "Kai"
+  ],
+  "apart": [
+   [
+    "Ada",
+    "Bram"
+   ],
+   [
+    "Cleo",
+    "Finn"
+   ],
+   [
+    "Finn",
+    "Jude"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "one_per_day": true,
+   "rest": true,
+   "senior": true,
+   "apart+availability": true,
+   "apart+one_per_day": true,
+   "apart+rest": true,
+   "apart+senior": true,
+   "availability+one_per_day": true,
+   "availability+rest": true,
+   "availability+senior": true,
+   "one_per_day+rest": true,
+   "one_per_day+senior": true,
+   "rest+senior": true,
+   "apart+availability+one_per_day": true,
+   "apart+availability+rest": true,
+   "apart+availability+senior": true,
+   "apart+one_per_day+rest": true,
+   "apart+one_per_day+senior": true,
+   "apart+rest+senior": true,
+   "availability+one_per_day+rest": true,
+   "availability+one_per_day+senior": true,
+   "availability+rest+senior": true,
+   "one_per_day+rest+senior": true,
+   "apart+availability+one_per_day+rest": true,
+   "apart+availability+one_per_day+senior": true,
+   "apart+availability+rest+senior": true,
+   "apart+one_per_day+rest+senior": true,
+   "availability+one_per_day+rest+senior": true,
+   "apart+availability+one_per_day+rest+senior": true
+  },
+  "feasible": true,
+  "example": {
+   "Day 1": {
+    "early": [
+     "Ada",
+     "Cleo"
+    ],
+    "late": [
+     "Bram",
+     "Kai"
+    ]
+   },
+   "Day 2": {
+    "early": [
+     "Cleo",
+     "Jude"
+    ],
+    "late": [
+     "Finn",
+     "Kai"
+    ]
+   },
+   "Day 3": {
+    "early": [
+     "Ada",
+     "Cleo"
+    ],
+    "late": [
+     "Finn",
+     "Kai"
+    ]
+   },
+   "Day 4": {
+    "early": [
+     "Bram",
+     "Cleo"
+    ],
+    "late": [
+     "Ada",
+     "Kai"
+    ]
+   },
+   "Day 5": {
+    "early": [
+     "Cleo",
+     "Jude"
+    ],
+    "late": [
+     "Bram",
+     "Kai"
+    ]
+   },
+   "Day 6": {
+    "early": [
+     "Cleo",
+     "Jude"
+    ],
+    "late": [
+     "Finn",
+     "Kai"
+    ]
+   }
+  }
+ },
+ "L3-02": {
+  "people": [
+   "Ada",
+   "Cleo",
+   "Hugo",
+   "Iris",
+   "Kai",
+   "Lena"
+  ],
+  "days": 6,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 2,
+  "rules": [
+   "apart",
+   "availability",
+   "max_shifts",
+   "min_shifts",
+   "rest"
+  ],
+  "unavailable": [
+   [
+    "Ada",
+    4
+   ],
+   [
+    "Cleo",
+    3
+   ],
+   [
+    "Hugo",
+    0
+   ],
+   [
+    "Hugo",
+    5
+   ],
+   [
+    "Iris",
+    2
+   ],
+   [
+    "Iris",
+    4
+   ],
+   [
+    "Kai",
+    3
+   ],
+   [
+    "Lena",
+    1
+   ],
+   [
+    "Lena",
+    4
+   ]
+  ],
+  "max_shifts": 4,
+  "min_shifts": 4,
+  "apart": [
+   [
+    "Cleo",
+    "Iris"
+   ],
+   [
+    "Hugo",
+    "Kai"
+   ],
+   [
+    "Iris",
+    "Lena"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "max_shifts": true,
+   "min_shifts": true,
+   "rest": true,
+   "apart+availability": true,
+   "apart+max_shifts": true,
+   "apart+min_shifts": true,
+   "apart+rest": true,
+   "availability+max_shifts": true,
+   "availability+min_shifts": true,
+   "availability+rest": true,
+   "max_shifts+min_shifts": true,
+   "max_shifts+rest": true,
+   "min_shifts+rest": true,
+   "apart+availability+max_shifts": true,
+   "apart+availability+min_shifts": true,
+   "apart+availability+rest": true,
+   "apart+max_shifts+min_shifts": true,
+   "apart+max_shifts+rest": true,
+   "apart+min_shifts+rest": true,
+   "availability+max_shifts+min_shifts": true,
+   "availability+max_shifts+rest": true,
+   "availability+min_shifts+rest": true,
+   "max_shifts+min_shifts+rest": true,
+   "apart+availability+max_shifts+min_shifts": true,
+   "apart+availability+max_shifts+rest": true,
+   "apart+availability+min_shifts+rest": true,
+   "apart+max_shifts+min_shifts+rest": true,
+   "availability+max_shifts+min_shifts+rest": true,
+   "apart+availability+max_shifts+min_shifts+rest": true
+  },
+  "feasible": true,
+  "example": {
+   "Day 1": {
+    "early": [
+     "Ada",
+     "Cleo"
+    ],
+    "late": [
+     "Iris",
+     "Kai"
+    ]
+   },
+   "Day 2": {
+    "early": [
+     "Ada",
+     "Hugo"
+    ],
+    "late": [
+     "Hugo",
+     "Iris"
+    ]
+   },
+   "Day 3": {
+    "early": [
+     "Cleo",
+     "Lena"
+    ],
+    "late": [
+     "Kai",
+     "Lena"
+    ]
+   },
+   "Day 4": {
+    "early": [
+     "Ada",
+     "Iris"
+    ],
+    "late": [
+     "Hugo",
+     "Lena"
+    ]
+   },
+   "Day 5": {
+    "early": [
+     "Cleo",
+     "Kai"
+    ],
+    "late": [
+     "Cleo",
+     "Hugo"
+    ]
+   },
+   "Day 6": {
+    "early": [
+     "Ada",
+     "Iris"
+    ],
+    "late": [
+     "Kai",
+     "Lena"
+    ]
+   }
+  }
+ },
+ "L3-03": {
+  "people": [
+   "Ada",
+   "Cleo",
+   "Dov",
+   "Finn",
+   "Hugo",
+   "Lena"
+  ],
+  "days": 6,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 2,
+  "rules": [
+   "apart",
+   "availability",
+   "min_shifts",
+   "one_per_day",
+   "rest"
+  ],
+  "unavailable": [
+   [
+    "Ada",
+    3
+   ],
+   [
+    "Cleo",
+    2
+   ],
+   [
+    "Hugo",
+    0
+   ],
+   [
+    "Hugo",
+    2
+   ],
+   [
+    "Hugo",
+    4
+   ]
+  ],
+  "min_shifts": 3,
+  "apart": [
+   [
+    "Ada",
+    "Hugo"
+   ],
+   [
+    "Cleo",
+    "Hugo"
+   ],
+   [
+    "Dov",
+    "Hugo"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "min_shifts": true,
+   "one_per_day": true,
+   "rest": true,
+   "apart+availability": true,
+   "apart+min_shifts": true,
+   "apart+one_per_day": true,
+   "apart+rest": true,
+   "availability+min_shifts": true,
+   "availability+one_per_day": true,
+   "availability+rest": true,
+   "min_shifts+one_per_day": true,
+   "min_shifts+rest": true,
+   "one_per_day+rest": true,
+   "apart+availability+min_shifts": true,
+   "apart+availability+one_per_day": true,
+   "apart+availability+rest": true,
+   "apart+min_shifts+one_per_day": true,
+   "apart+min_shifts+rest": true,
+   "apart+one_per_day+rest": true,
+   "availability+min_shifts+one_per_day": true,
+   "availability+min_shifts+rest": true,
+   "availability+one_per_day+rest": true,
+   "min_shifts+one_per_day+rest": true,
+   "apart+availability+min_shifts+one_per_day": true,
+   "apart+availability+min_shifts+rest": true,
+   "apart+availability+one_per_day+rest": true,
+   "apart+min_shifts+one_per_day+rest": true,
+   "availability+min_shifts+one_per_day+rest": true,
+   "apart+availability+min_shifts+one_per_day+rest": true
+  },
+  "feasible": true,
+  "example": {
+   "Day 1": {
+    "early": [
+     "Ada",
+     "Cleo"
+    ],
+    "late": [
+     "Dov",
+     "Finn"
+    ]
+   },
+   "Day 2": {
+    "early": [
+     "Hugo",
+     "Lena"
+    ],
+    "late": [
+     "Ada",
+     "Cleo"
+    ]
+   },
+   "Day 3": {
+    "early": [
+     "Dov",
+     "Finn"
+    ],
+    "late": [
+     "Ada",
+     "Lena"
+    ]
+   },
+   "Day 4": {
+    "early": [
+     "Finn",
+     "Hugo"
+    ],
+    "late": [
+     "Cleo",
+     "Dov"
+    ]
+   },
+   "Day 5": {
+    "early": [
+     "Ada",
+     "Lena"
+    ],
+    "late": [
+     "Cleo",
+     "Dov"
+    ]
+   },
+   "Day 6": {
+    "early": [
+     "Finn",
+     "Hugo"
+    ],
+    "late": [
+     "Ada",
+     "Lena"
+    ]
+   }
+  }
+ },
+ "L3-04": {
+  "people": [
+   "Dov",
+   "Esme",
+   "Finn",
+   "Gia",
+   "Kai",
+   "Lena"
+  ],
+  "days": 6,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 2,
+  "rules": [
+   "apart",
+   "availability",
+   "max_shifts",
+   "min_shifts",
+   "rest"
+  ],
+  "unavailable": [
+   [
+    "Finn",
+    0
+   ],
+   [
+    "Finn",
+    1
+   ],
+   [
+    "Finn",
+    5
+   ],
+   [
+    "Gia",
+    2
+   ],
+   [
+    "Kai",
+    1
+   ],
+   [
+    "Lena",
+    2
+   ]
+  ],
+  "max_shifts": 5,
+  "min_shifts": 3,
+  "apart": [
+   [
+    "Dov",
+    "Finn"
+   ],
+   [
+    "Finn",
+    "Lena"
+   ],
+   [
+    "Kai",
+    "Lena"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "max_shifts": true,
+   "min_shifts": true,
+   "rest": true,
+   "apart+availability": true,
+   "apart+max_shifts": true,
+   "apart+min_shifts": true,
+   "apart+rest": true,
+   "availability+max_shifts": true,
+   "availability+min_shifts": true,
+   "availability+rest": true,
+   "max_shifts+min_shifts": true,
+   "max_shifts+rest": true,
+   "min_shifts+rest": true,
+   "apart+availability+max_shifts": true,
+   "apart+availability+min_shifts": true,
+   "apart+availability+rest": true,
+   "apart+max_shifts+min_shifts": true,
+   "apart+max_shifts+rest": true,
+   "apart+min_shifts+rest": true,
+   "availability+max_shifts+min_shifts": true,
+   "availability+max_shifts+rest": true,
+   "availability+min_shifts+rest": true,
+   "max_shifts+min_shifts+rest": true,
+   "apart+availability+max_shifts+min_shifts": true,
+   "apart+availability+max_shifts+rest": true,
+   "apart+availability+min_shifts+rest": true,
+   "apart+max_shifts+min_shifts+rest": true,
+   "availability+max_shifts+min_shifts+rest": true,
+   "apart+availability+max_shifts+min_shifts+rest": true
+  },
+  "feasible": true,
+  "example": {
+   "Day 1": {
+    "early": [
+     "Dov",
+     "Esme"
+    ],
+    "late": [
+     "Gia",
+     "Kai"
+    ]
+   },
+   "Day 2": {
+    "early": [
+     "Dov",
+     "Lena"
+    ],
+    "late": [
+     "Esme",
+     "Gia"
+    ]
+   },
+   "Day 3": {
+    "early": [
+     "Finn",
+     "Kai"
+    ],
+    "late": [
+     "Esme",
+     "Finn"
+    ]
+   },
+   "Day 4": {
+    "early": [
+     "Dov",
+     "Lena"
+    ],
+    "late": [
+     "Finn",
+     "Gia"
+    ]
+   },
+   "Day 5": {
+    "early": [
+     "Dov",
+     "Kai"
+    ],
+    "late": [
+     "Esme",
+     "Lena"
+    ]
+   },
+   "Day 6": {
+    "early": [
+     "Gia",
+     "Kai"
+    ],
+    "late": [
+     "Dov",
+     "Lena"
+    ]
+   }
+  }
+ },
+ "L3-05": {
+  "people": [
+   "Cleo",
+   "Dov",
+   "Esme",
+   "Hugo",
+   "Iris",
+   "Jude"
+  ],
+  "days": 6,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 2,
+  "rules": [
+   "max_shifts",
+   "min_shifts",
+   "one_per_day",
+   "rest",
+   "senior"
+  ],
+  "max_shifts": 4,
+  "min_shifts": 4,
+  "seniors": [
+   "Esme",
+   "Hugo"
+  ],
+  "subsets": {
+   "-": true,
+   "max_shifts": true,
+   "min_shifts": true,
+   "one_per_day": true,
+   "rest": true,
+   "senior": true,
+   "max_shifts+min_shifts": true,
+   "max_shifts+one_per_day": true,
+   "max_shifts+rest": true,
+   "max_shifts+senior": false,
+   "min_shifts+one_per_day": true,
+   "min_shifts+rest": true,
+   "min_shifts+senior": false,
+   "one_per_day+rest": true,
+   "one_per_day+senior": true,
+   "rest+senior": true,
+   "max_shifts+min_shifts+one_per_day": true,
+   "max_shifts+min_shifts+rest": true,
+   "max_shifts+min_shifts+senior": false,
+   "max_shifts+one_per_day+rest": true,
+   "max_shifts+one_per_day+senior": false,
+   "max_shifts+rest+senior": false,
+   "min_shifts+one_per_day+rest": true,
+   "min_shifts+one_per_day+senior": false,
+   "min_shifts+rest+senior": false,
+   "one_per_day+rest+senior": true,
+   "max_shifts+min_shifts+one_per_day+rest": true,
+   "max_shifts+min_shifts+one_per_day+senior": false,
+   "max_shifts+min_shifts+rest+senior": false,
+   "max_shifts+one_per_day+rest+senior": false,
+   "min_shifts+one_per_day+rest+senior": false,
+   "max_shifts+min_shifts+one_per_day+rest+senior": false
+  },
+  "feasible": false,
+  "conflicts": [
+   [
+    "max_shifts",
+    "senior"
+   ],
+   [
+    "min_shifts",
+    "senior"
+   ]
+  ]
+ },
+ "L3-06": {
+  "people": [
+   "Bram",
+   "Cleo",
+   "Dov",
+   "Gia",
+   "Iris",
+   "Lena"
+  ],
+  "days": 6,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 2,
+  "rules": [
+   "apart",
+   "availability",
+   "max_shifts",
+   "min_shifts",
+   "senior"
+  ],
+  "unavailable": [
+   [
+    "Bram",
+    5
+   ],
+   [
+    "Gia",
+    4
+   ],
+   [
+    "Iris",
+    1
+   ],
+   [
+    "Lena",
+    4
+   ]
+  ],
+  "max_shifts": 4,
+  "min_shifts": 3,
+  "seniors": [
+   "Bram"
+  ],
+  "apart": [
+   [
+    "Bram",
+    "Iris"
+   ],
+   [
+    "Cleo",
+    "Lena"
+   ],
+   [
+    "Gia",
+    "Lena"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "max_shifts": true,
+   "min_shifts": true,
+   "senior": true,
+   "apart+availability": true,
+   "apart+max_shifts": true,
+   "apart+min_shifts": true,
+   "apart+senior": true,
+   "availability+max_shifts": true,
+   "availability+min_shifts": true,
+   "availability+senior": false,
+   "max_shifts+min_shifts": true,
+   "max_shifts+senior": false,
+   "min_shifts+senior": false,
+   "apart+availability+max_shifts": true,
+   "apart+availability+min_shifts": true,
+   "apart+availability+senior": false,
+   "apart+max_shifts+min_shifts": true,
+   "apart+max_shifts+senior": false,
+   "apart+min_shifts+senior": false,
+   "availability+max_shifts+min_shifts": true,
+   "availability+max_shifts+senior": false,
+   "availability+min_shifts+senior": false,
+   "max_shifts+min_shifts+senior": false,
+   "apart+availability+max_shifts+min_shifts": true,
+   "apart+availability+max_shifts+senior": false,
+   "apart+availability+min_shifts+senior": false,
+   "apart+max_shifts+min_shifts+senior": false,
+   "availability+max_shifts+min_shifts+senior": false,
+   "apart+availability+max_shifts+min_shifts+senior": false
+  },
+  "feasible": false,
+  "conflicts": [
+   [
+    "availability",
+    "senior"
+   ],
+   [
+    "max_shifts",
+    "senior"
+   ],
+   [
+    "min_shifts",
+    "senior"
+   ]
+  ]
+ },
+ "L3-07": {
+  "people": [
+   "Ada",
+   "Esme",
+   "Finn",
+   "Gia",
+   "Iris",
+   "Jude"
+  ],
+  "days": 6,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 2,
+  "rules": [
+   "availability",
+   "min_shifts",
+   "one_per_day",
+   "rest",
+   "senior"
+  ],
+  "unavailable": [
+   [
+    "Ada",
+    4
+   ],
+   [
+    "Esme",
+    3
+   ],
+   [
+    "Finn",
+    2
+   ],
+   [
+    "Finn",
+    5
+   ],
+   [
+    "Gia",
+    1
+   ],
+   [
+    "Gia",
+    2
+   ],
+   [
+    "Iris",
+    2
+   ],
+   [
+    "Iris",
+    5
+   ]
+  ],
+  "min_shifts": 3,
+  "seniors": [
+   "Esme",
+   "Iris"
+  ],
+  "subsets": {
+   "-": true,
+   "availability": true,
+   "min_shifts": true,
+   "one_per_day": true,
+   "rest": true,
+   "senior": true,
+   "availability+min_shifts": true,
+   "availability+one_per_day": false,
+   "availability+rest": true,
+   "availability+senior": true,
+   "min_shifts+one_per_day": true,
+   "min_shifts+rest": true,
+   "min_shifts+senior": true,
+   "one_per_day+rest": true,
+   "one_per_day+senior": true,
+   "rest+senior": true,
+   "availability+min_shifts+one_per_day": false,
+   "availability+min_shifts+rest": true,
+   "availability+min_shifts+senior": true,
+   "availability+one_per_day+rest": false,
+   "availability+one_per_day+senior": false,
+   "availability+rest+senior": true,
+   "min_shifts+one_per_day+rest": true,
+   "min_shifts+one_per_day+senior": true,
+   "min_shifts+rest+senior": true,
+   "one_per_day+rest+senior": true,
+   "availability+min_shifts+one_per_day+rest": false,
+   "availability+min_shifts+one_per_day+senior": false,
+   "availability+min_shifts+rest+senior": true,
+   "availability+one_per_day+rest+senior": false,
+   "min_shifts+one_per_day+rest+senior": true,
+   "availability+min_shifts+one_per_day+rest+senior": false
+  },
+  "feasible": false,
+  "conflicts": [
+   [
+    "availability",
+    "one_per_day"
+   ]
+  ]
+ },
+ "L3-08": {
+  "people": [
+   "Bram",
+   "Cleo",
+   "Dov",
+   "Esme",
+   "Jude",
+   "Lena"
+  ],
+  "days": 6,
+  "shifts": [
+   "early",
+   "late"
+  ],
+  "need": 2,
+  "rules": [
+   "apart",
+   "availability",
+   "min_shifts",
+   "one_per_day",
+   "senior"
+  ],
+  "unavailable": [
+   [
+    "Bram",
+    3
+   ],
+   [
+    "Bram",
+    5
+   ],
+   [
+    "Cleo",
+    2
+   ],
+   [
+    "Cleo",
+    3
+   ],
+   [
+    "Cleo",
+    5
+   ],
+   [
+    "Dov",
+    1
+   ],
+   [
+    "Dov",
+    3
+   ],
+   [
+    "Dov",
+    5
+   ],
+   [
+    "Esme",
+    1
+   ],
+   [
+    "Jude",
+    0
+   ],
+   [
+    "Jude",
+    4
+   ],
+   [
+    "Jude",
+    5
+   ]
+  ],
+  "min_shifts": 3,
+  "seniors": [
+   "Jude",
+   "Lena"
+  ],
+  "apart": [
+   [
+    "Bram",
+    "Esme"
+   ],
+   [
+    "Bram",
+    "Lena"
+   ],
+   [
+    "Jude",
+    "Lena"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "min_shifts": true,
+   "one_per_day": true,
+   "senior": true,
+   "apart+availability": true,
+   "apart+min_shifts": true,
+   "apart+one_per_day": true,
+   "apart+senior": true,
+   "availability+min_shifts": true,
+   "availability+one_per_day": false,
+   "availability+senior": true,
+   "min_shifts+one_per_day": true,
+   "min_shifts+senior": true,
+   "one_per_day+senior": true,
+   "apart+availability+min_shifts": true,
+   "apart+availability+one_per_day": false,
+   "apart+availability+senior": true,
+   "apart+min_shifts+one_per_day": true,
+   "apart+min_shifts+senior": true,
+   "apart+one_per_day+senior": true,
+   "availability+min_shifts+one_per_day": false,
+   "availability+min_shifts+senior": false,
+   "availability+one_per_day+senior": false,
+   "min_shifts+one_per_day+senior": true,
+   "apart+availability+min_shifts+one_per_day": false,
+   "apart+availability+min_shifts+senior": false,
+   "apart+availability+one_per_day+senior": false,
+   "apart+min_shifts+one_per_day+senior": true,
+   "availability+min_shifts+one_per_day+senior": false,
+   "apart+availability+min_shifts+one_per_day+senior": false
+  },
+  "feasible": false,
+  "conflicts": [
+   [
+    "availability",
+    "one_per_day"
+   ],
+   [
+    "availability",
+    "min_shifts",
+    "senior"
+   ]
+  ]
+ },
+ "L4-01": {
+  "people": [
+   "Bram",
+   "Dov",
+   "Finn",
+   "Iris",
+   "Jude",
+   "Kai",
+   "Lena"
+  ],
+  "days": 7,
+  "shifts": [
+   "early",
+   "day",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "availability",
+   "min_shifts",
+   "one_per_day",
+   "rest",
+   "senior"
+  ],
+  "unavailable": [
+   [
+    "Finn",
+    1
+   ],
+   [
+    "Finn",
+    4
+   ],
+   [
+    "Iris",
+    1
+   ],
+   [
+    "Iris",
+    5
+   ],
+   [
+    "Jude",
+    0
+   ],
+   [
+    "Jude",
+    6
+   ],
+   [
+    "Kai",
+    0
+   ],
+   [
+    "Kai",
+    3
+   ],
+   [
+    "Kai",
+    6
+   ]
+  ],
+  "min_shifts": 2,
+  "seniors": [
+   "Bram",
+   "Dov"
+  ],
+  "apart": [
+   [
+    "Bram",
+    "Iris"
+   ],
+   [
+    "Dov",
+    "Finn"
+   ],
+   [
+    "Dov",
+    "Iris"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "min_shifts": true,
+   "one_per_day": true,
+   "rest": true,
+   "senior": true,
+   "apart+availability": true,
+   "apart+min_shifts": true,
+   "apart+one_per_day": true,
+   "apart+rest": true,
+   "apart+senior": true,
+   "availability+min_shifts": true,
+   "availability+one_per_day": true,
+   "availability+rest": true,
+   "availability+senior": true,
+   "min_shifts+one_per_day": true,
+   "min_shifts+rest": true,
+   "min_shifts+senior": false,
+   "one_per_day+rest": true,
+   "one_per_day+senior": false,
+   "rest+senior": true,
+   "apart+availability+min_shifts": true,
+   "apart+availability+one_per_day": true,
+   "apart+availability+rest": true,
+   "apart+availability+senior": true,
+   "apart+min_shifts+one_per_day": true,
+   "apart+min_shifts+rest": true,
+   "apart+min_shifts+senior": false,
+   "apart+one_per_day+rest": true,
+   "apart+one_per_day+senior": false,
+   "apart+rest+senior": true,
+   "availability+min_shifts+one_per_day": true,
+   "availability+min_shifts+rest": true,
+   "availability+min_shifts+senior": false,
+   "availability+one_per_day+rest": true,
+   "availability+one_per_day+senior": false,
+   "availability+rest+senior": true,
+   "min_shifts+one_per_day+rest": true,
+   "min_shifts+one_per_day+senior": false,
+   "min_shifts+rest+senior": false,
+   "one_per_day+rest+senior": false,
+   "apart+availability+min_shifts+one_per_day": true,
+   "apart+availability+min_shifts+rest": true,
+   "apart+availability+min_shifts+senior": false,
+   "apart+availability+one_per_day+rest": true,
+   "apart+availability+one_per_day+senior": false,
+   "apart+availability+rest+senior": true,
+   "apart+min_shifts+one_per_day+rest": true,
+   "apart+min_shifts+one_per_day+senior": false,
+   "apart+min_shifts+rest+senior": false,
+   "apart+one_per_day+rest+senior": false,
+   "availability+min_shifts+one_per_day+rest": true,
+   "availability+min_shifts+one_per_day+senior": false,
+   "availability+min_shifts+rest+senior": false,
+   "availability+one_per_day+rest+senior": false,
+   "min_shifts+one_per_day+rest+senior": false,
+   "apart+availability+min_shifts+one_per_day+rest": true,
+   "apart+availability+min_shifts+one_per_day+senior": false,
+   "apart+availability+min_shifts+rest+senior": false,
+   "apart+availability+one_per_day+rest+senior": false,
+   "apart+min_shifts+one_per_day+rest+senior": false,
+   "availability+min_shifts+one_per_day+rest+senior": false,
+   "apart+availability+min_shifts+one_per_day+rest+senior": false
+  },
+  "feasible": false,
+  "conflicts": [
+   [
+    "min_shifts",
+    "senior"
+   ],
+   [
+    "one_per_day",
+    "senior"
+   ]
+  ]
+ },
+ "L4-02": {
+  "people": [
+   "Ada",
+   "Cleo",
+   "Esme",
+   "Gia",
+   "Hugo",
+   "Iris",
+   "Jude"
+  ],
+  "days": 7,
+  "shifts": [
+   "early",
+   "day",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "availability",
+   "max_shifts",
+   "min_shifts",
+   "one_per_day",
+   "rest"
+  ],
+  "unavailable": [
+   [
+    "Ada",
+    3
+   ],
+   [
+    "Esme",
+    1
+   ],
+   [
+    "Gia",
+    1
+   ],
+   [
+    "Gia",
+    4
+   ],
+   [
+    "Gia",
+    6
+   ],
+   [
+    "Iris",
+    1
+   ],
+   [
+    "Jude",
+    4
+   ]
+  ],
+  "max_shifts": 3,
+  "min_shifts": 3,
+  "apart": [
+   [
+    "Ada",
+    "Iris"
+   ],
+   [
+    "Cleo",
+    "Hugo"
+   ],
+   [
+    "Hugo",
+    "Jude"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "max_shifts": true,
+   "min_shifts": true,
+   "one_per_day": true,
+   "rest": true,
+   "apart+availability": true,
+   "apart+max_shifts": true,
+   "apart+min_shifts": true,
+   "apart+one_per_day": true,
+   "apart+rest": true,
+   "availability+max_shifts": true,
+   "availability+min_shifts": true,
+   "availability+one_per_day": true,
+   "availability+rest": true,
+   "max_shifts+min_shifts": true,
+   "max_shifts+one_per_day": true,
+   "max_shifts+rest": true,
+   "min_shifts+one_per_day": true,
+   "min_shifts+rest": true,
+   "one_per_day+rest": true,
+   "apart+availability+max_shifts": true,
+   "apart+availability+min_shifts": true,
+   "apart+availability+one_per_day": true,
+   "apart+availability+rest": true,
+   "apart+max_shifts+min_shifts": true,
+   "apart+max_shifts+one_per_day": true,
+   "apart+max_shifts+rest": true,
+   "apart+min_shifts+one_per_day": true,
+   "apart+min_shifts+rest": true,
+   "apart+one_per_day+rest": true,
+   "availability+max_shifts+min_shifts": true,
+   "availability+max_shifts+one_per_day": true,
+   "availability+max_shifts+rest": true,
+   "availability+min_shifts+one_per_day": true,
+   "availability+min_shifts+rest": true,
+   "availability+one_per_day+rest": true,
+   "max_shifts+min_shifts+one_per_day": true,
+   "max_shifts+min_shifts+rest": true,
+   "max_shifts+one_per_day+rest": true,
+   "min_shifts+one_per_day+rest": true,
+   "apart+availability+max_shifts+min_shifts": true,
+   "apart+availability+max_shifts+one_per_day": true,
+   "apart+availability+max_shifts+rest": true,
+   "apart+availability+min_shifts+one_per_day": true,
+   "apart+availability+min_shifts+rest": true,
+   "apart+availability+one_per_day+rest": true,
+   "apart+max_shifts+min_shifts+one_per_day": true,
+   "apart+max_shifts+min_shifts+rest": true,
+   "apart+max_shifts+one_per_day+rest": true,
+   "apart+min_shifts+one_per_day+rest": true,
+   "availability+max_shifts+min_shifts+one_per_day": true,
+   "availability+max_shifts+min_shifts+rest": true,
+   "availability+max_shifts+one_per_day+rest": true,
+   "availability+min_shifts+one_per_day+rest": true,
+   "max_shifts+min_shifts+one_per_day+rest": true,
+   "apart+availability+max_shifts+min_shifts+one_per_day": true,
+   "apart+availability+max_shifts+min_shifts+rest": true,
+   "apart+availability+max_shifts+one_per_day+rest": true,
+   "apart+availability+min_shifts+one_per_day+rest": true,
+   "apart+max_shifts+min_shifts+one_per_day+rest": true,
+   "availability+max_shifts+min_shifts+one_per_day+rest": true,
+   "apart+availability+max_shifts+min_shifts+one_per_day+rest": true
+  },
+  "feasible": true,
+  "example": {
+   "Day 1": {
+    "early": [
+     "Ada"
+    ],
+    "day": [
+     "Cleo"
+    ],
+    "late": [
+     "Esme"
+    ]
+   },
+   "Day 2": {
+    "early": [
+     "Hugo"
+    ],
+    "day": [
+     "Jude"
+    ],
+    "late": [
+     "Ada"
+    ]
+   },
+   "Day 3": {
+    "early": [
+     "Gia"
+    ],
+    "day": [
+     "Iris"
+    ],
+    "late": [
+     "Cleo"
+    ]
+   },
+   "Day 4": {
+    "early": [
+     "Esme"
+    ],
+    "day": [
+     "Gia"
+    ],
+    "late": [
+     "Hugo"
+    ]
+   },
+   "Day 5": {
+    "early": [
+     "Iris"
+    ],
+    "day": [
+     "Ada"
+    ],
+    "late": [
+     "Cleo"
+    ]
+   },
+   "Day 6": {
+    "early": [
+     "Jude"
+    ],
+    "day": [
+     "Esme"
+    ],
+    "late": [
+     "Gia"
+    ]
+   },
+   "Day 7": {
+    "early": [
+     "Hugo"
+    ],
+    "day": [
+     "Iris"
+    ],
+    "late": [
+     "Jude"
+    ]
+   }
+  }
+ },
+ "L4-03": {
+  "people": [
+   "Ada",
+   "Bram",
+   "Esme",
+   "Finn",
+   "Jude",
+   "Kai",
+   "Lena"
+  ],
+  "days": 7,
+  "shifts": [
+   "early",
+   "day",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "availability",
+   "max_shifts",
+   "min_shifts",
+   "one_per_day",
+   "rest"
+  ],
+  "unavailable": [
+   [
+    "Ada",
+    2
+   ],
+   [
+    "Ada",
+    6
+   ],
+   [
+    "Bram",
+    6
+   ],
+   [
+    "Esme",
+    2
+   ],
+   [
+    "Esme",
+    5
+   ],
+   [
+    "Esme",
+    6
+   ],
+   [
+    "Finn",
+    2
+   ],
+   [
+    "Finn",
+    6
+   ],
+   [
+    "Kai",
+    3
+   ],
+   [
+    "Kai",
+    6
+   ],
+   [
+    "Lena",
+    2
+   ],
+   [
+    "Lena",
+    6
+   ]
+  ],
+  "max_shifts": 3,
+  "min_shifts": 2,
+  "apart": [
+   [
+    "Ada",
+    "Finn"
+   ],
+   [
+    "Bram",
+    "Jude"
+   ],
+   [
+    "Finn",
+    "Kai"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "max_shifts": true,
+   "min_shifts": true,
+   "one_per_day": true,
+   "rest": true,
+   "apart+availability": true,
+   "apart+max_shifts": true,
+   "apart+min_shifts": true,
+   "apart+one_per_day": true,
+   "apart+rest": true,
+   "availability+max_shifts": true,
+   "availability+min_shifts": true,
+   "availability+one_per_day": false,
+   "availability+rest": true,
+   "max_shifts+min_shifts": true,
+   "max_shifts+one_per_day": true,
+   "max_shifts+rest": true,
+   "min_shifts+one_per_day": true,
+   "min_shifts+rest": true,
+   "one_per_day+rest": true,
+   "apart+availability+max_shifts": true,
+   "apart+availability+min_shifts": true,
+   "apart+availability+one_per_day": false,
+   "apart+availability+rest": true,
+   "apart+max_shifts+min_shifts": true,
+   "apart+max_shifts+one_per_day": true,
+   "apart+max_shifts+rest": true,
+   "apart+min_shifts+one_per_day": true,
+   "apart+min_shifts+rest": true,
+   "apart+one_per_day+rest": true,
+   "availability+max_shifts+min_shifts": true,
+   "availability+max_shifts+one_per_day": false,
+   "availability+max_shifts+rest": true,
+   "availability+min_shifts+one_per_day": false,
+   "availability+min_shifts+rest": true,
+   "availability+one_per_day+rest": false,
+   "max_shifts+min_shifts+one_per_day": true,
+   "max_shifts+min_shifts+rest": true,
+   "max_shifts+one_per_day+rest": true,
+   "min_shifts+one_per_day+rest": true,
+   "apart+availability+max_shifts+min_shifts": true,
+   "apart+availability+max_shifts+one_per_day": false,
+   "apart+availability+max_shifts+rest": true,
+   "apart+availability+min_shifts+one_per_day": false,
+   "apart+availability+min_shifts+rest": true,
+   "apart+availability+one_per_day+rest": false,
+   "apart+max_shifts+min_shifts+one_per_day": true,
+   "apart+max_shifts+min_shifts+rest": true,
+   "apart+max_shifts+one_per_day+rest": true,
+   "apart+min_shifts+one_per_day+rest": true,
+   "availability+max_shifts+min_shifts+one_per_day": false,
+   "availability+max_shifts+min_shifts+rest": true,
+   "availability+max_shifts+one_per_day+rest": false,
+   "availability+min_shifts+one_per_day+rest": false,
+   "max_shifts+min_shifts+one_per_day+rest": true,
+   "apart+availability+max_shifts+min_shifts+one_per_day": false,
+   "apart+availability+max_shifts+min_shifts+rest": true,
+   "apart+availability+max_shifts+one_per_day+rest": false,
+   "apart+availability+min_shifts+one_per_day+rest": false,
+   "apart+max_shifts+min_shifts+one_per_day+rest": true,
+   "availability+max_shifts+min_shifts+one_per_day+rest": false,
+   "apart+availability+max_shifts+min_shifts+one_per_day+rest": false
+  },
+  "feasible": false,
+  "conflicts": [
+   [
+    "availability",
+    "one_per_day"
+   ]
+  ]
+ },
+ "L4-04": {
+  "people": [
+   "Bram",
+   "Dov",
+   "Finn",
+   "Gia",
+   "Hugo",
+   "Kai",
+   "Lena"
+  ],
+  "days": 7,
+  "shifts": [
+   "early",
+   "day",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "availability",
+   "max_shifts",
+   "min_shifts",
+   "one_per_day",
+   "rest"
+  ],
+  "unavailable": [
+   [
+    "Dov",
+    0
+   ],
+   [
+    "Dov",
+    1
+   ],
+   [
+    "Dov",
+    5
+   ],
+   [
+    "Finn",
+    0
+   ],
+   [
+    "Gia",
+    5
+   ],
+   [
+    "Hugo",
+    0
+   ],
+   [
+    "Hugo",
+    1
+   ],
+   [
+    "Hugo",
+    2
+   ],
+   [
+    "Kai",
+    0
+   ],
+   [
+    "Kai",
+    6
+   ]
+  ],
+  "max_shifts": 3,
+  "min_shifts": 2,
+  "apart": [
+   [
+    "Bram",
+    "Gia"
+   ],
+   [
+    "Gia",
+    "Lena"
+   ],
+   [
+    "Kai",
+    "Lena"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "max_shifts": true,
+   "min_shifts": true,
+   "one_per_day": true,
+   "rest": true,
+   "apart+availability": true,
+   "apart+max_shifts": true,
+   "apart+min_shifts": true,
+   "apart+one_per_day": true,
+   "apart+rest": true,
+   "availability+max_shifts": true,
+   "availability+min_shifts": true,
+   "availability+one_per_day": true,
+   "availability+rest": true,
+   "max_shifts+min_shifts": true,
+   "max_shifts+one_per_day": true,
+   "max_shifts+rest": true,
+   "min_shifts+one_per_day": true,
+   "min_shifts+rest": true,
+   "one_per_day+rest": true,
+   "apart+availability+max_shifts": true,
+   "apart+availability+min_shifts": true,
+   "apart+availability+one_per_day": true,
+   "apart+availability+rest": true,
+   "apart+max_shifts+min_shifts": true,
+   "apart+max_shifts+one_per_day": true,
+   "apart+max_shifts+rest": true,
+   "apart+min_shifts+one_per_day": true,
+   "apart+min_shifts+rest": true,
+   "apart+one_per_day+rest": true,
+   "availability+max_shifts+min_shifts": true,
+   "availability+max_shifts+one_per_day": true,
+   "availability+max_shifts+rest": true,
+   "availability+min_shifts+one_per_day": true,
+   "availability+min_shifts+rest": true,
+   "availability+one_per_day+rest": true,
+   "max_shifts+min_shifts+one_per_day": true,
+   "max_shifts+min_shifts+rest": true,
+   "max_shifts+one_per_day+rest": true,
+   "min_shifts+one_per_day+rest": true,
+   "apart+availability+max_shifts+min_shifts": true,
+   "apart+availability+max_shifts+one_per_day": true,
+   "apart+availability+max_shifts+rest": true,
+   "apart+availability+min_shifts+one_per_day": true,
+   "apart+availability+min_shifts+rest": true,
+   "apart+availability+one_per_day+rest": true,
+   "apart+max_shifts+min_shifts+one_per_day": true,
+   "apart+max_shifts+min_shifts+rest": true,
+   "apart+max_shifts+one_per_day+rest": true,
+   "apart+min_shifts+one_per_day+rest": true,
+   "availability+max_shifts+min_shifts+one_per_day": true,
+   "availability+max_shifts+min_shifts+rest": true,
+   "availability+max_shifts+one_per_day+rest": true,
+   "availability+min_shifts+one_per_day+rest": true,
+   "max_shifts+min_shifts+one_per_day+rest": true,
+   "apart+availability+max_shifts+min_shifts+one_per_day": true,
+   "apart+availability+max_shifts+min_shifts+rest": true,
+   "apart+availability+max_shifts+one_per_day+rest": true,
+   "apart+availability+min_shifts+one_per_day+rest": true,
+   "apart+max_shifts+min_shifts+one_per_day+rest": true,
+   "availability+max_shifts+min_shifts+one_per_day+rest": true,
+   "apart+availability+max_shifts+min_shifts+one_per_day+rest": true
+  },
+  "feasible": true,
+  "example": {
+   "Day 1": {
+    "early": [
+     "Bram"
+    ],
+    "day": [
+     "Gia"
+    ],
+    "late": [
+     "Lena"
+    ]
+   },
+   "Day 2": {
+    "early": [
+     "Finn"
+    ],
+    "day": [
+     "Kai"
+    ],
+    "late": [
+     "Bram"
+    ]
+   },
+   "Day 3": {
+    "early": [
+     "Dov"
+    ],
+    "day": [
+     "Finn"
+    ],
+    "late": [
+     "Gia"
+    ]
+   },
+   "Day 4": {
+    "early": [
+     "Hugo"
+    ],
+    "day": [
+     "Dov"
+    ],
+    "late": [
+     "Kai"
+    ]
+   },
+   "Day 5": {
+    "early": [
+     "Hugo"
+    ],
+    "day": [
+     "Lena"
+    ],
+    "late": [
+     "Bram"
+    ]
+   },
+   "Day 6": {
+    "early": [
+     "Finn"
+    ],
+    "day": [
+     "Hugo"
+    ],
+    "late": [
+     "Kai"
+    ]
+   },
+   "Day 7": {
+    "early": [
+     "Dov"
+    ],
+    "day": [
+     "Gia"
+    ],
+    "late": [
+     "Lena"
+    ]
+   }
+  }
+ },
+ "L4-05": {
+  "people": [
+   "Ada",
+   "Cleo",
+   "Dov",
+   "Finn",
+   "Gia",
+   "Hugo",
+   "Lena"
+  ],
+  "days": 7,
+  "shifts": [
+   "early",
+   "day",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "availability",
+   "max_shifts",
+   "min_shifts",
+   "one_per_day",
+   "rest"
+  ],
+  "unavailable": [
+   [
+    "Dov",
+    0
+   ],
+   [
+    "Dov",
+    2
+   ],
+   [
+    "Dov",
+    6
+   ],
+   [
+    "Finn",
+    3
+   ],
+   [
+    "Finn",
+    6
+   ],
+   [
+    "Gia",
+    1
+   ],
+   [
+    "Gia",
+    3
+   ],
+   [
+    "Gia",
+    5
+   ],
+   [
+    "Hugo",
+    1
+   ],
+   [
+    "Hugo",
+    2
+   ],
+   [
+    "Hugo",
+    3
+   ]
+  ],
+  "max_shifts": 3,
+  "min_shifts": 2,
+  "apart": [
+   [
+    "Cleo",
+    "Dov"
+   ],
+   [
+    "Cleo",
+    "Hugo"
+   ],
+   [
+    "Cleo",
+    "Lena"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "max_shifts": true,
+   "min_shifts": true,
+   "one_per_day": true,
+   "rest": true,
+   "apart+availability": true,
+   "apart+max_shifts": true,
+   "apart+min_shifts": true,
+   "apart+one_per_day": true,
+   "apart+rest": true,
+   "availability+max_shifts": true,
+   "availability+min_shifts": true,
+   "availability+one_per_day": true,
+   "availability+rest": true,
+   "max_shifts+min_shifts": true,
+   "max_shifts+one_per_day": true,
+   "max_shifts+rest": true,
+   "min_shifts+one_per_day": true,
+   "min_shifts+rest": true,
+   "one_per_day+rest": true,
+   "apart+availability+max_shifts": true,
+   "apart+availability+min_shifts": true,
+   "apart+availability+one_per_day": true,
+   "apart+availability+rest": true,
+   "apart+max_shifts+min_shifts": true,
+   "apart+max_shifts+one_per_day": true,
+   "apart+max_shifts+rest": true,
+   "apart+min_shifts+one_per_day": true,
+   "apart+min_shifts+rest": true,
+   "apart+one_per_day+rest": true,
+   "availability+max_shifts+min_shifts": true,
+   "availability+max_shifts+one_per_day": true,
+   "availability+max_shifts+rest": true,
+   "availability+min_shifts+one_per_day": true,
+   "availability+min_shifts+rest": true,
+   "availability+one_per_day+rest": true,
+   "max_shifts+min_shifts+one_per_day": true,
+   "max_shifts+min_shifts+rest": true,
+   "max_shifts+one_per_day+rest": true,
+   "min_shifts+one_per_day+rest": true,
+   "apart+availability+max_shifts+min_shifts": true,
+   "apart+availability+max_shifts+one_per_day": true,
+   "apart+availability+max_shifts+rest": true,
+   "apart+availability+min_shifts+one_per_day": true,
+   "apart+availability+min_shifts+rest": true,
+   "apart+availability+one_per_day+rest": true,
+   "apart+max_shifts+min_shifts+one_per_day": true,
+   "apart+max_shifts+min_shifts+rest": true,
+   "apart+max_shifts+one_per_day+rest": true,
+   "apart+min_shifts+one_per_day+rest": true,
+   "availability+max_shifts+min_shifts+one_per_day": true,
+   "availability+max_shifts+min_shifts+rest": true,
+   "availability+max_shifts+one_per_day+rest": true,
+   "availability+min_shifts+one_per_day+rest": true,
+   "max_shifts+min_shifts+one_per_day+rest": true,
+   "apart+availability+max_shifts+min_shifts+one_per_day": true,
+   "apart+availability+max_shifts+min_shifts+rest": true,
+   "apart+availability+max_shifts+one_per_day+rest": true,
+   "apart+availability+min_shifts+one_per_day+rest": true,
+   "apart+max_shifts+min_shifts+one_per_day+rest": true,
+   "availability+max_shifts+min_shifts+one_per_day+rest": true,
+   "apart+availability+max_shifts+min_shifts+one_per_day+rest": true
+  },
+  "feasible": true,
+  "example": {
+   "Day 1": {
+    "early": [
+     "Ada"
+    ],
+    "day": [
+     "Cleo"
+    ],
+    "late": [
+     "Finn"
+    ]
+   },
+   "Day 2": {
+    "early": [
+     "Dov"
+    ],
+    "day": [
+     "Lena"
+    ],
+    "late": [
+     "Ada"
+    ]
+   },
+   "Day 3": {
+    "early": [
+     "Gia"
+    ],
+    "day": [
+     "Cleo"
+    ],
+    "late": [
+     "Finn"
+    ]
+   },
+   "Day 4": {
+    "early": [
+     "Dov"
+    ],
+    "day": [
+     "Lena"
+    ],
+    "late": [
+     "Ada"
+    ]
+   },
+   "Day 5": {
+    "early": [
+     "Hugo"
+    ],
+    "day": [
+     "Gia"
+    ],
+    "late": [
+     "Cleo"
+    ]
+   },
+   "Day 6": {
+    "early": [
+     "Hugo"
+    ],
+    "day": [
+     "Dov"
+    ],
+    "late": [
+     "Finn"
+    ]
+   },
+   "Day 7": {
+    "early": [
+     "Gia"
+    ],
+    "day": [
+     "Hugo"
+    ],
+    "late": [
+     "Lena"
+    ]
+   }
+  }
+ },
+ "L4-06": {
+  "people": [
+   "Ada",
+   "Dov",
+   "Esme",
+   "Gia",
+   "Hugo",
+   "Jude",
+   "Kai"
+  ],
+  "days": 7,
+  "shifts": [
+   "early",
+   "day",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "availability",
+   "max_shifts",
+   "min_shifts",
+   "one_per_day",
+   "rest",
+   "senior"
+  ],
+  "unavailable": [
+   [
+    "Dov",
+    0
+   ],
+   [
+    "Dov",
+    6
+   ],
+   [
+    "Esme",
+    0
+   ],
+   [
+    "Esme",
+    1
+   ],
+   [
+    "Esme",
+    5
+   ],
+   [
+    "Gia",
+    1
+   ],
+   [
+    "Gia",
+    3
+   ],
+   [
+    "Gia",
+    4
+   ],
+   [
+    "Gia",
+    5
+   ],
+   [
+    "Jude",
+    0
+   ],
+   [
+    "Jude",
+    1
+   ],
+   [
+    "Jude",
+    3
+   ],
+   [
+    "Kai",
+    2
+   ],
+   [
+    "Kai",
+    4
+   ]
+  ],
+  "max_shifts": 3,
+  "min_shifts": 3,
+  "seniors": [
+   "Gia"
+  ],
+  "subsets": {
+   "-": true,
+   "availability": true,
+   "max_shifts": true,
+   "min_shifts": true,
+   "one_per_day": true,
+   "rest": true,
+   "senior": true,
+   "availability+max_shifts": true,
+   "availability+min_shifts": true,
+   "availability+one_per_day": true,
+   "availability+rest": true,
+   "availability+senior": false,
+   "max_shifts+min_shifts": true,
+   "max_shifts+one_per_day": true,
+   "max_shifts+rest": true,
+   "max_shifts+senior": false,
+   "min_shifts+one_per_day": true,
+   "min_shifts+rest": true,
+   "min_shifts+senior": false,
+   "one_per_day+rest": true,
+   "one_per_day+senior": false,
+   "rest+senior": false,
+   "availability+max_shifts+min_shifts": true,
+   "availability+max_shifts+one_per_day": true,
+   "availability+max_shifts+rest": true,
+   "availability+max_shifts+senior": false,
+   "availability+min_shifts+one_per_day": true,
+   "availability+min_shifts+rest": true,
+   "availability+min_shifts+senior": false,
+   "availability+one_per_day+rest": true,
+   "availability+one_per_day+senior": false,
+   "availability+rest+senior": false,
+   "max_shifts+min_shifts+one_per_day": true,
+   "max_shifts+min_shifts+rest": true,
+   "max_shifts+min_shifts+senior": false,
+   "max_shifts+one_per_day+rest": true,
+   "max_shifts+one_per_day+senior": false,
+   "max_shifts+rest+senior": false,
+   "min_shifts+one_per_day+rest": true,
+   "min_shifts+one_per_day+senior": false,
+   "min_shifts+rest+senior": false,
+   "one_per_day+rest+senior": false,
+   "availability+max_shifts+min_shifts+one_per_day": true,
+   "availability+max_shifts+min_shifts+rest": true,
+   "availability+max_shifts+min_shifts+senior": false,
+   "availability+max_shifts+one_per_day+rest": true,
+   "availability+max_shifts+one_per_day+senior": false,
+   "availability+max_shifts+rest+senior": false,
+   "availability+min_shifts+one_per_day+rest": true,
+   "availability+min_shifts+one_per_day+senior": false,
+   "availability+min_shifts+rest+senior": false,
+   "availability+one_per_day+rest+senior": false,
+   "max_shifts+min_shifts+one_per_day+rest": true,
+   "max_shifts+min_shifts+one_per_day+senior": false,
+   "max_shifts+min_shifts+rest+senior": false,
+   "max_shifts+one_per_day+rest+senior": false,
+   "min_shifts+one_per_day+rest+senior": false,
+   "availability+max_shifts+min_shifts+one_per_day+rest": true,
+   "availability+max_shifts+min_shifts+one_per_day+senior": false,
+   "availability+max_shifts+min_shifts+rest+senior": false,
+   "availability+max_shifts+one_per_day+rest+senior": false,
+   "availability+min_shifts+one_per_day+rest+senior": false,
+   "max_shifts+min_shifts+one_per_day+rest+senior": false,
+   "availability+max_shifts+min_shifts+one_per_day+rest+senior": false
+  },
+  "feasible": false,
+  "conflicts": [
+   [
+    "availability",
+    "senior"
+   ],
+   [
+    "max_shifts",
+    "senior"
+   ],
+   [
+    "min_shifts",
+    "senior"
+   ],
+   [
+    "one_per_day",
+    "senior"
+   ],
+   [
+    "rest",
+    "senior"
+   ]
+  ]
+ },
+ "L4-07": {
+  "people": [
+   "Ada",
+   "Cleo",
+   "Finn",
+   "Gia",
+   "Hugo",
+   "Kai",
+   "Lena"
+  ],
+  "days": 7,
+  "shifts": [
+   "early",
+   "day",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "availability",
+   "max_shifts",
+   "min_shifts",
+   "one_per_day",
+   "rest"
+  ],
+  "unavailable": [
+   [
+    "Ada",
+    1
+   ],
+   [
+    "Cleo",
+    2
+   ],
+   [
+    "Cleo",
+    4
+   ],
+   [
+    "Gia",
+    6
+   ],
+   [
+    "Hugo",
+    1
+   ],
+   [
+    "Hugo",
+    6
+   ],
+   [
+    "Lena",
+    1
+   ]
+  ],
+  "max_shifts": 3,
+  "min_shifts": 2,
+  "apart": [
+   [
+    "Ada",
+    "Kai"
+   ],
+   [
+    "Finn",
+    "Lena"
+   ],
+   [
+    "Hugo",
+    "Lena"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "availability": true,
+   "max_shifts": true,
+   "min_shifts": true,
+   "one_per_day": true,
+   "rest": true,
+   "apart+availability": true,
+   "apart+max_shifts": true,
+   "apart+min_shifts": true,
+   "apart+one_per_day": true,
+   "apart+rest": true,
+   "availability+max_shifts": true,
+   "availability+min_shifts": true,
+   "availability+one_per_day": true,
+   "availability+rest": true,
+   "max_shifts+min_shifts": true,
+   "max_shifts+one_per_day": true,
+   "max_shifts+rest": true,
+   "min_shifts+one_per_day": true,
+   "min_shifts+rest": true,
+   "one_per_day+rest": true,
+   "apart+availability+max_shifts": true,
+   "apart+availability+min_shifts": true,
+   "apart+availability+one_per_day": true,
+   "apart+availability+rest": true,
+   "apart+max_shifts+min_shifts": true,
+   "apart+max_shifts+one_per_day": true,
+   "apart+max_shifts+rest": true,
+   "apart+min_shifts+one_per_day": true,
+   "apart+min_shifts+rest": true,
+   "apart+one_per_day+rest": true,
+   "availability+max_shifts+min_shifts": true,
+   "availability+max_shifts+one_per_day": true,
+   "availability+max_shifts+rest": true,
+   "availability+min_shifts+one_per_day": true,
+   "availability+min_shifts+rest": true,
+   "availability+one_per_day+rest": true,
+   "max_shifts+min_shifts+one_per_day": true,
+   "max_shifts+min_shifts+rest": true,
+   "max_shifts+one_per_day+rest": true,
+   "min_shifts+one_per_day+rest": true,
+   "apart+availability+max_shifts+min_shifts": true,
+   "apart+availability+max_shifts+one_per_day": true,
+   "apart+availability+max_shifts+rest": true,
+   "apart+availability+min_shifts+one_per_day": true,
+   "apart+availability+min_shifts+rest": true,
+   "apart+availability+one_per_day+rest": true,
+   "apart+max_shifts+min_shifts+one_per_day": true,
+   "apart+max_shifts+min_shifts+rest": true,
+   "apart+max_shifts+one_per_day+rest": true,
+   "apart+min_shifts+one_per_day+rest": true,
+   "availability+max_shifts+min_shifts+one_per_day": true,
+   "availability+max_shifts+min_shifts+rest": true,
+   "availability+max_shifts+one_per_day+rest": true,
+   "availability+min_shifts+one_per_day+rest": true,
+   "max_shifts+min_shifts+one_per_day+rest": true,
+   "apart+availability+max_shifts+min_shifts+one_per_day": true,
+   "apart+availability+max_shifts+min_shifts+rest": true,
+   "apart+availability+max_shifts+one_per_day+rest": true,
+   "apart+availability+min_shifts+one_per_day+rest": true,
+   "apart+max_shifts+min_shifts+one_per_day+rest": true,
+   "availability+max_shifts+min_shifts+one_per_day+rest": true,
+   "apart+availability+max_shifts+min_shifts+one_per_day+rest": true
+  },
+  "feasible": true,
+  "example": {
+   "Day 1": {
+    "early": [
+     "Ada"
+    ],
+    "day": [
+     "Cleo"
+    ],
+    "late": [
+     "Finn"
+    ]
+   },
+   "Day 2": {
+    "early": [
+     "Gia"
+    ],
+    "day": [
+     "Kai"
+    ],
+    "late": [
+     "Cleo"
+    ]
+   },
+   "Day 3": {
+    "early": [
+     "Hugo"
+    ],
+    "day": [
+     "Lena"
+    ],
+    "late": [
+     "Ada"
+    ]
+   },
+   "Day 4": {
+    "early": [
+     "Finn"
+    ],
+    "day": [
+     "Gia"
+    ],
+    "late": [
+     "Hugo"
+    ]
+   },
+   "Day 5": {
+    "early": [
+     "Kai"
+    ],
+    "day": [
+     "Lena"
+    ],
+    "late": [
+     "Ada"
+    ]
+   },
+   "Day 6": {
+    "early": [
+     "Cleo"
+    ],
+    "day": [
+     "Gia"
+    ],
+    "late": [
+     "Hugo"
+    ]
+   },
+   "Day 7": {
+    "early": [
+     "Finn"
+    ],
+    "day": [
+     "Kai"
+    ],
+    "late": [
+     "Lena"
+    ]
+   }
+  }
+ },
+ "L4-08": {
+  "people": [
+   "Esme",
+   "Gia",
+   "Hugo",
+   "Iris",
+   "Jude",
+   "Kai",
+   "Lena"
+  ],
+  "days": 7,
+  "shifts": [
+   "early",
+   "day",
+   "late"
+  ],
+  "need": 1,
+  "rules": [
+   "apart",
+   "max_shifts",
+   "min_shifts",
+   "one_per_day",
+   "rest",
+   "senior"
+  ],
+  "max_shifts": 3,
+  "min_shifts": 2,
+  "seniors": [
+   "Kai"
+  ],
+  "apart": [
+   [
+    "Esme",
+    "Gia"
+   ],
+   [
+    "Gia",
+    "Lena"
+   ],
+   [
+    "Hugo",
+    "Iris"
+   ]
+  ],
+  "subsets": {
+   "-": true,
+   "apart": true,
+   "max_shifts": true,
+   "min_shifts": true,
+   "one_per_day": true,
+   "rest": true,
+   "senior": true,
+   "apart+max_shifts": true,
+   "apart+min_shifts": true,
+   "apart+one_per_day": true,
+   "apart+rest": true,
+   "apart+senior": true,
+   "max_shifts+min_shifts": true,
+   "max_shifts+one_per_day": true,
+   "max_shifts+rest": true,
+   "max_shifts+senior": false,
+   "min_shifts+one_per_day": true,
+   "min_shifts+rest": true,
+   "min_shifts+senior": false,
+   "one_per_day+rest": true,
+   "one_per_day+senior": false,
+   "rest+senior": false,
+   "apart+max_shifts+min_shifts": true,
+   "apart+max_shifts+one_per_day": true,
+   "apart+max_shifts+rest": true,
+   "apart+max_shifts+senior": false,
+   "apart+min_shifts+one_per_day": true,
+   "apart+min_shifts+rest": true,
+   "apart+min_shifts+senior": false,
+   "apart+one_per_day+rest": true,
+   "apart+one_per_day+senior": false,
+   "apart+rest+senior": false,
+   "max_shifts+min_shifts+one_per_day": true,
+   "max_shifts+min_shifts+rest": true,
+   "max_shifts+min_shifts+senior": false,
+   "max_shifts+one_per_day+rest": true,
+   "max_shifts+one_per_day+senior": false,
+   "max_shifts+rest+senior": false,
+   "min_shifts+one_per_day+rest": true,
+   "min_shifts+one_per_day+senior": false,
+   "min_shifts+rest+senior": false,
+   "one_per_day+rest+senior": false,
+   "apart+max_shifts+min_shifts+one_per_day": true,
+   "apart+max_shifts+min_shifts+rest": true,
+   "apart+max_shifts+min_shifts+senior": false,
+   "apart+max_shifts+one_per_day+rest": true,
+   "apart+max_shifts+one_per_day+senior": false,
+   "apart+max_shifts+rest+senior": false,
+   "apart+min_shifts+one_per_day+rest": true,
+   "apart+min_shifts+one_per_day+senior": false,
+   "apart+min_shifts+rest+senior": false,
+   "apart+one_per_day+rest+senior": false,
+   "max_shifts+min_shifts+one_per_day+rest": true,
+   "max_shifts+min_shifts+one_per_day+senior": false,
+   "max_shifts+min_shifts+rest+senior": false,
+   "max_shifts+one_per_day+rest+senior": false,
+   "min_shifts+one_per_day+rest+senior": false,
+   "apart+max_shifts+min_shifts+one_per_day+rest": true,
+   "apart+max_shifts+min_shifts+one_per_day+senior": false,
+   "apart+max_shifts+min_shifts+rest+senior": false,
+   "apart+max_shifts+one_per_day+rest+senior": false,
+   "apart+min_shifts+one_per_day+rest+senior": false,
+   "max_shifts+min_shifts+one_per_day+rest+senior": false,
+   "apart+max_shifts+min_shifts+one_per_day+rest+senior": false
+  },
+  "feasible": false,
+  "conflicts": [
+   [
+    "max_shifts",
+    "senior"
+   ],
+   [
+    "min_shifts",
+    "senior"
+   ],
+   [
+    "one_per_day",
+    "senior"
+   ],
+   [
+    "rest",
+    "senior"
+   ]
+  ]
+ }
+}

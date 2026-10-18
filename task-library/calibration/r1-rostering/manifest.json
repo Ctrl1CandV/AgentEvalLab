@@ -1,0 +1,722 @@
+{
+  "schemaVersion": 1,
+  "id": "r1-rostering",
+  "version": "0.1.0",
+  "familyId": "r1-rostering",
+  "capability": "reasoning",
+  "usage": "development",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "docs/design/TASK_SET_V2.md",
+      "task-library/calibration/rsn-001-shift-scheduling"
+    ]
+  },
+  "license": {
+    "taskText": "Original project-authored generator and instances; generalises rsn-001, and no text is copied.",
+    "thirdPartyContent": []
+  },
+  "entryPoint": {
+    "instruction": "instruction.md"
+  },
+  "files": {
+    "public": [
+      {
+        "path": "instruction.md",
+        "sha256": "bd98f2fe909b028020ef0739d07cc42571d60b5ad91978ab4e640383d3dd848b"
+      }
+    ],
+    "trusted": [
+      {
+        "path": "calibration.md",
+        "sha256": "5cf14143a50d6994eeac9c9128f0293b949482fcd57f535aaf53133bbf6fa993"
+      },
+      {
+        "path": "rubric.md",
+        "sha256": "34502c8600b5bcf81b25d5abdab8c625a6b4915cc9c60d64c7f595ba90e073a2"
+      },
+      {
+        "path": "private/generate.py",
+        "sha256": "01e9ed6411523e9d75db44ab9216d0e1b8733121be48ca24b2125ad9cf0bb9b2"
+      },
+      {
+        "path": "private/grader.py",
+        "sha256": "3f2dfc0db583e7faac5da1cf9ce7b9906052d5e17e5a08d8e761dce0d50899c6"
+      },
+      {
+        "path": "private/keys.json",
+        "sha256": "c5333799cc8124881917ad55f7785f07383dbdf1ce83a65705ecb9593a14fad2"
+      },
+      {
+        "path": "private/roster.py",
+        "sha256": "98d7917b0f3bc1122379383e305f80b96c01537c2d9f8b1881950c56e79fcbb4"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "REQ-COVERAGE",
+      "critical": true,
+      "introducedAt": "r1-rostering 0.1.0",
+      "checkIds": [
+        "rule-coverage"
+      ]
+    },
+    {
+      "id": "REQ-AVAILABILITY",
+      "critical": true,
+      "introducedAt": "r1-rostering 0.1.0",
+      "checkIds": [
+        "rule-availability"
+      ]
+    },
+    {
+      "id": "REQ-MAX-SHIFTS",
+      "critical": true,
+      "introducedAt": "r1-rostering 0.1.0",
+      "checkIds": [
+        "rule-max-shifts"
+      ]
+    },
+    {
+      "id": "REQ-MIN-SHIFTS",
+      "critical": true,
+      "introducedAt": "r1-rostering 0.1.0",
+      "checkIds": [
+        "rule-min-shifts"
+      ]
+    },
+    {
+      "id": "REQ-ONE-PER-DAY",
+      "critical": true,
+      "introducedAt": "r1-rostering 0.1.0",
+      "checkIds": [
+        "rule-one-per-day"
+      ]
+    },
+    {
+      "id": "REQ-REST",
+      "critical": true,
+      "introducedAt": "r1-rostering 0.1.0",
+      "checkIds": [
+        "rule-rest"
+      ]
+    },
+    {
+      "id": "REQ-SENIOR",
+      "critical": true,
+      "introducedAt": "r1-rostering 0.1.0",
+      "checkIds": [
+        "rule-senior"
+      ]
+    },
+    {
+      "id": "REQ-APART",
+      "critical": true,
+      "introducedAt": "r1-rostering 0.1.0",
+      "checkIds": [
+        "rule-apart"
+      ]
+    },
+    {
+      "id": "REQ-VERDICT",
+      "critical": true,
+      "introducedAt": "r1-rostering 0.1.0",
+      "checkIds": [
+        "verdict"
+      ]
+    },
+    {
+      "id": "REQ-CONFLICT",
+      "critical": true,
+      "introducedAt": "r1-rostering 0.1.0",
+      "checkIds": [
+        "conflict"
+      ]
+    },
+    {
+      "id": "REQ-FORMAT",
+      "critical": false,
+      "introducedAt": "r1-rostering 0.1.0",
+      "checkIds": [
+        "answer-format"
+      ]
+    }
+  ],
+  "scoring": {
+    "formatCheckId": "answer-format",
+    "formatPenalty": 0.2
+  },
+  "items": [
+    {
+      "id": "L1-01",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-01/prompt.md",
+          "sha256": "f439b4046e9a81b9966cfa286e3bb4dc2cad9d349384d98ce691d7adff9ad9a5"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-VERDICT",
+        "REQ-CONFLICT",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L1-02",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-02/prompt.md",
+          "sha256": "355287155b654a5e9bb949c808ae4756d6fe01d6768acaad4d0f2d84393f562f"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COVERAGE",
+        "REQ-APART",
+        "REQ-ONE-PER-DAY",
+        "REQ-REST",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L1-03",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-03/prompt.md",
+          "sha256": "1c577947e851e25fe4fc8c0d98d2e2b5d19570d5a32314642d509f8b0db07515"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COVERAGE",
+        "REQ-MAX-SHIFTS",
+        "REQ-MIN-SHIFTS",
+        "REQ-ONE-PER-DAY",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L1-04",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-04/prompt.md",
+          "sha256": "f0234b8c2da405854359a52ea3325c3fa2108596f3f4169e39bdeb81e4b7d5a6"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-VERDICT",
+        "REQ-CONFLICT",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L1-05",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-05/prompt.md",
+          "sha256": "c20be706664a0a1ccc6cd1d4d1537ef1f2dfdb4c9e74f33892a00dbc3f9276b4"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-VERDICT",
+        "REQ-CONFLICT",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L1-06",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-06/prompt.md",
+          "sha256": "1293751ba1816350f3675933569507efd79ff07a69f7ee7f91872964c2bc2747"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COVERAGE",
+        "REQ-APART",
+        "REQ-AVAILABILITY",
+        "REQ-MIN-SHIFTS",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L1-07",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-07/prompt.md",
+          "sha256": "53a52526288fa10aa4ceb6ec9efb0c6d8a0096f15b6828520477481b46a397b6"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COVERAGE",
+        "REQ-MAX-SHIFTS",
+        "REQ-ONE-PER-DAY",
+        "REQ-REST",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L1-08",
+      "level": "L1",
+      "files": [
+        {
+          "path": "items/L1-08/prompt.md",
+          "sha256": "2bbca358e63b16ca68ebafe18f8aabb6c8a0a1e27d8b6a7266d65316eac583e9"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-VERDICT",
+        "REQ-CONFLICT",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-01",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-01/prompt.md",
+          "sha256": "53c3b22b6a3a9a1f30de3cbe437fc8e68263554c7d4e3356a0914f9e10fc9288"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-VERDICT",
+        "REQ-CONFLICT",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-02",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-02/prompt.md",
+          "sha256": "f44c1542e10e553e30d07ac8e6bb193c78b3c3f7a17b748beabb641dc202da40"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-VERDICT",
+        "REQ-CONFLICT",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-03",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-03/prompt.md",
+          "sha256": "0ea3949536abdcef47cb9e790d71db21f2c835b05712dd5798cf4c579dd3a776"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COVERAGE",
+        "REQ-APART",
+        "REQ-AVAILABILITY",
+        "REQ-MAX-SHIFTS",
+        "REQ-MIN-SHIFTS",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-04",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-04/prompt.md",
+          "sha256": "e67be905b440e1491fd791129d25b634e437831bf9b1e2f0ff985b0e1e331556"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COVERAGE",
+        "REQ-APART",
+        "REQ-AVAILABILITY",
+        "REQ-ONE-PER-DAY",
+        "REQ-REST",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-05",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-05/prompt.md",
+          "sha256": "9e7170e8286ed9e06d1be384209dc0d07bf6335143de53be5ec5a59cdfc1b9f9"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-VERDICT",
+        "REQ-CONFLICT",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-06",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-06/prompt.md",
+          "sha256": "2734f9be8231dbf506fa4d0307813b512196f4d9e884043819eb9134d59c5ee0"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COVERAGE",
+        "REQ-APART",
+        "REQ-AVAILABILITY",
+        "REQ-MAX-SHIFTS",
+        "REQ-ONE-PER-DAY",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-07",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-07/prompt.md",
+          "sha256": "b6d0be2ff289367851a8f45fc19df58a3a01d8140a042b55b0ed5d811c6bf180"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COVERAGE",
+        "REQ-APART",
+        "REQ-AVAILABILITY",
+        "REQ-MIN-SHIFTS",
+        "REQ-ONE-PER-DAY",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L2-08",
+      "level": "L2",
+      "files": [
+        {
+          "path": "items/L2-08/prompt.md",
+          "sha256": "9454f20d358a5c3c25fe9aaa0be76d669c299ba611f74e8d20cf67b5289530b7"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-VERDICT",
+        "REQ-CONFLICT",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-01",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-01/prompt.md",
+          "sha256": "ad04c7df6161b2f0efc603d9282e4a66e303d7374adadf9fdb643195f601fbea"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COVERAGE",
+        "REQ-APART",
+        "REQ-AVAILABILITY",
+        "REQ-ONE-PER-DAY",
+        "REQ-REST",
+        "REQ-SENIOR",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-02",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-02/prompt.md",
+          "sha256": "69ee390633a453e0f308cce6b2cf5eca9fc6aa6fd86911dc7d08641295f55c3a"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COVERAGE",
+        "REQ-APART",
+        "REQ-AVAILABILITY",
+        "REQ-MAX-SHIFTS",
+        "REQ-MIN-SHIFTS",
+        "REQ-REST",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-03",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-03/prompt.md",
+          "sha256": "f03ea9184c96a3f07bca379e14028e1b7f865520f5ac32d270797585d2eaec02"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COVERAGE",
+        "REQ-APART",
+        "REQ-AVAILABILITY",
+        "REQ-MIN-SHIFTS",
+        "REQ-ONE-PER-DAY",
+        "REQ-REST",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-04",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-04/prompt.md",
+          "sha256": "22f1b3c3fc322bddbc077b54261a8f3445abb49910ae28f24f6318c118889572"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COVERAGE",
+        "REQ-APART",
+        "REQ-AVAILABILITY",
+        "REQ-MAX-SHIFTS",
+        "REQ-MIN-SHIFTS",
+        "REQ-REST",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-05",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-05/prompt.md",
+          "sha256": "12ad5424923bf8a2598902bc0f7d4b8b3d03c2e9b117c6fe357f954a29699f4b"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-VERDICT",
+        "REQ-CONFLICT",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-06",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-06/prompt.md",
+          "sha256": "b7841ce5ba1ab9faea98f5a64631b56823362ebe178620562384d22700b34dab"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-VERDICT",
+        "REQ-CONFLICT",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-07",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-07/prompt.md",
+          "sha256": "3c8e3fbe84146d0e7021ed2ca0076357c31af252ff9a1921821f2ced83adcd31"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-VERDICT",
+        "REQ-CONFLICT",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L3-08",
+      "level": "L3",
+      "files": [
+        {
+          "path": "items/L3-08/prompt.md",
+          "sha256": "5c8833686153da9c333f4635013669402d772936f8f1a75070e57e6a07d78669"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-VERDICT",
+        "REQ-CONFLICT",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-01",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-01/prompt.md",
+          "sha256": "e82e2894f3d84a574ea77fdf5d97e44a5a2de9b6887552205f36acec6717f86a"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-VERDICT",
+        "REQ-CONFLICT",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-02",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-02/prompt.md",
+          "sha256": "45455c06af11de546f4cb8621c40d2db5650b86d0ee46d2eca67923f35c7cb97"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COVERAGE",
+        "REQ-APART",
+        "REQ-AVAILABILITY",
+        "REQ-MAX-SHIFTS",
+        "REQ-MIN-SHIFTS",
+        "REQ-ONE-PER-DAY",
+        "REQ-REST",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-03",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-03/prompt.md",
+          "sha256": "245013cd8289ce2822571518e578052a5935385c51ba82ac5a5672c19b629cf3"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-VERDICT",
+        "REQ-CONFLICT",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-04",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-04/prompt.md",
+          "sha256": "71e9c711b5a5391a15663c414df081883d249df9fd107edbb652fe989f01ca40"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COVERAGE",
+        "REQ-APART",
+        "REQ-AVAILABILITY",
+        "REQ-MAX-SHIFTS",
+        "REQ-MIN-SHIFTS",
+        "REQ-ONE-PER-DAY",
+        "REQ-REST",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-05",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-05/prompt.md",
+          "sha256": "b17d04744e0e022c8c68015c0450c6c7c1cd9527882353ee66ef895aab944370"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COVERAGE",
+        "REQ-APART",
+        "REQ-AVAILABILITY",
+        "REQ-MAX-SHIFTS",
+        "REQ-MIN-SHIFTS",
+        "REQ-ONE-PER-DAY",
+        "REQ-REST",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-06",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-06/prompt.md",
+          "sha256": "b731f51c4050c3ea0a0ffa150b8e2539f22a35f200a50341fbb745f9683470d8"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-VERDICT",
+        "REQ-CONFLICT",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-07",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-07/prompt.md",
+          "sha256": "7d4a24bd11cf23f3f3dfea4e3bfd1c462f97b64189c0ebc2e380d00783edccc5"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COVERAGE",
+        "REQ-APART",
+        "REQ-AVAILABILITY",
+        "REQ-MAX-SHIFTS",
+        "REQ-MIN-SHIFTS",
+        "REQ-ONE-PER-DAY",
+        "REQ-REST",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L4-08",
+      "level": "L4",
+      "files": [
+        {
+          "path": "items/L4-08/prompt.md",
+          "sha256": "1fe73b7393172f526a3ec56dff68be12a2f5e8e9ea974ff697ccea335ec5f850"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-VERDICT",
+        "REQ-CONFLICT",
+        "REQ-FORMAT"
+      ]
+    }
+  ],
+  "generator": {
+    "entryPoint": "private/generate.py",
+    "seed": "r1-2026-10",
+    "perLevel": 8
+  },
+  "toolProfiles": [
+    "workspace-basic"
+  ],
+  "grader": {
+    "id": "r1-rostering-rules",
+    "version": "1.0.0",
+    "entryPoint": "private/grader.py",
+    "executable": "python3",
+    "args": [
+      "{entryPoint}",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ],
+    "answerSource": "execution-output"
+  },
+  "environment": {
+    "runtime": "Python 3.13",
+    "dependencies": "Python standard library; no network",
+    "network": false,
+    "runtimeCheck": {
+      "executable": "python3",
+      "args": [
+        "--version"
+      ],
+      "expectedSubstring": "Python 3.13."
+    }
+  }
+}
