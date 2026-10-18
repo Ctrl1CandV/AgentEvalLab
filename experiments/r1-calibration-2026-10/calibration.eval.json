@@ -48,7 +48,8 @@
   "batch": {
     "maxRetries": 2,
     "maxConsecutiveInfrastructureFailures": 3,
-    "maxTotalTokensPerModel": 2500000
+    "maxTotalTokensPerModel": 2500000,
+    "concurrency": 4
   },
   "trustedLocalExecution": true,
   "budgetNotice": true,

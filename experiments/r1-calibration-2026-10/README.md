@@ -16,3 +16,6 @@ The model is not told which instances are feasible. Feasible items score the fra
 ```bash
 npm run harness -- --plan experiments/r1-calibration-2026-10/calibration.eval.json
 ```
+
+A first sequential run (`492b98b5`, stopped at 41 of 128 trials) was replaced by a fresh run with `batch.concurrency: 4`. Concurrency is not part of the fingerprint, but the harness commit had changed.
+

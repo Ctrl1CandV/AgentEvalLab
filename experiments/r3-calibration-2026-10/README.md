@@ -45,3 +45,13 @@ Before this run, items L1-01 and L2-01 were run on luna-medium and glm-5.3-high.
 
 - **glm-5.3 put a short explanation before correct JSON answers.** This led to the 0.5.1 recovery rule for every answer-graded package: an answer is recovered with the 20% deduction when exactly one JSON object can be found in it.
 - **luna-medium sometimes returns an empty solution.** It answered `{"solution": {}}` or `{"solution": null}` in 2 of 6 harness trials. In 8 direct calls with the same prompt, it answered properly every time. Its usage shows almost all output tokens spent on reasoning and about 11 visible tokens, so the empty answer is the model's own output. This rate is watched in the calibration run.
+
+## Runs
+
+| Run | Plan | Commit | Levels used |
+| --- | --- | --- | --- |
+| `78ab1d6b` | `calibration.eval.json`, sequential | `9c39f04` | L1 and L2 (all 64 trials); stopped during L3 |
+| continuation | `continuation.eval.json` (L3 to L5), `batch.concurrency: 4` | after `9b7be1e` | L3, L4 and L5 |
+
+The first run was stopped once concurrent trials existed: sequentially, the large grids would have taken five to eight more hours. Both runs use package version 0.1.0 with identical conditions and budgets. The harness commits between them add other packages, rendering dependencies and concurrency, none of which changes what a model sees. The analysis takes L1 and L2 from the first run and L3 to L5 from the continuation.
+
