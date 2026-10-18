@@ -1,0 +1,256 @@
+{
+  "schemaVersion": 1,
+  "id": "e2-spec-implementation",
+  "version": "0.1.0",
+  "familyId": "e2-spec-implementation",
+  "capability": "engineering",
+  "usage": "development",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "docs/design/TASK_SET_V2.md"
+    ]
+  },
+  "license": {
+    "taskText": "Original project-authored specifications, references and fixtures.",
+    "thirdPartyContent": []
+  },
+  "entryPoint": {
+    "instruction": "instruction.md"
+  },
+  "files": {
+    "public": [
+      {
+        "path": "instruction.md",
+        "sha256": "b5e41a01e61481b3768d77d6af5b55de6f45051cc36f312f6b63caddb62fd9cb"
+      }
+    ],
+    "trusted": [
+      {
+        "path": "calibration.md",
+        "sha256": "6d6682ccd0987a43492b88a2a3bdcca20d05d32ae5c17eda675a1e0c41126d35"
+      },
+      {
+        "path": "rubric.md",
+        "sha256": "f58c493f7d98d3516f3b59456cf796a8d66e01cc9b5fa12c3a724c0ac559d835"
+      },
+      {
+        "path": "private/build_manifest.py",
+        "sha256": "09ebf90196bd0906e27aaa4e583c31ad55324ecf461e9657377a846b644c4776"
+      },
+      {
+        "path": "private/grader.py",
+        "sha256": "435301df6f3b4e00d72d38ace573ef10476796e25cbace74489bd97b7f1952b6"
+      },
+      {
+        "path": "private/mutants.py",
+        "sha256": "420b14ebf2283cb33bfd756654939b802d4f843b27e7c3fcc95798f6eb0dd341"
+      },
+      {
+        "path": "private/sheet/fixtures.py",
+        "sha256": "2d3fe0fc898f8ba58afabf41d06dce7a6ca17316e26ac05b58d2b6c491578d05"
+      },
+      {
+        "path": "private/sheet/reference.py",
+        "sha256": "2dd4144cc5bc7a85c388ca67130972c92be9d339600c3c3c5128b997772f64cc"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "REQ-SHEET-ARITHMETIC",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.1.0",
+      "checkIds": [
+        "sheet-arithmetic"
+      ]
+    },
+    {
+      "id": "REQ-SHEET-CHAINS",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.1.0",
+      "checkIds": [
+        "sheet-chains"
+      ]
+    },
+    {
+      "id": "REQ-SHEET-COMPARISON",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.1.0",
+      "checkIds": [
+        "sheet-comparison"
+      ]
+    },
+    {
+      "id": "REQ-SHEET-CYCLES",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.1.0",
+      "checkIds": [
+        "sheet-cycles"
+      ]
+    },
+    {
+      "id": "REQ-SHEET-DIVISION",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.1.0",
+      "checkIds": [
+        "sheet-division"
+      ]
+    },
+    {
+      "id": "REQ-SHEET-EMPTY-REFERENCES",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.1.0",
+      "checkIds": [
+        "sheet-empty-references"
+      ]
+    },
+    {
+      "id": "REQ-SHEET-ERROR-PROPAGATION",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.1.0",
+      "checkIds": [
+        "sheet-error-propagation"
+      ]
+    },
+    {
+      "id": "REQ-SHEET-FUNCTIONS",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.1.0",
+      "checkIds": [
+        "sheet-functions"
+      ]
+    },
+    {
+      "id": "REQ-SHEET-IF",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.1.0",
+      "checkIds": [
+        "sheet-if"
+      ]
+    },
+    {
+      "id": "REQ-SHEET-LITERALS",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.1.0",
+      "checkIds": [
+        "sheet-literals"
+      ]
+    },
+    {
+      "id": "REQ-SHEET-NUMBER-FORMAT",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.1.0",
+      "checkIds": [
+        "sheet-number-format"
+      ]
+    },
+    {
+      "id": "REQ-SHEET-PARSE-ERRORS",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.1.0",
+      "checkIds": [
+        "sheet-parse-errors"
+      ]
+    },
+    {
+      "id": "REQ-SHEET-POWER",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.1.0",
+      "checkIds": [
+        "sheet-power"
+      ]
+    },
+    {
+      "id": "REQ-SHEET-REFERENCES",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.1.0",
+      "checkIds": [
+        "sheet-references"
+      ]
+    },
+    {
+      "id": "REQ-SHEET-ROUNDING",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.1.0",
+      "checkIds": [
+        "sheet-rounding"
+      ]
+    },
+    {
+      "id": "REQ-SHEET-TEXT",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.1.0",
+      "checkIds": [
+        "sheet-text"
+      ]
+    },
+    {
+      "id": "REQ-README",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.1.0",
+      "checkIds": [
+        "readme"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "sheet",
+      "level": "sheet",
+      "files": [
+        {
+          "path": "items/sheet/prompt.md",
+          "sha256": "87b52fe32181c35f3dc7aa162cef8ea0fc25513b999e050dbcff7035108a61ab"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-SHEET-ARITHMETIC",
+        "REQ-SHEET-CHAINS",
+        "REQ-SHEET-COMPARISON",
+        "REQ-SHEET-CYCLES",
+        "REQ-SHEET-DIVISION",
+        "REQ-SHEET-EMPTY-REFERENCES",
+        "REQ-SHEET-ERROR-PROPAGATION",
+        "REQ-SHEET-FUNCTIONS",
+        "REQ-SHEET-IF",
+        "REQ-SHEET-LITERALS",
+        "REQ-SHEET-NUMBER-FORMAT",
+        "REQ-SHEET-PARSE-ERRORS",
+        "REQ-SHEET-POWER",
+        "REQ-SHEET-REFERENCES",
+        "REQ-SHEET-ROUNDING",
+        "REQ-SHEET-TEXT",
+        "REQ-README"
+      ]
+    }
+  ],
+  "toolProfiles": [
+    "workspace-basic"
+  ],
+  "grader": {
+    "id": "e2-fixtures",
+    "version": "1.0.0",
+    "entryPoint": "private/grader.py",
+    "executable": "python3",
+    "args": [
+      "{entryPoint}",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ]
+  },
+  "environment": {
+    "runtime": "Python 3.13",
+    "dependencies": "Python standard library; no network",
+    "network": false,
+    "runtimeCheck": {
+      "executable": "python3",
+      "args": [
+        "--version"
+      ],
+      "expectedSubstring": "Python 3.13."
+    }
+  }
+}

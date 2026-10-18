@@ -1,0 +1,15 @@
+Task e2-spec-implementation version 0.1.0 (grader 1.0.0); date 2026-10-18; Python 3.13.15; host Linux (WSL2 Ubuntu 22.04)
+No model API or credentials were used.
+
+$ python3 private/grader.py --self-calibrate
+sheet mutant power-left-associative: fails ['power'] (94% of checks pass)
+sheet mutant no-if-short-circuit: fails ['cycles', 'if'] (88% of checks pass)
+sheet mutant average-counts-empty: fails ['functions'] (94% of checks pass)
+sheet mutant case-insensitive-text-compare: fails ['comparison'] (94% of checks pass)
+sheet mutant no-output-rounding: fails ['rounding'] (94% of checks pass)
+sheet mutant type-check-before-operands: fails ['error-propagation'] (94% of checks pass)
+sheet mutant cycle-as-ref-error: fails ['cycles'] (94% of checks pass)
+sheet mutant float-for-integers: fails ['number-format', 'rounding', 'text'] (82% of checks pass)
+sheet mutant division-by-zero-as-num: fails ['cycles', 'division', 'error-propagation', 'functions', 'if'] (71% of checks pass)
+RESULT: PASS (11/11)
+exit=0

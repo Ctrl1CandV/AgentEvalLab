@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 3,
+  "name": "e2-calibration-2026-10",
+  "models": [
+    {
+      "provider": "supergpt",
+      "id": "gpt-6-luna",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "glm-5.3",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "step-5-preview",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 3,
+  "budget": {
+    "timeoutMs": 1800000,
+    "maxTurns": 40,
+    "maxModelCalls": 40,
+    "maxToolCalls": 60,
+    "maxOutputChars": 32768,
+    "maxOutputTokensPerCall": 32768,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 300000
+  },
+  "artifactLimits": {
+    "maxFiles": 200,
+    "maxFileBytes": 2097152,
+    "maxTrialBytes": 10485760,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 1500000,
+    "concurrency": 4
+  },
+  "trustedLocalExecution": true,
+  "budgetNotice": true,
+  "cases": [
+    {
+      "id": "e2-spec-implementation",
+      "packagePath": "task-library/calibration/e2-spec-implementation",
+      "packageManifestSha256": "bd1eeb75e9f289478c8b02edf40ffedaa7dec14d9d79d97b3895f9fdae0de36e",
+      "input": {
+        "prompt": "Implement the specification above, test it, and end with a short summary."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 600000
+      },
+      "items": "all"
+    }
+  ]
+}
