@@ -57,7 +57,8 @@ for (const anchor of anchors) {
   if (!values["dry-run"]) await renderSubmission(anchor.site, render, states);
   anchorDesigns.set(anchor.name, { site: anchor.site, render });
 }
-const records = (await loadRecordedTrials(runDirectory)).filter(record => record.artifactManifest);
+// Infrastructure failures are excluded from judging, as they are from scoring; --resume reruns them.
+const records = (await loadRecordedTrials(runDirectory)).filter(record => record.artifactManifest && record.execution.failureKind !== "infrastructure");
 const trials: Array<{ id: string; model: ModelSelection; site: string; render: string; result?: RenderResult; panel: ModelSelection[] }> = [];
 for (const record of records) {
   const panel = judges.filter(judge => vendorOf(judge) !== vendorOf(record.model)).slice(0, panelSize);
