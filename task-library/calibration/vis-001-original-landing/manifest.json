@@ -37,11 +37,11 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "61b780bc04ea732f49f7b5fbcf53fda55b542ef882b3b952f7f50ab4f390f95a"
+        "sha256": "dbfb546d0739741f37ed461451365148703f471f2d33957b8aa4a761a98cd219"
       },
       {
         "path": "rubric.md",
-        "sha256": "d46aa96cdabd395b442d7d9699d56da51c422f9c2e0cb095524082871400715e"
+        "sha256": "2e83fd6a3dbc315b85effb7ca1f691b8c3600753f610cac47f5e9a2face91912"
       },
       {
         "path": "environment/README.md",
@@ -65,7 +65,7 @@
       },
       {
         "path": "private/grader.py",
-        "sha256": "2208586833971b58d3d2dffc09ef18010dfd925b06fac2cba2b73f460cee717a"
+        "sha256": "01953f3db01f47f898d864236c2f745aa7d6a35e6862523ba4dccd1ab0f2d3b0"
       },
       {
         "path": "private/human_eval_form.csv",
@@ -93,7 +93,7 @@
       },
       {
         "path": "private/verify_frontend.py",
-        "sha256": "daee33002639bfdfe47f68bf40b55d6f44c1770f2eb3ccbcc876fec2be0b6eb8"
+        "sha256": "c83b253788c66cd609230e09579fafafc76a965dc286186bfd1c9f2662e98d2f"
       }
     ]
   },
@@ -152,7 +152,7 @@
   ],
   "grader": {
     "id": "vis001-structure",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

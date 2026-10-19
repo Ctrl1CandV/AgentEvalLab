@@ -152,8 +152,13 @@ def check(d):
         ok_fields = False; detail.append("condition/legend")
     res["form fields and label associations"] = (ok_fields, f"issues {detail}" if detail else "ok")
     # Three visible form states
-    res["form states (empty/error/success)"] = (all(s in js for s in ("empty", "error", "success")) and "form-state" in doc.roles,
-                                             "app.js must switch all three states and include a form-state element")
+    # Behavioural, as the brief requires (1.0.2): a form-state element, each state's exact text somewhere in the page or
+    # its script (the empty state may simply be the element's initial text), and a script that handles the submission.
+    states = CONTENT["form"]["states"]
+    missing_states = [name for name in ("empty", "error", "success") if states[name] not in hay]
+    states_ok = "form-state" in doc.roles and not missing_states and "submit" in js
+    res["form states (empty/error/success)"] = (states_ok, "ok" if states_ok else
+                                             f"needs a form-state element, every state text and a submit handler; missing texts {missing_states}")
     # Contrast
     bad = []
     for req in CONTENT["contrast_requirements"]:
@@ -172,9 +177,17 @@ def _mutate(src, dst, kind):
     shutil.copytree(src, dst)
     ip = os.path.join(dst, "index.html")
     cp = os.path.join(dst, "style.css")
+    jp = os.path.join(dst, "app.js")
     html = open(ip, encoding="utf-8").read()
     css = open(cp, encoding="utf-8").read()
-    if kind == "missing_features":
+    js = open(jp, encoding="utf-8").read()
+    if kind == "empty_state_in_html":
+        # The empty state as the element's initial text; the script names only error and success.
+        js = js.replace("    empty: 'Enter a book title, area, and email to continue.',\n", "").replace("  setState('empty');\n", "")
+        html = re.sub(r'(data-role="form-state"[^>]*>)[^<]*', lambda m: m.group(1) + CONTENT["form"]["states"]["empty"], html, count=1)
+    elif kind == "no_submit_handler":
+        js = js.replace("form.addEventListener('submit', function (ev) {", "form.addEventListener('change', function (ev) {")
+    elif kind == "missing_features":
         feats = re.findall(r'<li data-role="feature">.*?</li>', html, re.S)
         for f in feats[1:]:
             html = html.replace(f, "", 1)
@@ -197,6 +210,7 @@ def _mutate(src, dst, kind):
     # Write both files once, whatever the kind, so no branch can skip its write.
     open(ip, "w", encoding="utf-8").write(html)
     open(cp, "w", encoding="utf-8").write(css)
+    open(jp, "w", encoding="utf-8").write(js)
     return dst
 
 
@@ -210,7 +224,8 @@ def self_calibrate():
         print(f"   [{'PASS' if ok else 'FAIL'}] {k}: {d}")
     allok &= (npass == len(ref))
     for kind, expect_fail in [("missing_features", "at least three features"), ("low_contrast", "contrast (WCAG 2.2)"),
-                              ("unlabeled", "form fields and label associations"), ("copy_changed", "all fixed copy present")]:
+                              ("unlabeled", "form fields and label associations"), ("copy_changed", "all fixed copy present"),
+                              ("no_submit_handler", "form states (empty/error/success)")]:
         tmp = tempfile.mkdtemp(prefix="vis001_")
         try:
             d = os.path.join(tmp, "fe")
@@ -223,7 +238,7 @@ def self_calibrate():
             shutil.rmtree(tmp, ignore_errors=True)
     # Legitimate ways of writing the page that must pass (0.3.1): inline markup inside fixed copy, a footer split into
     # links with character entities, a wrapping label without for/id, and required fields without the HTML attribute.
-    for kind in ("inline_heading", "linked_footer", "wrapping_label", "no_required_attribute"):
+    for kind in ("inline_heading", "linked_footer", "wrapping_label", "no_required_attribute", "empty_state_in_html"):
         tmp = tempfile.mkdtemp(prefix="vis001_")
         try:
             d = os.path.join(tmp, "fe")

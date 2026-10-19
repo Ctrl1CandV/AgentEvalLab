@@ -26,3 +26,6 @@ The first model run (`experiments/vis-calibration-2026-10`) exposed three grader
 
 Self-calibration adds four variants that must pass: an inline heading, a linked footer with entities, a wrapping label, and no `required` attributes. A misplaced write in the mutation helper had left some mutations unapplied while they were being added; it now writes both files once for every kind. Result: 3/3; see `logs/self-calibration-0.3.1.log`.
 
+## Grader 1.0.2 (2026-10-19)
+
+The 800,000-token calibration run (`eb491788`) had one luna page fail `states`. It showed the empty state as the form-state element's initial text and switched to error and success in its script. That is what the brief asks for, but the check required the word `empty` in app.js. The check now follows the brief, as the rubric describes. Self-calibration adds a variant with the empty state in HTML only, which must pass, and a script without a submit handler, which must fail. Result: 3/3.

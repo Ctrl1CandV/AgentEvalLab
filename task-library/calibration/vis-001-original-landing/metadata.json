@@ -58,16 +58,16 @@
     "network": false
   },
   "content_hashes_sha256_16": {
-    "instruction.md": "81691d67066cebd1",
-    "rubric.md": "ac25b6782ec49b1f",
-    "public/content.json": "f7f7fc29d59d8048",
-    "public/content_long.json": "1b7732456c2be236",
-    "private/verify_frontend.py": "a99de6bf35dd2072",
+    "instruction.md": "7bedc2ae58530db0",
+    "rubric.md": "2e83fd6a3dbc315b",
+    "public/content.json": "a22d452e04513935",
+    "public/content_long.json": "e2576c515fb635ea",
+    "private/verify_frontend.py": "c83b253788c66cd6",
     "private/frontend/index.html": "8369ba8abec6e0fd",
     "private/frontend/style.css": "a89ce1d037912e67",
     "private/frontend/app.js": "9992eb32057a1fad",
-    "private/human_eval_form.md": "90bb4736664f479b",
-    "private/human_eval_form.csv": "50cc622cc20c7018"
+    "private/human_eval_form.md": "4b8cdafa68d51b61",
+    "private/human_eval_form.csv": "38ff8d4a8c74dce6"
   },
   "calibration_status": {
     "structural_contrast_self_calibration": "PASS (exit 0): reference frontend passed 6/6; targeted missing-feature, low-contrast, unlabeled-field, and changed-copy mutations were rejected.",

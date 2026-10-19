@@ -8,7 +8,7 @@ These checks are browser-free and critical:
 - **features**: at least three feature entries.
 - **copy**: all fixed copy from public/content.json is present.
 - **form**: form fields and label associations, using the field names given in content.json.
-- **states**: empty, error and success form states.
+- **states**: empty, error and success form states: a form-state element, each state's exact text in the page or its script (the empty state may be the element's initial text), and a script that handles the submission. Before grader 1.0.2 the check searched app.js for the words `empty`, `error` and `success`, which failed a page that showed the empty state as initial HTML text.
 - **contrast**: palette contrast meets the thresholds in the task.
 
 The trial score is the fraction passed.
