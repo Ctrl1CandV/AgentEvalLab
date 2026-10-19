@@ -155,7 +155,11 @@ vis-001 (an original landing page) currently has static structure and contrast c
 
 1. WP2 and WP3: done 2026-10-16.
 2. Re-pilot on the current tasks with the WP4 conditions: done 2026-10-16, see [the budget pilot results](../reviews/2026-10-16-budget-pilot.md). The mechanics work, every task scored at least 93% for both models, and no failure came from a grader.
-3. WP5 and WP6: the design proposal [Task Set v2](../design/TASK_SET_V2.md) awaits user review; then build, pilot, and freeze the first comparison set.
+3. WP5 and WP6: [Task Set v2](../design/TASK_SET_V2.md) was approved on 2026-10-18. R1, R3, T1, E2 and vis-001 judging are built and calibrated; see [the calibration review](../reviews/2026-10-19-task-set-v2-calibration.md).
+   - R3 discriminates from L3 upward; T1 only at L4; R1 is saturated for two models; E2 is in range but has one item.
+   - Anchor judging saturated, and a pairwise tournament now separates pages.
+   - Next: harden R1, T1 and E2, then build E1 and E4. R3 and E2 resume once the deepseek key works.
+   - The comparison set is not frozen yet.
 
 ## Decisions (user, 2026-10-16)
 

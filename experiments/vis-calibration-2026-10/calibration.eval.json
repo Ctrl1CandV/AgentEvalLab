@@ -36,7 +36,7 @@
     "maxOutputChars": 32768,
     "maxOutputTokensPerCall": 32768,
     "maxToolResultChars": 100000,
-    "maxTrialTokens": 300000
+    "maxTrialTokens": 800000
   },
   "artifactLimits": {
     "maxFiles": 200,
