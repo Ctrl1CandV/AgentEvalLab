@@ -8,31 +8,13 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { parseArgs } from "node:util";
-import { parseModel } from "../src/config.js";
 import { loadCredentials } from "../src/providers.js";
 import { loadRecordedTrials } from "../src/evaluation/regrade.js";
 import { modelLabel } from "../src/evaluation/report.js";
 import { renderSubmission, type RenderResult } from "../src/visual/render.js";
-import { combineOrders, criteria, judgePair, loadDesign, outcomeScore, vendorOf, type Choice, type Design, type Verdict } from "../src/visual/judge.js";
-import type { ModelSelection, PlanThinkingLevel } from "../src/types.js";
-
-const DEFAULT_JUDGES = ["supergpt:gpt-6-luna?thinking=medium", "supercn:step-5-preview?thinking=medium",
-  "deepseek:deepseek-flash?thinking=high", "supercn:glm-5.3-flash?thinking=provider-default"];
-
-function judgeSelection(spec: string): ModelSelection {
-  const [model, query = ""] = spec.split("?", 2);
-  const thinking = new URLSearchParams(query).get("thinking") ?? "provider-default";
-  return { ...parseModel(model!), thinkingLevel: thinking as PlanThinkingLevel, temperature: 0 };
-}
-
-async function pool<T>(tasks: Array<() => Promise<T>>, limit: number): Promise<T[]> {
-  const results: T[] = new Array(tasks.length);
-  let next = 0;
-  await Promise.all(Array.from({ length: Math.max(1, Math.min(limit, tasks.length)) }, async () => {
-    while (next < tasks.length) { const index = next++; results[index] = await tasks[index]!(); }
-  }));
-  return results;
-}
+import { combineOrders, criteria, loadDesign, outcomeScore, vendorOf, type Choice, type Design, type Verdict } from "../src/visual/judge.js";
+import { anchorGate, callJudge, DEFAULT_JUDGES, judgeSelection, pool } from "../src/visual/panel.js";
+import type { ModelSelection } from "../src/types.js";
 
 const { values } = parseArgs({ options: { run: { type: "string" }, package: { type: "string" }, judges: { type: "string" },
   panel: { type: "string", default: "3" }, concurrency: { type: "string", default: "4" }, "dry-run": { type: "boolean" } } });
@@ -74,20 +56,11 @@ for (const trial of trials) {
 }
 
 type Call = { judge: ModelSelection; first: Design; second: Design };
-const runCall = async (call: Call) => {
-  try { return await judgePair(call.judge, skill, call.first, call.second); }
-  catch { return { verdict: null, usage: { input: 0, output: 0 }, raw: "" }; }
-};
+const runCall = (call: Call) => callJudge(call.judge, skill, call.first, call.second);
 const designOf = (label: string, item: { site: string; render: string }) => loadDesign(label, item.render, item.site);
-const reference = anchorDesigns.get("reference")!, plain = anchorDesigns.get("plain")!;
 
 // Anchor gate: every judge must prefer the reference over the plain page in both orders.
-const gate = await pool(judges.map(judge => async () => {
-  const one = await runCall({ judge, first: await designOf("A", reference), second: await designOf("B", plain) });
-  const two = await runCall({ judge, first: await designOf("A", plain), second: await designOf("B", reference) });
-  const combined = combineOrders(one.verdict?.overall ?? null, two.verdict?.overall ?? null);
-  return { judge: `${judge.provider}:${judge.id}`, passed: combined.outcome === "win", outcome: combined.outcome, usage: [one.usage, two.usage] };
-}), Number(values.concurrency));
+const gate = await anchorGate(judges, skill, (label, anchor) => designOf(label, anchorDesigns.get(anchor)!), Number(values.concurrency));
 const trusted = new Set(gate.filter(entry => entry.passed).map(entry => entry.judge));
 
 // Submission against each anchor, in both orders, for each judge of its panel.
