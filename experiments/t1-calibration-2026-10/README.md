@@ -37,3 +37,5 @@ The first plan copied artifact limits of 50 files from the R3 plan, below the 53
 ```bash
 npm run harness -- --plan experiments/t1-calibration-2026-10/hard-levels.eval.json
 ```
+
+The deepseek API key was rejected on 2026-10-19. `*-without-deepseek.eval.json` runs the same plan on the other three models in the meantime. deepseek follows later under the same task version and budget, and the item analysis combines the runs.

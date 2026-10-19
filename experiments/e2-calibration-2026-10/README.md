@@ -13,3 +13,5 @@ npm run harness -- --plan experiments/e2-calibration-2026-10/calibration.eval.js
 - `82f84f8a` (2026-10-18, task 0.1.0, 300,000 tokens per trial). Superseded. Both valid deepseek and glm trials stopped at the token limit after about 11 responses, so the budget was raised to 800,000; most of the spend is context resent with each request. Five trials lost their workspaces to an operator cleanup command during the run and are infrastructure failures, not model results. Details in the task's `calibration.md`.
 - `044fa08d` (2026-10-19, task 0.2.0, `sheet` only, 800,000 tokens per trial). Stopped at 4 of 12 trials when the deepseek key was rejected, and superseded by task 0.3.0 rather than resumed. glm resolved `sheet` with 799,914 tokens, step reached 88% and the token limit, and luna scored 82% with 38,212 tokens.
 - Task 0.3.0 (three items, two repetitions, 800,000 tokens per trial): pending the deepseek key.
+
+The deepseek API key was rejected on 2026-10-19. `*-without-deepseek.eval.json` runs the same plan on the other three models in the meantime. deepseek follows later under the same task version and budget, and the item analysis combines the runs.
