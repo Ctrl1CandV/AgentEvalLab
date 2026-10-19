@@ -29,19 +29,19 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "f94b677161707702beeda4a4bac66d002fd3f931b5f1266a9db01bec658f74dc"
+        "sha256": "9db0b56e5f31bb6ceac1e17e6a2017c0b7cd39b5689fb16907fbb060ed01faa1"
       },
       {
         "path": "rubric.md",
-        "sha256": "5e947901fbe8424b265f4c7a23c58ad086f9a9031dd5f8da09a3587793b8a794"
+        "sha256": "aeda1557b5d9ee936088e441b11cfe540019f7720a157bd2193de3bf2ebb0de9"
       },
       {
         "path": "private/generate.py",
-        "sha256": "87bfb630446f07a53024d9b8b291fcd87147f9231b9f326a1d2194130a4ac5f8"
+        "sha256": "78db0473be1ce5372ae049fb21624e0720f1e7372d36b0d4fb2a6f5349608b08"
       },
       {
         "path": "private/grader.py",
-        "sha256": "67138e6842c9301aea08222a284d4a519335f12c7892f411227acde0b83698af"
+        "sha256": "efa36d6754a761498f91987c3db53dd5a514e76a4075baeb9e652ecbb87cc923"
       },
       {
         "path": "private/keys.json",
@@ -3663,7 +3663,7 @@
   ],
   "grader": {
     "id": "t1-evidence-trace",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

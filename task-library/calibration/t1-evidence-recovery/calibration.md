@@ -30,3 +30,4 @@ Runs `e239c8f3` (L1–L3) and `d886d0fb` (L4), four models; details in `docs/rev
 - Grader 1.3.0 grades `lock_count` like `log_count` and `log_total` by count and shown lines. The absence self-check now runs on whole-snapshot searches, so it also covers include lines and shared files.
 - Every L5 answer was also recomputed independently from the snapshot files.
 - Self-calibration: 424/424; see `logs/self-calibration-0.2.0.log`.
+- Grader 1.3.1 (2026-10-19): with a single change file in the snapshot, an incident answer needs only the change and the config line. A calibration trial answered correctly through the only change file without reading the review, a sound shortcut that 1.3.0 failed. A later version should add decoy changes, so that the chain has to be followed.

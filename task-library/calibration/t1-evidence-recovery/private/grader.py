@@ -14,7 +14,7 @@ import snapshot  # noqa: E402
 
 TASK_ID = "t1-evidence-recovery"
 TASK_VERSION = "0.2.0"
-GRADER_VERSION = "1.3.0"
+GRADER_VERSION = "1.3.1"
 KEYS_PATH = os.path.join(HERE, "keys.json")
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)
 
@@ -158,6 +158,10 @@ class Observations:
         covered = self.characters.get(path, set())
         return all(position in covered for position in range(start, start + len(lines[index])))
 
+    def change_count(self):
+        directory = os.path.join(self.root, "changes")
+        return len(os.listdir(directory)) if os.path.isdir(directory) else 0
+
     def searched_absent(self, path, key):
         """A search covered the whole file with a pattern that matches any line setting the key, so the key's absence
         from the results shows it is absent from the file. A truncated search covered the file when it returned a
@@ -213,7 +217,11 @@ def grade_question(question, given, observations, trace):
     if kind == "config":
         lines = [proof for proof in question["evidence"] if not proof.get("whole")]
         absent_key = observations.lines(lines[0]["path"])[lines[0]["line"]].split("=")[0].strip() if lines else None
-    if not observations.saw_all(question["evidence"], absent_key):
+    proofs = question["evidence"]
+    if kind == "incident" and observations.change_count() == 1:
+        # With one change file in the snapshot, the incident and review add nothing: that change is the only candidate.
+        proofs = [proof for proof in proofs if proof["path"].startswith(("changes/", "services/"))]
+    if not observations.saw_all(proofs, absent_key):
         return False
     if kind == "lockfile":
         return (str(given.get("version", "")).strip() == expected["version"] and str(given.get("license", "")).strip().lower() == expected["license"].lower()
