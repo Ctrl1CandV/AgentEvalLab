@@ -1,0 +1,4 @@
+[limits-burst]
+queue_depth = 47
+cache_ttl_s = 86
+batch_size = 73

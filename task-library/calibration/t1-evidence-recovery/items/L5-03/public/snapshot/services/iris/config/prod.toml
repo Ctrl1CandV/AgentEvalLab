@@ -1,0 +1,5 @@
+[iris]
+include = "shared/limits-batch.toml"
+batch_size = 41
+pool_size = 23
+timeout_ms = 1000

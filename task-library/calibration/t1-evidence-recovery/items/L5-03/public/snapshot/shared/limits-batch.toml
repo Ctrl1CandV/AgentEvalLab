@@ -1,0 +1,4 @@
+[limits-batch]
+max_retries = 78
+batch_size = 44
+cache_ttl_s = 61

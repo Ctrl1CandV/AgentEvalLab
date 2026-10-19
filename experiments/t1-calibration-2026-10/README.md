@@ -29,3 +29,11 @@ npm run harness -- --plan experiments/t1-calibration-2026-10/calibration.eval.js
 | L4 rerun | `l4-rerun.eval.json`, `maxFiles` 500 | L4 |
 
 The first plan copied artifact limits of 50 files from the R3 plan, below the 53 files an L4 snapshot projects. This was a plan error, not a model or grader error. Preflight now refuses limits that cannot hold a trial's own starting files (`PLAN_ARTIFACT_LIMIT_TOO_LOW`).
+
+## Hard levels (task 0.2.0)
+
+`hard-levels.eval.json` runs L4 and L5 of task 0.2.0, the levels that separate the models, on the four calibration models. L5 snapshots hold about 740,000 characters and 12 questions, so each trial gets 500,000 tokens, 100 responses and 120 tool calls, stated to the model. It waits for the deepseek key, because deepseek is the model that L5 must separate.
+
+```bash
+npm run harness -- --plan experiments/t1-calibration-2026-10/hard-levels.eval.json
+```

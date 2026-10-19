@@ -1,0 +1,8 @@
+[beacon]
+pool_size = 49
+queue_depth = 30
+max_retries = 45
+timeout_ms = 111
+batch_size = 33
+cache_ttl_s = 46
+backup_retention_days = 54

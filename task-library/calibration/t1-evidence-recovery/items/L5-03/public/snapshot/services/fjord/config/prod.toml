@@ -1,0 +1,4 @@
+[fjord]
+queue_depth = 38
+max_retries = 33
+timeout_ms = 1000

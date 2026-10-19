@@ -1,0 +1,4 @@
+[delta]
+queue_depth = 45
+pool_size = 56
+max_retries = 40

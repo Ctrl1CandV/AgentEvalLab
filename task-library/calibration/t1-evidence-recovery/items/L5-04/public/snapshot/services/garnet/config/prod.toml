@@ -1,0 +1,5 @@
+[garnet]
+include = "shared/limits-batch.toml"
+pool_size = 41
+timeout_ms = 2000
+queue_depth = 43

@@ -1,0 +1,5 @@
+[garnet]
+include = "shared/limits-standard.toml"
+timeout_ms = 2000
+max_retries = 21
+cache_ttl_s = 3

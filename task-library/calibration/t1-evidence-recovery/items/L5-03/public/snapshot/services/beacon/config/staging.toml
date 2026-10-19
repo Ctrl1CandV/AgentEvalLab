@@ -1,0 +1,4 @@
+[beacon]
+cache_ttl_s = 31
+queue_depth = 22
+max_retries = 54

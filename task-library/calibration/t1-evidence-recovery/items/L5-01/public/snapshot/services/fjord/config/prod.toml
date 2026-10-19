@@ -1,0 +1,5 @@
+[fjord]
+include = "shared/limits-burst.toml"
+batch_size = 24
+max_retries = 32
+timeout_ms = 1000

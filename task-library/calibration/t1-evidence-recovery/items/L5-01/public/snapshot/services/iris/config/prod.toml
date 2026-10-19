@@ -1,0 +1,5 @@
+[iris]
+include = "shared/limits-standard.toml"
+queue_depth = 32
+pool_size = 38
+cache_ttl_s = 14

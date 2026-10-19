@@ -1,0 +1,5 @@
+[iris]
+include = "shared/limits-standard.toml"
+cache_ttl_s = 31
+queue_depth = 19
+timeout_ms = 1000

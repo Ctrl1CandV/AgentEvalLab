@@ -1,0 +1,5 @@
+[harbor]
+include = "shared/limits-burst.toml"
+pool_size = 31
+max_retries = 18
+timeout_ms = 1000

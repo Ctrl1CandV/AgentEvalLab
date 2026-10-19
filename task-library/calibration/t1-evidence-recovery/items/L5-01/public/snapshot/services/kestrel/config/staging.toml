@@ -1,0 +1,4 @@
+[kestrel]
+timeout_ms = 126
+cache_ttl_s = 53
+batch_size = 48

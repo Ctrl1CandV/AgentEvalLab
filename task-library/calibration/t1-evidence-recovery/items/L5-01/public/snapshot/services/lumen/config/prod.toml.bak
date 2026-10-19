@@ -1,0 +1,7 @@
+[lumen]
+timeout_ms = 2007
+cache_ttl_s = 49
+queue_depth = 47
+max_retries = 13
+pool_size = 49
+batch_size = 49

@@ -1,0 +1,4 @@
+[limits-standard]
+batch_size = 80
+pool_size = 45
+queue_depth = 68

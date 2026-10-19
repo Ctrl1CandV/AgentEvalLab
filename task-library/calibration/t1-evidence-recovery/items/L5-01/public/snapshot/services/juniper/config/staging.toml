@@ -1,0 +1,4 @@
+[juniper]
+pool_size = 51
+queue_depth = 41
+batch_size = 41

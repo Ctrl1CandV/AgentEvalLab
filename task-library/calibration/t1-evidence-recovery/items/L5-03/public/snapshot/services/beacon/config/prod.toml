@@ -1,0 +1,5 @@
+[beacon]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 25
+max_retries = 41
+pool_size = 42

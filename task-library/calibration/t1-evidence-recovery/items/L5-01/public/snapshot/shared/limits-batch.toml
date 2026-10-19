@@ -1,0 +1,4 @@
+[limits-batch]
+queue_depth = 86
+batch_size = 89
+max_retries = 80

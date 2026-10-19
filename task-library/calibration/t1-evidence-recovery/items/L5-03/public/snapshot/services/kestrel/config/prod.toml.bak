@@ -1,0 +1,8 @@
+[kestrel]
+batch_size = 26
+cache_ttl_s = 46
+max_retries = 33
+timeout_ms = 761
+pool_size = 32
+queue_depth = 44
+backup_retention_days = 12

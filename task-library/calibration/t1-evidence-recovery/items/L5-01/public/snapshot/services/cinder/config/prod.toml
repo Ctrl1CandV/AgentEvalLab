@@ -1,0 +1,5 @@
+[cinder]
+include = "shared/limits-standard.toml"
+pool_size = 10
+batch_size = 27
+max_retries = 21

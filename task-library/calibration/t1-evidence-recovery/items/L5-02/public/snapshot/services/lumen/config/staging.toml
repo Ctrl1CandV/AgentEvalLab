@@ -1,0 +1,5 @@
+[lumen]
+timeout_ms = 1525
+cache_ttl_s = 32
+max_retries = 58
+tls_min_version = 5

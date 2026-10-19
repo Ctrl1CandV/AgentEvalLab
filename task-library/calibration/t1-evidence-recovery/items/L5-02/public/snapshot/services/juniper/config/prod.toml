@@ -1,0 +1,5 @@
+[juniper]
+include = "shared/limits-standard.toml"
+cache_ttl_s = 13
+max_retries = 26
+queue_depth = 42

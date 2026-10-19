@@ -1,0 +1,4 @@
+[juniper]
+pool_size = 45
+max_retries = 55
+queue_depth = 59

@@ -1,0 +1,4 @@
+[iris]
+timeout_ms = 523
+cache_ttl_s = 44
+max_retries = 19

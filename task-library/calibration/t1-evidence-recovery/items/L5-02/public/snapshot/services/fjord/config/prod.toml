@@ -1,0 +1,5 @@
+[fjord]
+include = "shared/limits-batch.toml"
+max_retries = 29
+queue_depth = 34
+timeout_ms = 1000

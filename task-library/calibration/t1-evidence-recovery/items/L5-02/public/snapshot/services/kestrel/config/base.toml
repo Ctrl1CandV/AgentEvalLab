@@ -1,0 +1,7 @@
+[kestrel]
+timeout_ms = 1000
+max_retries = 16
+pool_size = 29
+queue_depth = 3
+batch_size = 37
+cache_ttl_s = 39

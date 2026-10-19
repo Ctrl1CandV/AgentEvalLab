@@ -1,0 +1,5 @@
+[ember]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 30
+batch_size = 18
+pool_size = 35

@@ -1,0 +1,4 @@
+[beacon]
+batch_size = 27
+cache_ttl_s = 35
+pool_size = 37

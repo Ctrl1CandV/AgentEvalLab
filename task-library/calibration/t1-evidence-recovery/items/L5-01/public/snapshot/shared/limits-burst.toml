@@ -1,0 +1,4 @@
+[limits-burst]
+batch_size = 50
+max_retries = 84
+queue_depth = 55

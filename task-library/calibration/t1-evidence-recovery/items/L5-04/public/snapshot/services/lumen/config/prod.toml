@@ -1,0 +1,4 @@
+[lumen]
+queue_depth = 25
+timeout_ms = 1000
+max_retries = 17

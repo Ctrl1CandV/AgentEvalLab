@@ -1,0 +1,4 @@
+[cinder]
+timeout_ms = 260
+batch_size = 34
+pool_size = 36

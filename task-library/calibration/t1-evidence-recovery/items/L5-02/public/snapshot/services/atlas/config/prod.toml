@@ -1,0 +1,5 @@
+[atlas]
+include = "shared/limits-standard.toml"
+pool_size = 31
+max_retries = 13
+batch_size = 20

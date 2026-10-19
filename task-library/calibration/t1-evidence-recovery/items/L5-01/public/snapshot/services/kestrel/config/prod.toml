@@ -1,0 +1,4 @@
+[kestrel]
+pool_size = 12
+cache_ttl_s = 34
+batch_size = 37

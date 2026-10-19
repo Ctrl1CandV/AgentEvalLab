@@ -1,0 +1,4 @@
+[lumen]
+pool_size = 39
+cache_ttl_s = 20
+timeout_ms = 500

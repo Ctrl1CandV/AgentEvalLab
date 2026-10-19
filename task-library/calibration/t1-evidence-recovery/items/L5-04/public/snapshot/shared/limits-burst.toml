@@ -1,0 +1,4 @@
+[limits-burst]
+batch_size = 69
+max_retries = 62
+pool_size = 71

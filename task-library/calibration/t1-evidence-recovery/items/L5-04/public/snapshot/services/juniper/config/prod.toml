@@ -1,0 +1,4 @@
+[juniper]
+cache_ttl_s = 20
+max_retries = 42
+pool_size = 31

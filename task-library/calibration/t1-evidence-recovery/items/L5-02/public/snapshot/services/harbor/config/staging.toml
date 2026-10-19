@@ -1,0 +1,4 @@
+[harbor]
+pool_size = 45
+queue_depth = 46
+timeout_ms = 1527

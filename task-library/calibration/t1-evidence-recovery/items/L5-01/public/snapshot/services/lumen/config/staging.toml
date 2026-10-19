@@ -1,0 +1,4 @@
+[lumen]
+queue_depth = 52
+pool_size = 48
+batch_size = 49

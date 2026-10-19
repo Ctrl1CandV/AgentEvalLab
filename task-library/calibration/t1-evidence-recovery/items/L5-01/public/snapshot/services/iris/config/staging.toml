@@ -1,0 +1,4 @@
+[iris]
+queue_depth = 58
+timeout_ms = 3012
+cache_ttl_s = 39

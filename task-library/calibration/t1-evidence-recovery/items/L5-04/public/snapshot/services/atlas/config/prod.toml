@@ -1,0 +1,5 @@
+[atlas]
+include = "shared/limits-burst.toml"
+pool_size = 29
+batch_size = 44
+max_retries = 36

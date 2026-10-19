@@ -1,0 +1,4 @@
+[fjord]
+pool_size = 43
+batch_size = 53
+queue_depth = 53

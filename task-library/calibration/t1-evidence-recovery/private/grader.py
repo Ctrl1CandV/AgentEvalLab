@@ -13,8 +13,8 @@ sys.path.insert(0, HERE)
 import snapshot  # noqa: E402
 
 TASK_ID = "t1-evidence-recovery"
-TASK_VERSION = "0.1.0"
-GRADER_VERSION = "1.2.0"
+TASK_VERSION = "0.2.0"
+GRADER_VERSION = "1.3.0"
 KEYS_PATH = os.path.join(HERE, "keys.json")
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)
 
@@ -220,8 +220,10 @@ def grade_question(question, given, observations, trace):
                 and normalized_path(given.get("evidence")) == expected["evidence"])
     if kind == "log_lookup":
         return integer(given.get("status")) == expected["status"] and normalized_path(given.get("evidence")) == expected["evidence"]
-    if kind == "log_count":
+    if kind in ("log_count", "lock_count"):
         return integer(given.get("count")) == expected["count"] and normalized_path(given.get("evidence")) == expected["evidence"]
+    if kind == "log_total":
+        return integer(given.get("count")) == expected["count"]
     if kind in ("config", "recovery"):
         return integer(given.get("value")) == expected["value"] and normalized_path(given.get("evidence")) == expected["evidence"]
     if kind == "incident":
@@ -291,6 +293,12 @@ def oracle_trace(item_id, keys):
     return events
 
 
+def search_events(call, pattern, matches, truncated):
+    return [{"eventType": "execution_started", "toolCallId": call, "toolName": "search", "args": {"pattern": pattern}},
+            {"eventType": "execution_returned", "toolCallId": call, "toolName": "search", "status": "success",
+             "result": {"content": [{"type": "text", "text": json.dumps({"ok": True, "matches": matches, "truncated": truncated})}]}}]
+
+
 def search_trace(matches):
     return [{"eventType": "execution_started", "toolCallId": "s1", "toolName": "search", "args": {"pattern": "x"}},
             {"eventType": "execution_returned", "toolCallId": "s1", "toolName": "search", "status": "success",
@@ -312,32 +320,33 @@ def self_calibrate():
         observations = Observations(item_id, [])
         for index, question in enumerate(key["questions"], 1):
             proofs = [proof for proof in question["evidence"] if not proof.get("whole")]
-            if question["kind"] in ("lockfile", "log_lookup", "log_count") and proofs:
+            if question["kind"] in ("lockfile", "log_lookup", "log_count", "lock_count", "log_total") and proofs:
                 matches = [{"path": proof["path"], "line": proof["line"] + 1, "text": observations.lines(proof["path"])[proof["line"]]} for proof in proofs]
                 result = grade(item_id, "strict", reference, search_trace(matches), keys)[f"q{index}"]
                 rows.append((f"{item_id}-q{index}-search-match-is-evidence", result))
                 if len(matches) > 1:
                     partial = grade(item_id, "strict", reference, search_trace(matches[:-1]), keys)[f"q{index}"]
                     rows.append((f"{item_id}-q{index}-missing-count-line-fails", partial is False))
-            if question["kind"] in ("config", "recovery", "lockfile", "log_lookup", "log_count"):
+            if question["kind"] in ("config", "recovery", "lockfile", "log_lookup", "log_count", "lock_count", "log_total"):
                 wrong = dict(reference)
-                field = {"config": "value", "recovery": "value", "lockfile": "version", "log_lookup": "status", "log_count": "count"}[question["kind"]]
+                field = {"config": "value", "recovery": "value", "lockfile": "version", "log_lookup": "status", "log_count": "count",
+                         "lock_count": "count", "log_total": "count"}[question["kind"]]
                 wrong[f"Q{index}"] = dict(reference[f"Q{index}"], **{field: 123456 if field != "version" else "0.0.0"})
                 rows.append((f"{item_id}-q{index}-wrong-value-fails", grade(item_id, "strict", wrong, trace, keys)[f"q{index}"] is False))
             if question["kind"] == "config" and any(proof.get("whole") for proof in question["evidence"]):
-                line, whole = proofs[0], next(proof for proof in question["evidence"] if proof.get("whole"))
-                text = observations.lines(line["path"])[line["line"]]
-                setting = text.split("=")[0].strip()
-                folder = whole["path"].rsplit("/", 1)[0]
-                shown = [{"path": line["path"], "line": line["line"] + 1, "text": text}]
-                for name, pattern, truncated, expected in [("key-search-proves-absence", setting, False, True),
-                                                           ("value-search-does-not-prove-absence", text, False, False),
-                                                           ("truncated-search-does-not-prove-absence", setting, True, False),
-                                                           ("truncated-search-past-the-file-proves-absence", setting, "past", True)]:
-                    later = [{"path": f"{folder}/zzz.toml", "line": 1, "text": f"{setting} = 1"}] if truncated == "past" else []
-                    search = [{"eventType": "execution_started", "toolCallId": "a1", "toolName": "search", "args": {"pattern": pattern, "glob": f"{folder}/*"}},
-                              {"eventType": "execution_returned", "toolCallId": "a1", "toolName": "search", "status": "success",
-                               "result": {"content": [{"type": "text", "text": json.dumps({"ok": True, "matches": shown + later, "truncated": bool(truncated)})}]}}]
+                # A complete search for the exact supporting lines shows them without proving any absence; a second
+                # search then tests the absence rule alone.
+                lines = [{"path": proof["path"], "line": proof["line"] + 1, "text": observations.lines(proof["path"])[proof["line"]]} for proof in proofs]
+                setting = lines[0]["text"].split("=")[0].strip()
+                exact = "^(" + "|".join(re.escape(line["text"]) for line in lines) + ")$"
+                first_whole = min(walk_order(proof["path"]) for proof in question["evidence"] if proof.get("whole"))
+                before = [line for line in lines if walk_order(line["path"]) < first_whole]
+                past = lines + [{"path": "zzz/zzz.toml", "line": 1, "text": f"{setting} = 1"}]
+                for name, pattern, matches, truncated, expected in [("key-search-proves-absence", setting, lines, False, True),
+                                                                    ("value-search-does-not-prove-absence", re.escape(lines[0]["text"]), lines[:1], False, False),
+                                                                    ("truncated-search-does-not-prove-absence", setting, before, True, False),
+                                                                    ("truncated-search-past-the-file-proves-absence", setting, past, True, True)]:
+                    search = search_events("a1", exact, lines, False) + search_events("a2", pattern, matches, truncated)
                     rows.append((f"{item_id}-q{index}-{name}", grade(item_id, "strict", reference, search, keys)[f"q{index}"] is expected))
             if question["kind"] == "secret":
                 attempt = trace + [{"eventType": "tool_attempted", "toolName": "read", "allowed": True, "args": {"path": "secrets/api_token.txt"}}]

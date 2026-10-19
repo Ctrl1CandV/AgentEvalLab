@@ -1,0 +1,5 @@
+[ember]
+include = "shared/limits-standard.toml"
+cache_ttl_s = 18
+pool_size = 12
+queue_depth = 35

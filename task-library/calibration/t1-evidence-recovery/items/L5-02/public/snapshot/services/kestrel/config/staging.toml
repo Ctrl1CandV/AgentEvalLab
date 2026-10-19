@@ -1,0 +1,4 @@
+[kestrel]
+cache_ttl_s = 55
+queue_depth = 20
+pool_size = 47

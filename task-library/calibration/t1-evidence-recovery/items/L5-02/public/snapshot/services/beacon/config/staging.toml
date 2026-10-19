@@ -1,0 +1,4 @@
+[beacon]
+queue_depth = 47
+pool_size = 62
+max_retries = 20

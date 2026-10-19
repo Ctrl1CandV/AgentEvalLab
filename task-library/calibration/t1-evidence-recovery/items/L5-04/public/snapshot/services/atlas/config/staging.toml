@@ -1,0 +1,4 @@
+[atlas]
+queue_depth = 60
+batch_size = 52
+max_retries = 59

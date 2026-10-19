@@ -1,0 +1,4 @@
+[lumen]
+queue_depth = 50
+pool_size = 50
+max_retries = 34

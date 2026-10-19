@@ -1,0 +1,4 @@
+[garnet]
+cache_ttl_s = 24
+max_retries = 41
+timeout_ms = 3017

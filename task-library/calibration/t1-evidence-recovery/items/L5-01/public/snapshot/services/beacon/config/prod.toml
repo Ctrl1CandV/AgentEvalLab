@@ -1,0 +1,5 @@
+[beacon]
+include = "shared/limits-standard.toml"
+pool_size = 42
+queue_depth = 23
+max_retries = 38

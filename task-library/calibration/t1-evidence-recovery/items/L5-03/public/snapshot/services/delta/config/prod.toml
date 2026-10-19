@@ -1,0 +1,5 @@
+[delta]
+include = "shared/limits-standard.toml"
+timeout_ms = 4000
+queue_depth = 21
+batch_size = 26

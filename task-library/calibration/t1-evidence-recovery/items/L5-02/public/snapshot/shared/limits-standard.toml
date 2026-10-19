@@ -1,0 +1,4 @@
+[limits-standard]
+cache_ttl_s = 88
+queue_depth = 51
+max_retries = 50

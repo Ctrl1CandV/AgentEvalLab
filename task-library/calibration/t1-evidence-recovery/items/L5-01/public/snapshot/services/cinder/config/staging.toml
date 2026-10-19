@@ -1,0 +1,4 @@
+[cinder]
+cache_ttl_s = 43
+max_retries = 41
+pool_size = 15

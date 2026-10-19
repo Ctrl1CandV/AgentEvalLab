@@ -1,0 +1,4 @@
+[harbor]
+max_retries = 22
+cache_ttl_s = 45
+pool_size = 19

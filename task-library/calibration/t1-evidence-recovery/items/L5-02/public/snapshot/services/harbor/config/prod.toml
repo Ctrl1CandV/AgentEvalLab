@@ -1,0 +1,5 @@
+[harbor]
+include = "shared/limits-burst.toml"
+timeout_ms = 3000
+max_retries = 29
+cache_ttl_s = 9

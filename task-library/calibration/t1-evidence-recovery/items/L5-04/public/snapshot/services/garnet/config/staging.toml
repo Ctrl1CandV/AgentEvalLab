@@ -1,0 +1,4 @@
+[garnet]
+queue_depth = 57
+max_retries = 58
+timeout_ms = 1028

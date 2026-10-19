@@ -1,0 +1,5 @@
+[lumen]
+include = "shared/limits-burst.toml"
+timeout_ms = 2000
+cache_ttl_s = 42
+queue_depth = 40

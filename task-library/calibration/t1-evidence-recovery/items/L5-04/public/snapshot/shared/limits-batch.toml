@@ -1,0 +1,4 @@
+[limits-batch]
+queue_depth = 78
+pool_size = 48
+max_retries = 49

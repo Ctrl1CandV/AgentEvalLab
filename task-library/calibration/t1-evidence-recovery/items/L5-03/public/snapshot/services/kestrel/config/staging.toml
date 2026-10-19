@@ -1,0 +1,5 @@
+[kestrel]
+queue_depth = 53
+pool_size = 35
+timeout_ms = 771
+backup_retention_days = 19

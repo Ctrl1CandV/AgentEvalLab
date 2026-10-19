@@ -1,0 +1,4 @@
+[fjord]
+timeout_ms = 514
+cache_ttl_s = 43
+batch_size = 31

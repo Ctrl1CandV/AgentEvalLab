@@ -1,0 +1,5 @@
+[beacon]
+include = "shared/limits-burst.toml"
+max_retries = 5
+cache_ttl_s = 43
+timeout_ms = 2000

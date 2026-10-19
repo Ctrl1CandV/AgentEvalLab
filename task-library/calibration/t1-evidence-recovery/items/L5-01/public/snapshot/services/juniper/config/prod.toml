@@ -1,0 +1,5 @@
+[juniper]
+include = "shared/limits-standard.toml"
+pool_size = 32
+max_retries = 21
+batch_size = 31

@@ -1,0 +1,4 @@
+[atlas]
+timeout_ms = 519
+batch_size = 48
+max_retries = 27

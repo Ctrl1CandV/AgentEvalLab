@@ -1,0 +1,5 @@
+[kestrel]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 44
+batch_size = 43
+pool_size = 32

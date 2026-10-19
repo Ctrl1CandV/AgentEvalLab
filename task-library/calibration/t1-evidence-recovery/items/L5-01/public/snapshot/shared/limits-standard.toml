@@ -1,0 +1,4 @@
+[limits-standard]
+max_retries = 54
+cache_ttl_s = 58
+pool_size = 83

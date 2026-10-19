@@ -1,0 +1,5 @@
+[kestrel]
+include = "shared/limits-standard.toml"
+pool_size = 25
+queue_depth = 34
+cache_ttl_s = 12

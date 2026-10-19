@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 3,
+  "name": "t1-calibration-2026-10-hard-levels",
+  "models": [
+    {
+      "provider": "supergpt",
+      "id": "gpt-6-luna",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "glm-5.3",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "step-5-preview",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 1,
+  "budget": {
+    "timeoutMs": 1800000,
+    "maxTurns": 100,
+    "maxModelCalls": 100,
+    "maxToolCalls": 120,
+    "maxOutputChars": 32768,
+    "maxOutputTokensPerCall": 32768,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 500000
+  },
+  "artifactLimits": {
+    "maxFiles": 500,
+    "maxFileBytes": 10485760,
+    "maxTrialBytes": 52428800,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 4000000,
+    "concurrency": 4
+  },
+  "trustedLocalExecution": true,
+  "budgetNotice": true,
+  "cases": [
+    {
+      "id": "t1-evidence-recovery",
+      "packagePath": "task-library/calibration/t1-evidence-recovery",
+      "packageManifestSha256": "051d5776f5f476d1c53a371bc2e41fef66f0a644f98dd1c178315afac39b4f07",
+      "readOnly": true,
+      "toolProfile": "doc-evidence",
+      "input": {
+        "prompt": "Use the tools to answer every question, then give the JSON answer."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 180000
+      },
+      "items": {
+        "levels": [
+          "L4",
+          "L5"
+        ]
+      }
+    }
+  ]
+}

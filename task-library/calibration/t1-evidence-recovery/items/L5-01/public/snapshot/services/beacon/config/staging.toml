@@ -1,0 +1,5 @@
+[beacon]
+pool_size = 50
+cache_ttl_s = 55
+max_retries = 53
+backup_retention_days = 3

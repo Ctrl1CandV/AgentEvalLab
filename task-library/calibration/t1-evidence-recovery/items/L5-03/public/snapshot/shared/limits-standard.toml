@@ -1,0 +1,4 @@
+[limits-standard]
+pool_size = 54
+cache_ttl_s = 71
+batch_size = 85
