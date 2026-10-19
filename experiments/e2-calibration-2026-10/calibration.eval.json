@@ -27,7 +27,7 @@
       "temperature": 0
     }
   ],
-  "repetitions": 3,
+  "repetitions": 2,
   "budget": {
     "timeoutMs": 1800000,
     "maxTurns": 40,
@@ -48,7 +48,7 @@
   "batch": {
     "maxRetries": 2,
     "maxConsecutiveInfrastructureFailures": 3,
-    "maxTotalTokensPerModel": 2500000,
+    "maxTotalTokensPerModel": 5000000,
     "concurrency": 4
   },
   "trustedLocalExecution": true,
@@ -57,7 +57,7 @@
     {
       "id": "e2-spec-implementation",
       "packagePath": "task-library/calibration/e2-spec-implementation",
-      "packageManifestSha256": "436009165fffdf9eac16c501ea013cbfd3e5e53bf434d250a77d8d113794d434",
+      "packageManifestSha256": "5dfb0297664184c30dc1b647db589681e2b89eb08352bbe4342e54f76af8be97",
       "input": {
         "prompt": "Implement the specification above, test it, and end with a short summary."
       },

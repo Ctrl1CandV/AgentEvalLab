@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "e2-spec-implementation",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "familyId": "e2-spec-implementation",
   "capability": "engineering",
   "usage": "development",
@@ -28,23 +28,39 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "456deea8aed2860584dd2281295856ada9e8bb2181eb192185b5acb4f557d4f4"
+        "sha256": "d6a397c7182b1c7d2fbc8077618ee03ad42ffd8758beea828b42c76574d70408"
       },
       {
         "path": "rubric.md",
-        "sha256": "554f965cee3e9557a03df99bf8afa7d180e685794edbe87c6e18755a04eb6c9e"
+        "sha256": "5714583c03904a178f1164b7dc9961e36cc421fbb1378d49f060a8d6c53c5e0a"
       },
       {
         "path": "private/build_manifest.py",
-        "sha256": "c91eb20e4e256b9afa336a22fcc80988214ff87df52d38b1cbee7275a994ab97"
+        "sha256": "16fd943ea51add5a5733de9b403014f3ab9b90d6ad6673f27c3980914a29acbf"
       },
       {
         "path": "private/grader.py",
-        "sha256": "1e7ee86779b04c81ca09ebfd6b20d5de04f148b5be2fe6ee1f3281639de1678b"
+        "sha256": "fbd8eff234d50281dadb20b1f62700238b3bf1971dbc98b84d9f721d49054821"
+      },
+      {
+        "path": "private/ledger/fixtures.py",
+        "sha256": "3283f092f018c37cbc65853c85a68ec35d9f46500d13d1611766dbcb332b7af0"
+      },
+      {
+        "path": "private/ledger/reference.py",
+        "sha256": "82bc7493dd795b06f6c07a89e0450fc27a59cffe53e7dfcf4d596b7459cb72b7"
       },
       {
         "path": "private/mutants.py",
-        "sha256": "4c51eb07c9ae0cd4274d56bffe6a03de5a88227fc2be6e755e8c08a4d079e035"
+        "sha256": "98237dd54b17334d4113fe8ce55b8d86fa1ee696b0789d02114f6701e496a274"
+      },
+      {
+        "path": "private/recur/fixtures.py",
+        "sha256": "a2fae208ef672ed304bc3eed5d6697a03bba00e58e80506b5c35f5b2dba94ba2"
+      },
+      {
+        "path": "private/recur/reference.py",
+        "sha256": "4ee0101e4a9f51dec651bfb4d404e40702eabfebe99b455f7cb96ebf6f86950b"
       },
       {
         "path": "private/sheet/fixtures.py",
@@ -60,7 +76,7 @@
     {
       "id": "REQ-SHEET-ARITHMETIC",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.2.0",
+      "introducedAt": "e2-spec-implementation 0.3.0",
       "checkIds": [
         "sheet-arithmetic"
       ]
@@ -68,7 +84,7 @@
     {
       "id": "REQ-SHEET-CHAINS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.2.0",
+      "introducedAt": "e2-spec-implementation 0.3.0",
       "checkIds": [
         "sheet-chains"
       ]
@@ -76,7 +92,7 @@
     {
       "id": "REQ-SHEET-COMPARISON",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.2.0",
+      "introducedAt": "e2-spec-implementation 0.3.0",
       "checkIds": [
         "sheet-comparison"
       ]
@@ -84,7 +100,7 @@
     {
       "id": "REQ-SHEET-CYCLES",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.2.0",
+      "introducedAt": "e2-spec-implementation 0.3.0",
       "checkIds": [
         "sheet-cycles"
       ]
@@ -92,7 +108,7 @@
     {
       "id": "REQ-SHEET-DIVISION",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.2.0",
+      "introducedAt": "e2-spec-implementation 0.3.0",
       "checkIds": [
         "sheet-division"
       ]
@@ -100,7 +116,7 @@
     {
       "id": "REQ-SHEET-EMPTY-REFERENCES",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.2.0",
+      "introducedAt": "e2-spec-implementation 0.3.0",
       "checkIds": [
         "sheet-empty-references"
       ]
@@ -108,7 +124,7 @@
     {
       "id": "REQ-SHEET-ERROR-PROPAGATION",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.2.0",
+      "introducedAt": "e2-spec-implementation 0.3.0",
       "checkIds": [
         "sheet-error-propagation"
       ]
@@ -116,7 +132,7 @@
     {
       "id": "REQ-SHEET-FUNCTIONS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.2.0",
+      "introducedAt": "e2-spec-implementation 0.3.0",
       "checkIds": [
         "sheet-functions"
       ]
@@ -124,7 +140,7 @@
     {
       "id": "REQ-SHEET-IF",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.2.0",
+      "introducedAt": "e2-spec-implementation 0.3.0",
       "checkIds": [
         "sheet-if"
       ]
@@ -132,7 +148,7 @@
     {
       "id": "REQ-SHEET-LITERALS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.2.0",
+      "introducedAt": "e2-spec-implementation 0.3.0",
       "checkIds": [
         "sheet-literals"
       ]
@@ -140,7 +156,7 @@
     {
       "id": "REQ-SHEET-NUMBER-FORMAT",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.2.0",
+      "introducedAt": "e2-spec-implementation 0.3.0",
       "checkIds": [
         "sheet-number-format"
       ]
@@ -148,7 +164,7 @@
     {
       "id": "REQ-SHEET-PARSE-ERRORS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.2.0",
+      "introducedAt": "e2-spec-implementation 0.3.0",
       "checkIds": [
         "sheet-parse-errors"
       ]
@@ -156,7 +172,7 @@
     {
       "id": "REQ-SHEET-POWER",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.2.0",
+      "introducedAt": "e2-spec-implementation 0.3.0",
       "checkIds": [
         "sheet-power"
       ]
@@ -164,7 +180,7 @@
     {
       "id": "REQ-SHEET-REFERENCES",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.2.0",
+      "introducedAt": "e2-spec-implementation 0.3.0",
       "checkIds": [
         "sheet-references"
       ]
@@ -172,7 +188,7 @@
     {
       "id": "REQ-SHEET-ROUNDING",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.2.0",
+      "introducedAt": "e2-spec-implementation 0.3.0",
       "checkIds": [
         "sheet-rounding"
       ]
@@ -180,15 +196,191 @@
     {
       "id": "REQ-SHEET-TEXT",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.2.0",
+      "introducedAt": "e2-spec-implementation 0.3.0",
       "checkIds": [
         "sheet-text"
       ]
     },
     {
+      "id": "REQ-LEDGER-AMOUNTS",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "ledger-amounts"
+      ]
+    },
+    {
+      "id": "REQ-LEDGER-CAPTURE",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "ledger-capture"
+      ]
+    },
+    {
+      "id": "REQ-LEDGER-DUPLICATES",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "ledger-duplicates"
+      ]
+    },
+    {
+      "id": "REQ-LEDGER-ERROR-ORDER",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "ledger-error-order"
+      ]
+    },
+    {
+      "id": "REQ-LEDGER-FROZEN",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "ledger-frozen"
+      ]
+    },
+    {
+      "id": "REQ-LEDGER-FX-ROUNDING",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "ledger-fx-rounding"
+      ]
+    },
+    {
+      "id": "REQ-LEDGER-HOLDS",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "ledger-holds"
+      ]
+    },
+    {
+      "id": "REQ-LEDGER-OPEN",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "ledger-open"
+      ]
+    },
+    {
+      "id": "REQ-LEDGER-OUTPUT-FORMAT",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "ledger-output-format"
+      ]
+    },
+    {
+      "id": "REQ-LEDGER-REVERSAL",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "ledger-reversal"
+      ]
+    },
+    {
+      "id": "REQ-LEDGER-TRANSFER",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "ledger-transfer"
+      ]
+    },
+    {
+      "id": "REQ-LEDGER-WITHDRAW",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "ledger-withdraw"
+      ]
+    },
+    {
+      "id": "REQ-RECUR-CLAMP",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "recur-clamp"
+      ]
+    },
+    {
+      "id": "REQ-RECUR-COUNT-EXCEPT",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "recur-count-except"
+      ]
+    },
+    {
+      "id": "REQ-RECUR-DAILY",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "recur-daily"
+      ]
+    },
+    {
+      "id": "REQ-RECUR-EXAMPLES",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "recur-examples"
+      ]
+    },
+    {
+      "id": "REQ-RECUR-LIMITS",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "recur-limits"
+      ]
+    },
+    {
+      "id": "REQ-RECUR-MONTHLY",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "recur-monthly"
+      ]
+    },
+    {
+      "id": "REQ-RECUR-NTH",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "recur-nth"
+      ]
+    },
+    {
+      "id": "REQ-RECUR-VALIDATION",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "recur-validation"
+      ]
+    },
+    {
+      "id": "REQ-RECUR-WEEKLY",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "recur-weekly"
+      ]
+    },
+    {
+      "id": "REQ-RECUR-YEARLY",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.3.0",
+      "checkIds": [
+        "recur-yearly"
+      ]
+    },
+    {
       "id": "REQ-README",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.2.0",
+      "introducedAt": "e2-spec-implementation 0.3.0",
       "checkIds": [
         "readme"
       ]
@@ -223,6 +415,54 @@
         "REQ-SHEET-TEXT",
         "REQ-README"
       ]
+    },
+    {
+      "id": "ledger",
+      "level": "ledger",
+      "files": [
+        {
+          "path": "items/ledger/prompt.md",
+          "sha256": "cfceb15beeab30b3490da3992442ba5b60a66ff6129263e7bdc054a64458648c"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-LEDGER-AMOUNTS",
+        "REQ-LEDGER-CAPTURE",
+        "REQ-LEDGER-DUPLICATES",
+        "REQ-LEDGER-ERROR-ORDER",
+        "REQ-LEDGER-FROZEN",
+        "REQ-LEDGER-FX-ROUNDING",
+        "REQ-LEDGER-HOLDS",
+        "REQ-LEDGER-OPEN",
+        "REQ-LEDGER-OUTPUT-FORMAT",
+        "REQ-LEDGER-REVERSAL",
+        "REQ-LEDGER-TRANSFER",
+        "REQ-LEDGER-WITHDRAW",
+        "REQ-README"
+      ]
+    },
+    {
+      "id": "recur",
+      "level": "recur",
+      "files": [
+        {
+          "path": "items/recur/prompt.md",
+          "sha256": "5e8d1e5ada1a98df119d039a431ea515b893a6081cc492d30689a33738839684"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-RECUR-CLAMP",
+        "REQ-RECUR-COUNT-EXCEPT",
+        "REQ-RECUR-DAILY",
+        "REQ-RECUR-EXAMPLES",
+        "REQ-RECUR-LIMITS",
+        "REQ-RECUR-MONTHLY",
+        "REQ-RECUR-NTH",
+        "REQ-RECUR-VALIDATION",
+        "REQ-RECUR-WEEKLY",
+        "REQ-RECUR-YEARLY",
+        "REQ-README"
+      ]
     }
   ],
   "toolProfiles": [
@@ -230,7 +470,7 @@
   ],
   "grader": {
     "id": "e2-fixtures",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

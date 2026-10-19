@@ -25,3 +25,13 @@ Run `82f84f8a`, four models, three repetitions each. Findings:
 - The specification states that zero raised to a negative power is `#DIV/0!`, and the reference implements it. The `division` fixture tests `=0^-1` again and adds `=0^0` (1).
 - A tenth mutant, zero to a negative power as `#NUM!`, fails the `division` check. Self-calibration 12/12.
 - The calibration budget rises to 800,000 tokens per trial; see `experiments/e2-calibration-2026-10/README.md`.
+
+## Version 0.3.0 (2026-10-19)
+
+- **Two more items.** One item could not give E2 a reliable score.
+  - `ledger`: an account ledger with 13 hidden fixtures in 12 checks.
+  - `recur`: a recurrence expander with 11 hidden fixtures in 11 checks.
+  - Both specifications are original, and both are dense with rules that are easy to misread: half-even rounding where binary floating point rounds 1.365 the wrong way, holds that capture without a funds check, duplicate ids after a rejection, a stated error order, counts taken before exceptions, month-end clamping that does not apply to nth weekdays, and leap days.
+- **Expected values written by hand.** Weekday facts came from a printed calendar. Both references matched every hand-written fixture at the first comparison.
+- **Exact comparison.** `ledger` and `recur` output must match exactly, JSON types included.
+- **Self-calibration (36/36).** Each reference passes every check, and a missing program fails every check. 11 ledger mutants and 9 recur mutants each fail the check they target, among them float conversion, half-up rounding, holds left out of the available amount, a capture checked against available funds, ids recorded only on success, frozen accounts refusing deposits, counts taken after exceptions, clamping applied to nth weekdays and an inclusive `until` treated as exclusive. See `logs/self-calibration-0.3.0.log`.

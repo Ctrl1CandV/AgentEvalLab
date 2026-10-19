@@ -16,10 +16,15 @@ import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TASK_ID = "e2-spec-implementation"
-TASK_VERSION = "0.2.0"
-GRADER_VERSION = "1.2.0"
-# Per item: the file the candidate delivers, and the module holding its hidden fixtures.
-ITEMS = {"sheet": {"entry": "sheet.py", "fixtures": os.path.join(HERE, "sheet", "fixtures.py")}}
+TASK_VERSION = "0.3.0"
+GRADER_VERSION = "1.3.0"
+# Per item: the file the candidate delivers, the module holding its hidden fixtures, and how a fixture becomes the
+# program's input. Sheet output is compared cell by cell with numeric tolerance; the others must match exactly.
+ITEMS = {
+    "sheet": {"entry": "sheet.py", "fixtures": os.path.join(HERE, "sheet", "fixtures.py"), "input": lambda cells: {"cells": cells}, "cells": True},
+    "ledger": {"entry": "ledger.py", "fixtures": os.path.join(HERE, "ledger", "fixtures.py"), "input": lambda data: data, "cells": False},
+    "recur": {"entry": "recur.py", "fixtures": os.path.join(HERE, "recur", "fixtures.py"), "input": lambda data: data, "cells": False},
+}
 FIXTURE_TIMEOUT_SECONDS = 10
 MAX_OUTPUT_BYTES = 1_000_000
 
@@ -48,13 +53,22 @@ def same(actual, expected, strict=False):
     return actual == expected
 
 
-def run_fixture(program, cells, launcher):
-    """Run the candidate on one sheet in a fresh directory; returns (output dict or None, reason)."""
+def identical(actual, expected):
+    """Exact JSON equality: types must match, so 1 is not true and "1" is not 1."""
+    if isinstance(expected, dict):
+        return isinstance(actual, dict) and actual.keys() == expected.keys() and all(identical(actual[key], value) for key, value in expected.items())
+    if isinstance(expected, list):
+        return isinstance(actual, list) and len(actual) == len(expected) and all(identical(a, e) for a, e in zip(actual, expected))
+    return type(actual) is type(expected) and actual == expected
+
+
+def run_fixture(program, data, launcher):
+    """Run the candidate on one input in a fresh directory; returns (output dict or None, reason)."""
     directory = tempfile.mkdtemp(prefix="e2-fixture-")
     try:
         shutil.copy(program, os.path.join(directory, os.path.basename(program)))
         with open(os.path.join(directory, "input.json"), "w", encoding="utf-8") as handle:
-            json.dump({"cells": cells}, handle)
+            json.dump(data, handle)
         command = ["python3", os.path.basename(program), "input.json"]
         if launcher:
             command = [sys.executable, launcher, "--rw", directory, "--", *command]
@@ -80,15 +94,20 @@ def grade(item_id, submission, launcher):
     """{check: {"passed": bool, "fixtures": {fixture: reason}}}; a missing program fails every check."""
     program = os.path.join(submission, ITEMS[item_id]["entry"])
     results = {}
-    for check, fixture, cells, expected in load_fixtures(item_id):
+    item = ITEMS[item_id]
+    for check, fixture, data, expected in load_fixtures(item_id):
         entry = results.setdefault(check, {"passed": True, "fixtures": {}})
         if not os.path.isfile(program):
-            reason = f"{ITEMS[item_id]['entry']} missing"
+            reason = f"{item['entry']} missing"
         else:
-            output, reason = run_fixture(program, cells, launcher)
-            if output is not None:
+            output, reason = run_fixture(program, item["input"](data), launcher)
+            if output is not None and item["cells"]:
                 wrong = sorted(name for name, value in expected.items() if name not in output or not same(output[name], value, check in STRICT_CHECKS))
                 reason = "ok" if not wrong and set(output) == set(expected) else f"wrong cells {wrong[:8]}" if wrong else "unexpected keys"
+            elif output is not None:
+                wrong = sorted(name for name in set(expected) | set(output) if name not in output or name not in expected
+                               or not identical(output[name], expected[name]))
+                reason = "ok" if not wrong else f"wrong keys {wrong[:8]}"
         entry["fixtures"][fixture] = reason
         entry["passed"] = entry["passed"] and reason == "ok"
     results["readme"] = {"passed": os.path.isfile(os.path.join(submission, "README.md")), "fixtures": {}}
