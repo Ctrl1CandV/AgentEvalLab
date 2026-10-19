@@ -29,3 +29,5 @@ The deepseek API key was rejected on 2026-10-19. `*-without-deepseek.eval.json` 
 - **recur is saturated** and stays as an easy anchor.
 - **Every deduction is the model's own:** a crash, an output of `{}`, a reference skipped after an earlier error, `AA1` as a reference, and one step trial that exceeded the per-response output limit before writing a file.
 - **Token use:** glm and step used 550,000–840,000 tokens per trial, luna 27,000–53,000.
+
+A new deepseek key works from 2026-10-19. The `*-deepseek.eval.json` plans add deepseek under the same conditions.

@@ -56,3 +56,5 @@ At L5 no item was solved by every model, and one by none. The failures were audi
 - format slips.
 
 One grader defect was fixed in grader 1.3.1: it rejected an incident answer that went through the only change file. Median tokens per trial at L5: luna 114,000, glm 159,000, step 257,000; none reached the 500,000 limit.
+
+A new deepseek key works from 2026-10-19. The `*-deepseek.eval.json` plans add deepseek under the same conditions.
