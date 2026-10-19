@@ -29,8 +29,9 @@ FIXTURES = [
      {"A1": "#PARSE!", "A2": "#PARSE!", "A3": "#PARSE!", "A4": "#PARSE!", "A5": "#PARSE!", "A6": "#PARSE!", "A7": "#PARSE!", "A8": "#PARSE!", "A9": "#PARSE!"}),
     ("references", "case-and-bounds", {"A1": "4", "B2": "=a1*2", "B3": "=A100", "B4": "=A0+1", "B5": "=B2+b2"},
      {"A1": 4, "B2": 8, "B3": "#REF!", "B4": "#REF!", "B5": 16}),
-    ("division", "zero-and-num", {"A1": "=1/0", "A2": "=0/0", "A3": "=(-8)^0.5", "A4": "=10^400", "A5": "=0^-1"},
-     {"A1": "#DIV/0!", "A2": "#DIV/0!", "A3": "#NUM!", "A4": "#NUM!", "A5": "#NUM!"}),
+    # =0^-1 was dropped in grader 1.1.0: the specification does not say whether it is #DIV/0! (as in Excel) or #NUM!.
+    ("division", "zero-and-num", {"A1": "=1/0", "A2": "=0/0", "A3": "=(-8)^0.5", "A4": "=10^400"},
+     {"A1": "#DIV/0!", "A2": "#DIV/0!", "A3": "#NUM!", "A4": "#NUM!"}),
     ("error-propagation", "leftmost-error-wins", {"B1": "x", "A1": "=1/0+B1", "A2": "=B1+1/0", "A3": "=A1&A2", "A4": "=A100*(1/0)"},
      {"B1": "x", "A1": "#DIV/0!", "A2": "#DIV/0!", "A3": "#DIV/0!", "A4": "#REF!"}),
     ("error-propagation", "type-error-after-operands", {"B1": "x", "A1": "=B1+1", "A2": "=B1*A9", "A3": "=SUM(B1, 1/0)"},

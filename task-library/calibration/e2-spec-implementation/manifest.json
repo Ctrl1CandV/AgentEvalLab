@@ -32,15 +32,15 @@
       },
       {
         "path": "rubric.md",
-        "sha256": "f58c493f7d98d3516f3b59456cf796a8d66e01cc9b5fa12c3a724c0ac559d835"
+        "sha256": "0a5a5c7e2eeb31b68a248e2f394149e9e87e763d145abb130d54310a67bc33fa"
       },
       {
         "path": "private/build_manifest.py",
-        "sha256": "09ebf90196bd0906e27aaa4e583c31ad55324ecf461e9657377a846b644c4776"
+        "sha256": "21e48227cc49532dee2fb32ab8df8a3d80cc36db4e86148b7bf9f5c649a8c810"
       },
       {
         "path": "private/grader.py",
-        "sha256": "435301df6f3b4e00d72d38ace573ef10476796e25cbace74489bd97b7f1952b6"
+        "sha256": "bb587c6c8216c2a5bcd15139ecff00145df14e00a8df05a814e9d106f88164cf"
       },
       {
         "path": "private/mutants.py",
@@ -48,7 +48,7 @@
       },
       {
         "path": "private/sheet/fixtures.py",
-        "sha256": "2d3fe0fc898f8ba58afabf41d06dce7a6ca17316e26ac05b58d2b6c491578d05"
+        "sha256": "990339a781d5598497b06287c7e9d03099d7877e2277c74df05fe95f3f4b8579"
       },
       {
         "path": "private/sheet/reference.py",
@@ -230,7 +230,7 @@
   ],
   "grader": {
     "id": "e2-fixtures",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

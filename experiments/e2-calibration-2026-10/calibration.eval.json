@@ -57,7 +57,7 @@
     {
       "id": "e2-spec-implementation",
       "packagePath": "task-library/calibration/e2-spec-implementation",
-      "packageManifestSha256": "bd1eeb75e9f289478c8b02edf40ffedaa7dec14d9d79d97b3895f9fdae0de36e",
+      "packageManifestSha256": "7cf818c2621daa0d488d37f23dbb4e01d20c431dd07245874756c8334b975bb7",
       "input": {
         "prompt": "Implement the specification above, test it, and end with a short summary."
       },

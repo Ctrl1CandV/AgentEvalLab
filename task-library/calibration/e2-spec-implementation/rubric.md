@@ -13,3 +13,7 @@ Each item is one self-contained specification with hidden fixtures. The candidat
 | Item | Specification | Checks |
 | --- | --- | --- |
 | sheet | A small spreadsheet evaluator: parsing, precedence, types, functions, error propagation, dynamic cycles, output formatting | 16 rule areas and a README |
+
+## Changes
+
+- Grader 1.1.0 (2026-10-19): the `division` check no longer tests `=0^-1`. The specification does not say whether zero to a negative power is `#DIV/0!` (as in Excel) or `#NUM!`, and the calibration had three models choose `#DIV/0!`. The next task version states the rule and tests it again.

@@ -17,7 +17,7 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 TASK_ID = "e2-spec-implementation"
 TASK_VERSION = "0.1.0"
-GRADER_VERSION = "1.0.0"
+GRADER_VERSION = "1.1.0"
 # Per item: the file the candidate delivers, and the module holding its hidden fixtures.
 ITEMS = {"sheet": {"entry": "sheet.py", "fixtures": os.path.join(HERE, "sheet", "fixtures.py")}}
 FIXTURE_TIMEOUT_SECONDS = 10
