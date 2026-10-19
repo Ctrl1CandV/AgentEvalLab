@@ -33,7 +33,7 @@
       },
       {
         "path": "rubric.md",
-        "sha256": "275faf69d9c5f452d3c4c914b02e8c0009292ca6ca3b161ef5c9ffff3c5b33c7"
+        "sha256": "6591bed71d25b896aa7e773b755ceeee3c1815e902f4b4ec04fc7f7f4dc2ca82"
       },
       {
         "path": "private/generate.py",
@@ -41,7 +41,7 @@
       },
       {
         "path": "private/grader.py",
-        "sha256": "f536cae38f3d6ead4e127718be5a82dc39b135639c10c433463f9c5a5e9794d4"
+        "sha256": "31f6d5fd0d1b82199569cc9d2f4359135901d8c22faf98e3c08b9e7fef2eadb0"
       },
       {
         "path": "private/keys.json",
@@ -2475,7 +2475,7 @@
   ],
   "grader": {
     "id": "t1-evidence-trace",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [
