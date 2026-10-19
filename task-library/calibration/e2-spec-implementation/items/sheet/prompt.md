@@ -43,7 +43,7 @@ A value is a number, a text, a boolean (`TRUE` or `FALSE`), empty, or an error.
 - **Arithmetic** (`+ - * / ^` and unary `-`) needs numbers.
   - An empty operand counts as 0, and a boolean counts as 1 or 0.
   - A text operand gives `#VALUE!`.
-  - Division by zero gives `#DIV/0!`.
+  - Division by zero gives `#DIV/0!`, and so does zero raised to a negative power, such as `0^-1`.
   - A result that is not a finite number, such as `(-8)^0.5`, gives `#NUM!`.
 - **`&`** concatenates the text forms of its operands.
   - A number's text form is its output form (see Output).

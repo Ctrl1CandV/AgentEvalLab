@@ -7,7 +7,7 @@ import pathlib
 
 ROOT = pathlib.Path(".")
 ITEMS = {"sheet": "sheet"}
-VERSION, GRADER_VERSION = "0.1.0", "1.1.0"
+VERSION, GRADER_VERSION = "0.2.0", "1.2.0"
 
 
 def digest(path):

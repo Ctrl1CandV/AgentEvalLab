@@ -245,6 +245,8 @@ class Sheet:
                 return self.finite(a * b)
             if operator == "/":
                 return Err("#DIV/0!") if b == 0 else self.finite(a / b)
+            if a == 0 and b < 0:
+                return Err("#DIV/0!")
             try:
                 result = a ** b
             except (OverflowError, ZeroDivisionError):

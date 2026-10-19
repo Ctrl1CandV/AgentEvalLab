@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "e2-spec-implementation",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "familyId": "e2-spec-implementation",
   "capability": "engineering",
   "usage": "development",
@@ -28,31 +28,31 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "6d6682ccd0987a43492b88a2a3bdcca20d05d32ae5c17eda675a1e0c41126d35"
+        "sha256": "456deea8aed2860584dd2281295856ada9e8bb2181eb192185b5acb4f557d4f4"
       },
       {
         "path": "rubric.md",
-        "sha256": "0a5a5c7e2eeb31b68a248e2f394149e9e87e763d145abb130d54310a67bc33fa"
+        "sha256": "554f965cee3e9557a03df99bf8afa7d180e685794edbe87c6e18755a04eb6c9e"
       },
       {
         "path": "private/build_manifest.py",
-        "sha256": "21e48227cc49532dee2fb32ab8df8a3d80cc36db4e86148b7bf9f5c649a8c810"
+        "sha256": "c91eb20e4e256b9afa336a22fcc80988214ff87df52d38b1cbee7275a994ab97"
       },
       {
         "path": "private/grader.py",
-        "sha256": "bb587c6c8216c2a5bcd15139ecff00145df14e00a8df05a814e9d106f88164cf"
+        "sha256": "1e7ee86779b04c81ca09ebfd6b20d5de04f148b5be2fe6ee1f3281639de1678b"
       },
       {
         "path": "private/mutants.py",
-        "sha256": "420b14ebf2283cb33bfd756654939b802d4f843b27e7c3fcc95798f6eb0dd341"
+        "sha256": "4c51eb07c9ae0cd4274d56bffe6a03de5a88227fc2be6e755e8c08a4d079e035"
       },
       {
         "path": "private/sheet/fixtures.py",
-        "sha256": "990339a781d5598497b06287c7e9d03099d7877e2277c74df05fe95f3f4b8579"
+        "sha256": "ee4e7e68170df6db06a667e4d6c8f034d31c0a72d99da9df19115bc620c401ec"
       },
       {
         "path": "private/sheet/reference.py",
-        "sha256": "2dd4144cc5bc7a85c388ca67130972c92be9d339600c3c3c5128b997772f64cc"
+        "sha256": "b2e001f7a2f8be1fb17fa969700eb696252b0cc4d3647a41006e4788a0956c4e"
       }
     ]
   },
@@ -60,7 +60,7 @@
     {
       "id": "REQ-SHEET-ARITHMETIC",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.1.0",
+      "introducedAt": "e2-spec-implementation 0.2.0",
       "checkIds": [
         "sheet-arithmetic"
       ]
@@ -68,7 +68,7 @@
     {
       "id": "REQ-SHEET-CHAINS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.1.0",
+      "introducedAt": "e2-spec-implementation 0.2.0",
       "checkIds": [
         "sheet-chains"
       ]
@@ -76,7 +76,7 @@
     {
       "id": "REQ-SHEET-COMPARISON",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.1.0",
+      "introducedAt": "e2-spec-implementation 0.2.0",
       "checkIds": [
         "sheet-comparison"
       ]
@@ -84,7 +84,7 @@
     {
       "id": "REQ-SHEET-CYCLES",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.1.0",
+      "introducedAt": "e2-spec-implementation 0.2.0",
       "checkIds": [
         "sheet-cycles"
       ]
@@ -92,7 +92,7 @@
     {
       "id": "REQ-SHEET-DIVISION",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.1.0",
+      "introducedAt": "e2-spec-implementation 0.2.0",
       "checkIds": [
         "sheet-division"
       ]
@@ -100,7 +100,7 @@
     {
       "id": "REQ-SHEET-EMPTY-REFERENCES",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.1.0",
+      "introducedAt": "e2-spec-implementation 0.2.0",
       "checkIds": [
         "sheet-empty-references"
       ]
@@ -108,7 +108,7 @@
     {
       "id": "REQ-SHEET-ERROR-PROPAGATION",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.1.0",
+      "introducedAt": "e2-spec-implementation 0.2.0",
       "checkIds": [
         "sheet-error-propagation"
       ]
@@ -116,7 +116,7 @@
     {
       "id": "REQ-SHEET-FUNCTIONS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.1.0",
+      "introducedAt": "e2-spec-implementation 0.2.0",
       "checkIds": [
         "sheet-functions"
       ]
@@ -124,7 +124,7 @@
     {
       "id": "REQ-SHEET-IF",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.1.0",
+      "introducedAt": "e2-spec-implementation 0.2.0",
       "checkIds": [
         "sheet-if"
       ]
@@ -132,7 +132,7 @@
     {
       "id": "REQ-SHEET-LITERALS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.1.0",
+      "introducedAt": "e2-spec-implementation 0.2.0",
       "checkIds": [
         "sheet-literals"
       ]
@@ -140,7 +140,7 @@
     {
       "id": "REQ-SHEET-NUMBER-FORMAT",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.1.0",
+      "introducedAt": "e2-spec-implementation 0.2.0",
       "checkIds": [
         "sheet-number-format"
       ]
@@ -148,7 +148,7 @@
     {
       "id": "REQ-SHEET-PARSE-ERRORS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.1.0",
+      "introducedAt": "e2-spec-implementation 0.2.0",
       "checkIds": [
         "sheet-parse-errors"
       ]
@@ -156,7 +156,7 @@
     {
       "id": "REQ-SHEET-POWER",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.1.0",
+      "introducedAt": "e2-spec-implementation 0.2.0",
       "checkIds": [
         "sheet-power"
       ]
@@ -164,7 +164,7 @@
     {
       "id": "REQ-SHEET-REFERENCES",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.1.0",
+      "introducedAt": "e2-spec-implementation 0.2.0",
       "checkIds": [
         "sheet-references"
       ]
@@ -172,7 +172,7 @@
     {
       "id": "REQ-SHEET-ROUNDING",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.1.0",
+      "introducedAt": "e2-spec-implementation 0.2.0",
       "checkIds": [
         "sheet-rounding"
       ]
@@ -180,7 +180,7 @@
     {
       "id": "REQ-SHEET-TEXT",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.1.0",
+      "introducedAt": "e2-spec-implementation 0.2.0",
       "checkIds": [
         "sheet-text"
       ]
@@ -188,7 +188,7 @@
     {
       "id": "REQ-README",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.1.0",
+      "introducedAt": "e2-spec-implementation 0.2.0",
       "checkIds": [
         "readme"
       ]
@@ -201,7 +201,7 @@
       "files": [
         {
           "path": "items/sheet/prompt.md",
-          "sha256": "87b52fe32181c35f3dc7aa162cef8ea0fc25513b999e050dbcff7035108a61ab"
+          "sha256": "fa28171374f3561b7ccb76a5e4597d84add966b2d920f57a6d6ce237eee9aba1"
         }
       ],
       "activeRequirementIds": [
@@ -230,7 +230,7 @@
   ],
   "grader": {
     "id": "e2-fixtures",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

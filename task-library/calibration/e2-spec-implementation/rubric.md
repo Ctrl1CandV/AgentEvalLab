@@ -16,4 +16,5 @@ Each item is one self-contained specification with hidden fixtures. The candidat
 
 ## Changes
 
-- Grader 1.1.0 (2026-10-19): the `division` check no longer tests `=0^-1`. The specification does not say whether zero to a negative power is `#DIV/0!` (as in Excel) or `#NUM!`, and the calibration had three models choose `#DIV/0!`. The next task version states the rule and tests it again.
+- Grader 1.1.0 (2026-10-19, task 0.1.0): the `division` check no longer tests `=0^-1`. The specification did not say whether zero to a negative power is `#DIV/0!` (as in Excel) or `#NUM!`, and three of four calibration models chose `#DIV/0!`.
+- Task 0.2.0, grader 1.2.0 (2026-10-19): the specification states that zero to a negative power is `#DIV/0!`, and the `division` check tests it again, with `=0^0` as well.

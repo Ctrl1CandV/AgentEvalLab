@@ -36,7 +36,7 @@
     "maxOutputChars": 32768,
     "maxOutputTokensPerCall": 32768,
     "maxToolResultChars": 100000,
-    "maxTrialTokens": 300000
+    "maxTrialTokens": 800000
   },
   "artifactLimits": {
     "maxFiles": 200,
@@ -48,7 +48,7 @@
   "batch": {
     "maxRetries": 2,
     "maxConsecutiveInfrastructureFailures": 3,
-    "maxTotalTokensPerModel": 1500000,
+    "maxTotalTokensPerModel": 2500000,
     "concurrency": 4
   },
   "trustedLocalExecution": true,
@@ -57,7 +57,7 @@
     {
       "id": "e2-spec-implementation",
       "packagePath": "task-library/calibration/e2-spec-implementation",
-      "packageManifestSha256": "7cf818c2621daa0d488d37f23dbb4e01d20c431dd07245874756c8334b975bb7",
+      "packageManifestSha256": "436009165fffdf9eac16c501ea013cbfd3e5e53bf434d250a77d8d113794d434",
       "input": {
         "prompt": "Implement the specification above, test it, and end with a short summary."
       },
