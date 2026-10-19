@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { cp, mkdtemp, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { cp, mkdtemp, readFile, readdir, rm, stat, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { basename, dirname, join, resolve } from "node:path";
 import { AssistantMessageEventStream } from "@earendil-works/pi-ai/utils/event-stream";
@@ -299,7 +299,8 @@ test("trajectory classifies public checker timeout, output, protocol, exit and s
 test("trajectory snapshot limits stop before public checking without fabricating a snapshot", async () => {
   const plan = JSON.parse(await readFile("examples/eng-005-long-cycle.eval.json", "utf8")) as EvaluationPlan;
   validatePlan(plan);
-  plan.artifactLimits!.maxTrialBytes = 1;
+  // Large enough for the public brief, which preflight checks, and too small for the baseline checkout in the snapshot.
+  plan.artifactLimits!.maxTrialBytes = (await stat("task-library/candidates/eng-005-long-cycle-maintenance/public/project-brief.md")).size;
   const outputRoot = await mkdtemp(join(tmpdir(), "eng005-snapshot-limit-test-"));
   const sessionFactory: TrajectorySessionFactory = () => ({
     async send() { return { ...emptyExecution(), output: "candidate answer", modelCalls: 1, turns: 1 }; },
