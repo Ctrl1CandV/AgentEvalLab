@@ -23,14 +23,14 @@ The 2026-10 pilot ran in two rounds on 2026-10-14 and 2026-10-15: luna-medium wi
 1. Follow [PLAN-005](plans/PLAN-005-discriminating-attributable-evaluation.md). As of 2026-10-19:
    - partial-credit scoring with a 20% format deduction is done, and budgets are stated to the model with reminders at 50%, 75% and 90%;
    - [Task Set v2](design/TASK_SET_V2.md) is approved. R1, R3, T1, E2 and vis-001 model judging are built, and their first calibration is in the [calibration review](reviews/2026-10-19-task-set-v2-calibration.md);
-   - the deepseek API key was rejected on 2026-10-19. The R3 run (`f1c85624`, commit `e30b311`) and the E2 run (`044fa08d`, commit `a400d42`) resume from worktrees at those commits once it works;
+   - the deepseek key was replaced on 2026-10-19 and every missing deepseek run is complete; overall scores per model are in the review's last addendum;
    - later that day:
      - R1 was retired from the comparison set;
      - T1 0.2.0 added L5;
      - E2 0.3.0 added `ledger` and `recur`;
      - E4 0.1.0 was built and saturated.
      - Runs without deepseek are recorded in the experiment READMEs.
-   - next: stated budgets for trajectory runs and E3 (eng-005), E4 0.2.0 with compound tasks, T2, and the deepseek runs (`*-without-deepseek` plans, the R3 resume, vis-001 at 800,000 tokens).
+   - next: stated budgets for trajectory runs and E3 (eng-005), E4 0.2.0 with compound tasks, T2; R3 0.2.0 with a longer single-response limit (L5 stops most models at 65,536 tokens).
 
    Background: after the pilot the user set its principles: deductions must be attributable to the model; a recoverable format slip is deducted, not failed; there is one generous budget per task, stated to the model; thinking runs at a middle level; and the tasks must become harder. The user settled its open decisions on 2026-10-16.
 2. The pilot's own decision list is superseded by PLAN-005.
