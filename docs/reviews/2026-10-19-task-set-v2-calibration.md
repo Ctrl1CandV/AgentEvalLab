@@ -126,3 +126,32 @@ Hardening should therefore lengthen and compound the work. A single bug or a sin
 2. **E4 0.2.0.** Compound tasks: several faults that interact across a larger project, and data recovery from Git internals rather than bisection.
 3. **T2 policy-bound operations**, after τ-bench.
 4. **deepseek and kimi.** Once the deepseek key works, run deepseek on the plans whose names end in `-without-deepseek`, resume R3 (`f1c85624`, at commit `e30b311`), and rerun vis-001 at 800,000 tokens. Then run kimi-k3 sparingly on R3 L3–L5, T1 L4–L5 and E2 `sheet`.
+
+## Addendum: deepseek completed and overall scores (2026-10-19, evening)
+
+With a new deepseek key, the missing runs were completed:
+
+- deepseek on E2 0.3.0, T1 L4–L5 and E4;
+- the rest of R3, 96 of 96;
+- a vis-001 rerun at 800,000 tokens for all four models, with the tournament.
+
+A third vis-001 grader defect was fixed (grader 1.0.2): the `states` check searched app.js for words instead of checking behaviour.
+
+Mean score per model and family. In brackets: trials and median tokens per trial. Infrastructure failures are excluded.
+
+| Family | deepseek-flash | glm-5.3 | step-5-preview | gpt-6-luna |
+| --- | ---: | ---: | ---: | ---: |
+| R3 logic grids, L3–L5 | 86% (22, 27k) | 57% (21, 26k) | 60% (22, 19k) | 17% (24, 3k) |
+| T1 0.2.0, L4–L5 | 100% (8, 206k) | 83% (8, 97k) | 88% (8, 199k) | 90% (8, 70k) |
+| E2 0.3.0, three specifications | 100% (6, 752k) | 99% (6, 549k) | 83% (6, 588k) | 86% (6, 28k) |
+| E2 `sheet` only | 100% (2) | 97% (2) | 50% (2) | 82% (2) |
+| vis-001 tournament win rate | 83% | 25% | 33% | 58% |
+| R1, L1–L4 (easy anchor) | 100% | 89% | 97% | 86% |
+| T1 0.1.0, L1–L4 | 100% | 90% | 88% | 95% |
+| E4 0.1.0 (saturated) | 100% | 100% | 100% | 100% |
+
+- **deepseek-flash leads everywhere.** It never scored below 86% on a family, and it won 10 of 10 tournament games against one page in the earlier vis run.
+- **glm-5.3 and step-5-preview form the middle.** Each wins on different families. glm loses many points to format slips (20% each) and to budget stops on long reasoning. step loses points to responses that exceed the output limit.
+- **gpt-6-luna is uneven.** It is very cheap, at a tenth to a thirtieth of the others' tokens. It is strong on evidence retrieval and visual design, and weak on multi-step logical reasoning (R3 L3–L5: 17%).
+- **Visual judging is noisy.** In the rerun 35% of judged games were position-inconsistent, and judges agreed on 46% of pairs. The visual ranking needs more pages before it is trusted beyond deepseek's lead.
+- **R3 L5's output limit binds most models.** 13 of 24 deepseek, glm and step trials stopped at the 65,536-token limit of a single response. The next R3 version should allow a longer response.

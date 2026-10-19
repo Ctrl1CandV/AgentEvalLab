@@ -26,3 +26,8 @@ node --import tsx scripts/judge-tournament.ts --run runs/<id> --package task-lib
   - The recorded objective scores (42–92%) include grader 1.0.0 defects in the `copy` and `form` checks, fixed in task 0.3.1. Under the 0.3.1 verifier every delivered page passes all six objective checks.
   - Three of the four models stopped at the token limit while refining finished pages (five of seven valid trials), and one deepseek trial exceeded the per-response output limit before writing any file. The budget is now 800,000 tokens per trial, as for E2.
   - Anchor judging saturated: every page beat both anchors. The tournament separated the models (win rates 36–67%), with deepseek's one page the strongest. deepseek could not judge, because its API key was rejected on 2026-10-19; see `docs/reviews/2026-10-19-task-set-v2-calibration.md`.
+- `eb491788` (2026-10-19, task 0.3.1, grader 1.0.2 after regrading, 800,000 tokens per trial, all four models).
+  - Every page passes all six objective checks. One luna page had failed `states` under grader 1.0.1 because of a word-search heuristic; that was fixed in 1.0.2.
+  - deepseek, glm and step still used about 800,000 tokens, refining finished pages; luna used 42,000–55,000.
+  - Tournament, with all four judges passing the anchor gate: win rates deepseek 83%, luna 58%, step 33%, glm 25%.
+  - The judges are noisy: 35% of judged games were position-inconsistent, and judges agreed on 46% of pairs.

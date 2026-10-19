@@ -55,3 +55,7 @@ Before this run, items L1-01 and L2-01 were run on luna-medium and glm-5.3-high.
 
 The first run was stopped once concurrent trials existed: sequentially, the large grids would have taken five to eight more hours. Both runs use package version 0.1.0 with identical conditions and budgets. The harness commits between them add other packages, rendering dependencies and concurrency, none of which changes what a model sees. The analysis takes L1 and L2 from the first run and L3 to L5 from the continuation.
 
+
+## Completion (2026-10-19)
+
+The continuation `f1c85624` was resumed from a worktree at its commit `e30b311` once a new deepseek key worked, and it completed 96 of 96 trials. At L5, 13 of the 24 trials of deepseek, glm and step stopped at the 65,536-token output limit of a single response. That limit binds most of these models, which goes against the rule that budgets must not stop most models, so the next R3 version should allow a longer single response; step-5-preview's own output limit is 64K.
