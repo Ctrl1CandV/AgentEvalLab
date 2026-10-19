@@ -93,7 +93,7 @@ One case is borderline. step twice cited `prior_attempt.log` as the evidence for
 
 1. Resume R3 and E2 once deepseek works, and rerun vis-001 at 800,000 tokens, with both judging steps.
 2. Harden or retire the saturated parts:
-   - add R1 L5–L6 with larger rosters and more infeasible instances;
+   - retire R1 from the comparison set and keep L1–L4 as easy anchors. A probe of larger levels (8–9 people, two per shift, all seven rules) produced no instance in ten minutes, because the exact solver must decide all 128 rule subsets. R3 already covers constraint reasoning and discriminates;
    - add T1 L5 with deeper chains and larger snapshots;
    - add at least two more E2 specification items.
 3. Build E1 repository repair and E4 terminal tasks, the next families in the Task Set v2 order.

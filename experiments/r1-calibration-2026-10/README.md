@@ -19,3 +19,7 @@ npm run harness -- --plan experiments/r1-calibration-2026-10/calibration.eval.js
 
 A first sequential run (`492b98b5`, stopped at 41 of 128 trials) was replaced by a fresh run with `batch.concurrency: 4`. Concurrency is not part of the fingerprint, but the harness commit had changed.
 
+
+## Result (run `e4dda9c5`, 128 trials)
+
+R1 is saturated for two of the four models: deepseek-flash scored 100% and step-5-preview 97%, glm-5.3 89% (mostly 20% format deductions), and gpt-6-luna 86%, falling only at L3. Every failed check was audited and is the model's own. R1 leaves the comparison set, and L1–L4 stay as easy anchors. Harder levels were not practical: with two people per shift and all seven rules, the exact solver produced no instance in ten minutes. See `docs/reviews/2026-10-19-task-set-v2-calibration.md`.
