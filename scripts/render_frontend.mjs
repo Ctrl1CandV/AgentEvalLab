@@ -44,8 +44,17 @@ async function formShot(page, name, expected) {
 
 async function submit(form) {
   const button = form.locator("button[type=submit], input[type=submit], button:not([type])").first();
-  if (await button.count()) await button.click({ timeout: 5_000 });
-  else await form.evaluate(element => element.requestSubmit ? element.requestSubmit() : element.submit());
+  if (await button.count()) {
+    // A styled control may be covered by its own decoration; a script click still reaches the page's handlers.
+    try { await button.click({ timeout: 5_000 }); } catch { await button.evaluate(element => element.click()); }
+  } else await form.evaluate(element => element.requestSubmit ? element.requestSubmit() : element.submit());
+}
+
+/** Tick a checkbox. Custom-styled checkboxes are often visually hidden behind a drawn box, which Playwright will not
+ * click, so fall back to a script click, which toggles it and fires the same events. */
+async function tick(field) {
+  try { await field.check({ timeout: 3_000 }); }
+  catch { await field.evaluate(element => { if (!element.checked) element.click(); }); }
 }
 
 const desktop = await capture("desktop", { width: 1440, height: 900 });
@@ -66,7 +75,7 @@ if (desktop) {
         if (values.length) await field.selectOption(values[0]);
       });
       await fill("[name=email]", field => field.fill("reader@example.com"));
-      await fill("input[name=condition]", field => field.check());
+      await fill("input[name=condition]", tick);
       await submit(form);
       await desktop.waitForTimeout(400);
       await formShot(desktop, "form-success", states.success);
