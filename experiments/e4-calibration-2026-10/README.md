@@ -16,3 +16,7 @@ npm run harness -- --plan experiments/e4-calibration-2026-10/calibration.eval.js
 ```
 
 The deepseek API key was rejected on 2026-10-19. `calibration-without-deepseek.eval.json` runs the same plan on the other three models in the meantime. deepseek follows later under the same task version and budget.
+
+## Result (run `fbdcfb07`, without deepseek, 24 trials)
+
+E4 0.1.0 is saturated. gpt-6-luna, glm-5.3 and step-5-preview passed every check of every item in both repetitions. They differed only in cost: luna needed 16,000–50,000 tokens per trial, and glm and step 100,000–500,000, twice reaching the 500,000-token limit just as they finished. The items stay as easy anchors and an end-to-end check of the sandbox. Harder command-line work needs longer, compound tasks; see `docs/reviews/2026-10-19-task-set-v2-calibration.md`.

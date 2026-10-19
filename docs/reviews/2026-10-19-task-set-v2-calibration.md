@@ -98,3 +98,31 @@ One case is borderline. step twice cited `prior_attempt.log` as the evidence for
    - add at least two more E2 specification items.
 3. Build E1 repository repair and E4 terminal tasks, the next families in the Task Set v2 order.
 4. Run kimi-k3 sparingly on the discriminating levels only: R3 L3–L5, T1 L4 and E2.
+
+## Addendum: hardening and new families (later on 2026-10-19)
+
+All runs below exclude deepseek, whose key was still rejected. They use luna, glm and step under the same conditions as above, and deepseek runs later under the same task versions and budgets.
+
+| Family | Version | Result | Verdict |
+| --- | --- | --- | --- |
+| T1 L4–L5 | 0.2.0, grader 1.3.1 | L5: glm 78%, step 78%, luna 85%; no item solved by all | L5 discriminates; still to be checked on deepseek |
+| E2 | 0.3.0 (sheet, ledger, recur) | sheet 50–97%; ledger 77–100%; recur 100% for all | sheet discriminates; ledger separates only luna; recur is an easy anchor |
+| E4 | 0.1.0 (perf, migrate, bisect, build) | 100% for every model and item | Saturated; kept as easy anchors and a sandbox check |
+| R1 | 0.1.0 | See above | Retired from the comparison set; larger levels were not practical |
+
+### What the new items show
+
+Short, self-contained engineering tasks no longer separate these models, even when the specification is dense (E2 `recur`) or the task needs several tools (E4). The levels that do separate them share one of three properties:
+
+- precision over many interacting rules: E2 `sheet`, R3 L3–L5;
+- evidence spread over a large snapshot: T1 L5;
+- several steps that must all be right: T1 incidents and counts.
+
+Hardening should therefore lengthen and compound the work. A single bug or a single specification is not enough.
+
+### Next
+
+1. **E3 long-horizon maintenance (eng-005).** Five stages in one session, which is the natural compound task. The harness still refuses a stated budget for trajectory runs (`TRAJECTORY_BUDGET_NOTICE_UNSUPPORTED`), and principle 3 requires one, so stated budgets and reminders for trajectories come first. eng-005 has never had a real model run.
+2. **E4 0.2.0.** Compound tasks: several faults that interact across a larger project, and data recovery from Git internals rather than bisection.
+3. **T2 policy-bound operations**, after τ-bench.
+4. **deepseek and kimi.** Once the deepseek key works, run deepseek on the plans whose names end in `-without-deepseek`, resume R3 (`f1c85624`, at commit `e30b311`), and rerun vis-001 at 800,000 tokens. Then run kimi-k3 sparingly on R3 L3–L5, T1 L4–L5 and E2 `sheet`.

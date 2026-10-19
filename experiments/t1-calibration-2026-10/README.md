@@ -39,3 +39,20 @@ npm run harness -- --plan experiments/t1-calibration-2026-10/hard-levels.eval.js
 ```
 
 The deepseek API key was rejected on 2026-10-19. `*-without-deepseek.eval.json` runs the same plan on the other three models in the meantime. deepseek follows later under the same task version and budget, and the item analysis combines the runs.
+
+## Result (run `430a8c25`, task 0.2.0, grader 1.3.1, without deepseek)
+
+| Level | glm-5.3 | step-5-preview | gpt-6-luna |
+| --- | ---: | ---: | ---: |
+| L4 | 88% | 98% | 95% |
+| L5 | 78% | 78% | 85% |
+
+At L5 no item was solved by every model, and one by none. The failures were audited:
+
+- miscounted lock-file filters;
+- included shared files ignored;
+- a shared value misread;
+- `secrets/` listed or read;
+- format slips.
+
+One grader defect was fixed in grader 1.3.1: it rejected an incident answer that went through the only change file. Median tokens per trial at L5: luna 114,000, glm 159,000, step 257,000; none reached the 500,000 limit.
