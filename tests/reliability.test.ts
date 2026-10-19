@@ -41,7 +41,7 @@ test("pending review is not a failed score and experiment completeness is explic
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 
-test("artifact failure does not overwrite a completed zero-call execution", async () => {
+test("a link the model made is its own artifact failure and does not overwrite a completed execution", async () => {
   const root = await mkdtemp(join(tmpdir(), "artifact-failure-"));
   try {
     const result = await runEvaluation(plan, { outputRoot: root, runner: async input => {
@@ -51,7 +51,9 @@ test("artifact failure does not overwrite a completed zero-call execution", asyn
     const record = result.report.records[0];
     assert.equal(record.execution.status, "done");
     assert.equal(record.execution.output, "completed");
-    assert.equal(record.evaluation.status, "error");
+    assert.equal(record.execution.failureKind ?? null, null);
+    assert.equal(record.evaluation.status, "resource_limit");
+    assert.equal(record.evaluation.error, "ARTIFACT_LINK_DENIED");
     assert.equal(record.cleanup, "cleaned");
   } finally { await rm(root, { recursive: true, force: true }); }
 });
@@ -73,6 +75,20 @@ test("artifact size limits preserve completed execution and report resource_limi
     assert.equal(record.evaluation.status, "resource_limit");
     assert.equal(record.cleanup, "cleaned");
     assert.equal(result.report.summary.resourceLimitRuns, 1);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});
+
+test("a workspace removed from outside is an infrastructure failure, which a resume retries", async () => {
+  const root = await mkdtemp(join(tmpdir(), "artifact-export-"));
+  try {
+    const removed = await runEvaluation(plan, { outputRoot: root, runner: async input => {
+      await rm(input.workspacePath!, { recursive: true, force: true });
+      return { ...emptyExecution(), output: "execution completed" };
+    } });
+    const lost = removed.report.records[0]!;
+    assert.equal(lost.execution.output, "execution completed");
+    assert.equal(lost.execution.failureKind, "infrastructure");
+    assert.equal(lost.evaluation.error, "ARTIFACT_EXPORT_FAILED");
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 

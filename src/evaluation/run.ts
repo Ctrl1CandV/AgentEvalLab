@@ -263,10 +263,17 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
         try { await pending; events.check(); } catch { fatal = new EventSinkError(); }
         if (error instanceof EventSinkError) fatal = error;
         if (executionFinished) {
-          if (error instanceof ArtifactLimitError) {
-            record.evaluation = { status: "resource_limit", score: null, checks: [], error: error.message };
+          const message = error instanceof Error ? error.message : "";
+          if (error instanceof ArtifactLimitError || message === "ARTIFACT_LINK_DENIED" || message === "ARTIFACT_TYPE_DENIED") {
+            // The deliverable breaks the artifact rules: too large, or a link or special file the model created.
+            record.evaluation = { status: "resource_limit", score: null, checks: [], error: message };
+          } else if (fatal) {
+            if (!evaluationCommitted) record.evaluation = { status: "error", score: null, checks: [], error: "ARTIFACT_OR_EVENT_FAILED" };
           } else if (!evaluationCommitted) {
-            record.evaluation = { status: "error", score: null, checks: [], error: "ARTIFACT_OR_EVENT_FAILED" };
+            // Any other export or bookkeeping failure, such as a workspace removed from outside, is not the model's
+            // doing: record it as an infrastructure failure, which a resumed run retries.
+            record.execution = { ...record.execution, failureKind: "infrastructure", error: "ARTIFACT_EXPORT_FAILED" };
+            record.evaluation = { status: "skipped", score: null, checks: [], error: "ARTIFACT_EXPORT_FAILED" };
           }
         } else {
           record.execution = { ...record.execution, status: "error", failureKind: "infrastructure", error: "TRIAL_FAILED" };
