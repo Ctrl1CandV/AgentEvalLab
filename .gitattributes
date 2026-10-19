@@ -5,3 +5,6 @@ task-library/** -text
 # Everything else uses LF in the repository and in working trees.
 * text=auto eol=lf
 *.bundle binary
+
+# Test data whose padded fields are deliberate.
+task-library/calibration/e4-terminal-tasks/items/perf/public/events.csv -text -whitespace

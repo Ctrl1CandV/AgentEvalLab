@@ -1,0 +1,497 @@
+{
+  "schemaVersion": 1,
+  "id": "e4-terminal-tasks",
+  "version": "0.1.0",
+  "familyId": "e4-terminal-tasks",
+  "capability": "engineering",
+  "usage": "development",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "docs/design/TASK_SET_V2.md"
+    ]
+  },
+  "license": {
+    "taskText": "Original project-authored tasks, data, programs and checks.",
+    "thirdPartyContent": []
+  },
+  "entryPoint": {
+    "instruction": "instruction.md"
+  },
+  "files": {
+    "public": [
+      {
+        "path": "instruction.md",
+        "sha256": "3e405bf8ac2e341aaadf973896e3e5390cc3a6ba5f6bb287267c0b39e94dd7c8"
+      }
+    ],
+    "trusted": [
+      {
+        "path": "calibration.md",
+        "sha256": "5fadaa03cc05c442f59025338c8cf5a64f9da8a42c229b34fbe56633af4a776a"
+      },
+      {
+        "path": "rubric.md",
+        "sha256": "113512795ac16a854eb3d6183d8735d7c1e6b781ba636f3af51b7c8d30b94b5f"
+      },
+      {
+        "path": "private/bisect_item/checks.py",
+        "sha256": "65c5ea0e8a110b4d90a63a66b3951ab4a7f6f63bd50e14838f39a83a2ed18674"
+      },
+      {
+        "path": "private/bisect_item/culprit.txt",
+        "sha256": "20ef1eb284fb7cf499ef81689038f2551073f010ff4897fc8126654ff39b7825"
+      },
+      {
+        "path": "private/bisect_item/history.py",
+        "sha256": "a1c5c0dd67b36abe33e5471d9b8583fcd2fd55d970c05e94548fbb59376820f6"
+      },
+      {
+        "path": "private/build/solution/Makefile",
+        "sha256": "c0a13259e7737a6f965bd8b1c0949ab476ef36391cfe91808681aa898698ef71"
+      },
+      {
+        "path": "private/build/solution/src/main.c",
+        "sha256": "d1ae52f2a9807aec8fbe08a05fe0a0ae80fcc0f1c7d8c221901f342f8a13346a"
+      },
+      {
+        "path": "private/build/solution/src/table.c",
+        "sha256": "2e9148defbd117e9fab68838af79ca231cdeee141e3820b744b21ecadc838ade"
+      },
+      {
+        "path": "private/build/solution/src/table.h",
+        "sha256": "956f55658ed6c776eec9440071518edd856c5d5cda7ec921b5c443eb4eb84125"
+      },
+      {
+        "path": "private/build/solution/src/words.c",
+        "sha256": "c99a0ed825b5f3fbdf1ab750b000b7c742798a2ccde7f6a15128406966ad48dc"
+      },
+      {
+        "path": "private/build/solution/src/words.h",
+        "sha256": "e714d21a62551e63a6860b5806bb48aea85208b73778b494d03de0056055d20a"
+      },
+      {
+        "path": "private/build_package.py",
+        "sha256": "3fd07c2d4c0ceba075e1f83d6ecf9514b0b6972e7e8c4f4de172989329babd63"
+      },
+      {
+        "path": "private/calibrate.py",
+        "sha256": "ef03fd11bac13ba47a7cf30a76ebc27df4a6001829620d4dd52c5e6e6f7c146b"
+      },
+      {
+        "path": "private/grader.py",
+        "sha256": "e9ddafdc5b3d3d84b68df8527049ddd27313bbf40cff4731f1cbadb468c1718b"
+      },
+      {
+        "path": "private/migrate/data.py",
+        "sha256": "5cb7c29ae127ce2dfc4a06d38eea370e86ac16ac0d60cd1f514a66878ed0db89"
+      },
+      {
+        "path": "private/migrate/oracle.py",
+        "sha256": "d1f87f60f9c82029abe26a669768afeff3d2563b152d85854837ce1b1ca861fe"
+      },
+      {
+        "path": "private/perf/data.py",
+        "sha256": "d7dd95cfab6bf41eabd0a77cac10c7d4bd3c2c4d80f31c41453180334ba0d853"
+      },
+      {
+        "path": "private/perf/oracle.py",
+        "sha256": "832e2abe1eb55b371243e9f93ab84b78c05f15dfee5ddfd7d66e6d31994e003b"
+      },
+      {
+        "path": "private/perf/original.py",
+        "sha256": "0613f1851418048a40412bbacc818d07dd699d69bcdab612ccadfeda938d0242"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "REQ-PERF-WORKSPACE-OUTPUT",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "perf-workspace-output"
+      ]
+    },
+    {
+      "id": "REQ-PERF-QUIRKS",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "perf-quirks"
+      ]
+    },
+    {
+      "id": "REQ-PERF-EMPTY",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "perf-empty"
+      ]
+    },
+    {
+      "id": "REQ-PERF-SPEED",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "perf-speed"
+      ]
+    },
+    {
+      "id": "REQ-MIGRATE-SCHEMA",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "migrate-schema"
+      ]
+    },
+    {
+      "id": "REQ-MIGRATE-NAMES",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "migrate-names"
+      ]
+    },
+    {
+      "id": "REQ-MIGRATE-EMAILS",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "migrate-emails"
+      ]
+    },
+    {
+      "id": "REQ-MIGRATE-DATES",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "migrate-dates"
+      ]
+    },
+    {
+      "id": "REQ-MIGRATE-TOTALS",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "migrate-totals"
+      ]
+    },
+    {
+      "id": "REQ-MIGRATE-STATUSES",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "migrate-statuses"
+      ]
+    },
+    {
+      "id": "REQ-MIGRATE-ORPHANS",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "migrate-orphans"
+      ]
+    },
+    {
+      "id": "REQ-MIGRATE-IDEMPOTENT",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "migrate-idempotent"
+      ]
+    },
+    {
+      "id": "REQ-MIGRATE-ATOMIC",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "migrate-atomic"
+      ]
+    },
+    {
+      "id": "REQ-MIGRATE-WORKSPACE-DB",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "migrate-workspace-db"
+      ]
+    },
+    {
+      "id": "REQ-BISECT-CULPRIT",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "bisect-culprit"
+      ]
+    },
+    {
+      "id": "REQ-BISECT-REGRESSION-FIXED",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "bisect-regression-fixed"
+      ]
+    },
+    {
+      "id": "REQ-BISECT-ROUNDING-KEPT",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "bisect-rounding-kept"
+      ]
+    },
+    {
+      "id": "REQ-BISECT-LATER-FEATURES",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "bisect-later-features"
+      ]
+    },
+    {
+      "id": "REQ-BISECT-COUPONS",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "bisect-coupons"
+      ]
+    },
+    {
+      "id": "REQ-BUILD-FLAGS",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "build-flags"
+      ]
+    },
+    {
+      "id": "REQ-BUILD-BUILD",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "build-build"
+      ]
+    },
+    {
+      "id": "REQ-BUILD-TESTS",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "build-tests"
+      ]
+    },
+    {
+      "id": "REQ-BUILD-EOF-WORD",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "build-eof-word"
+      ]
+    },
+    {
+      "id": "REQ-BUILD-TIES",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "build-ties"
+      ]
+    },
+    {
+      "id": "REQ-BUILD-OPTIONS",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "build-options"
+      ]
+    },
+    {
+      "id": "REQ-BUILD-CLEAN",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "checkIds": [
+        "build-clean"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "perf",
+      "level": "perf",
+      "files": [
+        {
+          "path": "items/perf/prompt.md",
+          "sha256": "7debe30fa00f186bf3f1042b19617331a4d13bab0b40bf281fbc920804fb60c0"
+        },
+        {
+          "path": "items/perf/public/events.csv",
+          "sha256": "160951e415d8560eb7604164ba4a7c024203177421087de6c86d9db09eeaccb9"
+        },
+        {
+          "path": "items/perf/public/report.py",
+          "sha256": "0613f1851418048a40412bbacc818d07dd699d69bcdab612ccadfeda938d0242"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-PERF-WORKSPACE-OUTPUT",
+        "REQ-PERF-QUIRKS",
+        "REQ-PERF-EMPTY",
+        "REQ-PERF-SPEED"
+      ]
+    },
+    {
+      "id": "migrate",
+      "level": "migrate",
+      "files": [
+        {
+          "path": "items/migrate/prompt.md",
+          "sha256": "dec545b8d42eae20f84bd1ffe388e607c1fcc1441f5fbd5030fc8935515f0756"
+        },
+        {
+          "path": "items/migrate/public/shop.db",
+          "sha256": "28302bd4b37033b825b664d9fd7bb2666ec68f01339873fa264229e11a50237b"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-MIGRATE-SCHEMA",
+        "REQ-MIGRATE-NAMES",
+        "REQ-MIGRATE-EMAILS",
+        "REQ-MIGRATE-DATES",
+        "REQ-MIGRATE-TOTALS",
+        "REQ-MIGRATE-STATUSES",
+        "REQ-MIGRATE-ORPHANS",
+        "REQ-MIGRATE-IDEMPOTENT",
+        "REQ-MIGRATE-ATOMIC",
+        "REQ-MIGRATE-WORKSPACE-DB"
+      ]
+    },
+    {
+      "id": "bisect",
+      "level": "bisect",
+      "files": [
+        {
+          "path": "items/bisect/prompt.md",
+          "sha256": "3ee9fed21f085bf2168459a9e38162e70669cf66aa36c9158d0cb045eee2e364"
+        },
+        {
+          "path": "items/bisect/public/history.bundle",
+          "sha256": "f6f40713f7b4ee721ad7e68c778dfeddc57611b5ae7b81fcb4c8449dee902130"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-BISECT-CULPRIT",
+        "REQ-BISECT-REGRESSION-FIXED",
+        "REQ-BISECT-ROUNDING-KEPT",
+        "REQ-BISECT-LATER-FEATURES",
+        "REQ-BISECT-COUPONS"
+      ]
+    },
+    {
+      "id": "build",
+      "level": "build",
+      "files": [
+        {
+          "path": "items/build/prompt.md",
+          "sha256": "1bdc011a268138b3a9f138fd6d63d7e175ccb0e260dc854e43a5b544cab44c47"
+        },
+        {
+          "path": "items/build/public/Makefile",
+          "sha256": "e6bdd44faa8810d05c4b6795c4501a0eefc953928af8b2cdbe985ab3edd005f2"
+        },
+        {
+          "path": "items/build/public/README.md",
+          "sha256": "ef3432f20baf9c1ae009f0d8467647cf4ab815b4c6ef56cf58c455e2f552f3b3"
+        },
+        {
+          "path": "items/build/public/src/main.c",
+          "sha256": "3d7c878f293ece34bd552861853bc1914299569686863063c24328f3356940d0"
+        },
+        {
+          "path": "items/build/public/src/table.c",
+          "sha256": "a528b512d0f8e11d72a7b22eb1b882ef73180f6de096dceb67e7bd41fbf2e2c3"
+        },
+        {
+          "path": "items/build/public/src/table.h",
+          "sha256": "956f55658ed6c776eec9440071518edd856c5d5cda7ec921b5c443eb4eb84125"
+        },
+        {
+          "path": "items/build/public/src/words.c",
+          "sha256": "a70dc6ee8cbcb51e4a814557f6fb8898f4128b474434217af1f46178f8e9ebd5"
+        },
+        {
+          "path": "items/build/public/src/words.h",
+          "sha256": "e714d21a62551e63a6860b5806bb48aea85208b73778b494d03de0056055d20a"
+        },
+        {
+          "path": "items/build/public/tests/cases/basic.in",
+          "sha256": "4b1941f4099cb40b453359972a0100a8caebf22707f1aca368c73ffd3e15e49c"
+        },
+        {
+          "path": "items/build/public/tests/cases/basic.out",
+          "sha256": "16f039a47616680f43c5963585f8279c4cbfe2062b36b388578a21ffef4e0218"
+        },
+        {
+          "path": "items/build/public/tests/cases/no-newline.in",
+          "sha256": "b10fb0d1f3176d7c4db274577f33488e83ba1b6f5a97904877546a759319d8fc"
+        },
+        {
+          "path": "items/build/public/tests/cases/no-newline.out",
+          "sha256": "e8bcef8c928ce6b1d3f4dc18520989fe50bb53195d2e7f60fc693dd18957adb8"
+        },
+        {
+          "path": "items/build/public/tests/cases/ties.args",
+          "sha256": "0f2a9155728b370538cba3056c7c9d5740e16b832726f2de7ffeeac7fb2f4374"
+        },
+        {
+          "path": "items/build/public/tests/cases/ties.in",
+          "sha256": "fe87c01e17b2920a255a51d89b327f4778d25c410e61996ba289c082aecf3019"
+        },
+        {
+          "path": "items/build/public/tests/cases/ties.out",
+          "sha256": "3dd46306a5e27a70550e152217335a3ba55a272e838ec4173fa1b1d0be86e42f"
+        },
+        {
+          "path": "items/build/public/tests/run.sh",
+          "sha256": "fc4551062ea9635e6c61ca537f361622eef607213077f38062b254bc51205cc6"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-BUILD-FLAGS",
+        "REQ-BUILD-BUILD",
+        "REQ-BUILD-TESTS",
+        "REQ-BUILD-EOF-WORD",
+        "REQ-BUILD-TIES",
+        "REQ-BUILD-OPTIONS",
+        "REQ-BUILD-CLEAN"
+      ]
+    }
+  ],
+  "toolProfiles": [
+    "workspace-basic"
+  ],
+  "grader": {
+    "id": "e4-terminal-checks",
+    "version": "1.0.0",
+    "entryPoint": "private/grader.py",
+    "executable": "python3",
+    "args": [
+      "{entryPoint}",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ]
+  },
+  "environment": {
+    "runtime": "Python 3.13",
+    "dependencies": "Python standard library; git, make, cc and coreutils from the host; no network",
+    "network": false,
+    "runtimeCheck": {
+      "executable": "python3",
+      "args": [
+        "--version"
+      ],
+      "expectedSubstring": "Python 3.13."
+    }
+  }
+}
