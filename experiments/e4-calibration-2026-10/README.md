@@ -40,3 +40,15 @@ Run `c95f78c8`: 20 of 30 trials, before the airy.work relays ran out of balance 
 ```bash
 npm run harness -- --plan experiments/e4-calibration-2026-10/codec.eval.json
 ```
+
+Run `627cdf83` (task 0.3.0, codec):
+
+| Model | Trials | Checks passed |
+| --- | --- | --- |
+| deepseek-flash | 1 (the other: no balance) | 11/11 |
+| qwen3.8-flash | 2 | 11/11, 11/11 |
+| mimo-v2.6-flash | 2 | 11/11, 8/11 (missed `timestamps`, `multi-day`, `restore` at the token budget) |
+| mimo-v2.6-pro | 2 | 0/11, 0/11: stopped by the 32,768-character text limit of a single response |
+| glm-5.3, step-5-preview, gpt-6-luna | — | not run: the airy.work relay had no balance |
+
+Recovering a format from bytecode does not separate the strong models either: deepseek, qwen and mimo-flash decoded every hidden group in 19–34 responses. mimo-v2.6-pro writes its reasoning out as text as well as in its thinking, so the per-response text limit stopped it in both trials. That limit is a safety guard, not the task budget, so plans from now on allow 524,288 characters of text per response.
