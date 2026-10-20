@@ -3,4 +3,4 @@ include = "shared/limits-standard.toml"
 max_retries = 16
 pool_size = 35
 timeout_ms = 1000
-upstream = "juniper"
+upstream = "iris"

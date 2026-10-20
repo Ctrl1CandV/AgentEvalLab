@@ -3,3 +3,4 @@ include = "shared/limits-floor.toml"
 max_retries = 20
 pool_size = 25
 queue_depth = 30
+upstream = "beacon"

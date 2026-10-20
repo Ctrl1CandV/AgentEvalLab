@@ -75,7 +75,7 @@
     {
       "id": "t1-evidence-recovery",
       "packagePath": "task-library/calibration/t1-evidence-recovery",
-      "packageManifestSha256": "0f8cd06f3c3e70115eb07f569b4efad84130974fd6ea2ce0d5fe2c7d1b11377e",
+      "packageManifestSha256": "89c3397e83d98ffbb716a194884680ed02e2404c7a972b001c05659ed6639dff",
       "readOnly": true,
       "toolProfile": "doc-evidence",
       "input": {

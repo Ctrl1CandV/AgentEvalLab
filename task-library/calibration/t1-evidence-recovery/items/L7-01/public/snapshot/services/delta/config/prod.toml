@@ -3,4 +3,3 @@ include = "shared/limits-burst.toml"
 batch_size = 14
 timeout_ms = 6000
 cache_ttl_s = 29
-upstream = "lumen"

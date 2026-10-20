@@ -2,4 +2,3 @@
 cache_ttl_s = 45
 timeout_ms = 776
 max_retries = 42
-audit_sampling_rate = 56

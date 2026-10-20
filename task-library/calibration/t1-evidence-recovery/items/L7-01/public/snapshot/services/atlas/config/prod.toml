@@ -3,4 +3,4 @@ include = "shared/limits-floor.toml"
 pool_size = 7
 timeout_ms = 500
 batch_size = 32
-upstream = "garnet"
+upstream = "beacon"

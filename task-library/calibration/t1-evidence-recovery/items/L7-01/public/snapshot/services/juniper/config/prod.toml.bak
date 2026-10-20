@@ -5,3 +5,4 @@ batch_size = 17
 max_retries = 50
 pool_size = 38
 cache_ttl_s = 37
+backup_retention_days = 3

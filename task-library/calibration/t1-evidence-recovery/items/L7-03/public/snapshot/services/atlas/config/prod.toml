@@ -3,4 +3,4 @@ include = "shared/limits-floor.toml"
 max_retries = 10
 batch_size = 42
 cache_ttl_s = 16
-upstream = "fjord"
+upstream = "iris"

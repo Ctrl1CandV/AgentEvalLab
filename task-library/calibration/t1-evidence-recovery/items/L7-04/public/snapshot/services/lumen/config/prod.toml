@@ -3,4 +3,4 @@ include = "shared/limits-burst.toml"
 batch_size = 25
 pool_size = 25
 max_retries = 12
-upstream = "harbor"
+upstream = "delta"

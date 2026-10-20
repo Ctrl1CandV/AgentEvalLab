@@ -5,3 +5,4 @@ cache_ttl_s = 23
 timeout_ms = 261
 pool_size = 27
 queue_depth = 43
+shard_count = 33

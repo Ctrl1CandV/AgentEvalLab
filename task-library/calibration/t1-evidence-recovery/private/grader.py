@@ -13,7 +13,7 @@ sys.path.insert(0, HERE)
 import snapshot  # noqa: E402
 
 TASK_ID = "t1-evidence-recovery"
-TASK_VERSION = "0.4.0"
+TASK_VERSION = "0.4.1"
 GRADER_VERSION = "1.5.0"
 KEYS_PATH = os.path.join(HERE, "keys.json")
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)

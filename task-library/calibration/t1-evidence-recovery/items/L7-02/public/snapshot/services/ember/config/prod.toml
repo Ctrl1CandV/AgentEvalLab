@@ -3,4 +3,4 @@ include = "shared/limits-floor.toml"
 queue_depth = 26
 pool_size = 17
 batch_size = 18
-upstream = "atlas"
+upstream = "iris"

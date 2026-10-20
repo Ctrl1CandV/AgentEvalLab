@@ -3,3 +3,4 @@ include = "shared/limits-floor.toml"
 timeout_ms = 500
 max_retries = 6
 batch_size = 38
+upstream = "harbor"

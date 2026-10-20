@@ -1,6 +1,6 @@
-2026-09-30T09:12:01Z read config/ember.toml -> ERROR not_found
-2026-09-30T09:12:01Z note: the production pool_size of ember is needed; the path was wrong.
-2026-09-30T09:14:40Z read config/beacon-upstream.toml -> ERROR not_found
-2026-09-30T09:14:40Z note: the production timeout_ms of the service that beacon sends requests to is needed.
-2026-09-30T09:16:05Z read config/lumen-upstream-upstream.toml -> ERROR not_found
-2026-09-30T09:16:05Z note: the production queue_depth of the service that the upstream of lumen sends requests to is needed.
+2026-09-30T09:12:01Z read config/beacon.toml -> ERROR not_found
+2026-09-30T09:12:01Z note: the production queue_depth of beacon is needed; the path was wrong.
+2026-09-30T09:14:40Z read config/juniper-upstream.toml -> ERROR not_found
+2026-09-30T09:14:40Z note: the production timeout_ms of the service that juniper sends requests to is needed.
+2026-09-30T09:16:05Z read config/beacon-upstream-upstream.toml -> ERROR not_found
+2026-09-30T09:16:05Z note: the production queue_depth of the service that the upstream of beacon sends requests to is needed.

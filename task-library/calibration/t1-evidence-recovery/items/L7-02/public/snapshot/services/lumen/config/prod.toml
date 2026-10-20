@@ -3,4 +3,3 @@ include = "shared/limits-burst.toml"
 queue_depth = 30
 batch_size = 28
 pool_size = 32
-upstream = "ember"

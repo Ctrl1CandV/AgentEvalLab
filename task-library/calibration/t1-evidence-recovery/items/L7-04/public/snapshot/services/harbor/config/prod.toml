@@ -2,4 +2,4 @@
 pool_size = 25
 timeout_ms = 2000
 queue_depth = 31
-upstream = "kestrel"
+upstream = "ember"

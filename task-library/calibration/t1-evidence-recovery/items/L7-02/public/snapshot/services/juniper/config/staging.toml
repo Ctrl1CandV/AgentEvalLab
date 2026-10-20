@@ -2,3 +2,4 @@
 pool_size = 48
 timeout_ms = 127
 queue_depth = 24
+tls_min_version = 33

@@ -3,4 +3,4 @@ include = "shared/limits-standard.toml"
 cache_ttl_s = 18
 timeout_ms = 6000
 max_retries = 46
-upstream = "garnet"
+upstream = "fjord"

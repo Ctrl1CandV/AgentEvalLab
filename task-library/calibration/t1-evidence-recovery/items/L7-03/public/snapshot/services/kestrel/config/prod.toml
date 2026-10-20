@@ -3,4 +3,4 @@ include = "shared/limits-burst.toml"
 batch_size = 21
 queue_depth = 10
 cache_ttl_s = 15
-upstream = "beacon"
+upstream = "iris"

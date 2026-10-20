@@ -3,3 +3,4 @@ include = "shared/limits-floor.toml"
 max_retries = 26
 batch_size = 31
 timeout_ms = 6000
+upstream = "kestrel"

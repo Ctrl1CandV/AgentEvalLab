@@ -3,4 +3,3 @@ include = "shared/limits-burst.toml"
 batch_size = 38
 queue_depth = 13
 cache_ttl_s = 13
-upstream = "delta"

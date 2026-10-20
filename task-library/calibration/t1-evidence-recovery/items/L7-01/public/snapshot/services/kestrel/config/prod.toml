@@ -3,3 +3,4 @@ include = "shared/limits-burst.toml"
 queue_depth = 43
 batch_size = 47
 max_retries = 7
+upstream = "delta"

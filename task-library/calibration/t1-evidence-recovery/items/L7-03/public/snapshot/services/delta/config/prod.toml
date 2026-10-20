@@ -3,4 +3,4 @@ include = "shared/limits-burst.toml"
 batch_size = 15
 queue_depth = 12
 pool_size = 11
-upstream = "harbor"
+upstream = "garnet"

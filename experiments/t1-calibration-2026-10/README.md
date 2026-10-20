@@ -74,3 +74,5 @@ npm run harness -- --plan experiments/t1-calibration-2026-10/l5-l6.eval.json
 ```bash
 npm run harness -- --plan experiments/t1-calibration-2026-10/l7.eval.json
 ```
+
+The second launch (`e1c476fd`, task 0.4.0) was stopped after its first two trials. qwen3.8-flash and mimo-v2.6-flash each used the whole 1.5M-token budget on L7's twelve 1,300-line logs and gave no answer, so task 0.4.1 rescales L7 to L6's data size with the same harder questions. The plan now pins 0.4.1.

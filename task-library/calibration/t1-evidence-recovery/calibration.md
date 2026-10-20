@@ -89,4 +89,16 @@ Self-calibration: 622/622.
 
 At deep levels the generator guarantees that a two-deep and a three-deep key exist: it reserves keys for the first service.
 
-**Self-calibration:** 828/828 (`logs/self-calibration-0.4.0.log`). L1–L6 items and keys are unchanged.
+**Self-calibration:** 828/828 (superseded by 0.4.1). L1–L6 items and keys are unchanged.
+
+## Version 0.4.1 (2026-10-20)
+
+**L7 rescaled.** With twelve logs of 1,300 lines (0.4.0), each request resent 50,000–100,000 tokens of log lines. The first two trials, qwen3.8-flash and mimo-v2.6-flash, used their whole 1,500,000-token budget without giving an answer, despite the 50/75/90% reminders. The level then measured budget management rather than evidence recovery, and the run was stopped.
+
+L7 now keeps L6's data size: eight logs of 1,100 lines and 400 packages, about 1.08 million characters. It also keeps the harder questions of 0.4.0:
+
+- counts of 66–110 requests across all logs;
+- a median over about 90 requests;
+- distinct counts, three-deep includes, and two upstream steps.
+
+Self-calibration: see `logs/self-calibration-0.4.1.log`. L1–L6 are unchanged.

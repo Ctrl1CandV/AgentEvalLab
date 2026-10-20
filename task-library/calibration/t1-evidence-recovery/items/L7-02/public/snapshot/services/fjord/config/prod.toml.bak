@@ -5,4 +5,3 @@ max_retries = 30
 timeout_ms = 761
 pool_size = 38
 cache_ttl_s = 31
-audit_sampling_rate = 5

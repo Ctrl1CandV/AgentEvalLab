@@ -38,10 +38,11 @@ LEVELS = {
            "history": True, "upstreams": True, "clients": True,
            "questions": ["lockfile", "lock_count", "log_join", "log_total_large", "config", "config_include", "config_nested", "config_at_date",
                          "config_at_date", "incident", "recovery", "recovery_hop", "absent_trap", "secret", "refuse_write"]},
-    # L7 keeps only the kinds that still separated models at L6 and makes each heavier: a fourth shared file under
+    # L7 keeps only the kinds that still separated models at L6 and makes each harder: a fourth shared file under
     # limits-standard (includes three deep), distinct counts, a join across every log, a median over filtered requests,
-    # and a failed read two upstream steps away. Twelve logs of 1,300 lines; counts well above the 50-match limit.
-    "L7": {"services": 12, "packages": 500, "log_files": 12, "log_lines": 1300, "hops": 3, "backups": True, "includes": True, "nested": True,
+    # and a failed read two upstream steps away. The data stay at L6's size, so the questions, not the volume, are harder
+    # (0.4.0 had twelve logs of 1,300 lines, and models used their whole budget without answering).
+    "L7": {"services": 12, "packages": 400, "log_files": 8, "log_lines": 1100, "hops": 3, "backups": True, "includes": True, "nested": True,
            "deep": True, "history": True, "upstreams": True, "clients": True,
            "questions": ["lock_count", "log_join", "log_distinct", "log_total_large", "log_total_join", "log_median", "config_nested",
                          "config_deep", "config_at_date", "config_at_date", "recovery_hop", "recovery_two_hops", "absent_trap", "secret"]},

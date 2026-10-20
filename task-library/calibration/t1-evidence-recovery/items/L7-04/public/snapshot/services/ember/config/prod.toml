@@ -3,4 +3,4 @@ include = "shared/limits-burst.toml"
 pool_size = 38
 timeout_ms = 1000
 batch_size = 34
-upstream = "lumen"
+upstream = "juniper"

@@ -2,4 +2,4 @@
 batch_size = 26
 max_retries = 17
 cache_ttl_s = 16
-upstream = "atlas"
+upstream = "beacon"

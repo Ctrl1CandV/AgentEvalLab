@@ -2,4 +2,4 @@
 batch_size = 38
 pool_size = 7
 max_retries = 7
-upstream = "iris"
+upstream = "cinder"

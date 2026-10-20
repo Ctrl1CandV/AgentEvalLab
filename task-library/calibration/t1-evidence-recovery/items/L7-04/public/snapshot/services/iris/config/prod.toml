@@ -3,4 +3,4 @@ include = "shared/limits-burst.toml"
 timeout_ms = 4000
 cache_ttl_s = 38
 max_retries = 8
-upstream = "garnet"
+upstream = "delta"
