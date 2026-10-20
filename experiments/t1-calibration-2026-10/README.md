@@ -76,3 +76,14 @@ npm run harness -- --plan experiments/t1-calibration-2026-10/l7.eval.json
 ```
 
 The second launch (`e1c476fd`, task 0.4.0) was stopped after its first two trials. qwen3.8-flash and mimo-v2.6-flash each used the whole 1.5M-token budget on L7's twelve 1,300-line logs and gave no answer, so task 0.4.1 rescales L7 to L6's data size with the same harder questions. The plan now pins 0.4.1.
+
+Run `91331eb7` (task 0.4.1, L7): 19 of 28 trials; the relay models (glm, step, luna) had no balance.
+
+| Model | Mean score | Resolved | Median tokens | Budget stops |
+| --- | ---: | ---: | ---: | ---: |
+| deepseek-flash | 96% | 3/4 | 1.23M | 0 |
+| qwen3.8-flash | 85% | 4/4 (three with the format deduction) | 1.44M | 0 |
+| mimo-v2.6-pro | 36% | 1/4 | 1.68M | 1 |
+| mimo-v2.6-flash | 34% | 0/4 | 1.69M | 1 |
+
+Even the heavier questions do not separate the two strong models: deepseek missed one question in one snapshot, and qwen lost only the format deduction (a fenced or prefaced answer). The MiMo models lose whole snapshots: one budget stop without an answer, one empty final message, and an answer written after prose, which the recovery rule does not pick out because the prose holds other objects.
