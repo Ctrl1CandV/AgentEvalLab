@@ -1,6 +1,8 @@
 ## Ticket T02
 
-From: ana.ruiz@example.com
+From: ben@okoro.example
 
-(1) I want to return the headphones from order O-5002. They work fine, they just are not comfortable.
-(2) That order also arrived late. I would like the compensation you offer for that.
+(1) Please take back one of the two studio headphones from order O-5004.
+(2) Take back the wool throw from that order as well.
+(3) O-5004 came late too, I believe. Please compensate me for that.
+(4) As a gold member for six years, I would also appreciate 20 euros of store credit for the trouble.

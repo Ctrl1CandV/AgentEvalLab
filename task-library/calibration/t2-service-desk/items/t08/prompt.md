@@ -1,7 +1,7 @@
 ## Ticket T08
 
-From: chen.wei@example.com
+From: ben@okoro.example
 
-(1) Cancel order O-5005, please.
-(2) If you cannot, give me 10.00 of store credit for the trouble.
-(3) Order O-5004 was late too. I would like the compensation for that.
+(1) Please take back my headphones; they stopped working.
+(2) Order O-5012 arrived two days late. Is there a compensation?
+(3) Please deliver O-5013 to 3 Harbour Lane, Bristol instead.

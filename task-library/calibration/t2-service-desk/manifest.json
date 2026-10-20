@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "t2-service-desk",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "familyId": "t2-service-desk",
   "capability": "tool",
   "usage": "development",
@@ -29,15 +29,15 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "86bce9c835caefdff19978a8ee2f412eae966a09227a33e2c851f74e0a1f347f"
+        "sha256": "4410c657ee52a44361655d5891f1946ce96917cbfc57a08e21a47baa8c5fbfbc"
       },
       {
         "path": "rubric.md",
-        "sha256": "5392e92025c10e8d2082ae47afce74bf03140505259267fc1288c67b3750e631"
+        "sha256": "b1d3ea919b016a93b0957d120c608507fda4ad8b499054c495ee79507d5ccdf1"
       },
       {
         "path": "private/POLICY.md",
-        "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+        "sha256": "0640cb131c14edff2e46922c590778b2332c78156a8bf65cae5e10374aae4f5c"
       },
       {
         "path": "private/build_package.py",
@@ -45,19 +45,23 @@
       },
       {
         "path": "private/calibrate.py",
-        "sha256": "0f7a4f33420747f15606d689d576e9723c83138c19ef3a07dd35861dd5db58d7"
+        "sha256": "49aa0c9737073dc47c1594d2310d18a71c2baaff6d89d45c7bf582884c56c569"
       },
       {
         "path": "private/desk.py",
-        "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+        "sha256": "69879e8cc63b96fd969b37967c47cd70ece6bb48c02c18a49cdaa706d2db2a5f"
       },
       {
         "path": "private/grader.py",
-        "sha256": "6015936e323147553155157b381821657e6dfc854d9a9d1c0e83ddc21332ebe8"
+        "sha256": "be71c6fd5953884547580f308f907ea26bf20cd742e40b417bdf793b6100e003"
+      },
+      {
+        "path": "private/oracle.py",
+        "sha256": "d5038f99b4a911e17787c40b050020f8d208f5eee6369974c9c88f795646bc35"
       },
       {
         "path": "private/tickets.py",
-        "sha256": "49a39f112bd2ad5f86123601e54cd094c3ab1d3818dd69aa62b0686565d1064a"
+        "sha256": "cc99341087019500b7f6f1d4b868c245a5653ccdb99a9f43de4649b2cee835a6"
       }
     ]
   },
@@ -65,15 +69,31 @@
     {
       "id": "REQ-T01-ORDER-O-5001",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t01-order-O-5001"
       ]
     },
     {
+      "id": "REQ-T01-ORDER-O-5002",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t01-order-O-5002"
+      ]
+    },
+    {
+      "id": "REQ-T01-CUSTOMER-C-1001",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t01-customer-C-1001"
+      ]
+    },
+    {
       "id": "REQ-T01-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t01-no-other-changes"
       ]
@@ -81,31 +101,31 @@
     {
       "id": "REQ-T01-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t01-reply"
       ]
     },
     {
-      "id": "REQ-T02-ORDER-O-5002",
+      "id": "REQ-T02-ORDER-O-5004",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
-        "t02-order-O-5002"
+        "t02-order-O-5004"
       ]
     },
     {
-      "id": "REQ-T02-CUSTOMER-C-1001",
+      "id": "REQ-T02-CUSTOMER-C-1002",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
-        "t02-customer-C-1001"
+        "t02-customer-C-1002"
       ]
     },
     {
       "id": "REQ-T02-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t02-no-other-changes"
       ]
@@ -113,15 +133,39 @@
     {
       "id": "REQ-T02-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t02-reply"
       ]
     },
     {
+      "id": "REQ-T03-ORDER-O-5005",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t03-order-O-5005"
+      ]
+    },
+    {
+      "id": "REQ-T03-ORDER-O-5006",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t03-order-O-5006"
+      ]
+    },
+    {
+      "id": "REQ-T03-CUSTOMER-C-1003",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t03-customer-C-1003"
+      ]
+    },
+    {
       "id": "REQ-T03-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t03-no-other-changes"
       ]
@@ -129,31 +173,15 @@
     {
       "id": "REQ-T03-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t03-reply"
       ]
     },
     {
-      "id": "REQ-T04-ORDER-O-5004",
-      "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
-      "checkIds": [
-        "t04-order-O-5004"
-      ]
-    },
-    {
-      "id": "REQ-T04-CUSTOMER-C-1003",
-      "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
-      "checkIds": [
-        "t04-customer-C-1003"
-      ]
-    },
-    {
       "id": "REQ-T04-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t04-no-other-changes"
       ]
@@ -161,7 +189,7 @@
     {
       "id": "REQ-T04-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t04-reply"
       ]
@@ -169,15 +197,23 @@
     {
       "id": "REQ-T05-ORDER-O-5007",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t05-order-O-5007"
       ]
     },
     {
+      "id": "REQ-T05-ORDER-O-5009",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t05-order-O-5009"
+      ]
+    },
+    {
       "id": "REQ-T05-CUSTOMER-C-1004",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t05-customer-C-1004"
       ]
@@ -185,7 +221,7 @@
     {
       "id": "REQ-T05-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t05-no-other-changes"
       ]
@@ -193,23 +229,31 @@
     {
       "id": "REQ-T05-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t05-reply"
       ]
     },
     {
-      "id": "REQ-T06-ORDER-O-5001",
+      "id": "REQ-T06-ORDER-O-5010",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
-        "t06-order-O-5001"
+        "t06-order-O-5010"
+      ]
+    },
+    {
+      "id": "REQ-T06-CUSTOMER-C-1005",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t06-customer-C-1005"
       ]
     },
     {
       "id": "REQ-T06-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t06-no-other-changes"
       ]
@@ -217,31 +261,31 @@
     {
       "id": "REQ-T06-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t06-reply"
       ]
     },
     {
-      "id": "REQ-T07-ORDER-O-5008",
+      "id": "REQ-T07-ORDER-O-5011",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
-        "t07-order-O-5008"
+        "t07-order-O-5011"
       ]
     },
     {
-      "id": "REQ-T07-CUSTOMER-C-1002",
+      "id": "REQ-T07-CUSTOMER-C-1006",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
-        "t07-customer-C-1002"
+        "t07-customer-C-1006"
       ]
     },
     {
       "id": "REQ-T07-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t07-no-other-changes"
       ]
@@ -249,31 +293,23 @@
     {
       "id": "REQ-T07-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t07-reply"
       ]
     },
     {
-      "id": "REQ-T08-ORDER-O-5004",
+      "id": "REQ-T08-ORDER-O-5013",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
-        "t08-order-O-5004"
-      ]
-    },
-    {
-      "id": "REQ-T08-CUSTOMER-C-1003",
-      "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
-      "checkIds": [
-        "t08-customer-C-1003"
+        "t08-order-O-5013"
       ]
     },
     {
       "id": "REQ-T08-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t08-no-other-changes"
       ]
@@ -281,15 +317,135 @@
     {
       "id": "REQ-T08-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "t08-reply"
       ]
     },
     {
+      "id": "REQ-T09-ORDER-O-5001",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t09-order-O-5001"
+      ]
+    },
+    {
+      "id": "REQ-T09-ORDER-O-5002",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t09-order-O-5002"
+      ]
+    },
+    {
+      "id": "REQ-T09-NO-OTHER-CHANGES",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t09-no-other-changes"
+      ]
+    },
+    {
+      "id": "REQ-T09-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t09-reply"
+      ]
+    },
+    {
+      "id": "REQ-T10-ORDER-O-5003",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t10-order-O-5003"
+      ]
+    },
+    {
+      "id": "REQ-T10-NO-OTHER-CHANGES",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t10-no-other-changes"
+      ]
+    },
+    {
+      "id": "REQ-T10-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t10-reply"
+      ]
+    },
+    {
+      "id": "REQ-T11-ORDER-O-5014",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t11-order-O-5014"
+      ]
+    },
+    {
+      "id": "REQ-T11-CUSTOMER-C-1003",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t11-customer-C-1003"
+      ]
+    },
+    {
+      "id": "REQ-T11-NO-OTHER-CHANGES",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t11-no-other-changes"
+      ]
+    },
+    {
+      "id": "REQ-T11-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t11-reply"
+      ]
+    },
+    {
+      "id": "REQ-T12-ORDER-O-5015",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t12-order-O-5015"
+      ]
+    },
+    {
+      "id": "REQ-T12-CUSTOMER-C-1006",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t12-customer-C-1006"
+      ]
+    },
+    {
+      "id": "REQ-T12-NO-OTHER-CHANGES",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t12-no-other-changes"
+      ]
+    },
+    {
+      "id": "REQ-T12-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.2.0",
+      "checkIds": [
+        "t12-reply"
+      ]
+    },
+    {
       "id": "REQ-FORMAT",
       "critical": false,
-      "introducedAt": "t2-service-desk 0.1.0",
+      "introducedAt": "t2-service-desk 0.2.0",
       "checkIds": [
         "answer-format"
       ]
@@ -306,11 +462,11 @@
       "files": [
         {
           "path": "items/t01/prompt.md",
-          "sha256": "855caa4da9b897f4a62c2f0dc0a69c491361077ac44e7232db1c292be7ce4a55"
+          "sha256": "76ac163df5a9975cbff25bad9726f617c443f0674d81a4d0266598f9e1d54123"
         },
         {
           "path": "items/t01/public/POLICY.md",
-          "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+          "sha256": "0640cb131c14edff2e46922c590778b2332c78156a8bf65cae5e10374aae4f5c"
         },
         {
           "path": "items/t01/public/data/audit.log",
@@ -318,15 +474,17 @@
         },
         {
           "path": "items/t01/public/data/db.json",
-          "sha256": "17d888ddc249bcc35c54395cddb9530122d84aff01e89296691e8a03a3ed0a06"
+          "sha256": "2a86d9e9babbc222c3a1e328609ea67982c16315e93e9715b6ebc12ccab19019"
         },
         {
           "path": "items/t01/public/desk.py",
-          "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+          "sha256": "69879e8cc63b96fd969b37967c47cd70ece6bb48c02c18a49cdaa706d2db2a5f"
         }
       ],
       "activeRequirementIds": [
         "REQ-T01-ORDER-O-5001",
+        "REQ-T01-ORDER-O-5002",
+        "REQ-T01-CUSTOMER-C-1001",
         "REQ-T01-NO-OTHER-CHANGES",
         "REQ-T01-REPLY",
         "REQ-FORMAT"
@@ -338,11 +496,11 @@
       "files": [
         {
           "path": "items/t02/prompt.md",
-          "sha256": "5d5c3798b51f6635ce3055adbc7ce43fffa5ff003523b525eb9b4bba4a8eeb64"
+          "sha256": "47b474bb5549ed920fc07eed36a06b3d1718b617b5fb9a4f5ba5bfc53889da88"
         },
         {
           "path": "items/t02/public/POLICY.md",
-          "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+          "sha256": "0640cb131c14edff2e46922c590778b2332c78156a8bf65cae5e10374aae4f5c"
         },
         {
           "path": "items/t02/public/data/audit.log",
@@ -350,16 +508,16 @@
         },
         {
           "path": "items/t02/public/data/db.json",
-          "sha256": "17d888ddc249bcc35c54395cddb9530122d84aff01e89296691e8a03a3ed0a06"
+          "sha256": "2a86d9e9babbc222c3a1e328609ea67982c16315e93e9715b6ebc12ccab19019"
         },
         {
           "path": "items/t02/public/desk.py",
-          "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+          "sha256": "69879e8cc63b96fd969b37967c47cd70ece6bb48c02c18a49cdaa706d2db2a5f"
         }
       ],
       "activeRequirementIds": [
-        "REQ-T02-ORDER-O-5002",
-        "REQ-T02-CUSTOMER-C-1001",
+        "REQ-T02-ORDER-O-5004",
+        "REQ-T02-CUSTOMER-C-1002",
         "REQ-T02-NO-OTHER-CHANGES",
         "REQ-T02-REPLY",
         "REQ-FORMAT"
@@ -371,11 +529,11 @@
       "files": [
         {
           "path": "items/t03/prompt.md",
-          "sha256": "6818e1270a2d9b2098d3c36b1ab4013a3faf61d77ab6b8e9bbc27ef4e7a4dc97"
+          "sha256": "4b79c125c31d16584cbd722a8c5fce14240693ac5c0f3921770ac355b6f268fb"
         },
         {
           "path": "items/t03/public/POLICY.md",
-          "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+          "sha256": "0640cb131c14edff2e46922c590778b2332c78156a8bf65cae5e10374aae4f5c"
         },
         {
           "path": "items/t03/public/data/audit.log",
@@ -383,14 +541,17 @@
         },
         {
           "path": "items/t03/public/data/db.json",
-          "sha256": "17d888ddc249bcc35c54395cddb9530122d84aff01e89296691e8a03a3ed0a06"
+          "sha256": "2a86d9e9babbc222c3a1e328609ea67982c16315e93e9715b6ebc12ccab19019"
         },
         {
           "path": "items/t03/public/desk.py",
-          "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+          "sha256": "69879e8cc63b96fd969b37967c47cd70ece6bb48c02c18a49cdaa706d2db2a5f"
         }
       ],
       "activeRequirementIds": [
+        "REQ-T03-ORDER-O-5005",
+        "REQ-T03-ORDER-O-5006",
+        "REQ-T03-CUSTOMER-C-1003",
         "REQ-T03-NO-OTHER-CHANGES",
         "REQ-T03-REPLY",
         "REQ-FORMAT"
@@ -402,11 +563,11 @@
       "files": [
         {
           "path": "items/t04/prompt.md",
-          "sha256": "31c31a88f8b6ae79d9256e655c1a8ac60046cd506f0dab18da48322c35c9ac28"
+          "sha256": "8416a4c1b21610d6dae3e4b70f60348a92a366e44bd6839ab00942bc1ad8da89"
         },
         {
           "path": "items/t04/public/POLICY.md",
-          "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+          "sha256": "0640cb131c14edff2e46922c590778b2332c78156a8bf65cae5e10374aae4f5c"
         },
         {
           "path": "items/t04/public/data/audit.log",
@@ -414,16 +575,14 @@
         },
         {
           "path": "items/t04/public/data/db.json",
-          "sha256": "17d888ddc249bcc35c54395cddb9530122d84aff01e89296691e8a03a3ed0a06"
+          "sha256": "2a86d9e9babbc222c3a1e328609ea67982c16315e93e9715b6ebc12ccab19019"
         },
         {
           "path": "items/t04/public/desk.py",
-          "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+          "sha256": "69879e8cc63b96fd969b37967c47cd70ece6bb48c02c18a49cdaa706d2db2a5f"
         }
       ],
       "activeRequirementIds": [
-        "REQ-T04-ORDER-O-5004",
-        "REQ-T04-CUSTOMER-C-1003",
         "REQ-T04-NO-OTHER-CHANGES",
         "REQ-T04-REPLY",
         "REQ-FORMAT"
@@ -435,11 +594,11 @@
       "files": [
         {
           "path": "items/t05/prompt.md",
-          "sha256": "d3320cd25194809a26363e0576926aeba3c40e2873f1967047eed05f121e063e"
+          "sha256": "3864920af4cf318dc69bf9ea73fdeeb4b8aed7c38fd6751dea3826a838dc941a"
         },
         {
           "path": "items/t05/public/POLICY.md",
-          "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+          "sha256": "0640cb131c14edff2e46922c590778b2332c78156a8bf65cae5e10374aae4f5c"
         },
         {
           "path": "items/t05/public/data/audit.log",
@@ -447,15 +606,16 @@
         },
         {
           "path": "items/t05/public/data/db.json",
-          "sha256": "17d888ddc249bcc35c54395cddb9530122d84aff01e89296691e8a03a3ed0a06"
+          "sha256": "2a86d9e9babbc222c3a1e328609ea67982c16315e93e9715b6ebc12ccab19019"
         },
         {
           "path": "items/t05/public/desk.py",
-          "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+          "sha256": "69879e8cc63b96fd969b37967c47cd70ece6bb48c02c18a49cdaa706d2db2a5f"
         }
       ],
       "activeRequirementIds": [
         "REQ-T05-ORDER-O-5007",
+        "REQ-T05-ORDER-O-5009",
         "REQ-T05-CUSTOMER-C-1004",
         "REQ-T05-NO-OTHER-CHANGES",
         "REQ-T05-REPLY",
@@ -468,11 +628,11 @@
       "files": [
         {
           "path": "items/t06/prompt.md",
-          "sha256": "3787cf552d8d367d2795d1716898d0a038359e469ab969dce22179b65f601d9f"
+          "sha256": "96a4819db36a43957385861189fe6a4715e3621c8bbcc04681946e24991977f2"
         },
         {
           "path": "items/t06/public/POLICY.md",
-          "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+          "sha256": "0640cb131c14edff2e46922c590778b2332c78156a8bf65cae5e10374aae4f5c"
         },
         {
           "path": "items/t06/public/data/audit.log",
@@ -480,15 +640,16 @@
         },
         {
           "path": "items/t06/public/data/db.json",
-          "sha256": "17d888ddc249bcc35c54395cddb9530122d84aff01e89296691e8a03a3ed0a06"
+          "sha256": "2a86d9e9babbc222c3a1e328609ea67982c16315e93e9715b6ebc12ccab19019"
         },
         {
           "path": "items/t06/public/desk.py",
-          "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+          "sha256": "69879e8cc63b96fd969b37967c47cd70ece6bb48c02c18a49cdaa706d2db2a5f"
         }
       ],
       "activeRequirementIds": [
-        "REQ-T06-ORDER-O-5001",
+        "REQ-T06-ORDER-O-5010",
+        "REQ-T06-CUSTOMER-C-1005",
         "REQ-T06-NO-OTHER-CHANGES",
         "REQ-T06-REPLY",
         "REQ-FORMAT"
@@ -500,11 +661,11 @@
       "files": [
         {
           "path": "items/t07/prompt.md",
-          "sha256": "d8c6dc6985768a5c1ef943cf6b63082fb8cedbbb51f9ee15b4f65a26d53f7b56"
+          "sha256": "3a99d2daa564d49b222c998c2c5e4c82f2c4f80eca28b65f9b0c7d018ba9ed8d"
         },
         {
           "path": "items/t07/public/POLICY.md",
-          "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+          "sha256": "0640cb131c14edff2e46922c590778b2332c78156a8bf65cae5e10374aae4f5c"
         },
         {
           "path": "items/t07/public/data/audit.log",
@@ -512,16 +673,16 @@
         },
         {
           "path": "items/t07/public/data/db.json",
-          "sha256": "17d888ddc249bcc35c54395cddb9530122d84aff01e89296691e8a03a3ed0a06"
+          "sha256": "2a86d9e9babbc222c3a1e328609ea67982c16315e93e9715b6ebc12ccab19019"
         },
         {
           "path": "items/t07/public/desk.py",
-          "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+          "sha256": "69879e8cc63b96fd969b37967c47cd70ece6bb48c02c18a49cdaa706d2db2a5f"
         }
       ],
       "activeRequirementIds": [
-        "REQ-T07-ORDER-O-5008",
-        "REQ-T07-CUSTOMER-C-1002",
+        "REQ-T07-ORDER-O-5011",
+        "REQ-T07-CUSTOMER-C-1006",
         "REQ-T07-NO-OTHER-CHANGES",
         "REQ-T07-REPLY",
         "REQ-FORMAT"
@@ -533,11 +694,11 @@
       "files": [
         {
           "path": "items/t08/prompt.md",
-          "sha256": "21514b4f2a5245d15580fd298112359882a26d0848b30e2ac18bd9b5d4f9e90a"
+          "sha256": "d277183fa85fc10394a72085796d674269ba3883baa08d537a6c7e2b70cdefcf"
         },
         {
           "path": "items/t08/public/POLICY.md",
-          "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+          "sha256": "0640cb131c14edff2e46922c590778b2332c78156a8bf65cae5e10374aae4f5c"
         },
         {
           "path": "items/t08/public/data/audit.log",
@@ -545,18 +706,148 @@
         },
         {
           "path": "items/t08/public/data/db.json",
-          "sha256": "17d888ddc249bcc35c54395cddb9530122d84aff01e89296691e8a03a3ed0a06"
+          "sha256": "2a86d9e9babbc222c3a1e328609ea67982c16315e93e9715b6ebc12ccab19019"
         },
         {
           "path": "items/t08/public/desk.py",
-          "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+          "sha256": "69879e8cc63b96fd969b37967c47cd70ece6bb48c02c18a49cdaa706d2db2a5f"
         }
       ],
       "activeRequirementIds": [
-        "REQ-T08-ORDER-O-5004",
-        "REQ-T08-CUSTOMER-C-1003",
+        "REQ-T08-ORDER-O-5013",
         "REQ-T08-NO-OTHER-CHANGES",
         "REQ-T08-REPLY",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "t09",
+      "level": "t09",
+      "files": [
+        {
+          "path": "items/t09/prompt.md",
+          "sha256": "d2799858b2ab02aebc5fb61c6d1544560738c637ab43062a1e25e0ac6fdd59af"
+        },
+        {
+          "path": "items/t09/public/POLICY.md",
+          "sha256": "0640cb131c14edff2e46922c590778b2332c78156a8bf65cae5e10374aae4f5c"
+        },
+        {
+          "path": "items/t09/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/t09/public/data/db.json",
+          "sha256": "2a86d9e9babbc222c3a1e328609ea67982c16315e93e9715b6ebc12ccab19019"
+        },
+        {
+          "path": "items/t09/public/desk.py",
+          "sha256": "69879e8cc63b96fd969b37967c47cd70ece6bb48c02c18a49cdaa706d2db2a5f"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-T09-ORDER-O-5001",
+        "REQ-T09-ORDER-O-5002",
+        "REQ-T09-NO-OTHER-CHANGES",
+        "REQ-T09-REPLY",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "t10",
+      "level": "t10",
+      "files": [
+        {
+          "path": "items/t10/prompt.md",
+          "sha256": "ef4a96895dd9d23e66a2313be061eba5faa52777e0778afc31a9ae66e9b82679"
+        },
+        {
+          "path": "items/t10/public/POLICY.md",
+          "sha256": "0640cb131c14edff2e46922c590778b2332c78156a8bf65cae5e10374aae4f5c"
+        },
+        {
+          "path": "items/t10/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/t10/public/data/db.json",
+          "sha256": "2a86d9e9babbc222c3a1e328609ea67982c16315e93e9715b6ebc12ccab19019"
+        },
+        {
+          "path": "items/t10/public/desk.py",
+          "sha256": "69879e8cc63b96fd969b37967c47cd70ece6bb48c02c18a49cdaa706d2db2a5f"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-T10-ORDER-O-5003",
+        "REQ-T10-NO-OTHER-CHANGES",
+        "REQ-T10-REPLY",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "t11",
+      "level": "t11",
+      "files": [
+        {
+          "path": "items/t11/prompt.md",
+          "sha256": "f51178e086472b174c98ad8c4aeb49ef7ee398a50d7f447ca48d57a21d1c05ce"
+        },
+        {
+          "path": "items/t11/public/POLICY.md",
+          "sha256": "0640cb131c14edff2e46922c590778b2332c78156a8bf65cae5e10374aae4f5c"
+        },
+        {
+          "path": "items/t11/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/t11/public/data/db.json",
+          "sha256": "2a86d9e9babbc222c3a1e328609ea67982c16315e93e9715b6ebc12ccab19019"
+        },
+        {
+          "path": "items/t11/public/desk.py",
+          "sha256": "69879e8cc63b96fd969b37967c47cd70ece6bb48c02c18a49cdaa706d2db2a5f"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-T11-ORDER-O-5014",
+        "REQ-T11-CUSTOMER-C-1003",
+        "REQ-T11-NO-OTHER-CHANGES",
+        "REQ-T11-REPLY",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "t12",
+      "level": "t12",
+      "files": [
+        {
+          "path": "items/t12/prompt.md",
+          "sha256": "639dc6db7ab1cd390bf16db9c76741de3b45e7f53dfc4ccd388a04031cd2efe4"
+        },
+        {
+          "path": "items/t12/public/POLICY.md",
+          "sha256": "0640cb131c14edff2e46922c590778b2332c78156a8bf65cae5e10374aae4f5c"
+        },
+        {
+          "path": "items/t12/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/t12/public/data/db.json",
+          "sha256": "2a86d9e9babbc222c3a1e328609ea67982c16315e93e9715b6ebc12ccab19019"
+        },
+        {
+          "path": "items/t12/public/desk.py",
+          "sha256": "69879e8cc63b96fd969b37967c47cd70ece6bb48c02c18a49cdaa706d2db2a5f"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-T12-ORDER-O-5015",
+        "REQ-T12-CUSTOMER-C-1006",
+        "REQ-T12-NO-OTHER-CHANGES",
+        "REQ-T12-REPLY",
         "REQ-FORMAT"
       ]
     }

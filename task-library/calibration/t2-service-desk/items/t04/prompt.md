@@ -1,7 +1,6 @@
 ## Ticket T04
 
-From: chen.wei@example.com
+From: c.wei@mail.example
 
-(1) The e-reader from order O-5004 is defective. I want my money back.
-(2) Please also take back the moth field guide from the same order.
-(3) Change the delivery address of order O-5005 to 9 Quay Street, Hull.
+(1) This is Chen Wei writing from my other address. The e-reader from order O-5006 is defective; please refund it.
+(2) Order O-5005 is late, so please give me the compensation.

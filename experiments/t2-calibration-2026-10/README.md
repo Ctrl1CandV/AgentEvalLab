@@ -12,3 +12,11 @@ npm run harness -- --plan experiments/t2-calibration-2026-10/calibration.eval.js
   - Graded first with grader 1.0.0, every model but luna lost the 20% format deduction on every ticket, for explaining its handling before the JSON reply, which POLICY.md allows. Grader 1.0.1 fixes that; the 59 graded trials were regraded.
   - After the regrade: deepseek, glm and step 100% on every ticket, qwen 97% (one format slip), luna 58% (its own policy errors: a book returned outside its 14-day window, a book return declined inside it, a missed compensation at exactly three days late, an exchange without its credit, and a reply that contradicts its actions).
   - T2 0.1.0 is therefore saturated for four of the five models and is not used for comparison; 0.2.0 replaces it.
+
+## T2 0.2.0 (2026-10-20)
+
+`v0.2.eval.json` runs the twelve tickets of T2 0.2.0, whose policy rules interact (see the package's `calibration.md`), on seven models twice each: the five calibration models and the two MiMo V2.6 models at their default thinking. Budgets are those of the first run.
+
+```bash
+npm run harness -- --plan experiments/t2-calibration-2026-10/v0.2.eval.json
+```

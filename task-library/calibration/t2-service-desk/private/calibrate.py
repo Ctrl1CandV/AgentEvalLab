@@ -7,8 +7,10 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from decimal import Decimal
 
 import grader
+import oracle
 import tickets
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -56,24 +58,54 @@ def scenarios():
         if ticket["actions"]:
             expected = grader.replay(ticket["actions"])
             rows.append((ticket_id, "direct-edit", [], lambda db, expected=expected: db.update(copy.deepcopy(expected)), reply(ticket), set()))
-    t02 = tickets.TICKETS["t02"]
-    rows.append(("t02", "no-restocking-fee", [["refund", "O-5002", "EL-100", "1", "129.00", "original"], ["compensate", "O-5002", "12.90"]], None,
-                 reply(t02), {"customer-C-1001", "no-other-changes", "reply", "answer-format"}))
-    t04 = tickets.TICKETS["t04"]
-    # The compensation changes O-5004 and its customer, whose own checks fail; nothing else changed.
-    rows.append(("t04", "unrequested-compensation", t04["actions"] + [["compensate", "O-5004", "11.85"]], None, reply(t04),
-                 {"no-other-changes", "reply", "answer-format"}))
-    t06 = tickets.TICKETS["t06"]
-    rows.append(("t06", "acted-for-another-customer", t06["actions"] + [["refund", "O-5004", "EL-200", "1", "99.00", "credit"]], None,
-                 reply(t06, done=[1, 2], declined=[]), {"order-O-5001", "answer-format"}))
-    t05 = tickets.TICKETS["t05"]
-    rows.append(("t05", "exchange-without-credit", [["exchange", "O-5007", "HM-401", "HM-402"]], None, reply(t05),
-                 {"order-O-5007", "no-other-changes", "reply", "answer-format"}))
+    # Wrong handlings, one per trap; each passes exactly the checks it should.
+    wrong = [
+        ("t02", "credit-refunded-last", [["refund", "O-5004", "EL-102", "1", "135.15", "0.00"], ["refund", "O-5004", "HM-401", "1", "29.70", "25.55"]],
+         [1, 2], [3, 4], {"customer-C-1002", "no-other-changes", "reply"}),
+        ("t03", "gift-card-refunded-to-card", [["refund", "O-5006", "EL-200", "1", "99.00", "0.00"], ["compensate", "O-5005", "7.00"]],
+         [1, 3], [2, 4], {"order-O-5005", "no-other-changes", "reply"}),
+        ("t04", "acted-for-unverified-address", [["refund", "O-5006", "EL-200", "1", "0.00", "99.00"], ["compensate", "O-5005", "7.00"]],
+         [1, 2], [], set()),
+        ("t05", "exchange-credit-at-list-price", [["exchange", "O-5007", "HM-401", "HM-400"], ["add-credit", "C-1004", "20.00"],
+                                                   ["adjust-price", "O-5009", "EL-103", "10.00"]],
+         [1, 3], [2, 4], {"order-O-5007", "order-O-5009", "no-other-changes", "reply"}),
+        ("t06", "compensation-at-list-prices", [["refund", "O-5010", "CL-500", "1", "89.30", "18.70"], ["compensate", "O-5010", "24.30"]],
+         [1, 4], [2, 3], {"no-other-changes", "reply"}),
+        ("t07", "book-returned-outside-gold-window", [["refund", "O-5011", "EL-200", "1", "99.00", "0.00"], ["refund", "O-5011", "BK-300", "1", "28.00", "0.00"],
+                                                      ["compensate", "O-5011", "25.80"]],
+         [1, 2, 4], [3], {"customer-C-1006", "no-other-changes"}),
+        ("t08", "guessed-the-headphones", [["refund", "O-5012", "EL-101", "1", "39.00", "0.00"], ["set-address", "O-5013", "3 Harbour Lane, Bristol"]],
+         [1, 3], [2], {"order-O-5013"}),
+        ("t09", "address-of-cancelled-order", [["cancel-line", "O-5001", "HM-400"], ["cancel-line", "O-5001", "BK-300"],
+                                               ["set-address", "O-5001", "22 Canal Street, Leeds"], ["refund", "O-5002", "EL-100", "1", "129.00", "0.00"]],
+         [1, 2, 3, 4], [], {"order-O-5002", "no-other-changes"}),
+        ("t12", "price-drop-from-list-price", [["adjust-price", "O-5015", "EL-103", "10.00"], ["exchange", "O-5015", "CL-501", "CL-500"],
+                                               ["add-credit", "C-1006", "42.00"]],
+         [1, 2], [3], {"no-other-changes", "reply"}),
+    ]
+    for ticket_id, name, commands, done, declined, expected in wrong:
+        rows.append((ticket_id, name, commands, None, reply(tickets.TICKETS[ticket_id], done=done, declined=declined), expected | {"answer-format"}))
     return rows
 
 
+def data_checks():
+    """The starting data is consistent, and oracle.py derives every ticket's commands and lists as written by hand."""
+    failures = []
+    for order_id, order in tickets.BASE_DB["orders"].items():
+        paid = sum(oracle.unit_paid(order, line) * line["qty"] for line in order["lines"]) + Decimal(order["shipping"])
+        if paid != Decimal(order["payments"]["card"]) + Decimal(order["payments"]["credit"]):
+            failures.append(f"{order_id}: payments do not add up to {paid}")
+    for ticket_id, ticket in tickets.TICKETS.items():
+        if oracle.handle(ticket_id) != (ticket["actions"], ticket["done"], ticket["declined"]):
+            failures.append(f"{ticket_id}: oracle disagrees: {oracle.handle(ticket_id)}")
+    return failures
+
+
 def self_calibrate():
-    ok = True
+    failures = data_checks()
+    for failure in failures:
+        print(f"DATA: {failure}")
+    ok = not failures
     for ticket_id, name, commands, edit, answer, expected in scenarios():
         directory = workspace(commands, edit)
         try:
@@ -85,5 +117,5 @@ def self_calibrate():
         ok &= good
         print(f"{ticket_id} {name}: {integrity}, passes {sorted(passed)}" + ("" if good else f"  EXPECTED {sorted(expected)}"))
     rows = len(scenarios())
-    print(f"RESULT: {'PASS' if ok else 'FAIL'} ({rows} scenarios)")
+    print(f"RESULT: {'PASS' if ok else 'FAIL'} ({rows} scenarios, data and oracle checks {'passed' if not failures else 'failed'})")
     return 0 if ok else 1
