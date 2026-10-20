@@ -51,7 +51,7 @@
     "maxTurns": 200,
     "maxModelCalls": 200,
     "maxToolCalls": 250,
-    "maxOutputChars": 32768,
+    "maxOutputChars": 524288,
     "maxOutputTokensPerCall": 131072,
     "maxToolResultChars": 100000,
     "maxTrialTokens": 1500000

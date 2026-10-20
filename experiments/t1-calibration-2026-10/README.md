@@ -69,7 +69,7 @@ npm run harness -- --plan experiments/t1-calibration-2026-10/l5-l6.eval.json
 
 ## L7 (task 0.4.0, 2026-10-20)
 
-`l7.eval.json` runs the four L7 snapshots once on seven models: the five calibration models and the two MiMo V2.6 models at their default thinking. L6 trials already used about 800,000 tokens, the whole budget. L7's snapshots are larger and its questions heavier, so each trial gets 1,500,000 tokens, 200 responses, 250 tool calls and 90 minutes. A single response may hold 131,072 tokens.
+`l7.eval.json` runs the four L7 snapshots once on seven models: the five calibration models and the two MiMo V2.6 models at their default thinking. L6 trials already used about 800,000 tokens, the whole budget. L7's snapshots are larger and its questions heavier, so each trial gets 1,500,000 tokens, 200 responses, 250 tool calls and 90 minutes. A single response may hold 131,072 tokens and 524,288 characters of text. The first launch kept the old 32,768-character text limit, which stops mimo-v2.6-pro (it writes its reasoning out as text), and was stopped before any trial finished.
 
 ```bash
 npm run harness -- --plan experiments/t1-calibration-2026-10/l7.eval.json
