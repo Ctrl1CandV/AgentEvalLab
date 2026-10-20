@@ -54,7 +54,7 @@ async function privateGrade(submission, stageId, cycleId = "cycle-1", mustPass =
       evidenceRoot,
       sandbox: { launcher: sandboxLauncher },
     }), "utf8");
-    run("python3", [join(packageRoot, ...manifest.grader.entryPoint.split("/")), "--request", requestPath, "--result", resultPath], repositoryRoot, 60_000);
+    run("python3", [join(packageRoot, ...manifest.grader.entryPoint.split("/")), "--request", requestPath, "--result", resultPath], repositoryRoot, 300_000);
     const result = JSON.parse(await readFile(resultPath, "utf8"));
     const expected = manifest.requirements.filter(item => stage.activeRequirementIds.includes(item.id)).flatMap(item => item.checkIds).sort();
     const actual = result.checks.map(item => item.id).sort();
@@ -124,6 +124,35 @@ try {
   const forgedTestGrade = await privateGrade(tampered, "S5");
   report.mutants.forgedSelfTests = { result: forgedTestGrade.every(([, status]) => status === "pass") ? "ignored" : "unexpected" };
   if (report.mutants.candidateCheckerTampering !== "passed" || report.mutants.forgedSelfTests.result !== "ignored") throw new Error("TRUST_BOUNDARY_CALIBRATION_FAILED");
+
+  // Hidden checks added in 0.3.0 catch common shortcuts that the public checkers let through.
+  const descReverse = join(scratch, "desc-reverses-ties");
+  await cp(refA, descReverse, { recursive: true });
+  const sortPath = join(descReverse, "src/service.ts");
+  const sortSource = await readFile(sortPath, "utf8");
+  const comparator = `    if (query.order === "desc") comparison *= -1;
+    return comparison || (left.id < right.id ? -1 : left.id > right.id ? 1 : 0);`;
+  if (!sortSource.includes(comparator)) throw new Error("MUTANT_ANCHOR_NOT_FOUND:SORT");
+  await writeFile(sortPath, sortSource.replace(comparator, `    const result = comparison || (left.id < right.id ? -1 : left.id > right.id ? 1 : 0);
+    return query.order === "desc" ? -result : result;`), "utf8");
+  const descGrade = await privateGrade(descReverse, "S1", "cycle-1", false);
+  const descFailures = descGrade.filter(([, status]) => status === "fail").map(([id]) => id);
+  if (JSON.stringify(descFailures) !== JSON.stringify(["query.desc-ties"])) throw new Error(`DESC_TIES_NOT_DETECTED:${descFailures}`);
+  report.mutants.descReversesTies = { failed: descFailures };
+
+  const directCycle = join(scratch, "direct-cycles-only");
+  await cp(refA, directCycle, { recursive: true });
+  const cyclePath = join(directCycle, "src/service.ts");
+  const cycleSource = await readFile(cyclePath, "utf8");
+  const cycleTest = "if (reaches(store, prerequisiteId, id))";
+  if (!cycleSource.includes(cycleTest)) throw new Error("MUTANT_ANCHOR_NOT_FOUND:CYCLE");
+  await writeFile(cyclePath, cycleSource.replace(cycleTest, "if (store.workOrders.find(other => other.id === prerequisiteId)?.dependsOn?.includes(id))"), "utf8");
+  const cycleGrade = await privateGrade(directCycle, "S3", "cycle-1", false);
+  const cycleFailures = cycleGrade.filter(([, status]) => status === "fail").map(([id]) => id).sort();
+  if (JSON.stringify(cycleFailures) !== JSON.stringify(["dependency.transitive-cycle", "failure.no_mutation-dependency"])) {
+    throw new Error(`TRANSITIVE_CYCLE_NOT_DETECTED:${cycleFailures}`);
+  }
+  report.mutants.directCyclesOnly = { failed: cycleFailures };
 
   const timeoutCandidate = join(scratch, "candidate-timeout");
   await cp(refA, timeoutCandidate, { recursive: true });

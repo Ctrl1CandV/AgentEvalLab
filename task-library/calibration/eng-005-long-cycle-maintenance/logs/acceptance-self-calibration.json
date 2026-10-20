@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "taskId": "eng-005-long-cycle-maintenance",
-  "taskVersion": "0.2.1",
-  "manifestSha256": "f39a201e2880d89dde792a84e730e9f4fdab01374f9d7147e726eb9d7180a7f0",
+  "taskVersion": "0.3.0",
+  "manifestSha256": "1dccfc269e49917acc85d3e40d653a4169b5dd10c3a1b5eb9baaf4c7c9b434a9",
   "runtime": "v22.23.2",
   "references": [
     {
@@ -50,6 +50,30 @@
                 [
                   "query.invalid",
                   "pass"
+                ],
+                [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
                 ]
               ]
             },
@@ -94,6 +118,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -107,6 +155,26 @@
                 ],
                 [
                   "dependency.prerequisite",
+                  "pass"
+                ],
+                [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
                   "pass"
                 ]
               ]
@@ -152,6 +220,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -168,7 +260,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ]
               ]
@@ -214,6 +334,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -230,7 +374,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ],
                 [
@@ -247,6 +419,22 @@
                 ],
                 [
                   "migration.idempotent",
+                  "pass"
+                ],
+                [
+                  "migration.read-only",
+                  "pass"
+                ],
+                [
+                  "migration.event-details",
+                  "pass"
+                ],
+                [
+                  "migration.failed-no-write",
+                  "pass"
+                ],
+                [
+                  "migration.cli-shape",
                   "pass"
                 ]
               ]
@@ -292,6 +480,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -308,7 +520,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ],
                 [
@@ -328,6 +568,22 @@
                   "pass"
                 ],
                 [
+                  "migration.read-only",
+                  "pass"
+                ],
+                [
+                  "migration.event-details",
+                  "pass"
+                ],
+                [
+                  "migration.failed-no-write",
+                  "pass"
+                ],
+                [
+                  "migration.cli-shape",
+                  "pass"
+                ],
+                [
                   "errors.protocol",
                   "pass"
                 ],
@@ -337,6 +593,18 @@
                 ],
                 [
                   "docs.usage",
+                  "pass"
+                ],
+                [
+                  "errors.codes-all",
+                  "pass"
+                ],
+                [
+                  "errors.store-invalid",
+                  "pass"
+                ],
+                [
+                  "errors.clean-output",
                   "pass"
                 ]
               ]
@@ -385,6 +653,30 @@
                 [
                   "query.invalid",
                   "pass"
+                ],
+                [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
                 ]
               ]
             },
@@ -429,6 +721,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -442,6 +758,26 @@
                 ],
                 [
                   "dependency.prerequisite",
+                  "pass"
+                ],
+                [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
                   "pass"
                 ]
               ]
@@ -487,6 +823,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -503,7 +863,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ]
               ]
@@ -549,6 +937,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -565,7 +977,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ],
                 [
@@ -582,6 +1022,22 @@
                 ],
                 [
                   "migration.idempotent",
+                  "pass"
+                ],
+                [
+                  "migration.read-only",
+                  "pass"
+                ],
+                [
+                  "migration.event-details",
+                  "pass"
+                ],
+                [
+                  "migration.failed-no-write",
+                  "pass"
+                ],
+                [
+                  "migration.cli-shape",
                   "pass"
                 ]
               ]
@@ -627,6 +1083,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -643,7 +1123,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ],
                 [
@@ -663,6 +1171,22 @@
                   "pass"
                 ],
                 [
+                  "migration.read-only",
+                  "pass"
+                ],
+                [
+                  "migration.event-details",
+                  "pass"
+                ],
+                [
+                  "migration.failed-no-write",
+                  "pass"
+                ],
+                [
+                  "migration.cli-shape",
+                  "pass"
+                ],
+                [
                   "errors.protocol",
                   "pass"
                 ],
@@ -672,6 +1196,18 @@
                 ],
                 [
                   "docs.usage",
+                  "pass"
+                ],
+                [
+                  "errors.codes-all",
+                  "pass"
+                ],
+                [
+                  "errors.store-invalid",
+                  "pass"
+                ],
+                [
+                  "errors.clean-output",
                   "pass"
                 ]
               ]
@@ -720,6 +1256,30 @@
                 [
                   "query.invalid",
                   "pass"
+                ],
+                [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
                 ]
               ]
             },
@@ -764,6 +1324,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -777,6 +1361,26 @@
                 ],
                 [
                   "dependency.prerequisite",
+                  "pass"
+                ],
+                [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
                   "pass"
                 ]
               ]
@@ -822,6 +1426,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -838,7 +1466,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ]
               ]
@@ -884,6 +1540,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -900,7 +1580,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ],
                 [
@@ -917,6 +1625,22 @@
                 ],
                 [
                   "migration.idempotent",
+                  "pass"
+                ],
+                [
+                  "migration.read-only",
+                  "pass"
+                ],
+                [
+                  "migration.event-details",
+                  "pass"
+                ],
+                [
+                  "migration.failed-no-write",
+                  "pass"
+                ],
+                [
+                  "migration.cli-shape",
                   "pass"
                 ]
               ]
@@ -962,6 +1686,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -978,7 +1726,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ],
                 [
@@ -998,6 +1774,22 @@
                   "pass"
                 ],
                 [
+                  "migration.read-only",
+                  "pass"
+                ],
+                [
+                  "migration.event-details",
+                  "pass"
+                ],
+                [
+                  "migration.failed-no-write",
+                  "pass"
+                ],
+                [
+                  "migration.cli-shape",
+                  "pass"
+                ],
+                [
                   "errors.protocol",
                   "pass"
                 ],
@@ -1007,6 +1799,18 @@
                 ],
                 [
                   "docs.usage",
+                  "pass"
+                ],
+                [
+                  "errors.codes-all",
+                  "pass"
+                ],
+                [
+                  "errors.store-invalid",
+                  "pass"
+                ],
+                [
+                  "errors.clean-output",
                   "pass"
                 ]
               ]
@@ -1060,6 +1864,30 @@
                 [
                   "query.invalid",
                   "pass"
+                ],
+                [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
                 ]
               ]
             },
@@ -1104,6 +1932,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -1117,6 +1969,26 @@
                 ],
                 [
                   "dependency.prerequisite",
+                  "pass"
+                ],
+                [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
                   "pass"
                 ]
               ]
@@ -1162,6 +2034,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -1178,7 +2074,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ]
               ]
@@ -1224,6 +2148,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -1240,7 +2188,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ],
                 [
@@ -1257,6 +2233,22 @@
                 ],
                 [
                   "migration.idempotent",
+                  "pass"
+                ],
+                [
+                  "migration.read-only",
+                  "pass"
+                ],
+                [
+                  "migration.event-details",
+                  "pass"
+                ],
+                [
+                  "migration.failed-no-write",
+                  "pass"
+                ],
+                [
+                  "migration.cli-shape",
                   "pass"
                 ]
               ]
@@ -1302,6 +2294,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -1318,7 +2334,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ],
                 [
@@ -1338,6 +2382,22 @@
                   "pass"
                 ],
                 [
+                  "migration.read-only",
+                  "pass"
+                ],
+                [
+                  "migration.event-details",
+                  "pass"
+                ],
+                [
+                  "migration.failed-no-write",
+                  "pass"
+                ],
+                [
+                  "migration.cli-shape",
+                  "pass"
+                ],
+                [
                   "errors.protocol",
                   "pass"
                 ],
@@ -1347,6 +2407,18 @@
                 ],
                 [
                   "docs.usage",
+                  "pass"
+                ],
+                [
+                  "errors.codes-all",
+                  "pass"
+                ],
+                [
+                  "errors.store-invalid",
+                  "pass"
+                ],
+                [
+                  "errors.clean-output",
                   "pass"
                 ]
               ]
@@ -1395,6 +2467,30 @@
                 [
                   "query.invalid",
                   "pass"
+                ],
+                [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
                 ]
               ]
             },
@@ -1439,6 +2535,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -1452,6 +2572,26 @@
                 ],
                 [
                   "dependency.prerequisite",
+                  "pass"
+                ],
+                [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
                   "pass"
                 ]
               ]
@@ -1497,6 +2637,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -1513,7 +2677,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ]
               ]
@@ -1559,6 +2751,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -1575,7 +2791,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ],
                 [
@@ -1592,6 +2836,22 @@
                 ],
                 [
                   "migration.idempotent",
+                  "pass"
+                ],
+                [
+                  "migration.read-only",
+                  "pass"
+                ],
+                [
+                  "migration.event-details",
+                  "pass"
+                ],
+                [
+                  "migration.failed-no-write",
+                  "pass"
+                ],
+                [
+                  "migration.cli-shape",
                   "pass"
                 ]
               ]
@@ -1637,6 +2897,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -1653,7 +2937,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ],
                 [
@@ -1673,6 +2985,22 @@
                   "pass"
                 ],
                 [
+                  "migration.read-only",
+                  "pass"
+                ],
+                [
+                  "migration.event-details",
+                  "pass"
+                ],
+                [
+                  "migration.failed-no-write",
+                  "pass"
+                ],
+                [
+                  "migration.cli-shape",
+                  "pass"
+                ],
+                [
                   "errors.protocol",
                   "pass"
                 ],
@@ -1682,6 +3010,18 @@
                 ],
                 [
                   "docs.usage",
+                  "pass"
+                ],
+                [
+                  "errors.codes-all",
+                  "pass"
+                ],
+                [
+                  "errors.store-invalid",
+                  "pass"
+                ],
+                [
+                  "errors.clean-output",
                   "pass"
                 ]
               ]
@@ -1730,6 +3070,30 @@
                 [
                   "query.invalid",
                   "pass"
+                ],
+                [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
                 ]
               ]
             },
@@ -1774,6 +3138,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -1787,6 +3175,26 @@
                 ],
                 [
                   "dependency.prerequisite",
+                  "pass"
+                ],
+                [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
                   "pass"
                 ]
               ]
@@ -1832,6 +3240,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -1848,7 +3280,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ]
               ]
@@ -1894,6 +3354,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -1910,7 +3394,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ],
                 [
@@ -1927,6 +3439,22 @@
                 ],
                 [
                   "migration.idempotent",
+                  "pass"
+                ],
+                [
+                  "migration.read-only",
+                  "pass"
+                ],
+                [
+                  "migration.event-details",
+                  "pass"
+                ],
+                [
+                  "migration.failed-no-write",
+                  "pass"
+                ],
+                [
+                  "migration.cli-shape",
                   "pass"
                 ]
               ]
@@ -1972,6 +3500,30 @@
                   "pass"
                 ],
                 [
+                  "query.defaults",
+                  "pass"
+                ],
+                [
+                  "query.desc-ties",
+                  "pass"
+                ],
+                [
+                  "query.sort-keys",
+                  "pass"
+                ],
+                [
+                  "query.empty-result",
+                  "pass"
+                ],
+                [
+                  "query.page-size-bounds",
+                  "pass"
+                ],
+                [
+                  "query.rejects-malformed",
+                  "pass"
+                ],
+                [
                   "dependency.self",
                   "pass"
                 ],
@@ -1988,7 +3540,35 @@
                   "pass"
                 ],
                 [
+                  "dependency.duplicate",
+                  "pass"
+                ],
+                [
+                  "dependency.unknown",
+                  "pass"
+                ],
+                [
+                  "dependency.transitive-cycle",
+                  "pass"
+                ],
+                [
+                  "dependency.backward",
+                  "pass"
+                ],
+                [
+                  "dependency.all-prerequisites",
+                  "pass"
+                ],
+                [
                   "failure.no_mutation",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-prerequisite",
+                  "pass"
+                ],
+                [
+                  "failure.no_mutation-dependency",
                   "pass"
                 ],
                 [
@@ -2008,6 +3588,22 @@
                   "pass"
                 ],
                 [
+                  "migration.read-only",
+                  "pass"
+                ],
+                [
+                  "migration.event-details",
+                  "pass"
+                ],
+                [
+                  "migration.failed-no-write",
+                  "pass"
+                ],
+                [
+                  "migration.cli-shape",
+                  "pass"
+                ],
+                [
                   "errors.protocol",
                   "pass"
                 ],
@@ -2017,6 +3613,18 @@
                 ],
                 [
                   "docs.usage",
+                  "pass"
+                ],
+                [
+                  "errors.codes-all",
+                  "pass"
+                ],
+                [
+                  "errors.store-invalid",
+                  "pass"
+                ],
+                [
+                  "errors.clean-output",
                   "pass"
                 ]
               ]
@@ -2037,6 +3645,17 @@
     "candidateCheckerTampering": "passed",
     "forgedSelfTests": {
       "result": "ignored"
+    },
+    "descReversesTies": {
+      "failed": [
+        "query.desc-ties"
+      ]
+    },
+    "directCyclesOnly": {
+      "failed": [
+        "dependency.transitive-cycle",
+        "failure.no_mutation-dependency"
+      ]
     },
     "candidateTimeout": {
       "gradingStatus": "completed",

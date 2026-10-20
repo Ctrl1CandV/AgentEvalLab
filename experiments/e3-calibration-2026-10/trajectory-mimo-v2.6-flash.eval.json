@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 3,
+  "name": "e3-calibration-2026-10-mimo-v2.6-flash",
+  "models": [
+    {
+      "provider": "mimoplan",
+      "id": "mimo-v2.6-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    }
+  ],
+  "execution": {
+    "kind": "trajectory",
+    "contextPolicy": "continuous",
+    "stageBudget": {
+      "timeoutMs": 2700000,
+      "maxTurns": 80,
+      "maxModelCalls": 80,
+      "maxToolCalls": 200,
+      "maxOutputTokensPerCall": 32768,
+      "maxOutputChars": 60000,
+      "maxToolResultChars": 100000,
+      "maxTrialTokens": 2000000
+    },
+    "publicRepairMax": 1
+  },
+  "budget": {
+    "timeoutMs": 14400000,
+    "maxTurns": 320,
+    "maxModelCalls": 320,
+    "maxToolCalls": 800,
+    "maxOutputTokensPerCall": 32768,
+    "maxOutputChars": 300000,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 6000000
+  },
+  "artifactLimits": {
+    "maxFiles": 500,
+    "maxFileBytes": 10485760,
+    "maxTrialBytes": 52428800,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 7000000
+  },
+  "trustedLocalExecution": true,
+  "cases": [
+    {
+      "id": "eng005-long-cycle",
+      "repository": {
+        "path": "task-library/candidates/eng-005-long-cycle-maintenance/baseline",
+        "commit": "679119874c31d2cff12cc48f57c86a1fcec6bcbc"
+      },
+      "packagePath": "task-library/candidates/eng-005-long-cycle-maintenance",
+      "packageManifestSha256": "1dccfc269e49917acc85d3e40d653a4169b5dd10c3a1b5eb9baaf4c7c9b434a9",
+      "toolProfile": "workspace-augmented",
+      "input": {
+        "prompt": "Work in the provided repository. Keep the original commands and records compatible while completing each released stage. Inspect the current stage instruction before acting."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 300000,
+        "maxOutputBytes": 20000
+      }
+    }
+  ],
+  "budgetNotice": true
+}

@@ -28,3 +28,21 @@ npm run harness -- --plan experiments/e3-calibration-2026-10/trajectory-deepseek
 ## Runs
 
 - 2026-10-20, first launch, superseded. At 800,000 tokens per stage and 3,000,000 in total, deepseek passed stage 1 with 264,000 tokens, then hit the stage limit in stage 2 after 23 requests: every request resends the growing session, up to 46,000 tokens each. The limit was far too tight for a continuous five-stage session, so the other four runs were stopped early and the budget doubled to 2,000,000 per stage and 6,000,000 in total.
+- 2026-10-20, second launch at 2,000,000 tokens per stage and 6,000,000 in total, eng-005 0.2.1:
+
+  | Model | Reached | Private checks of S1–S4 | Ended |
+  | --- | --- | --- | --- |
+  | deepseek-flash | S5 | all passed | stage token limit in S5 after 2.06M tokens (5.5M in all); S5 was not graded |
+  | qwen3.8-flash | S5 | all passed | stage token limit in S5 after 2.07M tokens (5.8M in all); S5 was not graded |
+  | gpt-6-luna | S5, repair cycle | all passed; S5 failed ERRORS_DOCS | a provider error in the middle of a response (1.1M tokens in all) |
+  | glm-5.3 | S4 | S1–S3 all passed | the supercn relay stopped answering (PROVIDER_UNAVAILABLE) |
+  | step-5-preview | S1 | — | rate limit in S1 (PROVIDER_UNAVAILABLE) |
+
+  Two findings changed the harness (commit `7e83e61`): a stage stopped by its budget is now graded, and a response lost to a transient provider error no longer ends the session. A third changed the task: the private checks of S1–S4 were too close to the public ones to separate any model, so eng-005 0.3.0 adds twenty hidden checks drawn from the stage briefs (see the package's `calibration.md`).
+
+## eng-005 0.3.0 (2026-10-20)
+
+The plans now pin eng-005 0.3.0, give the grader 300 seconds per stage, and include the two MiMo V2.6 models at their default thinking (`trajectory-mimo-v2.6-pro.eval.json`, `trajectory-mimo-v2.6-flash.eval.json`). Budgets are unchanged.
+
+**Score.** A trajectory scores the share of the 41 private checks that pass in its last graded snapshot. Checks of stages it did not reach count as failed, so the score rewards both progress and keeping earlier stages working.
+

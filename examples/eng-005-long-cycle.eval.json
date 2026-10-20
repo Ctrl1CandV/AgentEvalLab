@@ -53,14 +53,14 @@
         "commit": "679119874c31d2cff12cc48f57c86a1fcec6bcbc"
       },
       "packagePath": "task-library/candidates/eng-005-long-cycle-maintenance",
-      "packageManifestSha256": "f39a201e2880d89dde792a84e730e9f4fdab01374f9d7147e726eb9d7180a7f0",
+      "packageManifestSha256": "1dccfc269e49917acc85d3e40d653a4169b5dd10c3a1b5eb9baaf4c7c9b434a9",
       "toolProfile": "workspace-augmented",
       "input": {
         "prompt": "Work in the provided repository. Keep the original commands and records compatible while completing each released stage. Inspect the current stage instruction before acting."
       },
       "evaluator": {
         "kind": "task-package",
-        "timeoutMs": 30000,
+        "timeoutMs": 300000,
         "maxOutputBytes": 20000
       }
     }

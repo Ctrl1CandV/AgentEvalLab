@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "eng-005-long-cycle-maintenance",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "familyId": "eng-workflow-evolution",
   "capability": "engineering",
   "usage": "development",
@@ -37,7 +37,7 @@
       },
       {
         "path": "private/grader.py",
-        "sha256": "a580208a476d8c2086e16967308d4c22eac87f4ce7cdccb9ba776c08cc5d4be3"
+        "sha256": "8952dc36f78b1e043db84126b0b77c0a99bd56957b888fc63b2196166b67e3c6"
       },
       {
         "path": "private/v1-fixture.json",
@@ -73,7 +73,13 @@
         "query.filter",
         "query.order",
         "query.pagination",
-        "query.invalid"
+        "query.invalid",
+        "query.defaults",
+        "query.desc-ties",
+        "query.sort-keys",
+        "query.empty-result",
+        "query.page-size-bounds",
+        "query.rejects-malformed"
       ]
     },
     {
@@ -84,7 +90,12 @@
         "dependency.self",
         "dependency.cycle",
         "dependency.transition",
-        "dependency.prerequisite"
+        "dependency.prerequisite",
+        "dependency.duplicate",
+        "dependency.unknown",
+        "dependency.transitive-cycle",
+        "dependency.backward",
+        "dependency.all-prerequisites"
       ]
     },
     {
@@ -92,7 +103,9 @@
       "critical": true,
       "introducedAt": "NO_MUTATION",
       "checkIds": [
-        "failure.no_mutation"
+        "failure.no_mutation",
+        "failure.no_mutation-prerequisite",
+        "failure.no_mutation-dependency"
       ]
     },
     {
@@ -103,7 +116,11 @@
         "migration.schema",
         "migration.preserve",
         "migration.events",
-        "migration.idempotent"
+        "migration.idempotent",
+        "migration.read-only",
+        "migration.event-details",
+        "migration.failed-no-write",
+        "migration.cli-shape"
       ]
     },
     {
@@ -113,7 +130,10 @@
       "checkIds": [
         "errors.protocol",
         "errors.codes",
-        "docs.usage"
+        "docs.usage",
+        "errors.codes-all",
+        "errors.store-invalid",
+        "errors.clean-output"
       ]
     }
   ],
@@ -328,7 +348,7 @@
   ],
   "grader": {
     "id": "eng005-checkpoint-grader",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

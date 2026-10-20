@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
-"""Independent checkpoint grader. It ignores candidate-authored tests and checkers."""
+"""Independent checkpoint grader. It ignores candidate-authored tests and checkers.
+
+Version 2.0.0 adds hidden checks for behaviour the stage briefs state but the public checkers do not exercise: sort
+ties under descending order, defaults, empty results, every rejected list option, duplicate and unknown dependencies,
+longer cycles, backward transitions, several prerequisites, atomicity of every rejected dependency or status change,
+read-only commands and event details after migration, and every listed error code with clean output.
+"""
 import argparse
+import datetime
 import json
 import shutil
 import subprocess
@@ -11,11 +18,14 @@ from pathlib import Path
 CHECKS = {
     "BASE_CLI": ["base.read", "base.create", "base.update", "base.export"],
     "BASE_DATA": ["data.preserves-seed"],
-    "QUERY": ["query.filter", "query.order", "query.pagination", "query.invalid"],
-    "DEPENDENCY": ["dependency.self", "dependency.cycle", "dependency.transition", "dependency.prerequisite"],
-    "NO_MUTATION": ["failure.no_mutation"],
-    "MIGRATION": ["migration.schema", "migration.preserve", "migration.events", "migration.idempotent"],
-    "ERRORS_DOCS": ["errors.protocol", "errors.codes", "docs.usage"],
+    "QUERY": ["query.filter", "query.order", "query.pagination", "query.invalid", "query.defaults", "query.desc-ties", "query.sort-keys",
+              "query.empty-result", "query.page-size-bounds", "query.rejects-malformed"],
+    "DEPENDENCY": ["dependency.self", "dependency.cycle", "dependency.transition", "dependency.prerequisite", "dependency.duplicate",
+                   "dependency.unknown", "dependency.transitive-cycle", "dependency.backward", "dependency.all-prerequisites"],
+    "NO_MUTATION": ["failure.no_mutation", "failure.no_mutation-prerequisite", "failure.no_mutation-dependency"],
+    "MIGRATION": ["migration.schema", "migration.preserve", "migration.events", "migration.idempotent", "migration.read-only",
+                  "migration.event-details", "migration.failed-no-write", "migration.cli-shape"],
+    "ERRORS_DOCS": ["errors.protocol", "errors.codes", "docs.usage", "errors.codes-all", "errors.store-invalid", "errors.clean-output"],
 }
 ALL_CHECKS = {check: requirement for requirement, ids in CHECKS.items() for check in ids}
 SANDBOX_LAUNCHER = None  # set from the grader request in main
@@ -187,6 +197,164 @@ def errors_docs_checks(root: Path) -> dict[str, bool]:
     return checks
 
 
+def ids(result: subprocess.CompletedProcess[str]) -> list[str] | None:
+    try:
+        return [row["id"] for row in json.loads(result.stdout)["items"]]
+    except (json.JSONDecodeError, KeyError, TypeError):
+        return None
+
+
+def rejected_unchanged(root: Path, args: list[str]) -> bool:
+    """The command fails and leaves the state file byte for byte as it was."""
+    path = root / "data" / "work-orders.json"
+    before = path.read_bytes()
+    return invoke(root, args).returncode != 0 and path.read_bytes() == before
+
+
+def query_hidden_checks(root: Path) -> dict[str, bool]:
+    """S1: defaults, ties broken by id ascending in both orders, every sort key, empty results, page-size bounds, rejections."""
+    checks: dict[str, bool] = {}
+    try:
+        default = json.loads(invoke(root, ["list"]).stdout)
+        checks["query.defaults"] = default["total"] == 4 and default["page"] == 1 and default["pageSize"] == 2 and default["pages"] == 2 and \
+            [row["id"] for row in default["items"]] == ["WO-101", "WO-102"]
+    except (json.JSONDecodeError, KeyError, TypeError):
+        checks["query.defaults"] = False
+    checks["query.desc-ties"] = ids(invoke(root, ["list", "--sort", "createdAt", "--order", "desc", "--page-size", "10"])) == ["WO-104", "WO-103", "WO-101", "WO-102"]
+    checks["query.sort-keys"] = ids(invoke(root, ["list", "--sort", "title", "--page-size", "10"])) == ["WO-104", "WO-102", "WO-101", "WO-103"] and \
+        ids(invoke(root, ["list", "--sort", "id", "--order", "desc", "--page-size", "10"])) == ["WO-104", "WO-103", "WO-102", "WO-101"]
+    hundred = ids(invoke(root, ["list", "--page-size", "100"]))
+    checks["query.page-size-bounds"] = hundred is not None and len(hundred) == 4 and rejected_unchanged(root, ["list", "--page-size", "101"]) and \
+        rejected_unchanged(root, ["list", "--page-size", "0"])
+    malformed = [["--page", "1.5"], ["--page", "abc"], ["--page", "-1"], ["--page-size", "2x"], ["--foo", "bar"], ["--status", "BLOCKED"],
+                 ["--sort", "priority"], ["--order", "up"]]
+    checks["query.rejects-malformed"] = all(rejected_unchanged(root, ["list", *option]) for option in malformed)
+    # An empty result keeps the shape: write the seed without its only DONE order, then filter by DONE.
+    path = root / "data" / "work-orders.json"
+    store = json.loads(path.read_text(encoding="utf-8"))
+    store["workOrders"] = [order for order in store["workOrders"] if order["status"] != "DONE"]
+    path.write_text(json.dumps(store, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    try:
+        full = json.loads(invoke(root, ["list", "--page-size", "10"]).stdout)
+        empty = json.loads(invoke(root, ["list", "--status", "DONE", "--page-size", "10"]).stdout)
+        checks["query.empty-result"] = set(empty) == set(full) >= {"total", "page", "pageSize", "pages", "items"} and empty["total"] == 0 and \
+            empty["items"] == [] and empty["page"] == 1 and empty["pageSize"] == 10
+    except (json.JSONDecodeError, KeyError, TypeError):
+        checks["query.empty-result"] = False
+    return checks
+
+
+def dependency_hidden_checks(temp: Path, submission: Path) -> dict[str, bool]:
+    """S2: duplicates, unknown orders, longer cycles, no backward or skipped moves, and every prerequisite done."""
+    checks: dict[str, bool] = {}
+    root = clone(submission, temp / "duplicate")
+    checks["dependency.duplicate"] = invoke(root, ["depends", "add", "WO-103", "WO-104"]).returncode == 0 and \
+        invoke(root, ["depends", "add", "WO-103", "WO-104"]).returncode != 0
+    root = clone(submission, temp / "unknown")
+    checks["dependency.unknown"] = invoke(root, ["depends", "add", "WO-103", "WO-999"]).returncode != 0 and \
+        invoke(root, ["depends", "add", "WO-999", "WO-103"]).returncode != 0
+    root = clone(submission, temp / "transitive")
+    checks["dependency.transitive-cycle"] = invoke(root, ["depends", "add", "WO-103", "WO-104"]).returncode == 0 and \
+        invoke(root, ["depends", "add", "WO-104", "WO-101"]).returncode == 0 and invoke(root, ["depends", "add", "WO-101", "WO-103"]).returncode != 0
+    root = clone(submission, temp / "backward")
+    checks["dependency.backward"] = invoke(root, ["update", "WO-102", "--status", "IN_PROGRESS"]).returncode != 0 and \
+        invoke(root, ["update", "WO-102", "--status", "OPEN"]).returncode != 0 and invoke(root, ["update", "WO-103", "--status", "OPEN"]).returncode != 0
+    root = clone(submission, temp / "prerequisites")
+    added = invoke(root, ["depends", "add", "WO-103", "WO-102"]).returncode == 0 and invoke(root, ["depends", "add", "WO-103", "WO-104"]).returncode == 0
+    blocked = invoke(root, ["update", "WO-103", "--status", "DONE"]).returncode != 0
+    finished = invoke(root, ["update", "WO-104", "--status", "IN_PROGRESS"]).returncode == 0 and \
+        invoke(root, ["update", "WO-104", "--status", "DONE"]).returncode == 0
+    checks["dependency.all-prerequisites"] = added and blocked and finished and invoke(root, ["update", "WO-103", "--status", "DONE"]).returncode == 0
+    return checks
+
+
+def no_mutation_hidden_checks(temp: Path, submission: Path) -> dict[str, bool]:
+    """S3: a blocked completion, a duplicate or unknown dependency, and a longer cycle leave the file byte for byte unchanged."""
+    root = clone(submission, temp / "no-mutation-prerequisite")
+    prerequisite = invoke(root, ["depends", "add", "WO-103", "WO-104"]).returncode == 0 and \
+        rejected_unchanged(root, ["update", "WO-103", "--status", "DONE"])
+    root = clone(submission, temp / "no-mutation-dependency")
+    dependency = invoke(root, ["depends", "add", "WO-103", "WO-104"]).returncode == 0 and \
+        rejected_unchanged(root, ["depends", "add", "WO-103", "WO-104"]) and rejected_unchanged(root, ["depends", "add", "WO-101", "WO-999"]) and \
+        invoke(root, ["depends", "add", "WO-104", "WO-101"]).returncode == 0 and rejected_unchanged(root, ["depends", "add", "WO-101", "WO-103"])
+    return {"failure.no_mutation-prerequisite": prerequisite, "failure.no_mutation-dependency": dependency}
+
+
+def iso_timestamp(value) -> bool:
+    try:
+        datetime.datetime.fromisoformat(value.replace("Z", "+00:00"))
+        return True
+    except (AttributeError, ValueError):
+        return False
+
+
+def migration_hidden_checks(root: Path, fixture: dict) -> dict[str, bool]:
+    """S4: read-only commands keep a version 1 file, events name their order, failures write nothing, the CLI keeps its shape."""
+    checks: dict[str, bool] = {}
+    path = root / "data" / "work-orders.json"
+    path.write_text(json.dumps(fixture, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    original = path.read_bytes()
+    reads = [invoke(root, args) for args in (["list"], ["show", "FIX-02"], ["export", "json"])]
+    checks["migration.read-only"] = all(result.returncode == 0 for result in reads) and path.read_bytes() == original and \
+        rejected_unchanged(root, ["list", "--page", "0"])
+    try:
+        created = invoke(root, ["create", "MIG-NEW", "Migrated create"])
+        first = invoke(root, ["update", "FIX-02", "--title", "First update"])
+        second = invoke(root, ["update", "FIX-02", "--title", "Second update"])
+        events = load_store(root)["events"]
+        migrated = [event for event in events if event["type"] == "state_migrated"]
+        checks["migration.event-details"] = created.returncode == first.returncode == second.returncode == 0 and len(events) == 4 and \
+            len(migrated) == 1 and migrated[0]["orderId"] is None and [event["orderId"] for event in events[1:]] == ["MIG-NEW", "FIX-02", "FIX-02"] and \
+            events[2]["type"] == events[3]["type"] and all(iso_timestamp(event["at"]) for event in events)
+    except (json.JSONDecodeError, KeyError, TypeError, IndexError):
+        checks["migration.event-details"] = False
+    checks["migration.failed-no-write"] = rejected_unchanged(root, ["depends", "add", "FIX-01", "FIX-01"]) and \
+        rejected_unchanged(root, ["update", "FIX-01", "--status", "DONE"])
+    try:
+        exported = json.loads(invoke(root, ["export", "json"]).stdout)
+        listed = json.loads(invoke(root, ["list", "--page-size", "10"]).stdout)
+        rows = {row["id"]: row for row in exported}
+        checks["migration.cli-shape"] = isinstance(exported, list) and set(rows) == {"FIX-01", "FIX-02", "MIG-NEW"} and \
+            rows["FIX-01"]["description"] == "" and listed["total"] == 3 and len(listed["items"]) == 3
+    except (json.JSONDecodeError, KeyError, TypeError):
+        checks["migration.cli-shape"] = False
+    return checks
+
+
+def error_payload(result: subprocess.CompletedProcess[str]) -> str | None:
+    """The error code of a failed command that printed exactly one JSON line, nothing on stderr, and exited with 2."""
+    lines = result.stdout.splitlines()
+    if result.returncode != 2 or result.stderr.strip() or len(lines) != 1:
+        return None
+    try:
+        payload = json.loads(lines[0])
+        return payload["error"]["code"] if payload["ok"] is False and set(payload) == {"ok", "error"} else None
+    except (json.JSONDecodeError, KeyError, TypeError):
+        return None
+
+
+def errors_hidden_checks(temp: Path, submission: Path) -> dict[str, bool]:
+    """S5: each listed code for its error class, STORE_INVALID for an unreadable store, and clean output for all of them."""
+    root = clone(submission, temp / "error-codes")
+    outcomes = []
+    expected = [(["create", "WO-101", "Duplicate"], "DUPLICATE_ID"), (["list", "--page-size", "101"], "INVALID_ARGUMENT"),
+                (["list", "--foo", "bar"], "INVALID_ARGUMENT"), (["update", "WO-999", "--title", "Missing"], "NOT_FOUND")]
+    for args, code in expected:
+        result = invoke(root, args)
+        outcomes.append((result, code))
+    invoke(root, ["depends", "add", "WO-101", "WO-102"])
+    outcomes.append((invoke(root, ["depends", "add", "WO-102", "WO-101"]), "DEPENDENCY_CYCLE"))
+    invoke(root, ["depends", "add", "WO-103", "WO-104"])
+    outcomes.append((invoke(root, ["update", "WO-103", "--status", "DONE"]), "DEPENDENCY_NOT_COMPLETE"))
+    codes_ok = all(error_payload(result) == code for result, code in outcomes)
+    clean = all(error_payload(result) is not None for result, _ in outcomes)
+    broken = clone(submission, temp / "store-invalid")
+    (broken / "data" / "work-orders.json").write_text("{\"version\": 2, \"workOrders\": [", encoding="utf-8")
+    store_result = invoke(broken, ["list"])
+    return {"errors.codes-all": codes_ok, "errors.store-invalid": error_payload(store_result) == "STORE_INVALID",
+            "errors.clean-output": clean and error_payload(store_result) is not None}
+
+
 def data_preservation_check(submission: Path, fixture: dict) -> bool:
     try:
         state = load_store(submission)
@@ -221,20 +389,30 @@ def main() -> None:
         temp_path = Path(temp)
         for group in active:
             group_root = clone(submission, temp_path / group)
+            hidden = temp_path / f"{group}-hidden"
             if group == "BASE_CLI": outcomes.update(base_checks(group_root))
             elif group == "BASE_DATA": outcomes["data.preserves-seed"] = data_preservation_check(submission, preservation_fixture)
-            elif group == "QUERY": outcomes.update(query_checks(group_root))
-            elif group == "DEPENDENCY": outcomes.update(dependency_checks(group_root))
-            elif group == "NO_MUTATION": outcomes["failure.no_mutation"] = no_mutation_check(group_root)
+            elif group == "QUERY":
+                outcomes.update(query_checks(group_root))
+                outcomes.update(query_hidden_checks(clone(submission, hidden)))
+            elif group == "DEPENDENCY":
+                outcomes.update(dependency_checks(group_root))
+                outcomes.update(dependency_hidden_checks(hidden, submission))
+            elif group == "NO_MUTATION":
+                outcomes["failure.no_mutation"] = no_mutation_check(group_root)
+                outcomes.update(no_mutation_hidden_checks(hidden, submission))
             elif group == "MIGRATION":
                 fixture = json.loads((Path(__file__).parent / "v1-fixture.json").read_text(encoding="utf-8"))
                 migration_root = clone(submission, temp_path / "migration-fixture")
                 outcomes.update(migration_checks(migration_root, fixture))
-            elif group == "ERRORS_DOCS": outcomes.update(errors_docs_checks(group_root))
+                outcomes.update(migration_hidden_checks(clone(submission, hidden), fixture))
+            elif group == "ERRORS_DOCS":
+                outcomes.update(errors_docs_checks(group_root))
+                outcomes.update(errors_hidden_checks(hidden, submission))
     checks = [{"id": check_id, "requirementId": ALL_CHECKS[check_id], "status": "pass" if outcomes.get(check_id, False) else "fail", "evidenceRefs": []}
               for check_id in selected]
     result = {"schemaVersion": 1, "requestId": request["requestId"], "taskId": request["task"]["id"],
-              "taskVersion": request["task"]["version"], "graderVersion": "1.1.0", "gradingStatus": "completed",
+              "taskVersion": request["task"]["version"], "graderVersion": "2.0.0", "gradingStatus": "completed",
               "checks": checks, "dimensions": [], "unscoredCheckIds": [], "reason": None, "error": None}
     args.result.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 

@@ -33,11 +33,14 @@ const stageRequirements = {
 const requirementChecks = {
   BASE_CLI: ["base.read", "base.create", "base.update", "base.export"],
   BASE_DATA: ["data.preserves-seed"],
-  QUERY: ["query.filter", "query.order", "query.pagination", "query.invalid"],
-  DEPENDENCY: ["dependency.self", "dependency.cycle", "dependency.transition", "dependency.prerequisite"],
-  NO_MUTATION: ["failure.no_mutation"],
-  MIGRATION: ["migration.schema", "migration.preserve", "migration.events", "migration.idempotent"],
-  ERRORS_DOCS: ["errors.protocol", "errors.codes", "docs.usage"],
+  QUERY: ["query.filter", "query.order", "query.pagination", "query.invalid", "query.defaults", "query.desc-ties", "query.sort-keys",
+    "query.empty-result", "query.page-size-bounds", "query.rejects-malformed"],
+  DEPENDENCY: ["dependency.self", "dependency.cycle", "dependency.transition", "dependency.prerequisite", "dependency.duplicate",
+    "dependency.unknown", "dependency.transitive-cycle", "dependency.backward", "dependency.all-prerequisites"],
+  NO_MUTATION: ["failure.no_mutation", "failure.no_mutation-prerequisite", "failure.no_mutation-dependency"],
+  MIGRATION: ["migration.schema", "migration.preserve", "migration.events", "migration.idempotent", "migration.read-only",
+    "migration.event-details", "migration.failed-no-write", "migration.cli-shape"],
+  ERRORS_DOCS: ["errors.protocol", "errors.codes", "docs.usage", "errors.codes-all", "errors.store-invalid", "errors.clean-output"],
 };
 const allPublic = ["instruction.md", "public/project-brief.md"];
 const allTrusted = ["private/grader.py", "private/base-fixture.json", "private/v1-fixture.json"];
@@ -64,7 +67,7 @@ const baselineCommit = execFileSync("git", ["rev-parse", "HEAD"], { cwd: join(ro
 const manifest = {
   schemaVersion: 1,
   id: "eng-005-long-cycle-maintenance",
-  version: "0.2.1",
+  version: "0.3.0",
   familyId: "eng-workflow-evolution",
   capability: "engineering",
   usage: "development",
@@ -75,7 +78,7 @@ const manifest = {
   requirements: Object.entries(requirementChecks).map(([id, checkIds]) => ({ id, critical: true, introducedAt: id, checkIds })),
   stages,
   toolProfiles: ["workspace-basic", "workspace-augmented"],
-  grader: { id: "eng005-checkpoint-grader", version: "1.1.0", entryPoint: "private/grader.py", executable: "python3",
+  grader: { id: "eng005-checkpoint-grader", version: "2.0.0", entryPoint: "private/grader.py", executable: "python3",
     args: ["{entryPoint}", "--request", "{request}", "--result", "{result}"] },
   environment: { runtime: "Node.js 22.x + Python 3.x", dependencies: "Node built-ins and Python standard library; no network", network: false,
     runtimeCheck: { executable: "node", args: ["--version"], expectedSubstring: "v22." } },
