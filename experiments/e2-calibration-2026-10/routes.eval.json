@@ -47,26 +47,26 @@
   ],
   "repetitions": 2,
   "budget": {
-    "timeoutMs": 3600000,
-    "maxTurns": 80,
-    "maxModelCalls": 80,
-    "maxToolCalls": 120,
+    "timeoutMs": 7200000,
+    "maxTurns": 150,
+    "maxModelCalls": 150,
+    "maxToolCalls": 200,
     "maxOutputChars": 524288,
     "maxOutputTokensPerCall": 131072,
     "maxToolResultChars": 100000,
-    "maxTrialTokens": 1200000
+    "maxTrialTokens": 3000000
   },
   "artifactLimits": {
-    "maxFiles": 200,
-    "maxFileBytes": 2097152,
-    "maxTrialBytes": 10485760,
+    "maxFiles": 2000,
+    "maxFileBytes": 67108864,
+    "maxTrialBytes": 268435456,
     "graderResultMaxBytes": 1048576,
     "toolEvidenceMaxBytes": 5242880
   },
   "batch": {
     "maxRetries": 2,
     "maxConsecutiveInfrastructureFailures": 3,
-    "maxTotalTokensPerModel": 5000000,
+    "maxTotalTokensPerModel": 7000000,
     "concurrency": 4
   },
   "trustedLocalExecution": true,

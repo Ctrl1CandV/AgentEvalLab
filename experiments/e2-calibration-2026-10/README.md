@@ -44,7 +44,7 @@ Run `e2277944` (`sheet-query.eval.json`) showed that the 32,768-token limit on a
 
 ## routes (task 0.5.0, 2026-10-20)
 
-`routes.eval.json` runs the optimisation item twice on seven models: the five calibration models and the two MiMo V2.6 models at their default thinking. Each trial gets 1,200,000 tokens, 80 responses, 120 tool calls and 60 minutes. A single response may hold 131,072 tokens and 524,288 characters of text, so only the task budget stops a model.
+`routes.eval.json` runs the optimisation item twice on seven models: the five calibration models and the two MiMo V2.6 models at their default thinking. Each trial gets 3,000,000 tokens, 150 responses, 200 tool calls and 2 hours, as optimisation work iterates (ALE-Bench allows hours per problem). The first launch, at 1,200,000 tokens and 80 responses, was stopped after all four of its trials stopped at the token budget. A single response may hold 131,072 tokens and 524,288 characters of text, so only the task budget stops a model.
 
 ```bash
 npm run harness -- --plan experiments/e2-calibration-2026-10/routes.eval.json

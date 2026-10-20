@@ -55,7 +55,7 @@ Recovering a format from bytecode does not separate the strong models either: de
 
 ## speedup (task 0.4.0, 2026-10-20)
 
-`speedup.eval.json` runs the speedup item twice on seven models with the codec run's budgets. A single response may hold 524,288 characters of text, and the grader has 15 minutes, since the timing runs take up to three minutes.
+`speedup.eval.json` runs the speedup item twice on seven models, with 2,000,000 tokens per trial and artifact limits of 128 MiB per file and 512 MiB per trial. The first launch kept the codec run's 2 MiB file limit and was stopped: both of its trials left large test days in the workspace, which could then not be exported for grading. A single response may hold 524,288 characters of text, and the grader has 15 minutes, since the timing runs take up to three minutes.
 
 ```bash
 npm run harness -- --plan experiments/e4-calibration-2026-10/speedup.eval.json
