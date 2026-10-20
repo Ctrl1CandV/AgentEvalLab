@@ -28,6 +28,8 @@ test("provider failures are classified from status codes, messages and overflow 
     ["402 Insufficient Balance", "balance"],
     ["429 You exceeded your current quota, please check your plan and billing details", "balance"],
     ["429 Your token-plan 1-month quota has been exhausted. The quota will reset at 10-19 16:00:00 UTC.", "balance"],
+    ['403 {"message":"预扣费额度失败, 用户剩余额度不足","code":"insufficient_user_quota"}', "balance"],
+    ["403 预扣费额度失败, 用户剩余额度: ¥0.038766, 需要预扣费额度: ¥0.081004", "balance"],
     ["429 Rate limit reached for requests", "rate_limit"],
     ["503 Service Unavailable", "server"],
     ["fetch failed: ECONNRESET", "network"],
