@@ -1,0 +1,13 @@
+{
+  "name": "resource-index",
+  "version": "1.3.0",
+  "private": true,
+  "type": "module",
+  "description": "Resource index command-line tool",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --experimental-strip-types --test tests/baseline.test.mjs"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "eng-004-resource-index",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "familyId": "eng-resource-index-maintenance",
   "capability": "engineering",
   "usage": "development",
@@ -37,27 +37,63 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "89da282b8743d5f3cba64c9f7667fe1224e51bfa7846147a4bcc03dac6876ab5"
+        "sha256": "739308d5d60b16fd31e9d7e925370dd1f3cd2f5d4727aff4ae9ce0900179e934"
       },
       {
         "path": "environment/README.md",
         "sha256": "5e47c9f85dbf98fd070d68548028fb34b142671ac0caaaba4a8c8238222e97c8"
       },
       {
-        "path": "metadata.json",
-        "sha256": "5be5d87edb581c6ddd5e9bc3640123d0e99dc00cdafc70f1d831c6ddfbb56283"
-      },
-      {
-        "path": "rubric.md",
-        "sha256": "38c66dfa1846983a4ab6a0cc13dc2f4e673cbe265d2ce4b1f8c99fc59ec05dc0"
-      },
-      {
         "path": "logs/acceptance-self-calibration.log",
         "sha256": "9bdf3c9c478011ea29b046bcbddefaa3e8b0e50fc7a72c838aafdba0c6ae075a"
       },
       {
+        "path": "logs/self-calibration-0.3.0.log",
+        "sha256": "77d765276f76f1753d284d4f26dc6de4c807e3981a3f18f606f06ecaebaaa16d"
+      },
+      {
+        "path": "metadata.json",
+        "sha256": "5be5d87edb581c6ddd5e9bc3640123d0e99dc00cdafc70f1d831c6ddfbb56283"
+      },
+      {
         "path": "private/acceptance.py",
-        "sha256": "cd56ee13feff6ba7368b5872b5e7b147b445ee079a123ba6a5663805755983bb"
+        "sha256": "3e73085dce8bfd56e9c696d257588ae0da89ea8cb361c531e0f7caa0c9b2c749"
+      },
+      {
+        "path": "private/baseline-source/README.md",
+        "sha256": "595dab376adce51562bbe44d5ebe329bd8ba7742cd9c268d5acc9525cf7f9f8a"
+      },
+      {
+        "path": "private/baseline-source/package.json",
+        "sha256": "76cae613edf891b74cd3cadf17f75d1fc7f89bcaec1ebf5e4f4b50accb8e08a0"
+      },
+      {
+        "path": "private/baseline-source/src/catalog.ts",
+        "sha256": "bdd7acbcfc96323167ccc8ed4b5a7e37d6dcf1e8a68ef7d0397a362df55d759a"
+      },
+      {
+        "path": "private/baseline-source/src/cli.ts",
+        "sha256": "94546d925c7479fb57810e4b9f0d5c43580603eccd00aa15fa31733ba4eeea5a"
+      },
+      {
+        "path": "private/baseline-source/src/export.ts",
+        "sha256": "16c59b8014867481a7c77d6c72f5ed29b30cee9f65d10e287bfc9dc7239c6913"
+      },
+      {
+        "path": "private/baseline-source/src/index.ts",
+        "sha256": "d982c7a153eb3c34920d5ddbe5737cd31794415df38110b3743326d40e481bf2"
+      },
+      {
+        "path": "private/baseline-source/src/types.ts",
+        "sha256": "33da3eb1790fd31802cde7aa48422fdfc38155fbb0e4805757966bd0f66f36f4"
+      },
+      {
+        "path": "private/baseline-source/tests/baseline.test.mjs",
+        "sha256": "bb6345f4313cf7b13197f510300ad6873385a78a2e37f00c1da95c1aff0d37e3"
+      },
+      {
+        "path": "private/build_baseline.py",
+        "sha256": "1051391378e9894336e985f4204735191d0d995b804e5f04ce15752ac74f04a0"
       },
       {
         "path": "private/hidden_catalog.json",
@@ -98,6 +134,10 @@
       {
         "path": "private/reference-variants/ref-b/src/search.ts",
         "sha256": "738c03f702033165b7c854334ff14751d98da8b7ad13b90fb835b9aaac954b40"
+      },
+      {
+        "path": "rubric.md",
+        "sha256": "38c66dfa1846983a4ab6a0cc13dc2f4e673cbe265d2ce4b1f8c99fc59ec05dc0"
       }
     ]
   },
@@ -144,7 +184,7 @@
   ],
   "grader": {
     "id": "eng004-acceptance",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "entryPoint": "private/acceptance.py",
     "executable": "python3",
     "args": [
@@ -169,6 +209,6 @@
   },
   "baseline": {
     "path": "baseline",
-    "commit": "3b43f3c6c2db454f90765de2ca614b783c624c8e"
+    "commit": "0bd1eda866f64c4cdd990e7636cead1ebd2a6cd2"
   }
 }

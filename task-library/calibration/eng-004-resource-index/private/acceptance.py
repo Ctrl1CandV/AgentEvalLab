@@ -18,8 +18,8 @@ HIDDEN = os.path.join(HERE, "hidden_catalog.json")
 NODE = shutil.which("node") or "node"
 SANDBOX_LAUNCHER = None  # set from the grader request by grade_request
 TASK_ID = "eng-004-resource-index"
-TASK_VERSION = "0.2.1"
-GRADER_VERSION = "1.1.0"
+TASK_VERSION = "0.3.0"
+GRADER_VERSION = "1.2.0"
 CHECKS = [
     ("search-filter", "REQ-SEARCH"),
     ("default-pagination", "REQ-SEARCH"),
@@ -36,6 +36,9 @@ def _sandboxed(cmd, cwd):
     if not SANDBOX_LAUNCHER:
         return cmd
     return [sys.executable, SANDBOX_LAUNCHER, "--rw", str(cwd), "--", *cmd]
+
+
+GUARDS = {"invalid-pagination", "index-compatibility"}
 
 
 def hidden_catalog():
@@ -253,6 +256,12 @@ def run_checks(submission, evidence_root=None):
         else:
             evidence_refs = []
         output.append({"id": check_id, "requirementId": requirement_id, "status": "pass" if passed else "fail", "evidenceRefs": evidence_refs})
+    # Guards: rejecting bad arguments and keeping the index pass for the untouched baseline too (it has no search
+    # command at all), so they count only once search works.
+    if next(check for check in output if check["id"] == "search-filter")["status"] != "pass":
+        for check in output:
+            if check["id"] in GUARDS:
+                check["status"] = "fail"
     return output
 
 
@@ -364,6 +373,10 @@ def self_calibrate():
             rejected = any(check["status"] == "fail" for check in checks)
             all_ok &= rejected
             print(f"mutant_{name}: {'REJECTED' if rejected else 'UNEXPECTED_PASS'}")
+        untouched = run_checks(baseline)
+        nothing = not any(check["status"] == "pass" for check in untouched)
+        all_ok &= nothing
+        print(f"untouched_baseline_earns_nothing: {'PASS' if nothing else 'FAIL'} ({[check['id'] for check in untouched if check['status'] == 'pass']})")
     print(f"RESULT: {'PASS' if all_ok and total == 6 else 'FAIL'} ({total} reference runs, {len(mutants)} targeted mutants, {len(csv_ending_cases)} CSV delimiter cases)")
     return 0 if all_ok and total == 6 else 1
 

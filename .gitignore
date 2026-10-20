@@ -8,3 +8,4 @@ __pycache__/
 # The codec item ships its encoder only as bytecode.
 !/task-library/calibration/e4-terminal-tasks/items/codec/public/lgz.pyc
 /task-library/candidates/eng-005-long-cycle-maintenance/baseline/
+/task-library/calibration/eng-004-resource-index/baseline/

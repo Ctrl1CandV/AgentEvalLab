@@ -35,7 +35,7 @@
     {
       "id": "eng004-basic",
       "packagePath": "task-library/calibration/eng-004-resource-index",
-      "packageManifestSha256": "cd061383b21d7937cbb05016dcce19ef13402c84364104983ce9fb202c2c45a9",
+      "packageManifestSha256": "c7561872fcd236963017313f16300044e435a71ee7057941bdb9a83d497dc052",
       "input": {
         "prompt": "Implement the request in public/task-contract.md. Use the supplied workspace tools and run relevant checks before reporting."
       },
@@ -53,7 +53,7 @@
     {
       "id": "eng004-augmented",
       "packagePath": "task-library/calibration/eng-004-resource-index",
-      "packageManifestSha256": "cd061383b21d7937cbb05016dcce19ef13402c84364104983ce9fb202c2c45a9",
+      "packageManifestSha256": "c7561872fcd236963017313f16300044e435a71ee7057941bdb9a83d497dc052",
       "input": {
         "prompt": "Implement the request in public/task-contract.md. Use the supplied workspace tools and run relevant checks before reporting."
       },
