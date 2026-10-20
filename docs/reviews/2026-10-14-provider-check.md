@@ -109,3 +109,10 @@ glm-5.3 is a text model. The relay dropped the image without an error, and the m
 ## Limits
 
 Five requests per model cannot show variance, long-context behaviour, or context-overflow messages. Live context-limit classification is still unverified for both providers.
+
+## qwen3.8-flash after the quota reset (2026-10-20)
+
+`npm run provider-check -- "aliplan:qwen3.8-flash?thinking=provider-default"` passed every check: usage reported, the output cap enforced, the tool round trip, and the invalid-key classification.
+
+- **Thinking.** qwen3.8 has no effort levels. Thinking is on by default with the model's full reasoning length, and its only control is a token budget. Pi's `medium` would have sent a fixed 8,192-token budget, far below the model's default, so qwen runs at `provider-default`, which sends no thinking parameter. A reasoning probe at that setting returned a thinking block and the right answer (269).
+- **Image input** is documented. A desktop screenshot probe quoted the page's headline exactly, so qwen is declared vision-capable and may serve as a visual judge.

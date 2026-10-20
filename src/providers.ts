@@ -70,7 +70,12 @@ const deepseekFlash: CustomModelConfig = { id: "deepseek-flash", contextWindow: 
 
 // Checked 2026-10-14 against https://help.aliyun.com/zh/model-studio/qwen3-8-flash: 1M context, 131,072
 // maximum output, thinking supported. AliPlan bills through a token plan, so no per-token prices are declared.
-const qwen38Flash: CustomModelConfig = { id: "qwen3.8-flash", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: true, thinking: "configurable", prices: null, verified: true };
+// Checked 2026-10-20 against https://help.aliyun.com/zh/model-studio/deep-thinking: thinking is on by default with
+// the model's full reasoning length, and its only control is a token budget; there are no effort levels. Plans
+// therefore run it at "provider-default", which sends no thinking parameter; a probe on 2026-10-20 returned a thinking
+// block and the right answer. Image input is documented and a screenshot probe on 2026-10-20 read the page exactly.
+const qwen38Flash: CustomModelConfig = { id: "qwen3.8-flash", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: true, thinking: "configurable", prices: null,
+  verified: true, vision: true };
 
 // Checked 2026-10-14 against https://developers.openai.com/api/docs/models/gpt-6-luna: 1,050,000 context
 // (922,000 input), 128,000 maximum output, reasoning effort none, low, medium (default), high, xhigh and max.
