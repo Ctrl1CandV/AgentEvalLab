@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 3,
+  "name": "e3-calibration-2026-10",
+  "models": [
+    {
+      "provider": "supergpt",
+      "id": "gpt-6-luna",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "glm-5.3",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "step-5-preview",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    },
+    {
+      "provider": "aliplan",
+      "id": "qwen3.8-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    }
+  ],
+  "execution": {
+    "kind": "trajectory",
+    "contextPolicy": "continuous",
+    "stageBudget": {
+      "timeoutMs": 1800000,
+      "maxTurns": 60,
+      "maxModelCalls": 60,
+      "maxToolCalls": 150,
+      "maxOutputTokensPerCall": 32768,
+      "maxOutputChars": 60000,
+      "maxToolResultChars": 100000,
+      "maxTrialTokens": 800000
+    },
+    "publicRepairMax": 1
+  },
+  "budget": {
+    "timeoutMs": 9000000,
+    "maxTurns": 250,
+    "maxModelCalls": 250,
+    "maxToolCalls": 600,
+    "maxOutputTokensPerCall": 32768,
+    "maxOutputChars": 300000,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 3000000
+  },
+  "artifactLimits": {
+    "maxFiles": 500,
+    "maxFileBytes": 10485760,
+    "maxTrialBytes": 52428800,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 3500000
+  },
+  "trustedLocalExecution": true,
+  "cases": [
+    {
+      "id": "eng005-long-cycle",
+      "repository": {
+        "path": "task-library/candidates/eng-005-long-cycle-maintenance/baseline",
+        "commit": "679119874c31d2cff12cc48f57c86a1fcec6bcbc"
+      },
+      "packagePath": "task-library/candidates/eng-005-long-cycle-maintenance",
+      "packageManifestSha256": "f39a201e2880d89dde792a84e730e9f4fdab01374f9d7147e726eb9d7180a7f0",
+      "toolProfile": "workspace-augmented",
+      "input": {
+        "prompt": "Work in the provided repository. Keep the original commands and records compatible while completing each released stage. Inspect the current stage instruction before acting."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 30000,
+        "maxOutputBytes": 20000
+      }
+    }
+  ],
+  "budgetNotice": true
+}
