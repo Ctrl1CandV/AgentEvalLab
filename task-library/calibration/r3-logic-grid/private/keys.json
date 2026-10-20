@@ -17504,5 +17504,7610 @@
     "Vehicle": "canoe"
    }
   }
+ },
+ "L6-01": {
+  "n": 9,
+  "attributes": [
+   [
+    "Name",
+    [
+     "Arlo",
+     "Bryn",
+     "Cato",
+     "Dara",
+     "Elio",
+     "Fenna",
+     "Hollis",
+     "Ilse",
+     "Joren"
+    ]
+   ],
+   [
+    "Color",
+    [
+     "amber",
+     "cobalt",
+     "coral",
+     "jade",
+     "lilac",
+     "maroon",
+     "ochre",
+     "slate",
+     "teal"
+    ]
+   ],
+   [
+    "Pet",
+    [
+     "axolotl",
+     "ferret",
+     "gecko",
+     "hamster",
+     "parrot",
+     "rabbit",
+     "terrier",
+     "tortoise",
+     "whippet"
+    ]
+   ],
+   [
+    "Drink",
+    [
+     "cider",
+     "cocoa",
+     "coffee",
+     "kefir",
+     "lemonade",
+     "matcha",
+     "oolong",
+     "soda",
+     "water"
+    ]
+   ],
+   [
+    "Job",
+    [
+     "architect",
+     "chemist",
+     "courier",
+     "florist",
+     "librarian",
+     "nurse",
+     "pilot",
+     "potter",
+     "welder"
+    ]
+   ],
+   [
+    "Hobby",
+    [
+     "archery",
+     "birding",
+     "chess",
+     "climbing",
+     "fencing",
+     "knitting",
+     "origami",
+     "pottery",
+     "sailing"
+    ]
+   ],
+   [
+    "Instrument",
+    [
+     "banjo",
+     "clarinet",
+     "drums",
+     "flute",
+     "harp",
+     "lute",
+     "oboe",
+     "trumpet",
+     "viola"
+    ]
+   ],
+   [
+    "Sport",
+    [
+     "badminton",
+     "curling",
+     "golf",
+     "handball",
+     "hockey",
+     "judo",
+     "polo",
+     "rugby",
+     "squash"
+    ]
+   ],
+   [
+    "Vehicle",
+    [
+     "bicycle",
+     "glider",
+     "kayak",
+     "moped",
+     "scooter",
+     "sedan",
+     "tandem",
+     "tram",
+     "van"
+    ]
+   ]
+  ],
+  "clues": [
+   {
+    "kind": "next_to",
+    "x": [
+     "Sport",
+     "polo"
+    ],
+    "y": [
+     "Hobby",
+     "chess"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Job",
+     "courier"
+    ],
+    "y": [
+     "Name",
+     "Elio"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Pet",
+     "rabbit"
+    ],
+    "y": [
+     "Vehicle",
+     "sedan"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Pet",
+     "ferret"
+    ],
+    "y": [
+     "Name",
+     "Elio"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "not_at",
+    "x": [
+     "Sport",
+     "badminton"
+    ],
+    "house": 3,
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Name",
+     "Hollis"
+    ],
+    "y": [
+     "Vehicle",
+     "kayak"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Drink",
+     "water"
+    ],
+    "y": [
+     "Hobby",
+     "sailing"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Drink",
+     "lemonade"
+    ],
+    "house": 3,
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Name",
+     "Joren"
+    ],
+    "y": [
+     "Sport",
+     "golf"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "fencing"
+    ],
+    "y": [
+     "Color",
+     "maroon"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "sailing"
+    ],
+    "y": [
+     "Pet",
+     "whippet"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Job",
+     "chemist"
+    ],
+    "y": [
+     "Vehicle",
+     "moped"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Pet",
+     "parrot"
+    ],
+    "house": 7,
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Name",
+     "Joren"
+    ],
+    "y": [
+     "Vehicle",
+     "sedan"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Pet",
+     "ferret"
+    ],
+    "y": [
+     "Name",
+     "Fenna"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Vehicle",
+     "scooter"
+    ],
+    "y": [
+     "Sport",
+     "rugby"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Color",
+     "lilac"
+    ],
+    "y": [
+     "Drink",
+     "soda"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Job",
+     "florist"
+    ],
+    "y": [
+     "Sport",
+     "handball"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Pet",
+     "axolotl"
+    ],
+    "y": [
+     "Drink",
+     "coffee"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Pet",
+     "gecko"
+    ],
+    "y": [
+     "Sport",
+     "curling"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Color",
+     "cobalt"
+    ],
+    "house": 2,
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Instrument",
+     "lute"
+    ],
+    "y": [
+     "Name",
+     "Cato"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "not_at",
+    "x": [
+     "Hobby",
+     "birding"
+    ],
+    "house": 8,
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Instrument",
+     "oboe"
+    ],
+    "y": [
+     "Hobby",
+     "sailing"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Vehicle",
+     "bicycle"
+    ],
+    "y": [
+     "Name",
+     "Dara"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Vehicle",
+     "moped"
+    ],
+    "y": [
+     "Color",
+     "jade"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Instrument",
+     "banjo"
+    ],
+    "y": [
+     "Vehicle",
+     "tandem"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Instrument",
+     "drums"
+    ],
+    "house": 0,
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Hobby",
+     "archery"
+    ],
+    "y": [
+     "Vehicle",
+     "tandem"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Hobby",
+     "climbing"
+    ],
+    "house": 2,
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Name",
+     "Elio"
+    ],
+    "y": [
+     "Drink",
+     "matcha"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Job",
+     "welder"
+    ],
+    "house": 1,
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Job",
+     "librarian"
+    ],
+    "y": [
+     "Drink",
+     "cocoa"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Vehicle",
+     "glider"
+    ],
+    "y": [
+     "Sport",
+     "rugby"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Instrument",
+     "trumpet"
+    ],
+    "y": [
+     "Sport",
+     "handball"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Color",
+     "ochre"
+    ],
+    "y": [
+     "Drink",
+     "cider"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Pet",
+     "whippet"
+    ],
+    "y": [
+     "Job",
+     "pilot"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Drink",
+     "cider"
+    ],
+    "y": [
+     "Job",
+     "chemist"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Hobby",
+     "knitting"
+    ],
+    "y": [
+     "Instrument",
+     "flute"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Instrument",
+     "flute"
+    ],
+    "y": [
+     "Color",
+     "slate"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Pet",
+     "gecko"
+    ],
+    "y": [
+     "Sport",
+     "polo"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Drink",
+     "kefir"
+    ],
+    "y": [
+     "Name",
+     "Arlo"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Pet",
+     "hamster"
+    ],
+    "y": [
+     "Instrument",
+     "viola"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Vehicle",
+     "kayak"
+    ],
+    "y": [
+     "Instrument",
+     "drums"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Color",
+     "coral"
+    ],
+    "y": [
+     "Instrument",
+     "clarinet"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Sport",
+     "hockey"
+    ],
+    "y": [
+     "Job",
+     "architect"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Color",
+     "amber"
+    ],
+    "y": [
+     "Instrument",
+     "oboe"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Color",
+     "amber"
+    ],
+    "y": [
+     "Name",
+     "Ilse"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Name",
+     "Arlo"
+    ],
+    "y": [
+     "Pet",
+     "tortoise"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Color",
+     "coral"
+    ],
+    "y": [
+     "Hobby",
+     "sailing"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Color",
+     "maroon"
+    ],
+    "y": [
+     "Instrument",
+     "harp"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Job",
+     "welder"
+    ],
+    "y": [
+     "Pet",
+     "hamster"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Pet",
+     "ferret"
+    ],
+    "y": [
+     "Sport",
+     "rugby"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Vehicle",
+     "van"
+    ],
+    "y": [
+     "Job",
+     "architect"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Job",
+     "potter"
+    ],
+    "y": [
+     "Name",
+     "Dara"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Color",
+     "jade"
+    ],
+    "house": 8,
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Hobby",
+     "chess"
+    ],
+    "y": [
+     "Sport",
+     "judo"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Hobby",
+     "chess"
+    ],
+    "y": [
+     "Vehicle",
+     "kayak"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Name",
+     "Bryn"
+    ],
+    "house": 4,
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Vehicle",
+     "sedan"
+    ],
+    "y": [
+     "Hobby",
+     "pottery"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Color",
+     "teal"
+    ],
+    "y": [
+     "Job",
+     "courier"
+    ],
+    "phrase": 0
+   }
+  ],
+  "solution": {
+   "1": {
+    "Name": "Hollis",
+    "Color": "ochre",
+    "Pet": "axolotl",
+    "Drink": "oolong",
+    "Job": "potter",
+    "Hobby": "chess",
+    "Instrument": "drums",
+    "Sport": "badminton",
+    "Vehicle": "bicycle"
+   },
+   "2": {
+    "Name": "Dara",
+    "Color": "maroon",
+    "Pet": "terrier",
+    "Drink": "coffee",
+    "Job": "welder",
+    "Hobby": "fencing",
+    "Instrument": "harp",
+    "Sport": "polo",
+    "Vehicle": "kayak"
+   },
+   "3": {
+    "Name": "Fenna",
+    "Color": "cobalt",
+    "Pet": "rabbit",
+    "Drink": "cocoa",
+    "Job": "librarian",
+    "Hobby": "climbing",
+    "Instrument": "viola",
+    "Sport": "judo",
+    "Vehicle": "glider"
+   },
+   "4": {
+    "Name": "Joren",
+    "Color": "teal",
+    "Pet": "hamster",
+    "Drink": "lemonade",
+    "Job": "nurse",
+    "Hobby": "pottery",
+    "Instrument": "flute",
+    "Sport": "squash",
+    "Vehicle": "scooter"
+   },
+   "5": {
+    "Name": "Bryn",
+    "Color": "slate",
+    "Pet": "ferret",
+    "Drink": "cider",
+    "Job": "courier",
+    "Hobby": "archery",
+    "Instrument": "banjo",
+    "Sport": "rugby",
+    "Vehicle": "sedan"
+   },
+   "6": {
+    "Name": "Elio",
+    "Color": "amber",
+    "Pet": "gecko",
+    "Drink": "matcha",
+    "Job": "pilot",
+    "Hobby": "knitting",
+    "Instrument": "oboe",
+    "Sport": "golf",
+    "Vehicle": "tandem"
+   },
+   "7": {
+    "Name": "Ilse",
+    "Color": "lilac",
+    "Pet": "whippet",
+    "Drink": "soda",
+    "Job": "chemist",
+    "Hobby": "sailing",
+    "Instrument": "trumpet",
+    "Sport": "curling",
+    "Vehicle": "van"
+   },
+   "8": {
+    "Name": "Cato",
+    "Color": "coral",
+    "Pet": "parrot",
+    "Drink": "water",
+    "Job": "florist",
+    "Hobby": "birding",
+    "Instrument": "lute",
+    "Sport": "hockey",
+    "Vehicle": "moped"
+   },
+   "9": {
+    "Name": "Arlo",
+    "Color": "jade",
+    "Pet": "tortoise",
+    "Drink": "kefir",
+    "Job": "architect",
+    "Hobby": "origami",
+    "Instrument": "clarinet",
+    "Sport": "handball",
+    "Vehicle": "tram"
+   }
+  }
+ },
+ "L6-02": {
+  "n": 9,
+  "attributes": [
+   [
+    "Name",
+    [
+     "Arlo",
+     "Bryn",
+     "Cato",
+     "Elio",
+     "Fenna",
+     "Galen",
+     "Hollis",
+     "Ilse",
+     "Joren"
+    ]
+   ],
+   [
+    "Color",
+    [
+     "amber",
+     "cobalt",
+     "coral",
+     "ivory",
+     "lilac",
+     "maroon",
+     "ochre",
+     "slate",
+     "teal"
+    ]
+   ],
+   [
+    "Pet",
+    [
+     "canary",
+     "ferret",
+     "gecko",
+     "hamster",
+     "parrot",
+     "rabbit",
+     "terrier",
+     "tortoise",
+     "whippet"
+    ]
+   ],
+   [
+    "Drink",
+    [
+     "cider",
+     "cocoa",
+     "coffee",
+     "kefir",
+     "lemonade",
+     "matcha",
+     "oolong",
+     "soda",
+     "water"
+    ]
+   ],
+   [
+    "Hobby",
+    [
+     "archery",
+     "birding",
+     "chess",
+     "climbing",
+     "fencing",
+     "knitting",
+     "origami",
+     "pottery",
+     "rowing"
+    ]
+   ],
+   [
+    "Fruit",
+    [
+     "apricot",
+     "banana",
+     "cherry",
+     "guava",
+     "kiwi",
+     "lychee",
+     "mango",
+     "papaya",
+     "quince"
+    ]
+   ],
+   [
+    "Instrument",
+    [
+     "banjo",
+     "cello",
+     "clarinet",
+     "drums",
+     "flute",
+     "harp",
+     "lute",
+     "trumpet",
+     "viola"
+    ]
+   ],
+   [
+    "Sport",
+    [
+     "badminton",
+     "cricket",
+     "curling",
+     "golf",
+     "handball",
+     "hockey",
+     "polo",
+     "rugby",
+     "squash"
+    ]
+   ],
+   [
+    "Vehicle",
+    [
+     "bicycle",
+     "canoe",
+     "glider",
+     "kayak",
+     "moped",
+     "scooter",
+     "sedan",
+     "tandem",
+     "van"
+    ]
+   ]
+  ],
+  "clues": [
+   {
+    "kind": "not_at",
+    "x": [
+     "Instrument",
+     "harp"
+    ],
+    "house": 4,
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Drink",
+     "cider"
+    ],
+    "y": [
+     "Sport",
+     "polo"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Instrument",
+     "cello"
+    ],
+    "y": [
+     "Pet",
+     "ferret"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Instrument",
+     "trumpet"
+    ],
+    "y": [
+     "Name",
+     "Elio"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "pottery"
+    ],
+    "y": [
+     "Instrument",
+     "cello"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Instrument",
+     "trumpet"
+    ],
+    "y": [
+     "Pet",
+     "tortoise"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Name",
+     "Elio"
+    ],
+    "y": [
+     "Hobby",
+     "climbing"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Drink",
+     "cocoa"
+    ],
+    "y": [
+     "Color",
+     "coral"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Instrument",
+     "banjo"
+    ],
+    "y": [
+     "Vehicle",
+     "canoe"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Instrument",
+     "trumpet"
+    ],
+    "y": [
+     "Vehicle",
+     "canoe"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "knitting"
+    ],
+    "y": [
+     "Drink",
+     "matcha"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Hobby",
+     "fencing"
+    ],
+    "y": [
+     "Fruit",
+     "apricot"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Drink",
+     "matcha"
+    ],
+    "y": [
+     "Vehicle",
+     "glider"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Color",
+     "lilac"
+    ],
+    "y": [
+     "Pet",
+     "canary"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Color",
+     "lilac"
+    ],
+    "y": [
+     "Instrument",
+     "viola"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Pet",
+     "whippet"
+    ],
+    "y": [
+     "Name",
+     "Joren"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Fruit",
+     "banana"
+    ],
+    "y": [
+     "Color",
+     "ochre"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Fruit",
+     "mango"
+    ],
+    "y": [
+     "Vehicle",
+     "sedan"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Fruit",
+     "banana"
+    ],
+    "y": [
+     "Drink",
+     "oolong"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Drink",
+     "soda"
+    ],
+    "y": [
+     "Color",
+     "teal"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Pet",
+     "hamster"
+    ],
+    "y": [
+     "Instrument",
+     "drums"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Hobby",
+     "climbing"
+    ],
+    "y": [
+     "Fruit",
+     "mango"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Hobby",
+     "chess"
+    ],
+    "house": 8,
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Name",
+     "Joren"
+    ],
+    "y": [
+     "Drink",
+     "matcha"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Sport",
+     "rugby"
+    ],
+    "y": [
+     "Hobby",
+     "climbing"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Name",
+     "Joren"
+    ],
+    "y": [
+     "Hobby",
+     "archery"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Name",
+     "Fenna"
+    ],
+    "y": [
+     "Hobby",
+     "archery"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Vehicle",
+     "scooter"
+    ],
+    "y": [
+     "Drink",
+     "soda"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "not_at",
+    "x": [
+     "Fruit",
+     "mango"
+    ],
+    "house": 8,
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Pet",
+     "tortoise"
+    ],
+    "y": [
+     "Sport",
+     "hockey"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Drink",
+     "lemonade"
+    ],
+    "house": 4,
+    "phrase": 0
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Sport",
+     "handball"
+    ],
+    "house": 0,
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Name",
+     "Joren"
+    ],
+    "y": [
+     "Sport",
+     "rugby"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Fruit",
+     "kiwi"
+    ],
+    "y": [
+     "Pet",
+     "canary"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "cricket"
+    ],
+    "y": [
+     "Vehicle",
+     "bicycle"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Color",
+     "slate"
+    ],
+    "y": [
+     "Vehicle",
+     "scooter"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Fruit",
+     "quince"
+    ],
+    "y": [
+     "Color",
+     "ivory"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "not_at",
+    "x": [
+     "Pet",
+     "whippet"
+    ],
+    "house": 6,
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Name",
+     "Hollis"
+    ],
+    "y": [
+     "Hobby",
+     "birding"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Color",
+     "coral"
+    ],
+    "y": [
+     "Hobby",
+     "birding"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Fruit",
+     "papaya"
+    ],
+    "y": [
+     "Drink",
+     "coffee"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "badminton"
+    ],
+    "y": [
+     "Instrument",
+     "clarinet"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Pet",
+     "parrot"
+    ],
+    "y": [
+     "Color",
+     "coral"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Drink",
+     "kefir"
+    ],
+    "y": [
+     "Fruit",
+     "lychee"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Color",
+     "ochre"
+    ],
+    "y": [
+     "Pet",
+     "ferret"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Instrument",
+     "clarinet"
+    ],
+    "y": [
+     "Hobby",
+     "climbing"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Name",
+     "Arlo"
+    ],
+    "y": [
+     "Drink",
+     "cocoa"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "knitting"
+    ],
+    "y": [
+     "Color",
+     "maroon"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "archery"
+    ],
+    "y": [
+     "Instrument",
+     "clarinet"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Hobby",
+     "fencing"
+    ],
+    "y": [
+     "Vehicle",
+     "van"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Pet",
+     "hamster"
+    ],
+    "y": [
+     "Instrument",
+     "flute"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Name",
+     "Fenna"
+    ],
+    "y": [
+     "Hobby",
+     "origami"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Fruit",
+     "quince"
+    ],
+    "y": [
+     "Color",
+     "cobalt"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Name",
+     "Ilse"
+    ],
+    "house": 3,
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Name",
+     "Galen"
+    ],
+    "y": [
+     "Color",
+     "cobalt"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Drink",
+     "coffee"
+    ],
+    "y": [
+     "Sport",
+     "rugby"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Sport",
+     "polo"
+    ],
+    "y": [
+     "Pet",
+     "rabbit"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Vehicle",
+     "kayak"
+    ],
+    "y": [
+     "Instrument",
+     "flute"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "fencing"
+    ],
+    "y": [
+     "Vehicle",
+     "tandem"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Name",
+     "Bryn"
+    ],
+    "y": [
+     "Sport",
+     "squash"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Fruit",
+     "guava"
+    ],
+    "y": [
+     "Drink",
+     "soda"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Pet",
+     "gecko"
+    ],
+    "y": [
+     "Vehicle",
+     "scooter"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Sport",
+     "cricket"
+    ],
+    "y": [
+     "Instrument",
+     "drums"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Sport",
+     "curling"
+    ],
+    "y": [
+     "Fruit",
+     "apricot"
+    ],
+    "phrase": 1
+   }
+  ],
+  "solution": {
+   "1": {
+    "Name": "Joren",
+    "Color": "maroon",
+    "Pet": "tortoise",
+    "Drink": "matcha",
+    "Hobby": "knitting",
+    "Fruit": "guava",
+    "Instrument": "banjo",
+    "Sport": "handball",
+    "Vehicle": "canoe"
+   },
+   "2": {
+    "Name": "Hollis",
+    "Color": "slate",
+    "Pet": "whippet",
+    "Drink": "soda",
+    "Hobby": "pottery",
+    "Fruit": "banana",
+    "Instrument": "cello",
+    "Sport": "hockey",
+    "Vehicle": "scooter"
+   },
+   "3": {
+    "Name": "Bryn",
+    "Color": "teal",
+    "Pet": "gecko",
+    "Drink": "coffee",
+    "Hobby": "origami",
+    "Fruit": "papaya",
+    "Instrument": "trumpet",
+    "Sport": "rugby",
+    "Vehicle": "glider"
+   },
+   "4": {
+    "Name": "Ilse",
+    "Color": "ochre",
+    "Pet": "ferret",
+    "Drink": "oolong",
+    "Hobby": "fencing",
+    "Fruit": "cherry",
+    "Instrument": "harp",
+    "Sport": "squash",
+    "Vehicle": "tandem"
+   },
+   "5": {
+    "Name": "Fenna",
+    "Color": "coral",
+    "Pet": "parrot",
+    "Drink": "lemonade",
+    "Hobby": "birding",
+    "Fruit": "lychee",
+    "Instrument": "lute",
+    "Sport": "curling",
+    "Vehicle": "van"
+   },
+   "6": {
+    "Name": "Elio",
+    "Color": "lilac",
+    "Pet": "hamster",
+    "Drink": "kefir",
+    "Hobby": "rowing",
+    "Fruit": "apricot",
+    "Instrument": "drums",
+    "Sport": "golf",
+    "Vehicle": "moped"
+   },
+   "7": {
+    "Name": "Arlo",
+    "Color": "cobalt",
+    "Pet": "rabbit",
+    "Drink": "cocoa",
+    "Hobby": "archery",
+    "Fruit": "mango",
+    "Instrument": "clarinet",
+    "Sport": "badminton",
+    "Vehicle": "sedan"
+   },
+   "8": {
+    "Name": "Cato",
+    "Color": "amber",
+    "Pet": "canary",
+    "Drink": "cider",
+    "Hobby": "climbing",
+    "Fruit": "quince",
+    "Instrument": "flute",
+    "Sport": "cricket",
+    "Vehicle": "bicycle"
+   },
+   "9": {
+    "Name": "Galen",
+    "Color": "ivory",
+    "Pet": "terrier",
+    "Drink": "water",
+    "Hobby": "chess",
+    "Fruit": "kiwi",
+    "Instrument": "viola",
+    "Sport": "polo",
+    "Vehicle": "kayak"
+   }
+  }
+ },
+ "L6-03": {
+  "n": 9,
+  "attributes": [
+   [
+    "Color",
+    [
+     "amber",
+     "cobalt",
+     "ivory",
+     "jade",
+     "lilac",
+     "maroon",
+     "ochre",
+     "slate",
+     "teal"
+    ]
+   ],
+   [
+    "Pet",
+    [
+     "axolotl",
+     "canary",
+     "ferret",
+     "gecko",
+     "hamster",
+     "parrot",
+     "terrier",
+     "tortoise",
+     "whippet"
+    ]
+   ],
+   [
+    "Drink",
+    [
+     "cider",
+     "cocoa",
+     "coffee",
+     "kefir",
+     "lemonade",
+     "matcha",
+     "milk",
+     "oolong",
+     "water"
+    ]
+   ],
+   [
+    "Job",
+    [
+     "architect",
+     "baker",
+     "chemist",
+     "courier",
+     "florist",
+     "librarian",
+     "pilot",
+     "potter",
+     "welder"
+    ]
+   ],
+   [
+    "Hobby",
+    [
+     "archery",
+     "birding",
+     "chess",
+     "climbing",
+     "fencing",
+     "origami",
+     "pottery",
+     "rowing",
+     "sailing"
+    ]
+   ],
+   [
+    "Fruit",
+    [
+     "apricot",
+     "banana",
+     "cherry",
+     "fig",
+     "guava",
+     "kiwi",
+     "lychee",
+     "mango",
+     "papaya"
+    ]
+   ],
+   [
+    "Instrument",
+    [
+     "banjo",
+     "cello",
+     "clarinet",
+     "drums",
+     "flute",
+     "harp",
+     "lute",
+     "trumpet",
+     "viola"
+    ]
+   ],
+   [
+    "Sport",
+    [
+     "badminton",
+     "cricket",
+     "curling",
+     "golf",
+     "handball",
+     "hockey",
+     "polo",
+     "rugby",
+     "squash"
+    ]
+   ],
+   [
+    "Vehicle",
+    [
+     "bicycle",
+     "glider",
+     "kayak",
+     "moped",
+     "scooter",
+     "sedan",
+     "tandem",
+     "tram",
+     "van"
+    ]
+   ]
+  ],
+  "clues": [
+   {
+    "kind": "directly_left",
+    "x": [
+     "Drink",
+     "cocoa"
+    ],
+    "y": [
+     "Job",
+     "pilot"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Sport",
+     "rugby"
+    ],
+    "house": 4,
+    "phrase": 0
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Fruit",
+     "lychee"
+    ],
+    "house": 6,
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Instrument",
+     "drums"
+    ],
+    "y": [
+     "Pet",
+     "tortoise"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "golf"
+    ],
+    "y": [
+     "Fruit",
+     "papaya"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Pet",
+     "ferret"
+    ],
+    "y": [
+     "Color",
+     "lilac"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Vehicle",
+     "tandem"
+    ],
+    "y": [
+     "Fruit",
+     "banana"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Hobby",
+     "archery"
+    ],
+    "y": [
+     "Instrument",
+     "viola"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Fruit",
+     "mango"
+    ],
+    "y": [
+     "Hobby",
+     "chess"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "rugby"
+    ],
+    "y": [
+     "Drink",
+     "coffee"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Pet",
+     "whippet"
+    ],
+    "house": 3,
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Job",
+     "florist"
+    ],
+    "y": [
+     "Drink",
+     "lemonade"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Drink",
+     "cider"
+    ],
+    "y": [
+     "Instrument",
+     "lute"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Vehicle",
+     "sedan"
+    ],
+    "y": [
+     "Job",
+     "librarian"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Color",
+     "amber"
+    ],
+    "y": [
+     "Pet",
+     "terrier"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "squash"
+    ],
+    "y": [
+     "Job",
+     "courier"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "sailing"
+    ],
+    "y": [
+     "Pet",
+     "axolotl"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Drink",
+     "water"
+    ],
+    "y": [
+     "Sport",
+     "badminton"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "squash"
+    ],
+    "y": [
+     "Instrument",
+     "viola"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Pet",
+     "gecko"
+    ],
+    "y": [
+     "Color",
+     "ivory"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Drink",
+     "matcha"
+    ],
+    "y": [
+     "Color",
+     "ochre"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Drink",
+     "oolong"
+    ],
+    "y": [
+     "Job",
+     "librarian"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Vehicle",
+     "kayak"
+    ],
+    "y": [
+     "Drink",
+     "milk"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Fruit",
+     "mango"
+    ],
+    "y": [
+     "Pet",
+     "parrot"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Vehicle",
+     "moped"
+    ],
+    "y": [
+     "Job",
+     "librarian"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Color",
+     "amber"
+    ],
+    "house": 0,
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Job",
+     "pilot"
+    ],
+    "y": [
+     "Vehicle",
+     "van"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Fruit",
+     "guava"
+    ],
+    "y": [
+     "Instrument",
+     "lute"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Color",
+     "slate"
+    ],
+    "y": [
+     "Drink",
+     "coffee"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Instrument",
+     "flute"
+    ],
+    "y": [
+     "Vehicle",
+     "kayak"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Vehicle",
+     "bicycle"
+    ],
+    "house": 7,
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Instrument",
+     "clarinet"
+    ],
+    "y": [
+     "Vehicle",
+     "scooter"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Drink",
+     "cider"
+    ],
+    "y": [
+     "Instrument",
+     "viola"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Hobby",
+     "pottery"
+    ],
+    "y": [
+     "Instrument",
+     "flute"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Hobby",
+     "climbing"
+    ],
+    "house": 5,
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Job",
+     "architect"
+    ],
+    "y": [
+     "Instrument",
+     "cello"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Color",
+     "lilac"
+    ],
+    "y": [
+     "Drink",
+     "cocoa"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Job",
+     "courier"
+    ],
+    "y": [
+     "Drink",
+     "lemonade"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Fruit",
+     "kiwi"
+    ],
+    "y": [
+     "Hobby",
+     "rowing"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Job",
+     "architect"
+    ],
+    "y": [
+     "Color",
+     "maroon"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Instrument",
+     "flute"
+    ],
+    "y": [
+     "Drink",
+     "matcha"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Instrument",
+     "harp"
+    ],
+    "house": 4,
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Color",
+     "teal"
+    ],
+    "y": [
+     "Pet",
+     "canary"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Instrument",
+     "viola"
+    ],
+    "house": 5,
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Pet",
+     "tortoise"
+    ],
+    "y": [
+     "Job",
+     "potter"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "fencing"
+    ],
+    "y": [
+     "Job",
+     "baker"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Job",
+     "welder"
+    ],
+    "y": [
+     "Vehicle",
+     "tram"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Hobby",
+     "birding"
+    ],
+    "y": [
+     "Pet",
+     "tortoise"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Color",
+     "ivory"
+    ],
+    "y": [
+     "Sport",
+     "cricket"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "sailing"
+    ],
+    "y": [
+     "Fruit",
+     "cherry"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "not_at",
+    "x": [
+     "Color",
+     "jade"
+    ],
+    "house": 3,
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Fruit",
+     "mango"
+    ],
+    "y": [
+     "Job",
+     "welder"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "handball"
+    ],
+    "y": [
+     "Pet",
+     "terrier"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Sport",
+     "curling"
+    ],
+    "y": [
+     "Color",
+     "jade"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Vehicle",
+     "sedan"
+    ],
+    "y": [
+     "Fruit",
+     "apricot"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Drink",
+     "water"
+    ],
+    "y": [
+     "Hobby",
+     "pottery"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "badminton"
+    ],
+    "y": [
+     "Instrument",
+     "banjo"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Color",
+     "ivory"
+    ],
+    "house": 5,
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Pet",
+     "hamster"
+    ],
+    "y": [
+     "Fruit",
+     "papaya"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Instrument",
+     "lute"
+    ],
+    "y": [
+     "Sport",
+     "hockey"
+    ],
+    "phrase": 1
+   }
+  ],
+  "solution": {
+   "1": {
+    "Color": "amber",
+    "Pet": "tortoise",
+    "Drink": "kefir",
+    "Job": "baker",
+    "Hobby": "fencing",
+    "Fruit": "papaya",
+    "Instrument": "drums",
+    "Sport": "golf",
+    "Vehicle": "moped"
+   },
+   "2": {
+    "Color": "jade",
+    "Pet": "hamster",
+    "Drink": "water",
+    "Job": "potter",
+    "Hobby": "pottery",
+    "Fruit": "banana",
+    "Instrument": "trumpet",
+    "Sport": "polo",
+    "Vehicle": "sedan"
+   },
+   "3": {
+    "Color": "slate",
+    "Pet": "terrier",
+    "Drink": "cocoa",
+    "Job": "librarian",
+    "Hobby": "birding",
+    "Fruit": "apricot",
+    "Instrument": "clarinet",
+    "Sport": "handball",
+    "Vehicle": "scooter"
+   },
+   "4": {
+    "Color": "teal",
+    "Pet": "whippet",
+    "Drink": "oolong",
+    "Job": "pilot",
+    "Hobby": "archery",
+    "Fruit": "fig",
+    "Instrument": "flute",
+    "Sport": "curling",
+    "Vehicle": "tandem"
+   },
+   "5": {
+    "Color": "lilac",
+    "Pet": "gecko",
+    "Drink": "coffee",
+    "Job": "chemist",
+    "Hobby": "rowing",
+    "Fruit": "kiwi",
+    "Instrument": "harp",
+    "Sport": "rugby",
+    "Vehicle": "van"
+   },
+   "6": {
+    "Color": "ivory",
+    "Pet": "ferret",
+    "Drink": "cider",
+    "Job": "courier",
+    "Hobby": "climbing",
+    "Fruit": "guava",
+    "Instrument": "viola",
+    "Sport": "squash",
+    "Vehicle": "kayak"
+   },
+   "7": {
+    "Color": "ochre",
+    "Pet": "canary",
+    "Drink": "matcha",
+    "Job": "welder",
+    "Hobby": "origami",
+    "Fruit": "lychee",
+    "Instrument": "lute",
+    "Sport": "cricket",
+    "Vehicle": "tram"
+   },
+   "8": {
+    "Color": "cobalt",
+    "Pet": "axolotl",
+    "Drink": "lemonade",
+    "Job": "architect",
+    "Hobby": "sailing",
+    "Fruit": "cherry",
+    "Instrument": "cello",
+    "Sport": "hockey",
+    "Vehicle": "bicycle"
+   },
+   "9": {
+    "Color": "maroon",
+    "Pet": "parrot",
+    "Drink": "milk",
+    "Job": "florist",
+    "Hobby": "chess",
+    "Fruit": "mango",
+    "Instrument": "banjo",
+    "Sport": "badminton",
+    "Vehicle": "glider"
+   }
+  }
+ },
+ "L6-04": {
+  "n": 9,
+  "attributes": [
+   [
+    "Name",
+    [
+     "Arlo",
+     "Bryn",
+     "Cato",
+     "Dara",
+     "Elio",
+     "Fenna",
+     "Hollis",
+     "Ilse",
+     "Joren"
+    ]
+   ],
+   [
+    "Pet",
+    [
+     "axolotl",
+     "canary",
+     "ferret",
+     "gecko",
+     "hamster",
+     "parrot",
+     "terrier",
+     "tortoise",
+     "whippet"
+    ]
+   ],
+   [
+    "Drink",
+    [
+     "cocoa",
+     "coffee",
+     "kefir",
+     "lemonade",
+     "matcha",
+     "milk",
+     "oolong",
+     "soda",
+     "water"
+    ]
+   ],
+   [
+    "Job",
+    [
+     "architect",
+     "baker",
+     "chemist",
+     "courier",
+     "florist",
+     "nurse",
+     "pilot",
+     "potter",
+     "welder"
+    ]
+   ],
+   [
+    "Hobby",
+    [
+     "birding",
+     "chess",
+     "climbing",
+     "fencing",
+     "knitting",
+     "origami",
+     "pottery",
+     "rowing",
+     "sailing"
+    ]
+   ],
+   [
+    "Fruit",
+    [
+     "apricot",
+     "banana",
+     "fig",
+     "guava",
+     "kiwi",
+     "lychee",
+     "mango",
+     "papaya",
+     "quince"
+    ]
+   ],
+   [
+    "Instrument",
+    [
+     "banjo",
+     "cello",
+     "drums",
+     "flute",
+     "harp",
+     "lute",
+     "oboe",
+     "trumpet",
+     "viola"
+    ]
+   ],
+   [
+    "Sport",
+    [
+     "badminton",
+     "cricket",
+     "curling",
+     "golf",
+     "handball",
+     "hockey",
+     "judo",
+     "polo",
+     "squash"
+    ]
+   ],
+   [
+    "Vehicle",
+    [
+     "bicycle",
+     "canoe",
+     "kayak",
+     "moped",
+     "scooter",
+     "sedan",
+     "tandem",
+     "tram",
+     "van"
+    ]
+   ]
+  ],
+  "clues": [
+   {
+    "kind": "one_between",
+    "x": [
+     "Job",
+     "baker"
+    ],
+    "y": [
+     "Vehicle",
+     "scooter"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Sport",
+     "judo"
+    ],
+    "y": [
+     "Vehicle",
+     "tandem"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Name",
+     "Arlo"
+    ],
+    "house": 0,
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Vehicle",
+     "kayak"
+    ],
+    "y": [
+     "Name",
+     "Dara"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Job",
+     "architect"
+    ],
+    "y": [
+     "Drink",
+     "cocoa"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Hobby",
+     "knitting"
+    ],
+    "y": [
+     "Vehicle",
+     "tandem"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Pet",
+     "gecko"
+    ],
+    "y": [
+     "Drink",
+     "milk"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Name",
+     "Joren"
+    ],
+    "y": [
+     "Drink",
+     "oolong"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Fruit",
+     "kiwi"
+    ],
+    "y": [
+     "Hobby",
+     "knitting"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Pet",
+     "parrot"
+    ],
+    "y": [
+     "Name",
+     "Fenna"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Vehicle",
+     "bicycle"
+    ],
+    "y": [
+     "Hobby",
+     "climbing"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Instrument",
+     "trumpet"
+    ],
+    "y": [
+     "Pet",
+     "hamster"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Hobby",
+     "knitting"
+    ],
+    "y": [
+     "Sport",
+     "handball"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Vehicle",
+     "kayak"
+    ],
+    "y": [
+     "Pet",
+     "tortoise"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "golf"
+    ],
+    "y": [
+     "Pet",
+     "ferret"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Hobby",
+     "sailing"
+    ],
+    "y": [
+     "Fruit",
+     "guava"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Sport",
+     "squash"
+    ],
+    "y": [
+     "Drink",
+     "kefir"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Pet",
+     "whippet"
+    ],
+    "y": [
+     "Hobby",
+     "pottery"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Sport",
+     "curling"
+    ],
+    "y": [
+     "Name",
+     "Elio"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Vehicle",
+     "van"
+    ],
+    "y": [
+     "Sport",
+     "golf"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Drink",
+     "coffee"
+    ],
+    "y": [
+     "Fruit",
+     "fig"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Instrument",
+     "drums"
+    ],
+    "house": 5,
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "rowing"
+    ],
+    "y": [
+     "Fruit",
+     "mango"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Instrument",
+     "harp"
+    ],
+    "y": [
+     "Pet",
+     "axolotl"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "cricket"
+    ],
+    "y": [
+     "Job",
+     "nurse"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Job",
+     "florist"
+    ],
+    "y": [
+     "Sport",
+     "judo"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "birding"
+    ],
+    "y": [
+     "Vehicle",
+     "moped"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Pet",
+     "whippet"
+    ],
+    "y": [
+     "Sport",
+     "judo"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Vehicle",
+     "bicycle"
+    ],
+    "y": [
+     "Instrument",
+     "oboe"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Fruit",
+     "guava"
+    ],
+    "y": [
+     "Sport",
+     "curling"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Job",
+     "potter"
+    ],
+    "y": [
+     "Fruit",
+     "quince"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Job",
+     "welder"
+    ],
+    "y": [
+     "Sport",
+     "golf"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Sport",
+     "hockey"
+    ],
+    "y": [
+     "Pet",
+     "ferret"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Sport",
+     "hockey"
+    ],
+    "y": [
+     "Name",
+     "Hollis"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Fruit",
+     "banana"
+    ],
+    "y": [
+     "Instrument",
+     "cello"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "chess"
+    ],
+    "y": [
+     "Vehicle",
+     "tram"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Job",
+     "potter"
+    ],
+    "y": [
+     "Instrument",
+     "viola"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Drink",
+     "matcha"
+    ],
+    "y": [
+     "Pet",
+     "whippet"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Hobby",
+     "chess"
+    ],
+    "y": [
+     "Pet",
+     "terrier"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Drink",
+     "milk"
+    ],
+    "y": [
+     "Instrument",
+     "oboe"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Instrument",
+     "drums"
+    ],
+    "y": [
+     "Sport",
+     "polo"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Instrument",
+     "banjo"
+    ],
+    "y": [
+     "Pet",
+     "parrot"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Name",
+     "Elio"
+    ],
+    "y": [
+     "Pet",
+     "ferret"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Vehicle",
+     "scooter"
+    ],
+    "y": [
+     "Name",
+     "Elio"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Job",
+     "courier"
+    ],
+    "y": [
+     "Instrument",
+     "flute"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Vehicle",
+     "kayak"
+    ],
+    "y": [
+     "Instrument",
+     "flute"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Vehicle",
+     "sedan"
+    ],
+    "y": [
+     "Sport",
+     "judo"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "badminton"
+    ],
+    "y": [
+     "Job",
+     "pilot"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Vehicle",
+     "van"
+    ],
+    "y": [
+     "Drink",
+     "lemonade"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Hobby",
+     "origami"
+    ],
+    "y": [
+     "Drink",
+     "coffee"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Name",
+     "Cato"
+    ],
+    "y": [
+     "Fruit",
+     "apricot"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Sport",
+     "badminton"
+    ],
+    "y": [
+     "Vehicle",
+     "kayak"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "sailing"
+    ],
+    "y": [
+     "Drink",
+     "soda"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Name",
+     "Ilse"
+    ],
+    "y": [
+     "Pet",
+     "terrier"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Instrument",
+     "harp"
+    ],
+    "house": 0,
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Instrument",
+     "cello"
+    ],
+    "y": [
+     "Drink",
+     "cocoa"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Fruit",
+     "lychee"
+    ],
+    "y": [
+     "Name",
+     "Ilse"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Name",
+     "Cato"
+    ],
+    "y": [
+     "Job",
+     "architect"
+    ],
+    "phrase": 0
+   }
+  ],
+  "solution": {
+   "1": {
+    "Name": "Arlo",
+    "Pet": "canary",
+    "Drink": "soda",
+    "Job": "baker",
+    "Hobby": "sailing",
+    "Fruit": "papaya",
+    "Instrument": "harp",
+    "Sport": "handball",
+    "Vehicle": "sedan"
+   },
+   "2": {
+    "Name": "Fenna",
+    "Pet": "hamster",
+    "Drink": "water",
+    "Job": "potter",
+    "Hobby": "chess",
+    "Fruit": "guava",
+    "Instrument": "banjo",
+    "Sport": "curling",
+    "Vehicle": "tram"
+   },
+   "3": {
+    "Name": "Elio",
+    "Pet": "parrot",
+    "Drink": "matcha",
+    "Job": "chemist",
+    "Hobby": "origami",
+    "Fruit": "quince",
+    "Instrument": "viola",
+    "Sport": "hockey",
+    "Vehicle": "scooter"
+   },
+   "4": {
+    "Name": "Hollis",
+    "Pet": "whippet",
+    "Drink": "coffee",
+    "Job": "pilot",
+    "Hobby": "fencing",
+    "Fruit": "banana",
+    "Instrument": "trumpet",
+    "Sport": "badminton",
+    "Vehicle": "van"
+   },
+   "5": {
+    "Name": "Bryn",
+    "Pet": "ferret",
+    "Drink": "lemonade",
+    "Job": "welder",
+    "Hobby": "pottery",
+    "Fruit": "fig",
+    "Instrument": "cello",
+    "Sport": "golf",
+    "Vehicle": "kayak"
+   },
+   "6": {
+    "Name": "Cato",
+    "Pet": "tortoise",
+    "Drink": "cocoa",
+    "Job": "florist",
+    "Hobby": "climbing",
+    "Fruit": "lychee",
+    "Instrument": "drums",
+    "Sport": "judo",
+    "Vehicle": "bicycle"
+   },
+   "7": {
+    "Name": "Ilse",
+    "Pet": "gecko",
+    "Drink": "milk",
+    "Job": "architect",
+    "Hobby": "rowing",
+    "Fruit": "mango",
+    "Instrument": "flute",
+    "Sport": "polo",
+    "Vehicle": "tandem"
+   },
+   "8": {
+    "Name": "Joren",
+    "Pet": "axolotl",
+    "Drink": "oolong",
+    "Job": "courier",
+    "Hobby": "knitting",
+    "Fruit": "kiwi",
+    "Instrument": "oboe",
+    "Sport": "squash",
+    "Vehicle": "canoe"
+   },
+   "9": {
+    "Name": "Dara",
+    "Pet": "terrier",
+    "Drink": "kefir",
+    "Job": "nurse",
+    "Hobby": "birding",
+    "Fruit": "apricot",
+    "Instrument": "lute",
+    "Sport": "cricket",
+    "Vehicle": "moped"
+   }
+  }
+ },
+ "L6-05": {
+  "n": 9,
+  "attributes": [
+   [
+    "Name",
+    [
+     "Arlo",
+     "Bryn",
+     "Cato",
+     "Dara",
+     "Elio",
+     "Fenna",
+     "Hollis",
+     "Ilse",
+     "Joren"
+    ]
+   ],
+   [
+    "Color",
+    [
+     "cobalt",
+     "coral",
+     "ivory",
+     "jade",
+     "lilac",
+     "maroon",
+     "ochre",
+     "slate",
+     "teal"
+    ]
+   ],
+   [
+    "Pet",
+    [
+     "axolotl",
+     "canary",
+     "ferret",
+     "gecko",
+     "hamster",
+     "rabbit",
+     "terrier",
+     "tortoise",
+     "whippet"
+    ]
+   ],
+   [
+    "Drink",
+    [
+     "cider",
+     "cocoa",
+     "coffee",
+     "kefir",
+     "lemonade",
+     "matcha",
+     "milk",
+     "soda",
+     "water"
+    ]
+   ],
+   [
+    "Job",
+    [
+     "architect",
+     "chemist",
+     "courier",
+     "florist",
+     "librarian",
+     "nurse",
+     "pilot",
+     "potter",
+     "welder"
+    ]
+   ],
+   [
+    "Hobby",
+    [
+     "archery",
+     "chess",
+     "climbing",
+     "fencing",
+     "knitting",
+     "origami",
+     "pottery",
+     "rowing",
+     "sailing"
+    ]
+   ],
+   [
+    "Fruit",
+    [
+     "apricot",
+     "banana",
+     "cherry",
+     "fig",
+     "kiwi",
+     "lychee",
+     "mango",
+     "papaya",
+     "quince"
+    ]
+   ],
+   [
+    "Instrument",
+    [
+     "banjo",
+     "cello",
+     "clarinet",
+     "drums",
+     "flute",
+     "harp",
+     "oboe",
+     "trumpet",
+     "viola"
+    ]
+   ],
+   [
+    "Sport",
+    [
+     "badminton",
+     "cricket",
+     "curling",
+     "golf",
+     "handball",
+     "hockey",
+     "judo",
+     "polo",
+     "squash"
+    ]
+   ]
+  ],
+  "clues": [
+   {
+    "kind": "not_same",
+    "x": [
+     "Pet",
+     "hamster"
+    ],
+    "y": [
+     "Color",
+     "jade"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Fruit",
+     "kiwi"
+    ],
+    "y": [
+     "Instrument",
+     "oboe"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Hobby",
+     "origami"
+    ],
+    "y": [
+     "Job",
+     "chemist"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Job",
+     "pilot"
+    ],
+    "y": [
+     "Name",
+     "Joren"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Hobby",
+     "rowing"
+    ],
+    "y": [
+     "Instrument",
+     "viola"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Fruit",
+     "quince"
+    ],
+    "y": [
+     "Job",
+     "architect"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "judo"
+    ],
+    "y": [
+     "Fruit",
+     "lychee"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Pet",
+     "terrier"
+    ],
+    "y": [
+     "Hobby",
+     "climbing"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Hobby",
+     "origami"
+    ],
+    "y": [
+     "Name",
+     "Arlo"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Name",
+     "Cato"
+    ],
+    "y": [
+     "Color",
+     "coral"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Color",
+     "ivory"
+    ],
+    "y": [
+     "Fruit",
+     "apricot"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Sport",
+     "cricket"
+    ],
+    "y": [
+     "Fruit",
+     "kiwi"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Fruit",
+     "mango"
+    ],
+    "y": [
+     "Name",
+     "Ilse"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Drink",
+     "cider"
+    ],
+    "y": [
+     "Fruit",
+     "mango"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "polo"
+    ],
+    "y": [
+     "Instrument",
+     "cello"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Name",
+     "Joren"
+    ],
+    "y": [
+     "Instrument",
+     "flute"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Pet",
+     "terrier"
+    ],
+    "y": [
+     "Fruit",
+     "quince"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Drink",
+     "cocoa"
+    ],
+    "y": [
+     "Hobby",
+     "pottery"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Drink",
+     "coffee"
+    ],
+    "house": 8,
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Drink",
+     "matcha"
+    ],
+    "y": [
+     "Hobby",
+     "chess"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Instrument",
+     "viola"
+    ],
+    "y": [
+     "Drink",
+     "soda"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Color",
+     "lilac"
+    ],
+    "y": [
+     "Instrument",
+     "banjo"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Job",
+     "courier"
+    ],
+    "y": [
+     "Name",
+     "Hollis"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Fruit",
+     "lychee"
+    ],
+    "y": [
+     "Drink",
+     "cider"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Name",
+     "Arlo"
+    ],
+    "y": [
+     "Pet",
+     "whippet"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Drink",
+     "lemonade"
+    ],
+    "house": 0,
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Fruit",
+     "mango"
+    ],
+    "y": [
+     "Instrument",
+     "drums"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Drink",
+     "kefir"
+    ],
+    "y": [
+     "Fruit",
+     "banana"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Instrument",
+     "trumpet"
+    ],
+    "y": [
+     "Job",
+     "librarian"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Fruit",
+     "apricot"
+    ],
+    "y": [
+     "Pet",
+     "axolotl"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Name",
+     "Elio"
+    ],
+    "y": [
+     "Fruit",
+     "kiwi"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Sport",
+     "curling"
+    ],
+    "y": [
+     "Pet",
+     "hamster"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Drink",
+     "water"
+    ],
+    "y": [
+     "Name",
+     "Elio"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Job",
+     "nurse"
+    ],
+    "y": [
+     "Pet",
+     "terrier"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Color",
+     "slate"
+    ],
+    "y": [
+     "Instrument",
+     "flute"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Sport",
+     "badminton"
+    ],
+    "y": [
+     "Hobby",
+     "fencing"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "pottery"
+    ],
+    "y": [
+     "Pet",
+     "hamster"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Sport",
+     "cricket"
+    ],
+    "y": [
+     "Pet",
+     "rabbit"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Job",
+     "potter"
+    ],
+    "y": [
+     "Fruit",
+     "fig"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Name",
+     "Bryn"
+    ],
+    "y": [
+     "Job",
+     "florist"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Name",
+     "Arlo"
+    ],
+    "y": [
+     "Color",
+     "maroon"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Job",
+     "potter"
+    ],
+    "y": [
+     "Hobby",
+     "archery"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Name",
+     "Arlo"
+    ],
+    "y": [
+     "Color",
+     "ochre"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Pet",
+     "tortoise"
+    ],
+    "house": 1,
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Job",
+     "courier"
+    ],
+    "y": [
+     "Name",
+     "Arlo"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Name",
+     "Dara"
+    ],
+    "y": [
+     "Pet",
+     "hamster"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Instrument",
+     "viola"
+    ],
+    "y": [
+     "Name",
+     "Arlo"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Sport",
+     "handball"
+    ],
+    "y": [
+     "Name",
+     "Arlo"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Pet",
+     "hamster"
+    ],
+    "y": [
+     "Sport",
+     "polo"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Name",
+     "Arlo"
+    ],
+    "y": [
+     "Hobby",
+     "fencing"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Job",
+     "architect"
+    ],
+    "house": 4,
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "fencing"
+    ],
+    "y": [
+     "Job",
+     "welder"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Job",
+     "nurse"
+    ],
+    "y": [
+     "Fruit",
+     "cherry"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Instrument",
+     "harp"
+    ],
+    "y": [
+     "Sport",
+     "squash"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Job",
+     "potter"
+    ],
+    "y": [
+     "Pet",
+     "rabbit"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Fruit",
+     "banana"
+    ],
+    "y": [
+     "Color",
+     "coral"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Job",
+     "architect"
+    ],
+    "y": [
+     "Color",
+     "ochre"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Hobby",
+     "knitting"
+    ],
+    "y": [
+     "Job",
+     "architect"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Job",
+     "welder"
+    ],
+    "y": [
+     "Color",
+     "teal"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Pet",
+     "canary"
+    ],
+    "y": [
+     "Color",
+     "slate"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "hockey"
+    ],
+    "y": [
+     "Pet",
+     "gecko"
+    ],
+    "phrase": 1
+   }
+  ],
+  "solution": {
+   "1": {
+    "Name": "Fenna",
+    "Color": "lilac",
+    "Pet": "ferret",
+    "Drink": "lemonade",
+    "Job": "nurse",
+    "Hobby": "sailing",
+    "Fruit": "cherry",
+    "Instrument": "clarinet",
+    "Sport": "badminton"
+   },
+   "2": {
+    "Name": "Cato",
+    "Color": "coral",
+    "Pet": "tortoise",
+    "Drink": "cider",
+    "Job": "pilot",
+    "Hobby": "chess",
+    "Fruit": "lychee",
+    "Instrument": "banjo",
+    "Sport": "judo"
+   },
+   "3": {
+    "Name": "Hollis",
+    "Color": "ochre",
+    "Pet": "terrier",
+    "Drink": "matcha",
+    "Job": "welder",
+    "Hobby": "fencing",
+    "Fruit": "banana",
+    "Instrument": "drums",
+    "Sport": "handball"
+   },
+   "4": {
+    "Name": "Ilse",
+    "Color": "teal",
+    "Pet": "gecko",
+    "Drink": "kefir",
+    "Job": "courier",
+    "Hobby": "rowing",
+    "Fruit": "mango",
+    "Instrument": "harp",
+    "Sport": "hockey"
+   },
+   "5": {
+    "Name": "Arlo",
+    "Color": "maroon",
+    "Pet": "canary",
+    "Drink": "soda",
+    "Job": "architect",
+    "Hobby": "climbing",
+    "Fruit": "papaya",
+    "Instrument": "viola",
+    "Sport": "squash"
+   },
+   "6": {
+    "Name": "Dara",
+    "Color": "slate",
+    "Pet": "axolotl",
+    "Drink": "cocoa",
+    "Job": "librarian",
+    "Hobby": "origami",
+    "Fruit": "apricot",
+    "Instrument": "trumpet",
+    "Sport": "curling"
+   },
+   "7": {
+    "Name": "Bryn",
+    "Color": "ivory",
+    "Pet": "whippet",
+    "Drink": "water",
+    "Job": "chemist",
+    "Hobby": "knitting",
+    "Fruit": "quince",
+    "Instrument": "flute",
+    "Sport": "cricket"
+   },
+   "8": {
+    "Name": "Elio",
+    "Color": "cobalt",
+    "Pet": "hamster",
+    "Drink": "milk",
+    "Job": "potter",
+    "Hobby": "pottery",
+    "Fruit": "kiwi",
+    "Instrument": "oboe",
+    "Sport": "golf"
+   },
+   "9": {
+    "Name": "Joren",
+    "Color": "jade",
+    "Pet": "rabbit",
+    "Drink": "coffee",
+    "Job": "florist",
+    "Hobby": "archery",
+    "Fruit": "fig",
+    "Instrument": "cello",
+    "Sport": "polo"
+   }
+  }
+ },
+ "L6-06": {
+  "n": 9,
+  "attributes": [
+   [
+    "Name",
+    [
+     "Arlo",
+     "Bryn",
+     "Dara",
+     "Elio",
+     "Fenna",
+     "Galen",
+     "Hollis",
+     "Ilse",
+     "Joren"
+    ]
+   ],
+   [
+    "Pet",
+    [
+     "axolotl",
+     "canary",
+     "ferret",
+     "gecko",
+     "parrot",
+     "rabbit",
+     "terrier",
+     "tortoise",
+     "whippet"
+    ]
+   ],
+   [
+    "Drink",
+    [
+     "cocoa",
+     "coffee",
+     "kefir",
+     "lemonade",
+     "matcha",
+     "milk",
+     "oolong",
+     "soda",
+     "water"
+    ]
+   ],
+   [
+    "Job",
+    [
+     "architect",
+     "baker",
+     "chemist",
+     "courier",
+     "librarian",
+     "nurse",
+     "pilot",
+     "potter",
+     "welder"
+    ]
+   ],
+   [
+    "Hobby",
+    [
+     "archery",
+     "birding",
+     "chess",
+     "climbing",
+     "fencing",
+     "knitting",
+     "pottery",
+     "rowing",
+     "sailing"
+    ]
+   ],
+   [
+    "Fruit",
+    [
+     "apricot",
+     "banana",
+     "cherry",
+     "fig",
+     "guava",
+     "kiwi",
+     "mango",
+     "papaya",
+     "quince"
+    ]
+   ],
+   [
+    "Instrument",
+    [
+     "banjo",
+     "cello",
+     "clarinet",
+     "drums",
+     "flute",
+     "lute",
+     "oboe",
+     "trumpet",
+     "viola"
+    ]
+   ],
+   [
+    "Sport",
+    [
+     "badminton",
+     "cricket",
+     "curling",
+     "golf",
+     "handball",
+     "hockey",
+     "polo",
+     "rugby",
+     "squash"
+    ]
+   ],
+   [
+    "Vehicle",
+    [
+     "bicycle",
+     "canoe",
+     "glider",
+     "kayak",
+     "moped",
+     "scooter",
+     "tandem",
+     "tram",
+     "van"
+    ]
+   ]
+  ],
+  "clues": [
+   {
+    "kind": "at",
+    "x": [
+     "Name",
+     "Hollis"
+    ],
+    "house": 3,
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Sport",
+     "badminton"
+    ],
+    "y": [
+     "Hobby",
+     "pottery"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Name",
+     "Ilse"
+    ],
+    "y": [
+     "Vehicle",
+     "glider"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Instrument",
+     "trumpet"
+    ],
+    "house": 3,
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Pet",
+     "tortoise"
+    ],
+    "y": [
+     "Instrument",
+     "cello"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Name",
+     "Arlo"
+    ],
+    "y": [
+     "Pet",
+     "terrier"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Sport",
+     "hockey"
+    ],
+    "y": [
+     "Job",
+     "librarian"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Fruit",
+     "quince"
+    ],
+    "house": 1,
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Job",
+     "architect"
+    ],
+    "y": [
+     "Fruit",
+     "papaya"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Vehicle",
+     "canoe"
+    ],
+    "y": [
+     "Pet",
+     "terrier"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "sailing"
+    ],
+    "y": [
+     "Name",
+     "Arlo"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Fruit",
+     "banana"
+    ],
+    "y": [
+     "Drink",
+     "kefir"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Fruit",
+     "fig"
+    ],
+    "y": [
+     "Job",
+     "pilot"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "fencing"
+    ],
+    "y": [
+     "Drink",
+     "cocoa"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Pet",
+     "parrot"
+    ],
+    "y": [
+     "Job",
+     "architect"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "cricket"
+    ],
+    "y": [
+     "Pet",
+     "gecko"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Job",
+     "welder"
+    ],
+    "y": [
+     "Drink",
+     "soda"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Job",
+     "potter"
+    ],
+    "y": [
+     "Fruit",
+     "mango"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Fruit",
+     "fig"
+    ],
+    "y": [
+     "Sport",
+     "handball"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "handball"
+    ],
+    "y": [
+     "Name",
+     "Hollis"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Job",
+     "baker"
+    ],
+    "y": [
+     "Instrument",
+     "viola"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Sport",
+     "rugby"
+    ],
+    "y": [
+     "Hobby",
+     "birding"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Drink",
+     "soda"
+    ],
+    "y": [
+     "Pet",
+     "whippet"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Fruit",
+     "apricot"
+    ],
+    "y": [
+     "Sport",
+     "squash"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Vehicle",
+     "moped"
+    ],
+    "y": [
+     "Sport",
+     "squash"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Hobby",
+     "knitting"
+    ],
+    "y": [
+     "Sport",
+     "cricket"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Name",
+     "Joren"
+    ],
+    "y": [
+     "Drink",
+     "soda"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Drink",
+     "soda"
+    ],
+    "y": [
+     "Name",
+     "Ilse"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Sport",
+     "polo"
+    ],
+    "y": [
+     "Vehicle",
+     "van"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Vehicle",
+     "glider"
+    ],
+    "y": [
+     "Instrument",
+     "banjo"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "archery"
+    ],
+    "y": [
+     "Name",
+     "Dara"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Pet",
+     "gecko"
+    ],
+    "y": [
+     "Name",
+     "Elio"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "handball"
+    ],
+    "y": [
+     "Vehicle",
+     "tram"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Hobby",
+     "knitting"
+    ],
+    "y": [
+     "Pet",
+     "canary"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Pet",
+     "axolotl"
+    ],
+    "y": [
+     "Vehicle",
+     "glider"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Name",
+     "Galen"
+    ],
+    "y": [
+     "Vehicle",
+     "scooter"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Instrument",
+     "flute"
+    ],
+    "y": [
+     "Pet",
+     "tortoise"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Instrument",
+     "lute"
+    ],
+    "y": [
+     "Drink",
+     "kefir"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Drink",
+     "oolong"
+    ],
+    "y": [
+     "Sport",
+     "squash"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Instrument",
+     "oboe"
+    ],
+    "y": [
+     "Pet",
+     "parrot"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Drink",
+     "water"
+    ],
+    "y": [
+     "Instrument",
+     "lute"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Drink",
+     "kefir"
+    ],
+    "y": [
+     "Name",
+     "Fenna"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Hobby",
+     "chess"
+    ],
+    "y": [
+     "Instrument",
+     "banjo"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "cricket"
+    ],
+    "y": [
+     "Job",
+     "chemist"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Vehicle",
+     "canoe"
+    ],
+    "house": 4,
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Fruit",
+     "mango"
+    ],
+    "y": [
+     "Drink",
+     "milk"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Hobby",
+     "fencing"
+    ],
+    "y": [
+     "Sport",
+     "badminton"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Vehicle",
+     "tandem"
+    ],
+    "y": [
+     "Fruit",
+     "apricot"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Instrument",
+     "drums"
+    ],
+    "y": [
+     "Fruit",
+     "mango"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "not_at",
+    "x": [
+     "Sport",
+     "hockey"
+    ],
+    "house": 2,
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Drink",
+     "coffee"
+    ],
+    "y": [
+     "Name",
+     "Ilse"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Pet",
+     "rabbit"
+    ],
+    "y": [
+     "Name",
+     "Arlo"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Name",
+     "Bryn"
+    ],
+    "y": [
+     "Fruit",
+     "papaya"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Vehicle",
+     "bicycle"
+    ],
+    "y": [
+     "Sport",
+     "curling"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Hobby",
+     "rowing"
+    ],
+    "y": [
+     "Fruit",
+     "cherry"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Vehicle",
+     "scooter"
+    ],
+    "y": [
+     "Fruit",
+     "guava"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Job",
+     "nurse"
+    ],
+    "y": [
+     "Instrument",
+     "cello"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Fruit",
+     "quince"
+    ],
+    "y": [
+     "Drink",
+     "matcha"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Name",
+     "Bryn"
+    ],
+    "y": [
+     "Hobby",
+     "pottery"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Vehicle",
+     "tandem"
+    ],
+    "y": [
+     "Instrument",
+     "cello"
+    ],
+    "phrase": 1
+   }
+  ],
+  "solution": {
+   "1": {
+    "Name": "Galen",
+    "Pet": "gecko",
+    "Drink": "cocoa",
+    "Job": "chemist",
+    "Hobby": "fencing",
+    "Fruit": "papaya",
+    "Instrument": "clarinet",
+    "Sport": "cricket",
+    "Vehicle": "moped"
+   },
+   "2": {
+    "Name": "Elio",
+    "Pet": "ferret",
+    "Drink": "lemonade",
+    "Job": "architect",
+    "Hobby": "knitting",
+    "Fruit": "quince",
+    "Instrument": "viola",
+    "Sport": "badminton",
+    "Vehicle": "scooter"
+   },
+   "3": {
+    "Name": "Bryn",
+    "Pet": "parrot",
+    "Drink": "water",
+    "Job": "pilot",
+    "Hobby": "climbing",
+    "Fruit": "fig",
+    "Instrument": "oboe",
+    "Sport": "curling",
+    "Vehicle": "bicycle"
+   },
+   "4": {
+    "Name": "Hollis",
+    "Pet": "canary",
+    "Drink": "matcha",
+    "Job": "baker",
+    "Hobby": "pottery",
+    "Fruit": "guava",
+    "Instrument": "trumpet",
+    "Sport": "handball",
+    "Vehicle": "tram"
+   },
+   "5": {
+    "Name": "Arlo",
+    "Pet": "rabbit",
+    "Drink": "oolong",
+    "Job": "nurse",
+    "Hobby": "sailing",
+    "Fruit": "banana",
+    "Instrument": "lute",
+    "Sport": "squash",
+    "Vehicle": "canoe"
+   },
+   "6": {
+    "Name": "Ilse",
+    "Pet": "terrier",
+    "Drink": "kefir",
+    "Job": "welder",
+    "Hobby": "birding",
+    "Fruit": "kiwi",
+    "Instrument": "drums",
+    "Sport": "golf",
+    "Vehicle": "van"
+   },
+   "7": {
+    "Name": "Joren",
+    "Pet": "tortoise",
+    "Drink": "coffee",
+    "Job": "librarian",
+    "Hobby": "chess",
+    "Fruit": "apricot",
+    "Instrument": "flute",
+    "Sport": "polo",
+    "Vehicle": "tandem"
+   },
+   "8": {
+    "Name": "Fenna",
+    "Pet": "axolotl",
+    "Drink": "soda",
+    "Job": "potter",
+    "Hobby": "rowing",
+    "Fruit": "mango",
+    "Instrument": "cello",
+    "Sport": "rugby",
+    "Vehicle": "glider"
+   },
+   "9": {
+    "Name": "Dara",
+    "Pet": "whippet",
+    "Drink": "milk",
+    "Job": "courier",
+    "Hobby": "archery",
+    "Fruit": "cherry",
+    "Instrument": "banjo",
+    "Sport": "hockey",
+    "Vehicle": "kayak"
+   }
+  }
+ },
+ "L6-07": {
+  "n": 9,
+  "attributes": [
+   [
+    "Name",
+    [
+     "Arlo",
+     "Bryn",
+     "Cato",
+     "Dara",
+     "Elio",
+     "Fenna",
+     "Galen",
+     "Hollis",
+     "Joren"
+    ]
+   ],
+   [
+    "Color",
+    [
+     "amber",
+     "cobalt",
+     "coral",
+     "ivory",
+     "jade",
+     "maroon",
+     "ochre",
+     "slate",
+     "teal"
+    ]
+   ],
+   [
+    "Pet",
+    [
+     "axolotl",
+     "canary",
+     "gecko",
+     "hamster",
+     "parrot",
+     "rabbit",
+     "terrier",
+     "tortoise",
+     "whippet"
+    ]
+   ],
+   [
+    "Drink",
+    [
+     "cocoa",
+     "coffee",
+     "kefir",
+     "lemonade",
+     "matcha",
+     "milk",
+     "oolong",
+     "soda",
+     "water"
+    ]
+   ],
+   [
+    "Job",
+    [
+     "architect",
+     "baker",
+     "chemist",
+     "florist",
+     "librarian",
+     "nurse",
+     "pilot",
+     "potter",
+     "welder"
+    ]
+   ],
+   [
+    "Hobby",
+    [
+     "archery",
+     "birding",
+     "chess",
+     "climbing",
+     "knitting",
+     "origami",
+     "pottery",
+     "rowing",
+     "sailing"
+    ]
+   ],
+   [
+    "Fruit",
+    [
+     "apricot",
+     "banana",
+     "cherry",
+     "fig",
+     "kiwi",
+     "lychee",
+     "mango",
+     "papaya",
+     "quince"
+    ]
+   ],
+   [
+    "Instrument",
+    [
+     "banjo",
+     "cello",
+     "drums",
+     "flute",
+     "harp",
+     "lute",
+     "oboe",
+     "trumpet",
+     "viola"
+    ]
+   ],
+   [
+    "Sport",
+    [
+     "badminton",
+     "cricket",
+     "curling",
+     "golf",
+     "handball",
+     "hockey",
+     "judo",
+     "polo",
+     "squash"
+    ]
+   ]
+  ],
+  "clues": [
+   {
+    "kind": "directly_left",
+    "x": [
+     "Fruit",
+     "kiwi"
+    ],
+    "y": [
+     "Hobby",
+     "climbing"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Instrument",
+     "banjo"
+    ],
+    "y": [
+     "Drink",
+     "soda"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Pet",
+     "axolotl"
+    ],
+    "y": [
+     "Job",
+     "librarian"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Pet",
+     "whippet"
+    ],
+    "y": [
+     "Sport",
+     "golf"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Fruit",
+     "kiwi"
+    ],
+    "y": [
+     "Pet",
+     "tortoise"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Instrument",
+     "lute"
+    ],
+    "y": [
+     "Drink",
+     "milk"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "polo"
+    ],
+    "y": [
+     "Job",
+     "florist"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Instrument",
+     "lute"
+    ],
+    "y": [
+     "Job",
+     "chemist"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Color",
+     "ivory"
+    ],
+    "y": [
+     "Drink",
+     "cocoa"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Instrument",
+     "cello"
+    ],
+    "y": [
+     "Fruit",
+     "apricot"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Fruit",
+     "papaya"
+    ],
+    "y": [
+     "Sport",
+     "handball"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Pet",
+     "canary"
+    ],
+    "y": [
+     "Name",
+     "Arlo"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Hobby",
+     "knitting"
+    ],
+    "y": [
+     "Fruit",
+     "fig"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Pet",
+     "rabbit"
+    ],
+    "y": [
+     "Drink",
+     "matcha"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Name",
+     "Cato"
+    ],
+    "y": [
+     "Color",
+     "coral"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Job",
+     "potter"
+    ],
+    "y": [
+     "Sport",
+     "curling"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Drink",
+     "lemonade"
+    ],
+    "y": [
+     "Color",
+     "amber"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Instrument",
+     "drums"
+    ],
+    "y": [
+     "Drink",
+     "lemonade"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Instrument",
+     "lute"
+    ],
+    "y": [
+     "Name",
+     "Arlo"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Name",
+     "Hollis"
+    ],
+    "y": [
+     "Instrument",
+     "trumpet"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Instrument",
+     "viola"
+    ],
+    "y": [
+     "Name",
+     "Arlo"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Job",
+     "pilot"
+    ],
+    "y": [
+     "Instrument",
+     "drums"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Name",
+     "Hollis"
+    ],
+    "y": [
+     "Job",
+     "chemist"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Color",
+     "maroon"
+    ],
+    "y": [
+     "Job",
+     "nurse"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Instrument",
+     "harp"
+    ],
+    "y": [
+     "Sport",
+     "hockey"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Sport",
+     "squash"
+    ],
+    "y": [
+     "Job",
+     "baker"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Pet",
+     "parrot"
+    ],
+    "y": [
+     "Color",
+     "ivory"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Instrument",
+     "viola"
+    ],
+    "y": [
+     "Pet",
+     "hamster"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Name",
+     "Bryn"
+    ],
+    "y": [
+     "Drink",
+     "water"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Job",
+     "welder"
+    ],
+    "y": [
+     "Fruit",
+     "papaya"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Color",
+     "jade"
+    ],
+    "y": [
+     "Fruit",
+     "cherry"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Pet",
+     "whippet"
+    ],
+    "y": [
+     "Job",
+     "potter"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Hobby",
+     "origami"
+    ],
+    "y": [
+     "Pet",
+     "hamster"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Instrument",
+     "viola"
+    ],
+    "y": [
+     "Sport",
+     "hockey"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Job",
+     "pilot"
+    ],
+    "y": [
+     "Hobby",
+     "sailing"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Color",
+     "teal"
+    ],
+    "y": [
+     "Name",
+     "Cato"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Drink",
+     "kefir"
+    ],
+    "y": [
+     "Color",
+     "amber"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Sport",
+     "curling"
+    ],
+    "y": [
+     "Job",
+     "welder"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Color",
+     "slate"
+    ],
+    "y": [
+     "Hobby",
+     "rowing"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Sport",
+     "cricket"
+    ],
+    "y": [
+     "Fruit",
+     "fig"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "sailing"
+    ],
+    "y": [
+     "Fruit",
+     "mango"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Instrument",
+     "flute"
+    ],
+    "y": [
+     "Pet",
+     "rabbit"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Name",
+     "Joren"
+    ],
+    "y": [
+     "Fruit",
+     "banana"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "squash"
+    ],
+    "y": [
+     "Name",
+     "Fenna"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Job",
+     "potter"
+    ],
+    "y": [
+     "Hobby",
+     "archery"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Name",
+     "Cato"
+    ],
+    "y": [
+     "Hobby",
+     "pottery"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Drink",
+     "oolong"
+    ],
+    "y": [
+     "Job",
+     "baker"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Job",
+     "librarian"
+    ],
+    "y": [
+     "Name",
+     "Cato"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "not_at",
+    "x": [
+     "Pet",
+     "rabbit"
+    ],
+    "house": 7,
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Job",
+     "chemist"
+    ],
+    "y": [
+     "Hobby",
+     "birding"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Color",
+     "slate"
+    ],
+    "y": [
+     "Job",
+     "librarian"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Fruit",
+     "mango"
+    ],
+    "y": [
+     "Hobby",
+     "chess"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Sport",
+     "badminton"
+    ],
+    "y": [
+     "Drink",
+     "kefir"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Name",
+     "Fenna"
+    ],
+    "y": [
+     "Color",
+     "cobalt"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Fruit",
+     "apricot"
+    ],
+    "y": [
+     "Job",
+     "architect"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Fruit",
+     "lychee"
+    ],
+    "y": [
+     "Drink",
+     "lemonade"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "not_at",
+    "x": [
+     "Fruit",
+     "fig"
+    ],
+    "house": 5,
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Name",
+     "Galen"
+    ],
+    "y": [
+     "Pet",
+     "tortoise"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Color",
+     "ivory"
+    ],
+    "y": [
+     "Name",
+     "Elio"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Drink",
+     "cocoa"
+    ],
+    "y": [
+     "Pet",
+     "terrier"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Hobby",
+     "archery"
+    ],
+    "y": [
+     "Color",
+     "cobalt"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Sport",
+     "cricket"
+    ],
+    "y": [
+     "Name",
+     "Dara"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Color",
+     "jade"
+    ],
+    "y": [
+     "Pet",
+     "tortoise"
+    ],
+    "phrase": 1
+   }
+  ],
+  "solution": {
+   "1": {
+    "Name": "Bryn",
+    "Color": "teal",
+    "Pet": "parrot",
+    "Drink": "lemonade",
+    "Job": "florist",
+    "Hobby": "origami",
+    "Fruit": "lychee",
+    "Instrument": "viola",
+    "Sport": "polo"
+   },
+   "2": {
+    "Name": "Fenna",
+    "Color": "jade",
+    "Pet": "hamster",
+    "Drink": "oolong",
+    "Job": "pilot",
+    "Hobby": "rowing",
+    "Fruit": "cherry",
+    "Instrument": "drums",
+    "Sport": "squash"
+   },
+   "3": {
+    "Name": "Elio",
+    "Color": "slate",
+    "Pet": "axolotl",
+    "Drink": "water",
+    "Job": "baker",
+    "Hobby": "sailing",
+    "Fruit": "mango",
+    "Instrument": "harp",
+    "Sport": "hockey"
+   },
+   "4": {
+    "Name": "Joren",
+    "Color": "cobalt",
+    "Pet": "canary",
+    "Drink": "coffee",
+    "Job": "librarian",
+    "Hobby": "chess",
+    "Fruit": "banana",
+    "Instrument": "flute",
+    "Sport": "badminton"
+   },
+   "5": {
+    "Name": "Cato",
+    "Color": "ivory",
+    "Pet": "whippet",
+    "Drink": "kefir",
+    "Job": "potter",
+    "Hobby": "pottery",
+    "Fruit": "kiwi",
+    "Instrument": "lute",
+    "Sport": "golf"
+   },
+   "6": {
+    "Name": "Arlo",
+    "Color": "amber",
+    "Pet": "rabbit",
+    "Drink": "cocoa",
+    "Job": "architect",
+    "Hobby": "climbing",
+    "Fruit": "apricot",
+    "Instrument": "oboe",
+    "Sport": "curling"
+   },
+   "7": {
+    "Name": "Galen",
+    "Color": "coral",
+    "Pet": "terrier",
+    "Drink": "milk",
+    "Job": "welder",
+    "Hobby": "knitting",
+    "Fruit": "papaya",
+    "Instrument": "cello",
+    "Sport": "handball"
+   },
+   "8": {
+    "Name": "Hollis",
+    "Color": "maroon",
+    "Pet": "tortoise",
+    "Drink": "soda",
+    "Job": "chemist",
+    "Hobby": "birding",
+    "Fruit": "quince",
+    "Instrument": "banjo",
+    "Sport": "cricket"
+   },
+   "9": {
+    "Name": "Dara",
+    "Color": "ochre",
+    "Pet": "gecko",
+    "Drink": "matcha",
+    "Job": "nurse",
+    "Hobby": "archery",
+    "Fruit": "fig",
+    "Instrument": "trumpet",
+    "Sport": "judo"
+   }
+  }
+ },
+ "L6-08": {
+  "n": 9,
+  "attributes": [
+   [
+    "Name",
+    [
+     "Arlo",
+     "Bryn",
+     "Cato",
+     "Dara",
+     "Elio",
+     "Fenna",
+     "Galen",
+     "Ilse",
+     "Joren"
+    ]
+   ],
+   [
+    "Color",
+    [
+     "amber",
+     "cobalt",
+     "coral",
+     "ivory",
+     "jade",
+     "lilac",
+     "maroon",
+     "slate",
+     "teal"
+    ]
+   ],
+   [
+    "Pet",
+    [
+     "axolotl",
+     "canary",
+     "ferret",
+     "gecko",
+     "hamster",
+     "parrot",
+     "rabbit",
+     "terrier",
+     "whippet"
+    ]
+   ],
+   [
+    "Job",
+    [
+     "architect",
+     "baker",
+     "chemist",
+     "courier",
+     "florist",
+     "librarian",
+     "pilot",
+     "potter",
+     "welder"
+    ]
+   ],
+   [
+    "Hobby",
+    [
+     "birding",
+     "chess",
+     "climbing",
+     "fencing",
+     "knitting",
+     "origami",
+     "pottery",
+     "rowing",
+     "sailing"
+    ]
+   ],
+   [
+    "Fruit",
+    [
+     "apricot",
+     "banana",
+     "cherry",
+     "fig",
+     "guava",
+     "kiwi",
+     "mango",
+     "papaya",
+     "quince"
+    ]
+   ],
+   [
+    "Instrument",
+    [
+     "banjo",
+     "cello",
+     "clarinet",
+     "drums",
+     "flute",
+     "harp",
+     "lute",
+     "oboe",
+     "trumpet"
+    ]
+   ],
+   [
+    "Sport",
+    [
+     "badminton",
+     "cricket",
+     "golf",
+     "handball",
+     "hockey",
+     "judo",
+     "polo",
+     "rugby",
+     "squash"
+    ]
+   ],
+   [
+    "Vehicle",
+    [
+     "bicycle",
+     "glider",
+     "kayak",
+     "moped",
+     "scooter",
+     "sedan",
+     "tandem",
+     "tram",
+     "van"
+    ]
+   ]
+  ],
+  "clues": [
+   {
+    "kind": "at",
+    "x": [
+     "Name",
+     "Bryn"
+    ],
+    "house": 4,
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Fruit",
+     "fig"
+    ],
+    "y": [
+     "Hobby",
+     "sailing"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Fruit",
+     "banana"
+    ],
+    "y": [
+     "Sport",
+     "squash"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Hobby",
+     "origami"
+    ],
+    "y": [
+     "Color",
+     "cobalt"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Name",
+     "Arlo"
+    ],
+    "y": [
+     "Instrument",
+     "clarinet"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Sport",
+     "hockey"
+    ],
+    "y": [
+     "Job",
+     "courier"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Vehicle",
+     "kayak"
+    ],
+    "y": [
+     "Name",
+     "Ilse"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Sport",
+     "squash"
+    ],
+    "y": [
+     "Fruit",
+     "kiwi"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Vehicle",
+     "moped"
+    ],
+    "y": [
+     "Name",
+     "Elio"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Pet",
+     "ferret"
+    ],
+    "y": [
+     "Sport",
+     "judo"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Instrument",
+     "cello"
+    ],
+    "y": [
+     "Pet",
+     "whippet"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Color",
+     "cobalt"
+    ],
+    "y": [
+     "Pet",
+     "terrier"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Name",
+     "Bryn"
+    ],
+    "y": [
+     "Instrument",
+     "banjo"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Job",
+     "potter"
+    ],
+    "y": [
+     "Color",
+     "jade"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Color",
+     "maroon"
+    ],
+    "house": 5,
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Pet",
+     "ferret"
+    ],
+    "y": [
+     "Hobby",
+     "pottery"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Sport",
+     "cricket"
+    ],
+    "y": [
+     "Name",
+     "Dara"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Name",
+     "Arlo"
+    ],
+    "y": [
+     "Vehicle",
+     "bicycle"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Vehicle",
+     "moped"
+    ],
+    "y": [
+     "Sport",
+     "handball"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Fruit",
+     "fig"
+    ],
+    "y": [
+     "Pet",
+     "terrier"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Job",
+     "librarian"
+    ],
+    "y": [
+     "Hobby",
+     "sailing"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Job",
+     "pilot"
+    ],
+    "house": 8,
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Job",
+     "welder"
+    ],
+    "y": [
+     "Vehicle",
+     "kayak"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Fruit",
+     "papaya"
+    ],
+    "y": [
+     "Hobby",
+     "rowing"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Fruit",
+     "guava"
+    ],
+    "y": [
+     "Job",
+     "chemist"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Fruit",
+     "mango"
+    ],
+    "y": [
+     "Vehicle",
+     "tandem"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "birding"
+    ],
+    "y": [
+     "Instrument",
+     "clarinet"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Pet",
+     "rabbit"
+    ],
+    "y": [
+     "Color",
+     "ivory"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Color",
+     "lilac"
+    ],
+    "y": [
+     "Job",
+     "baker"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Pet",
+     "axolotl"
+    ],
+    "y": [
+     "Name",
+     "Fenna"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Pet",
+     "canary"
+    ],
+    "y": [
+     "Sport",
+     "golf"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Instrument",
+     "drums"
+    ],
+    "y": [
+     "Fruit",
+     "apricot"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Job",
+     "chemist"
+    ],
+    "y": [
+     "Vehicle",
+     "kayak"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Sport",
+     "rugby"
+    ],
+    "y": [
+     "Pet",
+     "whippet"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Instrument",
+     "lute"
+    ],
+    "y": [
+     "Pet",
+     "rabbit"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Fruit",
+     "quince"
+    ],
+    "y": [
+     "Job",
+     "architect"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Hobby",
+     "chess"
+    ],
+    "y": [
+     "Color",
+     "coral"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Fruit",
+     "cherry"
+    ],
+    "y": [
+     "Pet",
+     "whippet"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Hobby",
+     "sailing"
+    ],
+    "y": [
+     "Instrument",
+     "drums"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Vehicle",
+     "glider"
+    ],
+    "y": [
+     "Instrument",
+     "harp"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Vehicle",
+     "sedan"
+    ],
+    "y": [
+     "Sport",
+     "hockey"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Color",
+     "amber"
+    ],
+    "y": [
+     "Job",
+     "florist"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Name",
+     "Ilse"
+    ],
+    "y": [
+     "Fruit",
+     "cherry"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Name",
+     "Galen"
+    ],
+    "y": [
+     "Sport",
+     "rugby"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Color",
+     "slate"
+    ],
+    "y": [
+     "Job",
+     "courier"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Name",
+     "Fenna"
+    ],
+    "y": [
+     "Job",
+     "chemist"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Hobby",
+     "climbing"
+    ],
+    "y": [
+     "Pet",
+     "terrier"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Name",
+     "Fenna"
+    ],
+    "y": [
+     "Instrument",
+     "flute"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Color",
+     "amber"
+    ],
+    "y": [
+     "Hobby",
+     "knitting"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Name",
+     "Arlo"
+    ],
+    "y": [
+     "Color",
+     "amber"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Vehicle",
+     "tram"
+    ],
+    "y": [
+     "Sport",
+     "golf"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Hobby",
+     "knitting"
+    ],
+    "y": [
+     "Pet",
+     "parrot"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Color",
+     "lilac"
+    ],
+    "y": [
+     "Job",
+     "baker"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "left",
+    "x": [
+     "Name",
+     "Elio"
+    ],
+    "y": [
+     "Instrument",
+     "oboe"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Color",
+     "ivory"
+    ],
+    "y": [
+     "Vehicle",
+     "scooter"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "not_same",
+    "x": [
+     "Pet",
+     "axolotl"
+    ],
+    "y": [
+     "Sport",
+     "judo"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "same",
+    "x": [
+     "Name",
+     "Joren"
+    ],
+    "y": [
+     "Instrument",
+     "harp"
+    ],
+    "phrase": 1
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Color",
+     "teal"
+    ],
+    "y": [
+     "Name",
+     "Joren"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "next_to",
+    "x": [
+     "Job",
+     "librarian"
+    ],
+    "y": [
+     "Instrument",
+     "harp"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "at",
+    "x": [
+     "Job",
+     "florist"
+    ],
+    "house": 6,
+    "phrase": 0
+   },
+   {
+    "kind": "directly_left",
+    "x": [
+     "Job",
+     "florist"
+    ],
+    "y": [
+     "Fruit",
+     "apricot"
+    ],
+    "phrase": 0
+   },
+   {
+    "kind": "one_between",
+    "x": [
+     "Sport",
+     "polo"
+    ],
+    "y": [
+     "Pet",
+     "hamster"
+    ],
+    "phrase": 0
+   }
+  ],
+  "solution": {
+   "1": {
+    "Name": "Elio",
+    "Color": "teal",
+    "Pet": "ferret",
+    "Job": "potter",
+    "Hobby": "pottery",
+    "Fruit": "quince",
+    "Instrument": "trumpet",
+    "Sport": "badminton",
+    "Vehicle": "glider"
+   },
+   "2": {
+    "Name": "Joren",
+    "Color": "ivory",
+    "Pet": "canary",
+    "Job": "architect",
+    "Hobby": "fencing",
+    "Fruit": "kiwi",
+    "Instrument": "harp",
+    "Sport": "judo",
+    "Vehicle": "scooter"
+   },
+   "3": {
+    "Name": "Fenna",
+    "Color": "lilac",
+    "Pet": "axolotl",
+    "Job": "librarian",
+    "Hobby": "origami",
+    "Fruit": "banana",
+    "Instrument": "lute",
+    "Sport": "squash",
+    "Vehicle": "moped"
+   },
+   "4": {
+    "Name": "Dara",
+    "Color": "cobalt",
+    "Pet": "rabbit",
+    "Job": "welder",
+    "Hobby": "sailing",
+    "Fruit": "fig",
+    "Instrument": "flute",
+    "Sport": "handball",
+    "Vehicle": "kayak"
+   },
+   "5": {
+    "Name": "Bryn",
+    "Color": "jade",
+    "Pet": "terrier",
+    "Job": "baker",
+    "Hobby": "climbing",
+    "Fruit": "guava",
+    "Instrument": "drums",
+    "Sport": "cricket",
+    "Vehicle": "tram"
+   },
+   "6": {
+    "Name": "Ilse",
+    "Color": "maroon",
+    "Pet": "gecko",
+    "Job": "chemist",
+    "Hobby": "knitting",
+    "Fruit": "cherry",
+    "Instrument": "banjo",
+    "Sport": "golf",
+    "Vehicle": "sedan"
+   },
+   "7": {
+    "Name": "Arlo",
+    "Color": "amber",
+    "Pet": "hamster",
+    "Job": "florist",
+    "Hobby": "chess",
+    "Fruit": "papaya",
+    "Instrument": "cello",
+    "Sport": "rugby",
+    "Vehicle": "bicycle"
+   },
+   "8": {
+    "Name": "Galen",
+    "Color": "coral",
+    "Pet": "whippet",
+    "Job": "courier",
+    "Hobby": "birding",
+    "Fruit": "apricot",
+    "Instrument": "clarinet",
+    "Sport": "hockey",
+    "Vehicle": "tandem"
+   },
+   "9": {
+    "Name": "Cato",
+    "Color": "slate",
+    "Pet": "parrot",
+    "Job": "pilot",
+    "Hobby": "rowing",
+    "Fruit": "mango",
+    "Instrument": "oboe",
+    "Sport": "polo",
+    "Vehicle": "van"
+   }
+  }
  }
 }

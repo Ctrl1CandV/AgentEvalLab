@@ -59,3 +59,11 @@ The first run was stopped once concurrent trials existed: sequentially, the larg
 ## Completion (2026-10-19)
 
 The continuation `f1c85624` was resumed from a worktree at its commit `e30b311` once a new deepseek key worked, and it completed 96 of 96 trials. At L5, 13 of the 24 trials of deepseek, glm and step stopped at the 65,536-token output limit of a single response. That limit binds most of these models, which goes against the rule that budgets must not stop most models, so the next R3 version should allow a longer single response; step-5-preview's own output limit is 64K.
+
+## Hard levels (task 0.2.0, 2026-10-20)
+
+`hard-levels.eval.json` runs L4–L6 on five models, qwen3.8-flash at its default thinking included. A single response may now hold 131,072 output tokens, up from 65,536; a model whose own output limit is lower, such as step-5-preview at 64K, stops at that limit. Each trial gets 300,000 tokens, 4 responses and 60 minutes.
+
+```bash
+npm run harness -- --plan experiments/r3-calibration-2026-10/hard-levels.eval.json
+```

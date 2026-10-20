@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 3,
+  "name": "r3-calibration-2026-10-hard-levels",
+  "models": [
+    {
+      "provider": "supergpt",
+      "id": "gpt-6-luna",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "glm-5.3",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "step-5-preview",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    },
+    {
+      "provider": "aliplan",
+      "id": "qwen3.8-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 1,
+  "budget": {
+    "timeoutMs": 3600000,
+    "maxTurns": 4,
+    "maxModelCalls": 4,
+    "maxToolCalls": 2,
+    "maxOutputChars": 32768,
+    "maxOutputTokensPerCall": 131072,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 300000
+  },
+  "artifactLimits": {
+    "maxFiles": 50,
+    "maxFileBytes": 1048576,
+    "maxTrialBytes": 5242880,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 1048576
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 8000000,
+    "concurrency": 4
+  },
+  "trustedLocalExecution": true,
+  "budgetNotice": true,
+  "cases": [
+    {
+      "id": "r3-logic-grid",
+      "packagePath": "task-library/calibration/r3-logic-grid",
+      "packageManifestSha256": "e2bc668e76b83545f5a494e12456534c61b9e5dcb91f21cfd61acdaed1f041e9",
+      "readOnly": true,
+      "input": {
+        "prompt": "Solve the puzzle and give the JSON answer described above."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 120000
+      },
+      "items": {
+        "levels": [
+          "L4",
+          "L5",
+          "L6"
+        ]
+      }
+    }
+  ]
+}

@@ -320,7 +320,8 @@ export function createPiRunner<Input extends RunInput = RunInput>(
             ...streamOptions,
             apiKey: key,
             ...(requestOptions.temperature === null ? {} : { temperature: requestOptions.temperature }),
-            maxTokens: budget.maxOutputTokensPerCall,
+            // The plan states one limit for every model; a model whose own output ceiling is lower stops at that ceiling.
+            maxTokens: Math.min(budget.maxOutputTokensPerCall, selected.maxTokens || budget.maxOutputTokensPerCall),
             // Pi retries retryable failures before any output streams; each HTTP attempt is counted below.
             maxRetries: options.maxRetries ?? 0,
             ...(options.maxRetryDelayMs !== undefined ? { maxRetryDelayMs: options.maxRetryDelayMs } : {}),

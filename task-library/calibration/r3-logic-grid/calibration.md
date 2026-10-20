@@ -18,4 +18,16 @@ Attribute values are fictional or deliberately unusual combinations, and each pu
   - an unparsable answer fails every cell.
 
   See `logs/self-calibration-0.1.0.log`.
-- No model has been run yet. The difficulty of each level is unknown until the calibration pilot.
+
+### Calibration 2026-10-18 and 2026-10-19 (task 0.1.0)
+
+See `docs/reviews/2026-10-19-task-set-v2-calibration.md`.
+
+- L3–L5 discriminate: deepseek-flash 86%, step-5-preview 60%, glm-5.3 57%, gpt-6-luna 17%.
+- At L5, 13 of 24 trials of the three thinking-heavy models stopped at the 65,536-token limit of a single response. That limit bound most of them, so the next calibration raises it.
+
+## Version 0.2.0 (2026-10-20)
+
+- **L6**: eight 9-by-9 puzzles of 58–64 clues, so that the strongest model is not near saturation once longer responses are allowed. Generating a 9-by-9 puzzle takes about 2.5 seconds.
+- L1–L5 items and keys are unchanged; each item's seed is its id.
+- Self-calibration: 432/432; see `logs/self-calibration-0.2.0.log`.

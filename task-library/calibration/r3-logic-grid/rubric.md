@@ -1,6 +1,6 @@
 # Rubric: R3 Logic Grid
 
-Each item is one generated puzzle with a unique solution and a minimal clue set: removing any single clue admits a second solution. Levels differ by grid size: L1 is 4 houses by 4 attributes, up to L5 at 8 by 8.
+Each item is one generated puzzle with a unique solution and a minimal clue set: removing any single clue admits a second solution. Levels differ by grid size: L1 is 4 houses by 4 attributes, up to L6 at 9 by 9.
 
 ## Checks
 
