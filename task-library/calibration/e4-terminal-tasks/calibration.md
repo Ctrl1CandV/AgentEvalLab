@@ -38,3 +38,29 @@ Three compound items, built so that a model has to investigate, not just repair 
 - **recover.** A tarred Git repository whose `search` branch was rebased and then deleted, and whose release-notes stash was stashed twice and dropped. Reflogs are cleared, so `git fsck` finds four lost commits. The checks need the rebased tip, not the pre-rebase one with the same titles, and the stash dropped last. Commit hashes are reproducible; the tar's bytes are not, because Git's index records file times.
 - **Self-calibration (40/40).** Each oracle passes everything, and each untouched workspace passes nothing. Every single-fault repair passes exactly its own checks, plus the guard. Three cases earn nothing: a cache invalidated only on restock, a pipeline without EU handling (which misses `eu-format` and `combined`), and the decoy commit or stash. See `logs/self-calibration-0.2.0.log`.
 - **Builder.** The package builder skips hidden files, which the sandbox can leave in package directories.
+
+### Calibration 2026-10-20 (task 0.2.0)
+
+Every model that ran solved every compound item. Even gpt-6-luna repaired all six stockroom faults in 18 responses, so 0.2.0 is saturated too (see `experiments/e4-calibration-2026-10/README.md`). Faults that a model recognises on sight do not separate this pool, however many there are.
+
+## Version 0.3.0 (2026-10-20)
+
+**codec**, a reverse-engineering item. The archived logs were written by an in-house compressor, `lgz`. Only its compiled module survives: CPython 3.13 bytecode, docstrings stripped, built reproducibly from `private/codec_item/lgz.py`. The model must recover the format from the bytecode, write `decode.py`, and restore the archive.
+
+- **The format** has a header with a trailing-newline flag and a line count, and each line has:
+  - timestamps as zigzag millisecond deltas from 2000-01-01;
+  - runs of spaces in chunks of 63;
+  - canonical integers of up to 18 digits as zigzag varints;
+  - other tokens as indices into a 48-entry move-to-front table;
+  - literals, XORed with a position- and length-dependent key, whose length takes a varint from 63 bytes on.
+
+  Only literals of three bytes or more enter the table. A table reset at each new UTC day is in the bytecode too; a decoder does not need it, because indices only ever reach the front of the table.
+- **Checks.** Eleven: ten hidden groups and `restore`. The groups are `words`, `short-tokens`, `numbers`, `timestamps`, `spaces`, `long-literals`, `eviction`, `multi-day`, `bytes` and `edges`. Each runs `decode.py` on freshly compressed hidden logs aimed at one feature, and passes when every file comes back byte for byte. `restore` compares `restored/` with the archive's originals.
+- **Trust boundary.** The check script reads the expected logs into memory and deletes its helper modules before running the candidate's decoder, so a decoder cannot read them.
+- **Self-calibration.** The reference decoder survived 3,000 random round trips with every feature, plus edge cases.
+  - The decoder with its restored files passes everything; the untouched workspace passes nothing.
+  - The decoder without restored files misses only `restore`, and the restored files alone pass only `restore`.
+  - Three wrong decoders miss exactly their groups (and `restore`): one puts short literals into the table, one counts from 1970, and one reads literal lengths without the varint.
+  - Two first attempts at mutants, a table of 64 entries and no day reset, turned out to be equivalent decoders. They were replaced, and `short-tokens` now mixes short tokens with repeated long ones so that the table rule matters.
+  - See `logs/self-calibration-0.3.0.log`.
+- **Builder.** Rebuilding rewrote `recover`'s tar with new bytes but the same objects, because Git's index records file times. The builder now keeps the existing tar while the answers it encodes are unchanged, so earlier items stay byte for byte as run.

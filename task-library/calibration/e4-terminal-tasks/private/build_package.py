@@ -8,6 +8,7 @@ import hashlib
 import json
 import os
 import pathlib
+import py_compile
 import shutil
 import subprocess
 import sys
@@ -22,6 +23,7 @@ from recover_item import history as lost_history  # noqa: E402
 from migrate import data as migrate_data  # noqa: E402
 from perf import data as perf_data  # noqa: E402
 import grader  # noqa: E402
+from codec_item import cases as codec_cases, lgz  # noqa: E402
 
 VERSION = grader.TASK_VERSION
 GRADER_VERSION = grader.GRADER_VERSION
@@ -49,6 +51,11 @@ def generate():
         answers = lost_history.build(repository)
         archive = ROOT / "items" / "recover" / "public" / "atlas-notes.tar"
         archive.parent.mkdir(parents=True, exist_ok=True)
+        answers_path = HERE / "recover_item" / "answers.json"
+        # Git's index records file times, so a new tar differs in bytes even when every object is the same: keep the
+        # existing tar while the answers it encodes are unchanged.
+        if archive.exists() and answers_path.exists() and json.loads(answers_path.read_text(encoding="utf-8")) == answers:
+            return generate_codec()
         with tarfile.open(archive, "w", format=tarfile.GNU_FORMAT) as tar:
             # Sorted entries, fixed times and owners: the archive's bytes depend only on the repository's contents.
             for path in sorted(pathlib.Path(repository).rglob("*")):
@@ -60,6 +67,23 @@ def generate():
                 else:
                     tar.addfile(info)
     (HERE / "recover_item" / "answers.json").write_text(json.dumps(answers, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+    generate_codec()
+
+
+def generate_codec():
+    """The encoder as bytecode only (docstrings stripped, hash-based so the bytes are reproducible), samples, the archive."""
+    public = ROOT / "items" / "codec" / "public"
+    if public.exists():
+        shutil.rmtree(public)
+    (public / "samples").mkdir(parents=True)
+    (public / "archive").mkdir()
+    py_compile.compile(str(HERE / "codec_item" / "lgz.py"), cfile=str(public / "lgz.pyc"), dfile="lgz.py", optimize=2,
+                       invalidation_mode=py_compile.PycInvalidationMode.UNCHECKED_HASH, doraise=True)
+    for name, data in codec_cases.samples().items():
+        (public / "samples" / name).write_bytes(data)
+        (public / "samples" / f"{name}.lgz").write_bytes(lgz.encode(data))
+    for name, data in codec_cases.archive().items():
+        (public / "archive" / f"{name}.lgz").write_bytes(lgz.encode(data))
 
 
 def main():

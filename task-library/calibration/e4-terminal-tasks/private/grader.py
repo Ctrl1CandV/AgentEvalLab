@@ -18,8 +18,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PACKAGE = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 TASK_ID = "e4-terminal-tasks"
-TASK_VERSION = "0.2.0"
-GRADER_VERSION = "1.1.0"
+TASK_VERSION = "0.3.0"
+GRADER_VERSION = "1.2.0"
 CHECKS = {
     "perf": ["workspace-output", "quirks", "empty", "speed"],
     "migrate": ["schema", "names", "emails", "dates", "totals", "statuses", "orphans", "idempotent", "atomic", "workspace-db"],
@@ -28,6 +28,7 @@ CHECKS = {
     "stockroom": ["strict-env", "timezone", "stock-cache", "duplicates", "money", "export-speed", "regression"],
     "pipeline": ["line-ends", "store-ids", "eu-format", "rebuild", "combined", "regression"],
     "recover": ["search-commit", "search-tree", "stash-commit", "stash-file"],
+    "codec": ["words", "short-tokens", "numbers", "timestamps", "spaces", "long-literals", "eviction", "multi-day", "bytes", "edges", "restore"],
 }
 SPEED_LIMIT_SECONDS = 2.0
 COMMAND_TIMEOUT_SECONDS = 60
@@ -270,12 +271,17 @@ def grade_build(submission, runner):
 # stockroom ---------------------------------------------------------------------------------------------------------
 
 def hidden_checks(item_id, submission, runner, required):
-    """Runs an item's hidden check script on a copy of the delivered workspace; it prints {check: true/false}."""
+    """Runs an item's hidden check script on a copy of the delivered workspace; it prints {check: true/false}. The item's
+    other modules (the codec's encoder and cases) go beside it."""
     if not os.path.exists(os.path.join(submission, required)):
         return {check: False for check in CHECKS[item_id]}
     directory = workdir(submission)
     try:
-        shutil.copy(os.path.join(HERE, f"{item_id}_item", "checks.py"), os.path.join(directory, "hidden_checks.py"))
+        item_directory = os.path.join(HERE, f"{item_id}_item")
+        for name in sorted(os.listdir(item_directory)):
+            if name.endswith(".py") and name != "checks.py":
+                shutil.copy(os.path.join(item_directory, name), os.path.join(directory, name))
+        shutil.copy(os.path.join(item_directory, "checks.py"), os.path.join(directory, "hidden_checks.py"))
         run = runner.run(directory, ["python3", "hidden_checks.py", directory], timeout=600)
         try:
             verdicts = json.loads(run.stdout.decode("utf-8").strip().splitlines()[-1]) if run is not None and run.returncode == 0 else {}
@@ -292,6 +298,10 @@ def grade_stockroom(submission, runner):
 
 def grade_pipeline(submission, runner):
     return hidden_checks("pipeline", submission, runner, "Makefile")
+
+
+def grade_codec(submission, runner):
+    return hidden_checks("codec", submission, runner, ".")
 
 
 # recover -----------------------------------------------------------------------------------------------------------
@@ -320,7 +330,7 @@ def grade_recover(submission, runner):
 
 
 GRADERS = {"perf": grade_perf, "migrate": grade_migrate, "bisect": grade_bisect, "build": grade_build, "stockroom": grade_stockroom,
-           "pipeline": grade_pipeline, "recover": grade_recover}
+           "pipeline": grade_pipeline, "recover": grade_recover, "codec": grade_codec}
 
 
 def grade(item_id, submission, launcher):

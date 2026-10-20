@@ -30,3 +30,13 @@ A new deepseek key works from 2026-10-19. The `*-deepseek.eval.json` plans add d
 ```bash
 npm run harness -- --plan experiments/e4-calibration-2026-10/compound.eval.json
 ```
+
+Run `c95f78c8`: 20 of 30 trials, before the airy.work relays ran out of balance (at the time this stopped every model). Every graded trial of every model passed every check of `stockroom`, `pipeline` and `recover`. Several stopped at the 800,000-token budget after they had already repaired everything. gpt-6-luna needed 18 responses for the six stockroom faults. The compound items are saturated as well.
+
+## codec (task 0.3.0, 2026-10-20)
+
+`codec.eval.json` runs the reverse-engineering item twice on seven models: the five calibration models and the two MiMo V2.6 models at their default thinking. Budgets are those of the compound run, except that a single response may hold 131,072 output tokens, as in R3 and E2 (clamped to each model's own limit). From now on only the task budget, not one response, should stop a model.
+
+```bash
+npm run harness -- --plan experiments/e4-calibration-2026-10/codec.eval.json
+```

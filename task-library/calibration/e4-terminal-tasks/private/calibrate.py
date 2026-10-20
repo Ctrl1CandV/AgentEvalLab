@@ -37,6 +37,35 @@ def migrate_shop(directory):
     subprocess.run([sys.executable, "migrate.py", "shop.db"], cwd=directory, capture_output=True, timeout=60)
 
 
+def restore_archive(directory):
+    """Run the submission's decode.py on every archive file, as the model would."""
+    os.makedirs(os.path.join(directory, "restored"), exist_ok=True)
+    for name in sorted(os.listdir(os.path.join(directory, "archive"))):
+        subprocess.run([sys.executable, "decode.py", os.path.join("archive", name), os.path.join("restored", name[:-len(".lgz")])],
+                       cwd=directory, capture_output=True, timeout=60)
+
+
+def codec_scenarios():
+    from codec_item import cases as codec_cases
+    decoder = read(os.path.join(HERE, "codec_item", "solution", "decode.py"))
+    restored = {f"restored/{name}": data.decode("utf-8") for name, data in codec_cases.archive().items()}
+    checks = set(grader.CHECKS["codec"])
+    return [
+        ("codec", "oracle", {"decode.py": decoder}, restore_archive, checks),
+        ("codec", "untouched", {}, None, set()),
+        ("codec", "decoder-without-restore", {"decode.py": decoder}, None, checks - {"restore"}),
+        ("codec", "restored-only", restored, None, {"restore"}),
+        # A decoder never needs the day reset or the 48-entry limit (indices only reach the front of the table), so the
+        # mutants change what it does need.
+        ("codec", "short-literals-in-table", {"decode.py": decoder.replace("if len(token) >= 3:", "if len(token) >= 1:")}, restore_archive,
+         checks - {"short-tokens", "multi-day", "restore"}),
+        ("codec", "epoch-1970", {"decode.py": decoder.replace("datetime.datetime(2000, 1, 1,", "datetime.datetime(1970, 1, 1,")}, restore_archive,
+         checks - {"timestamps", "multi-day", "restore"}),
+        ("codec", "literal-length-without-varint", {"decode.py": decoder.replace("                if size == 63:\n                    size += reader.varint()\n", "")},
+         restore_archive, checks - {"long-literals", "restore"}),
+    ]
+
+
 def scenarios():
     from bisect_item import history
     perf_oracle = read(os.path.join(HERE, "perf", "oracle.py"))
@@ -90,7 +119,7 @@ def scenarios():
         ("recover", "first-stash", {**tree, "recovered/search.txt": lost["search"], "recovered/stash.txt": lost["decoys"]["stash"],
                                     "recovered/RELEASE.md": lost_history.RELEASE_OLD_STASH}, None, {"search-commit", "search-tree"}),
     ]
-    return stockroom + pipeline + recover + [
+    return stockroom + pipeline + recover + codec_scenarios() + [
         ("perf", "oracle", {"report.py": perf_oracle}, None, everything(grader.CHECKS["perf"])),
         ("perf", "untouched", {}, None, everything()),
         ("perf", "fast-but-case-sensitive-users", {"report.py": perf_oracle.replace("user.lower()", "user")}, None, {"speed", "empty"}),

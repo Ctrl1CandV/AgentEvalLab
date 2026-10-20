@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "e4-terminal-tasks",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "familyId": "e4-terminal-tasks",
   "capability": "engineering",
   "usage": "development",
@@ -28,11 +28,11 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "70854d70da1b5186c893239837211d09f03af89e2531b13a8538cf41eb8f8ab6"
+        "sha256": "96531ae923c5c9f5eeb6a4bae51039f600ca99f1fac9bfe798f4f2d01d7eca42"
       },
       {
         "path": "rubric.md",
-        "sha256": "57af422092721b0e8d61b7212757f33a2983dfbf88e92e1993d9fc749dc6ca84"
+        "sha256": "c2c54ee8b6733bd669d5fffc2161e3049055368ce29555ab200482fed63a6e7a"
       },
       {
         "path": "private/bisect_item/checks.py",
@@ -72,15 +72,31 @@
       },
       {
         "path": "private/build_package.py",
-        "sha256": "bb64388e2c61ad9c9bc49c6dd5cb5f0ca3191352ad682025cdd2b973fd4d4b2a"
+        "sha256": "e60902f55f47a34c9a9e546b4f429f11dcae4f8c95e5659c9f3901a75af0efae"
       },
       {
         "path": "private/calibrate.py",
-        "sha256": "4044d057a7cb3d76f9a0e3b0d51d169fdd596745185a455b26dd71e8ff3ae7ca"
+        "sha256": "789c3c47450b68f1610e273b2be548e907454a96448e834438c2cc3b851d95a5"
+      },
+      {
+        "path": "private/codec_item/cases.py",
+        "sha256": "7b0d3e351c878e9611b4f5f5e5a7276f2242964713537693d28a2e51cb7b1dc2"
+      },
+      {
+        "path": "private/codec_item/checks.py",
+        "sha256": "3935ccc5ce039f99e6eed2509cf096fc10d48b2c6e534362b9961014b144ff15"
+      },
+      {
+        "path": "private/codec_item/lgz.py",
+        "sha256": "8edbcaa7e2318fb8c480ff13648ed26dda069df9564c90650bb86c42ab7ab627"
+      },
+      {
+        "path": "private/codec_item/solution/decode.py",
+        "sha256": "ac5ae8f2ec6be2808f4f0b960002c9d681c4a37d30615e55104c2cdf1adbd469"
       },
       {
         "path": "private/grader.py",
-        "sha256": "ce022aef9caa7cb50976c28bf7754bd082c77bffe585e4016d0e747a636ebde4"
+        "sha256": "8117d40839db2095d241c714cf49963fe8582adbd7578632173deb2e1d3714fc"
       },
       {
         "path": "private/migrate/data.py",
@@ -172,7 +188,7 @@
     {
       "id": "REQ-PERF-WORKSPACE-OUTPUT",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "perf-workspace-output"
       ]
@@ -180,7 +196,7 @@
     {
       "id": "REQ-PERF-QUIRKS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "perf-quirks"
       ]
@@ -188,7 +204,7 @@
     {
       "id": "REQ-PERF-EMPTY",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "perf-empty"
       ]
@@ -196,7 +212,7 @@
     {
       "id": "REQ-PERF-SPEED",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "perf-speed"
       ]
@@ -204,7 +220,7 @@
     {
       "id": "REQ-MIGRATE-SCHEMA",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "migrate-schema"
       ]
@@ -212,7 +228,7 @@
     {
       "id": "REQ-MIGRATE-NAMES",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "migrate-names"
       ]
@@ -220,7 +236,7 @@
     {
       "id": "REQ-MIGRATE-EMAILS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "migrate-emails"
       ]
@@ -228,7 +244,7 @@
     {
       "id": "REQ-MIGRATE-DATES",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "migrate-dates"
       ]
@@ -236,7 +252,7 @@
     {
       "id": "REQ-MIGRATE-TOTALS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "migrate-totals"
       ]
@@ -244,7 +260,7 @@
     {
       "id": "REQ-MIGRATE-STATUSES",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "migrate-statuses"
       ]
@@ -252,7 +268,7 @@
     {
       "id": "REQ-MIGRATE-ORPHANS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "migrate-orphans"
       ]
@@ -260,7 +276,7 @@
     {
       "id": "REQ-MIGRATE-IDEMPOTENT",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "migrate-idempotent"
       ]
@@ -268,7 +284,7 @@
     {
       "id": "REQ-MIGRATE-ATOMIC",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "migrate-atomic"
       ]
@@ -276,7 +292,7 @@
     {
       "id": "REQ-MIGRATE-WORKSPACE-DB",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "migrate-workspace-db"
       ]
@@ -284,7 +300,7 @@
     {
       "id": "REQ-BISECT-CULPRIT",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "bisect-culprit"
       ]
@@ -292,7 +308,7 @@
     {
       "id": "REQ-BISECT-REGRESSION-FIXED",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "bisect-regression-fixed"
       ]
@@ -300,7 +316,7 @@
     {
       "id": "REQ-BISECT-ROUNDING-KEPT",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "bisect-rounding-kept"
       ]
@@ -308,7 +324,7 @@
     {
       "id": "REQ-BISECT-LATER-FEATURES",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "bisect-later-features"
       ]
@@ -316,7 +332,7 @@
     {
       "id": "REQ-BISECT-COUPONS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "bisect-coupons"
       ]
@@ -324,7 +340,7 @@
     {
       "id": "REQ-BUILD-FLAGS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "build-flags"
       ]
@@ -332,7 +348,7 @@
     {
       "id": "REQ-BUILD-BUILD",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "build-build"
       ]
@@ -340,7 +356,7 @@
     {
       "id": "REQ-BUILD-TESTS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "build-tests"
       ]
@@ -348,7 +364,7 @@
     {
       "id": "REQ-BUILD-EOF-WORD",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "build-eof-word"
       ]
@@ -356,7 +372,7 @@
     {
       "id": "REQ-BUILD-TIES",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "build-ties"
       ]
@@ -364,7 +380,7 @@
     {
       "id": "REQ-BUILD-OPTIONS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "build-options"
       ]
@@ -372,7 +388,7 @@
     {
       "id": "REQ-BUILD-CLEAN",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "build-clean"
       ]
@@ -380,7 +396,7 @@
     {
       "id": "REQ-STOCKROOM-STRICT-ENV",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "stockroom-strict-env"
       ]
@@ -388,7 +404,7 @@
     {
       "id": "REQ-STOCKROOM-TIMEZONE",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "stockroom-timezone"
       ]
@@ -396,7 +412,7 @@
     {
       "id": "REQ-STOCKROOM-STOCK-CACHE",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "stockroom-stock-cache"
       ]
@@ -404,7 +420,7 @@
     {
       "id": "REQ-STOCKROOM-DUPLICATES",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "stockroom-duplicates"
       ]
@@ -412,7 +428,7 @@
     {
       "id": "REQ-STOCKROOM-MONEY",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "stockroom-money"
       ]
@@ -420,7 +436,7 @@
     {
       "id": "REQ-STOCKROOM-EXPORT-SPEED",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "stockroom-export-speed"
       ]
@@ -428,7 +444,7 @@
     {
       "id": "REQ-STOCKROOM-REGRESSION",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "stockroom-regression"
       ]
@@ -436,7 +452,7 @@
     {
       "id": "REQ-PIPELINE-LINE-ENDS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "pipeline-line-ends"
       ]
@@ -444,7 +460,7 @@
     {
       "id": "REQ-PIPELINE-STORE-IDS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "pipeline-store-ids"
       ]
@@ -452,7 +468,7 @@
     {
       "id": "REQ-PIPELINE-EU-FORMAT",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "pipeline-eu-format"
       ]
@@ -460,7 +476,7 @@
     {
       "id": "REQ-PIPELINE-REBUILD",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "pipeline-rebuild"
       ]
@@ -468,7 +484,7 @@
     {
       "id": "REQ-PIPELINE-COMBINED",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "pipeline-combined"
       ]
@@ -476,7 +492,7 @@
     {
       "id": "REQ-PIPELINE-REGRESSION",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "pipeline-regression"
       ]
@@ -484,7 +500,7 @@
     {
       "id": "REQ-RECOVER-SEARCH-COMMIT",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "recover-search-commit"
       ]
@@ -492,7 +508,7 @@
     {
       "id": "REQ-RECOVER-SEARCH-TREE",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "recover-search-tree"
       ]
@@ -500,7 +516,7 @@
     {
       "id": "REQ-RECOVER-STASH-COMMIT",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "recover-stash-commit"
       ]
@@ -508,9 +524,97 @@
     {
       "id": "REQ-RECOVER-STASH-FILE",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "introducedAt": "e4-terminal-tasks 0.3.0",
       "checkIds": [
         "recover-stash-file"
+      ]
+    },
+    {
+      "id": "REQ-CODEC-WORDS",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.3.0",
+      "checkIds": [
+        "codec-words"
+      ]
+    },
+    {
+      "id": "REQ-CODEC-SHORT-TOKENS",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.3.0",
+      "checkIds": [
+        "codec-short-tokens"
+      ]
+    },
+    {
+      "id": "REQ-CODEC-NUMBERS",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.3.0",
+      "checkIds": [
+        "codec-numbers"
+      ]
+    },
+    {
+      "id": "REQ-CODEC-TIMESTAMPS",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.3.0",
+      "checkIds": [
+        "codec-timestamps"
+      ]
+    },
+    {
+      "id": "REQ-CODEC-SPACES",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.3.0",
+      "checkIds": [
+        "codec-spaces"
+      ]
+    },
+    {
+      "id": "REQ-CODEC-LONG-LITERALS",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.3.0",
+      "checkIds": [
+        "codec-long-literals"
+      ]
+    },
+    {
+      "id": "REQ-CODEC-EVICTION",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.3.0",
+      "checkIds": [
+        "codec-eviction"
+      ]
+    },
+    {
+      "id": "REQ-CODEC-MULTI-DAY",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.3.0",
+      "checkIds": [
+        "codec-multi-day"
+      ]
+    },
+    {
+      "id": "REQ-CODEC-BYTES",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.3.0",
+      "checkIds": [
+        "codec-bytes"
+      ]
+    },
+    {
+      "id": "REQ-CODEC-EDGES",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.3.0",
+      "checkIds": [
+        "codec-edges"
+      ]
+    },
+    {
+      "id": "REQ-CODEC-RESTORE",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.3.0",
+      "checkIds": [
+        "codec-restore"
       ]
     }
   ],
@@ -813,6 +917,69 @@
         "REQ-RECOVER-STASH-COMMIT",
         "REQ-RECOVER-STASH-FILE"
       ]
+    },
+    {
+      "id": "codec",
+      "level": "codec",
+      "files": [
+        {
+          "path": "items/codec/prompt.md",
+          "sha256": "e89580f538bef3365f94f8a9cc32b408a634615de14194e6ef693ad9565814c1"
+        },
+        {
+          "path": "items/codec/public/archive/access-2026-10-20.log.lgz",
+          "sha256": "bae1c796ebddd3aa3875ad9e68b2de2bb8fbe18fa8687eed12aa90321c035219"
+        },
+        {
+          "path": "items/codec/public/archive/audit.log.lgz",
+          "sha256": "e059cdb7ac3e32fda154fbe761e9fe0d4111ecb1bfc7c50bbe36defee9cc27a1"
+        },
+        {
+          "path": "items/codec/public/archive/worker-2026-10-19.log.lgz",
+          "sha256": "59796a1131e983ff9870bf0d99f6a5671c815ab0a6d2874048a18abaa4b6e96a"
+        },
+        {
+          "path": "items/codec/public/lgz.pyc",
+          "sha256": "7a61973eefdf3253ea40b36d260d536a2df72b96204073c2e8d4cddb4e98b51a"
+        },
+        {
+          "path": "items/codec/public/samples/access-medium.log",
+          "sha256": "90759e2011396bea64e00b165613af6ae944b1d1590ef743186f6abf2b70b428"
+        },
+        {
+          "path": "items/codec/public/samples/access-medium.log.lgz",
+          "sha256": "8cb4da978a96b9ef549992a3673039a406d96425c2b628b341aeeab2dee2dd32"
+        },
+        {
+          "path": "items/codec/public/samples/access-small.log",
+          "sha256": "bf6cac238201e9183ff1810db97d536a83e03cb806b2c8acf3c9ce1608e5999f"
+        },
+        {
+          "path": "items/codec/public/samples/access-small.log.lgz",
+          "sha256": "f3a53f631f69af425503a344033702e43baa96c653b7e514fb6b0a03513fb408"
+        },
+        {
+          "path": "items/codec/public/samples/notes.log",
+          "sha256": "030d26f08cb143bb51f59b7f2eb4e9b4c8a9031e9893a5e08b13a74dfb10b7ad"
+        },
+        {
+          "path": "items/codec/public/samples/notes.log.lgz",
+          "sha256": "5a2ad95d07358fe357379e62e6f801de39bc3fe02fa644c3af31c394dd8b3f22"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-CODEC-WORDS",
+        "REQ-CODEC-SHORT-TOKENS",
+        "REQ-CODEC-NUMBERS",
+        "REQ-CODEC-TIMESTAMPS",
+        "REQ-CODEC-SPACES",
+        "REQ-CODEC-LONG-LITERALS",
+        "REQ-CODEC-EVICTION",
+        "REQ-CODEC-MULTI-DAY",
+        "REQ-CODEC-BYTES",
+        "REQ-CODEC-EDGES",
+        "REQ-CODEC-RESTORE"
+      ]
     }
   ],
   "toolProfiles": [
@@ -820,7 +987,7 @@
   ],
   "grader": {
     "id": "e4-terminal-checks",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

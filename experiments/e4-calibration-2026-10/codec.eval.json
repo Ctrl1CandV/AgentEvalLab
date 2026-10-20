@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 3,
+  "name": "e4-calibration-2026-10-codec",
+  "models": [
+    {
+      "provider": "supergpt",
+      "id": "gpt-6-luna",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "glm-5.3",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "step-5-preview",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    },
+    {
+      "provider": "aliplan",
+      "id": "qwen3.8-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    },
+    {
+      "provider": "mimoplan",
+      "id": "mimo-v2.6-pro",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    },
+    {
+      "provider": "mimoplan",
+      "id": "mimo-v2.6-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 2,
+  "budget": {
+    "timeoutMs": 3600000,
+    "maxTurns": 100,
+    "maxModelCalls": 100,
+    "maxToolCalls": 150,
+    "maxOutputChars": 32768,
+    "maxOutputTokensPerCall": 131072,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 800000
+  },
+  "artifactLimits": {
+    "maxFiles": 500,
+    "maxFileBytes": 2097152,
+    "maxTrialBytes": 10485760,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 4000000,
+    "concurrency": 4
+  },
+  "trustedLocalExecution": true,
+  "budgetNotice": true,
+  "cases": [
+    {
+      "id": "e4-terminal-tasks",
+      "packagePath": "task-library/calibration/e4-terminal-tasks",
+      "packageManifestSha256": "e305d638b306d2e233f681c57886465354570ba7a9b084ffe7dade13581dee78",
+      "input": {
+        "prompt": "Complete the task above in the workspace, check your work, and end with a short summary."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 600000
+      },
+      "items": [
+        "codec"
+      ]
+    }
+  ]
+}
