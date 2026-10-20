@@ -1,0 +1,281 @@
+{
+ "customers": {
+  "C-1001": {
+   "credit": "0.00",
+   "email": "ana.ruiz@example.com",
+   "name": "Ana Ruiz",
+   "tier": "standard"
+  },
+  "C-1002": {
+   "credit": "0.00",
+   "email": "ben@okoro.example",
+   "name": "Ben Okoro",
+   "tier": "gold"
+  },
+  "C-1003": {
+   "credit": "5.00",
+   "email": "chen.wei@example.com",
+   "name": "Chen Wei",
+   "tier": "standard"
+  },
+  "C-1004": {
+   "credit": "0.00",
+   "email": "dana.k@example.com",
+   "name": "Dana Kim",
+   "tier": "standard"
+  }
+ },
+ "orders": {
+  "O-5001": {
+   "address": "4 Elm Row, Leeds",
+   "compensated": null,
+   "customer": "C-1001",
+   "delivered": null,
+   "lines": [
+    {
+     "price": "45.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "HM-400",
+     "state": "active"
+    },
+    {
+     "price": "28.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "BK-300",
+     "state": "active"
+    }
+   ],
+   "payment": "card",
+   "placed": "2026-10-18",
+   "promised": "2026-10-23",
+   "refunds": [],
+   "status": "processing"
+  },
+  "O-5002": {
+   "address": "4 Elm Row, Leeds",
+   "compensated": null,
+   "customer": "C-1001",
+   "delivered": "2026-10-10",
+   "lines": [
+    {
+     "price": "129.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "EL-100",
+     "state": "active"
+    }
+   ],
+   "payment": "card",
+   "placed": "2026-10-01",
+   "promised": "2026-10-06",
+   "refunds": [],
+   "status": "delivered"
+  },
+  "O-5003": {
+   "address": "17 Dock Road, Bristol",
+   "compensated": null,
+   "customer": "C-1002",
+   "delivered": "2026-09-12",
+   "lines": [
+    {
+     "price": "159.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "EL-102",
+     "state": "active"
+    },
+    {
+     "price": "65.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "HM-401",
+     "state": "active"
+    }
+   ],
+   "payment": "card",
+   "placed": "2026-09-05",
+   "promised": "2026-09-10",
+   "refunds": [],
+   "status": "delivered"
+  },
+  "O-5004": {
+   "address": "2 Mill Lane, York",
+   "compensated": null,
+   "customer": "C-1003",
+   "delivered": "2026-10-05",
+   "lines": [
+    {
+     "price": "19.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "BK-301",
+     "state": "active"
+    },
+    {
+     "price": "99.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "EL-200",
+     "state": "active"
+    }
+   ],
+   "payment": "gift_card",
+   "placed": "2026-09-28",
+   "promised": "2026-10-02",
+   "refunds": [],
+   "status": "delivered"
+  },
+  "O-5005": {
+   "address": "2 Mill Lane, York",
+   "compensated": null,
+   "customer": "C-1003",
+   "delivered": null,
+   "lines": [
+    {
+     "price": "35.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "HM-402",
+     "state": "active"
+    }
+   ],
+   "payment": "card",
+   "placed": "2026-10-17",
+   "promised": "2026-10-21",
+   "refunds": [],
+   "status": "shipped"
+  },
+  "O-5006": {
+   "address": "8 Park View, Bath",
+   "compensated": "4.50",
+   "customer": "C-1004",
+   "delivered": "2026-09-15",
+   "lines": [
+    {
+     "price": "45.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "HM-400",
+     "state": "active"
+    }
+   ],
+   "payment": "card",
+   "placed": "2026-09-01",
+   "promised": "2026-09-05",
+   "refunds": [],
+   "status": "delivered"
+  },
+  "O-5007": {
+   "address": "8 Park View, Bath",
+   "compensated": null,
+   "customer": "C-1004",
+   "delivered": "2026-10-09",
+   "lines": [
+    {
+     "price": "65.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "HM-401",
+     "state": "active"
+    },
+    {
+     "price": "39.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "EL-101",
+     "state": "active"
+    }
+   ],
+   "payment": "card",
+   "placed": "2026-10-05",
+   "promised": "2026-10-09",
+   "refunds": [],
+   "status": "delivered"
+  },
+  "O-5008": {
+   "address": "17 Dock Road, Bristol",
+   "compensated": null,
+   "customer": "C-1002",
+   "delivered": "2026-10-12",
+   "lines": [
+    {
+     "price": "129.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "EL-100",
+     "state": "active"
+    },
+    {
+     "price": "28.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "BK-300",
+     "state": "active"
+    }
+   ],
+   "payment": "card",
+   "placed": "2026-10-03",
+   "promised": "2026-10-08",
+   "refunds": [],
+   "status": "delivered"
+  }
+ },
+ "products": {
+  "BK-300": {
+   "category": "books",
+   "family": "book",
+   "name": "Atlas of Rivers",
+   "price": "28.00"
+  },
+  "BK-301": {
+   "category": "books",
+   "family": "book",
+   "name": "Field Guide to Moths",
+   "price": "19.50"
+  },
+  "EL-100": {
+   "category": "electronics",
+   "family": "headphones",
+   "name": "Noise-cancelling headphones",
+   "price": "129.00"
+  },
+  "EL-101": {
+   "category": "electronics",
+   "family": "headphones",
+   "name": "Wired headphones",
+   "price": "39.00"
+  },
+  "EL-102": {
+   "category": "electronics",
+   "family": "headphones",
+   "name": "Studio headphones",
+   "price": "159.00"
+  },
+  "EL-200": {
+   "category": "electronics",
+   "family": "ereader",
+   "name": "E-reader",
+   "price": "99.00"
+  },
+  "HM-400": {
+   "category": "home",
+   "family": "throw",
+   "name": "Linen throw",
+   "price": "45.00"
+  },
+  "HM-401": {
+   "category": "home",
+   "family": "throw",
+   "name": "Wool throw",
+   "price": "65.00"
+  },
+  "HM-402": {
+   "category": "home",
+   "family": "throw",
+   "name": "Cotton throw",
+   "price": "35.00"
+  }
+ }
+}

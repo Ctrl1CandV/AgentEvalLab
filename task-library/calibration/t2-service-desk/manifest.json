@@ -1,0 +1,593 @@
+{
+  "schemaVersion": 1,
+  "id": "t2-service-desk",
+  "version": "0.1.0",
+  "familyId": "t2-service-desk",
+  "capability": "tool",
+  "usage": "development",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "docs/design/TASK_SET_V2.md",
+      "tau-bench (Yao et al., 2024), as a model of the task form"
+    ]
+  },
+  "license": {
+    "taskText": "Original project-authored policy, data, tool and tickets.",
+    "thirdPartyContent": []
+  },
+  "entryPoint": {
+    "instruction": "instruction.md"
+  },
+  "files": {
+    "public": [
+      {
+        "path": "instruction.md",
+        "sha256": "1c40284e882e014d85b6b9ab9d5b40cd2513d8ca50bd736c6119b43c961323c5"
+      }
+    ],
+    "trusted": [
+      {
+        "path": "calibration.md",
+        "sha256": "136a33a00313605d9c525de7729fc0d2e15562afda2751603d64488b7e01e6ca"
+      },
+      {
+        "path": "rubric.md",
+        "sha256": "5392e92025c10e8d2082ae47afce74bf03140505259267fc1288c67b3750e631"
+      },
+      {
+        "path": "private/POLICY.md",
+        "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+      },
+      {
+        "path": "private/build_package.py",
+        "sha256": "796f986bd4c92c2254c90968fb950d82434a15bde238edb0a57f7ccbc08de218"
+      },
+      {
+        "path": "private/calibrate.py",
+        "sha256": "826556618dd28df2954efa5fa2d60ab5356303be6b0ab5bdd19e0f23fdd91042"
+      },
+      {
+        "path": "private/desk.py",
+        "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+      },
+      {
+        "path": "private/grader.py",
+        "sha256": "ed22a9a447e1f3e5258c441a1bb6ee469d608ae2de4e4016b959b39c840e1598"
+      },
+      {
+        "path": "private/tickets.py",
+        "sha256": "49a39f112bd2ad5f86123601e54cd094c3ab1d3818dd69aa62b0686565d1064a"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "REQ-T01-ORDER-O-5001",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t01-order-O-5001"
+      ]
+    },
+    {
+      "id": "REQ-T01-NO-OTHER-CHANGES",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t01-no-other-changes"
+      ]
+    },
+    {
+      "id": "REQ-T01-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t01-reply"
+      ]
+    },
+    {
+      "id": "REQ-T02-ORDER-O-5002",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t02-order-O-5002"
+      ]
+    },
+    {
+      "id": "REQ-T02-CUSTOMER-C-1001",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t02-customer-C-1001"
+      ]
+    },
+    {
+      "id": "REQ-T02-NO-OTHER-CHANGES",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t02-no-other-changes"
+      ]
+    },
+    {
+      "id": "REQ-T02-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t02-reply"
+      ]
+    },
+    {
+      "id": "REQ-T03-NO-OTHER-CHANGES",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t03-no-other-changes"
+      ]
+    },
+    {
+      "id": "REQ-T03-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t03-reply"
+      ]
+    },
+    {
+      "id": "REQ-T04-ORDER-O-5004",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t04-order-O-5004"
+      ]
+    },
+    {
+      "id": "REQ-T04-CUSTOMER-C-1003",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t04-customer-C-1003"
+      ]
+    },
+    {
+      "id": "REQ-T04-NO-OTHER-CHANGES",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t04-no-other-changes"
+      ]
+    },
+    {
+      "id": "REQ-T04-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t04-reply"
+      ]
+    },
+    {
+      "id": "REQ-T05-ORDER-O-5007",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t05-order-O-5007"
+      ]
+    },
+    {
+      "id": "REQ-T05-CUSTOMER-C-1004",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t05-customer-C-1004"
+      ]
+    },
+    {
+      "id": "REQ-T05-NO-OTHER-CHANGES",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t05-no-other-changes"
+      ]
+    },
+    {
+      "id": "REQ-T05-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t05-reply"
+      ]
+    },
+    {
+      "id": "REQ-T06-ORDER-O-5001",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t06-order-O-5001"
+      ]
+    },
+    {
+      "id": "REQ-T06-NO-OTHER-CHANGES",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t06-no-other-changes"
+      ]
+    },
+    {
+      "id": "REQ-T06-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t06-reply"
+      ]
+    },
+    {
+      "id": "REQ-T07-ORDER-O-5008",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t07-order-O-5008"
+      ]
+    },
+    {
+      "id": "REQ-T07-CUSTOMER-C-1002",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t07-customer-C-1002"
+      ]
+    },
+    {
+      "id": "REQ-T07-NO-OTHER-CHANGES",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t07-no-other-changes"
+      ]
+    },
+    {
+      "id": "REQ-T07-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t07-reply"
+      ]
+    },
+    {
+      "id": "REQ-T08-ORDER-O-5004",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t08-order-O-5004"
+      ]
+    },
+    {
+      "id": "REQ-T08-CUSTOMER-C-1003",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t08-customer-C-1003"
+      ]
+    },
+    {
+      "id": "REQ-T08-NO-OTHER-CHANGES",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t08-no-other-changes"
+      ]
+    },
+    {
+      "id": "REQ-T08-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "t08-reply"
+      ]
+    },
+    {
+      "id": "REQ-FORMAT",
+      "critical": false,
+      "introducedAt": "t2-service-desk 0.1.0",
+      "checkIds": [
+        "answer-format"
+      ]
+    }
+  ],
+  "scoring": {
+    "formatCheckId": "answer-format",
+    "formatPenalty": 0.2
+  },
+  "items": [
+    {
+      "id": "t01",
+      "level": "t01",
+      "files": [
+        {
+          "path": "items/t01/prompt.md",
+          "sha256": "855caa4da9b897f4a62c2f0dc0a69c491361077ac44e7232db1c292be7ce4a55"
+        },
+        {
+          "path": "items/t01/public/POLICY.md",
+          "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+        },
+        {
+          "path": "items/t01/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/t01/public/data/db.json",
+          "sha256": "17d888ddc249bcc35c54395cddb9530122d84aff01e89296691e8a03a3ed0a06"
+        },
+        {
+          "path": "items/t01/public/desk.py",
+          "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-T01-ORDER-O-5001",
+        "REQ-T01-NO-OTHER-CHANGES",
+        "REQ-T01-REPLY",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "t02",
+      "level": "t02",
+      "files": [
+        {
+          "path": "items/t02/prompt.md",
+          "sha256": "5d5c3798b51f6635ce3055adbc7ce43fffa5ff003523b525eb9b4bba4a8eeb64"
+        },
+        {
+          "path": "items/t02/public/POLICY.md",
+          "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+        },
+        {
+          "path": "items/t02/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/t02/public/data/db.json",
+          "sha256": "17d888ddc249bcc35c54395cddb9530122d84aff01e89296691e8a03a3ed0a06"
+        },
+        {
+          "path": "items/t02/public/desk.py",
+          "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-T02-ORDER-O-5002",
+        "REQ-T02-CUSTOMER-C-1001",
+        "REQ-T02-NO-OTHER-CHANGES",
+        "REQ-T02-REPLY",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "t03",
+      "level": "t03",
+      "files": [
+        {
+          "path": "items/t03/prompt.md",
+          "sha256": "6818e1270a2d9b2098d3c36b1ab4013a3faf61d77ab6b8e9bbc27ef4e7a4dc97"
+        },
+        {
+          "path": "items/t03/public/POLICY.md",
+          "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+        },
+        {
+          "path": "items/t03/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/t03/public/data/db.json",
+          "sha256": "17d888ddc249bcc35c54395cddb9530122d84aff01e89296691e8a03a3ed0a06"
+        },
+        {
+          "path": "items/t03/public/desk.py",
+          "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-T03-NO-OTHER-CHANGES",
+        "REQ-T03-REPLY",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "t04",
+      "level": "t04",
+      "files": [
+        {
+          "path": "items/t04/prompt.md",
+          "sha256": "31c31a88f8b6ae79d9256e655c1a8ac60046cd506f0dab18da48322c35c9ac28"
+        },
+        {
+          "path": "items/t04/public/POLICY.md",
+          "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+        },
+        {
+          "path": "items/t04/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/t04/public/data/db.json",
+          "sha256": "17d888ddc249bcc35c54395cddb9530122d84aff01e89296691e8a03a3ed0a06"
+        },
+        {
+          "path": "items/t04/public/desk.py",
+          "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-T04-ORDER-O-5004",
+        "REQ-T04-CUSTOMER-C-1003",
+        "REQ-T04-NO-OTHER-CHANGES",
+        "REQ-T04-REPLY",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "t05",
+      "level": "t05",
+      "files": [
+        {
+          "path": "items/t05/prompt.md",
+          "sha256": "d3320cd25194809a26363e0576926aeba3c40e2873f1967047eed05f121e063e"
+        },
+        {
+          "path": "items/t05/public/POLICY.md",
+          "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+        },
+        {
+          "path": "items/t05/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/t05/public/data/db.json",
+          "sha256": "17d888ddc249bcc35c54395cddb9530122d84aff01e89296691e8a03a3ed0a06"
+        },
+        {
+          "path": "items/t05/public/desk.py",
+          "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-T05-ORDER-O-5007",
+        "REQ-T05-CUSTOMER-C-1004",
+        "REQ-T05-NO-OTHER-CHANGES",
+        "REQ-T05-REPLY",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "t06",
+      "level": "t06",
+      "files": [
+        {
+          "path": "items/t06/prompt.md",
+          "sha256": "3787cf552d8d367d2795d1716898d0a038359e469ab969dce22179b65f601d9f"
+        },
+        {
+          "path": "items/t06/public/POLICY.md",
+          "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+        },
+        {
+          "path": "items/t06/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/t06/public/data/db.json",
+          "sha256": "17d888ddc249bcc35c54395cddb9530122d84aff01e89296691e8a03a3ed0a06"
+        },
+        {
+          "path": "items/t06/public/desk.py",
+          "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-T06-ORDER-O-5001",
+        "REQ-T06-NO-OTHER-CHANGES",
+        "REQ-T06-REPLY",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "t07",
+      "level": "t07",
+      "files": [
+        {
+          "path": "items/t07/prompt.md",
+          "sha256": "d8c6dc6985768a5c1ef943cf6b63082fb8cedbbb51f9ee15b4f65a26d53f7b56"
+        },
+        {
+          "path": "items/t07/public/POLICY.md",
+          "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+        },
+        {
+          "path": "items/t07/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/t07/public/data/db.json",
+          "sha256": "17d888ddc249bcc35c54395cddb9530122d84aff01e89296691e8a03a3ed0a06"
+        },
+        {
+          "path": "items/t07/public/desk.py",
+          "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-T07-ORDER-O-5008",
+        "REQ-T07-CUSTOMER-C-1002",
+        "REQ-T07-NO-OTHER-CHANGES",
+        "REQ-T07-REPLY",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "t08",
+      "level": "t08",
+      "files": [
+        {
+          "path": "items/t08/prompt.md",
+          "sha256": "21514b4f2a5245d15580fd298112359882a26d0848b30e2ac18bd9b5d4f9e90a"
+        },
+        {
+          "path": "items/t08/public/POLICY.md",
+          "sha256": "038a566a43c4c274e37e7d4f24d891416fc7af5c9f421262918509d609811505"
+        },
+        {
+          "path": "items/t08/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/t08/public/data/db.json",
+          "sha256": "17d888ddc249bcc35c54395cddb9530122d84aff01e89296691e8a03a3ed0a06"
+        },
+        {
+          "path": "items/t08/public/desk.py",
+          "sha256": "9102405c8ca37d0febb287de4f8857ab03c0f87d5e31dd7e41a556661b3314ad"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-T08-ORDER-O-5004",
+        "REQ-T08-CUSTOMER-C-1003",
+        "REQ-T08-NO-OTHER-CHANGES",
+        "REQ-T08-REPLY",
+        "REQ-FORMAT"
+      ]
+    }
+  ],
+  "toolProfiles": [
+    "workspace-basic"
+  ],
+  "grader": {
+    "id": "t2-desk-state",
+    "version": "1.0.0",
+    "entryPoint": "private/grader.py",
+    "executable": "python3",
+    "args": [
+      "{entryPoint}",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ],
+    "answerSource": "execution-output"
+  },
+  "environment": {
+    "runtime": "Python 3.13",
+    "dependencies": "Python standard library; no network",
+    "network": false,
+    "runtimeCheck": {
+      "executable": "python3",
+      "args": [
+        "--version"
+      ],
+      "expectedSubstring": "Python 3.13."
+    }
+  }
+}

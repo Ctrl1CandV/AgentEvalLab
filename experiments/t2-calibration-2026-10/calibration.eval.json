@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 3,
+  "name": "t2-calibration-2026-10",
+  "models": [
+    {
+      "provider": "supergpt",
+      "id": "gpt-6-luna",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "glm-5.3",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "step-5-preview",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    },
+    {
+      "provider": "aliplan",
+      "id": "qwen3.8-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 2,
+  "budget": {
+    "timeoutMs": 1200000,
+    "maxTurns": 40,
+    "maxModelCalls": 40,
+    "maxToolCalls": 60,
+    "maxOutputChars": 32768,
+    "maxOutputTokensPerCall": 32768,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 300000
+  },
+  "artifactLimits": {
+    "maxFiles": 500,
+    "maxFileBytes": 2097152,
+    "maxTrialBytes": 10485760,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 6000000,
+    "concurrency": 6
+  },
+  "trustedLocalExecution": true,
+  "budgetNotice": true,
+  "cases": [
+    {
+      "id": "t2-service-desk",
+      "packagePath": "task-library/calibration/t2-service-desk",
+      "packageManifestSha256": "f74c4bcf17321313a5fea6f80f7d8682e45caba6883d3eda0b4c9a9ef3b7cb29",
+      "input": {
+        "prompt": "Handle the ticket above as POLICY.md says, and end with the JSON reply."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 600000
+      },
+      "items": "all"
+    }
+  ]
+}
