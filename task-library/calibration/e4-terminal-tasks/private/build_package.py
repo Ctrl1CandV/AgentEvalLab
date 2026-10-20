@@ -24,6 +24,7 @@ from migrate import data as migrate_data  # noqa: E402
 from perf import data as perf_data  # noqa: E402
 import grader  # noqa: E402
 from codec_item import cases as codec_cases, lgz  # noqa: E402
+from speedup_item import data as speedup_data  # noqa: E402
 
 VERSION = grader.TASK_VERSION
 GRADER_VERSION = grader.GRADER_VERSION
@@ -55,6 +56,7 @@ def generate():
         # Git's index records file times, so a new tar differs in bytes even when every object is the same: keep the
         # existing tar while the answers it encodes are unchanged.
         if archive.exists() and answers_path.exists() and json.loads(answers_path.read_text(encoding="utf-8")) == answers:
+            generate_speedup()
             return generate_codec()
         with tarfile.open(archive, "w", format=tarfile.GNU_FORMAT) as tar:
             # Sorted entries, fixed times and owners: the archive's bytes depend only on the repository's contents.
@@ -67,7 +69,17 @@ def generate():
                 else:
                     tar.addfile(info)
     (HERE / "recover_item" / "answers.json").write_text(json.dumps(answers, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+    generate_speedup()
     generate_codec()
+
+
+def generate_speedup():
+    """The slow report program as shipped and a sample day."""
+    public = ROOT / "items" / "speedup" / "public"
+    public.mkdir(parents=True, exist_ok=True)
+    shutil.copy(HERE / "speedup_item" / "naive.py", public / "analyze.py")
+    with open(public / "events-sample.csv", "w", encoding="utf-8", newline="") as handle:
+        handle.write(speedup_data.events("speedup-sample", 20_000, 0.03))
 
 
 def generate_codec():

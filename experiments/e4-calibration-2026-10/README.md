@@ -52,3 +52,11 @@ Run `627cdf83` (task 0.3.0, codec):
 | glm-5.3, step-5-preview, gpt-6-luna | — | not run: the airy.work relay had no balance |
 
 Recovering a format from bytecode does not separate the strong models either: deepseek, qwen and mimo-flash decoded every hidden group in 19–34 responses. mimo-v2.6-pro writes its reasoning out as text as well as in its thinking, so the per-response text limit stopped it in both trials. That limit is a safety guard, not the task budget, so plans from now on allow 524,288 characters of text per response.
+
+## speedup (task 0.4.0, 2026-10-20)
+
+`speedup.eval.json` runs the speedup item twice on seven models with the codec run's budgets. A single response may hold 524,288 characters of text, and the grader has 15 minutes, since the timing runs take up to three minutes.
+
+```bash
+npm run harness -- --plan experiments/e4-calibration-2026-10/speedup.eval.json
+```

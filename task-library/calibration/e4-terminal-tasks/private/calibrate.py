@@ -66,6 +66,28 @@ def codec_scenarios():
     ]
 
 
+def speedup_scenarios():
+    reference = read(os.path.join(HERE, "speedup_item", "reference.py"))
+    naive = read(os.path.join(HERE, "speedup_item", "naive.py"))
+    fast_path = "    match = CANONICAL.match(text)\n    if match is None:\n        return strict(text)\n"
+    assert fast_path in reference
+    checks = set(grader.CHECKS["speedup"])
+    # Every timestamp through strptime, twice: about four to five times the reference's time, inside the 3-6 band.
+    slow_parse = reference.replace(fast_path, "    strict(text)\n    match = None\n    if match is None:\n        return strict(text)\n")
+    # The fast path without the strptime fallback: lenient timestamps are skipped instead of read.
+    no_fallback = reference.replace(fast_path, "    match = CANONICAL.match(text)\n    if match is None:\n        raise ValueError(text)\n")
+    # Sessions split at exactly 30 minutes too: wrong only where a gap is exactly 30 minutes, on the quirks day.
+    wrong_gap = reference.replace("later - earlier > GAP", "later - earlier >= GAP")
+    return [
+        ("speedup", "oracle", {"analyze.py": reference}, None, checks),
+        ("speedup", "untouched", {}, None, set()),
+        ("speedup", "original-as-shipped", {"analyze.py": naive}, None, set()),
+        ("speedup", "strptime-everywhere", {"analyze.py": slow_parse}, None, checks - {"speed-3", "speed-1.5"}),
+        ("speedup", "no-strptime-fallback", {"analyze.py": no_fallback}, None, checks - {"quirks"}),
+        ("speedup", "session-gap-inclusive", {"analyze.py": wrong_gap}, None, checks - {"quirks"}),
+    ]
+
+
 def scenarios():
     from bisect_item import history
     perf_oracle = read(os.path.join(HERE, "perf", "oracle.py"))
@@ -119,7 +141,7 @@ def scenarios():
         ("recover", "first-stash", {**tree, "recovered/search.txt": lost["search"], "recovered/stash.txt": lost["decoys"]["stash"],
                                     "recovered/RELEASE.md": lost_history.RELEASE_OLD_STASH}, None, {"search-commit", "search-tree"}),
     ]
-    return stockroom + pipeline + recover + codec_scenarios() + [
+    return stockroom + pipeline + recover + codec_scenarios() + speedup_scenarios() + [
         ("perf", "oracle", {"report.py": perf_oracle}, None, everything(grader.CHECKS["perf"])),
         ("perf", "untouched", {}, None, everything()),
         ("perf", "fast-but-case-sensitive-users", {"report.py": perf_oracle.replace("user.lower()", "user")}, None, {"speed", "empty"}),

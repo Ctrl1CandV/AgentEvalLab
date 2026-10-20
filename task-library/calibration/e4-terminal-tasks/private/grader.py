@@ -18,8 +18,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PACKAGE = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 TASK_ID = "e4-terminal-tasks"
-TASK_VERSION = "0.3.0"
-GRADER_VERSION = "1.2.0"
+TASK_VERSION = "0.4.0"
+GRADER_VERSION = "1.3.0"
 CHECKS = {
     "perf": ["workspace-output", "quirks", "empty", "speed"],
     "migrate": ["schema", "names", "emails", "dates", "totals", "statuses", "orphans", "idempotent", "atomic", "workspace-db"],
@@ -28,6 +28,7 @@ CHECKS = {
     "stockroom": ["strict-env", "timezone", "stock-cache", "duplicates", "money", "export-speed", "regression"],
     "pipeline": ["line-ends", "store-ids", "eu-format", "rebuild", "combined", "regression"],
     "recover": ["search-commit", "search-tree", "stash-commit", "stash-file"],
+    "speedup": ["small", "large", "quirks", "speed-16", "speed-6", "speed-3", "speed-1.5"],
     "codec": ["words", "short-tokens", "numbers", "timestamps", "spaces", "long-literals", "eviction", "multi-day", "bytes", "edges", "restore"],
 }
 SPEED_LIMIT_SECONDS = 2.0
@@ -304,6 +305,10 @@ def grade_codec(submission, runner):
     return hidden_checks("codec", submission, runner, ".")
 
 
+def grade_speedup(submission, runner):
+    return hidden_checks("speedup", submission, runner, "analyze.py")
+
+
 # recover -----------------------------------------------------------------------------------------------------------
 
 def read_text(path):
@@ -330,7 +335,7 @@ def grade_recover(submission, runner):
 
 
 GRADERS = {"perf": grade_perf, "migrate": grade_migrate, "bisect": grade_bisect, "build": grade_build, "stockroom": grade_stockroom,
-           "pipeline": grade_pipeline, "recover": grade_recover, "codec": grade_codec}
+           "pipeline": grade_pipeline, "recover": grade_recover, "codec": grade_codec, "speedup": grade_speedup}
 
 
 def grade(item_id, submission, launcher):

@@ -64,3 +64,29 @@ Every model that ran solved every compound item. Even gpt-6-luna repaired all si
   - Two first attempts at mutants, a table of 64 entries and no day reset, turned out to be equivalent decoders. They were replaced, and `short-tokens` now mixes short tokens with repeated long ones so that the table rule matters.
   - See `logs/self-calibration-0.3.0.log`.
 - **Builder.** Rebuilding rewrote `recover`'s tar with new bytes but the same objects, because Git's index records file times. The builder now keeps the existing tar while the answers it encodes are unchanged, so earlier items stay byte for byte as run.
+
+### Calibration 2026-10-20 (task 0.3.0)
+
+codec did not separate the strong models: deepseek, qwen and mimo-v2.6-flash decoded every hidden group. Fixed-answer items, however novel, saturate for this pool, so 0.4.0 adds an item scored on a ladder.
+
+## Version 0.4.0 (2026-10-20)
+
+**speedup**: make the nightly traffic report fast with byte-for-byte identical output.
+
+- **The program.** `analyze.py` (`private/speedup_item/naive.py`) is correct but naive, with quadratic loops and `strptime` for every row. It has quirks the output depends on:
+  - `strptime` accepts single-digit fields, a lowercase `t`, offsets without a colon and six fraction digits, and rejects a missing fraction, a lowercase `z` and a leading space;
+  - user and path normalisation;
+  - nearest-rank percentiles and half-even rounding;
+  - a ten-second burst window with both ends included, and sessions split only after *more* than 30 minutes.
+- **The reference** (`private/speedup_item/reference.py`) is one pass, O(n log n), with a fast path for canonical timestamps and `strptime` for everything else. Its output equals the original's on every dataset tried, quirk-heavy ones included. On 200,000 events it takes 0.69 s; the original takes 49 s.
+- **Checks.**
+  - `small`, `quirks`, `large`: the original's exact output on a normal day, a quirk day and a day of 200,000 events. The quirk day has the malformed rows and exact 30-minute gaps and 10-second bursts.
+  - `speed-16`, `speed-6`, `speed-3`, `speed-1.5`: the time on the large day against the reference, best of three interleaved runs, on one pinned core. They need the normal and large outputs right.
+  - The output checks count only once `speed-16` passes, so the original earns nothing.
+  - The check script keeps the original and the reference in memory and writes each to disk only while it runs.
+- **Self-calibration** (with every other item, `logs/self-calibration-0.4.0.log`):
+  - The reference passes everything; the untouched program and the original pasted back pass nothing.
+  - `strptime` for every timestamp, twice (4–5 times the reference) misses `speed-3` and `speed-1.5`.
+  - The fast path without the `strptime` fallback misses only `quirks`, and so do sessions split at exactly 30 minutes.
+  - A first version of that last mutant passed everything, because no gap was exactly 30 minutes; the quirk day now has such boundaries.
+
