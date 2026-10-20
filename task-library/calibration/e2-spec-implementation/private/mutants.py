@@ -100,11 +100,51 @@ RECUR = [
 ]
 
 
+QUERY = [
+    ("nulls-first-ascending", "ordering",
+     "    if left is None:\n        return -1 if descending else 1\n    if right is None:\n        return 1 if descending else -1",
+     "    if left is None:\n        return 1 if descending else -1\n    if right is None:\n        return -1 if descending else 1"),
+    ("case-insensitive-like", "like-functions",
+     "    return re.fullmatch(regex, value, re.DOTALL) is not None", "    return re.fullmatch(regex, value, re.DOTALL | re.IGNORECASE) is not None"),
+    ("truncating-integer-division", "arithmetic",
+     "            quotient = Fraction(left, right)\n            return int(quotient) if quotient.denominator == 1 else quotient",
+     "            return left // right"),
+    ("float-decimals", "arithmetic",
+     "        data = json.load(handle, parse_float=Fraction)", "        data = json.load(handle)"),
+    ("no-short-circuit-and", "division",
+     "        left = logical(evaluate(node[1], context))\n        if left is False:\n            return False\n        right = logical(evaluate(node[2], context))\n        if right is False:",
+     "        left = logical(evaluate(node[1], context))\n        right = logical(evaluate(node[2], context))\n        if left is False:\n            return False\n        if right is False:"),
+    ("cross-kind-comparison", "types",
+     "    if kind(left) != kind(right):\n        raise QueryError(\"TYPE_MISMATCH\")\n    return {",
+     "    if kind(left) != kind(right):\n        return False if op == \"=\" else True\n    return {"),
+    ("two-valued-in", "logic",
+     "            if outcome is None:\n                unknown = True", "            pass"),
+    ("integer-average", "aggregates",
+     "            mean = Fraction(total) / len(values)", "            mean = Fraction(int(total) // len(values))"),
+    ("left-join-as-inner", "joins",
+     "            if left and not matched:", "            if False:"),
+    ("order-alias-unsupported", "names",
+     "        elif expr[0] == \"col\" and expr[1] is None and expr[2].lower() in aliases:", "        elif False:"),
+    ("grouping-before-names", "error-order",
+     "    resolver = Resolver([(qualifier, columns) for qualifier, columns, _ in sources])",
+     "    if query[\"group\"] and query[\"items\"] != \"*\" and any(expr[0] == \"col\" and expr[2] not in [g[2] for g in query[\"group\"] if g[0] == \"col\"] for expr, _ in query[\"items\"]):\n        raise QueryError(\"GROUPING_ERROR\")\n    resolver = Resolver([(qualifier, columns) for qualifier, columns, _ in sources])"),
+    ("ordinal-unchecked", "parse",
+     "        if expr[0] == \"lit\" and isinstance(expr[1], int) and not isinstance(expr[1], bool) and not 1 <= expr[1] <= width:\n            raise QueryError(\"PARSE_ERROR\")",
+     "        pass"),
+    ("half-even-round-function", "like-functions",
+     "        magnitude = Fraction(int(abs(value) * scale + Fraction(1, 2)), scale)", "        magnitude = Fraction(round(abs(value) * scale), scale)"),
+    ("as-ignored", "basics",
+     "    names = [alias if alias else (expr[3]", "    names = [(expr[3]"),
+    ("having-without-groups-allowed", "grouping",
+     "    if not grouped and (having is not None or any(", "    if not grouped and (False or any("),
+]
+
+
 def mutants(item_id, reference_path):
     """(name, target check, source) for each mutant of an item's reference."""
     with open(reference_path, encoding="utf-8") as handle:
         source = handle.read()
-    table = {"sheet": SHEET, "ledger": LEDGER, "recur": RECUR}[item_id]
+    table = {"sheet": SHEET, "ledger": LEDGER, "recur": RECUR, "query": QUERY}[item_id]
     for name, target, old, new in table:
         if source.count(old) != 1:
             raise ValueError(f"mutant {name} no longer applies")

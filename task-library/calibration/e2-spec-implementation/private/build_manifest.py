@@ -6,8 +6,8 @@ import json
 import pathlib
 
 ROOT = pathlib.Path(".")
-ITEMS = {"sheet": "sheet", "ledger": "ledger", "recur": "recur"}
-VERSION, GRADER_VERSION = "0.3.0", "1.3.0"
+ITEMS = {"sheet": "sheet", "ledger": "ledger", "recur": "recur", "query": "query"}
+VERSION, GRADER_VERSION = "0.4.0", "1.4.0"
 
 
 def digest(path):

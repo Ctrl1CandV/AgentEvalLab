@@ -35,3 +35,38 @@ Run `82f84f8a`, four models, three repetitions each. Findings:
 - **Expected values written by hand.** Weekday facts came from a printed calendar. Both references matched every hand-written fixture at the first comparison.
 - **Exact comparison.** `ledger` and `recur` output must match exactly, JSON types included.
 - **Self-calibration (36/36).** Each reference passes every check, and a missing program fails every check. 11 ledger mutants and 9 recur mutants each fail the check they target, among them float conversion, half-up rounding, holds left out of the available amount, a capture checked against available funds, ids recorded only on success, frozen accounts refusing deposits, counts taken after exceptions, clamping applied to nth weekdays and an inclusive `until` treated as exclusive. See `logs/self-calibration-0.3.0.log`.
+
+### Calibration 2026-10-19 (task 0.3.0)
+
+deepseek-flash passed every check of all three items. On `sheet`, glm scored 97%, luna 82% and step 50%. `ledger` separated only luna, and `recur` was solved by every model. See `experiments/e2-calibration-2026-10/README.md`.
+
+## Version 0.4.0 (2026-10-20)
+
+- **Item `query`.** A small query language over in-memory tables: 13 rule areas, with 87 queries in 13 fixtures. It looks like SQL but differs from SQLite on purpose:
+  - exact decimals, and `/` giving the exact quotient;
+  - `NULL` sorting last in ascending order;
+  - case-sensitive `LIKE`;
+  - `TYPE_MISMATCH` for comparisons of different kinds;
+  - `ROUND` half away from zero on exact decimals.
+
+  A program that hands the work to `sqlite3`, or relies on SQL habits, fails those rules. The specification also fixes the grouping rules, join order, result column names and the order in which errors are found.
+- **Expected values written by hand.** The reference matched every one at the first comparison.
+- **Self-calibration (53/53).** 15 query mutants each fail the check they target:
+  - NULLs first in ascending order;
+  - case-insensitive `LIKE`;
+  - truncating integer division;
+  - floats for decimals;
+  - no short-circuit;
+  - comparisons across kinds;
+  - two-valued `IN`, which needed one more fixture, because `WHERE` hides the difference between `NULL` and `FALSE`;
+  - an integer `AVG`;
+  - a LEFT JOIN treated as inner;
+  - `ORDER BY` aliases unsupported;
+  - grouping checked before names;
+  - unchecked ordinals;
+  - half-even `ROUND`;
+  - ignored `AS`;
+  - `HAVING` without groups.
+
+  See `logs/self-calibration-0.4.0.log`.
+- **The calibration plan** selects `sheet` and `query`. `ledger` and `recur` remain as easy anchors.

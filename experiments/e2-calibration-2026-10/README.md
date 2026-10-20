@@ -31,3 +31,11 @@ The deepseek API key was rejected on 2026-10-19. `*-without-deepseek.eval.json` 
 - **Token use:** glm and step used 550,000–840,000 tokens per trial, luna 27,000–53,000.
 
 A new deepseek key works from 2026-10-19. The `*-deepseek.eval.json` plans add deepseek under the same conditions.
+
+## sheet and query (task 0.4.0, 2026-10-20)
+
+`sheet-query.eval.json` runs the two items that separate the models, `sheet` and the new `query`, twice on five models, qwen3.8-flash at its default thinking included. The budget is 1,200,000 tokens per trial: at 800,000, deepseek, glm and step used nearly all of it on `sheet` alone, and `query` is the larger specification.
+
+```bash
+npm run harness -- --plan experiments/e2-calibration-2026-10/sheet-query.eval.json
+```

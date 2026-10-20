@@ -16,14 +16,15 @@ import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TASK_ID = "e2-spec-implementation"
-TASK_VERSION = "0.3.0"
-GRADER_VERSION = "1.3.0"
+TASK_VERSION = "0.4.0"
+GRADER_VERSION = "1.4.0"
 # Per item: the file the candidate delivers, the module holding its hidden fixtures, and how a fixture becomes the
 # program's input. Sheet output is compared cell by cell with numeric tolerance; the others must match exactly.
 ITEMS = {
     "sheet": {"entry": "sheet.py", "fixtures": os.path.join(HERE, "sheet", "fixtures.py"), "input": lambda cells: {"cells": cells}, "cells": True},
     "ledger": {"entry": "ledger.py", "fixtures": os.path.join(HERE, "ledger", "fixtures.py"), "input": lambda data: data, "cells": False},
     "recur": {"entry": "recur.py", "fixtures": os.path.join(HERE, "recur", "fixtures.py"), "input": lambda data: data, "cells": False},
+    "query": {"entry": "query.py", "fixtures": os.path.join(HERE, "query", "fixtures.py"), "input": lambda data: data, "cells": False},
 }
 FIXTURE_TIMEOUT_SECONDS = 10
 MAX_OUTPUT_BYTES = 1_000_000
