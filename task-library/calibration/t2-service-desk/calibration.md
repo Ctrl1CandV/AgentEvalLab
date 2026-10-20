@@ -15,3 +15,11 @@ T2 is the policy-bound tool-use family of Task Set v2 (PLAN-005 WP5), after τ-b
 
   Wrong handlings pass exactly the checks they should: a return without the restocking fee, an unrequested compensation, a refund for another customer's order, and an exchange without the credit. See `logs/self-calibration-0.1.0.log`.
 - No model has been run yet.
+
+## Grader 1.0.1 (2026-10-20)
+
+- **Defect.** POLICY.md asks the reply to *end with* one JSON object, so prose before it complies. Grader 1.0.0 counted only a reply that was nothing but JSON as well formed, and the self-calibration even expected prose before the object to lose `answer-format`. Every model but luna explains its handling first, so all their tickets lost 20%.
+- **Fix.** A reply that ends with a JSON object, bare or in a closing fenced block, meets the format. Anything else falls back to the shared recovery rule with the 20% deduction, for example an object followed by more prose.
+- **Self-calibration (59 scenarios).** For every ticket, the expected handling passes every check with the object alone, after prose, and in a closing fence; followed by prose, it loses only `answer-format`.
+- **Regrade.** All 59 graded trials of the first calibration run were regraded; the four infrastructure failures have no grade. See `experiments/t2-calibration-2026-10/README.md`.
+

@@ -18,21 +18,42 @@ import tickets  # noqa: E402
 
 TASK_ID = "t2-service-desk"
 TASK_VERSION = "0.1.0"
-GRADER_VERSION = "1.0.0"
+GRADER_VERSION = "1.0.1"
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)
+CLOSING_FENCE = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```\s*$", re.S | re.I)
+
+
+def json_object(value):
+    try:
+        parsed = json.loads(value)
+    except json.JSONDecodeError:
+        return None
+    return parsed if isinstance(parsed, dict) else None
+
+
+def final_object(text):
+    """The JSON object the reply ends with, bare or in a closing fenced block, or None."""
+    text = text.rstrip()
+    fenced = CLOSING_FENCE.search(text)
+    if fenced and json_object(fenced.group(1)) is not None:
+        return json_object(fenced.group(1))
+    decoder = json.JSONDecoder()
+    for start in reversed([index for index, char in enumerate(text) if char == "{"]):
+        try:
+            value, end = decoder.raw_decode(text, start)
+        except json.JSONDecodeError:
+            continue
+        if end == len(text) and isinstance(value, dict):
+            return value
+    return None
 
 
 def parse_answer(text):
-    """The shared recovery rule: strict, a missing final brace, the only fenced object, or the only top-level object."""
-    def json_object(value):
-        try:
-            parsed = json.loads(value)
-        except json.JSONDecodeError:
-            return None
-        return parsed if isinstance(parsed, dict) else None
+    """POLICY.md asks the reply to end with one JSON object, so prose before it is fine. Otherwise the shared recovery
+    rule applies, at the format deduction: a missing final brace, the only fenced object, or the only top-level object."""
     if not isinstance(text, str):
         return "unparsed", None
-    answer = json_object(text)
+    answer = final_object(text)
     if answer is not None:
         return "strict", answer
     stripped = text.strip()

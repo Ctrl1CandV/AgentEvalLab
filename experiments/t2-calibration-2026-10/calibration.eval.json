@@ -63,7 +63,7 @@
     {
       "id": "t2-service-desk",
       "packagePath": "task-library/calibration/t2-service-desk",
-      "packageManifestSha256": "f74c4bcf17321313a5fea6f80f7d8682e45caba6883d3eda0b4c9a9ef3b7cb29",
+      "packageManifestSha256": "ecff58007b82306d7bb6020fd9fb0c99f1d46be752f1e27cdeebb7f5051340ac",
       "input": {
         "prompt": "Handle the ticket above as POLICY.md says, and end with the JSON reply."
       },

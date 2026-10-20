@@ -46,7 +46,10 @@ def scenarios():
         names = set(grader.check_names(ticket_id)) | {"answer-format"}
         rows.append((ticket_id, "oracle", ticket["actions"], None, reply(ticket), names))
         rows.append((ticket_id, "untouched", [], None, None, set()))
-        rows.append((ticket_id, "oracle-in-prose", ticket["actions"], None, "Done.\n\n" + reply(ticket), names - {"answer-format"}))
+        # POLICY.md asks for a reply that ends with the object, so prose before it, and a closing fence, are fine.
+        rows.append((ticket_id, "oracle-after-prose", ticket["actions"], None, "Done.\n\n" + reply(ticket), names))
+        rows.append((ticket_id, "oracle-fenced", ticket["actions"], None, "Done.\n\n```json\n" + reply(ticket) + "\n```\n", names))
+        rows.append((ticket_id, "oracle-then-prose", ticket["actions"], None, reply(ticket) + "\n\nAll handled.", names - {"answer-format"}))
         # Without a reply, a ticket that only declines is the same as doing nothing.
         rows.append((ticket_id, "oracle-without-reply", ticket["actions"], None, "All handled.",
                      {name for name in names if name.startswith(("order-", "customer-"))} | ({"no-other-changes"} if ticket["actions"] else set())))

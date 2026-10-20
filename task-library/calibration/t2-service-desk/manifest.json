@@ -45,7 +45,7 @@
       },
       {
         "path": "private/calibrate.py",
-        "sha256": "826556618dd28df2954efa5fa2d60ab5356303be6b0ab5bdd19e0f23fdd91042"
+        "sha256": "0f7a4f33420747f15606d689d576e9723c83138c19ef3a07dd35861dd5db58d7"
       },
       {
         "path": "private/desk.py",
@@ -53,7 +53,7 @@
       },
       {
         "path": "private/grader.py",
-        "sha256": "ed22a9a447e1f3e5258c441a1bb6ee469d608ae2de4e4016b959b39c840e1598"
+        "sha256": "6015936e323147553155157b381821657e6dfc854d9a9d1c0e83ddc21332ebe8"
       },
       {
         "path": "private/tickets.py",
@@ -566,7 +566,7 @@
   ],
   "grader": {
     "id": "t2-desk-state",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [
