@@ -90,3 +90,20 @@ codec did not separate the strong models: deepseek, qwen and mimo-v2.6-flash dec
   - The fast path without the `strptime` fallback misses only `quirks`, and so do sessions split at exactly 30 minutes.
   - A first version of that last mutant passed everything, because no gap was exactly 30 minutes; the quirk day now has such boundaries.
 
+## Version 0.4.1 (2026-10-20)
+
+**Why.** The speedup ladder topped out too early. In the first trials, deepseek's analyze.py ran in 0.51 s against the reference's 0.77 s, and qwen's in 0.97 s, so both passed every check up to `speed-1.5`. Their solutions are seriously engineered: a hand-written timestamp scanner over lookup tables, interned columns, and the csv module only when a field is quoted. That is close to the practical floor for this work in Python, so a much faster reference is not realistic.
+
+**The ladder moves to where the field spreads:** `speed-3`, `speed-1.5`, `speed-1.1` and `speed-0.75`, measured against the same reference. The output checks now count once `speed-3` passes.
+
+**Self-calibration** (`logs/self-calibration-0.4.1.log`):
+
+| Candidate | Time against the reference | Checks |
+| --- | --- | --- |
+| the reference itself | 1× | everything but `speed-0.75` |
+| `csv.DictReader` instead of `csv.reader` | 1.3× | misses `speed-1.1` and `speed-0.75` |
+| `strptime` for every row, twice | 4–5× | nothing |
+| the fast path without the `strptime` fallback, or sessions split at exactly 30 minutes | 1× | misses `quirks` and `speed-0.75` |
+
+The first run under 0.4.0 is regraded with grader 1.3.1.
+

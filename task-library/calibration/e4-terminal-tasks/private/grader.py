@@ -18,8 +18,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PACKAGE = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 TASK_ID = "e4-terminal-tasks"
-TASK_VERSION = "0.4.0"
-GRADER_VERSION = "1.3.0"
+TASK_VERSION = "0.4.1"
+GRADER_VERSION = "1.3.1"
 CHECKS = {
     "perf": ["workspace-output", "quirks", "empty", "speed"],
     "migrate": ["schema", "names", "emails", "dates", "totals", "statuses", "orphans", "idempotent", "atomic", "workspace-db"],
@@ -28,7 +28,7 @@ CHECKS = {
     "stockroom": ["strict-env", "timezone", "stock-cache", "duplicates", "money", "export-speed", "regression"],
     "pipeline": ["line-ends", "store-ids", "eu-format", "rebuild", "combined", "regression"],
     "recover": ["search-commit", "search-tree", "stash-commit", "stash-file"],
-    "speedup": ["small", "large", "quirks", "speed-16", "speed-6", "speed-3", "speed-1.5"],
+    "speedup": ["small", "large", "quirks", "speed-3", "speed-1.5", "speed-1.1", "speed-0.75"],
     "codec": ["words", "short-tokens", "numbers", "timestamps", "spaces", "long-literals", "eviction", "multi-day", "bytes", "edges", "restore"],
 }
 SPEED_LIMIT_SECONDS = 2.0

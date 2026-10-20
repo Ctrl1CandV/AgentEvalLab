@@ -75,7 +75,7 @@
     {
       "id": "e4-terminal-tasks",
       "packagePath": "task-library/calibration/e4-terminal-tasks",
-      "packageManifestSha256": "66e90f69b4b6c584f286b6968bdaf3b4692bc5d3a355317410e3c22b23b94a67",
+      "packageManifestSha256": "3a8711ac7575f141ebb872285f2325cbad4b5bedfc56bacf7527bd164bc133d7",
       "input": {
         "prompt": "Complete the task above in the workspace, check your work, and end with a short summary."
       },
