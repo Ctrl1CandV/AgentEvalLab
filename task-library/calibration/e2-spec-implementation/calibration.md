@@ -70,3 +70,23 @@ deepseek-flash passed every check of all three items. On `sheet`, glm scored 97%
 
   See `logs/self-calibration-0.4.0.log`.
 - **The calibration plan** selects `sheet` and `query`. `ledger` and `recur` remain as easy anchors.
+
+## Version 0.5.0 (2026-10-20)
+
+**Why.** `sheet` and `query` are near saturation: deepseek and qwen pass every query category. Strong models implement a precise specification almost perfectly, however long it is. A fixed-answer item cannot place them below 80%, so 0.5.0 adds an item whose score is continuous.
+
+**routes** is an optimisation item in the form of ALE-Bench: delivery routing with van capacity, a maximum route duration and refrigerated vans, minimising total distance.
+
+- **Instances.** Eight hidden instances of 50–800 customers, random and clustered, with different capacities and duration limits. `private/routes/instances.py` generates them reproducibly. Two samples are public, with their costs and a checker.
+- **Scale.** The baseline is nearest neighbour, which every instance is built to admit as a feasible plan. The best known cost is the best of three 15-minute runs of the reference solver (`private/routes/reference.py`, ruin and recreate with simulated annealing). It is 25–48% below the baseline.
+- **Scoring.** The program has 8 seconds per instance (stopped at 10) on one CPU core, which the grader pins so that extra processes gain nothing. Each instance has four checks, at 50, 80, 90 and 97% of the way from baseline to best; the top thresholds on the largest instances are beyond an 8-second Python run.
+- **Self-calibration.** `logs/self-calibration-0.5.0.log`, 60/60 with every other item:
+
+  | Candidate | Checks | Share of the way per instance |
+  | --- | ---: | --- |
+  | 7-second LNS, starting from the baseline | 23/32 | 1.00 at 50 customers, 0.78 at 800 |
+  | Clarke-Wright savings | 12/32 | 0.61–0.89 |
+  | the baseline itself, an infeasible plan, a program that runs too long, a missing program | 0/32 | — |
+
+  A model that combines a savings start with local search or ruin and recreate should land between these.
+

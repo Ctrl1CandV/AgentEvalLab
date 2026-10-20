@@ -41,3 +41,11 @@ npm run harness -- --plan experiments/e2-calibration-2026-10/sheet-query.eval.js
 ```
 
 Run `e2277944` (`sheet-query.eval.json`) showed that the 32,768-token limit on a single response was too tight for `query`. deepseek, glm and step each tried to write the whole program in one response and stopped at that limit after 36,000–44,000 tokens, in both repetitions. `query.eval.json` reruns `query` with responses of up to 131,072 tokens (each model's own output limit applies when lower) and 60 minutes per trial. The `sheet` results of `e2277944` stand: no `sheet` trial reached that limit.
+
+## routes (task 0.5.0, 2026-10-20)
+
+`routes.eval.json` runs the optimisation item twice on seven models: the five calibration models and the two MiMo V2.6 models at their default thinking. Each trial gets 1,200,000 tokens, 80 responses, 120 tool calls and 60 minutes. A single response may hold 131,072 tokens and 524,288 characters of text, so only the task budget stops a model.
+
+```bash
+npm run harness -- --plan experiments/e2-calibration-2026-10/routes.eval.json
+```

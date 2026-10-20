@@ -16,8 +16,8 @@ import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TASK_ID = "e2-spec-implementation"
-TASK_VERSION = "0.4.0"
-GRADER_VERSION = "1.4.0"
+TASK_VERSION = "0.5.0"
+GRADER_VERSION = "1.5.0"
 # Per item: the file the candidate delivers, the module holding its hidden fixtures, and how a fixture becomes the
 # program's input. Sheet output is compared cell by cell with numeric tolerance; the others must match exactly.
 ITEMS = {
@@ -25,8 +25,10 @@ ITEMS = {
     "ledger": {"entry": "ledger.py", "fixtures": os.path.join(HERE, "ledger", "fixtures.py"), "input": lambda data: data, "cells": False},
     "recur": {"entry": "recur.py", "fixtures": os.path.join(HERE, "recur", "fixtures.py"), "input": lambda data: data, "cells": False},
     "query": {"entry": "query.py", "fixtures": os.path.join(HERE, "query", "fixtures.py"), "input": lambda data: data, "cells": False},
+    "routes": {"entry": "routes.py", "fixtures": os.path.join(HERE, "routes", "fixtures.py")},
 }
 FIXTURE_TIMEOUT_SECONDS = 10
+ROUTES_TIMEOUT_SECONDS = 10
 MAX_OUTPUT_BYTES = 1_000_000
 
 
@@ -91,8 +93,67 @@ def run_fixture(program, data, launcher):
         shutil.rmtree(directory, ignore_errors=True)
 
 
+def run_routes(program, data, launcher):
+    """Run routes.py on one instance on one CPU core; returns (plan or None, reason)."""
+    directory = tempfile.mkdtemp(prefix="e2-routes-")
+    try:
+        shutil.copy(program, os.path.join(directory, "routes.py"))
+        with open(os.path.join(directory, "instance.json"), "w", encoding="utf-8") as handle:
+            json.dump(data, handle)
+        command = ["python3", "routes.py", "instance.json"]
+        if launcher:
+            command = [sys.executable, launcher, "--rw", directory, "--", *command]
+        # One core, inherited by every process the program starts; graders running side by side get different cores.
+        cpus = sorted(os.sched_getaffinity(0))
+        core = cpus[os.getpid() % len(cpus)]
+        try:
+            run = subprocess.run(command, cwd=directory, stdin=subprocess.DEVNULL, capture_output=True, timeout=ROUTES_TIMEOUT_SECONDS,
+                                 preexec_fn=lambda: os.sched_setaffinity(0, {core}),
+                                 env={"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "PYTHONIOENCODING": "utf-8", "LANG": "C.UTF-8"})
+        except subprocess.TimeoutExpired:
+            return None, "timeout"
+        if run.returncode != 0:
+            return None, f"exit {run.returncode}"
+        try:
+            return json.loads(run.stdout.decode("utf-8")), "ok"
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            return None, "output is not JSON"
+    finally:
+        shutil.rmtree(directory, ignore_errors=True)
+
+
+def grade_routes(submission, launcher):
+    """Four checks per hidden instance: the plan is feasible and gets at least 50, 80, 90 or 97% of the way from the
+    baseline's cost to the best-known cost."""
+    sys.path.insert(0, os.path.join(HERE, "routes"))
+    import instances
+    import model
+    with open(os.path.join(HERE, "routes", "anchors.json"), encoding="utf-8") as handle:
+        anchors = json.load(handle)
+    program = os.path.join(submission, "routes.py")
+    results = {}
+    for name in instances.HIDDEN:
+        data = instances.instance(name)
+        plan, reason = run_routes(program, data, launcher) if os.path.isfile(program) else (None, "routes.py missing")
+        share = 0.0
+        if plan is not None:
+            cost, problem = model.check(data, plan)
+            if problem is None:
+                baseline, best = anchors[name]["baseline"], anchors[name]["best"]
+                share = max(0.0, (baseline - cost) / (baseline - best))
+                reason = f"cost {cost:.1f}, {share:.3f} of the way"
+            else:
+                reason = f"infeasible: {problem}"
+        for threshold in instances.THRESHOLDS:
+            results[f"{name}-{threshold}"] = {"passed": share * 100 >= threshold, "fixtures": {name: reason}}
+    results["readme"] = {"passed": os.path.isfile(os.path.join(submission, "README.md")), "fixtures": {}}
+    return results
+
+
 def grade(item_id, submission, launcher):
     """{check: {"passed": bool, "fixtures": {fixture: reason}}}; a missing program fails every check."""
+    if item_id == "routes":
+        return grade_routes(submission, launcher)
     program = os.path.join(submission, ITEMS[item_id]["entry"])
     results = {}
     item = ITEMS[item_id]
@@ -146,12 +207,45 @@ def grade_request(request_path, result_path):
                              "unscoredCheckIds": [], "reason": None, "error": None})
 
 
+def routes_calibration():
+    """Routes has no pass-everything reference: the top thresholds on the largest instances are beyond an 8-second run.
+    Instead, plain savings and a 7-second LNS each earn every 50% check, the LNS earns more than savings, and the
+    baseline itself, an infeasible plan, a program that runs too long and a missing program earn nothing."""
+    solutions = os.path.join(HERE, "routes", "solutions")
+
+    def run(name):
+        with tempfile.TemporaryDirectory(prefix="e2-calibration-") as submission:
+            if name:
+                shutil.copy(os.path.join(solutions, f"{name}.py"), os.path.join(submission, "routes.py"))
+            with open(os.path.join(submission, "README.md"), "w", encoding="utf-8") as handle:
+                handle.write("Calibration candidate.\n")
+            return grade("routes", submission, None)
+
+    results = {name: run(name) for name in ("lns", "savings", "nn", "infeasible", "slow", None)}
+    for name, result in results.items():
+        passed = sum(entry["passed"] for check, entry in result.items() if check != "readme")
+        reasons = {check.split("-")[0]: next(iter(entry["fixtures"].values()), "") for check, entry in result.items() if check != "readme"}
+        print(f"routes {name or 'missing'}: {passed}/32 checks; " + "; ".join(f"{instance} {reason}" for instance, reason in reasons.items()))
+    earned = {name: sum(entry["passed"] for check, entry in result.items() if check != "readme") for name, result in results.items()}
+    lns = results["lns"]
+    return [("routes-lns-passes-every-50", all(entry["passed"] for check, entry in lns.items() if check.endswith("-50"))),
+            ("routes-savings-passes-every-50", all(entry["passed"] for check, entry in results["savings"].items() if check.endswith("-50"))),
+            ("routes-lns-beats-savings", earned["lns"] > earned["savings"]),
+            ("routes-baseline-earns-nothing", earned["nn"] == 0),
+            ("routes-infeasible-earns-nothing", earned["infeasible"] == 0),
+            ("routes-timeout-earns-nothing", earned["slow"] == 0),
+            ("routes-missing-earns-nothing", earned[None] == 0)]
+
+
 def self_calibrate():
     """The reference passes every check of every item; every mutant fails the check it targets. No model is involved."""
     sys.path.insert(0, HERE)
     import mutants  # noqa: E402
     rows = []
     for item_id in ITEMS:
+        if item_id == "routes":
+            rows += routes_calibration()
+            continue
         reference = os.path.join(HERE, item_id, "reference.py")
         with tempfile.TemporaryDirectory(prefix="e2-calibration-") as submission:
             shutil.copy(reference, os.path.join(submission, ITEMS[item_id]["entry"]))

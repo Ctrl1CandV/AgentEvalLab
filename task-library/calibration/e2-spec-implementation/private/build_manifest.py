@@ -6,8 +6,8 @@ import json
 import pathlib
 
 ROOT = pathlib.Path(".")
-ITEMS = {"sheet": "sheet", "ledger": "ledger", "recur": "recur", "query": "query"}
-VERSION, GRADER_VERSION = "0.4.0", "1.4.0"
+ITEMS = {"sheet": "sheet", "ledger": "ledger", "recur": "recur", "query": "query", "routes": "routes"}
+VERSION, GRADER_VERSION = "0.5.0", "1.5.0"
 
 
 def digest(path):
@@ -21,7 +21,22 @@ def checks_of(item):
     return sorted({check for check, *_ in module.FIXTURES})
 
 
+def routes_public():
+    """The routes item's public samples and their baseline and best-known costs."""
+    import sys
+    sys.path.insert(0, str(ROOT / "private" / "routes"))
+    import instances
+    anchors = json.loads((ROOT / "private" / "routes" / "anchors.json").read_text(encoding="utf-8"))
+    samples = ROOT / "items" / "routes" / "public" / "samples"
+    samples.mkdir(parents=True, exist_ok=True)
+    for name in instances.SAMPLES:
+        (samples / f"{name}.json").write_text(json.dumps(instances.instance(name), indent=1) + "\n", encoding="utf-8")
+    costs = {name: {"baseline": round(anchors[name]["baseline"], 3), "best": round(anchors[name]["best"], 3)} for name in instances.SAMPLES}
+    (samples / "costs.json").write_text(json.dumps(costs, indent=1) + "\n", encoding="utf-8")
+
+
 def main():
+    routes_public()
     trusted = ["calibration.md", "rubric.md"] + sorted(str(path.relative_to(ROOT)) for path in (ROOT / "private").rglob("*")
                                                      if path.is_file() and "__pycache__" not in path.parts and not path.name.endswith(".pyc")
                                                      and not any(part.startswith(".") for part in path.parts))

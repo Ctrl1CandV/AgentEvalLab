@@ -7,6 +7,7 @@ Each item is one self-contained specification with hidden fixtures. The candidat
 - One critical check per rule area. A check passes when every fixture in it produces exactly the expected output. For `sheet`, numbers compare within 1e-9, except in the `rounding` and `number-format` checks, which test the output rule itself: there, integral values must be JSON integers and other numbers must match within 1e-12. For `ledger`, `recur` and `query`, output must match exactly, JSON types included, so `1` does not stand for `true`.
 - `readme` (critical): a README.md is delivered, as the specification asks.
 - The score is the fraction of checks passed; the item is resolved when all pass.
+- `routes` (version 0.5.0) is an optimisation item in the form of ALE-Bench. Its program runs on eight hidden instances, one at a time on one CPU core with 10 seconds each (8 stated). A feasible plan scores the share of the way from a nearest-neighbour baseline's cost to the best known cost, found offline by long ruin-and-recreate runs (`private/routes/anchors.json`). Four checks per instance pass at 50, 80, 90 and 97% of that way; an infeasible plan, a crash or a timeout earns nothing for the instance.
 
 ## Items
 

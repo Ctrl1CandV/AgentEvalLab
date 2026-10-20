@@ -1,0 +1,297 @@
+{
+ "depot": [
+  500.0,
+  500.0
+ ],
+ "speed": 4.0,
+ "max_duration": 480,
+ "vans": [
+  {
+   "id": "V01",
+   "capacity": 100,
+   "cold": true
+  },
+  {
+   "id": "V02",
+   "capacity": 100,
+   "cold": true
+  },
+  {
+   "id": "V03",
+   "capacity": 100,
+   "cold": false
+  },
+  {
+   "id": "V04",
+   "capacity": 100,
+   "cold": false
+  },
+  {
+   "id": "V05",
+   "capacity": 100,
+   "cold": false
+  },
+  {
+   "id": "V06",
+   "capacity": 100,
+   "cold": false
+  },
+  {
+   "id": "V07",
+   "capacity": 100,
+   "cold": false
+  },
+  {
+   "id": "V08",
+   "capacity": 100,
+   "cold": false
+  },
+  {
+   "id": "V09",
+   "capacity": 100,
+   "cold": false
+  }
+ ],
+ "customers": [
+  {
+   "id": "C001",
+   "x": 388.1,
+   "y": 487.4,
+   "demand": 1,
+   "service": 8,
+   "cold": false
+  },
+  {
+   "id": "C002",
+   "x": 988.2,
+   "y": 833.3,
+   "demand": 13,
+   "service": 13,
+   "cold": false
+  },
+  {
+   "id": "C003",
+   "x": 680.4,
+   "y": 402.0,
+   "demand": 5,
+   "service": 4,
+   "cold": false
+  },
+  {
+   "id": "C004",
+   "x": 179.4,
+   "y": 836.9,
+   "demand": 5,
+   "service": 8,
+   "cold": false
+  },
+  {
+   "id": "C005",
+   "x": 336.6,
+   "y": 78.1,
+   "demand": 17,
+   "service": 14,
+   "cold": false
+  },
+  {
+   "id": "C006",
+   "x": 837.6,
+   "y": 616.0,
+   "demand": 7,
+   "service": 9,
+   "cold": false
+  },
+  {
+   "id": "C007",
+   "x": 804.7,
+   "y": 632.5,
+   "demand": 15,
+   "service": 3,
+   "cold": false
+  },
+  {
+   "id": "C008",
+   "x": 914.7,
+   "y": 815.9,
+   "demand": 29,
+   "service": 4,
+   "cold": false
+  },
+  {
+   "id": "C009",
+   "x": 656.3,
+   "y": 230.4,
+   "demand": 14,
+   "service": 7,
+   "cold": false
+  },
+  {
+   "id": "C010",
+   "x": 367.4,
+   "y": 31.6,
+   "demand": 10,
+   "service": 4,
+   "cold": false
+  },
+  {
+   "id": "C011",
+   "x": 330.9,
+   "y": 690.5,
+   "demand": 20,
+   "service": 3,
+   "cold": false
+  },
+  {
+   "id": "C012",
+   "x": 816.6,
+   "y": 542.4,
+   "demand": 18,
+   "service": 8,
+   "cold": true
+  },
+  {
+   "id": "C013",
+   "x": 853.9,
+   "y": 31.0,
+   "demand": 16,
+   "service": 12,
+   "cold": false
+  },
+  {
+   "id": "C014",
+   "x": 195.7,
+   "y": 639.1,
+   "demand": 12,
+   "service": 7,
+   "cold": false
+  },
+  {
+   "id": "C015",
+   "x": 687.9,
+   "y": 644.0,
+   "demand": 15,
+   "service": 5,
+   "cold": false
+  },
+  {
+   "id": "C016",
+   "x": 837.7,
+   "y": 291.0,
+   "demand": 11,
+   "service": 7,
+   "cold": false
+  },
+  {
+   "id": "C017",
+   "x": 34.7,
+   "y": 345.6,
+   "demand": 26,
+   "service": 8,
+   "cold": true
+  },
+  {
+   "id": "C018",
+   "x": 916.7,
+   "y": 13.7,
+   "demand": 5,
+   "service": 3,
+   "cold": false
+  },
+  {
+   "id": "C019",
+   "x": 700.4,
+   "y": 776.1,
+   "demand": 6,
+   "service": 15,
+   "cold": false
+  },
+  {
+   "id": "C020",
+   "x": 572.5,
+   "y": 853.8,
+   "demand": 3,
+   "service": 7,
+   "cold": false
+  },
+  {
+   "id": "C021",
+   "x": 603.2,
+   "y": 799.7,
+   "demand": 10,
+   "service": 8,
+   "cold": false
+  },
+  {
+   "id": "C022",
+   "x": 147.0,
+   "y": 587.2,
+   "demand": 15,
+   "service": 13,
+   "cold": false
+  },
+  {
+   "id": "C023",
+   "x": 478.0,
+   "y": 348.9,
+   "demand": 28,
+   "service": 10,
+   "cold": false
+  },
+  {
+   "id": "C024",
+   "x": 275.6,
+   "y": 62.1,
+   "demand": 23,
+   "service": 13,
+   "cold": false
+  },
+  {
+   "id": "C025",
+   "x": 842.0,
+   "y": 328.4,
+   "demand": 7,
+   "service": 8,
+   "cold": true
+  },
+  {
+   "id": "C026",
+   "x": 187.1,
+   "y": 852.6,
+   "demand": 12,
+   "service": 4,
+   "cold": false
+  },
+  {
+   "id": "C027",
+   "x": 128.9,
+   "y": 374.6,
+   "demand": 16,
+   "service": 4,
+   "cold": false
+  },
+  {
+   "id": "C028",
+   "x": 129.8,
+   "y": 925.1,
+   "demand": 18,
+   "service": 5,
+   "cold": false
+  },
+  {
+   "id": "C029",
+   "x": 184.9,
+   "y": 683.1,
+   "demand": 29,
+   "service": 4,
+   "cold": false
+  },
+  {
+   "id": "C030",
+   "x": 15.5,
+   "y": 424.8,
+   "demand": 28,
+   "service": 12,
+   "cold": false
+  }
+ ]
+}

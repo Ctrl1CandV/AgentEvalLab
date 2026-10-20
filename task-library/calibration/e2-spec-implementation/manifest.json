@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "e2-spec-implementation",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "familyId": "e2-spec-implementation",
   "capability": "engineering",
   "usage": "development",
@@ -28,19 +28,19 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "4309078b020c0b34b6f6e4474f38e7a74fdc3c10f2537493fb03184d81eadc44"
+        "sha256": "c2f8ffe3777c97f36cec0bced3c8b090d5294ba405d0668dc825fda6df932c3c"
       },
       {
         "path": "rubric.md",
-        "sha256": "34ab4e780df278ae2edb73cf83e8909f4b8a87984cfeb117db7afea9b428ef8e"
+        "sha256": "d0d15b73dc499c02e05eeedc0e23a34fedefbdde02badbf87cca6111440c1c76"
       },
       {
         "path": "private/build_manifest.py",
-        "sha256": "1ce7a78a6198f51a7466bd292522f73cdd4500647fcadd9ac62f7d5304866173"
+        "sha256": "867bd5aa07a796012ecc8510db2a9b84508ce1ad84392ab467df95b98c61b363"
       },
       {
         "path": "private/grader.py",
-        "sha256": "4295fa4bdac270f2f5d708fd3f9fb6584ce3158a0a8f8f2b9dac32941cfe8003"
+        "sha256": "058bae88715b96eb37b2507c49a0e5177d68a6042d53ba4c18f1a33b0cd6069c"
       },
       {
         "path": "private/ledger/fixtures.py",
@@ -71,6 +71,50 @@
         "sha256": "4ee0101e4a9f51dec651bfb4d404e40702eabfebe99b455f7cb96ebf6f86950b"
       },
       {
+        "path": "private/routes/anchors.json",
+        "sha256": "4a878987007e8fb247e8253cb0e39af14913cc9272518f9c1544e753f60005f1"
+      },
+      {
+        "path": "private/routes/compute_anchors.py",
+        "sha256": "e7d987ccc81af93ceb2f5939453562c07c534d190afcb8b4fbee711733b6a87f"
+      },
+      {
+        "path": "private/routes/fixtures.py",
+        "sha256": "527ee6d8e7088c8f24f8863df7afeed3556f7159c7e4f5e606a705be666dd9ea"
+      },
+      {
+        "path": "private/routes/instances.py",
+        "sha256": "bec7504fa0e1f920bc00dd763bb08163c4a5a20ea1f59964ad9232ca45e08c6b"
+      },
+      {
+        "path": "private/routes/model.py",
+        "sha256": "135c6085ccec57fb2d24c27a318b8089f3b7eb93e0d3f513b9b2fd783770a8c3"
+      },
+      {
+        "path": "private/routes/reference.py",
+        "sha256": "1cd256c687c72472001f9ef4fa067c8f4ca947268d00a4712f091b361860794d"
+      },
+      {
+        "path": "private/routes/solutions/infeasible.py",
+        "sha256": "65b2c0f6514ddbb00eb20c93ed838a2c3fef4923bf349e78037b3a49f26e6179"
+      },
+      {
+        "path": "private/routes/solutions/lns.py",
+        "sha256": "12d75e91d870f4301eabf62a599c82f41ffd9ad0cd8fd996ff0ae2d87d851ac5"
+      },
+      {
+        "path": "private/routes/solutions/nn.py",
+        "sha256": "0e490794b001d65473003e9139841cff9a7a2edcdb66dfb3722220ca5f66f135"
+      },
+      {
+        "path": "private/routes/solutions/savings.py",
+        "sha256": "d321197705a026fd414507f99ac0f6968d348a6469e3243919ef2e8729cb8838"
+      },
+      {
+        "path": "private/routes/solutions/slow.py",
+        "sha256": "bb52a58282d6a0dffb0f712b359a26a6e5122f2ba2deea80b8e64475a05e25a0"
+      },
+      {
         "path": "private/sheet/fixtures.py",
         "sha256": "ee4e7e68170df6db06a667e4d6c8f034d31c0a72d99da9df19115bc620c401ec"
       },
@@ -84,7 +128,7 @@
     {
       "id": "REQ-SHEET-ARITHMETIC",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "sheet-arithmetic"
       ]
@@ -92,7 +136,7 @@
     {
       "id": "REQ-SHEET-CHAINS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "sheet-chains"
       ]
@@ -100,7 +144,7 @@
     {
       "id": "REQ-SHEET-COMPARISON",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "sheet-comparison"
       ]
@@ -108,7 +152,7 @@
     {
       "id": "REQ-SHEET-CYCLES",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "sheet-cycles"
       ]
@@ -116,7 +160,7 @@
     {
       "id": "REQ-SHEET-DIVISION",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "sheet-division"
       ]
@@ -124,7 +168,7 @@
     {
       "id": "REQ-SHEET-EMPTY-REFERENCES",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "sheet-empty-references"
       ]
@@ -132,7 +176,7 @@
     {
       "id": "REQ-SHEET-ERROR-PROPAGATION",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "sheet-error-propagation"
       ]
@@ -140,7 +184,7 @@
     {
       "id": "REQ-SHEET-FUNCTIONS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "sheet-functions"
       ]
@@ -148,7 +192,7 @@
     {
       "id": "REQ-SHEET-IF",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "sheet-if"
       ]
@@ -156,7 +200,7 @@
     {
       "id": "REQ-SHEET-LITERALS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "sheet-literals"
       ]
@@ -164,7 +208,7 @@
     {
       "id": "REQ-SHEET-NUMBER-FORMAT",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "sheet-number-format"
       ]
@@ -172,7 +216,7 @@
     {
       "id": "REQ-SHEET-PARSE-ERRORS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "sheet-parse-errors"
       ]
@@ -180,7 +224,7 @@
     {
       "id": "REQ-SHEET-POWER",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "sheet-power"
       ]
@@ -188,7 +232,7 @@
     {
       "id": "REQ-SHEET-REFERENCES",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "sheet-references"
       ]
@@ -196,7 +240,7 @@
     {
       "id": "REQ-SHEET-ROUNDING",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "sheet-rounding"
       ]
@@ -204,7 +248,7 @@
     {
       "id": "REQ-SHEET-TEXT",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "sheet-text"
       ]
@@ -212,7 +256,7 @@
     {
       "id": "REQ-LEDGER-AMOUNTS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "ledger-amounts"
       ]
@@ -220,7 +264,7 @@
     {
       "id": "REQ-LEDGER-CAPTURE",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "ledger-capture"
       ]
@@ -228,7 +272,7 @@
     {
       "id": "REQ-LEDGER-DUPLICATES",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "ledger-duplicates"
       ]
@@ -236,7 +280,7 @@
     {
       "id": "REQ-LEDGER-ERROR-ORDER",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "ledger-error-order"
       ]
@@ -244,7 +288,7 @@
     {
       "id": "REQ-LEDGER-FROZEN",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "ledger-frozen"
       ]
@@ -252,7 +296,7 @@
     {
       "id": "REQ-LEDGER-FX-ROUNDING",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "ledger-fx-rounding"
       ]
@@ -260,7 +304,7 @@
     {
       "id": "REQ-LEDGER-HOLDS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "ledger-holds"
       ]
@@ -268,7 +312,7 @@
     {
       "id": "REQ-LEDGER-OPEN",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "ledger-open"
       ]
@@ -276,7 +320,7 @@
     {
       "id": "REQ-LEDGER-OUTPUT-FORMAT",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "ledger-output-format"
       ]
@@ -284,7 +328,7 @@
     {
       "id": "REQ-LEDGER-REVERSAL",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "ledger-reversal"
       ]
@@ -292,7 +336,7 @@
     {
       "id": "REQ-LEDGER-TRANSFER",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "ledger-transfer"
       ]
@@ -300,7 +344,7 @@
     {
       "id": "REQ-LEDGER-WITHDRAW",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "ledger-withdraw"
       ]
@@ -308,7 +352,7 @@
     {
       "id": "REQ-RECUR-CLAMP",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "recur-clamp"
       ]
@@ -316,7 +360,7 @@
     {
       "id": "REQ-RECUR-COUNT-EXCEPT",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "recur-count-except"
       ]
@@ -324,7 +368,7 @@
     {
       "id": "REQ-RECUR-DAILY",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "recur-daily"
       ]
@@ -332,7 +376,7 @@
     {
       "id": "REQ-RECUR-EXAMPLES",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "recur-examples"
       ]
@@ -340,7 +384,7 @@
     {
       "id": "REQ-RECUR-LIMITS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "recur-limits"
       ]
@@ -348,7 +392,7 @@
     {
       "id": "REQ-RECUR-MONTHLY",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "recur-monthly"
       ]
@@ -356,7 +400,7 @@
     {
       "id": "REQ-RECUR-NTH",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "recur-nth"
       ]
@@ -364,7 +408,7 @@
     {
       "id": "REQ-RECUR-VALIDATION",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "recur-validation"
       ]
@@ -372,7 +416,7 @@
     {
       "id": "REQ-RECUR-WEEKLY",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "recur-weekly"
       ]
@@ -380,7 +424,7 @@
     {
       "id": "REQ-RECUR-YEARLY",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "recur-yearly"
       ]
@@ -388,7 +432,7 @@
     {
       "id": "REQ-QUERY-AGGREGATES",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "query-aggregates"
       ]
@@ -396,7 +440,7 @@
     {
       "id": "REQ-QUERY-ARITHMETIC",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "query-arithmetic"
       ]
@@ -404,7 +448,7 @@
     {
       "id": "REQ-QUERY-BASICS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "query-basics"
       ]
@@ -412,7 +456,7 @@
     {
       "id": "REQ-QUERY-DIVISION",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "query-division"
       ]
@@ -420,7 +464,7 @@
     {
       "id": "REQ-QUERY-ERROR-ORDER",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "query-error-order"
       ]
@@ -428,7 +472,7 @@
     {
       "id": "REQ-QUERY-GROUPING",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "query-grouping"
       ]
@@ -436,7 +480,7 @@
     {
       "id": "REQ-QUERY-JOINS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "query-joins"
       ]
@@ -444,7 +488,7 @@
     {
       "id": "REQ-QUERY-LIKE-FUNCTIONS",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "query-like-functions"
       ]
@@ -452,7 +496,7 @@
     {
       "id": "REQ-QUERY-LOGIC",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "query-logic"
       ]
@@ -460,7 +504,7 @@
     {
       "id": "REQ-QUERY-NAMES",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "query-names"
       ]
@@ -468,7 +512,7 @@
     {
       "id": "REQ-QUERY-ORDERING",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "query-ordering"
       ]
@@ -476,7 +520,7 @@
     {
       "id": "REQ-QUERY-PARSE",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "query-parse"
       ]
@@ -484,15 +528,271 @@
     {
       "id": "REQ-QUERY-TYPES",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "query-types"
       ]
     },
     {
+      "id": "REQ-ROUTES-H1-50",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h1-50"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H1-80",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h1-80"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H1-90",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h1-90"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H1-97",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h1-97"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H2-50",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h2-50"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H2-80",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h2-80"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H2-90",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h2-90"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H2-97",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h2-97"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H3-50",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h3-50"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H3-80",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h3-80"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H3-90",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h3-90"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H3-97",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h3-97"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H4-50",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h4-50"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H4-80",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h4-80"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H4-90",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h4-90"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H4-97",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h4-97"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H5-50",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h5-50"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H5-80",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h5-80"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H5-90",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h5-90"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H5-97",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h5-97"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H6-50",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h6-50"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H6-80",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h6-80"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H6-90",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h6-90"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H6-97",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h6-97"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H7-50",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h7-50"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H7-80",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h7-80"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H7-90",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h7-90"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H7-97",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h7-97"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H8-50",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h8-50"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H8-80",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h8-80"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H8-90",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h8-90"
+      ]
+    },
+    {
+      "id": "REQ-ROUTES-H8-97",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-h8-97"
+      ]
+    },
+    {
       "id": "REQ-README",
       "critical": true,
-      "introducedAt": "e2-spec-implementation 0.4.0",
+      "introducedAt": "e2-spec-implementation 0.5.0",
       "checkIds": [
         "readme"
       ]
@@ -601,6 +901,67 @@
         "REQ-QUERY-TYPES",
         "REQ-README"
       ]
+    },
+    {
+      "id": "routes",
+      "level": "routes",
+      "files": [
+        {
+          "path": "items/routes/prompt.md",
+          "sha256": "e7259733c3e34161c7675ec2f1e927d2c88701161ffc344bdc42fb89be56479f"
+        },
+        {
+          "path": "items/routes/public/evaluate.py",
+          "sha256": "ba7c9c8f825a9b9c13866c30724912a105f5a20fb586337a466e4ea94c53c8cc"
+        },
+        {
+          "path": "items/routes/public/samples/costs.json",
+          "sha256": "79356b6b89bd899a1f277f67a34480bcefb92a335b6acbe08fffca228c9be817"
+        },
+        {
+          "path": "items/routes/public/samples/s1.json",
+          "sha256": "f527eea269f11e4223db9f1f51e14fdd94291d72b461caf1183854f79ac8d03d"
+        },
+        {
+          "path": "items/routes/public/samples/s2.json",
+          "sha256": "389f382523b0ff7c28b288b6de828e7b07020b9dec776be65297a4c08783c46d"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-ROUTES-H1-50",
+        "REQ-ROUTES-H1-80",
+        "REQ-ROUTES-H1-90",
+        "REQ-ROUTES-H1-97",
+        "REQ-ROUTES-H2-50",
+        "REQ-ROUTES-H2-80",
+        "REQ-ROUTES-H2-90",
+        "REQ-ROUTES-H2-97",
+        "REQ-ROUTES-H3-50",
+        "REQ-ROUTES-H3-80",
+        "REQ-ROUTES-H3-90",
+        "REQ-ROUTES-H3-97",
+        "REQ-ROUTES-H4-50",
+        "REQ-ROUTES-H4-80",
+        "REQ-ROUTES-H4-90",
+        "REQ-ROUTES-H4-97",
+        "REQ-ROUTES-H5-50",
+        "REQ-ROUTES-H5-80",
+        "REQ-ROUTES-H5-90",
+        "REQ-ROUTES-H5-97",
+        "REQ-ROUTES-H6-50",
+        "REQ-ROUTES-H6-80",
+        "REQ-ROUTES-H6-90",
+        "REQ-ROUTES-H6-97",
+        "REQ-ROUTES-H7-50",
+        "REQ-ROUTES-H7-80",
+        "REQ-ROUTES-H7-90",
+        "REQ-ROUTES-H7-97",
+        "REQ-ROUTES-H8-50",
+        "REQ-ROUTES-H8-80",
+        "REQ-ROUTES-H8-90",
+        "REQ-ROUTES-H8-97",
+        "REQ-README"
+      ]
     }
   ],
   "toolProfiles": [
@@ -608,7 +969,7 @@
   ],
   "grader": {
     "id": "e2-fixtures",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [
