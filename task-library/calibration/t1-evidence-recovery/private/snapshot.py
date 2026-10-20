@@ -412,9 +412,11 @@ def q_config_at_date(rng, snap, services, configs, packages, log_files, used, ex
             continue
         used_dates.add((service, key, date))
         break
+    # The next change after the date records the same value as its "From", so it is equally valid evidence.
+    alternatives = [records[len(before)][3]] if before else []
     return {"kind": "config_at_date", "text": f"What was the production {key} of the service {service} at the end of {date}?",
             "fields": '{"value": <integer>, "evidence": "<change file path>"}',
-            "answer": {"value": value, "evidence": deciding[3]}, "evidence": [{"path": deciding[3], "whole": True}]}
+            "answer": {"value": value, "evidence": deciding[3]}, "evidence": [{"path": deciding[3], "whole": True}], "alternatives": alternatives}
 
 
 def q_recovery_hop(rng, snap, services, configs, packages, log_files, used, extra):

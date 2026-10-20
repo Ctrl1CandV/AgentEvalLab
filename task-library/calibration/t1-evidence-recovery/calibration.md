@@ -50,3 +50,19 @@ Grader 1.4.0:
 - treats only configuration files' whole-file proofs as proofs of absence, so `prior_attempt.log` and `clients.csv` must be read.
 
 Every L6 answer was also recomputed independently from the snapshot files. Self-calibration: 584/584; see `logs/self-calibration-0.3.0.log`.
+
+### Calibration 2026-10-20 (task 0.3.0) and grader 1.4.1
+
+Run `3a683df7`, L5 and L6 on five models; see `experiments/t1-calibration-2026-10/README.md`. The audit found two grader defects, both fixed in grader 1.4.1:
+
+- **A date question accepted only one of two valid evidence files.** The value at the end of a day appears as the `To` of the last change on or before it and as the `From` of the next change. gpt-6-luna cited the latter with the right value. Both now count, each shown in full.
+- **An answer complete except for its final closing brace scored 0.** qwen3.8-flash did this, and it is the kind of format slip that principle 2 deducts by 20%. Such an object is now recovered.
+
+Every other failed question was the model's own:
+
+- wrong counts and values;
+- an include chain not followed;
+- a value given without the evidence that it is not overridden;
+- `secrets/` listed.
+
+Self-calibration: 622/622.

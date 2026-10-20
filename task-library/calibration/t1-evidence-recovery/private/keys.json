@@ -3820,6 +3820,9 @@
       "path": "changes/CHG-7286.md",
       "whole": true
      }
+    ],
+    "alternatives": [
+     "changes/CHG-3385.md"
     ]
    },
    {
@@ -3835,6 +3838,9 @@
       "path": "changes/CHG-6517.md",
       "whole": true
      }
+    ],
+    "alternatives": [
+     "changes/CHG-5783.md"
     ]
    },
    {
@@ -4677,6 +4683,9 @@
       "path": "changes/CHG-6100.md",
       "whole": true
      }
+    ],
+    "alternatives": [
+     "changes/CHG-7406.md"
     ]
    },
    {
@@ -4692,7 +4701,8 @@
       "path": "changes/CHG-8822.md",
       "whole": true
      }
-    ]
+    ],
+    "alternatives": []
    },
    {
     "kind": "incident",
@@ -5546,6 +5556,9 @@
       "path": "changes/CHG-1703.md",
       "whole": true
      }
+    ],
+    "alternatives": [
+     "changes/CHG-6980.md"
     ]
    },
    {
@@ -5561,6 +5574,9 @@
       "path": "changes/CHG-2440.md",
       "whole": true
      }
+    ],
+    "alternatives": [
+     "changes/CHG-5658.md"
     ]
    },
    {
@@ -6355,6 +6371,9 @@
       "path": "changes/CHG-2744.md",
       "whole": true
      }
+    ],
+    "alternatives": [
+     "changes/CHG-9929.md"
     ]
    },
    {
@@ -6370,6 +6389,9 @@
       "path": "changes/CHG-8472.md",
       "whole": true
      }
+    ],
+    "alternatives": [
+     "changes/CHG-6178.md"
     ]
    },
    {
