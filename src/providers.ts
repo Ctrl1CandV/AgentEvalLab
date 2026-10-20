@@ -62,11 +62,13 @@ export interface CustomModelConfig {
 // Checked 2026-10-14 against https://api-docs.deepseek.com/quick_start/pricing: 1M context, 384K maximum
 // output, thinking on by default. Prices change between peak and off-peak hours, so cost stays unknown and
 // batches are bounded by tokens.
-const deepseekFlash: CustomModelConfig = { id: "deepseek-flash", contextWindow: 1_000_000, maxTokens: 384_000, reasoning: true, thinking: "configurable",
+const deepseekFlash: CustomModelConfig = {
+  id: "deepseek-flash", contextWindow: 1_000_000, maxTokens: 384_000, reasoning: true, thinking: "configurable",
   // Checked 2026-10-18 against https://api-docs.deepseek.com/guides/thinking_mode/: effort low, high or max (default
   // high); other names are silently remapped, so they are declared null and rejected by validation. Temperature has
   // no effect in thinking mode.
-  thinkingLevelMap: { minimal: null, low: "low", medium: null, high: "high", xhigh: null, max: "max" }, prices: null, verified: true, vision: true };
+  thinkingLevelMap: { minimal: null, low: "low", medium: null, high: "high", xhigh: null, max: "max" }, prices: null, verified: true, vision: true
+};
 
 // Checked 2026-10-14 against https://help.aliyun.com/zh/model-studio/qwen3-8-flash: 1M context, 131,072
 // maximum output, thinking supported. AliPlan bills through a token plan, so no per-token prices are declared.
@@ -74,8 +76,10 @@ const deepseekFlash: CustomModelConfig = { id: "deepseek-flash", contextWindow: 
 // the model's full reasoning length, and its only control is a token budget; there are no effort levels. Plans
 // therefore run it at "provider-default", which sends no thinking parameter; a probe on 2026-10-20 returned a thinking
 // block and the right answer. Image input is documented and a screenshot probe on 2026-10-20 read the page exactly.
-const qwen38Flash: CustomModelConfig = { id: "qwen3.8-flash", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: true, thinking: "configurable", prices: null,
-  verified: true, vision: true };
+const qwen38Flash: CustomModelConfig = {
+  id: "qwen3.8-flash", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: true, thinking: "configurable", prices: null,
+  verified: true, vision: true
+};
 
 // Checked 2026-10-14 against https://developers.openai.com/api/docs/models/gpt-6-luna: 1,050,000 context
 // (922,000 input), 128,000 maximum output, reasoning effort none, low, medium (default), high, xhigh and max.
@@ -84,8 +88,10 @@ const qwen38Flash: CustomModelConfig = { id: "qwen3.8-flash", contextWindow: 1_0
 // applies when tools are present (checked 2026-10-14), although OpenAI's Chat Completions allows function calling
 // only with "none". The relay's prices are not published here, and it ignores both max_tokens and
 // max_completion_tokens; the runner enforces the output cap from reported usage.
-const gpt6Luna: CustomModelConfig = { id: "gpt-6-luna", contextWindow: 1_050_000, maxTokens: 128_000, reasoning: true, thinking: "configurable",
-  thinkingLevelMap: { off: "none", minimal: null, xhigh: "xhigh", max: "max" }, prices: null, verified: true, vision: true };
+const gpt6Luna: CustomModelConfig = {
+  id: "gpt-6-luna", contextWindow: 1_050_000, maxTokens: 128_000, reasoning: true, thinking: "configurable",
+  thinkingLevelMap: { off: "none", minimal: null, xhigh: "xhigh", max: "max" }, prices: null, verified: true, vision: true
+};
 
 // Checked 2026-10-14 against https://docs.bigmodel.cn/cn/guide/models/vlm/glm-5.3-flash: 1M context, 128K
 // maximum output, and thinking that cannot be disabled (thinking.type only "enabled"). Declared without
@@ -94,28 +100,50 @@ const gpt6Luna: CustomModelConfig = { id: "gpt-6-luna", contextWindow: 1_050_000
 // output, thinking always on, and reasoning_effort low, high or max with default "max". Through the SuperCN relay's
 // Anthropic endpoint the effort is sent as adaptive thinking with output_config.effort; a probe on 2026-10-15 showed
 // the relay applies it. GLM has no off, minimal, medium or xhigh level, so those are declared null and rejected.
-const glm53: CustomModelConfig = { id: "glm-5.3", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: true, thinking: "always-on",
+const glm53: CustomModelConfig = {
+  id: "glm-5.3", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: true, thinking: "always-on",
   thinkingLevelMap: { off: null, minimal: null, low: "low", medium: null, high: "high", xhigh: null, max: "max" }, adaptiveThinking: true,
-  prices: null, verified: true };
+  prices: null, verified: true
+};
 
 // Checked 2026-10-18 against https://platform.stepfun.ai/docs/en/guides/models/step-5-preview: 1M context, 64K
 // maximum output, reasoning effort low, medium or high, sent as output_config.effort on the Messages API. Disabling
 // thinking is not documented, so "off" is rejected. Served through the SuperCN relay.
-const step5Preview: CustomModelConfig = { id: "step-5-preview", contextWindow: 1_000_000, maxTokens: 64_000, reasoning: true, thinking: "always-on",
+const step5Preview: CustomModelConfig = {
+  id: "step-5-preview", contextWindow: 1_000_000, maxTokens: 64_000, reasoning: true, thinking: "always-on",
   thinkingLevelMap: { off: null, minimal: null, low: "low", medium: "medium", high: "high", xhigh: null, max: null }, adaptiveThinking: true,
-  prices: null, verified: true, vision: true };
+  prices: null, verified: true, vision: true
+};
 
 // Checked 2026-10-18 against third-party guides citing Moonshot's documentation (no official page was reachable):
 // 1,048,576 context, 131,072 default maximum output, thinking always on, reasoning effort low, high or max (default
 // max). Costs more than the other models. Every request carries about 2,080 input tokens that the model did not
 // write ("Reply with exactly OK." costs 2,090 input tokens on both SuperCN protocols, uncached); they count toward
 // token budgets.
-const kimiK3: CustomModelConfig = { id: "kimi-k3", contextWindow: 1_048_576, maxTokens: 131_072, reasoning: true, thinking: "always-on",
+const kimiK3: CustomModelConfig = {
+  id: "kimi-k3", contextWindow: 1_048_576, maxTokens: 131_072, reasoning: true, thinking: "always-on",
   thinkingLevelMap: { off: null, minimal: null, low: "low", medium: null, high: "high", xhigh: null, max: "max" }, adaptiveThinking: true,
-  prices: null, verified: true, vision: true };
+  prices: null, verified: true, vision: true
+};
 
-const glm53Flash: CustomModelConfig = { id: "glm-5.3-flash", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: false, thinking: "always-on",
-  prices: null, verified: true, vision: true };
+const glm53Flash: CustomModelConfig = {
+  id: "glm-5.3-flash", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: false, thinking: "always-on",
+  prices: null, verified: true, vision: true
+};
+
+// Checked 2026-10-20 against https://mimo.mi.com/models/en-US/mimo-v2.6-flash and the Deep Thinking guide
+// (https://mimo.mi.com/docs/en-US/quick-start/usage-guide/text-generation/deep-thinking): 1M context (1,048,576),
+// 128K (131,072) maximum output covering thinking and answer, text, image, video and audio input. Thinking is on by
+// default and only switches on or off (thinking.type), with no effort levels or budget, so plans run both models at
+// "provider-default"; in thinking mode temperature and top_p are forced to 1.0 and 0.95. Thinking must be passed
+// back across tool calls; Pi does, and probes on 2026-10-20 passed usage, output cap, tool round trip and error
+// classification on both protocols, and read a rendered page correctly. The token plan is billed in tokens, so no
+// prices are declared.
+const mimoV26Pro: CustomModelConfig = {
+  id: "mimo-v2.6-pro", contextWindow: 1_048_576, maxTokens: 131_072, reasoning: true, thinking: "configurable", prices: null,
+  verified: true, vision: true
+};
+const mimoV26Flash: CustomModelConfig = { ...mimoV26Pro, id: "mimo-v2.6-flash" };
 
 // Conservative placeholders used until a model's metadata is checked against its provider.
 function unverified(id: string): CustomModelConfig {
@@ -182,6 +210,18 @@ export const providerConfigs: readonly ProviderConfig[] = [
     id: "supergpt-anthropic", name: "SuperGPT (Anthropic)", api: "anthropic-messages",
     baseUrl: "https://api.airy.work", apiKeyEnv: "SUPERGPT_APIKEY",
     models: [unverified("gpt-6-astra"), unverified("gpt-6-sol"), unverified("gpt-6-luna"), unverified("gpt-5.6-sol")],
+  },
+  // ---- MiMo Plan: Anthropic endpoint with an OpenAI-compatible fallback (added 2026-10-20) ----
+  // mimo-v2.5-pro has been routed to V2.6 since 2026-10-14, and its ID is retired on 2026-10-21, so it stays unverified.
+  {
+    id: "mimoplan", name: "MiMo Plan", api: "anthropic-messages",
+    baseUrl: "https://token-plan-cn.xiaomimimo.com/anthropic", apiKeyEnv: "MIMOPLAN_APIKEY",
+    models: [mimoV26Pro, mimoV26Flash, unverified("mimo-v2.5-pro")],
+  },
+  {
+    id: "mimoplan-openai", name: "MiMo Plan (OpenAI)", api: "openai-completions",
+    baseUrl: "https://token-plan-cn.xiaomimimo.com/v1", apiKeyEnv: "MIMOPLAN_APIKEY",
+    models: [unverified("mimo-v2.6-pro"), unverified("mimo-v2.6-flash"), unverified("mimo-v2.5-pro")],
   },
 ];
 

@@ -116,3 +116,13 @@ Five requests per model cannot show variance, long-context behaviour, or context
 
 - **Thinking.** qwen3.8 has no effort levels. Thinking is on by default with the model's full reasoning length, and its only control is a token budget. Pi's `medium` would have sent a fixed 8,192-token budget, far below the model's default, so qwen runs at `provider-default`, which sends no thinking parameter. A reasoning probe at that setting returned a thinking block and the right answer (269).
 - **Image input** is documented. A desktop screenshot probe quoted the page's headline exactly, so qwen is declared vision-capable and may serve as a visual judge.
+
+## MiMo V2.6 Pro and Flash (2026-10-20)
+
+The user added a MiMo token plan with an Anthropic endpoint and an OpenAI-compatible fallback. `npm run provider-check` with `mimo-v2.6-pro` and `mimo-v2.6-flash` at `provider-default`, on both `mimoplan` and `mimoplan-openai`, passed every check: usage reported, the output cap enforced, the tool round trip, and the invalid-key classification.
+
+- **Metadata** from Xiaomi's model page and Deep Thinking guide: 1,048,576 tokens of context, 131,072 of output (thinking and answer together), text, image, video and audio input.
+- **Thinking** is on by default and only switches on or off; there are no effort levels or budgets. Like qwen, both models run at `provider-default`. The OpenAI endpoint reported reasoning tokens (10 to 41 on the probes); the Anthropic endpoint folds them into output tokens. In thinking mode the API forces temperature 1.0 and top_p 0.95, so the plans' temperature 0 has no effect, as with deepseek.
+- **Thinking pass-back.** The API answers 400 when earlier reasoning is not sent back across tool calls. Pi sends it back on both protocols: the tool round trips passed.
+- **Image input.** Both models read a rendered form screenshot correctly (its largest heading and background), so both are declared vision-capable.
+- **mimo-v2.5-pro** has been routed to V2.6 since 2026-10-14 and its ID is retired on 2026-10-21, so it stays unverified and unused.
