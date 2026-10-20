@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/limits-batch.toml"
+max_retries = 30
+queue_depth = 20
+pool_size = 41
+upstream = "delta"

@@ -1,0 +1,5 @@
+[garnet]
+max_retries = 54
+batch_size = 45
+timeout_ms = 2026
+backup_retention_days = 27

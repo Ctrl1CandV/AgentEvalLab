@@ -1,0 +1,5 @@
+[iris]
+timeout_ms = 500
+batch_size = 9
+pool_size = 21
+upstream = "lumen"

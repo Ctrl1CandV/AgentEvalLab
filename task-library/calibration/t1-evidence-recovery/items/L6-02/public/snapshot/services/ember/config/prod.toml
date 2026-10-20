@@ -1,0 +1,6 @@
+[ember]
+include = "shared/limits-batch.toml"
+batch_size = 33
+queue_depth = 19
+cache_ttl_s = 15
+upstream = "harbor"

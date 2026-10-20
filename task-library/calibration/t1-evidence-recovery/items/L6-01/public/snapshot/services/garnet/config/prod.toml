@@ -1,0 +1,5 @@
+[garnet]
+queue_depth = 23
+cache_ttl_s = 17
+max_retries = 24
+upstream = "iris"

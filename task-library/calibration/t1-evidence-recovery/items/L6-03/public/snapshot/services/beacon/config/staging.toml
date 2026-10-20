@@ -1,0 +1,4 @@
+[beacon]
+cache_ttl_s = 22
+timeout_ms = 3017
+pool_size = 42

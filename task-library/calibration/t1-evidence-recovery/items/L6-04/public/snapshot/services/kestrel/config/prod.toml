@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/limits-burst.toml"
+queue_depth = 13
+timeout_ms = 1500
+cache_ttl_s = 16
+upstream = "delta"

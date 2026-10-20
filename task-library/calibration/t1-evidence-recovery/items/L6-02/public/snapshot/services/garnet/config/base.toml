@@ -1,0 +1,7 @@
+[garnet]
+timeout_ms = 3000
+max_retries = 13
+pool_size = 36
+queue_depth = 36
+batch_size = 32
+cache_ttl_s = 32

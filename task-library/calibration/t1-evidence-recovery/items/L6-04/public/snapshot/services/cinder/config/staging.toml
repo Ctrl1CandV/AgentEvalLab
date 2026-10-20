@@ -1,0 +1,4 @@
+[cinder]
+cache_ttl_s = 39
+queue_depth = 57
+max_retries = 29

@@ -1,0 +1,6 @@
+[juniper]
+include = "shared/limits-standard.toml"
+batch_size = 16
+queue_depth = 15
+max_retries = 19
+upstream = "lumen"

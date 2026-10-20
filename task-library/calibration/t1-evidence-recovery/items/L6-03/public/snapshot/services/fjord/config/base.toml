@@ -1,0 +1,7 @@
+[fjord]
+timeout_ms = 250
+max_retries = 11
+pool_size = 25
+queue_depth = 15
+batch_size = 31
+cache_ttl_s = 32

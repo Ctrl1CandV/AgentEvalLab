@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/limits-burst.toml"
+batch_size = 14
+cache_ttl_s = 25
+queue_depth = 11
+upstream = "garnet"

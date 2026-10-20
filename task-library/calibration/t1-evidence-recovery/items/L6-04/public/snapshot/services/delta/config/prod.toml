@@ -1,0 +1,6 @@
+[delta]
+include = "shared/limits-batch.toml"
+pool_size = 41
+cache_ttl_s = 9
+batch_size = 19
+upstream = "juniper"

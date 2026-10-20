@@ -1,0 +1,5 @@
+[fjord]
+include = "shared/limits-batch.toml"
+batch_size = 29
+pool_size = 13
+queue_depth = 27

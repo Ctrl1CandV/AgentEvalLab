@@ -1,0 +1,4 @@
+[delta]
+max_retries = 56
+queue_depth = 55
+timeout_ms = 2018

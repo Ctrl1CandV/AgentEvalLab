@@ -1,0 +1,7 @@
+[cinder]
+batch_size = 16
+cache_ttl_s = 18
+max_retries = 25
+timeout_ms = 761
+pool_size = 25
+queue_depth = 44

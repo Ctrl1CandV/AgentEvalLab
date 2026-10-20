@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/limits-standard.toml"
+batch_size = 37
+timeout_ms = 6000
+queue_depth = 34
+upstream = "ember"

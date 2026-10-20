@@ -1,0 +1,5 @@
+[iris]
+include = "shared/limits-burst.toml"
+batch_size = 34
+max_retries = 24
+queue_depth = 34

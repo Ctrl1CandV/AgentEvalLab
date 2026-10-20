@@ -1,0 +1,6 @@
+[iris]
+include = "shared/limits-batch.toml"
+timeout_ms = 500
+cache_ttl_s = 33
+pool_size = 42
+upstream = "lumen"

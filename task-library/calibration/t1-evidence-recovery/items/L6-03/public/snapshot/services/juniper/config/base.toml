@@ -1,0 +1,7 @@
+[juniper]
+timeout_ms = 100
+max_retries = 16
+pool_size = 3
+queue_depth = 8
+batch_size = 10
+cache_ttl_s = 36

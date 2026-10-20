@@ -31,3 +31,22 @@ Runs `e239c8f3` (L1–L3) and `d886d0fb` (L4), four models; details in `docs/rev
 - Every L5 answer was also recomputed independently from the snapshot files.
 - Self-calibration: 424/424; see `logs/self-calibration-0.2.0.log`.
 - Grader 1.3.1 (2026-10-19): with a single change file in the snapshot, an incident answer needs only the change and the config line. A calibration trial answered correctly through the only change file without reading the review, a sound shortcut that 1.3.0 failed. A later version should add decoy changes, so that the chain has to be followed.
+
+## Version 0.3.0 (2026-10-20)
+
+deepseek-flash answered every L4 and L5 question, so L5 could not place the strongest model in the 30–80% band. L6 has four items, 15 questions each, about 100 files and 1,080,000 characters:
+
+- **Nested includes.** Two shared files include a third, and precedence runs through the chain.
+- **Change history.** Every production change has a dated record with its value before and after. Two questions ask for a key's value at the end of a past day, and one key's latest change is the incident's change, so decoy changes for the same service surround it.
+- **Upstreams.** A second failed read in `prior_attempt.log` needs the `timeout_ms` of the service another service sends requests to, which prod.toml names.
+- **A join.** One day's 5xx responses for the clients on one plan, from `clients.csv`, are counted.
+- **A count above the search limit.** One client's 4xx and 5xx responses across all eight logs (62–86) cannot be found with a single search.
+
+L1–L5 snapshots and keys are unchanged.
+
+Grader 1.4.0:
+
+- grades `config_at_date`;
+- treats only configuration files' whole-file proofs as proofs of absence, so `prior_attempt.log` and `clients.csv` must be read.
+
+Every L6 answer was also recomputed independently from the snapshot files. Self-calibration: 584/584; see `logs/self-calibration-0.3.0.log`.

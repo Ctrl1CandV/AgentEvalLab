@@ -1,0 +1,6 @@
+[lumen]
+include = "shared/limits-batch.toml"
+timeout_ms = 1000
+max_retries = 17
+queue_depth = 22
+upstream = "cinder"

@@ -1,0 +1,5 @@
+[ember]
+cache_ttl_s = 18
+queue_depth = 36
+timeout_ms = 1014
+audit_sampling_rate = 49

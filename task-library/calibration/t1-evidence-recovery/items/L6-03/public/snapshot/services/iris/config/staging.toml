@@ -1,0 +1,4 @@
+[iris]
+queue_depth = 24
+max_retries = 50
+pool_size = 39

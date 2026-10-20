@@ -1,0 +1,5 @@
+[beacon]
+include = "shared/limits-batch.toml"
+batch_size = 11
+pool_size = 32
+max_retries = 10

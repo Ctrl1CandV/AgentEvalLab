@@ -1,0 +1,5 @@
+[fjord]
+max_retries = 9
+cache_ttl_s = 34
+pool_size = 24
+upstream = "harbor"

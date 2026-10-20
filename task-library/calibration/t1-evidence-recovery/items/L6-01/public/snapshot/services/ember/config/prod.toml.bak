@@ -1,0 +1,8 @@
+[ember]
+cache_ttl_s = 21
+batch_size = 38
+queue_depth = 23
+timeout_ms = 1011
+max_retries = 23
+pool_size = 16
+audit_sampling_rate = 9

@@ -1,0 +1,5 @@
+[limits-burst]
+include = "shared/limits-standard.toml"
+cache_ttl_s = 86
+max_retries = 79
+batch_size = 47

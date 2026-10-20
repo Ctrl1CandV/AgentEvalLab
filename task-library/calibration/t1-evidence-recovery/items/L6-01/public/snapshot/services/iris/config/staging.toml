@@ -1,0 +1,4 @@
+[iris]
+pool_size = 56
+timeout_ms = 273
+batch_size = 27

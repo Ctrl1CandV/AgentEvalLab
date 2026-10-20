@@ -1,0 +1,6 @@
+[lumen]
+include = "shared/limits-burst.toml"
+timeout_ms = 200
+max_retries = 18
+cache_ttl_s = 18
+upstream = "cinder"

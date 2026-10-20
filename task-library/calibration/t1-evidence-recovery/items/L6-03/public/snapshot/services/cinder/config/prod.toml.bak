@@ -1,0 +1,7 @@
+[cinder]
+max_retries = 45
+timeout_ms = 207
+pool_size = 21
+queue_depth = 24
+batch_size = 20
+cache_ttl_s = 47

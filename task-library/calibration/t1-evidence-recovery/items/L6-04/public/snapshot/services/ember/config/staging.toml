@@ -1,0 +1,5 @@
+[ember]
+batch_size = 40
+max_retries = 25
+pool_size = 63
+shard_count = 40

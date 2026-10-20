@@ -1,0 +1,4 @@
+[kestrel]
+batch_size = 57
+cache_ttl_s = 57
+max_retries = 50

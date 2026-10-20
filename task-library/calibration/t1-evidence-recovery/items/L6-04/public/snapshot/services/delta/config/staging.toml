@@ -1,0 +1,4 @@
+[delta]
+pool_size = 47
+timeout_ms = 1524
+cache_ttl_s = 16

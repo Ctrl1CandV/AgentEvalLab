@@ -1,0 +1,4 @@
+[cinder]
+max_retries = 31
+timeout_ms = 770
+batch_size = 18

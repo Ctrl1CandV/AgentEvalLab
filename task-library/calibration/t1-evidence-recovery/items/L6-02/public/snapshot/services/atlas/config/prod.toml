@@ -1,0 +1,5 @@
+[atlas]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 32
+queue_depth = 41
+max_retries = 14

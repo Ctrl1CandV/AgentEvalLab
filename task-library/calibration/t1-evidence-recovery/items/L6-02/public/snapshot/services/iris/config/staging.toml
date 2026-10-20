@@ -1,0 +1,4 @@
+[iris]
+cache_ttl_s = 40
+queue_depth = 60
+pool_size = 52

@@ -1,0 +1,5 @@
+[cinder]
+cache_ttl_s = 27
+queue_depth = 50
+pool_size = 57
+tls_min_version = 44

@@ -1,0 +1,5 @@
+[harbor]
+cache_ttl_s = 25
+max_retries = 24
+queue_depth = 28
+upstream = "cinder"

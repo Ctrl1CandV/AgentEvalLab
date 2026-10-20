@@ -1,0 +1,4 @@
+[beacon]
+cache_ttl_s = 42
+queue_depth = 41
+pool_size = 65

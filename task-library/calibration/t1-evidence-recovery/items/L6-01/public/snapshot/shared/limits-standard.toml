@@ -1,0 +1,4 @@
+[limits-standard]
+queue_depth = 44
+batch_size = 42
+cache_ttl_s = 61

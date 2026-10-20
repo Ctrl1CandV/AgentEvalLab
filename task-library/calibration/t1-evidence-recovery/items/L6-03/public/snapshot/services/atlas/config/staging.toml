@@ -1,0 +1,4 @@
+[atlas]
+queue_depth = 35
+batch_size = 46
+cache_ttl_s = 46

@@ -1,0 +1,6 @@
+[lumen]
+include = "shared/limits-batch.toml"
+queue_depth = 41
+batch_size = 13
+timeout_ms = 2000
+upstream = "juniper"

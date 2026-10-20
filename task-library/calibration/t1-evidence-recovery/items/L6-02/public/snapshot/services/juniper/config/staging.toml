@@ -1,0 +1,4 @@
+[juniper]
+timeout_ms = 3025
+queue_depth = 60
+max_retries = 58

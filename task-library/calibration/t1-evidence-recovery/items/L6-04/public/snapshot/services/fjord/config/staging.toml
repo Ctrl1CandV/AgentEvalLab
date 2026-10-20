@@ -1,0 +1,4 @@
+[fjord]
+queue_depth = 40
+cache_ttl_s = 44
+max_retries = 64

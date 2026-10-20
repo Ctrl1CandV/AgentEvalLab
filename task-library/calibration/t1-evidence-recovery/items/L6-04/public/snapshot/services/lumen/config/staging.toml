@@ -1,0 +1,4 @@
+[lumen]
+batch_size = 27
+cache_ttl_s = 25
+pool_size = 16

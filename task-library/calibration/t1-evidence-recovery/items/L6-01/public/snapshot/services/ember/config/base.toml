@@ -1,0 +1,7 @@
+[ember]
+timeout_ms = 1000
+max_retries = 12
+pool_size = 5
+queue_depth = 11
+batch_size = 27
+cache_ttl_s = 6

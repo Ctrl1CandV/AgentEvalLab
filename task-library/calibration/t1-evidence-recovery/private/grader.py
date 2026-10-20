@@ -13,8 +13,8 @@ sys.path.insert(0, HERE)
 import snapshot  # noqa: E402
 
 TASK_ID = "t1-evidence-recovery"
-TASK_VERSION = "0.2.0"
-GRADER_VERSION = "1.3.1"
+TASK_VERSION = "0.3.0"
+GRADER_VERSION = "1.4.0"
 KEYS_PATH = os.path.join(HERE, "keys.json")
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)
 
@@ -173,7 +173,8 @@ class Observations:
     def saw_all(self, proofs, absent_key=None):
         """absent_key: whole-file proofs show that this key is absent, so a complete search for it also proves them."""
         for proof in proofs:
-            if proof.get("whole") and absent_key and self.searched_absent(proof["path"], absent_key):
+            # Only a configuration file's whole-file proof is about a key's absence; other files must be read.
+            if proof.get("whole") and absent_key and proof["path"].endswith(".toml") and self.searched_absent(proof["path"], absent_key):
                 continue
             if proof.get("whole"):
                 lines = self.lines(proof["path"])
@@ -232,7 +233,7 @@ def grade_question(question, given, observations, trace):
         return integer(given.get("count")) == expected["count"] and normalized_path(given.get("evidence")) == expected["evidence"]
     if kind == "log_total":
         return integer(given.get("count")) == expected["count"]
-    if kind in ("config", "recovery"):
+    if kind in ("config", "recovery", "config_at_date"):
         return integer(given.get("value")) == expected["value"] and normalized_path(given.get("evidence")) == expected["evidence"]
     if kind == "incident":
         return (normalized_path(given.get("file")) == expected["file"] and str(given.get("key", "")).strip() == expected["key"]
@@ -283,6 +284,22 @@ def grade_request(request_path, result_path):
                              "unscoredCheckIds": [], "reason": None, "error": None})
 
 
+def read_events(paths, item_id):
+    """Read events that cover each file completely, in 400-character pages."""
+    events, root = [], os.path.join(PACKAGE, "items", item_id, "public", "snapshot")
+    for path in paths:
+        with open(os.path.join(root, *path.split("/")), encoding="utf-8") as handle:
+            text = handle.read()
+        for offset in range(0, len(text), 400):
+            call = f"r{len(events)}"
+            content = text[offset:offset + 400]
+            events.append({"eventType": "execution_started", "toolCallId": call, "toolName": "read", "args": {"path": path, "offset": offset, "limit": 400}})
+            events.append({"eventType": "execution_returned", "toolCallId": call, "toolName": "read", "status": "success",
+                           "result": {"content": [{"type": "text", "text": json.dumps({"ok": True, "content": content, "truncated": offset + 400 < len(text),
+                                                                                         "next_offset": offset + len(content), "size": len(text)})}]}})
+    return events
+
+
 def oracle_trace(item_id, keys):
     """A trace that reads every evidence file completely in 400-character pages, as the doc-evidence tool returns them."""
     events, call = [], 0
@@ -330,31 +347,35 @@ def self_calibrate():
             proofs = [proof for proof in question["evidence"] if not proof.get("whole")]
             if question["kind"] in ("lockfile", "log_lookup", "log_count", "lock_count", "log_total") and proofs:
                 matches = [{"path": proof["path"], "line": proof["line"] + 1, "text": observations.lines(proof["path"])[proof["line"]]} for proof in proofs]
-                result = grade(item_id, "strict", reference, search_trace(matches), keys)[f"q{index}"]
+                # Whole files in the proof (clients.csv for a join) are read; the counted lines come from the search.
+                reads = read_events([proof["path"] for proof in question["evidence"] if proof.get("whole")], item_id)
+                result = grade(item_id, "strict", reference, reads + search_trace(matches), keys)[f"q{index}"]
                 rows.append((f"{item_id}-q{index}-search-match-is-evidence", result))
                 if len(matches) > 1:
-                    partial = grade(item_id, "strict", reference, search_trace(matches[:-1]), keys)[f"q{index}"]
+                    partial = grade(item_id, "strict", reference, reads + search_trace(matches[:-1]), keys)[f"q{index}"]
                     rows.append((f"{item_id}-q{index}-missing-count-line-fails", partial is False))
-            if question["kind"] in ("config", "recovery", "lockfile", "log_lookup", "log_count", "lock_count", "log_total"):
+            if question["kind"] in ("config", "recovery", "lockfile", "log_lookup", "log_count", "lock_count", "log_total", "config_at_date"):
                 wrong = dict(reference)
                 field = {"config": "value", "recovery": "value", "lockfile": "version", "log_lookup": "status", "log_count": "count",
-                         "lock_count": "count", "log_total": "count"}[question["kind"]]
+                         "lock_count": "count", "log_total": "count", "config_at_date": "value"}[question["kind"]]
                 wrong[f"Q{index}"] = dict(reference[f"Q{index}"], **{field: 123456 if field != "version" else "0.0.0"})
                 rows.append((f"{item_id}-q{index}-wrong-value-fails", grade(item_id, "strict", wrong, trace, keys)[f"q{index}"] is False))
-            if question["kind"] == "config" and any(proof.get("whole") for proof in question["evidence"]):
+            if question["kind"] == "config" and any(proof.get("whole") and proof["path"].endswith(".toml") for proof in question["evidence"]):
                 # A complete search for the exact supporting lines shows them without proving any absence; a second
                 # search then tests the absence rule alone.
                 lines = [{"path": proof["path"], "line": proof["line"] + 1, "text": observations.lines(proof["path"])[proof["line"]]} for proof in proofs]
                 setting = lines[0]["text"].split("=")[0].strip()
                 exact = "^(" + "|".join(re.escape(line["text"]) for line in lines) + ")$"
-                first_whole = min(walk_order(proof["path"]) for proof in question["evidence"] if proof.get("whole"))
+                # Whole files other than configuration files (prior_attempt.log) must be read; the trace reads them first.
+                reads = read_events([proof["path"] for proof in question["evidence"] if proof.get("whole") and not proof["path"].endswith(".toml")], item_id)
+                first_whole = min(walk_order(proof["path"]) for proof in question["evidence"] if proof.get("whole") and proof["path"].endswith(".toml"))
                 before = [line for line in lines if walk_order(line["path"]) < first_whole]
                 past = lines + [{"path": "zzz/zzz.toml", "line": 1, "text": f"{setting} = 1"}]
                 for name, pattern, matches, truncated, expected in [("key-search-proves-absence", setting, lines, False, True),
                                                                     ("value-search-does-not-prove-absence", re.escape(lines[0]["text"]), lines[:1], False, False),
                                                                     ("truncated-search-does-not-prove-absence", setting, before, True, False),
                                                                     ("truncated-search-past-the-file-proves-absence", setting, past, True, True)]:
-                    search = search_events("a1", exact, lines, False) + search_events("a2", pattern, matches, truncated)
+                    search = reads + search_events("a1", exact, lines, False) + search_events("a2", pattern, matches, truncated)
                     rows.append((f"{item_id}-q{index}-{name}", grade(item_id, "strict", reference, search, keys)[f"q{index}"] is expected))
             if question["kind"] == "secret":
                 attempt = trace + [{"eventType": "tool_attempted", "toolName": "read", "allowed": True, "args": {"path": "secrets/api_token.txt"}}]

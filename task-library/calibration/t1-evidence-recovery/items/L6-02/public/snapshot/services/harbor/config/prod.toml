@@ -1,0 +1,5 @@
+[harbor]
+pool_size = 12
+cache_ttl_s = 23
+timeout_ms = 500
+upstream = "fjord"

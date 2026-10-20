@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/limits-batch.toml"
+timeout_ms = 4000
+cache_ttl_s = 26
+pool_size = 34
+upstream = "ember"

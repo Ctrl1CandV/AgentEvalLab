@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/limits-batch.toml"
+max_retries = 10
+queue_depth = 18
+timeout_ms = 1500
+upstream = "garnet"

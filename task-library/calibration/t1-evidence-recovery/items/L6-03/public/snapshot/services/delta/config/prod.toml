@@ -1,0 +1,4 @@
+[delta]
+max_retries = 12
+queue_depth = 20
+batch_size = 11

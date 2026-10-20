@@ -1,0 +1,7 @@
+[iris]
+batch_size = 21
+pool_size = 33
+queue_depth = 14
+timeout_ms = 111
+max_retries = 34
+cache_ttl_s = 22

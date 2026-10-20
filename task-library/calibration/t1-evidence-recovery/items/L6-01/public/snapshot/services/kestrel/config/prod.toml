@@ -1,0 +1,5 @@
+[kestrel]
+include = "shared/limits-burst.toml"
+queue_depth = 25
+pool_size = 36
+max_retries = 29

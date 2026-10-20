@@ -1,0 +1,8 @@
+[garnet]
+max_retries = 40
+batch_size = 47
+pool_size = 33
+timeout_ms = 2011
+queue_depth = 20
+cache_ttl_s = 25
+backup_retention_days = 34

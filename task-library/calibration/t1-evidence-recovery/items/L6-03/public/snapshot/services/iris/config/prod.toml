@@ -1,0 +1,6 @@
+[iris]
+include = "shared/limits-burst.toml"
+batch_size = 14
+pool_size = 26
+queue_depth = 7
+upstream = "kestrel"

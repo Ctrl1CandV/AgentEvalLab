@@ -1,0 +1,5 @@
+[limits-burst]
+include = "shared/limits-standard.toml"
+queue_depth = 86
+max_retries = 86
+batch_size = 62

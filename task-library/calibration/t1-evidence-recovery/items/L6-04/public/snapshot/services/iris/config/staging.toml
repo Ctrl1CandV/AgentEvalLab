@@ -1,0 +1,4 @@
+[iris]
+cache_ttl_s = 31
+batch_size = 33
+max_retries = 28

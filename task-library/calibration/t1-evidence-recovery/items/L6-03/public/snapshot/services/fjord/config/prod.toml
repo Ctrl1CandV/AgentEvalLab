@@ -1,0 +1,5 @@
+[fjord]
+batch_size = 33
+queue_depth = 23
+max_retries = 14
+upstream = "iris"

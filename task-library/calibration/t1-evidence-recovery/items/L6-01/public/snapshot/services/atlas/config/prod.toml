@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/limits-standard.toml"
+batch_size = 18
+pool_size = 24
+max_retries = 31
+upstream = "delta"

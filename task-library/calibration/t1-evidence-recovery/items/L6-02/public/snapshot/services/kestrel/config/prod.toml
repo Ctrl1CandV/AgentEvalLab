@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/limits-standard.toml"
+batch_size = 30
+pool_size = 36
+timeout_ms = 500
+upstream = "juniper"

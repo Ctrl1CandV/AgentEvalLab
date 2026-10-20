@@ -1,0 +1,4 @@
+[ember]
+pool_size = 51
+batch_size = 56
+queue_depth = 40

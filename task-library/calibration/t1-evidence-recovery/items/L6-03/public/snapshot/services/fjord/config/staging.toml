@@ -1,0 +1,4 @@
+[fjord]
+cache_ttl_s = 52
+queue_depth = 35
+batch_size = 60

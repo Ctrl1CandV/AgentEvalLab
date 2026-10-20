@@ -1,0 +1,6 @@
+[ember]
+include = "shared/limits-standard.toml"
+cache_ttl_s = 14
+batch_size = 31
+queue_depth = 16
+upstream = "iris"

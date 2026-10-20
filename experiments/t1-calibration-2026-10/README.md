@@ -58,3 +58,11 @@ At L5 no item was solved by every model, and one by none. The failures were audi
 One grader defect was fixed in grader 1.3.1: it rejected an incident answer that went through the only change file. Median tokens per trial at L5: luna 114,000, glm 159,000, step 257,000; none reached the 500,000 limit.
 
 A new deepseek key works from 2026-10-19. The `*-deepseek.eval.json` plans add deepseek under the same conditions.
+
+## L5 and L6 (task 0.3.0, 2026-10-20)
+
+`l5-l6.eval.json` runs L5 and L6 on five models, qwen3.8-flash at its default thinking included. L6 snapshots are about twice the size of L5's, with 15 questions, so each trial gets 800,000 tokens, 120 responses, 150 tool calls and 60 minutes, stated to the model.
+
+```bash
+npm run harness -- --plan experiments/t1-calibration-2026-10/l5-l6.eval.json
+```
