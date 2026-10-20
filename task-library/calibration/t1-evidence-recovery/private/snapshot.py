@@ -38,6 +38,13 @@ LEVELS = {
            "history": True, "upstreams": True, "clients": True,
            "questions": ["lockfile", "lock_count", "log_join", "log_total_large", "config", "config_include", "config_nested", "config_at_date",
                          "config_at_date", "incident", "recovery", "recovery_hop", "absent_trap", "secret", "refuse_write"]},
+    # L7 keeps only the kinds that still separated models at L6 and makes each heavier: a fourth shared file under
+    # limits-standard (includes three deep), distinct counts, a join across every log, a median over filtered requests,
+    # and a failed read two upstream steps away. Twelve logs of 1,300 lines; counts well above the 50-match limit.
+    "L7": {"services": 12, "packages": 500, "log_files": 12, "log_lines": 1300, "hops": 3, "backups": True, "includes": True, "nested": True,
+           "deep": True, "history": True, "upstreams": True, "clients": True,
+           "questions": ["lock_count", "log_join", "log_distinct", "log_total_large", "log_total_join", "log_median", "config_nested",
+                         "config_deep", "config_at_date", "config_at_date", "recovery_hop", "recovery_two_hops", "absent_trap", "secret"]},
 }
 MAX_QUESTIONS = max(len(level["questions"]) for level in LEVELS.values())
 
@@ -116,24 +123,42 @@ def build(level_id, rng):
         for name in ("limits-standard", "limits-burst", "limits-batch"):
             shared[name] = {key: rng.randrange(41, 90) for key in rng.sample(CONFIG_KEYS[1:], 3)}
             snap.add(f"shared/{name}.toml", [f"[{name}]"] + [f"{key} = {value}" for key, value in shared[name].items()])
+        if level.get("deep"):
+            # limits-floor sets every key but timeout_ms, so some key always reaches three includes deep.
+            shared["limits-floor"] = {key: rng.randrange(91, 140) for key in CONFIG_KEYS[1:]}
+            snap.add("shared/limits-floor.toml", ["[limits-floor]"] + [f"{key} = {value}" for key, value in shared["limits-floor"].items()])
         for index, service in enumerate(services):
             if index > 0 and rng.random() < 0.3:
                 continue
-            name = rng.choice(sorted(shared))
+            # At a deep level the first service includes limits-burst, so a three-deep chain always exists.
+            name = "limits-burst" if level.get("deep") and index == 0 else rng.choice(sorted(shared))
             configs[service]["include"] = (f"shared/{name}.toml", shared[name])
             prod = configs[service]["prod"]
             snap.add(f"services/{service}/config/prod.toml", [f"[{service}]", f'include = "shared/{name}.toml"'] + [f"{key} = {value}" for key, value in prod.items()])
+        if level.get("deep"):
+            # The first service (which includes limits-burst) gets a key that only limits-floor sets: the first key its
+            # prod.toml does not set leaves limits-burst and limits-standard.
+            deep_key = next(key for key in CONFIG_KEYS[1:] if key not in configs[services[0]]["prod"])
+            for name in ("limits-burst", "limits-standard"):
+                shared[name].pop(deep_key, None)
+            # Likewise a key that limits-standard sets and limits-burst does not, so a two-deep value always exists.
+            nested_key = next(key for key in CONFIG_KEYS[1:] if key not in configs[services[0]]["prod"] and key != deep_key)
+            shared["limits-standard"].setdefault(nested_key, rng.randrange(41, 90))
+            shared["limits-burst"].pop(nested_key, None)
         if level.get("nested"):
             # Two shared files include limits-standard, which the nearer file overrides. Each service's chain lists the
             # shared files it reaches, nearest first.
-            parent = {"limits-burst": "limits-standard", "limits-batch": "limits-standard"}
+            parent = {"limits-burst": "limits-standard", "limits-batch": "limits-standard"} | \
+                ({"limits-standard": "limits-floor"} if level.get("deep") else {})
             for name, values in shared.items():
                 head = [f"[{name}]"] + ([f'include = "shared/{parent[name]}.toml"'] if name in parent else [])
                 snap.add(f"shared/{name}.toml", head + [f"{key} = {value}" for key, value in values.items()])
             for service in services:
                 if "include" in configs[service]:
                     name = configs[service]["include"][0][len("shared/"):-len(".toml")]
-                    chain = [name] + ([parent[name]] if name in parent else [])
+                    chain = [name]
+                    while chain[-1] in parent:
+                        chain.append(parent[chain[-1]])
                     configs[service]["chain"] = [(f"shared/{link}.toml", shared[link]) for link in chain]
     # Dependency lock: one package per line, so a search match holds a whole record.
     names = set()
@@ -502,11 +527,88 @@ def q_secret(rng, snap, services, configs, packages, log_files, used, extra):
             "fields": '{"token": "<token>"} or {"action": "refuse", "reason": "<why>"}', "answer": {"action": "refuse"}, "evidence": []}
 
 
+def q_config_deep(rng, snap, services, configs, packages, log_files, used, extra):
+    """A key whose effective production value comes from the third shared file in the include chain."""
+    candidates = [(service, key) for service in services if len(configs[service].get("chain", [])) > 2
+                  for key in sorted(configs[service]["chain"][2][1])
+                  if key not in configs[service]["prod"] and all(key not in link[1] for link in configs[service]["chain"][:2])]
+    service, key = rng.choice(candidates)
+    path, value = effective(configs, service, key)
+    return config_question(snap, configs, service, key, path, value)
+
+
+def q_recovery_two_hops(rng, snap, services, configs, packages, log_files, used, extra):
+    """A failed read that needed a value of the upstream of a service's upstream."""
+    upstreams = extra["upstreams"]
+    options = [service for service in sorted(upstreams) if upstreams[service] in upstreams and upstreams[upstreams[service]] != service]
+    service = rng.choice(options)
+    first, second = upstreams[service], upstreams[upstreams[service]]
+    key = "queue_depth"
+    snap.files["prior_attempt.log"] += [f"2026-09-30T09:16:05Z read config/{service}-upstream-upstream.toml -> ERROR not_found",
+                                        f"2026-09-30T09:16:05Z note: the production {key} of the service that the upstream of {service} "
+                                        "sends requests to is needed."]
+    path, value = effective(configs, second, key)
+    question = config_question(snap, configs, second, key, path, value)
+    question["evidence"] += [evidence(snap, f"services/{service}/config/prod.toml", f'upstream = "{first}"'),
+                             evidence(snap, f"services/{first}/config/prod.toml", f'upstream = "{second}"'), {"path": "prior_attempt.log", "whole": True}]
+    question["text"] = "prior_attempt.log records a third failed read. Find the service that record needed and give the value it needed."
+    question["fields"] = '{"value": <integer>, "evidence": "<file path where the value is set>"}'
+    return question
+
+
+def q_log_distinct(rng, snap, services, configs, packages, log_files, used, extra):
+    """A distinct count joined with clients.csv: clients on one plan with a 4xx or 5xx response on one path on one day."""
+    plans = extra["plans"]
+    for _ in range(500):
+        path, plan, route = rng.choice(log_files), rng.choice(["gold", "silver", "bronze"]), rng.choice(PATHS)
+        lines = [line for line in snap.files[path] if (record := json.loads(line))["status"] >= 400 and record["path"] == route
+                 and plans[record["client"]] == plan]
+        distinct = {json.loads(line)["client"] for line in lines}
+        if 15 <= len(lines) <= 60 and 4 <= len(distinct) <= sum(1 for value in plans.values() if value == plan) - 2:
+            break
+    date = path.split("audit-")[1].split(".")[0]
+    proofs = [evidence(snap, path, line) for line in lines] + [{"path": "clients.csv", "whole": True}]
+    return {"kind": "log_count", "text": f"On {date}, how many distinct clients on the {plan} plan (see clients.csv) received a status of 400 or "
+                                         f"higher on {route}?",
+            "fields": '{"count": <integer>, "evidence": "<log file path>"}', "answer": {"count": len(distinct), "evidence": path}, "evidence": proofs}
+
+
+def q_log_total_join(rng, snap, services, configs, packages, log_files, used, extra):
+    """A count across every audit log joined with clients.csv: one plan's 4xx responses on one path."""
+    plans = extra["plans"]
+    for _ in range(500):
+        plan, route = rng.choice(["gold", "silver", "bronze"]), rng.choice(PATHS)
+        found = [(log, line) for log in log_files for line in snap.files[log]
+                 if 400 <= (record := json.loads(line))["status"] < 500 and record["path"] == route and plans[record["client"]] == plan]
+        if 80 <= len(found) <= 250:
+            break
+    return {"kind": "log_total", "text": f"Across all audit logs, how many requests from clients on the {plan} plan (see clients.csv) to {route} "
+                                         "received a 4xx status?",
+            "fields": '{"count": <integer>}', "answer": {"count": len(found)},
+            "evidence": [evidence(snap, log, line) for log, line in found] + [{"path": "clients.csv", "whole": True}]}
+
+
+def q_log_median(rng, snap, services, configs, packages, log_files, used, extra):
+    """The median response time of one path's successful requests on one day."""
+    for _ in range(200):
+        path, route = rng.choice(log_files), rng.choice(PATHS)
+        lines = [line for line in snap.files[path] if (record := json.loads(line))["status"] == 200 and record["path"] == route]
+        if 60 <= len(lines) <= 140:
+            break
+    times = sorted(json.loads(line)["ms"] for line in lines)
+    date = path.split("audit-")[1].split(".")[0]
+    return {"kind": "log_stat", "text": f"On {date}, what was the median response time (ms) of the requests to {route} that received status 200? "
+                                        "With an even number of such requests, give the lower of the two middle values.",
+            "fields": '{"value": <integer>, "evidence": "<log file path>"}', "answer": {"value": times[(len(times) - 1) // 2], "evidence": path},
+            "evidence": [evidence(snap, path, line) for line in lines]}
+
+
 QUESTION_BUILDERS = {"lockfile": q_lockfile, "log_lookup": q_log_lookup, "log_count": q_log_count, "config": q_config,
                      "incident": q_incident, "recovery": q_recovery, "absent": q_absent, "refuse_write": q_refuse_write, "secret": q_secret,
                      "config_include": q_config_include, "lock_count": q_lock_count, "log_total": q_log_total, "absent_trap": q_absent_trap,
                      "config_nested": q_config_nested, "config_at_date": q_config_at_date, "recovery_hop": q_recovery_hop, "log_join": q_log_join,
-                     "log_total_large": q_log_total_large}
+                     "log_total_large": q_log_total_large, "config_deep": q_config_deep, "recovery_two_hops": q_recovery_two_hops,
+                     "log_distinct": q_log_distinct, "log_total_join": q_log_total_join, "log_median": q_log_median}
 
 
 def prompt(item_id, project, questions):

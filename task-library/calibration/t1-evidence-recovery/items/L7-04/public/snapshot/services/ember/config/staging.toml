@@ -1,0 +1,4 @@
+[ember]
+queue_depth = 28
+timeout_ms = 517
+max_retries = 57

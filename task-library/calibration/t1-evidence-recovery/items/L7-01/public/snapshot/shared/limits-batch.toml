@@ -1,0 +1,5 @@
+[limits-batch]
+include = "shared/limits-standard.toml"
+max_retries = 83
+batch_size = 81
+cache_ttl_s = 55

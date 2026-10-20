@@ -1,0 +1,4 @@
+[beacon]
+cache_ttl_s = 42
+batch_size = 68
+queue_depth = 31

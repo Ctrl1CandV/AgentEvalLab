@@ -1,0 +1,5 @@
+[juniper]
+include = "shared/limits-standard.toml"
+queue_depth = 33
+timeout_ms = 2000
+batch_size = 10

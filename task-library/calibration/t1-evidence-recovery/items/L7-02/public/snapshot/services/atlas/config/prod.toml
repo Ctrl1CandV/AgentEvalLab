@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/limits-batch.toml"
+max_retries = 18
+pool_size = 8
+timeout_ms = 3000
+upstream = "kestrel"

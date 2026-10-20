@@ -1,0 +1,5 @@
+[limits-standard]
+include = "shared/limits-floor.toml"
+pool_size = 70
+batch_size = 79
+cache_ttl_s = 57

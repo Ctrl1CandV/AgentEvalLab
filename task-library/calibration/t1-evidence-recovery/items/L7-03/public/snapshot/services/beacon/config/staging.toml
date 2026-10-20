@@ -1,0 +1,4 @@
+[beacon]
+timeout_ms = 513
+batch_size = 23
+pool_size = 21

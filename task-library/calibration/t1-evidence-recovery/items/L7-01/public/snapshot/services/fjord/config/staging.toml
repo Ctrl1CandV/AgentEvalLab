@@ -1,0 +1,4 @@
+[fjord]
+timeout_ms = 512
+queue_depth = 26
+batch_size = 55

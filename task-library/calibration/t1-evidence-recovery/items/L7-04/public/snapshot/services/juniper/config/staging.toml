@@ -1,0 +1,4 @@
+[juniper]
+max_retries = 44
+batch_size = 31
+cache_ttl_s = 36

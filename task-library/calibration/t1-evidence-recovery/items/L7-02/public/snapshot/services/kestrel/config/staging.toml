@@ -1,0 +1,4 @@
+[kestrel]
+queue_depth = 46
+cache_ttl_s = 34
+max_retries = 49

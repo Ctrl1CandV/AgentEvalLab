@@ -1,0 +1,4 @@
+[lumen]
+pool_size = 18
+timeout_ms = 3020
+batch_size = 40

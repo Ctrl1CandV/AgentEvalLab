@@ -1,0 +1,7 @@
+[beacon]
+cache_ttl_s = 45
+pool_size = 17
+batch_size = 11
+timeout_ms = 511
+max_retries = 37
+queue_depth = 27

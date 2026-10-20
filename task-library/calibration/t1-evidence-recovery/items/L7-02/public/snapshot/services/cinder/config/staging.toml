@@ -1,0 +1,4 @@
+[cinder]
+pool_size = 49
+timeout_ms = 1026
+queue_depth = 44

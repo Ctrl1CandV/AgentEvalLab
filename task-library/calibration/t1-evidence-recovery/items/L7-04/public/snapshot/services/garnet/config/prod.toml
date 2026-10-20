@@ -1,0 +1,6 @@
+[garnet]
+include = "shared/limits-burst.toml"
+queue_depth = 30
+timeout_ms = 1000
+cache_ttl_s = 14
+upstream = "lumen"

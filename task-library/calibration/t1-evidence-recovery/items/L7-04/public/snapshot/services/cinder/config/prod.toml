@@ -1,0 +1,5 @@
+[cinder]
+include = "shared/limits-floor.toml"
+timeout_ms = 2000
+batch_size = 22
+cache_ttl_s = 27

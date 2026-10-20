@@ -1,0 +1,6 @@
+[garnet]
+include = "shared/limits-standard.toml"
+queue_depth = 22
+cache_ttl_s = 35
+max_retries = 28
+upstream = "harbor"

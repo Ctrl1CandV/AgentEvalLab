@@ -1,0 +1,5 @@
+[juniper]
+include = "shared/limits-floor.toml"
+max_retries = 26
+timeout_ms = 200
+cache_ttl_s = 28

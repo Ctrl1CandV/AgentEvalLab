@@ -1,0 +1,5 @@
+[beacon]
+include = "shared/limits-floor.toml"
+cache_ttl_s = 38
+pool_size = 10
+batch_size = 4

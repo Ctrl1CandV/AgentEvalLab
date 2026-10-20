@@ -1,0 +1,4 @@
+[harbor]
+cache_ttl_s = 21
+max_retries = 18
+queue_depth = 31

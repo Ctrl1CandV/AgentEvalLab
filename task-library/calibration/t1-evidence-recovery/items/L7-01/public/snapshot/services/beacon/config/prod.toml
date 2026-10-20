@@ -1,0 +1,5 @@
+[beacon]
+include = "shared/limits-batch.toml"
+pool_size = 9
+timeout_ms = 200
+queue_depth = 23

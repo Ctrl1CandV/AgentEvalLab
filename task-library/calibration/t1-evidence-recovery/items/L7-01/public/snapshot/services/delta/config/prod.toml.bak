@@ -1,0 +1,7 @@
+[delta]
+batch_size = 21
+timeout_ms = 6007
+cache_ttl_s = 36
+max_retries = 45
+pool_size = 39
+queue_depth = 17

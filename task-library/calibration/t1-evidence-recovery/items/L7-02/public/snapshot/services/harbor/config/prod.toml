@@ -1,0 +1,4 @@
+[harbor]
+timeout_ms = 500
+queue_depth = 11
+batch_size = 40

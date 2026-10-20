@@ -1,0 +1,6 @@
+[harbor]
+include = "shared/limits-burst.toml"
+pool_size = 34
+batch_size = 33
+cache_ttl_s = 15
+upstream = "garnet"

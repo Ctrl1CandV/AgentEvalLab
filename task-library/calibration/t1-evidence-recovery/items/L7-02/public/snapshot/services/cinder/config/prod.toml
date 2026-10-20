@@ -1,0 +1,5 @@
+[cinder]
+max_retries = 24
+queue_depth = 34
+timeout_ms = 2000
+upstream = "lumen"

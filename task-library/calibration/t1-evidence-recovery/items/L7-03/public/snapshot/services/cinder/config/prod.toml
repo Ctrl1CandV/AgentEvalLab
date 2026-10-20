@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/limits-floor.toml"
+max_retries = 39
+batch_size = 43
+pool_size = 17
+upstream = "delta"

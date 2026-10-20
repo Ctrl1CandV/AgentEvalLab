@@ -1,0 +1,4 @@
+[atlas]
+pool_size = 14
+max_retries = 45
+batch_size = 36

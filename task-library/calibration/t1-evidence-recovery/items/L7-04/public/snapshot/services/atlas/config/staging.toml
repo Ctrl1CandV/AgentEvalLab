@@ -1,0 +1,4 @@
+[atlas]
+timeout_ms = 765
+pool_size = 43
+batch_size = 47

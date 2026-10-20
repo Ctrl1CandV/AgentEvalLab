@@ -16,8 +16,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import snapshot  # noqa: E402
 
 TASK_ID = "t1-evidence-recovery"
-TASK_VERSION = "0.3.0"
-GRADER_VERSION = "1.4.1"
+TASK_VERSION = "0.4.0"
+GRADER_VERSION = "1.5.0"
 TRUSTED = ["calibration.md", "rubric.md", "private/generate.py", "private/grader.py", "private/keys.json", "private/snapshot.py"]
 
 

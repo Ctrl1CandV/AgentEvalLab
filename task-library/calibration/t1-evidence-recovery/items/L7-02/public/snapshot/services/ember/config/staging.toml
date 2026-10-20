@@ -1,0 +1,4 @@
+[ember]
+timeout_ms = 526
+pool_size = 39
+max_retries = 36

@@ -1,0 +1,4 @@
+[cinder]
+max_retries = 57
+timeout_ms = 776
+pool_size = 43

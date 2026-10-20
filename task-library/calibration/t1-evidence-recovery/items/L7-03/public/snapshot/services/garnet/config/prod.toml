@@ -1,0 +1,5 @@
+[garnet]
+cache_ttl_s = 38
+pool_size = 10
+batch_size = 13
+upstream = "atlas"

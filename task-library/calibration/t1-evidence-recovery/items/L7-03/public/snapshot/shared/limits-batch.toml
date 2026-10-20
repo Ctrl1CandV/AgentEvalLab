@@ -1,0 +1,5 @@
+[limits-batch]
+include = "shared/limits-standard.toml"
+pool_size = 59
+max_retries = 70
+batch_size = 75

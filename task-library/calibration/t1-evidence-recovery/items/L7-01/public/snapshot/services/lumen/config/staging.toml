@@ -1,0 +1,4 @@
+[lumen]
+batch_size = 24
+timeout_ms = 520
+cache_ttl_s = 40

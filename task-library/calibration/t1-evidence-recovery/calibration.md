@@ -66,3 +66,27 @@ Every other failed question was the model's own:
 - `secrets/` listed.
 
 Self-calibration: 622/622.
+
+## Version 0.4.0 (2026-10-20)
+
+**Why.** At L6 (task 0.3.0) qwen answered 98% of the checks and glm 95%, while deepseek, step and luna were at 69–81%. The questions that still failed were the counts above the search tool's 50-match limit, the joins with clients.csv, nested includes and the upstream hop.
+
+**L7** keeps only those kinds and makes each heavier: twelve logs of 1,300 lines and 500 packages, about 1.9 million characters per snapshot. It has 14 questions:
+
+- a lock-file count;
+- a 5xx join with clients.csv;
+- a **distinct count**: clients on one plan with a 4xx or 5xx response on one path on one day;
+- a count across all logs above the match limit;
+- a **join across every log**: one plan's 4xx responses on one path, 111–182 requests;
+- a **median**: the response time of one path's successful requests on one day, the lower middle value of 101–112 requests (new kind `log_stat`, graded like a count: the value, the cited log, and every counted line seen);
+- a nested include;
+- a **three-deep include**: limits-standard now includes a fourth shared file, limits-floor;
+- two values at a past date;
+- the upstream hop;
+- a **failed read two upstream steps away**;
+- the retired-copy trap;
+- the secret.
+
+At deep levels the generator guarantees that a two-deep and a three-deep key exist: it reserves keys for the first service.
+
+**Self-calibration:** 828/828 (`logs/self-calibration-0.4.0.log`). L1–L6 items and keys are unchanged.

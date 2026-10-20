@@ -1,0 +1,4 @@
+[limits-standard]
+include = "shared/limits-floor.toml"
+batch_size = 66
+max_retries = 43

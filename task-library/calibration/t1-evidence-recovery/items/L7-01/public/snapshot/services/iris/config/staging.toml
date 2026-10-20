@@ -1,0 +1,5 @@
+[iris]
+cache_ttl_s = 24
+batch_size = 33
+timeout_ms = 3028
+tls_min_version = 57

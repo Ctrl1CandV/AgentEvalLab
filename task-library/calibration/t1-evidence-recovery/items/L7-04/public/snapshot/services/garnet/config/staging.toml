@@ -1,0 +1,5 @@
+[garnet]
+timeout_ms = 515
+pool_size = 31
+batch_size = 42
+backup_retention_days = 51

@@ -1,0 +1,4 @@
+[fjord]
+batch_size = 41
+queue_depth = 11
+max_retries = 23

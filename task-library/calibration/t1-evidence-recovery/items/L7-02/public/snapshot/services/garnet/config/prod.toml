@@ -1,0 +1,4 @@
+[garnet]
+max_retries = 39
+timeout_ms = 6000
+batch_size = 32

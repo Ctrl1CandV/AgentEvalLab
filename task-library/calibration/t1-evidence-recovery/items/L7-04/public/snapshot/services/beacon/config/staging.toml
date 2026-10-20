@@ -1,0 +1,4 @@
+[beacon]
+cache_ttl_s = 48
+queue_depth = 32
+timeout_ms = 127

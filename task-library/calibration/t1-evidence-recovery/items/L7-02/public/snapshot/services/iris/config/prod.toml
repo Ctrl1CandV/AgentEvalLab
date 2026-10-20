@@ -1,0 +1,6 @@
+[iris]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 21
+max_retries = 7
+batch_size = 26
+upstream = "garnet"

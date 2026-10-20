@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/limits-burst.toml"
+queue_depth = 16
+cache_ttl_s = 20
+max_retries = 31
+upstream = "ember"

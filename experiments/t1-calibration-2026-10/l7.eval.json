@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 3,
+  "name": "t1-calibration-2026-10-l7",
+  "models": [
+    {
+      "provider": "supergpt",
+      "id": "gpt-6-luna",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "glm-5.3",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "step-5-preview",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    },
+    {
+      "provider": "aliplan",
+      "id": "qwen3.8-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    },
+    {
+      "provider": "mimoplan",
+      "id": "mimo-v2.6-pro",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    },
+    {
+      "provider": "mimoplan",
+      "id": "mimo-v2.6-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 1,
+  "budget": {
+    "timeoutMs": 5400000,
+    "maxTurns": 200,
+    "maxModelCalls": 200,
+    "maxToolCalls": 250,
+    "maxOutputChars": 32768,
+    "maxOutputTokensPerCall": 131072,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 1500000
+  },
+  "artifactLimits": {
+    "maxFiles": 500,
+    "maxFileBytes": 10485760,
+    "maxTrialBytes": 52428800,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 8000000,
+    "concurrency": 4
+  },
+  "trustedLocalExecution": true,
+  "budgetNotice": true,
+  "cases": [
+    {
+      "id": "t1-evidence-recovery",
+      "packagePath": "task-library/calibration/t1-evidence-recovery",
+      "packageManifestSha256": "0f8cd06f3c3e70115eb07f569b4efad84130974fd6ea2ce0d5fe2c7d1b11377e",
+      "readOnly": true,
+      "toolProfile": "doc-evidence",
+      "input": {
+        "prompt": "Use the tools to answer every question, then give the JSON answer."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 180000
+      },
+      "items": {
+        "levels": [
+          "L7"
+        ]
+      }
+    }
+  ]
+}

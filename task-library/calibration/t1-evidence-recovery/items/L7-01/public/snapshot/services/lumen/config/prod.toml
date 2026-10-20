@@ -1,0 +1,6 @@
+[lumen]
+include = "shared/limits-floor.toml"
+pool_size = 8
+batch_size = 5
+max_retries = 11
+upstream = "harbor"

@@ -1,0 +1,4 @@
+[ember]
+pool_size = 37
+queue_depth = 58
+max_retries = 50

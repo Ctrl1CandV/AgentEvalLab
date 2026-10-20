@@ -13,8 +13,8 @@ sys.path.insert(0, HERE)
 import snapshot  # noqa: E402
 
 TASK_ID = "t1-evidence-recovery"
-TASK_VERSION = "0.3.0"
-GRADER_VERSION = "1.4.1"
+TASK_VERSION = "0.4.0"
+GRADER_VERSION = "1.5.0"
 KEYS_PATH = os.path.join(HERE, "keys.json")
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)
 
@@ -245,6 +245,8 @@ def grade_question(question, given, observations, trace):
         return integer(given.get("count")) == expected["count"] and normalized_path(given.get("evidence")) == expected["evidence"]
     if kind == "log_total":
         return integer(given.get("count")) == expected["count"]
+    if kind == "log_stat":
+        return integer(given.get("value")) == expected["value"] and normalized_path(given.get("evidence")) == expected["evidence"]
     if kind in ("config", "recovery"):
         return integer(given.get("value")) == expected["value"] and normalized_path(given.get("evidence")) == expected["evidence"]
     if kind == "incident":
@@ -357,7 +359,7 @@ def self_calibrate():
         observations = Observations(item_id, [])
         for index, question in enumerate(key["questions"], 1):
             proofs = [proof for proof in question["evidence"] if not proof.get("whole")]
-            if question["kind"] in ("lockfile", "log_lookup", "log_count", "lock_count", "log_total") and proofs:
+            if question["kind"] in ("lockfile", "log_lookup", "log_count", "lock_count", "log_total", "log_stat") and proofs:
                 matches = [{"path": proof["path"], "line": proof["line"] + 1, "text": observations.lines(proof["path"])[proof["line"]]} for proof in proofs]
                 # Whole files in the proof (clients.csv for a join) are read; the counted lines come from the search.
                 reads = read_events([proof["path"] for proof in question["evidence"] if proof.get("whole")], item_id)
@@ -366,10 +368,10 @@ def self_calibrate():
                 if len(matches) > 1:
                     partial = grade(item_id, "strict", reference, reads + search_trace(matches[:-1]), keys)[f"q{index}"]
                     rows.append((f"{item_id}-q{index}-missing-count-line-fails", partial is False))
-            if question["kind"] in ("config", "recovery", "lockfile", "log_lookup", "log_count", "lock_count", "log_total", "config_at_date"):
+            if question["kind"] in ("config", "recovery", "lockfile", "log_lookup", "log_count", "lock_count", "log_total", "config_at_date", "log_stat"):
                 wrong = dict(reference)
                 field = {"config": "value", "recovery": "value", "lockfile": "version", "log_lookup": "status", "log_count": "count",
-                         "lock_count": "count", "log_total": "count", "config_at_date": "value"}[question["kind"]]
+                         "lock_count": "count", "log_total": "count", "config_at_date": "value", "log_stat": "value"}[question["kind"]]
                 wrong[f"Q{index}"] = dict(reference[f"Q{index}"], **{field: 123456 if field != "version" else "0.0.0"})
                 rows.append((f"{item_id}-q{index}-wrong-value-fails", grade(item_id, "strict", wrong, trace, keys)[f"q{index}"] is False))
             if question["kind"] == "config" and any(proof.get("whole") and proof["path"].endswith(".toml") for proof in question["evidence"]):

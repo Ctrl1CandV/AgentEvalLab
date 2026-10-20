@@ -1,0 +1,5 @@
+[limits-batch]
+include = "shared/limits-standard.toml"
+queue_depth = 48
+cache_ttl_s = 80
+batch_size = 47

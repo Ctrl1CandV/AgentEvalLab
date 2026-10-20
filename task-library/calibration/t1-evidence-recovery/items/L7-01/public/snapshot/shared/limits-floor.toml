@@ -1,0 +1,6 @@
+[limits-floor]
+max_retries = 126
+pool_size = 134
+queue_depth = 122
+batch_size = 92
+cache_ttl_s = 120

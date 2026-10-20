@@ -1,0 +1,4 @@
+[iris]
+timeout_ms = 3012
+batch_size = 25
+queue_depth = 55

@@ -1,0 +1,4 @@
+[kestrel]
+queue_depth = 28
+timeout_ms = 268
+pool_size = 38

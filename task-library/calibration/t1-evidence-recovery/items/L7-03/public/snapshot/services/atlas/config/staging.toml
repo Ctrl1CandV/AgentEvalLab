@@ -1,0 +1,4 @@
+[atlas]
+max_retries = 29
+timeout_ms = 262
+queue_depth = 48

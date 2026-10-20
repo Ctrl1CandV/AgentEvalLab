@@ -1,0 +1,4 @@
+[juniper]
+cache_ttl_s = 54
+batch_size = 28
+timeout_ms = 1019
