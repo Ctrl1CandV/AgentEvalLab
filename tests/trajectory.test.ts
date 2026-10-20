@@ -346,6 +346,27 @@ test("trajectory provider failure stops before snapshot and does not create late
   } finally { await rm(outputRoot, { recursive: true, force: true }); }
 });
 
+test("a stage stopped by its budget is graded on what it delivered, without a public check or repair", async () => {
+  const plan = JSON.parse(await readFile("examples/eng-005-long-cycle.eval.json", "utf8")) as EvaluationPlan;
+  validatePlan(plan);
+  const outputRoot = await mkdtemp(join(tmpdir(), "eng005-budget-stop-test-"));
+  const sessionFactory: TrajectorySessionFactory = () => ({
+    async send() { return { ...emptyExecution(), status: "budget_exceeded", failureKind: "budget", error: "TRIAL_TOKEN_LIMIT", modelCalls: 1, turns: 1 }; },
+    async dispose() {},
+  });
+  try {
+    const result = await runTrajectoryEvaluation(plan, { outputRoot, sessionFactory });
+    const trajectory = result.report.records[0]!;
+    assert.equal(trajectory.stopReason, "TRIAL_TOKEN_LIMIT");
+    const cycles = trajectory.stages[0]!.cycles;
+    assert.equal(cycles.length, 1);
+    assert.ok(cycles[0]!.snapshot, "the delivery is preserved");
+    assert.equal(cycles[0]!.publicCheck, null);
+    assert.ok(cycles[0]!.privateGrade, "and graded");
+    assert.deepEqual(trajectory.stages.map(stage => stage.status), ["stopped", "not_reached", "not_reached", "not_reached", "not_reached"]);
+  } finally { await rm(outputRoot, { recursive: true, force: true }); }
+});
+
 test("trajectory event persistence failure remains explicit in the saved trial record", async () => {
   const plan = JSON.parse(await readFile("examples/eng-005-long-cycle.eval.json", "utf8")) as EvaluationPlan;
   validatePlan(plan);

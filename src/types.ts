@@ -65,6 +65,10 @@ export interface RequestUsage {
   attempts: number;
   /** Classified provider failure for an errored request (see src/harness/provider-errors.ts). */
   failureClass: import("./harness/provider-errors.js").ProviderFailure | null;
+  /** The provider's error text for an errored request, redacted and cut to 300 characters. */
+  failureMessage?: string | null;
+  /** The request failed with a transient provider error and the session continued without its response. */
+  retried?: boolean;
   /**
    * Characters in the response by content type (tool-call arguments as JSON); null without a response.
    * Shows where output tokens went when a provider does not report reasoning tokens separately.

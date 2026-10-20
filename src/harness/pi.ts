@@ -59,7 +59,14 @@ export interface PiRunnerOptions<Input extends RunInput> {
   budgetReminders?: readonly number[];
   /** "stage" in a multi-stage session, where each send has its own budget; the status text says so. */
   budgetScope?: "trial" | "stage";
+  /** Continuations after a transient failure of a response that had begun streaming. Default 2. */
+  maxResumes?: number;
+  /** Wait before the nth continuation: n times this. Default 10,000 ms. */
+  resumeDelayMs?: number;
 }
+
+/** Provider failures that say nothing about the model or the account, so the session may continue past them. */
+const resumableFailures: ReadonlySet<string> = new Set(["rate_limit", "server", "network", "other"]);
 
 export interface PiSessionState {
   agent?: Agent;
@@ -124,6 +131,9 @@ export function createPiRunner<Input extends RunInput = RunInput>(
     let requestEventPending = Promise.resolve();
     const interceptedCalls = new Set<string>();
     let remindedThreshold = 0;
+    // Responses lost to a transient provider failure; they count toward no budget of the model.
+    let resumes = 0;
+    const maxResumes = options.maxResumes ?? 2;
     const requestState: { active: { usage: RequestUsage; started: number } | null } = { active: null };
     let currentRequestId: string | null = null;
 
@@ -183,7 +193,10 @@ export function createPiRunner<Input extends RunInput = RunInput>(
     const finishRequest = (usage: RequestUsage, started: number, message?: { usage?: unknown; stopReason?: string; content?: unknown }) => {
       usage.durationMs = performance.now() - started;
       usage.contentChars = contentChars(message?.content);
-      if (message?.stopReason === "error") usage.failureClass = classifyProviderFailure(message as AssistantMessage, model.contextWindow);
+      if (message?.stopReason === "error") {
+        usage.failureClass = classifyProviderFailure(message as AssistantMessage, model.contextWindow);
+        usage.failureMessage = redact((message as AssistantMessage).errorMessage ?? "", [key]).slice(0, 300) || null;
+      }
       if (!message || message.stopReason === "error" || message.stopReason === "aborted" || message.stopReason === "deferred") {
         usage.status = message?.stopReason === "error" ? "error" : "incomplete";
         usage.usageStatus = "missing";
@@ -283,7 +296,7 @@ export function createPiRunner<Input extends RunInput = RunInput>(
 
       // Before each model request, stop if the run has failed or exhausted its request budget.
       prepareRequest: () => {
-        if (result.status !== "done" || result.modelCalls >= budget.maxModelCalls) {
+        if (result.status !== "done" || result.modelCalls - resumes >= budget.maxModelCalls) {
           limit("MODEL_CALL_LIMIT");
           throw new Error("BUDGET_STOP");
         }
@@ -382,11 +395,11 @@ export function createPiRunner<Input extends RunInput = RunInput>(
         }
 
         // Stop if the agent requests another tool after exhausting its turn or call budget.
-        if (message.stopReason === "toolUse" && result.turns >= budget.maxTurns) {
+        if (message.stopReason === "toolUse" && result.turns - resumes >= budget.maxTurns) {
           limit("TURN_LIMIT");
           return { action: "end" };
         }
-        if (message.stopReason === "toolUse" && result.modelCalls >= budget.maxModelCalls) {
+        if (message.stopReason === "toolUse" && result.modelCalls - resumes >= budget.maxModelCalls) {
           limit("MODEL_CALL_LIMIT");
           return { action: "end" };
         }
@@ -497,6 +510,24 @@ export function createPiRunner<Input extends RunInput = RunInput>(
 
     try {
       await agent.prompt(input.prompt);
+      // Pi retries a failed request only before its response starts streaming. A transient failure after that is the
+      // provider's, not the model's: drop the broken response and continue the session, so that one bad stream
+      // does not lose a long session.
+      for (;;) {
+        const failed = agent.state.messages.at(-1);
+        if (result.status !== "done" || resumes >= maxResumes || failed?.role !== "assistant" || failed.stopReason !== "error") break;
+        const failureClass = classifyProviderFailure(failed, model.contextWindow);
+        if (!resumableFailures.has(failureClass)) break;
+        resumes++;
+        const failedUsage = result.requestUsage.at(-1);
+        if (failedUsage) failedUsage.retried = true;
+        agent.state.messages = agent.state.messages.slice(0, -1);
+        await events.emit("model_request_resumed", { modelCalls: result.modelCalls }, { resume: resumes, failureClass,
+          ...(options.sessionState?.context ?? {}) });
+        await new Promise(resolve => setTimeout(resolve, (options.resumeDelayMs ?? 10_000) * resumes));
+        if (result.status !== "done") break;
+        await agent.continue();
+      }
       await requestEventPending;
       events.check();
 
@@ -515,10 +546,12 @@ export function createPiRunner<Input extends RunInput = RunInput>(
       }
 
       // SDK error or abort messages may report synthetic zero usage; never treat it as actual usage.
-      const usageIsTrustworthy = result.requestUsage.length === result.modelCalls && result.requestUsage.length > 0 &&
-        result.requestUsage.every(request => request.usageStatus === "reported" && request.totalTokens !== null && request.totalTokens > 0);
+      // Responses lost to a provider failure and continued past have no usage; the rest must all report it.
+      const counted = result.requestUsage.filter(request => !request.retried);
+      const usageIsTrustworthy = counted.length === result.modelCalls - resumes && counted.length > 0 &&
+        counted.every(request => request.usageStatus === "reported" && request.totalTokens !== null && request.totalTokens > 0);
       if (usageIsTrustworthy) {
-        result.reportedTokens = result.requestUsage.reduce((sum, request) => sum + request.totalTokens!, 0);
+        result.reportedTokens = counted.reduce((sum, request) => sum + request.totalTokens!, 0);
       }
 
       // The final response itself was truncated.

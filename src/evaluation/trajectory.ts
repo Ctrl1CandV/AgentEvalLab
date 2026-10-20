@@ -413,14 +413,17 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
             const cycle: TrajectoryStageResult["cycles"][number] = { cycleId, execution: persistedExecution(execution, budget.maxOutputChars), publicCheck: null, snapshot: null };
             stageRecord.cycles.push(cycle);
             await events.emit("trajectory_submission_completed", { modelCalls: totalExecution.modelCalls, toolCalls: totalExecution.toolCalls }, { stageId: stageInfo.id, cycleId, status: execution.status });
-            if (execution.status !== "done") {
+            // A budget or model stop ends the trajectory but is the model's own outcome, so what it delivered is graded,
+            // as in a single run; after an infrastructure failure nothing more is graded.
+            const stopped = execution.status !== "done";
+            if (stopped) {
               recordValue.stopReason = execution.error ?? execution.status.toUpperCase();
               stageRecord.status = "stopped";
               stop = true;
-              break;
+              if (execution.failureKind === "infrastructure") break;
             }
-            // A batch ceiling or provider stop ends this trajectory after its current submission is graded.
-            const batchStop = guard.stopReason;
+            // A batch ceiling or a stop of this model's provider ends this trajectory after its current submission is graded.
+            const batchStop = guard.blockedReason(`${model.provider}:${model.id}`);
 
             const snapshotPath = join(trialDirectory, "snapshots", `${stageInfo.id}-${cycleId}`);
             let snapshotManifest: Awaited<ReturnType<typeof copyArtifacts>>;
@@ -444,6 +447,7 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
             snapshotBytes += snapshotManifest.totalBytes;
             snapshotFiles += snapshotManifest.files.length;
             snapshotRefs.push({ stageId: stageInfo.id, cycleId, directory: snapshotPath, manifest: snapshotManifest, activeRequirementIds: [...stageInfo.activeRequirementIds], answer: cycle.execution.output });
+            if (stopped) break;
 
             const stageElapsedAfterSnapshot = performance.now() - stageStart;
             const trajectoryElapsedAfterSnapshot = performance.now() - executionStart;

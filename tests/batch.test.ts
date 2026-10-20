@@ -56,6 +56,54 @@ test("the runner records a classified provider failure on the request and the ru
   assert.equal(result.requestUsage[0]!.attempts, 0, "injected streams make no HTTP request");
 });
 
+test("a response lost to a transient failure mid-stream is dropped and the session continues", async () => {
+  const contexts: number[] = [];
+  const runner = createPiRunner({ apiKey: "offline-resume-key", resumeDelayMs: 0, stream: ((selected: { api: string; provider: string; id: string }, context: { messages: unknown[] }) => {
+    contexts.push(context.messages.length);
+    const stream = new AssistantMessageEventStream();
+    if (contexts.length === 1) {
+      const message = { ...failed("stream ended unexpectedly (key offline-resume-key)"), api: selected.api };
+      stream.push({ type: "start", partial: { ...message, stopReason: "pending" } } as never);
+      stream.push({ type: "error", reason: "error", error: message } as never);
+      return stream;
+    }
+    const message = { role: "assistant", content: [{ type: "text", text: "done" }], api: selected.api, provider: selected.provider, model: selected.id,
+      usage: { input: 4, output: 3, cacheRead: 0, cacheWrite: 0, totalTokens: 7, cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0, total: 0 } },
+      stopReason: "stop", timestamp: 0 };
+    stream.push({ type: "start", partial: { ...message, content: [], stopReason: "pending" } } as never);
+    stream.push({ type: "done", reason: "stop", message } as never);
+    return stream;
+  }) as never });
+  const events: string[] = [];
+  const result = await runner({ prompt: "go" }, parseModel("anthropic:claude-sonnet-4-6"), { ...defaultBudget, maxModelCalls: 1 },
+    async type => { events.push(type); });
+  assert.equal(result.status, "done", "the lost response counts toward no budget, so one model call is enough");
+  assert.equal(result.output, "done");
+  assert.deepEqual(contexts, [1, 1], "the continuation resends the prompt without the broken response");
+  assert.equal(result.modelCalls, 2);
+  assert.equal(result.requestUsage[0]!.retried, true);
+  assert.equal(result.requestUsage[0]!.failureClass, "other");
+  assert.equal(result.requestUsage[0]!.failureMessage, "stream ended unexpectedly (key [REDACTED])");
+  assert.equal(result.reportedTokens, 7);
+  assert.ok(events.includes("model_request_resumed"));
+});
+
+test("a session continues at most twice, then ends as an infrastructure failure", async () => {
+  let requests = 0;
+  const runner = createPiRunner({ apiKey: "offline", resumeDelayMs: 0, stream: ((selected: { api: string }) => {
+    requests++;
+    const message = { ...failed("503 Service Unavailable"), api: selected.api };
+    const stream = new AssistantMessageEventStream();
+    stream.push({ type: "start", partial: { ...message, stopReason: "pending" } } as never);
+    stream.push({ type: "error", reason: "error", error: message } as never);
+    return stream;
+  }) as never });
+  const result = await runner({ prompt: "go" }, parseModel("anthropic:claude-sonnet-4-6"), { ...defaultBudget }, async () => {});
+  assert.equal(requests, 3);
+  assert.equal(result.failureKind, "infrastructure");
+  assert.equal(result.error, "PROVIDER_UNAVAILABLE");
+});
+
 function usage(totalTokens: number | null): RequestUsage {
   return { requestId: "r", interactionClass: "candidate", status: "completed", usageStatus: totalTokens === null ? "missing" : "reported",
     durationMs: 1, inputTokens: null, outputTokens: null, cacheReadTokens: null, cacheWriteTokens: null, reasoningTokens: null,
@@ -82,6 +130,23 @@ test("an authentication or balance error stops the batch and leaves the rest not
     assert.equal(result.report.batch!.stopReason, "PROVIDER_BALANCE");
     assert.deepEqual(result.report.batch!.notRun.map(entry => entry.caseId), ["case-3", "case-4"]);
     assert.equal(result.report.recordedRuns, 2);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});
+
+test("a provider's failures stop only that provider", async () => {
+  const root = await mkdtemp(join(tmpdir(), "batch-provider-"));
+  try {
+    const twoProviders = { ...plan({ maxConsecutiveInfrastructureFailures: 2 }), models: [{ provider: "deepseek", id: "deepseek-flash" }, { provider: "supercn", id: "glm-5.3", thinkingLevel: "high" as const }] };
+    const ran: string[] = [];
+    const result = await runEvaluation(twoProviders, { outputRoot: root, runner: async (input, model) => {
+      ran.push(`${model.provider}:${input.prompt}`);
+      return model.provider === "supercn" ? infra("PROVIDER_AUTH") : ok();
+    } });
+    assert.equal(ran.filter(entry => entry.startsWith("deepseek")).length, 4, "deepseek runs every case");
+    assert.equal(ran.filter(entry => entry.startsWith("supercn")).length, 1, "supercn stops after its first failure");
+    assert.equal(result.report.batch!.stopReason, "PROVIDER_AUTH");
+    assert.deepEqual(result.report.batch!.providerStops, { supercn: "PROVIDER_AUTH" });
+    assert.deepEqual(result.report.batch!.notRun.map(entry => entry.model), ["supercn:glm-5.3", "supercn:glm-5.3", "supercn:glm-5.3"]);
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 

@@ -8,7 +8,7 @@ export interface BatchPolicy {
   maxRetries: number;
   /** Longest provider-requested retry delay to honour; longer delays fail the request. */
   maxRetryDelayMs: number;
-  /** Stop after this many trials (or trajectory cycles) in a row end in an infrastructure failure. */
+  /** Stop a provider after this many of its trials (or trajectory cycles) in a row end in an infrastructure failure. */
   maxConsecutiveInfrastructureFailures: number;
   /**
    * Token ceilings in fixed units: every reported token counts once, cached input included; prices never enter.
@@ -72,7 +72,10 @@ export interface NotRunEntry {
 
 export interface BatchSummary {
   policy: BatchPolicy;
+  /** Why the whole batch stopped, or else why its providers stopped (their distinct reasons, comma-separated). */
   stopReason: string | null;
+  /** Providers stopped by an authentication, balance or repeated infrastructure failure, with the reason. */
+  providerStops?: Record<string, string>;
   knownTokens: number;
   /** Known tokens per provider:id model. */
   tokensByModel?: Record<string, number>;
@@ -84,6 +87,8 @@ export interface BatchSummary {
 /**
  * Tracks usage and failures across a batch and decides when to stop scheduling work.
  * Known usage only: requests whose usage the provider did not report are counted separately.
+ * Failures stop only the provider that had them (an expired key at one provider says nothing about the others);
+ * the token and cost ceilings stop the whole batch.
  */
 export class BatchGuard {
   knownTokens = 0;
@@ -93,14 +98,12 @@ export class BatchGuard {
   reservedByModel: Record<string, number> = {};
   knownCostUsd = 0;
   unknownUsageRequests = 0;
-  consecutiveInfrastructureFailures = 0;
+  /** Infrastructure failures in a row, per provider ("*" for work recorded without a model). */
+  consecutiveInfrastructureFailures: Record<string, number> = {};
   stopReason: string | null = null;
+  providerStops: Record<string, string> = {};
 
   constructor(readonly policy: BatchPolicy) {}
-
-  get stopped(): boolean {
-    return this.stopReason !== null;
-  }
 
   /**
    * Account one finished trial or trajectory cycle. A trial that a resumed batch reruns still
@@ -116,12 +119,15 @@ export class BatchGuard {
       if (request.costUsd !== null) this.knownCostUsd += request.costUsd;
     }
     if (options.countFailure === false) return;
-    if (execution.failureKind === "infrastructure") this.consecutiveInfrastructureFailures++;
-    else this.consecutiveInfrastructureFailures = 0;
+    const provider = providerOf(options.model);
+    const failures = execution.failureKind === "infrastructure" ? (this.consecutiveInfrastructureFailures[provider] ?? 0) + 1 : 0;
+    this.consecutiveInfrastructureFailures[provider] = failures;
     if (this.stopReason) return;
-    if (execution.error && batchStoppingErrors.has(execution.error)) this.stopReason = execution.error;
-    else if (this.consecutiveInfrastructureFailures >= this.policy.maxConsecutiveInfrastructureFailures) this.stopReason = "INFRASTRUCTURE_FAILURES";
-    else if (this.policy.maxTotalTokens !== null && this.knownTokens >= this.policy.maxTotalTokens) this.stopReason = "TOKEN_CEILING";
+    if (!this.providerStops[provider]) {
+      if (execution.error && batchStoppingErrors.has(execution.error)) this.providerStops[provider] = execution.error;
+      else if (failures >= this.policy.maxConsecutiveInfrastructureFailures) this.providerStops[provider] = "INFRASTRUCTURE_FAILURES";
+    }
+    if (this.policy.maxTotalTokens !== null && this.knownTokens >= this.policy.maxTotalTokens) this.stopReason = "TOKEN_CEILING";
     else if (this.policy.maxCostUsd !== null && this.knownCostUsd >= this.policy.maxCostUsd) this.stopReason = "COST_CEILING";
   }
 
@@ -132,6 +138,8 @@ export class BatchGuard {
    */
   blockedReason(model: string, reserve = 0): string | null {
     if (this.stopReason) return this.stopReason;
+    const providerStop = this.providerStops[providerOf(model)] ?? this.providerStops["*"];
+    if (providerStop) return providerStop;
     const exceeds = (used: number, ceiling: number | null) => ceiling !== null && (used >= ceiling || used + reserve > ceiling);
     if (exceeds(this.knownTokens + this.reservedTokens, this.policy.maxTotalTokens)) return "TOKEN_CEILING";
     if (exceeds((this.tokensByModel[model] ?? 0) + (this.reservedByModel[model] ?? 0), this.policy.maxTotalTokensPerModel)) return "MODEL_TOKEN_CEILING";
@@ -152,9 +160,11 @@ export class BatchGuard {
   }
 
   summary(notRun: NotRunEntry[]): BatchSummary {
+    const providerReasons = [...new Set(Object.values(this.providerStops))];
     return {
       policy: this.policy,
-      stopReason: this.stopReason,
+      stopReason: this.stopReason ?? (providerReasons.length ? providerReasons.join(", ") : null),
+      ...(Object.keys(this.providerStops).length ? { providerStops: { ...this.providerStops } } : {}),
       knownTokens: this.knownTokens,
       tokensByModel: this.tokensByModel,
       knownCostUsd: this.knownCostUsd,
@@ -162,4 +172,9 @@ export class BatchGuard {
       notRun,
     };
   }
+}
+
+/** The provider of a "provider:id" model key; work recorded without a model counts as "*". */
+function providerOf(model: string | undefined): string {
+  return model ? model.split(":")[0]! : "*";
 }
