@@ -60,3 +60,16 @@ Recovering a format from bytecode does not separate the strong models either: de
 ```bash
 npm run harness -- --plan experiments/e4-calibration-2026-10/speedup.eval.json
 ```
+
+Run `9b2dbac7` (task 0.4.0, speedup): 10 of 14 trials; the relay models had no balance. Every trial used its whole 2,000,000-token budget, optimising until stopped.
+
+Under 0.4.0's ladder (16/6/3/1.5×), deepseek, qwen and mimo-pro passed every check in one or both trials, so 0.4.1 moved the ladder. A 0.4.0 trial cannot be regraded under 0.4.1, whose prompt states other thresholds. So each delivered `analyze.py` was measured offline on 0.4.1's hidden days (reference 0.65 s, one core, best of three), which shows where the trials would land. This is a calibration measurement, not a result:
+
+| Model | Trial 1 | Trial 2 |
+| --- | --- | --- |
+| deepseek-flash | 0.64×, all outputs right: 7/7 | 0.69×: 7/7 |
+| mimo-v2.6-pro | 0.99×: 6/7 | 1.00×: 6/7 |
+| mimo-v2.6-flash | 0.94×: 6/7 | wrong output on every day: 0/7 |
+| qwen3.8-flash | 1.26×: 5/7 | wrong output on every day: 0/7 |
+
+A 0.4.1 run is still needed for results.

@@ -49,3 +49,14 @@ Run `e2277944` (`sheet-query.eval.json`) showed that the 32,768-token limit on a
 ```bash
 npm run harness -- --plan experiments/e2-calibration-2026-10/routes.eval.json
 ```
+
+Run `a69d9886` (task 0.5.0, routes, 3M tokens): 11 of 14 trials; the relay models had no balance. Every trial used its whole token budget, improving its solver until stopped; for optimisation that is the contest's time limit.
+
+| Model | Trial 1 | Trial 2 | Mean |
+| --- | ---: | ---: | ---: |
+| deepseek-flash | 70% | 73% | 71% |
+| mimo-v2.6-flash | 58% | 58% | 58% |
+| mimo-v2.6-pro | 49% | 64% | 56% |
+| qwen3.8-flash | 6% | 27% | 17% |
+
+Every failure is the model's own. qwen's first trial overloaded a van on seven of eight instances (infeasible plans earn nothing); its second ran but stayed 0.10–0.86 of the way. In the stopped first launch (1.2M tokens), a deepseek solver was left with a syntax error when the budget ran out mid-edit. routes is the first E2 item that places the strong models inside the target range.

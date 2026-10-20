@@ -35,7 +35,8 @@ The 2026-10 pilot ran in two rounds on 2026-10-14 and 2026-10-15: luna-medium wi
      - hardening by adding detail failed: T2 0.2.0, E3 eng-005 0.3.0, E4 0.2.0 and 0.3.0 (codec) and T1 L7 stayed above 90% for the strong models;
      - what separates them is a ladder: R3 L5–L7 by puzzle size, and two continuous engineering items, E2 `routes` (optimisation, scored against a best-known cost) and E4 `speedup` (time against an optimised reference);
      - the harness now stops only the failing provider, grades budget-stopped trajectory stages, continues a session past a transient mid-stream error, and lets only the task budget stop a model (responses of 131,072 tokens and 524,288 characters).
-   - next: the ladder results for routes and speedup; resume R3 L5–L7 for deepseek and every relay model (glm, step, luna) once the airy.work relay has balance; then a ladder for T2 and E3, which detail could not harden.
+   - results and the open decisions are in the [hardening round](reviews/2026-10-20-hardening-round.md): R3, E2 `routes` and (offline) E4 `speedup` 0.4.1 spread the models; T1 L7 still saturates the top two; E3 and T2 need a decision between a ladder and keeping them as reliability families.
+   - next: the user's decisions on E3 and T2; an E4 0.4.1 speedup run; resume every new item for glm, step and luna once the airy.work relay has balance.
 
    Background: after the pilot the user set its principles: deductions must be attributable to the model; a recoverable format slip is deducted, not failed; there is one generous budget per task, stated to the model; thinking runs at a middle level; and the tasks must become harder. The user settled its open decisions on 2026-10-16.
 2. The pilot's own decision list is superseded by PLAN-005.

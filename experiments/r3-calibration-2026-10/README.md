@@ -87,3 +87,14 @@ deepseek solved every puzzle, so L4–L6 cannot place it in the target range of 
 ```bash
 npm run harness -- --plan experiments/r3-calibration-2026-10/l5-l7.eval.json
 ```
+
+Run `e3b89e80` (task 0.3.0, L5–L7): resumed once deepseek had balance again; 104 of 168 trials, since the relay models (glm, step, luna) had none.
+
+| Model | L5 | L6 | L7 | L5–L7 |
+| --- | ---: | ---: | ---: | ---: |
+| deepseek-flash | 75% | 89% | 53% | 72% |
+| mimo-v2.6-pro | 63% | 63% | 0% | 42% |
+| mimo-v2.6-flash | 60% | 25% | 0% | 28% |
+| qwen3.8-flash | 25% | 32% | 14% | 24% |
+
+At L7 both MiMo models stop at their own output limit in every trial: a single response of 131,072 tokens is not enough thinking for a 10×10 grid.
