@@ -75,7 +75,7 @@
     {
       "id": "r3-logic-grid",
       "packagePath": "task-library/calibration/r3-logic-grid",
-      "packageManifestSha256": "fda4b7186201251b5fbf124e3d2875a32150532921ad843b25570da6b5874754",
+      "packageManifestSha256": "030fe6f4decc09a5314f45203753ac330e65e0c520f3276455c8ff8004234db8",
       "readOnly": true,
       "input": {
         "prompt": "Solve the puzzle and give the JSON answer described above."
