@@ -423,3 +423,35 @@ test("trajectory records workspace cleanup failure after preserving the stopped 
     await rm(outputRoot, { recursive: true, force: true });
   }
 });
+
+test("a trajectory states its budget once, gives each stage what is left of the tokens, and stops when they run out", async () => {
+  const plan = JSON.parse(await readFile("examples/eng-005-long-cycle.eval.json", "utf8")) as EvaluationPlan;
+  plan.budgetNotice = true;
+  plan.budget.maxTrialTokens = 1_000;
+  validatePlan(plan);
+  const outputRoot = await mkdtemp(join(tmpdir(), "eng005-budget-test-"));
+  const prompts: string[] = [];
+  const tokenBudgets: Array<number | undefined> = [];
+  const usage = (stageId: string) => ({ requestId: `r-${stageId}-${prompts.length}`, interactionClass: "candidate" as const, status: "completed" as const,
+    usageStatus: "reported" as const, durationMs: 1, inputTokens: 500, outputTokens: 100, cacheReadTokens: 0, cacheWriteTokens: 0, reasoningTokens: 0,
+    totalTokens: 600, costUsd: null, attempts: 1, failureClass: null });
+  const sessionFactory: TrajectorySessionFactory = () => ({
+    async send(input, budget, _emit, context) {
+      prompts.push(input.prompt);
+      tokenBudgets.push(budget.maxTrialTokens ?? undefined);
+      return { ...emptyExecution(), output: "done", modelCalls: 1, turns: 1, requestUsage: [usage(context.stageId)] };
+    },
+    async dispose() {},
+  });
+  try {
+    const result = await runTrajectoryEvaluation(plan, { outputRoot, sessionFactory });
+    const trajectory = result.report.records[0]!;
+    assert.match(prompts[0]!, /Budget for this task, the same for every model:/);
+    assert.match(prompts[0]!, /The whole task, all stages together: at most 1,000 tokens/);
+    assert.ok(prompts.slice(1).every(prompt => !prompt.includes("Budget for this task")));
+    assert.equal(tokenBudgets[0], 1_000);
+    assert.equal(tokenBudgets[1], 400);
+    assert.equal(prompts.length, 2);
+    assert.equal(trajectory.stopReason, "BUDGET_EXHAUSTED");
+  } finally { await rm(outputRoot, { recursive: true, force: true }); }
+});

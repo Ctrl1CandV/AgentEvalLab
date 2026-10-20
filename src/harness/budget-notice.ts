@@ -43,14 +43,34 @@ export function budgetFraction(budget: Budget, use: BudgetUse): number {
   return Math.max(...fractions);
 }
 
+/**
+ * The budget paragraph of a multi-stage task: the limits of the whole task and of each stage. Reminders in a stage
+ * count against what that stage started with, which is the smaller of the stage's limits and what the task has left.
+ */
+export function trajectoryBudgetStatement(total: Budget, stage: Budget, thresholds: readonly number[] = defaultReminderThresholds): string {
+  const limits = (budget: Budget) => [
+    ...(budget.maxTrialTokens != null ? [`${count(budget.maxTrialTokens)} tokens`] : []),
+    `${count(responseLimit(budget))} model responses`,
+    `${count(budget.maxToolCalls)} tool calls`,
+    `${minutes(budget.timeoutMs)} minutes`,
+  ].join(", ");
+  const lines = ["Budget for this task, the same for every model:",
+    `- The whole task, all stages together: at most ${limits(total)}. Tokens count all input and output of every request, including your reasoning and the conversation context that is sent again with each request.`,
+    `- Each stage: at most ${limits(stage)}, and never more than the whole task has left.`,
+    `- Every response: at most ${count(Math.min(total.maxOutputTokensPerCall, stage.maxOutputTokensPerCall))} output tokens.`,
+    "When any limit is reached, the task stops at once and your work is graded as it stands." +
+      (thresholds.length ? ` In each stage you will receive a short budget status after you pass ${thresholds.map(percent).join(", ").replace(/, ([^,]*)$/, " and $1")} of what that stage started with.` : "")];
+  return lines.join("\n");
+}
+
 /** One budget status line, sent when usage passes a reminder threshold. */
-export function budgetStatus(budget: Budget, use: BudgetUse): string {
+export function budgetStatus(budget: Budget, use: BudgetUse, scope: "trial" | "stage" = "trial"): string {
   const parts = [];
   if (budget.maxTrialTokens != null) parts.push(`${count(use.tokens)} of ${count(budget.maxTrialTokens)} tokens (${percent(use.tokens / budget.maxTrialTokens)})`);
   parts.push(`${count(use.modelCalls)} of ${count(responseLimit(budget))} model responses`);
   parts.push(`${count(use.toolCalls)} of ${count(budget.maxToolCalls)} tool calls`);
   parts.push(`${minutes(use.elapsedMs)} of ${minutes(budget.timeoutMs)} minutes`);
-  return `[Budget status] Used so far: ${parts.join(", ")}.`;
+  return scope === "stage" ? `[Budget status] Used so far in this stage, of what it started with: ${parts.join(", ")}.` : `[Budget status] Used so far: ${parts.join(", ")}.`;
 }
 
 /** Validate reminder thresholds: strictly increasing fractions between 0 and 1. */

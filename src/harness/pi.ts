@@ -57,6 +57,8 @@ export interface PiRunnerOptions<Input extends RunInput> {
    * Absent means no reminders. The statement of the budget itself belongs to the task prompt.
    */
   budgetReminders?: readonly number[];
+  /** "stage" in a multi-stage session, where each send has its own budget; the status text says so. */
+  budgetScope?: "trial" | "stage";
 }
 
 export interface PiSessionState {
@@ -396,7 +398,7 @@ export function createPiRunner<Input extends RunInput = RunInput>(
           const threshold = options.budgetReminders.filter(value => value <= fraction && value > remindedThreshold).at(-1);
           if (threshold !== undefined) {
             remindedThreshold = threshold;
-            const text = budgetStatus(budget, use);
+            const text = budgetStatus(budget, use, options.budgetScope);
             agent.steer({ role: "user", content: text, timestamp: Date.now() });
             await events.emit("budget_notice", { modelCalls: result.modelCalls, toolCalls: result.toolCalls }, { threshold, fraction, text });
           }

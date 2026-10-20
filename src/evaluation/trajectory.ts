@@ -5,6 +5,7 @@ import { createHash, randomUUID } from "node:crypto";
 import type { AgentTool } from "@earendil-works/pi-agent-core";
 import { command } from "../command.js";
 import { createPiSession, type PiAgentSession } from "../harness/pi.js";
+import { trajectoryBudgetStatement } from "../harness/budget-notice.js";
 import { evaluationTools } from "../harness/profiles.js";
 import { emptyExecution, type Budget, type EventSink, type ExecutionResult } from "../types.js";
 import { persistedExecution, redact } from "../privacy.js";
@@ -16,6 +17,7 @@ import { runTaskGrader } from "./grader.js";
 import { preflightPlan } from "./preflight.js";
 import { evaluatedCondition, sha256 } from "./condition.js";
 import { BatchGuard, resolveBatchPolicy, type BatchPolicy, type NotRunEntry } from "./batch.js";
+import { resolveBudgetNotice } from "./run.js";
 import { sandboxLauncher, type Isolation } from "../sandbox.js";
 import type { EvaluationOptions, EvaluationPlan, PublicCheckResult, TrajectoryMetrics, TrajectoryRecord, TrajectorySession, TrajectoryStageResult } from "./types.js";
 import { modelLabel } from "./report.js";
@@ -52,7 +54,15 @@ function remainingBudget(
   const maxOutputChars = min(total.maxOutputChars - totalOutputChars, stage.maxOutputChars - stageOutputChars);
   const maxToolResultChars = min(total.maxToolResultChars, stage.maxToolResultChars);
   if (timeoutMs < 1 || maxTurns < 1 || maxModelCalls < 1 || maxToolCalls < 0 || maxOutputChars < 1) return null;
+  // Tokens: what the whole trajectory has left, capped by what the stage has left, when either limit is set.
+  const tokenLimits = [
+    ...(total.maxTrialTokens != null ? [total.maxTrialTokens - tokensOf(aggregate)] : []),
+    ...(stage.maxTrialTokens != null ? [stage.maxTrialTokens - tokensOf(stageUsed)] : []),
+  ];
+  const maxTrialTokens = tokenLimits.length ? Math.min(...tokenLimits) : null;
+  if (maxTrialTokens !== null && maxTrialTokens < 1) return null;
   return {
+    ...(maxTrialTokens !== null ? { maxTrialTokens } : {}),
     timeoutMs: Math.floor(timeoutMs),
     maxTurns,
     maxModelCalls,
@@ -61,6 +71,10 @@ function remainingBudget(
     maxOutputChars,
     maxToolResultChars,
   };
+}
+
+function tokensOf(result: ExecutionResult): number {
+  return result.requestUsage.reduce((sum, request) => sum + (request.totalTokens ?? 0), 0);
 }
 
 function accumulate(target: ExecutionResult, next: ExecutionResult): void {
@@ -103,6 +117,7 @@ function makeRunner(plan: EvaluationPlan, options: EvaluationOptions, model: Eva
     maxRetries: batchPolicy.maxRetries,
     maxRetryDelayMs: batchPolicy.maxRetryDelayMs,
     createTools,
+    ...(resolveBudgetNotice(plan) ? { budgetReminders: resolveBudgetNotice(plan)!.reminders, budgetScope: "stage" as const } : {}),
   });
   return piSession;
 }
@@ -351,6 +366,7 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
         const projection = await projectPackage(item.packagePath!, workspace.path, item.packageManifestSha256, true);
         if (projection.manifestSha256 !== descriptor.manifestSha256) throw new Error("PACKAGE_CHANGED_AFTER_PREFLIGHT");
         const commonInstruction = projection.instruction;
+        const notice = resolveBudgetNotice(plan);
         executionStart = performance.now();
         session = makeRunner(plan, options, model, id, profile, artifactLimits, workspace.path, item, batchPolicy);
         await events.emit("execution_started");
@@ -386,7 +402,8 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
             }
 
             const userPrompt = cycleIndex === 0
-              ? [index === 0 ? commonInstruction : "Continue to the next stage in the same project and session.", item.input.prompt, stageInstruction].filter(Boolean).join("\n\n")
+              ? [index === 0 ? commonInstruction : "Continue to the next stage in the same project and session.", item.input.prompt, stageInstruction,
+                index === 0 && notice ? trajectoryBudgetStatement(plan.budget, plan.execution.stageBudget, notice.reminders) : ""].filter(Boolean).join("\n\n")
               : ["Public check feedback follows. Fix these failing items in the current project, change only what is necessary, and preserve completed requirements.", ...stageRecord.cycles[0].publicCheck!.checks.filter(check => !check.passed).map(check => `- ${check.id} (${check.reasonCode}): ${check.feedback}`)].join("\n");
             const execution = await session.send({ prompt: userPrompt, systemPrompt: item.input.systemPrompt, workspacePath: workspace.path }, budget,
               events.emit, { stageId: stageInfo.id, cycleId });

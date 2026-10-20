@@ -45,7 +45,6 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
       }
       validateBudget(object(execution.stageBudget) as unknown as EvaluationPlan["budget"]);
       if (plan.repetitions !== undefined && plan.repetitions !== 1) throw new Error("TRAJECTORY_REPETITIONS_UNSUPPORTED");
-      if (plan.budgetNotice !== undefined && plan.budgetNotice !== false) throw new Error("TRAJECTORY_BUDGET_NOTICE_UNSUPPORTED");
     } else throw new Error("UNKNOWN_EXECUTION_POLICY");
   }
   if (plan.artifactLimits !== undefined) {
