@@ -35,36 +35,8 @@
         "sha256": "34ab4e780df278ae2edb73cf83e8909f4b8a87984cfeb117db7afea9b428ef8e"
       },
       {
-        "path": "private/.claude/launch.json",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "path": "private/.claude/loop.md",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "path": "private/.claude/output-styles",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "path": "private/.claude/routines",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "path": "private/.claude/scheduled_tasks.json",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "path": "private/.claude/workflows",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "path": "private/.mcp.json",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
         "path": "private/build_manifest.py",
-        "sha256": "7271eac0f8f094344a18bf9215f57c10fb3d57365d5cc77427d4a6e878903c5f"
+        "sha256": "1ce7a78a6198f51a7466bd292522f73cdd4500647fcadd9ac62f7d5304866173"
       },
       {
         "path": "private/grader.py",
@@ -81,50 +53,6 @@
       {
         "path": "private/mutants.py",
         "sha256": "885039133d2ab5d019ae3f44f9e14cb8bfe851563508603ea9114754cfde4c78"
-      },
-      {
-        "path": "private/query/.claude/hooks",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "path": "private/query/.claude/launch.json",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "path": "private/query/.claude/loop.md",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "path": "private/query/.claude/output-styles",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "path": "private/query/.claude/routines",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "path": "private/query/.claude/scheduled_tasks.json",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "path": "private/query/.claude/settings.json",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "path": "private/query/.claude/settings.local.json",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "path": "private/query/.claude/skills",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "path": "private/query/.claude/workflows",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "path": "private/query/.mcp.json",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
       },
       {
         "path": "private/query/fixtures.py",

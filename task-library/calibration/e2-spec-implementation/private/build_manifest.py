@@ -23,13 +23,14 @@ def checks_of(item):
 
 def main():
     trusted = ["calibration.md", "rubric.md"] + sorted(str(path.relative_to(ROOT)) for path in (ROOT / "private").rglob("*")
-                                                     if path.is_file() and "__pycache__" not in path.parts and not path.name.endswith(".pyc"))
+                                                     if path.is_file() and "__pycache__" not in path.parts and not path.name.endswith(".pyc")
+                                                     and not any(part.startswith(".") for part in path.parts))
     requirements, items = [], []
     for item, level in ITEMS.items():
         ids = [f"REQ-{item.upper()}-{check.upper()}" for check in checks_of(item)]
         requirements += [{"id": requirement, "critical": True, "introducedAt": f"e2-spec-implementation {VERSION}", "checkIds": [f"{item}-{check}"]}
                          for requirement, check in zip(ids, checks_of(item))]
-        files = sorted(str(path.relative_to(ROOT)) for path in (ROOT / "items" / item).rglob("*") if path.is_file())
+        files = sorted(str(path.relative_to(ROOT)) for path in (ROOT / "items" / item).rglob("*") if path.is_file() and not any(part.startswith(".") for part in path.parts))
         items.append({"id": item, "level": level, "files": [{"path": path, "sha256": digest(path)} for path in files], "activeRequirementIds": ids + ["REQ-README"]})
     requirements.append({"id": "REQ-README", "critical": True, "introducedAt": f"e2-spec-implementation {VERSION}", "checkIds": ["readme"]})
     manifest = {

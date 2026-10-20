@@ -47,10 +47,12 @@ def list_files(package, directory, skip_python_caches=False):
         return []
     found = []
     for current, directories, files in os.walk(base):
+        # Hidden entries are never package material; the harness skips them too.
+        directories[:] = [name for name in directories if not name.startswith(".")]
         if skip_python_caches:
             directories[:] = [name for name in directories if name != "__pycache__"]
         for name in files:
-            if skip_python_caches and name.endswith(".pyc"):
+            if name.startswith(".") or (skip_python_caches and name.endswith(".pyc")):
                 continue
             found.append(os.path.relpath(os.path.join(current, name), package).replace(os.sep, "/"))
     return sorted(found)
@@ -77,6 +79,8 @@ def check_package(package):
     problems = []
     manifest = load_json(os.path.join(package, "manifest.json"))
     for entry in manifest_entries(manifest):
+        if any(part.startswith(".") for part in entry["path"].split("/")):
+            problems.append("hidden file declared: " + entry["path"])
         path = os.path.join(package, *entry["path"].split("/"))
         if not os.path.isfile(path) or os.path.islink(path):
             problems.append("missing or linked: " + entry["path"])

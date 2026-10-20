@@ -370,6 +370,9 @@ async function listFilesUnder(root: string, directoryName: string, excludePython
   const results: string[] = [];
   const visit = async (directory: string): Promise<void> => {
     for (const name of await readdir(directory)) {
+      // Hidden entries are never package material (tools and sandboxes leave such files behind); manifests may not
+      // declare them.
+      if (name.startsWith(".")) continue;
       const path = join(directory, name);
       const info = await lstat(path);
       if (info.isSymbolicLink()) throw new PackageManifestError("PACKAGE_SYMLINK_DENIED");
