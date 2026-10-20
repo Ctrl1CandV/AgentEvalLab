@@ -36,3 +36,13 @@ test("bradleyTerry ranks by results and treats symmetric results as equal", () =
   const sweep = bradleyTerry(["p", "q"], [{ a: "p", b: "q", scoreA: 1 }]);
   assert.ok(Number.isFinite(sweep.p!) && sweep.p! > sweep.q!);
 });
+
+test("degradeHtml appends the degradation's style block before the last closing body tag", async () => {
+  const { degradeHtml, DEGRADATIONS } = await import("../src/visual/panel.js");
+  const page = "<html><body><p>a</p></body></html>";
+  for (const kind of Object.keys(DEGRADATIONS)) {
+    const degraded = degradeHtml(page, kind);
+    assert.ok(degraded.endsWith(`<style data-exam="${kind}">${DEGRADATIONS[kind]}</style></body></html>`));
+  }
+  assert.ok(degradeHtml("<p>no body</p>", "cramped").startsWith("<p>no body</p><style"));
+});

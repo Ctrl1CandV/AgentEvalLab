@@ -1,7 +1,9 @@
 // Pairwise visual tournament for vis-001 runs (PLAN-005 WP6). Anchor comparisons tell whether a page clears a fixed
 // bar; once every model clears it they no longer separate models. Here every submission meets every submission from
 // another model, in both orders, judged by every gate-passing judge whose vendor made neither page, and the results
-// give per-model win rates and Bradley–Terry strengths, as in arena-style web-design evaluations.
+// give per-model win rates and Bradley–Terry strengths, as in arena-style web-design evaluations. Judges first sit an
+// exam of pairs whose better page is known (the reference against the plain anchor, and good pages against copies
+// degraded in spacing, contrast, type or phone layout); only judges that pass it judge the tournament.
 //
 // A trial that delivered no index.html loses each of its pairings without a judge call: the missing page is the
 // model's own failure. A page that exists but could not be rendered is left out and listed.
@@ -9,7 +11,7 @@
 // Usage: node --import tsx scripts/judge-tournament.ts --run runs/<id> [--run runs/<id> ...] --package <vis package>
 //        [--judges a,b,c] [--concurrency 4] [--dry-run]
 // Writes visual/tournament.json and visual/tournament.md under the first run directory.
-import { access, mkdir, readFile, writeFile } from "node:fs/promises";
+import { access, cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { parseArgs } from "node:util";
 import { loadCredentials } from "../src/providers.js";
@@ -17,7 +19,8 @@ import { loadRecordedTrials } from "../src/evaluation/regrade.js";
 import { modelLabel } from "../src/evaluation/report.js";
 import { renderSubmission, type RenderResult } from "../src/visual/render.js";
 import { combineOrders, criteria, loadDesign, outcomeScore, vendorOf, type Choice, type Verdict } from "../src/visual/judge.js";
-import { anchorGate, bradleyTerry, callJudge, DEFAULT_JUDGES, judgeLabel, judgeSelection, pool } from "../src/visual/panel.js";
+import { bradleyTerry, callJudge, DEFAULT_JUDGES, DEGRADATIONS, degradeHtml, EXAM_MAX_INCONSISTENT, EXAM_PASS_SCORE, judgeExam, judgeLabel, judgeSelection, pool,
+  type ExamCase } from "../src/visual/panel.js";
 import type { ModelSelection } from "../src/types.js";
 
 const { values } = parseArgs({ options: { run: { type: "string", multiple: true }, package: { type: "string" }, judges: { type: "string" },
@@ -49,7 +52,8 @@ for (let left = 0; left < trials.length; left++) for (let right = left + 1; righ
   if (!sameModel(trials[left]!, trials[right]!)) pairs.push([trials[left]!, trials[right]!]);
 }
 const panelFor = (left: Trial, right: Trial) => judges.filter(judge => vendorOf(judge) !== vendorOf(left.model) && vendorOf(judge) !== vendorOf(right.model));
-const calls = judges.length * 2 + pairs.filter(([left, right]) => left.delivered && right.delivered).reduce((sum, [left, right]) => sum + panelFor(left, right).length * 2, 0);
+const examCases = 1 + 2 * Object.keys(DEGRADATIONS).length;
+const calls = judges.length * examCases * 2 + pairs.filter(([left, right]) => left.delivered && right.delivered).reduce((sum, [left, right]) => sum + panelFor(left, right).length * 2, 0);
 console.log(`trials ${trials.length} (${trials.filter(trial => !trial.delivered).length} without a page), pairs ${pairs.length}, judge calls at most ${calls}`);
 if (values["dry-run"]) process.exit(0);
 loadCredentials();
@@ -62,8 +66,27 @@ for (const trial of trials.filter(trial => trial.delivered)) {
   catch { trial.result = { screenshots: {}, overflow: {}, rolesPresent: [], formStates: {}, errors: ["render failed"] }; }
 }
 const rendered = (trial: Trial) => Boolean(trial.result?.screenshots.desktop);
-const gate = await anchorGate(judges, skill, (label, anchor) => loadDesign(label, join(visualRoot, "anchors", anchor), anchorDirectories[anchor]), concurrency);
-const trusted = judges.filter(judge => gate.some(entry => entry.judge === judgeLabel(judge) && entry.passed));
+// The judge exam: the reference against the plain anchor, and two good pages (the reference and the first rendered
+// submission) against degraded copies of themselves.
+const examRoot = join(visualRoot, "exam");
+await rm(examRoot, { recursive: true, force: true });
+const anchorDesign = (name: keyof typeof anchorDirectories) => (label: "A" | "B") => loadDesign(label, join(visualRoot, "anchors", name), anchorDirectories[name]);
+const cases: ExamCase[] = [{ name: "reference-vs-plain", good: anchorDesign("reference"), bad: anchorDesign("plain") }];
+const firstPage = [...trials].sort((left, right) => left.id.localeCompare(right.id)).find(rendered);
+const bases = [{ name: "reference", site: anchorDirectories.reference, render: join(visualRoot, "anchors", "reference") },
+  ...(firstPage ? [{ name: `page-${firstPage.id.slice(0, 8)}`, site: firstPage.site, render: firstPage.render }] : [])];
+for (const base of bases) {
+  for (const kind of Object.keys(DEGRADATIONS)) {
+    const site = join(examRoot, `${base.name}-${kind}`, "site");
+    const render = join(examRoot, `${base.name}-${kind}`, "render");
+    await cp(base.site, site, { recursive: true });
+    await writeFile(join(site, "index.html"), degradeHtml(await readFile(join(base.site, "index.html"), "utf8"), kind));
+    await renderSubmission(site, render, states);
+    cases.push({ name: `${base.name}-${kind}`, good: label => loadDesign(label, base.render, base.site), bad: label => loadDesign(label, render, site) });
+  }
+}
+const exam = await judgeExam(judges, skill, cases, concurrency);
+const trusted = judges.filter(judge => exam.some(entry => entry.judge === judgeLabel(judge) && entry.passed));
 
 // Every cross-model pair: judged when both pages rendered, decided without a judge when one side delivered nothing.
 type Game = { a: string; b: string; judge: string | null; outcome: "win" | "loss" | "tie" | "missing"; inconsistent: boolean;
@@ -90,6 +113,19 @@ for (const [left, right] of pairs) {
 const games = (await pool(tasks, concurrency)).filter(game => game.outcome !== "missing");
 const trialById = new Map(trials.map(trial => [trial.id, trial]));
 
+/** 95% bootstrap interval of a mean, from 2,000 resamples with a fixed seed, so reruns report the same interval. */
+function bootstrapInterval(values: number[]): [number, number] | null {
+  if (values.length < 2) return null;
+  let seed = 20261020;
+  const random = () => { seed = (seed * 1103515245 + 12345) % 2147483648; return seed / 2147483648; };
+  const means = Array.from({ length: 2000 }, () => {
+    let sum = 0;
+    for (let index = 0; index < values.length; index++) sum += values[Math.floor(random() * values.length)]!;
+    return sum / values.length;
+  }).sort((left, right) => left - right);
+  return [means[50]!, means[1949]!];
+}
+
 // Model level: win rate over all games, Bradley–Terry strength, head-to-head matrix, and per-criterion win rates.
 const models = [...new Set(trials.map(trial => trial.label))].sort();
 const modelGames = games.map(game => ({ a: trialById.get(game.a)!.label, b: trialById.get(game.b)!.label, scoreA: outcomeScore[game.outcome as keyof typeof outcomeScore] }));
@@ -105,8 +141,10 @@ const byModel = models.map(model => {
     });
     return [name, scores.length ? scores.reduce((sum, value) => sum + value, 0) / scores.length : null];
   }));
+  const scores = own.map(game => scoreFor(model, game));
   return { model, trials: trials.filter(trial => trial.label === model).length, games: own.length,
-    winRate: own.length ? own.reduce((sum, game) => sum + scoreFor(model, game), 0) / own.length : null, strength: strength[model]!, criteria: criterionRate };
+    winRate: scores.length ? scores.reduce((sum, value) => sum + value, 0) / scores.length : null, interval: bootstrapInterval(scores),
+    strength: strength[model]!, criteria: criterionRate };
 }).sort((left, right) => right.strength - left.strength);
 const headToHead = Object.fromEntries(models.map(row => [row, Object.fromEntries(models.filter(column => column !== row).map(column => {
   const own = modelGames.filter(game => (game.a === row && game.b === column) || (game.a === column && game.b === row));
@@ -120,8 +158,8 @@ for (const [left, right] of pairs) {
   for (let one = 0; one < outcomes.length; one++) for (let two = one + 1; two < outcomes.length; two++) { comparedPairs++; agreements += Number(outcomes[one] === outcomes[two]); }
 }
 const tokens = judgedGames.reduce((sum, game) => sum + game.usage.reduce((total, usage) => total + usage.input + usage.output, 0), 0) +
-  gate.reduce((sum, entry) => sum + entry.usage.reduce((total, usage) => total + usage.input + usage.output, 0), 0);
-const report = { generatedAt: new Date().toISOString(), runs: values.run, judges: judges.map(judgeLabel), anchorGate: gate.map(({ usage: _usage, ...entry }) => entry),
+  exam.reduce((sum, entry) => sum + entry.usage.reduce((total, usage) => total + usage.input + usage.output, 0), 0);
+const report = { generatedAt: new Date().toISOString(), runs: values.run, judges: judges.map(judgeLabel), exam: exam.map(({ usage: _usage, ...entry }) => entry),
   trials: trials.map(trial => ({ id: trial.id, model: trial.label, delivered: trial.delivered, rendered: rendered(trial), renderErrors: trial.result?.errors ?? [] })),
   excluded: [...excluded], positionInconsistentRate: inconsistentRate, interJudgeAgreement: comparedPairs ? agreements / comparedPairs : null, tokens,
   byModel, headToHead, games };
@@ -130,11 +168,13 @@ await writeFile(join(visualRoot, "tournament.json"), JSON.stringify(report, null
 const percent = (value: number | null | undefined) => value === null || value === undefined ? "—" : `${(value * 100).toFixed(0)}%`;
 const lines = ["# Visual tournament", "",
   `Runs: ${values.run.join(", ")}. Every page meets every page from another model, in both orders; a result counts only if it holds in both orders, otherwise it is a tie. Judges: ${report.judges.join(", ")}, each only on pairs where its vendor made neither page, and only after passing the anchor gate. A trial without index.html loses its pairings without a judge call.`, "",
-  "## Anchor gate", "", "| Judge | Prefers reference over plain in both orders |", "| --- | --- |",
-  ...report.anchorGate.map(entry => `| ${entry.judge} | ${entry.passed ? "yes" : `no (${entry.outcome})`} |`), "",
+  "## Judge exam", "", `Pairs whose better page is known, each in both orders. A judge passes with a score of at least ${percent(EXAM_PASS_SCORE)} (a tie counts half) and at most ${percent(EXAM_MAX_INCONSISTENT)} position-inconsistent cases.`, "",
+  "| Judge | Score | Position-inconsistent | Passed | Missed cases |", "| --- | ---: | ---: | --- | --- |",
+  ...report.exam.map(entry => `| ${entry.judge} | ${percent(entry.score)} | ${percent(entry.inconsistent)} | ${entry.passed ? "yes" : "no"} | ${Object.entries(entry.outcomes).filter(([, outcome]) => outcome !== "win").map(([name, outcome]) => `${name} (${outcome})`).join(", ") || "—"} |`), "",
   `Judged games: ${judgedGames.length}; decided without a judge: ${games.length - judgedGames.length}. Position-inconsistent: ${percent(inconsistentRate)}. Agreement between judges on the same pair: ${percent(report.interJudgeAgreement)}. Judge tokens: ${tokens.toLocaleString("en-US")}.`, "",
-  "## By model", "", `| Model | Trials | Games | Win rate | Strength (Bradley–Terry) | ${criteria.join(" | ")} |`, `| --- | ---: | ---: | ---: | ---: | ${criteria.map(() => "---:").join(" | ")} |`,
-  ...byModel.map(row => `| ${row.model} | ${row.trials} | ${row.games} | ${percent(row.winRate)} | ${row.strength.toFixed(2)} | ${criteria.map(name => percent(row.criteria[name])).join(" | ")} |`), "",
+  "## By model", "", "Win rates carry a 95% bootstrap interval over games; models whose intervals overlap are not separated.", "",
+  `| Model | Trials | Games | Win rate | 95% interval | Strength (Bradley–Terry) | ${criteria.join(" | ")} |`, `| --- | ---: | ---: | ---: | ---: | ---: | ${criteria.map(() => "---:").join(" | ")} |`,
+  ...byModel.map(row => `| ${row.model} | ${row.trials} | ${row.games} | ${percent(row.winRate)} | ${row.interval ? `${percent(row.interval[0])}–${percent(row.interval[1])}` : "—"} | ${row.strength.toFixed(2)} | ${criteria.map(name => percent(row.criteria[name])).join(" | ")} |`), "",
   "## Head to head", "", "Score of the row model against the column model.", "", `| | ${models.join(" | ")} |`, `| --- | ${models.map(() => "---:").join(" | ")} |`,
   ...models.map(row => `| ${row} | ${models.map(column => column === row ? "—" : percent(headToHead[row]![column])).join(" | ")} |`), "",
   "## Trials", "", "| Trial | Model | Page | Rendered | Render errors |", "| --- | --- | --- | --- | --- |",

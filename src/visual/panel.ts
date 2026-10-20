@@ -4,7 +4,7 @@ import { combineOrders, judgePair, type Design, type Verdict } from "./judge.js"
 
 /** Vision-verified judges at their middle thinking levels, one per vendor. */
 export const DEFAULT_JUDGES = ["supergpt:gpt-6-luna?thinking=medium", "supercn:step-5-preview?thinking=medium",
-  "deepseek:deepseek-flash?thinking=high", "supercn:glm-5.3-flash?thinking=provider-default"];
+  "deepseek:deepseek-flash?thinking=high", "supercn:glm-5.3-flash?thinking=provider-default", "aliplan:qwen3.8-flash?thinking=provider-default"];
 
 /** A judge in provider-check syntax, provider:model?thinking=<level>. */
 export function judgeSelection(spec: string): ModelSelection {
@@ -66,4 +66,49 @@ export function bradleyTerry(players: string[], games: Array<{ a: string; b: str
     for (const player of players) strength[player] = next[player]! / Math.exp(logMean);
   }
   return strength;
+}
+
+/**
+ * Degradations for the judge exam: a style block appended to a page, each making it clearly worse in one respect
+ * (spacing, contrast, type, phone layout). A competent judge prefers the original in both orders.
+ */
+export const DEGRADATIONS: Record<string, string> = {
+  cramped: "*, *::before, *::after { margin: 0 !important; padding: 0 !important; gap: 0 !important; }",
+  "low-contrast": "*, *::before, *::after { color: #c8c8c8 !important; }",
+  "plain-type": "* { font-family: 'Courier New', monospace !important; font-size: 12px !important; line-height: 1.05 !important; font-weight: 400 !important; }",
+  "phone-overflow": "body > * { min-width: 1500px !important; }",
+};
+
+/** The page's index.html with a degradation's style block appended at the end of the document. */
+export function degradeHtml(html: string, kind: string): string {
+  const style = `<style data-exam="${kind}">${DEGRADATIONS[kind]}</style>`;
+  return html.includes("</body>") ? html.replace(/<\/body>(?![\s\S]*<\/body>)/, `${style}</body>`) : html + style;
+}
+
+export type ExamCase = { name: string; good: (label: "A" | "B") => Promise<Design>; bad: (label: "A" | "B") => Promise<Design> };
+export type ExamResult = { judge: string; score: number; inconsistent: number; cases: number; passed: boolean;
+  outcomes: Record<string, string>; usage: Array<{ input: number; output: number }> };
+
+/** Pass marks of the judge exam: the better page wins at least this share (a tie counts half), and at most this
+ * share of cases flips with the order. */
+export const EXAM_PASS_SCORE = 0.75;
+export const EXAM_MAX_INCONSISTENT = 0.25;
+
+/**
+ * Judge exam: each judge compares pairs whose better page is known, in both orders. A judge is used only if it
+ * prefers the better page often enough and is not swayed by position too often.
+ */
+export async function judgeExam(judges: ModelSelection[], skill: string, cases: ExamCase[], concurrency: number): Promise<ExamResult[]> {
+  const rows = await pool(judges.flatMap(judge => cases.map(item => async () => {
+    const one = await callJudge(judge, skill, await item.good("A"), await item.bad("B"));
+    const two = await callJudge(judge, skill, await item.bad("A"), await item.good("B"));
+    return { judge: judgeLabel(judge), name: item.name, ...combineOrders(one.verdict?.overall ?? null, two.verdict?.overall ?? null), usage: [one.usage, two.usage] };
+  })), concurrency);
+  return judges.map(judge => {
+    const own = rows.filter(row => row.judge === judgeLabel(judge));
+    const score = own.reduce((sum, row) => sum + (row.outcome === "win" ? 1 : row.outcome === "tie" ? 0.5 : 0), 0) / Math.max(1, own.length);
+    const inconsistent = own.filter(row => row.inconsistent).length / Math.max(1, own.length);
+    return { judge: judgeLabel(judge), score, inconsistent, cases: own.length, passed: score >= EXAM_PASS_SCORE && inconsistent <= EXAM_MAX_INCONSISTENT,
+      outcomes: Object.fromEntries(own.map(row => [row.name, row.outcome])), usage: own.flatMap(row => row.usage) };
+  });
 }
