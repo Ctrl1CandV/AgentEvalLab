@@ -55,7 +55,7 @@
     "maxRetries": 2,
     "maxConsecutiveInfrastructureFailures": 3,
     "maxTotalTokensPerModel": 8000000,
-    "concurrency": 4
+    "concurrency": 8
   },
   "trustedLocalExecution": true,
   "budgetNotice": true,
