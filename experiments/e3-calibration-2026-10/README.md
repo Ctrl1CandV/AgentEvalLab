@@ -46,3 +46,18 @@ The plans now pin eng-005 0.3.0, give the grader 300 seconds per stage, and incl
 
 **Score.** A trajectory scores the share of the 41 private checks that pass in its last graded snapshot. Checks of stages it did not reach count as failed, so the score rewards both progress and keeping earlier stages working.
 
+
+### Runs with eng-005 0.3.0 (2026-10-20)
+
+One trajectory per model, each from `trajectory-<model>.eval.json` at commit `8113ebb`:
+
+| Model | Score | Last graded | Ended | Tokens |
+| --- | ---: | --- | --- | ---: |
+| qwen3.8-flash | 41/41 (100%) | S5 | stage token limit in S5; the stopped stage was graded and passed everything | 6.05M |
+| deepseek-flash | 40/41 (97.6%) | S5 | stage token limit in S5; failed only `docs.usage` | 5.99M |
+| gpt-6-luna | 40/41 (97.6%) | S5 | completed; failed only `errors.store-invalid` | 0.88M |
+| mimo-v2.6-flash | 35/41 (85.4%) | S4 | a response longer than the 32,768-character text limit after S4 passed everything | — |
+| mimo-v2.6-pro | 17/41 (41.5%) | S2 | a single response of 131,540 characters of thinking and no output, cut off at the 32,768-token response limit | 0.68M |
+| glm-5.3, step-5-preview | — | — | not run: the airy.work relay had no balance | — |
+
+The twenty hidden checks did not separate the strong models: three of them passed every hidden check of S1–S4. E3 in this form is saturated, and the strong models' only weakness is cost. qwen and deepseek used the whole six-million-token budget; luna needed 0.9M. The next version must make the stages harder to reason about, not more detailed. New plans also allow responses of 131,072 tokens, as R3 and E2 do, so that the task budget, not one response, is what stops a model.
