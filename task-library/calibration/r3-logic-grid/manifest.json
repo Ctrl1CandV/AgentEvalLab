@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "r3-logic-grid",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "familyId": "r3-logic-grid",
   "capability": "reasoning",
   "usage": "development",
@@ -37,15 +37,15 @@
       },
       {
         "path": "private/generate.py",
-        "sha256": "009628736e37f356a907b02f6c99606382322e2f3d5f5c5c20bfc29887630910"
+        "sha256": "2f1cd5cf2cd87824e64f91a8d35f8c673e9e41f33abe99d18410fc3e259a4ac3"
       },
       {
         "path": "private/grader.py",
-        "sha256": "f84ea2982da6390b1387f765bccba7ea9018f4a9126b8d5aceaccef180c1f0f9"
+        "sha256": "df897e8af4de5963016a9a1396309041b06be809db4c2d35122105dedbc67745"
       },
       {
         "path": "private/keys.json",
-        "sha256": "212b6b5094ef9df2e77dc5e06a44020a9a62fdfec9592bc270d886f7f22588e4"
+        "sha256": "3fb01ede210cda0e4bee9bd88c51670b346b515f55501b6c7ed9ff5d7f4b6235"
       },
       {
         "path": "private/logic_grid.py",
@@ -57,7 +57,7 @@
     {
       "id": "REQ-H1-A1",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h1-a1"
       ]
@@ -65,7 +65,7 @@
     {
       "id": "REQ-H1-A2",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h1-a2"
       ]
@@ -73,7 +73,7 @@
     {
       "id": "REQ-H1-A3",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h1-a3"
       ]
@@ -81,7 +81,7 @@
     {
       "id": "REQ-H1-A4",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h1-a4"
       ]
@@ -89,7 +89,7 @@
     {
       "id": "REQ-H1-A5",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h1-a5"
       ]
@@ -97,7 +97,7 @@
     {
       "id": "REQ-H1-A6",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h1-a6"
       ]
@@ -105,7 +105,7 @@
     {
       "id": "REQ-H1-A7",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h1-a7"
       ]
@@ -113,7 +113,7 @@
     {
       "id": "REQ-H1-A8",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h1-a8"
       ]
@@ -121,15 +121,23 @@
     {
       "id": "REQ-H1-A9",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h1-a9"
       ]
     },
     {
+      "id": "REQ-H1-A10",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h1-a10"
+      ]
+    },
+    {
       "id": "REQ-H2-A1",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h2-a1"
       ]
@@ -137,7 +145,7 @@
     {
       "id": "REQ-H2-A2",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h2-a2"
       ]
@@ -145,7 +153,7 @@
     {
       "id": "REQ-H2-A3",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h2-a3"
       ]
@@ -153,7 +161,7 @@
     {
       "id": "REQ-H2-A4",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h2-a4"
       ]
@@ -161,7 +169,7 @@
     {
       "id": "REQ-H2-A5",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h2-a5"
       ]
@@ -169,7 +177,7 @@
     {
       "id": "REQ-H2-A6",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h2-a6"
       ]
@@ -177,7 +185,7 @@
     {
       "id": "REQ-H2-A7",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h2-a7"
       ]
@@ -185,7 +193,7 @@
     {
       "id": "REQ-H2-A8",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h2-a8"
       ]
@@ -193,15 +201,23 @@
     {
       "id": "REQ-H2-A9",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h2-a9"
       ]
     },
     {
+      "id": "REQ-H2-A10",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h2-a10"
+      ]
+    },
+    {
       "id": "REQ-H3-A1",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h3-a1"
       ]
@@ -209,7 +225,7 @@
     {
       "id": "REQ-H3-A2",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h3-a2"
       ]
@@ -217,7 +233,7 @@
     {
       "id": "REQ-H3-A3",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h3-a3"
       ]
@@ -225,7 +241,7 @@
     {
       "id": "REQ-H3-A4",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h3-a4"
       ]
@@ -233,7 +249,7 @@
     {
       "id": "REQ-H3-A5",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h3-a5"
       ]
@@ -241,7 +257,7 @@
     {
       "id": "REQ-H3-A6",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h3-a6"
       ]
@@ -249,7 +265,7 @@
     {
       "id": "REQ-H3-A7",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h3-a7"
       ]
@@ -257,7 +273,7 @@
     {
       "id": "REQ-H3-A8",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h3-a8"
       ]
@@ -265,15 +281,23 @@
     {
       "id": "REQ-H3-A9",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h3-a9"
       ]
     },
     {
+      "id": "REQ-H3-A10",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h3-a10"
+      ]
+    },
+    {
       "id": "REQ-H4-A1",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h4-a1"
       ]
@@ -281,7 +305,7 @@
     {
       "id": "REQ-H4-A2",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h4-a2"
       ]
@@ -289,7 +313,7 @@
     {
       "id": "REQ-H4-A3",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h4-a3"
       ]
@@ -297,7 +321,7 @@
     {
       "id": "REQ-H4-A4",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h4-a4"
       ]
@@ -305,7 +329,7 @@
     {
       "id": "REQ-H4-A5",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h4-a5"
       ]
@@ -313,7 +337,7 @@
     {
       "id": "REQ-H4-A6",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h4-a6"
       ]
@@ -321,7 +345,7 @@
     {
       "id": "REQ-H4-A7",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h4-a7"
       ]
@@ -329,7 +353,7 @@
     {
       "id": "REQ-H4-A8",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h4-a8"
       ]
@@ -337,15 +361,23 @@
     {
       "id": "REQ-H4-A9",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h4-a9"
       ]
     },
     {
+      "id": "REQ-H4-A10",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h4-a10"
+      ]
+    },
+    {
       "id": "REQ-H5-A1",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h5-a1"
       ]
@@ -353,7 +385,7 @@
     {
       "id": "REQ-H5-A2",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h5-a2"
       ]
@@ -361,7 +393,7 @@
     {
       "id": "REQ-H5-A3",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h5-a3"
       ]
@@ -369,7 +401,7 @@
     {
       "id": "REQ-H5-A4",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h5-a4"
       ]
@@ -377,7 +409,7 @@
     {
       "id": "REQ-H5-A5",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h5-a5"
       ]
@@ -385,7 +417,7 @@
     {
       "id": "REQ-H5-A6",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h5-a6"
       ]
@@ -393,7 +425,7 @@
     {
       "id": "REQ-H5-A7",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h5-a7"
       ]
@@ -401,7 +433,7 @@
     {
       "id": "REQ-H5-A8",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h5-a8"
       ]
@@ -409,15 +441,23 @@
     {
       "id": "REQ-H5-A9",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h5-a9"
       ]
     },
     {
+      "id": "REQ-H5-A10",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h5-a10"
+      ]
+    },
+    {
       "id": "REQ-H6-A1",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h6-a1"
       ]
@@ -425,7 +465,7 @@
     {
       "id": "REQ-H6-A2",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h6-a2"
       ]
@@ -433,7 +473,7 @@
     {
       "id": "REQ-H6-A3",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h6-a3"
       ]
@@ -441,7 +481,7 @@
     {
       "id": "REQ-H6-A4",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h6-a4"
       ]
@@ -449,7 +489,7 @@
     {
       "id": "REQ-H6-A5",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h6-a5"
       ]
@@ -457,7 +497,7 @@
     {
       "id": "REQ-H6-A6",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h6-a6"
       ]
@@ -465,7 +505,7 @@
     {
       "id": "REQ-H6-A7",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h6-a7"
       ]
@@ -473,7 +513,7 @@
     {
       "id": "REQ-H6-A8",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h6-a8"
       ]
@@ -481,15 +521,23 @@
     {
       "id": "REQ-H6-A9",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h6-a9"
       ]
     },
     {
+      "id": "REQ-H6-A10",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h6-a10"
+      ]
+    },
+    {
       "id": "REQ-H7-A1",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h7-a1"
       ]
@@ -497,7 +545,7 @@
     {
       "id": "REQ-H7-A2",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h7-a2"
       ]
@@ -505,7 +553,7 @@
     {
       "id": "REQ-H7-A3",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h7-a3"
       ]
@@ -513,7 +561,7 @@
     {
       "id": "REQ-H7-A4",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h7-a4"
       ]
@@ -521,7 +569,7 @@
     {
       "id": "REQ-H7-A5",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h7-a5"
       ]
@@ -529,7 +577,7 @@
     {
       "id": "REQ-H7-A6",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h7-a6"
       ]
@@ -537,7 +585,7 @@
     {
       "id": "REQ-H7-A7",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h7-a7"
       ]
@@ -545,7 +593,7 @@
     {
       "id": "REQ-H7-A8",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h7-a8"
       ]
@@ -553,15 +601,23 @@
     {
       "id": "REQ-H7-A9",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h7-a9"
       ]
     },
     {
+      "id": "REQ-H7-A10",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h7-a10"
+      ]
+    },
+    {
       "id": "REQ-H8-A1",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h8-a1"
       ]
@@ -569,7 +625,7 @@
     {
       "id": "REQ-H8-A2",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h8-a2"
       ]
@@ -577,7 +633,7 @@
     {
       "id": "REQ-H8-A3",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h8-a3"
       ]
@@ -585,7 +641,7 @@
     {
       "id": "REQ-H8-A4",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h8-a4"
       ]
@@ -593,7 +649,7 @@
     {
       "id": "REQ-H8-A5",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h8-a5"
       ]
@@ -601,7 +657,7 @@
     {
       "id": "REQ-H8-A6",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h8-a6"
       ]
@@ -609,7 +665,7 @@
     {
       "id": "REQ-H8-A7",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h8-a7"
       ]
@@ -617,7 +673,7 @@
     {
       "id": "REQ-H8-A8",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h8-a8"
       ]
@@ -625,15 +681,23 @@
     {
       "id": "REQ-H8-A9",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h8-a9"
       ]
     },
     {
+      "id": "REQ-H8-A10",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h8-a10"
+      ]
+    },
+    {
       "id": "REQ-H9-A1",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h9-a1"
       ]
@@ -641,7 +705,7 @@
     {
       "id": "REQ-H9-A2",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h9-a2"
       ]
@@ -649,7 +713,7 @@
     {
       "id": "REQ-H9-A3",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h9-a3"
       ]
@@ -657,7 +721,7 @@
     {
       "id": "REQ-H9-A4",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h9-a4"
       ]
@@ -665,7 +729,7 @@
     {
       "id": "REQ-H9-A5",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h9-a5"
       ]
@@ -673,7 +737,7 @@
     {
       "id": "REQ-H9-A6",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h9-a6"
       ]
@@ -681,7 +745,7 @@
     {
       "id": "REQ-H9-A7",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h9-a7"
       ]
@@ -689,7 +753,7 @@
     {
       "id": "REQ-H9-A8",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h9-a8"
       ]
@@ -697,15 +761,103 @@
     {
       "id": "REQ-H9-A9",
       "critical": true,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "cell-h9-a9"
       ]
     },
     {
+      "id": "REQ-H9-A10",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h9-a10"
+      ]
+    },
+    {
+      "id": "REQ-H10-A1",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h10-a1"
+      ]
+    },
+    {
+      "id": "REQ-H10-A2",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h10-a2"
+      ]
+    },
+    {
+      "id": "REQ-H10-A3",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h10-a3"
+      ]
+    },
+    {
+      "id": "REQ-H10-A4",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h10-a4"
+      ]
+    },
+    {
+      "id": "REQ-H10-A5",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h10-a5"
+      ]
+    },
+    {
+      "id": "REQ-H10-A6",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h10-a6"
+      ]
+    },
+    {
+      "id": "REQ-H10-A7",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h10-a7"
+      ]
+    },
+    {
+      "id": "REQ-H10-A8",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h10-a8"
+      ]
+    },
+    {
+      "id": "REQ-H10-A9",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h10-a9"
+      ]
+    },
+    {
+      "id": "REQ-H10-A10",
+      "critical": true,
+      "introducedAt": "r3-logic-grid 0.3.0",
+      "checkIds": [
+        "cell-h10-a10"
+      ]
+    },
+    {
       "id": "REQ-FORMAT",
       "critical": false,
-      "introducedAt": "r3-logic-grid 0.2.0",
+      "introducedAt": "r3-logic-grid 0.3.0",
       "checkIds": [
         "answer-format"
       ]
@@ -3505,6 +3657,910 @@
         "REQ-H9-A7",
         "REQ-H9-A8",
         "REQ-H9-A9",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L7-01",
+      "level": "L7",
+      "files": [
+        {
+          "path": "items/L7-01/prompt.md",
+          "sha256": "449b7d89ff308d5c676606716b7568bf69a9c19682f5719c8c9ea5ae1c112342"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H1-A8",
+        "REQ-H1-A9",
+        "REQ-H1-A10",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H2-A8",
+        "REQ-H2-A9",
+        "REQ-H2-A10",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H3-A8",
+        "REQ-H3-A9",
+        "REQ-H3-A10",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H4-A8",
+        "REQ-H4-A9",
+        "REQ-H4-A10",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H5-A8",
+        "REQ-H5-A9",
+        "REQ-H5-A10",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H6-A8",
+        "REQ-H6-A9",
+        "REQ-H6-A10",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-H7-A8",
+        "REQ-H7-A9",
+        "REQ-H7-A10",
+        "REQ-H8-A1",
+        "REQ-H8-A2",
+        "REQ-H8-A3",
+        "REQ-H8-A4",
+        "REQ-H8-A5",
+        "REQ-H8-A6",
+        "REQ-H8-A7",
+        "REQ-H8-A8",
+        "REQ-H8-A9",
+        "REQ-H8-A10",
+        "REQ-H9-A1",
+        "REQ-H9-A2",
+        "REQ-H9-A3",
+        "REQ-H9-A4",
+        "REQ-H9-A5",
+        "REQ-H9-A6",
+        "REQ-H9-A7",
+        "REQ-H9-A8",
+        "REQ-H9-A9",
+        "REQ-H9-A10",
+        "REQ-H10-A1",
+        "REQ-H10-A2",
+        "REQ-H10-A3",
+        "REQ-H10-A4",
+        "REQ-H10-A5",
+        "REQ-H10-A6",
+        "REQ-H10-A7",
+        "REQ-H10-A8",
+        "REQ-H10-A9",
+        "REQ-H10-A10",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L7-02",
+      "level": "L7",
+      "files": [
+        {
+          "path": "items/L7-02/prompt.md",
+          "sha256": "835e47a9115da8e686a07a522861f7af2ffecbc5c729727a27de36796959a885"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H1-A8",
+        "REQ-H1-A9",
+        "REQ-H1-A10",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H2-A8",
+        "REQ-H2-A9",
+        "REQ-H2-A10",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H3-A8",
+        "REQ-H3-A9",
+        "REQ-H3-A10",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H4-A8",
+        "REQ-H4-A9",
+        "REQ-H4-A10",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H5-A8",
+        "REQ-H5-A9",
+        "REQ-H5-A10",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H6-A8",
+        "REQ-H6-A9",
+        "REQ-H6-A10",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-H7-A8",
+        "REQ-H7-A9",
+        "REQ-H7-A10",
+        "REQ-H8-A1",
+        "REQ-H8-A2",
+        "REQ-H8-A3",
+        "REQ-H8-A4",
+        "REQ-H8-A5",
+        "REQ-H8-A6",
+        "REQ-H8-A7",
+        "REQ-H8-A8",
+        "REQ-H8-A9",
+        "REQ-H8-A10",
+        "REQ-H9-A1",
+        "REQ-H9-A2",
+        "REQ-H9-A3",
+        "REQ-H9-A4",
+        "REQ-H9-A5",
+        "REQ-H9-A6",
+        "REQ-H9-A7",
+        "REQ-H9-A8",
+        "REQ-H9-A9",
+        "REQ-H9-A10",
+        "REQ-H10-A1",
+        "REQ-H10-A2",
+        "REQ-H10-A3",
+        "REQ-H10-A4",
+        "REQ-H10-A5",
+        "REQ-H10-A6",
+        "REQ-H10-A7",
+        "REQ-H10-A8",
+        "REQ-H10-A9",
+        "REQ-H10-A10",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L7-03",
+      "level": "L7",
+      "files": [
+        {
+          "path": "items/L7-03/prompt.md",
+          "sha256": "7aec41a9e0a668a9d3be2303756fa5c926aec2cd2088340a34b5304d18563098"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H1-A8",
+        "REQ-H1-A9",
+        "REQ-H1-A10",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H2-A8",
+        "REQ-H2-A9",
+        "REQ-H2-A10",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H3-A8",
+        "REQ-H3-A9",
+        "REQ-H3-A10",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H4-A8",
+        "REQ-H4-A9",
+        "REQ-H4-A10",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H5-A8",
+        "REQ-H5-A9",
+        "REQ-H5-A10",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H6-A8",
+        "REQ-H6-A9",
+        "REQ-H6-A10",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-H7-A8",
+        "REQ-H7-A9",
+        "REQ-H7-A10",
+        "REQ-H8-A1",
+        "REQ-H8-A2",
+        "REQ-H8-A3",
+        "REQ-H8-A4",
+        "REQ-H8-A5",
+        "REQ-H8-A6",
+        "REQ-H8-A7",
+        "REQ-H8-A8",
+        "REQ-H8-A9",
+        "REQ-H8-A10",
+        "REQ-H9-A1",
+        "REQ-H9-A2",
+        "REQ-H9-A3",
+        "REQ-H9-A4",
+        "REQ-H9-A5",
+        "REQ-H9-A6",
+        "REQ-H9-A7",
+        "REQ-H9-A8",
+        "REQ-H9-A9",
+        "REQ-H9-A10",
+        "REQ-H10-A1",
+        "REQ-H10-A2",
+        "REQ-H10-A3",
+        "REQ-H10-A4",
+        "REQ-H10-A5",
+        "REQ-H10-A6",
+        "REQ-H10-A7",
+        "REQ-H10-A8",
+        "REQ-H10-A9",
+        "REQ-H10-A10",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L7-04",
+      "level": "L7",
+      "files": [
+        {
+          "path": "items/L7-04/prompt.md",
+          "sha256": "7e0e912630acc43a15c777267abeb376dbf02fe926fe7b37e66c9c17d3394f5a"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H1-A8",
+        "REQ-H1-A9",
+        "REQ-H1-A10",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H2-A8",
+        "REQ-H2-A9",
+        "REQ-H2-A10",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H3-A8",
+        "REQ-H3-A9",
+        "REQ-H3-A10",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H4-A8",
+        "REQ-H4-A9",
+        "REQ-H4-A10",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H5-A8",
+        "REQ-H5-A9",
+        "REQ-H5-A10",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H6-A8",
+        "REQ-H6-A9",
+        "REQ-H6-A10",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-H7-A8",
+        "REQ-H7-A9",
+        "REQ-H7-A10",
+        "REQ-H8-A1",
+        "REQ-H8-A2",
+        "REQ-H8-A3",
+        "REQ-H8-A4",
+        "REQ-H8-A5",
+        "REQ-H8-A6",
+        "REQ-H8-A7",
+        "REQ-H8-A8",
+        "REQ-H8-A9",
+        "REQ-H8-A10",
+        "REQ-H9-A1",
+        "REQ-H9-A2",
+        "REQ-H9-A3",
+        "REQ-H9-A4",
+        "REQ-H9-A5",
+        "REQ-H9-A6",
+        "REQ-H9-A7",
+        "REQ-H9-A8",
+        "REQ-H9-A9",
+        "REQ-H9-A10",
+        "REQ-H10-A1",
+        "REQ-H10-A2",
+        "REQ-H10-A3",
+        "REQ-H10-A4",
+        "REQ-H10-A5",
+        "REQ-H10-A6",
+        "REQ-H10-A7",
+        "REQ-H10-A8",
+        "REQ-H10-A9",
+        "REQ-H10-A10",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L7-05",
+      "level": "L7",
+      "files": [
+        {
+          "path": "items/L7-05/prompt.md",
+          "sha256": "a82b9f5a18251c421e359a7ed589aa8db3f49ffbe0ec7e553a7437def3c4c99a"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H1-A8",
+        "REQ-H1-A9",
+        "REQ-H1-A10",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H2-A8",
+        "REQ-H2-A9",
+        "REQ-H2-A10",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H3-A8",
+        "REQ-H3-A9",
+        "REQ-H3-A10",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H4-A8",
+        "REQ-H4-A9",
+        "REQ-H4-A10",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H5-A8",
+        "REQ-H5-A9",
+        "REQ-H5-A10",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H6-A8",
+        "REQ-H6-A9",
+        "REQ-H6-A10",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-H7-A8",
+        "REQ-H7-A9",
+        "REQ-H7-A10",
+        "REQ-H8-A1",
+        "REQ-H8-A2",
+        "REQ-H8-A3",
+        "REQ-H8-A4",
+        "REQ-H8-A5",
+        "REQ-H8-A6",
+        "REQ-H8-A7",
+        "REQ-H8-A8",
+        "REQ-H8-A9",
+        "REQ-H8-A10",
+        "REQ-H9-A1",
+        "REQ-H9-A2",
+        "REQ-H9-A3",
+        "REQ-H9-A4",
+        "REQ-H9-A5",
+        "REQ-H9-A6",
+        "REQ-H9-A7",
+        "REQ-H9-A8",
+        "REQ-H9-A9",
+        "REQ-H9-A10",
+        "REQ-H10-A1",
+        "REQ-H10-A2",
+        "REQ-H10-A3",
+        "REQ-H10-A4",
+        "REQ-H10-A5",
+        "REQ-H10-A6",
+        "REQ-H10-A7",
+        "REQ-H10-A8",
+        "REQ-H10-A9",
+        "REQ-H10-A10",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L7-06",
+      "level": "L7",
+      "files": [
+        {
+          "path": "items/L7-06/prompt.md",
+          "sha256": "507fda26551654f1b3fefd2e4f845b5691e06ddb5b105950b37b3b06e638ece8"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H1-A8",
+        "REQ-H1-A9",
+        "REQ-H1-A10",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H2-A8",
+        "REQ-H2-A9",
+        "REQ-H2-A10",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H3-A8",
+        "REQ-H3-A9",
+        "REQ-H3-A10",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H4-A8",
+        "REQ-H4-A9",
+        "REQ-H4-A10",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H5-A8",
+        "REQ-H5-A9",
+        "REQ-H5-A10",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H6-A8",
+        "REQ-H6-A9",
+        "REQ-H6-A10",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-H7-A8",
+        "REQ-H7-A9",
+        "REQ-H7-A10",
+        "REQ-H8-A1",
+        "REQ-H8-A2",
+        "REQ-H8-A3",
+        "REQ-H8-A4",
+        "REQ-H8-A5",
+        "REQ-H8-A6",
+        "REQ-H8-A7",
+        "REQ-H8-A8",
+        "REQ-H8-A9",
+        "REQ-H8-A10",
+        "REQ-H9-A1",
+        "REQ-H9-A2",
+        "REQ-H9-A3",
+        "REQ-H9-A4",
+        "REQ-H9-A5",
+        "REQ-H9-A6",
+        "REQ-H9-A7",
+        "REQ-H9-A8",
+        "REQ-H9-A9",
+        "REQ-H9-A10",
+        "REQ-H10-A1",
+        "REQ-H10-A2",
+        "REQ-H10-A3",
+        "REQ-H10-A4",
+        "REQ-H10-A5",
+        "REQ-H10-A6",
+        "REQ-H10-A7",
+        "REQ-H10-A8",
+        "REQ-H10-A9",
+        "REQ-H10-A10",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L7-07",
+      "level": "L7",
+      "files": [
+        {
+          "path": "items/L7-07/prompt.md",
+          "sha256": "573d2625d20f5f065f1ff844bd4ab96a0fefd66194ebe69ca163d34b918b53d7"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H1-A8",
+        "REQ-H1-A9",
+        "REQ-H1-A10",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H2-A8",
+        "REQ-H2-A9",
+        "REQ-H2-A10",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H3-A8",
+        "REQ-H3-A9",
+        "REQ-H3-A10",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H4-A8",
+        "REQ-H4-A9",
+        "REQ-H4-A10",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H5-A8",
+        "REQ-H5-A9",
+        "REQ-H5-A10",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H6-A8",
+        "REQ-H6-A9",
+        "REQ-H6-A10",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-H7-A8",
+        "REQ-H7-A9",
+        "REQ-H7-A10",
+        "REQ-H8-A1",
+        "REQ-H8-A2",
+        "REQ-H8-A3",
+        "REQ-H8-A4",
+        "REQ-H8-A5",
+        "REQ-H8-A6",
+        "REQ-H8-A7",
+        "REQ-H8-A8",
+        "REQ-H8-A9",
+        "REQ-H8-A10",
+        "REQ-H9-A1",
+        "REQ-H9-A2",
+        "REQ-H9-A3",
+        "REQ-H9-A4",
+        "REQ-H9-A5",
+        "REQ-H9-A6",
+        "REQ-H9-A7",
+        "REQ-H9-A8",
+        "REQ-H9-A9",
+        "REQ-H9-A10",
+        "REQ-H10-A1",
+        "REQ-H10-A2",
+        "REQ-H10-A3",
+        "REQ-H10-A4",
+        "REQ-H10-A5",
+        "REQ-H10-A6",
+        "REQ-H10-A7",
+        "REQ-H10-A8",
+        "REQ-H10-A9",
+        "REQ-H10-A10",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "L7-08",
+      "level": "L7",
+      "files": [
+        {
+          "path": "items/L7-08/prompt.md",
+          "sha256": "cbf3a99b8b4369ba9d462a6526d6346e4d4259dc8616e8958af4c40e10c9a2b1"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-H1-A1",
+        "REQ-H1-A2",
+        "REQ-H1-A3",
+        "REQ-H1-A4",
+        "REQ-H1-A5",
+        "REQ-H1-A6",
+        "REQ-H1-A7",
+        "REQ-H1-A8",
+        "REQ-H1-A9",
+        "REQ-H1-A10",
+        "REQ-H2-A1",
+        "REQ-H2-A2",
+        "REQ-H2-A3",
+        "REQ-H2-A4",
+        "REQ-H2-A5",
+        "REQ-H2-A6",
+        "REQ-H2-A7",
+        "REQ-H2-A8",
+        "REQ-H2-A9",
+        "REQ-H2-A10",
+        "REQ-H3-A1",
+        "REQ-H3-A2",
+        "REQ-H3-A3",
+        "REQ-H3-A4",
+        "REQ-H3-A5",
+        "REQ-H3-A6",
+        "REQ-H3-A7",
+        "REQ-H3-A8",
+        "REQ-H3-A9",
+        "REQ-H3-A10",
+        "REQ-H4-A1",
+        "REQ-H4-A2",
+        "REQ-H4-A3",
+        "REQ-H4-A4",
+        "REQ-H4-A5",
+        "REQ-H4-A6",
+        "REQ-H4-A7",
+        "REQ-H4-A8",
+        "REQ-H4-A9",
+        "REQ-H4-A10",
+        "REQ-H5-A1",
+        "REQ-H5-A2",
+        "REQ-H5-A3",
+        "REQ-H5-A4",
+        "REQ-H5-A5",
+        "REQ-H5-A6",
+        "REQ-H5-A7",
+        "REQ-H5-A8",
+        "REQ-H5-A9",
+        "REQ-H5-A10",
+        "REQ-H6-A1",
+        "REQ-H6-A2",
+        "REQ-H6-A3",
+        "REQ-H6-A4",
+        "REQ-H6-A5",
+        "REQ-H6-A6",
+        "REQ-H6-A7",
+        "REQ-H6-A8",
+        "REQ-H6-A9",
+        "REQ-H6-A10",
+        "REQ-H7-A1",
+        "REQ-H7-A2",
+        "REQ-H7-A3",
+        "REQ-H7-A4",
+        "REQ-H7-A5",
+        "REQ-H7-A6",
+        "REQ-H7-A7",
+        "REQ-H7-A8",
+        "REQ-H7-A9",
+        "REQ-H7-A10",
+        "REQ-H8-A1",
+        "REQ-H8-A2",
+        "REQ-H8-A3",
+        "REQ-H8-A4",
+        "REQ-H8-A5",
+        "REQ-H8-A6",
+        "REQ-H8-A7",
+        "REQ-H8-A8",
+        "REQ-H8-A9",
+        "REQ-H8-A10",
+        "REQ-H9-A1",
+        "REQ-H9-A2",
+        "REQ-H9-A3",
+        "REQ-H9-A4",
+        "REQ-H9-A5",
+        "REQ-H9-A6",
+        "REQ-H9-A7",
+        "REQ-H9-A8",
+        "REQ-H9-A9",
+        "REQ-H9-A10",
+        "REQ-H10-A1",
+        "REQ-H10-A2",
+        "REQ-H10-A3",
+        "REQ-H10-A4",
+        "REQ-H10-A5",
+        "REQ-H10-A6",
+        "REQ-H10-A7",
+        "REQ-H10-A8",
+        "REQ-H10-A9",
+        "REQ-H10-A10",
         "REQ-FORMAT"
       ]
     }

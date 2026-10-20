@@ -31,3 +31,13 @@ See `docs/reviews/2026-10-19-task-set-v2-calibration.md`.
 - **L6**: eight 9-by-9 puzzles of 58–64 clues, so that the strongest model is not near saturation once longer responses are allowed. Generating a 9-by-9 puzzle takes about 2.5 seconds.
 - L1–L5 items and keys are unchanged; each item's seed is its id.
 - Self-calibration: 432/432; see `logs/self-calibration-0.2.0.log`.
+
+### Calibration 2026-10-20 (task 0.2.0)
+
+L4–L6 on five models (`experiments/r3-calibration-2026-10/README.md`): deepseek-flash solved every puzzle, L6 included (100%), while the others scored 14–60%. The strongest model is saturated, so the family needs a harder level.
+
+## Version 0.3.0 (2026-10-20)
+
+- **L7**: eight 10-by-10 puzzles of 73–79 clues, every attribute category the generator has. Generating one takes 5–7 seconds.
+- L1–L6 items and keys are unchanged.
+- Self-calibration: 504/504; see `logs/self-calibration-0.3.0.log`.

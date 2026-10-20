@@ -15,10 +15,10 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import logic_grid  # noqa: E402
 
-LEVELS = [("L1", 4), ("L2", 5), ("L3", 6), ("L4", 7), ("L5", 8), ("L6", 9)]
+LEVELS = [("L1", 4), ("L2", 5), ("L3", 6), ("L4", 7), ("L5", 8), ("L6", 9), ("L7", 10)]
 MAX_SIZE = max(size for _, size in LEVELS)
 TASK_ID = "r3-logic-grid"
-TASK_VERSION = "0.2.0"
+TASK_VERSION = "0.3.0"
 GRADER_VERSION = "1.0.0"
 TRUSTED = ["calibration.md", "rubric.md", "private/generate.py", "private/grader.py", "private/keys.json", "private/logic_grid.py"]
 

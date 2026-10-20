@@ -67,3 +67,23 @@ The continuation `f1c85624` was resumed from a worktree at its commit `e30b311` 
 ```bash
 npm run harness -- --plan experiments/r3-calibration-2026-10/hard-levels.eval.json
 ```
+
+Run `38d352d0`: 89 of 120 trials. The supercn relay then answered with an authentication error, which at the time stopped the whole batch (now only that provider stops), so most L6 trials did not run.
+
+| Model | L4 | L5 | L6 (2 puzzles) |
+| --- | ---: | ---: | ---: |
+| deepseek-flash | 100% | 100% | 100% |
+| glm-5.3 | 57% | 45% | 50% |
+| step-5-preview | 60% | 25% | 50% |
+| gpt-6-luna | 30% | 19% | 27% |
+| qwen3.8-flash | 14% | 28% | 29% |
+
+deepseek solved every puzzle, so L4–L6 cannot place it in the target range of 30–80%. glm stopped at the 300,000-token trial budget in 8 of its 18 trials and step in 10; luna answers after 3,000–5,000 tokens.
+
+## L5–L7 (task 0.3.0, 2026-10-20)
+
+`l5-l7.eval.json` adds L7, eight 10-by-10 puzzles, and the two MiMo V2.6 models at their default thinking, so seven models run L5–L7 under the same conditions as before.
+
+```bash
+npm run harness -- --plan experiments/r3-calibration-2026-10/l5-l7.eval.json
+```
