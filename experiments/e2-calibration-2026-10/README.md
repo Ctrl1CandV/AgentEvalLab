@@ -39,3 +39,5 @@ A new deepseek key works from 2026-10-19. The `*-deepseek.eval.json` plans add d
 ```bash
 npm run harness -- --plan experiments/e2-calibration-2026-10/sheet-query.eval.json
 ```
+
+Run `e2277944` (`sheet-query.eval.json`) showed that the 32,768-token limit on a single response was too tight for `query`. deepseek, glm and step each tried to write the whole program in one response and stopped at that limit after 36,000–44,000 tokens, in both repetitions. `query.eval.json` reruns `query` with responses of up to 131,072 tokens (each model's own output limit applies when lower) and 60 minutes per trial. The `sheet` results of `e2277944` stand: no `sheet` trial reached that limit.
