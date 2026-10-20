@@ -1,5 +1,6 @@
 """Self-calibration of the E4 graders: oracle solutions pass every check, the untouched workspace passes none, and
 known partial or wrong solutions pass exactly the checks they should. No model is involved."""
+import json
 import os
 import shutil
 import subprocess
@@ -45,7 +46,51 @@ def scenarios():
     solution = os.path.join(HERE, "build", "solution")
     build_fix = {path: read(os.path.join(solution, path)) for path in ("Makefile", "src/main.c", "src/words.c", "src/table.c")}
     everything = set
-    return [
+    fixes = {name: read(os.path.join(HERE, "stockroom_item", "solution", "stockroom", name)) for name in
+             ("config.py", "db.py", "importer.py", "inventory.py", "reports.py", "cli.py")}
+    shipped = {name: read(os.path.join(ITEMS, "stockroom", "public", "stockroom", name)) for name in fixes}
+    def only(*names):
+        return {f"stockroom/{name}": fixes[name] for name in names}
+    stockroom = [
+        ("stockroom", "oracle", {f"stockroom/{name}": text for name, text in fixes.items()}, None, everything(grader.CHECKS["stockroom"])),
+        ("stockroom", "untouched", {}, None, everything()),
+        ("stockroom", "config-only", only("config.py"), None, {"strict-env", "regression"}),
+        ("stockroom", "reports-only", only("reports.py"), None, {"timezone", "money", "regression"}),
+        ("stockroom", "index-only", only("db.py"), None, {"export-speed", "regression"}),
+        # Deduplication without the cache invalidation, which needs the importer's new parameter and the CLI change.
+        ("stockroom", "dedupe-without-cache", {"stockroom/importer.py": fixes["importer.py"].replace("from . import cache\n", "").replace(
+            "    if cache_dir is not None:\n        cache.invalidate(cache_dir, \"low-stock\")\n", "")}, None, {"duplicates", "regression"}),
+        ("stockroom", "cache-on-restock-only", only("inventory.py"), None, everything()),
+        ("stockroom", "floats-rounded", only("config.py", "db.py", "importer.py", "inventory.py", "cli.py") | {"stockroom/reports.py": fixes["reports.py"].replace(
+            "        revenue += Decimal(price) * qty", "        revenue += Decimal(float(price) * qty)")}, None, everything(grader.CHECKS["stockroom"]) - {"money"}),
+    ]
+    assert shipped
+    solution = os.path.join(HERE, "pipeline_item", "solution")
+    piped = {path: read(os.path.join(solution, path)) for path in ("Makefile", "scripts/normalize.sh", "scripts/join.py")}
+    pipeline = [
+        ("pipeline", "oracle", piped, None, everything(grader.CHECKS["pipeline"])),
+        ("pipeline", "untouched", {}, None, everything()),
+        ("pipeline", "makefile-only", {"Makefile": piped["Makefile"]}, None, {"rebuild", "regression"}),
+        ("pipeline", "normalize-only", {"scripts/normalize.sh": piped["scripts/normalize.sh"]}, None, {"line-ends", "eu-format", "regression"}),
+        ("pipeline", "join-only", {"scripts/join.py": piped["scripts/join.py"]}, None, {"store-ids", "regression"}),
+        ("pipeline", "no-eu-handling", {**piped, "scripts/normalize.sh": piped["scripts/normalize.sh"].replace("*/sales-eu*)", "*/no-such-export*)")}, None,
+         everything(grader.CHECKS["pipeline"]) - {"eu-format", "combined"}),
+    ]
+    with open(os.path.join(HERE, "recover_item", "answers.json"), encoding="utf-8") as handle:
+        lost = json.load(handle)
+    from recover_item import history as lost_history
+    tree = {f"recovered/search/{path}": text for path, text in lost["files"].items()}
+    old_tree = dict(tree, **{"recovered/search/src/notes.py": lost_history.NOTES_V1})
+    recover = [
+        ("recover", "oracle", {**tree, "recovered/search.txt": lost["search"] + "\n", "recovered/stash.txt": lost["stash"] + "\n",
+                               "recovered/RELEASE.md": lost["release"]}, None, everything(grader.CHECKS["recover"])),
+        ("recover", "untouched", {}, None, everything()),
+        ("recover", "pre-rebase-branch", {**old_tree, "recovered/search.txt": lost["decoys"]["search"], "recovered/stash.txt": lost["stash"],
+                                          "recovered/RELEASE.md": lost["release"]}, None, {"stash-commit", "stash-file"}),
+        ("recover", "first-stash", {**tree, "recovered/search.txt": lost["search"], "recovered/stash.txt": lost["decoys"]["stash"],
+                                    "recovered/RELEASE.md": lost_history.RELEASE_OLD_STASH}, None, {"search-commit", "search-tree"}),
+    ]
+    return stockroom + pipeline + recover + [
         ("perf", "oracle", {"report.py": perf_oracle}, None, everything(grader.CHECKS["perf"])),
         ("perf", "untouched", {}, None, everything()),
         ("perf", "fast-but-case-sensitive-users", {"report.py": perf_oracle.replace("user.lower()", "user")}, None, {"speed", "empty"}),

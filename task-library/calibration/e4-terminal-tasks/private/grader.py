@@ -18,13 +18,16 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PACKAGE = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 TASK_ID = "e4-terminal-tasks"
-TASK_VERSION = "0.1.0"
-GRADER_VERSION = "1.0.0"
+TASK_VERSION = "0.2.0"
+GRADER_VERSION = "1.1.0"
 CHECKS = {
     "perf": ["workspace-output", "quirks", "empty", "speed"],
     "migrate": ["schema", "names", "emails", "dates", "totals", "statuses", "orphans", "idempotent", "atomic", "workspace-db"],
     "bisect": ["culprit", "regression-fixed", "rounding-kept", "later-features", "coupons"],
     "build": ["flags", "build", "tests", "eof-word", "ties", "options", "clean"],
+    "stockroom": ["strict-env", "timezone", "stock-cache", "duplicates", "money", "export-speed", "regression"],
+    "pipeline": ["line-ends", "store-ids", "eu-format", "rebuild", "combined", "regression"],
+    "recover": ["search-commit", "search-tree", "stash-commit", "stash-file"],
 }
 SPEED_LIMIT_SECONDS = 2.0
 COMMAND_TIMEOUT_SECONDS = 60
@@ -264,7 +267,60 @@ def grade_build(submission, runner):
     return results
 
 
-GRADERS = {"perf": grade_perf, "migrate": grade_migrate, "bisect": grade_bisect, "build": grade_build}
+# stockroom ---------------------------------------------------------------------------------------------------------
+
+def hidden_checks(item_id, submission, runner, required):
+    """Runs an item's hidden check script on a copy of the delivered workspace; it prints {check: true/false}."""
+    if not os.path.exists(os.path.join(submission, required)):
+        return {check: False for check in CHECKS[item_id]}
+    directory = workdir(submission)
+    try:
+        shutil.copy(os.path.join(HERE, f"{item_id}_item", "checks.py"), os.path.join(directory, "hidden_checks.py"))
+        run = runner.run(directory, ["python3", "hidden_checks.py", directory], timeout=600)
+        try:
+            verdicts = json.loads(run.stdout.decode("utf-8").strip().splitlines()[-1]) if run is not None and run.returncode == 0 else {}
+        except (UnicodeDecodeError, json.JSONDecodeError, IndexError):
+            verdicts = {}
+        return {check: verdicts.get(check) is True for check in CHECKS[item_id]}
+    finally:
+        shutil.rmtree(directory, ignore_errors=True)
+
+
+def grade_stockroom(submission, runner):
+    return hidden_checks("stockroom", submission, runner, "stockroom")
+
+
+def grade_pipeline(submission, runner):
+    return hidden_checks("pipeline", submission, runner, "Makefile")
+
+
+# recover -----------------------------------------------------------------------------------------------------------
+
+def read_text(path):
+    try:
+        with open(path, encoding="utf-8") as handle:
+            return handle.read()
+    except (OSError, UnicodeDecodeError):
+        return None
+
+
+def grade_recover(submission, runner):
+    with open(os.path.join(HERE, "recover_item", "answers.json"), encoding="utf-8") as handle:
+        answers = json.load(handle)
+    recovered = os.path.join(submission, "recovered")
+    tree = os.path.join(recovered, "search")
+    found = sorted(os.path.relpath(os.path.join(current, name), tree).replace(os.sep, "/")
+                   for current, _, names in os.walk(tree) for name in names) if os.path.isdir(tree) else []
+    return {
+        "search-commit": (read_text(os.path.join(recovered, "search.txt")) or "").strip().lower() == answers["search"],
+        "search-tree": found == sorted(answers["files"]) and all(read_text(os.path.join(tree, path)) == text for path, text in answers["files"].items()),
+        "stash-commit": (read_text(os.path.join(recovered, "stash.txt")) or "").strip().lower() == answers["stash"],
+        "stash-file": read_text(os.path.join(recovered, "RELEASE.md")) == answers["release"],
+    }
+
+
+GRADERS = {"perf": grade_perf, "migrate": grade_migrate, "bisect": grade_bisect, "build": grade_build, "stockroom": grade_stockroom,
+           "pipeline": grade_pipeline, "recover": grade_recover}
 
 
 def grade(item_id, submission, launcher):

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "e4-terminal-tasks",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "familyId": "e4-terminal-tasks",
   "capability": "engineering",
   "usage": "development",
@@ -28,11 +28,11 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "5fadaa03cc05c442f59025338c8cf5a64f9da8a42c229b34fbe56633af4a776a"
+        "sha256": "70854d70da1b5186c893239837211d09f03af89e2531b13a8538cf41eb8f8ab6"
       },
       {
         "path": "rubric.md",
-        "sha256": "113512795ac16a854eb3d6183d8735d7c1e6b781ba636f3af51b7c8d30b94b5f"
+        "sha256": "57af422092721b0e8d61b7212757f33a2983dfbf88e92e1993d9fc749dc6ca84"
       },
       {
         "path": "private/bisect_item/checks.py",
@@ -72,15 +72,15 @@
       },
       {
         "path": "private/build_package.py",
-        "sha256": "3fd07c2d4c0ceba075e1f83d6ecf9514b0b6972e7e8c4f4de172989329babd63"
+        "sha256": "bb64388e2c61ad9c9bc49c6dd5cb5f0ca3191352ad682025cdd2b973fd4d4b2a"
       },
       {
         "path": "private/calibrate.py",
-        "sha256": "ef03fd11bac13ba47a7cf30a76ebc27df4a6001829620d4dd52c5e6e6f7c146b"
+        "sha256": "4044d057a7cb3d76f9a0e3b0d51d169fdd596745185a455b26dd71e8ff3ae7ca"
       },
       {
         "path": "private/grader.py",
-        "sha256": "e9ddafdc5b3d3d84b68df8527049ddd27313bbf40cff4731f1cbadb468c1718b"
+        "sha256": "ce022aef9caa7cb50976c28bf7754bd082c77bffe585e4016d0e747a636ebde4"
       },
       {
         "path": "private/migrate/data.py",
@@ -101,6 +101,70 @@
       {
         "path": "private/perf/original.py",
         "sha256": "0613f1851418048a40412bbacc818d07dd699d69bcdab612ccadfeda938d0242"
+      },
+      {
+        "path": "private/pipeline_item/checks.py",
+        "sha256": "2df091e85da73ac5616bec11965ea5dceacdf7ce1cede662806854c1194b52ca"
+      },
+      {
+        "path": "private/pipeline_item/solution/Makefile",
+        "sha256": "a0c4a05bc32a7df0eb12dad605b27b550cba22a85e0105f0b8d791f53fc5b06a"
+      },
+      {
+        "path": "private/pipeline_item/solution/scripts/join.py",
+        "sha256": "e0c973097f70988aad3e1b0346e2dfeeb8c69eb3ffe4eecdd0afb3778f54404a"
+      },
+      {
+        "path": "private/pipeline_item/solution/scripts/normalize.sh",
+        "sha256": "b158c800e2830baf62b97d6bd8649833a9edb03c00600396db6236863e5accd0"
+      },
+      {
+        "path": "private/recover_item/answers.json",
+        "sha256": "b28a9247c599365ab6910379375cd1c28ebffd2af4079b4cdeb28d159c03bafc"
+      },
+      {
+        "path": "private/recover_item/history.py",
+        "sha256": "ea0a52c53e1be3e6b2435dcf732e9a40185072fbc0ce04a22ef5124e6bad0992"
+      },
+      {
+        "path": "private/stockroom_item/checks.py",
+        "sha256": "abc9e9bdde1830126ca2e5f21e93b60332966e04e243108fcb11353c046b71d4"
+      },
+      {
+        "path": "private/stockroom_item/solution/stockroom/__init__.py",
+        "sha256": "de6130a7395dd1c294e197207a90681816671d54a2d872c5abe42024a5b31d1d"
+      },
+      {
+        "path": "private/stockroom_item/solution/stockroom/cache.py",
+        "sha256": "50bc523954ef29de31be67a3afcc61f570fcebbe68cfc0baf814433c67308501"
+      },
+      {
+        "path": "private/stockroom_item/solution/stockroom/cli.py",
+        "sha256": "98e7171c49a8791bec518ce6d438dd3bbdeb3b726a66130ea08dc0d39fe27e62"
+      },
+      {
+        "path": "private/stockroom_item/solution/stockroom/config.py",
+        "sha256": "d1d2534a17ea239425d15d31e2f51ec4999ce522f7ef567364ccf677217cce92"
+      },
+      {
+        "path": "private/stockroom_item/solution/stockroom/db.py",
+        "sha256": "ecde0fde702d9715cfb7d38f87c38b89373242120652140d3f4c3361befef09f"
+      },
+      {
+        "path": "private/stockroom_item/solution/stockroom/export.py",
+        "sha256": "56f28a12133e89b09c1ae2f652ba035369deadf8efbabc125407b62ee6273b1f"
+      },
+      {
+        "path": "private/stockroom_item/solution/stockroom/importer.py",
+        "sha256": "d8f194a1ef6681b1f36cba28e6221d58bccd36040718c272badc167b7bebf90c"
+      },
+      {
+        "path": "private/stockroom_item/solution/stockroom/inventory.py",
+        "sha256": "fea2fb2e1c5bf7e15fdbd5a7d82eb05278e79818ab577f758d45e136251fe2d6"
+      },
+      {
+        "path": "private/stockroom_item/solution/stockroom/reports.py",
+        "sha256": "3fae0d5faa4aed10b62f398927d157b443e16c29db6930da67f7f10795fe3a6d"
       }
     ]
   },
@@ -108,7 +172,7 @@
     {
       "id": "REQ-PERF-WORKSPACE-OUTPUT",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "perf-workspace-output"
       ]
@@ -116,7 +180,7 @@
     {
       "id": "REQ-PERF-QUIRKS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "perf-quirks"
       ]
@@ -124,7 +188,7 @@
     {
       "id": "REQ-PERF-EMPTY",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "perf-empty"
       ]
@@ -132,7 +196,7 @@
     {
       "id": "REQ-PERF-SPEED",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "perf-speed"
       ]
@@ -140,7 +204,7 @@
     {
       "id": "REQ-MIGRATE-SCHEMA",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "migrate-schema"
       ]
@@ -148,7 +212,7 @@
     {
       "id": "REQ-MIGRATE-NAMES",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "migrate-names"
       ]
@@ -156,7 +220,7 @@
     {
       "id": "REQ-MIGRATE-EMAILS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "migrate-emails"
       ]
@@ -164,7 +228,7 @@
     {
       "id": "REQ-MIGRATE-DATES",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "migrate-dates"
       ]
@@ -172,7 +236,7 @@
     {
       "id": "REQ-MIGRATE-TOTALS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "migrate-totals"
       ]
@@ -180,7 +244,7 @@
     {
       "id": "REQ-MIGRATE-STATUSES",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "migrate-statuses"
       ]
@@ -188,7 +252,7 @@
     {
       "id": "REQ-MIGRATE-ORPHANS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "migrate-orphans"
       ]
@@ -196,7 +260,7 @@
     {
       "id": "REQ-MIGRATE-IDEMPOTENT",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "migrate-idempotent"
       ]
@@ -204,7 +268,7 @@
     {
       "id": "REQ-MIGRATE-ATOMIC",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "migrate-atomic"
       ]
@@ -212,7 +276,7 @@
     {
       "id": "REQ-MIGRATE-WORKSPACE-DB",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "migrate-workspace-db"
       ]
@@ -220,7 +284,7 @@
     {
       "id": "REQ-BISECT-CULPRIT",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "bisect-culprit"
       ]
@@ -228,7 +292,7 @@
     {
       "id": "REQ-BISECT-REGRESSION-FIXED",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "bisect-regression-fixed"
       ]
@@ -236,7 +300,7 @@
     {
       "id": "REQ-BISECT-ROUNDING-KEPT",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "bisect-rounding-kept"
       ]
@@ -244,7 +308,7 @@
     {
       "id": "REQ-BISECT-LATER-FEATURES",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "bisect-later-features"
       ]
@@ -252,7 +316,7 @@
     {
       "id": "REQ-BISECT-COUPONS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "bisect-coupons"
       ]
@@ -260,7 +324,7 @@
     {
       "id": "REQ-BUILD-FLAGS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "build-flags"
       ]
@@ -268,7 +332,7 @@
     {
       "id": "REQ-BUILD-BUILD",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "build-build"
       ]
@@ -276,7 +340,7 @@
     {
       "id": "REQ-BUILD-TESTS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "build-tests"
       ]
@@ -284,7 +348,7 @@
     {
       "id": "REQ-BUILD-EOF-WORD",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "build-eof-word"
       ]
@@ -292,7 +356,7 @@
     {
       "id": "REQ-BUILD-TIES",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "build-ties"
       ]
@@ -300,7 +364,7 @@
     {
       "id": "REQ-BUILD-OPTIONS",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "build-options"
       ]
@@ -308,9 +372,145 @@
     {
       "id": "REQ-BUILD-CLEAN",
       "critical": true,
-      "introducedAt": "e4-terminal-tasks 0.1.0",
+      "introducedAt": "e4-terminal-tasks 0.2.0",
       "checkIds": [
         "build-clean"
+      ]
+    },
+    {
+      "id": "REQ-STOCKROOM-STRICT-ENV",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "checkIds": [
+        "stockroom-strict-env"
+      ]
+    },
+    {
+      "id": "REQ-STOCKROOM-TIMEZONE",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "checkIds": [
+        "stockroom-timezone"
+      ]
+    },
+    {
+      "id": "REQ-STOCKROOM-STOCK-CACHE",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "checkIds": [
+        "stockroom-stock-cache"
+      ]
+    },
+    {
+      "id": "REQ-STOCKROOM-DUPLICATES",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "checkIds": [
+        "stockroom-duplicates"
+      ]
+    },
+    {
+      "id": "REQ-STOCKROOM-MONEY",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "checkIds": [
+        "stockroom-money"
+      ]
+    },
+    {
+      "id": "REQ-STOCKROOM-EXPORT-SPEED",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "checkIds": [
+        "stockroom-export-speed"
+      ]
+    },
+    {
+      "id": "REQ-STOCKROOM-REGRESSION",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "checkIds": [
+        "stockroom-regression"
+      ]
+    },
+    {
+      "id": "REQ-PIPELINE-LINE-ENDS",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "checkIds": [
+        "pipeline-line-ends"
+      ]
+    },
+    {
+      "id": "REQ-PIPELINE-STORE-IDS",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "checkIds": [
+        "pipeline-store-ids"
+      ]
+    },
+    {
+      "id": "REQ-PIPELINE-EU-FORMAT",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "checkIds": [
+        "pipeline-eu-format"
+      ]
+    },
+    {
+      "id": "REQ-PIPELINE-REBUILD",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "checkIds": [
+        "pipeline-rebuild"
+      ]
+    },
+    {
+      "id": "REQ-PIPELINE-COMBINED",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "checkIds": [
+        "pipeline-combined"
+      ]
+    },
+    {
+      "id": "REQ-PIPELINE-REGRESSION",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "checkIds": [
+        "pipeline-regression"
+      ]
+    },
+    {
+      "id": "REQ-RECOVER-SEARCH-COMMIT",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "checkIds": [
+        "recover-search-commit"
+      ]
+    },
+    {
+      "id": "REQ-RECOVER-SEARCH-TREE",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "checkIds": [
+        "recover-search-tree"
+      ]
+    },
+    {
+      "id": "REQ-RECOVER-STASH-COMMIT",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "checkIds": [
+        "recover-stash-commit"
+      ]
+    },
+    {
+      "id": "REQ-RECOVER-STASH-FILE",
+      "critical": true,
+      "introducedAt": "e4-terminal-tasks 0.2.0",
+      "checkIds": [
+        "recover-stash-file"
       ]
     }
   ],
@@ -464,6 +664,155 @@
         "REQ-BUILD-OPTIONS",
         "REQ-BUILD-CLEAN"
       ]
+    },
+    {
+      "id": "stockroom",
+      "level": "stockroom",
+      "files": [
+        {
+          "path": "items/stockroom/prompt.md",
+          "sha256": "6c51064ee7be08867826d9a22ce00b5a97985d89446dc34bd9b58689aa504b5f"
+        },
+        {
+          "path": "items/stockroom/public/README.md",
+          "sha256": "594efba0ea724b2d762bbfb0e4623d4d9858f0409c8adc5ed7b94e6768fa4921"
+        },
+        {
+          "path": "items/stockroom/public/orders-sample.csv",
+          "sha256": "26b74cd25fc0611bccbbf8a12c3157bbec32cdcdf06e6519687fb881b5972794"
+        },
+        {
+          "path": "items/stockroom/public/products.csv",
+          "sha256": "70d4892a1e0424a6ef4f021646e4414fdd626a25a260dfbdb04cb6e203e67b3f"
+        },
+        {
+          "path": "items/stockroom/public/stockroom.toml",
+          "sha256": "68d8b8d3a3a8f4cab06c354547c63c60064e8537fabaa574bb9600033f598f18"
+        },
+        {
+          "path": "items/stockroom/public/stockroom/__init__.py",
+          "sha256": "de6130a7395dd1c294e197207a90681816671d54a2d872c5abe42024a5b31d1d"
+        },
+        {
+          "path": "items/stockroom/public/stockroom/cache.py",
+          "sha256": "50bc523954ef29de31be67a3afcc61f570fcebbe68cfc0baf814433c67308501"
+        },
+        {
+          "path": "items/stockroom/public/stockroom/cli.py",
+          "sha256": "570be2e045bed154cec6d346ec5a571708269e488fd446b77b3afb330291d949"
+        },
+        {
+          "path": "items/stockroom/public/stockroom/config.py",
+          "sha256": "531dc196e3ecd200f1411b9f4680df0683d6c0aab3d832e9c39b28f0da47030e"
+        },
+        {
+          "path": "items/stockroom/public/stockroom/db.py",
+          "sha256": "4e440e120657ce4c2024c0c933d7ed9f63a782dfec0df28047dd60311eb64c5f"
+        },
+        {
+          "path": "items/stockroom/public/stockroom/export.py",
+          "sha256": "56f28a12133e89b09c1ae2f652ba035369deadf8efbabc125407b62ee6273b1f"
+        },
+        {
+          "path": "items/stockroom/public/stockroom/importer.py",
+          "sha256": "a26654f1e9d617a58fe1b889d7ae101ad3bf326845e2265bff4f4ac332ccff66"
+        },
+        {
+          "path": "items/stockroom/public/stockroom/inventory.py",
+          "sha256": "6147d2a007bbbf3ded21d337ab19f3b540c5824fdf0d094ccddea7bac9ecc37d"
+        },
+        {
+          "path": "items/stockroom/public/stockroom/reports.py",
+          "sha256": "d1482d20b9ca405c1e14c6952c002c43f7e5cd759b88b635ff452a5234129ae6"
+        },
+        {
+          "path": "items/stockroom/public/tests/test_stockroom.py",
+          "sha256": "8b2f1922371560fdbee26db057f3532317ad28186ff159bfe4dacb590895a8f6"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-STOCKROOM-STRICT-ENV",
+        "REQ-STOCKROOM-TIMEZONE",
+        "REQ-STOCKROOM-STOCK-CACHE",
+        "REQ-STOCKROOM-DUPLICATES",
+        "REQ-STOCKROOM-MONEY",
+        "REQ-STOCKROOM-EXPORT-SPEED",
+        "REQ-STOCKROOM-REGRESSION"
+      ]
+    },
+    {
+      "id": "pipeline",
+      "level": "pipeline",
+      "files": [
+        {
+          "path": "items/pipeline/prompt.md",
+          "sha256": "603c10fd499d9b2717a8427793379d003abe16aa6999ad2510533926c45390f2"
+        },
+        {
+          "path": "items/pipeline/public/Makefile",
+          "sha256": "f63d8007c9e1e9743c6ef0292d77f0b3299575fc1ae9bf4b3c97ca34670b13c4"
+        },
+        {
+          "path": "items/pipeline/public/README.md",
+          "sha256": "e9c2d705b97ce516aa4e520d885ebe2e8c4ee67d6630ffe8ad52dc6368d3b947"
+        },
+        {
+          "path": "items/pipeline/public/raw/sales-north.csv",
+          "sha256": "1aa897c98f0641fd0d9dd31ecba344e7f1053357f66e510119110f9a9869dde7"
+        },
+        {
+          "path": "items/pipeline/public/raw/sales-south.csv",
+          "sha256": "820894b8ecdc95b6154d672de892717514275ffa10f8b1b93ab68dcc1d6fa329"
+        },
+        {
+          "path": "items/pipeline/public/raw/stores.csv",
+          "sha256": "b1a3677fc0720f7e164c09ea0505e9b8c65fcd90d2e020bbec3703ca7a4612f2"
+        },
+        {
+          "path": "items/pipeline/public/scripts/join.py",
+          "sha256": "921ae974c818653e02324d54c02d5fc52a2c3dad2c33d3c856985d668f37d0d9"
+        },
+        {
+          "path": "items/pipeline/public/scripts/normalize.sh",
+          "sha256": "9ac9e33075f1bf83a8fdd1ec7bc22097b811e61459d2d9f24097a8b03fd97a3a"
+        },
+        {
+          "path": "items/pipeline/public/scripts/report.py",
+          "sha256": "130c701208b9aabc9788323545b52c923a50c8ddb9dae2d95b92a4e0043f4ff6"
+        },
+        {
+          "path": "items/pipeline/public/tests/test_report.py",
+          "sha256": "f1918dc61dc1a0df58fd6205fdc0ccac2dbfb8c70bab163b561772cbd1f7945b"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-PIPELINE-LINE-ENDS",
+        "REQ-PIPELINE-STORE-IDS",
+        "REQ-PIPELINE-EU-FORMAT",
+        "REQ-PIPELINE-REBUILD",
+        "REQ-PIPELINE-COMBINED",
+        "REQ-PIPELINE-REGRESSION"
+      ]
+    },
+    {
+      "id": "recover",
+      "level": "recover",
+      "files": [
+        {
+          "path": "items/recover/prompt.md",
+          "sha256": "cb76688c9d60d7107ea37a2e7aa603b3a02c4e92d97984e9dc2218ffb3472bea"
+        },
+        {
+          "path": "items/recover/public/atlas-notes.tar",
+          "sha256": "95c002c9af64c9dae853710290c70c6b0d726a4ececc67c5c1289567643b0751"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-RECOVER-SEARCH-COMMIT",
+        "REQ-RECOVER-SEARCH-TREE",
+        "REQ-RECOVER-STASH-COMMIT",
+        "REQ-RECOVER-STASH-FILE"
+      ]
     }
   ],
   "toolProfiles": [
@@ -471,7 +820,7 @@
   ],
   "grader": {
     "id": "e4-terminal-checks",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

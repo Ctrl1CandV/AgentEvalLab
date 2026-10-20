@@ -11,12 +11,14 @@ import pathlib
 import shutil
 import subprocess
 import sys
+import tarfile
 import tempfile
 
 ROOT = pathlib.Path(".")
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 from bisect_item import history  # noqa: E402
+from recover_item import history as lost_history  # noqa: E402
 from migrate import data as migrate_data  # noqa: E402
 from perf import data as perf_data  # noqa: E402
 import grader  # noqa: E402
@@ -42,18 +44,35 @@ def generate():
         bundle.unlink(missing_ok=True)
         subprocess.run(["git", "bundle", "create", str(bundle.resolve()), "main"], cwd=repository, check=True, capture_output=True)
     (HERE / "bisect_item" / "culprit.txt").write_text(culprit + "\n", encoding="utf-8")
+    with tempfile.TemporaryDirectory() as scratch:
+        repository = os.path.join(scratch, "atlas-notes")
+        answers = lost_history.build(repository)
+        archive = ROOT / "items" / "recover" / "public" / "atlas-notes.tar"
+        archive.parent.mkdir(parents=True, exist_ok=True)
+        with tarfile.open(archive, "w", format=tarfile.GNU_FORMAT) as tar:
+            # Sorted entries, fixed times and owners: the archive's bytes depend only on the repository's contents.
+            for path in sorted(pathlib.Path(repository).rglob("*")):
+                info = tar.gettarinfo(str(path), arcname=str(path.relative_to(scratch)))
+                info.mtime, info.uid, info.gid, info.uname, info.gname = 1790000000, 0, 0, "", ""
+                if info.isfile():
+                    with open(path, "rb") as handle:
+                        tar.addfile(info, handle)
+                else:
+                    tar.addfile(info)
+    (HERE / "recover_item" / "answers.json").write_text(json.dumps(answers, indent=1, sort_keys=True) + "\n", encoding="utf-8")
 
 
 def main():
     generate()
     trusted = ["calibration.md", "rubric.md"] + sorted(str(path.relative_to(ROOT)) for path in (ROOT / "private").rglob("*")
-                                                     if path.is_file() and "__pycache__" not in path.parts and not path.name.endswith(".pyc"))
+                                                     if path.is_file() and "__pycache__" not in path.parts and not path.name.endswith(".pyc")
+                                                     and not any(part.startswith(".") for part in path.parts))
     requirements, items = [], []
     for item, checks in grader.CHECKS.items():
         ids = [f"REQ-{item.upper()}-{check.upper()}" for check in checks]
         requirements += [{"id": requirement, "critical": True, "introducedAt": f"e4-terminal-tasks {VERSION}", "checkIds": [f"{item}-{check}"]}
                          for requirement, check in zip(ids, checks)]
-        files = sorted(str(path.relative_to(ROOT)) for path in (ROOT / "items" / item).rglob("*") if path.is_file())
+        files = sorted(str(path.relative_to(ROOT)) for path in (ROOT / "items" / item).rglob("*") if path.is_file() and not any(part.startswith(".") or part == "__pycache__" for part in path.parts))
         items.append({"id": item, "level": item, "files": [{"path": path, "sha256": digest(path)} for path in files], "activeRequirementIds": ids})
     manifest = {
         "schemaVersion": 1, "id": "e4-terminal-tasks", "version": VERSION, "familyId": "e4-terminal-tasks", "capability": "engineering", "usage": "development",

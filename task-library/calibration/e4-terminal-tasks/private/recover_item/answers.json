@@ -1,0 +1,16 @@
+{
+ "decoys": {
+  "search": "641117cf80b656e6e0687b09effd4141441ac6a2",
+  "stash": "9640dbceed3da0540bf35f1b73ebb890c80e1bda"
+ },
+ "files": {
+  "CONTRIBUTING.md": "Open a pull request against main.\n",
+  "README.md": "# atlas-notes\n\nA tiny note keeper.\n",
+  "RELEASE.md": "# Release notes\n\n## 1.0\n\n- Notes can be added and listed.\n",
+  "src/notes.py": "\"\"\"Notes: add, list, count.\"\"\"\n\nNOTES = []  # in insertion order\n\n\ndef add(text):\n    NOTES.append(text)\n\n\ndef listing():\n    return list(NOTES)\n\n\ndef count():\n    return len(NOTES)\n",
+  "src/search.py": "from notes import NOTES\n\n\ndef search(word):\n    \"\"\"Matching notes, most recent first.\"\"\"\n    return [note for note in reversed(NOTES) if word.lower() in note.lower()]\n"
+ },
+ "release": "# Release notes\n\n## 1.0\n\n- Notes can be added and listed.\n\n## 1.1\n\n- Counting notes.\n- Search, case-insensitive, most recent first.\n",
+ "search": "1cc49390d6259d90a90388ef9bf7cdc5d64862a7",
+ "stash": "6bdad1a092dfab7fee79417b1a08888416ad1d81"
+}

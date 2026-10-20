@@ -15,4 +15,26 @@ E4 is the command-line family of Task Set v2 (PLAN-005 WP5), in the style of Ter
   - partial or wrong solutions pass exactly the checks they should: a fast report that does not lower-case users; a migration that ignores comma names, keeps email case, computes cents through floats, skips the version check, drops orphans without logging them, or is not run on `shop.db`; a copied current file; a full revert; the file from before the culprit; a Makefile-only repair; a repair without the end-of-input fix or the tie fix; and dropped compiler flags.
 
   See `logs/self-calibration-0.1.0.log`.
-- No model has been run yet.
+
+### Calibration 2026-10-19 (task 0.1.0)
+
+All five models passed every check of all four items in both repetitions, so the items are easy anchors. See `experiments/e4-calibration-2026-10/README.md`.
+
+## Version 0.2.0 (2026-10-20)
+
+Three compound items, built so that a model has to investigate, not just repair a named fault.
+
+- **stockroom.** A small inventory service with config, SQLite storage, CSV import, a file cache, reports, export and a CLI.
+  - It has six faults, and the prompt gives only the users' symptoms.
+  - Each symptom has a hidden check written by hand from `README.md`, including cases the symptom does not mention: refs with spaces, a stock change through an import, the New York timezone, and half-cent revenue.
+  - The shipped service fails every check, and the export check times out on 30,000 orders. The repaired service in `private/stockroom_item/solution` passes all of them in about 3 seconds.
+- **pipeline.** A make, shell and Python pipeline with four faults:
+  - exports that end without a line break, whose last line plain concatenation glues to the next file;
+  - zero-padded store ids;
+  - EU exports, which `README.md` documents but the workspace does not contain;
+  - a make dependency missing on `raw/stores.csv`.
+
+  Each fault has its own hidden dataset; one combined dataset and a rebuild test follow. Expected reports were written by hand.
+- **recover.** A tarred Git repository whose `search` branch was rebased and then deleted, and whose release-notes stash was stashed twice and dropped. Reflogs are cleared, so `git fsck` finds four lost commits. The checks need the rebased tip, not the pre-rebase one with the same titles, and the stash dropped last. Commit hashes are reproducible; the tar's bytes are not, because Git's index records file times.
+- **Self-calibration (40/40).** Each oracle passes everything, and each untouched workspace passes nothing. Every single-fault repair passes exactly its own checks, plus the guard. Three cases earn nothing: a cache invalidated only on restock, a pipeline without EU handling (which misses `eu-format` and `combined`), and the decoy commit or stash. See `logs/self-calibration-0.2.0.log`.
+- **Builder.** The package builder skips hidden files, which the sandbox can leave in package directories.

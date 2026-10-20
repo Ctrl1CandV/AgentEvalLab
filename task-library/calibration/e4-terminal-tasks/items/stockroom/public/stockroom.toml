@@ -1,0 +1,6 @@
+[stockroom]
+database = "stockroom.db"
+timezone = "Europe/Berlin"
+strict = true
+low_stock_threshold = 5
+cache_dir = "cache"
