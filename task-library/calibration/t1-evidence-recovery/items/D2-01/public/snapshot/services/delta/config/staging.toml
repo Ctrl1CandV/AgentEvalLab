@@ -1,0 +1,5 @@
+[delta]
+queue_depth = 58
+pool_size = 34
+max_retries = 61
+upstream = "pylon"

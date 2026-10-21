@@ -13,8 +13,8 @@ sys.path.insert(0, HERE)
 import snapshot  # noqa: E402
 
 TASK_ID = "t1-evidence-recovery"
-TASK_VERSION = "0.4.1"
-GRADER_VERSION = "1.5.0"
+TASK_VERSION = "0.5.0"
+GRADER_VERSION = "1.6.0"
 KEYS_PATH = os.path.join(HERE, "keys.json")
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)
 
@@ -173,15 +173,18 @@ class Observations:
         """A search covered the whole file with a pattern that matches any line setting the key, so the key's absence
         from the results shows it is absent from the file. A truncated search covered the file when it returned a
         match from a file it reaches later. A pattern tied to one value does not qualify."""
+        samples = (f'{key} = "a"', f'{key} = "zz-service"') if key == "upstream" else (f"{key} = 0", f"{key} = 987654321")
         return any((glob is None or glob.match(path)) and (reached is None or walk_order(path) < reached)
-                   and pattern.search(f"{key} = 0") and pattern.search(f"{key} = 987654321")
+                   and all(pattern.search(sample) for sample in samples)
                    for pattern, glob, reached in self.complete_searches)
 
     def saw_all(self, proofs, absent_key=None):
         """absent_key: whole-file proofs show that this key is absent, so a complete search for it also proves them."""
         for proof in proofs:
-            # Only a configuration file's whole-file proof is about a key's absence; other files must be read.
-            if proof.get("whole") and absent_key and proof["path"].endswith(".toml") and self.searched_absent(proof["path"], absent_key):
+            # Only a configuration file's whole-file proof is about a key's absence; other files must be read. A chain
+            # proof names the key it is about.
+            key = proof.get("absentKey", absent_key)
+            if proof.get("whole") and key and proof["path"].endswith(".toml") and self.searched_absent(proof["path"], key):
                 continue
             if proof.get("whole"):
                 lines = self.lines(proof["path"])
@@ -247,7 +250,7 @@ def grade_question(question, given, observations, trace):
         return integer(given.get("count")) == expected["count"]
     if kind == "log_stat":
         return integer(given.get("value")) == expected["value"] and normalized_path(given.get("evidence")) == expected["evidence"]
-    if kind in ("config", "recovery"):
+    if kind in ("config", "recovery", "chain"):
         return integer(given.get("value")) == expected["value"] and normalized_path(given.get("evidence")) == expected["evidence"]
     if kind == "incident":
         return (normalized_path(given.get("file")) == expected["file"] and str(given.get("key", "")).strip() == expected["key"]
@@ -344,11 +347,82 @@ def search_trace(matches):
              "result": {"content": [{"type": "text", "text": json.dumps({"ok": True, "matches": matches, "truncated": False})}]}}]
 
 
+def solve_chain(item_id, text, mistake=None):
+    """An independent solver for chain questions, reading only the snapshot text: (value, evidence path). A mistake makes
+    it take one step's distractor instead: "decoy-review", "superseded-change", "later-change", "staging-upstream",
+    "retired-upstream", "base-upstream" or "no-includes"."""
+    root = os.path.join(PACKAGE, "items", item_id, "public", "snapshot")
+
+    def lines(path):
+        with open(os.path.join(root, *path.split("/")), encoding="utf-8") as handle:
+            return handle.read().splitlines()
+
+    def field(path, name):
+        return next(line.split(": ", 1)[1] for line in lines(path) if line.startswith(name + ": "))
+
+    def settings(path):
+        values, include = {}, None
+        for line in lines(path)[1:]:
+            name, value = line.split(" = ", 1)
+            if name == "include":
+                include = value.strip('"')
+            else:
+                values[name] = value.strip('"')
+        return values, include
+
+    def resolve(service, key, environment="prod"):
+        path = f"services/{service}/config/{environment}.toml"
+        values, include = settings(path)
+        if key in values:
+            return values[key], path
+        while include and mistake != "no-includes":
+            shared, include_next = settings(include)
+            if key in shared:
+                return shared[key], include
+            include = include_next
+        base = f"services/{service}/config/base.toml"
+        return settings(base)[0][key], base
+
+    incident = re.search(r"Incident (INC-\d+)", text).group(1)
+    timeline = lines(f"incidents/{incident}.md")
+    cause = re.search(r"Root cause: the (\d\d:\d\d) change", "\n".join(timeline)).group(1)
+    reviews = [re.search(r"(REV-\d+)", line).group(1) for line in timeline if line.startswith("- ")]
+    review = next(r for r, line in zip(reviews, [line for line in timeline if line.startswith("- ")]) if (line[2:7] == cause) != (mistake == "decoy-review"))
+    review_lines = lines(f"reviews/{review}.md")
+    pattern = r"Proposal: (CHG-\d+)" if mistake == "superseded-change" and any(line.startswith("Proposal:") for line in review_lines) else r"approved as (CHG-\d+)"
+    change = re.search(pattern, "\n".join(review_lines)).group(1)
+    change_path = f"changes/{change}.md"
+    service, changed = field(change_path, "Service"), field(change_path, "Key")
+    if mistake == "later-change":
+        later = sorted((field(f"changes/{name}", "Date"), f"changes/{name}") for name in os.listdir(os.path.join(root, "changes"))
+                       if field(f"changes/{name}", "Service") == service and field(f"changes/{name}", "Key") == changed)
+        change_path = later[-1][1]
+    hops = re.search(r"production upstream (once|twice|three times)", text)
+    if hops is None:
+        return int(field(change_path, "To")), change_path
+    for _ in range({"once": 1, "twice": 2, "three times": 3}[hops.group(1)]):
+        if mistake in ("staging-upstream", "retired-upstream", "base-upstream"):
+            environment = {"staging-upstream": "staging", "retired-upstream": "prod.toml", "base-upstream": "base"}[mistake]
+            if environment == "prod.toml":
+                service = settings(f"services/{service}/config/prod.toml.bak")[0].get("upstream", service)
+            else:
+                service = resolve(service, "upstream", environment)[0] if environment == "staging" else settings(f"services/{service}/config/base.toml")[0]["upstream"]
+        else:
+            service = resolve(service, "upstream")[0]
+    key = re.search(r"effective production (\w+) of the service you reach", text).group(1)
+    value, path = resolve(service, key)
+    return int(value), path
+
+
+CHAIN_MISTAKES = ("decoy-review", "superseded-change", "later-change", "staging-upstream", "retired-upstream", "base-upstream", "no-includes")
+
+
 def self_calibrate():
     """Verify keys against snapshots and the grader on known answers and traces; no model is involved."""
     with open(KEYS_PATH, encoding="utf-8") as handle:
         keys = json.load(handle)
     rows = []
+    distractor_counts = {}
     for item_id, key in sorted(keys.items()):
         reference = {f"Q{index}": dict(question["answer"]) for index, question in enumerate(key["questions"], 1)}
         trace = oracle_trace(item_id, keys)
@@ -368,10 +442,25 @@ def self_calibrate():
                 if len(matches) > 1:
                     partial = grade(item_id, "strict", reference, reads + search_trace(matches[:-1]), keys)[f"q{index}"]
                     rows.append((f"{item_id}-q{index}-missing-count-line-fails", partial is False))
-            if question["kind"] in ("config", "recovery", "lockfile", "log_lookup", "log_count", "lock_count", "log_total", "config_at_date", "log_stat"):
+            if question["kind"] == "chain":
+                value, path = solve_chain(item_id, question["text"])
+                rows.append((f"{item_id}-q{index}-independent-solution-matches-key", (value, path) == (question["answer"]["value"], question["answer"]["evidence"])))
+                # Every step the question takes has a distractor that gives a different answer.
+                applicable = [mistake for mistake in CHAIN_MISTAKES if question["hops"] or mistake in ("decoy-review", "superseded-change", "later-change")]
+                misled = [mistake for mistake in applicable if solve_chain(item_id, question["text"], mistake) != (value, path)]
+                distractor_counts[(question["depth"], "steps")] = distractor_counts.get((question["depth"], "steps"), 0) + len(applicable)
+                distractor_counts[(question["depth"], "misled")] = distractor_counts.get((question["depth"], "misled"), 0) + len(misled)
+                rows.append((f"{item_id}-q{index}-review-distractors-mislead", {"decoy-review", "superseded-change"} <= set(misled)))
+                # Leaving out any one file of the chain fails the question.
+                files = sorted({proof["path"] for proof in question["evidence"]})
+                for missing in files:
+                    partial = read_events([path for path in files if path != missing], item_id)
+                    rows.append((f"{item_id}-q{index}-without-{missing}-fails", grade(item_id, "strict", reference, partial, keys)[f"q{index}"] is False))
+                rows.append((f"{item_id}-q{index}-chain-read-passes", grade(item_id, "strict", reference, read_events(files, item_id), keys)[f"q{index}"]))
+            if question["kind"] in ("config", "recovery", "lockfile", "log_lookup", "log_count", "lock_count", "log_total", "config_at_date", "log_stat", "chain"):
                 wrong = dict(reference)
                 field = {"config": "value", "recovery": "value", "lockfile": "version", "log_lookup": "status", "log_count": "count",
-                         "lock_count": "count", "log_total": "count", "config_at_date": "value", "log_stat": "value"}[question["kind"]]
+                         "lock_count": "count", "log_total": "count", "config_at_date": "value", "log_stat": "value", "chain": "value"}[question["kind"]]
                 wrong[f"Q{index}"] = dict(reference[f"Q{index}"], **{field: 123456 if field != "version" else "0.0.0"})
                 rows.append((f"{item_id}-q{index}-wrong-value-fails", grade(item_id, "strict", wrong, trace, keys)[f"q{index}"] is False))
             if question["kind"] == "config" and any(proof.get("whole") and proof["path"].endswith(".toml") for proof in question["evidence"]):
@@ -416,6 +505,8 @@ def self_calibrate():
                      and recovered["answer-format"] is False))
         with open(os.path.join(PACKAGE, "items", item_id, "prompt.md"), encoding="utf-8") as handle:
             rows.append((f"{item_id}-prompt-lists-every-question", handle.read().count("- Q") == len(key["questions"])))
+    for depth in sorted({depth for depth, _ in distractor_counts}):
+        print(f"chain depth {depth}: {distractor_counts[(depth, 'misled')]} of {distractor_counts[(depth, 'steps')]} distractors change the answer")
     failed = [name for name, ok in rows if not ok]
     for name in failed:
         print(f"{name}: FAIL")

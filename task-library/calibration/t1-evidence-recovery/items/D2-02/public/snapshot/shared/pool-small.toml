@@ -1,0 +1,4 @@
+[pool-small]
+include = "shared/limits-batch.toml"
+cache_ttl_s = 115
+max_retries = 85

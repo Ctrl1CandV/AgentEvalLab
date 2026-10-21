@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/limits-batch.toml"
+timeout_ms = 1511
+batch_size = 33
+pool_size = 38
+upstream = "spruce"

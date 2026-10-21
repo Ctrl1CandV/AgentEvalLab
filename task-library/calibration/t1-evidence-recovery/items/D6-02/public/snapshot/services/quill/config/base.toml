@@ -1,0 +1,8 @@
+[quill]
+timeout_ms = 1000
+max_retries = 24
+pool_size = 33
+queue_depth = 2
+batch_size = 3
+cache_ttl_s = 5
+upstream = "cinder"

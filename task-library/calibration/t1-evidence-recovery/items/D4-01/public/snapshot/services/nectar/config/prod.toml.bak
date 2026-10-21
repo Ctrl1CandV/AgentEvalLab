@@ -1,0 +1,7 @@
+[nectar]
+include = "shared/limits-burst.toml"
+max_retries = 17
+batch_size = 47
+pool_size = 16
+queue_depth = 29
+upstream = "tundra"

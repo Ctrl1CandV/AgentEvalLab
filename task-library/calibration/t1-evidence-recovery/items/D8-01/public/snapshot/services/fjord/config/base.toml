@@ -1,0 +1,8 @@
+[fjord]
+timeout_ms = 250
+max_retries = 18
+pool_size = 39
+queue_depth = 17
+batch_size = 3
+cache_ttl_s = 27
+upstream = "quill"

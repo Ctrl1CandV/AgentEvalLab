@@ -1,0 +1,7 @@
+[cinder]
+include = "shared/pool-small.toml"
+queue_depth = 35
+cache_ttl_s = 19
+timeout_ms = 1511
+batch_size = 34
+upstream = "spruce"

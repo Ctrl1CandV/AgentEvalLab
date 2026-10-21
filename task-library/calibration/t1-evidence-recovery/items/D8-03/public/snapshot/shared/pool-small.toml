@@ -1,0 +1,7 @@
+[pool-small]
+include = "shared/limits-floor.toml"
+batch_size = 45
+max_retries = 102
+pool_size = 52
+queue_depth = 104
+upstream = "spruce"

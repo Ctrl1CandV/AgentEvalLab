@@ -1,0 +1,8 @@
+[kestrel]
+timeout_ms = 3000
+max_retries = 32
+pool_size = 7
+queue_depth = 29
+batch_size = 8
+cache_ttl_s = 11
+upstream = "spruce"

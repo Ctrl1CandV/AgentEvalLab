@@ -13256,5 +13256,3415 @@
     "evidence": []
    }
   ]
+ },
+ "D2-01": {
+  "project": "lucid-harvest",
+  "questions": [
+   {
+    "text": "Incident INC-400 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 41,
+     "evidence": "changes/CHG-5321.md"
+    },
+    "key": "queue_depth",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-400.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-574.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-5321.md",
+      "whole": true
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-558 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 17,
+     "evidence": "changes/CHG-3629.md"
+    },
+    "key": "batch_size",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-558.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-134.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3629.md",
+      "whole": true
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-588 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 1005,
+     "evidence": "changes/CHG-4917.md"
+    },
+    "key": "timeout_ms",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-588.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-696.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-4917.md",
+      "whole": true
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-338 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 43,
+     "evidence": "changes/CHG-2049.md"
+    },
+    "key": "pool_size",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-338.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-410.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2049.md",
+      "whole": true
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-184 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 12,
+     "evidence": "changes/CHG-7000.md"
+    },
+    "key": "batch_size",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-184.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-704.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-7000.md",
+      "whole": true
+     }
+    ]
+   }
+  ]
+ },
+ "D2-02": {
+  "project": "quiet-harvest",
+  "questions": [
+   {
+    "text": "Incident INC-104 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 39,
+     "evidence": "changes/CHG-2823.md"
+    },
+    "key": "cache_ttl_s",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-104.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-910.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2823.md",
+      "whole": true
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-556 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 1505,
+     "evidence": "changes/CHG-7308.md"
+    },
+    "key": "timeout_ms",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-556.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-531.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-7308.md",
+      "whole": true
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-377 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 27,
+     "evidence": "changes/CHG-8990.md"
+    },
+    "key": "batch_size",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-377.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-776.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-8990.md",
+      "whole": true
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-438 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 1006,
+     "evidence": "changes/CHG-1364.md"
+    },
+    "key": "timeout_ms",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-438.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-571.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-1364.md",
+      "whole": true
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-169 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 22,
+     "evidence": "changes/CHG-5132.md"
+    },
+    "key": "max_retries",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-169.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-945.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-5132.md",
+      "whole": true
+     }
+    ]
+   }
+  ]
+ },
+ "D2-03": {
+  "project": "amber-ledger",
+  "questions": [
+   {
+    "text": "Incident INC-663 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 51,
+     "evidence": "changes/CHG-6292.md"
+    },
+    "key": "pool_size",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-663.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-712.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-6292.md",
+      "whole": true
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-499 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 35,
+     "evidence": "changes/CHG-3824.md"
+    },
+    "key": "max_retries",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-499.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-769.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3824.md",
+      "whole": true
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-558 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 24,
+     "evidence": "changes/CHG-6183.md"
+    },
+    "key": "queue_depth",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-558.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-713.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-6183.md",
+      "whole": true
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-571 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 4007,
+     "evidence": "changes/CHG-1648.md"
+    },
+    "key": "timeout_ms",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-571.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-389.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-1648.md",
+      "whole": true
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-427 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 26,
+     "evidence": "changes/CHG-5384.md"
+    },
+    "key": "batch_size",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-427.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-888.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-5384.md",
+      "whole": true
+     }
+    ]
+   }
+  ]
+ },
+ "D2-04": {
+  "project": "amber-ledger",
+  "questions": [
+   {
+    "text": "Incident INC-692 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 32,
+     "evidence": "changes/CHG-3854.md"
+    },
+    "key": "max_retries",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-692.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-695.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3854.md",
+      "whole": true
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-498 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 45,
+     "evidence": "changes/CHG-4758.md"
+    },
+    "key": "queue_depth",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-498.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-635.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-4758.md",
+      "whole": true
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-704 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 31,
+     "evidence": "changes/CHG-8049.md"
+    },
+    "key": "queue_depth",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-704.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-118.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-8049.md",
+      "whole": true
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-815 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 17,
+     "evidence": "changes/CHG-3778.md"
+    },
+    "key": "pool_size",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-815.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-289.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3778.md",
+      "whole": true
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-501 was caused by a configuration change. To what value did that change set its key?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<change file path>\"}",
+    "answer": {
+     "value": 34,
+     "evidence": "changes/CHG-8193.md"
+    },
+    "key": "cache_ttl_s",
+    "kind": "chain",
+    "depth": 2,
+    "hops": 0,
+    "evidence": [
+     {
+      "path": "incidents/INC-501.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-612.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-8193.md",
+      "whole": true
+     }
+    ]
+   }
+  ]
+ },
+ "D4-01": {
+  "project": "north-signal",
+  "questions": [
+   {
+    "text": "Incident INC-221 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production batch_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 18,
+     "evidence": "services/fjord/config/prod.toml"
+    },
+    "key": "batch_size",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-221.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-841.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-5982.md",
+      "whole": true
+     },
+     {
+      "path": "services/pylon/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/fjord/config/prod.toml",
+      "line": 1
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-402 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production cache_ttl_s of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 40,
+     "evidence": "services/ember/config/prod.toml"
+    },
+    "key": "cache_ttl_s",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-402.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-119.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-9927.md",
+      "whole": true
+     },
+     {
+      "path": "services/spruce/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/ember/config/prod.toml",
+      "line": 4
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-682 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production max_retries of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 39,
+     "evidence": "services/kestrel/config/prod.toml"
+    },
+    "key": "max_retries",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-682.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-178.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-7527.md",
+      "whole": true
+     },
+     {
+      "path": "services/umbra/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/kestrel/config/prod.toml",
+      "line": 3
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-676 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production batch_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 19,
+     "evidence": "services/tundra/config/prod.toml"
+    },
+    "key": "batch_size",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-676.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-170.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-7942.md",
+      "whole": true
+     },
+     {
+      "path": "services/rowan/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/tundra/config/prod.toml",
+      "line": 4
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-425 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production max_retries of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 20,
+     "evidence": "services/tundra/config/prod.toml"
+    },
+    "key": "max_retries",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-425.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-745.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-4664.md",
+      "whole": true
+     },
+     {
+      "path": "services/delta/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/tundra/config/prod.toml",
+      "line": 2
+     }
+    ]
+   }
+  ]
+ },
+ "D4-02": {
+  "project": "north-ledger",
+  "questions": [
+   {
+    "text": "Incident INC-938 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production batch_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 38,
+     "evidence": "services/kestrel/config/prod.toml"
+    },
+    "key": "batch_size",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-938.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-299.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3212.md",
+      "whole": true
+     },
+     {
+      "path": "services/fjord/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/kestrel/config/prod.toml",
+      "line": 2
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-108 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production batch_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 38,
+     "evidence": "services/kestrel/config/prod.toml"
+    },
+    "key": "batch_size",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-108.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-520.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2637.md",
+      "whole": true
+     },
+     {
+      "path": "services/willow/config/prod.toml",
+      "line": 5
+     },
+     {
+      "path": "services/kestrel/config/prod.toml",
+      "line": 2
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-817 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production pool_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 22,
+     "evidence": "services/kestrel/config/prod.toml"
+    },
+    "key": "pool_size",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-817.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-561.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-9983.md",
+      "whole": true
+     },
+     {
+      "path": "services/orchid/config/prod.toml",
+      "line": 5
+     },
+     {
+      "path": "services/kestrel/config/prod.toml",
+      "line": 3
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-101 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production cache_ttl_s of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 33,
+     "evidence": "services/ember/config/prod.toml"
+    },
+    "key": "cache_ttl_s",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-101.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-618.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2242.md",
+      "whole": true
+     },
+     {
+      "path": "services/umbra/config/prod.toml",
+      "line": 2
+     },
+     {
+      "path": "services/ember/config/prod.toml",
+      "line": 2
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-237 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production batch_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 38,
+     "evidence": "services/kestrel/config/prod.toml"
+    },
+    "key": "batch_size",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-237.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-735.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-4429.md",
+      "whole": true
+     },
+     {
+      "path": "services/iris/config/prod.toml",
+      "line": 5
+     },
+     {
+      "path": "services/kestrel/config/prod.toml",
+      "line": 2
+     }
+    ]
+   }
+  ]
+ },
+ "D4-03": {
+  "project": "brisk-signal",
+  "questions": [
+   {
+    "text": "Incident INC-407 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production max_retries of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 21,
+     "evidence": "services/pylon/config/prod.toml"
+    },
+    "key": "max_retries",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-407.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-942.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-1633.md",
+      "whole": true
+     },
+     {
+      "path": "services/juniper/config/prod.toml",
+      "line": 5
+     },
+     {
+      "path": "services/pylon/config/prod.toml",
+      "line": 3
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-153 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production timeout_ms of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 3000,
+     "evidence": "services/mesa/config/prod.toml"
+    },
+    "key": "timeout_ms",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-153.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-139.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-6329.md",
+      "whole": true
+     },
+     {
+      "path": "services/tundra/config/prod.toml",
+      "line": 5
+     },
+     {
+      "path": "services/mesa/config/prod.toml",
+      "line": 2
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-501 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production max_retries of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 21,
+     "evidence": "services/pylon/config/prod.toml"
+    },
+    "key": "max_retries",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-501.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-684.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2093.md",
+      "whole": true
+     },
+     {
+      "path": "services/kestrel/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/pylon/config/prod.toml",
+      "line": 3
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-417 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production batch_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 35,
+     "evidence": "services/garnet/config/prod.toml"
+    },
+    "key": "batch_size",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-417.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-120.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-7706.md",
+      "whole": true
+     },
+     {
+      "path": "services/lumen/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/garnet/config/prod.toml",
+      "line": 1
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-747 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production pool_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 19,
+     "evidence": "services/lumen/config/prod.toml"
+    },
+    "key": "pool_size",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-747.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-754.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3408.md",
+      "whole": true
+     },
+     {
+      "path": "services/willow/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/lumen/config/prod.toml",
+      "line": 2
+     }
+    ]
+   }
+  ]
+ },
+ "D4-04": {
+  "project": "north-ledger",
+  "questions": [
+   {
+    "text": "Incident INC-575 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production timeout_ms of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 3000,
+     "evidence": "services/pylon/config/prod.toml"
+    },
+    "key": "timeout_ms",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-575.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-179.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-7629.md",
+      "whole": true
+     },
+     {
+      "path": "services/iris/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/pylon/config/prod.toml",
+      "line": 4
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-377 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production timeout_ms of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 4000,
+     "evidence": "services/tundra/config/prod.toml"
+    },
+    "key": "timeout_ms",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-377.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-876.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-1104.md",
+      "whole": true
+     },
+     {
+      "path": "services/mesa/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/tundra/config/prod.toml",
+      "line": 2
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-108 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production pool_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 7,
+     "evidence": "services/fjord/config/prod.toml"
+    },
+    "key": "pool_size",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-108.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-621.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-5421.md",
+      "whole": true
+     },
+     {
+      "path": "services/rowan/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/fjord/config/prod.toml",
+      "line": 3
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-697 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production queue_depth of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 30,
+     "evidence": "services/cinder/config/prod.toml"
+    },
+    "key": "queue_depth",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-697.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-732.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-6358.md",
+      "whole": true
+     },
+     {
+      "path": "services/pylon/config/prod.toml",
+      "line": 5
+     },
+     {
+      "path": "services/cinder/config/prod.toml",
+      "line": 2
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-487 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production pool_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 7,
+     "evidence": "services/fjord/config/prod.toml"
+    },
+    "key": "pool_size",
+    "kind": "chain",
+    "depth": 4,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-487.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-618.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-9066.md",
+      "whole": true
+     },
+     {
+      "path": "services/kestrel/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/fjord/config/prod.toml",
+      "line": 3
+     }
+    ]
+   }
+  ]
+ },
+ "D6-01": {
+  "project": "quiet-harvest",
+  "questions": [
+   {
+    "text": "Incident INC-244 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production queue_depth of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 101,
+     "evidence": "shared/pool-large.toml"
+    },
+    "key": "queue_depth",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-244.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-490.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-5385.md",
+      "whole": true
+     },
+     {
+      "path": "services/pylon/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/beacon/config/prod.toml",
+      "whole": true,
+      "absentKey": "queue_depth"
+     },
+     {
+      "path": "services/beacon/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/retry-fast.toml",
+      "whole": true,
+      "absentKey": "queue_depth"
+     },
+     {
+      "path": "shared/retry-fast.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/pool-large.toml",
+      "line": 5
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-644 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production queue_depth of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 101,
+     "evidence": "shared/pool-large.toml"
+    },
+    "key": "queue_depth",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-644.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-296.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3106.md",
+      "whole": true
+     },
+     {
+      "path": "services/kestrel/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/kestrel/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/yonder/config/prod.toml",
+      "whole": true,
+      "absentKey": "queue_depth"
+     },
+     {
+      "path": "services/yonder/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/pool-large.toml",
+      "line": 5
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-601 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production batch_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 26,
+     "evidence": "services/pylon/config/base.toml"
+    },
+    "key": "batch_size",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-601.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-806.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-9068.md",
+      "whole": true
+     },
+     {
+      "path": "services/nectar/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/mesa/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/pylon/config/prod.toml",
+      "whole": true,
+      "absentKey": "batch_size"
+     },
+     {
+      "path": "services/pylon/config/base.toml",
+      "line": 5
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-218 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production cache_ttl_s of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 41,
+     "evidence": "services/yonder/config/prod.toml"
+    },
+    "key": "cache_ttl_s",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-218.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-103.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-6370.md",
+      "whole": true
+     },
+     {
+      "path": "services/vesper/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/vesper/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-batch.toml",
+      "line": 5
+     },
+     {
+      "path": "services/iris/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/yonder/config/prod.toml",
+      "line": 2
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-512 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production queue_depth of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 30,
+     "evidence": "services/iris/config/prod.toml"
+    },
+    "key": "queue_depth",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-512.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-400.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-6453.md",
+      "whole": true
+     },
+     {
+      "path": "services/lumen/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/vesper/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/vesper/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-batch.toml",
+      "line": 5
+     },
+     {
+      "path": "services/iris/config/prod.toml",
+      "line": 1
+     }
+    ]
+   }
+  ]
+ },
+ "D6-02": {
+  "project": "quiet-canopy",
+  "questions": [
+   {
+    "text": "Incident INC-871 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production queue_depth of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 53,
+     "evidence": "shared/limits-standard.toml"
+    },
+    "key": "queue_depth",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-871.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-731.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3026.md",
+      "whole": true
+     },
+     {
+      "path": "services/vesper/config/prod.toml",
+      "line": 5
+     },
+     {
+      "path": "services/nectar/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/mesa/config/prod.toml",
+      "whole": true,
+      "absentKey": "queue_depth"
+     },
+     {
+      "path": "services/mesa/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-standard.toml",
+      "line": 3
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-529 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream three times. What is the effective production batch_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 6,
+     "evidence": "services/mesa/config/prod.toml"
+    },
+    "key": "batch_size",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 3,
+    "evidence": [
+     {
+      "path": "incidents/INC-529.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-590.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-6852.md",
+      "whole": true
+     },
+     {
+      "path": "services/lumen/config/prod.toml",
+      "line": 2
+     },
+     {
+      "path": "services/umbra/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/cinder/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/mesa/config/prod.toml",
+      "line": 2
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-576 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production pool_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 79,
+     "evidence": "shared/retry-fast.toml"
+    },
+    "key": "pool_size",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-576.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-172.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-6027.md",
+      "whole": true
+     },
+     {
+      "path": "services/iris/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/iris/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/beacon/config/prod.toml",
+      "whole": true,
+      "absentKey": "pool_size"
+     },
+     {
+      "path": "services/beacon/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/retry-fast.toml",
+      "line": 4
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-889 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production batch_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 63,
+     "evidence": "shared/pool-small.toml"
+    },
+    "key": "batch_size",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-889.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-836.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-8413.md",
+      "whole": true
+     },
+     {
+      "path": "services/tundra/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/vesper/config/prod.toml",
+      "whole": true,
+      "absentKey": "batch_size"
+     },
+     {
+      "path": "services/vesper/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/retry-fast.toml",
+      "whole": true,
+      "absentKey": "batch_size"
+     },
+     {
+      "path": "shared/retry-fast.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/pool-small.toml",
+      "line": 3
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-267 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production max_retries of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 52,
+     "evidence": "shared/retry-fast.toml"
+    },
+    "key": "max_retries",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-267.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-359.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3831.md",
+      "whole": true
+     },
+     {
+      "path": "services/harbor/config/prod.toml",
+      "line": 2
+     },
+     {
+      "path": "services/tundra/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/vesper/config/prod.toml",
+      "whole": true,
+      "absentKey": "max_retries"
+     },
+     {
+      "path": "services/vesper/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/retry-fast.toml",
+      "line": 2
+     }
+    ]
+   }
+  ]
+ },
+ "D6-03": {
+  "project": "quiet-harvest",
+  "questions": [
+   {
+    "text": "Incident INC-540 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production batch_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 117,
+     "evidence": "shared/limits-batch.toml"
+    },
+    "key": "batch_size",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-540.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-845.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-9135.md",
+      "whole": true
+     },
+     {
+      "path": "services/kestrel/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/harbor/config/prod.toml",
+      "line": 2
+     },
+     {
+      "path": "services/delta/config/prod.toml",
+      "whole": true,
+      "absentKey": "batch_size"
+     },
+     {
+      "path": "services/delta/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-batch.toml",
+      "line": 3
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-280 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream three times. What is the effective production timeout_ms of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 3000,
+     "evidence": "services/delta/config/prod.toml"
+    },
+    "key": "timeout_ms",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 3,
+    "evidence": [
+     {
+      "path": "incidents/INC-280.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-944.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-6022.md",
+      "whole": true
+     },
+     {
+      "path": "services/cinder/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/beacon/config/prod.toml",
+      "line": 2
+     },
+     {
+      "path": "services/yonder/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/delta/config/prod.toml",
+      "line": 3
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-174 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production queue_depth of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 95,
+     "evidence": "shared/limits-batch.toml"
+    },
+    "key": "queue_depth",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-174.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-561.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2927.md",
+      "whole": true
+     },
+     {
+      "path": "services/fjord/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/rowan/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/delta/config/prod.toml",
+      "whole": true,
+      "absentKey": "queue_depth"
+     },
+     {
+      "path": "services/delta/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-batch.toml",
+      "line": 4
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-524 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream three times. What is the effective production max_retries of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 46,
+     "evidence": "services/iris/config/prod.toml"
+    },
+    "key": "max_retries",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 3,
+    "evidence": [
+     {
+      "path": "incidents/INC-524.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-738.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-9544.md",
+      "whole": true
+     },
+     {
+      "path": "services/garnet/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/ember/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/quill/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/iris/config/prod.toml",
+      "line": 4
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-568 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production cache_ttl_s of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 11,
+     "evidence": "services/beacon/config/base.toml"
+    },
+    "key": "cache_ttl_s",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-568.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-713.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-9450.md",
+      "whole": true
+     },
+     {
+      "path": "services/mesa/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/mesa/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/retry-fast.toml",
+      "line": 6
+     },
+     {
+      "path": "services/beacon/config/prod.toml",
+      "whole": true,
+      "absentKey": "cache_ttl_s"
+     },
+     {
+      "path": "services/beacon/config/base.toml",
+      "line": 6
+     }
+    ]
+   }
+  ]
+ },
+ "D6-04": {
+  "project": "quiet-harvest",
+  "questions": [
+   {
+    "text": "Incident INC-375 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production pool_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 118,
+     "evidence": "shared/retry-safe.toml"
+    },
+    "key": "pool_size",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-375.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-447.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-1935.md",
+      "whole": true
+     },
+     {
+      "path": "services/orchid/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/garnet/config/prod.toml",
+      "whole": true,
+      "absentKey": "pool_size"
+     },
+     {
+      "path": "services/garnet/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-burst.toml",
+      "whole": true,
+      "absentKey": "pool_size"
+     },
+     {
+      "path": "shared/limits-burst.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/retry-safe.toml",
+      "line": 2
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-101 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production queue_depth of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 12,
+     "evidence": "services/rowan/config/base.toml"
+    },
+    "key": "queue_depth",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-101.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-563.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3931.md",
+      "whole": true
+     },
+     {
+      "path": "services/umbra/config/prod.toml",
+      "line": 5
+     },
+     {
+      "path": "services/cinder/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/rowan/config/prod.toml",
+      "whole": true,
+      "absentKey": "queue_depth"
+     },
+     {
+      "path": "services/rowan/config/base.toml",
+      "line": 4
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-970 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production timeout_ms of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 104,
+     "evidence": "shared/retry-safe.toml"
+    },
+    "key": "timeout_ms",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-970.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-752.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2243.md",
+      "whole": true
+     },
+     {
+      "path": "services/pylon/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/pylon/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-batch.toml",
+      "line": 6
+     },
+     {
+      "path": "services/cinder/config/prod.toml",
+      "whole": true,
+      "absentKey": "timeout_ms"
+     },
+     {
+      "path": "services/cinder/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/retry-safe.toml",
+      "line": 4
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-279 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production timeout_ms of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 104,
+     "evidence": "shared/retry-safe.toml"
+    },
+    "key": "timeout_ms",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-279.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-275.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-1274.md",
+      "whole": true
+     },
+     {
+      "path": "services/kestrel/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/umbra/config/prod.toml",
+      "line": 5
+     },
+     {
+      "path": "services/cinder/config/prod.toml",
+      "whole": true,
+      "absentKey": "timeout_ms"
+     },
+     {
+      "path": "services/cinder/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/retry-safe.toml",
+      "line": 4
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-509 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production pool_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 118,
+     "evidence": "shared/retry-safe.toml"
+    },
+    "key": "pool_size",
+    "kind": "chain",
+    "depth": 6,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-509.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-424.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2123.md",
+      "whole": true
+     },
+     {
+      "path": "services/willow/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/willow/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-floor.toml",
+      "line": 6
+     },
+     {
+      "path": "services/tundra/config/prod.toml",
+      "whole": true,
+      "absentKey": "pool_size"
+     },
+     {
+      "path": "services/tundra/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/retry-safe.toml",
+      "line": 2
+     }
+    ]
+   }
+  ]
+ },
+ "D8-01": {
+  "project": "quiet-ledger",
+  "questions": [
+   {
+    "text": "Incident INC-989 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production queue_depth of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 20,
+     "evidence": "services/juniper/config/base.toml"
+    },
+    "key": "queue_depth",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-989.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-560.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-6480.md",
+      "whole": true
+     },
+     {
+      "path": "services/delta/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/quill/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/quill/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-standard.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/quill/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/juniper/config/prod.toml",
+      "whole": true,
+      "absentKey": "queue_depth"
+     },
+     {
+      "path": "services/juniper/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-standard.toml",
+      "whole": true,
+      "absentKey": "queue_depth"
+     },
+     {
+      "path": "services/juniper/config/base.toml",
+      "line": 4
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-639 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production pool_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 135,
+     "evidence": "shared/limits-standard.toml"
+    },
+    "key": "pool_size",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-639.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-946.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-1329.md",
+      "whole": true
+     },
+     {
+      "path": "services/mesa/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/mesa/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-standard.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/mesa/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/quill/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/quill/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "services/quill/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/juniper/config/prod.toml",
+      "whole": true,
+      "absentKey": "pool_size"
+     },
+     {
+      "path": "services/juniper/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-standard.toml",
+      "line": 2
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-237 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production timeout_ms of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 69,
+     "evidence": "shared/retry-fast.toml"
+    },
+    "key": "timeout_ms",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-237.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-724.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-8187.md",
+      "whole": true
+     },
+     {
+      "path": "services/vesper/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/vesper/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/kestrel/config/prod.toml",
+      "whole": true,
+      "absentKey": "timeout_ms"
+     },
+     {
+      "path": "services/kestrel/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/retry-safe.toml",
+      "whole": true,
+      "absentKey": "timeout_ms"
+     },
+     {
+      "path": "shared/retry-safe.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/pool-large.toml",
+      "whole": true,
+      "absentKey": "timeout_ms"
+     },
+     {
+      "path": "shared/pool-large.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/retry-fast.toml",
+      "line": 4
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-622 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production max_retries of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 85,
+     "evidence": "shared/limits-standard.toml"
+    },
+    "key": "max_retries",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-622.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-272.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-5208.md",
+      "whole": true
+     },
+     {
+      "path": "services/nectar/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/nectar/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-standard.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/nectar/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/quill/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/quill/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "services/quill/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/juniper/config/prod.toml",
+      "whole": true,
+      "absentKey": "max_retries"
+     },
+     {
+      "path": "services/juniper/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-standard.toml",
+      "line": 1
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-289 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream three times. What is the effective production timeout_ms of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 1000,
+     "evidence": "services/juniper/config/prod.toml"
+    },
+    "key": "timeout_ms",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 3,
+    "evidence": [
+     {
+      "path": "incidents/INC-289.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-323.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-9800.md",
+      "whole": true
+     },
+     {
+      "path": "services/fjord/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/garnet/config/prod.toml",
+      "line": 2
+     },
+     {
+      "path": "services/quill/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/quill/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-standard.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/quill/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/juniper/config/prod.toml",
+      "line": 2
+     }
+    ]
+   }
+  ]
+ },
+ "D8-02": {
+  "project": "lucid-ledger",
+  "questions": [
+   {
+    "text": "Incident INC-939 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream three times. What is the effective production queue_depth of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 39,
+     "evidence": "services/nectar/config/prod.toml"
+    },
+    "key": "queue_depth",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 3,
+    "evidence": [
+     {
+      "path": "incidents/INC-939.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-450.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-9632.md",
+      "whole": true
+     },
+     {
+      "path": "services/atlas/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/atlas/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/ember/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/beacon/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/beacon/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/nectar/config/prod.toml",
+      "line": 2
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-548 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream three times. What is the effective production timeout_ms of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 6000,
+     "evidence": "services/ember/config/prod.toml"
+    },
+    "key": "timeout_ms",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 3,
+    "evidence": [
+     {
+      "path": "incidents/INC-548.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-413.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-4703.md",
+      "whole": true
+     },
+     {
+      "path": "services/harbor/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/harbor/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/fjord/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/mesa/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/mesa/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/ember/config/prod.toml",
+      "line": 1
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-542 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream three times. What is the effective production cache_ttl_s of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 3,
+     "evidence": "services/beacon/config/base.toml"
+    },
+    "key": "cache_ttl_s",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 3,
+    "evidence": [
+     {
+      "path": "incidents/INC-542.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-141.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2394.md",
+      "whole": true
+     },
+     {
+      "path": "services/spruce/config/prod.toml",
+      "line": 5
+     },
+     {
+      "path": "services/atlas/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/atlas/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/ember/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/beacon/config/prod.toml",
+      "whole": true,
+      "absentKey": "cache_ttl_s"
+     },
+     {
+      "path": "services/beacon/config/base.toml",
+      "line": 6
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-238 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production batch_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 65,
+     "evidence": "shared/retry-fast.toml"
+    },
+    "key": "batch_size",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-238.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-494.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2419.md",
+      "whole": true
+     },
+     {
+      "path": "services/cinder/config/prod.toml",
+      "line": 5
+     },
+     {
+      "path": "services/nectar/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/nectar/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-burst.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/nectar/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/orchid/config/prod.toml",
+      "whole": true,
+      "absentKey": "batch_size"
+     },
+     {
+      "path": "services/orchid/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/retry-fast.toml",
+      "line": 5
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-350 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production batch_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 8,
+     "evidence": "services/ember/config/base.toml"
+    },
+    "key": "batch_size",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-350.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-235.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-4905.md",
+      "whole": true
+     },
+     {
+      "path": "services/tundra/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/tundra/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/mesa/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/mesa/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/ember/config/prod.toml",
+      "whole": true,
+      "absentKey": "batch_size"
+     },
+     {
+      "path": "services/ember/config/base.toml",
+      "line": 5
+     }
+    ]
+   }
+  ]
+ },
+ "D8-03": {
+  "project": "north-ledger",
+  "questions": [
+   {
+    "text": "Incident INC-395 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production pool_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 52,
+     "evidence": "shared/pool-small.toml"
+    },
+    "key": "pool_size",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-395.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-168.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2991.md",
+      "whole": true
+     },
+     {
+      "path": "services/orchid/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/orchid/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/harbor/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/harbor/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/spruce/config/prod.toml",
+      "whole": true,
+      "absentKey": "pool_size"
+     },
+     {
+      "path": "services/spruce/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/pool-small.toml",
+      "line": 4
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-992 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production timeout_ms of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 109,
+     "evidence": "shared/limits-batch.toml"
+    },
+    "key": "timeout_ms",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-992.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-503.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2921.md",
+      "whole": true
+     },
+     {
+      "path": "services/delta/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/delta/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/spruce/config/prod.toml",
+      "whole": true,
+      "absentKey": "timeout_ms"
+     },
+     {
+      "path": "services/spruce/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/pool-small.toml",
+      "whole": true,
+      "absentKey": "timeout_ms"
+     },
+     {
+      "path": "shared/pool-small.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-floor.toml",
+      "whole": true,
+      "absentKey": "timeout_ms"
+     },
+     {
+      "path": "shared/limits-floor.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-batch.toml",
+      "line": 3
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-446 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production queue_depth of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 31,
+     "evidence": "services/harbor/config/base.toml"
+    },
+    "key": "queue_depth",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-446.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-204.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-4803.md",
+      "whole": true
+     },
+     {
+      "path": "services/pylon/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/pylon/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-floor.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "shared/limits-floor.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-batch.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/pylon/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/harbor/config/prod.toml",
+      "whole": true,
+      "absentKey": "queue_depth"
+     },
+     {
+      "path": "services/harbor/config/base.toml",
+      "line": 4
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-458 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream once. What is the effective production queue_depth of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 31,
+     "evidence": "services/harbor/config/base.toml"
+    },
+    "key": "queue_depth",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 1,
+    "evidence": [
+     {
+      "path": "incidents/INC-458.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-812.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-7975.md",
+      "whole": true
+     },
+     {
+      "path": "services/fjord/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/fjord/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-floor.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "shared/limits-floor.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-batch.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/fjord/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/harbor/config/prod.toml",
+      "whole": true,
+      "absentKey": "queue_depth"
+     },
+     {
+      "path": "services/harbor/config/base.toml",
+      "line": 4
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-941 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production batch_size of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 6,
+     "evidence": "services/umbra/config/base.toml"
+    },
+    "key": "batch_size",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-941.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-872.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2425.md",
+      "whole": true
+     },
+     {
+      "path": "services/yonder/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/yonder/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-batch.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/yonder/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/kestrel/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/umbra/config/prod.toml",
+      "whole": true,
+      "absentKey": "batch_size"
+     },
+     {
+      "path": "services/umbra/config/base.toml",
+      "line": 5
+     }
+    ]
+   }
+  ]
+ },
+ "D8-04": {
+  "project": "amber-relay",
+  "questions": [
+   {
+    "text": "Incident INC-523 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream three times. What is the effective production cache_ttl_s of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 31,
+     "evidence": "services/yonder/config/prod.toml"
+    },
+    "key": "cache_ttl_s",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 3,
+    "evidence": [
+     {
+      "path": "incidents/INC-523.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-496.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-5567.md",
+      "whole": true
+     },
+     {
+      "path": "services/fjord/config/prod.toml",
+      "line": 4
+     },
+     {
+      "path": "services/willow/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/willow/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-burst.toml",
+      "line": 4
+     },
+     {
+      "path": "services/ember/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/ember/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/yonder/config/prod.toml",
+      "line": 4
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-583 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production cache_ttl_s of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 31,
+     "evidence": "services/ember/config/base.toml"
+    },
+    "key": "cache_ttl_s",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-583.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-347.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3060.md",
+      "whole": true
+     },
+     {
+      "path": "services/umbra/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/umbra/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/willow/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/willow/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/limits-burst.toml",
+      "line": 4
+     },
+     {
+      "path": "services/ember/config/prod.toml",
+      "whole": true,
+      "absentKey": "cache_ttl_s"
+     },
+     {
+      "path": "services/ember/config/base.toml",
+      "line": 6
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-180 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production max_retries of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 15,
+     "evidence": "services/willow/config/prod.toml"
+    },
+    "key": "max_retries",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-180.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-840.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-8098.md",
+      "whole": true
+     },
+     {
+      "path": "services/pylon/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/pylon/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/retry-fast.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/pylon/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/umbra/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/umbra/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/willow/config/prod.toml",
+      "line": 3
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-886 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream three times. What is the effective production max_retries of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 13,
+     "evidence": "services/pylon/config/prod.toml"
+    },
+    "key": "max_retries",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 3,
+    "evidence": [
+     {
+      "path": "incidents/INC-886.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-331.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3352.md",
+      "whole": true
+     },
+     {
+      "path": "services/iris/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/iris/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/atlas/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/atlas/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/retry-safe.toml",
+      "line": 6
+     },
+     {
+      "path": "services/kestrel/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/pylon/config/prod.toml",
+      "line": 3
+     }
+    ]
+   },
+   {
+    "text": "Incident INC-511 was caused by a configuration change. Start from the service whose configuration that change set and follow its production upstream twice. What is the effective production queue_depth of the service you reach?",
+    "fields": "{\"value\": <integer>, \"evidence\": \"<file path where the effective value is set>\"}",
+    "answer": {
+     "value": 34,
+     "evidence": "services/umbra/config/base.toml"
+    },
+    "key": "queue_depth",
+    "kind": "chain",
+    "depth": 8,
+    "hops": 2,
+    "evidence": [
+     {
+      "path": "incidents/INC-511.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-740.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-9924.md",
+      "whole": true
+     },
+     {
+      "path": "services/kestrel/config/prod.toml",
+      "line": 3
+     },
+     {
+      "path": "services/pylon/config/prod.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/pylon/config/prod.toml",
+      "line": 1
+     },
+     {
+      "path": "shared/retry-fast.toml",
+      "whole": true,
+      "absentKey": "upstream"
+     },
+     {
+      "path": "services/pylon/config/base.toml",
+      "line": 7
+     },
+     {
+      "path": "services/umbra/config/prod.toml",
+      "whole": true,
+      "absentKey": "queue_depth"
+     },
+     {
+      "path": "services/umbra/config/base.toml",
+      "line": 4
+     }
+    ]
+   }
+  ]
  }
 }

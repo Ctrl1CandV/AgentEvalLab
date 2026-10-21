@@ -1,0 +1,5 @@
+[spruce]
+timeout_ms = 4500
+cache_ttl_s = 21
+batch_size = 49
+upstream = "harbor"

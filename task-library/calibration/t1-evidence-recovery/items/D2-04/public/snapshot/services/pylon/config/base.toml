@@ -1,0 +1,8 @@
+[pylon]
+timeout_ms = 100
+max_retries = 7
+pool_size = 6
+queue_depth = 6
+batch_size = 16
+cache_ttl_s = 26
+upstream = "umbra"

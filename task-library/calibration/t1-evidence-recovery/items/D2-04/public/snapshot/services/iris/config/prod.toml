@@ -1,0 +1,3 @@
+[iris]
+timeout_ms = 2000
+upstream = "juniper"

@@ -1,0 +1,5 @@
+[garnet]
+cache_ttl_s = 27
+timeout_ms = 4500
+batch_size = 47
+upstream = "lumen"

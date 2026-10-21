@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/pool-large.toml"
+cache_ttl_s = 52
+batch_size = 24
+timeout_ms = 300
+upstream = "willow"

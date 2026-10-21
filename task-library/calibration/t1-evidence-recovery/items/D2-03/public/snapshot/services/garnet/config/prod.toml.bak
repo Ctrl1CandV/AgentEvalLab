@@ -1,0 +1,6 @@
+[garnet]
+include = "shared/retry-fast.toml"
+timeout_ms = 4007
+batch_size = 28
+queue_depth = 33
+upstream = "willow"

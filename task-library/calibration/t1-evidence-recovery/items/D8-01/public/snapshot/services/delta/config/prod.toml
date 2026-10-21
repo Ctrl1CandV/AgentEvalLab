@@ -1,0 +1,4 @@
+[delta]
+include = "shared/pool-small.toml"
+pool_size = 31
+upstream = "quill"

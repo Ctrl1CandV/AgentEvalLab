@@ -1,0 +1,8 @@
+[atlas]
+timeout_ms = 2000
+max_retries = 37
+pool_size = 33
+queue_depth = 26
+batch_size = 27
+cache_ttl_s = 36
+upstream = "yonder"

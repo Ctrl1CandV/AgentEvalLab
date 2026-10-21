@@ -1,0 +1,8 @@
+[orchid]
+timeout_ms = 100
+max_retries = 7
+pool_size = 3
+queue_depth = 34
+batch_size = 38
+cache_ttl_s = 8
+upstream = "tundra"

@@ -1,0 +1,5 @@
+[mesa]
+timeout_ms = 1500
+batch_size = 32
+pool_size = 50
+upstream = "tundra"

@@ -1,0 +1,6 @@
+[juniper]
+include = "shared/limits-standard.toml"
+max_retries = 7
+cache_ttl_s = 23
+pool_size = 16
+upstream = "nectar"

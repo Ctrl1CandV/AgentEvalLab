@@ -1,0 +1,8 @@
+[spruce]
+timeout_ms = 1000
+max_retries = 14
+pool_size = 14
+queue_depth = 16
+batch_size = 13
+cache_ttl_s = 31
+upstream = "fjord"

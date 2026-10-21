@@ -1,0 +1,4 @@
+[cinder]
+include = "shared/limits-burst.toml"
+pool_size = 9
+upstream = "beacon"

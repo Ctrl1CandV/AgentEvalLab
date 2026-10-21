@@ -1,0 +1,8 @@
+[orchid]
+timeout_ms = 500
+max_retries = 15
+pool_size = 38
+queue_depth = 39
+batch_size = 25
+cache_ttl_s = 33
+upstream = "spruce"

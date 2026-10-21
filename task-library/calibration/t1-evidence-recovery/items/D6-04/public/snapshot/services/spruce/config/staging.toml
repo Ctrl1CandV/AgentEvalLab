@@ -1,0 +1,6 @@
+[spruce]
+include = "shared/limits-batch.toml"
+timeout_ms = 3000
+batch_size = 15
+cache_ttl_s = 19
+upstream = "cinder"

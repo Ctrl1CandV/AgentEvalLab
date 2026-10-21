@@ -1,0 +1,5 @@
+[juniper]
+cache_ttl_s = 46
+max_retries = 41
+timeout_ms = 750
+upstream = "atlas"

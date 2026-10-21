@@ -1,0 +1,7 @@
+[juniper]
+include = "shared/pool-large.toml"
+queue_depth = 35
+timeout_ms = 2011
+batch_size = 35
+pool_size = 19
+upstream = "iris"

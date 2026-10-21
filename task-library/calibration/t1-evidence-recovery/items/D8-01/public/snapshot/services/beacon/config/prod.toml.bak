@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 41
+pool_size = 30
+max_retries = 43
+upstream = "willow"

@@ -1,0 +1,6 @@
+[limits-burst]
+include = "shared/limits-standard.toml"
+batch_size = 125
+timeout_ms = 66
+pool_size = 107
+queue_depth = 100

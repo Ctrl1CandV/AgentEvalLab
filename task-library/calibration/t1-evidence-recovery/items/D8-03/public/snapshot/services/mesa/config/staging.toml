@@ -1,0 +1,6 @@
+[mesa]
+include = "shared/limits-batch.toml"
+batch_size = 22
+cache_ttl_s = 32
+queue_depth = 37
+upstream = "pylon"

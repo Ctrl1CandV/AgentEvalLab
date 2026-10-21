@@ -1,0 +1,3 @@
+[beacon]
+batch_size = 46
+upstream = "yonder"

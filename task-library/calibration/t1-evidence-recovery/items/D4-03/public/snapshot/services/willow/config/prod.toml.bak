@@ -1,0 +1,6 @@
+[willow]
+include = "shared/limits-batch.toml"
+queue_depth = 34
+max_retries = 31
+timeout_ms = 3011
+upstream = "cinder"

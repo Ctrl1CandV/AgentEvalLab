@@ -1,0 +1,5 @@
+[juniper]
+batch_size = 24
+max_retries = 43
+queue_depth = 37
+upstream = "tundra"

@@ -1,0 +1,5 @@
+[cinder]
+include = "shared/limits-batch.toml"
+cache_ttl_s = 36
+batch_size = 7
+timeout_ms = 1500

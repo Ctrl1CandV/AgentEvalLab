@@ -1,0 +1,5 @@
+[juniper]
+include = "shared/limits-standard.toml"
+timeout_ms = 1000
+batch_size = 36
+upstream = "quill"

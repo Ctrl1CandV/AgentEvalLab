@@ -1,0 +1,7 @@
+[spruce]
+include = "shared/limits-standard.toml"
+pool_size = 28
+max_retries = 16
+queue_depth = 38
+cache_ttl_s = 39
+upstream = "beacon"

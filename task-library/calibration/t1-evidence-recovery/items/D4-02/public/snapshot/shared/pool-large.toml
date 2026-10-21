@@ -1,0 +1,3 @@
+[pool-large]
+max_retries = 62
+queue_depth = 112

@@ -1,0 +1,4 @@
+[ember]
+max_retries = 30
+batch_size = 23
+pool_size = 35

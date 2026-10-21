@@ -1,0 +1,4 @@
+[limits-batch]
+max_retries = 42
+cache_ttl_s = 65
+queue_depth = 53

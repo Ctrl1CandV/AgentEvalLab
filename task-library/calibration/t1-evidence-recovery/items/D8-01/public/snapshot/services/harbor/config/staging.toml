@@ -1,0 +1,5 @@
+[harbor]
+max_retries = 25
+batch_size = 51
+queue_depth = 26
+upstream = "spruce"

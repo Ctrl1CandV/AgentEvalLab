@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/limits-floor.toml"
+timeout_ms = 750
+queue_depth = 52
+max_retries = 24
+upstream = "quill"

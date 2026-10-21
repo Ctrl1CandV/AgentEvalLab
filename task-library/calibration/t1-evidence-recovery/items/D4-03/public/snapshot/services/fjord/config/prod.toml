@@ -1,0 +1,3 @@
+[fjord]
+include = "shared/pool-small.toml"
+queue_depth = 31

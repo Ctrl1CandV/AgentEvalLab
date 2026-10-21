@@ -1,0 +1,4 @@
+[kestrel]
+timeout_ms = 4000
+pool_size = 35
+upstream = "pylon"

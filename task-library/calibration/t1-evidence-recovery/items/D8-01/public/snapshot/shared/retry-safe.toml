@@ -1,0 +1,4 @@
+[retry-safe]
+include = "shared/pool-large.toml"
+queue_depth = 74
+pool_size = 134

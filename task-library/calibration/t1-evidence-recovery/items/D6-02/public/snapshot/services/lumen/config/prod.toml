@@ -1,0 +1,3 @@
+[lumen]
+batch_size = 14
+upstream = "umbra"

@@ -1,0 +1,4 @@
+[pylon]
+include = "shared/pool-small.toml"
+max_retries = 24
+upstream = "fjord"

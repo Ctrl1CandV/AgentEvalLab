@@ -1,0 +1,5 @@
+[pool-large]
+include = "shared/retry-fast.toml"
+max_retries = 83
+pool_size = 76
+timeout_ms = 71

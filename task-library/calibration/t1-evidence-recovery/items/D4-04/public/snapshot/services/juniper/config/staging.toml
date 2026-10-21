@@ -1,0 +1,6 @@
+[juniper]
+include = "shared/limits-floor.toml"
+queue_depth = 48
+timeout_ms = 9000
+max_retries = 28
+upstream = "mesa"

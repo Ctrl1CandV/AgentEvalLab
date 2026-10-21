@@ -1,0 +1,6 @@
+[limits-floor]
+include = "shared/retry-safe.toml"
+queue_depth = 109
+timeout_ms = 133
+batch_size = 49
+upstream = "spruce"

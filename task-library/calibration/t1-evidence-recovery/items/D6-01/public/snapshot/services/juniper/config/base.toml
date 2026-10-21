@@ -1,0 +1,8 @@
+[juniper]
+timeout_ms = 3000
+max_retries = 20
+pool_size = 34
+queue_depth = 26
+batch_size = 29
+cache_ttl_s = 13
+upstream = "iris"

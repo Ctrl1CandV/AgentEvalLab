@@ -1,0 +1,8 @@
+[rowan]
+timeout_ms = 1500
+max_retries = 6
+pool_size = 10
+queue_depth = 11
+batch_size = 22
+cache_ttl_s = 33
+upstream = "harbor"

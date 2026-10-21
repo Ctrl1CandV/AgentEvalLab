@@ -1,0 +1,5 @@
+[orchid]
+batch_size = 40
+cache_ttl_s = 48
+max_retries = 26
+upstream = "rowan"

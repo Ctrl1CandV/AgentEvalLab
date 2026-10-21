@@ -1,0 +1,6 @@
+[spruce]
+include = "shared/limits-batch.toml"
+cache_ttl_s = 27
+queue_depth = 26
+timeout_ms = 507
+upstream = "garnet"

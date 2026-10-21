@@ -1,0 +1,4 @@
+[garnet]
+include = "shared/retry-fast.toml"
+pool_size = 17
+upstream = "ember"

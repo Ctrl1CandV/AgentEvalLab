@@ -1,0 +1,8 @@
+[orchid]
+timeout_ms = 250
+max_retries = 8
+pool_size = 30
+queue_depth = 19
+batch_size = 35
+cache_ttl_s = 8
+upstream = "umbra"

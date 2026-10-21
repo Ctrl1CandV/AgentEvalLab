@@ -1,0 +1,5 @@
+[quill]
+max_retries = 19
+pool_size = 17
+batch_size = 34
+upstream = "tundra"

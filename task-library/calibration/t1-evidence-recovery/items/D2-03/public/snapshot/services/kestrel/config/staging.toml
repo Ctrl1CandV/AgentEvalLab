@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/limits-standard.toml"
+batch_size = 55
+queue_depth = 49
+timeout_ms = 1500
+upstream = "willow"

@@ -1,0 +1,5 @@
+[orchid]
+include = "shared/limits-batch.toml"
+pool_size = 45
+queue_depth = 46
+upstream = "ember"

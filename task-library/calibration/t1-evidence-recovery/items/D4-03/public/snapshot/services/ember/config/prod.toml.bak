@@ -1,0 +1,6 @@
+[ember]
+include = "shared/pool-large.toml"
+max_retries = 17
+timeout_ms = 2011
+batch_size = 37
+upstream = "orchid"

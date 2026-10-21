@@ -1,0 +1,6 @@
+[rowan]
+include = "shared/retry-fast.toml"
+timeout_ms = 9000
+queue_depth = 35
+max_retries = 22
+upstream = "orchid"

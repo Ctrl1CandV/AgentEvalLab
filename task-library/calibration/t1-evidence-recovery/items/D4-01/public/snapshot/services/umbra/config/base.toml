@@ -1,0 +1,8 @@
+[umbra]
+timeout_ms = 2000
+max_retries = 28
+pool_size = 12
+queue_depth = 9
+batch_size = 21
+cache_ttl_s = 14
+upstream = "beacon"

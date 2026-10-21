@@ -1,0 +1,3 @@
+[limits-floor]
+timeout_ms = 73
+pool_size = 104

@@ -1,0 +1,5 @@
+[iris]
+batch_size = 43
+timeout_ms = 3000
+max_retries = 56
+upstream = "delta"

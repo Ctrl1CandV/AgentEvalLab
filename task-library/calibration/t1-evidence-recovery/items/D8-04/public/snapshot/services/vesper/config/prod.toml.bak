@@ -1,0 +1,6 @@
+[vesper]
+include = "shared/pool-small.toml"
+batch_size = 42
+max_retries = 28
+timeout_ms = 261
+upstream = "beacon"

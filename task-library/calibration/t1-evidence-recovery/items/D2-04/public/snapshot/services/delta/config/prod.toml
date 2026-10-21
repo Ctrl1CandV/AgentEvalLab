@@ -1,0 +1,4 @@
+[delta]
+pool_size = 21
+timeout_ms = 1000
+upstream = "umbra"

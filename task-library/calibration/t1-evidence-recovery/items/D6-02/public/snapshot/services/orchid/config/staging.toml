@@ -1,0 +1,6 @@
+[orchid]
+include = "shared/limits-standard.toml"
+pool_size = 41
+batch_size = 45
+timeout_ms = 750
+upstream = "vesper"

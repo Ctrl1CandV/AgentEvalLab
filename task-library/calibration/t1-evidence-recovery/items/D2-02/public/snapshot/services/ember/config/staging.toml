@@ -1,0 +1,6 @@
+[ember]
+include = "shared/pool-small.toml"
+queue_depth = 31
+cache_ttl_s = 21
+max_retries = 57
+upstream = "yonder"

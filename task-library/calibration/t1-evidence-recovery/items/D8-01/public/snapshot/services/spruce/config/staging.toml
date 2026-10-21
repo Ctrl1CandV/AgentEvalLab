@@ -1,0 +1,5 @@
+[spruce]
+max_retries = 44
+timeout_ms = 750
+cache_ttl_s = 41
+upstream = "cinder"

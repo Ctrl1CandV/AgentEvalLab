@@ -1,0 +1,6 @@
+[orchid]
+include = "shared/pool-small.toml"
+cache_ttl_s = 45
+pool_size = 38
+timeout_ms = 4500
+upstream = "garnet"

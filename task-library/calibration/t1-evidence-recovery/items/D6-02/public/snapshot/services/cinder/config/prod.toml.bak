@@ -1,0 +1,5 @@
+[cinder]
+include = "shared/limits-floor.toml"
+pool_size = 13
+queue_depth = 29
+upstream = "iris"

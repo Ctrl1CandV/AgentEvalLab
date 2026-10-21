@@ -1,0 +1,5 @@
+[mesa]
+include = "shared/pool-small.toml"
+timeout_ms = 111
+cache_ttl_s = 31
+upstream = "vesper"

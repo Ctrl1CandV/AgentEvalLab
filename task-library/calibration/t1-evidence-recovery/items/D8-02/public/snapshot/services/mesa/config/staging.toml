@@ -1,0 +1,6 @@
+[mesa]
+include = "shared/limits-batch.toml"
+timeout_ms = 1500
+batch_size = 44
+cache_ttl_s = 45
+upstream = "kestrel"

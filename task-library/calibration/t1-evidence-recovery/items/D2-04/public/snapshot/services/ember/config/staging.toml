@@ -1,0 +1,5 @@
+[ember]
+queue_depth = 45
+pool_size = 29
+max_retries = 46
+upstream = "cinder"

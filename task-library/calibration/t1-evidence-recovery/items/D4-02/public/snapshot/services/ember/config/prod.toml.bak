@@ -1,0 +1,6 @@
+[ember]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 36
+queue_depth = 29
+max_retries = 20
+upstream = "pylon"

@@ -1,0 +1,5 @@
+[harbor]
+include = "shared/pool-small.toml"
+queue_depth = 45
+max_retries = 37
+upstream = "pylon"

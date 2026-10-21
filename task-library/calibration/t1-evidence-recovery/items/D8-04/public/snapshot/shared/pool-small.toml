@@ -1,0 +1,5 @@
+[pool-small]
+include = "shared/limits-standard.toml"
+cache_ttl_s = 86
+max_retries = 64
+pool_size = 71

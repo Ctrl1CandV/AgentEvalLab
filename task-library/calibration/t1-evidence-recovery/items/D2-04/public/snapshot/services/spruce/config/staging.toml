@@ -1,0 +1,6 @@
+[spruce]
+include = "shared/pool-large.toml"
+queue_depth = 36
+pool_size = 27
+batch_size = 44
+upstream = "pylon"

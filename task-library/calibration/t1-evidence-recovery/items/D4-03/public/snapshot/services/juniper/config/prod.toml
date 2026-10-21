@@ -1,0 +1,6 @@
+[juniper]
+include = "shared/limits-standard.toml"
+queue_depth = 28
+timeout_ms = 4000
+batch_size = 28
+upstream = "pylon"

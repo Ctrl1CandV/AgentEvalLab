@@ -1,0 +1,6 @@
+[spruce]
+include = "shared/limits-batch.toml"
+pool_size = 38
+max_retries = 35
+batch_size = 28
+upstream = "fjord"

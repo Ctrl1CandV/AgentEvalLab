@@ -1,0 +1,5 @@
+[limits-floor]
+include = "shared/retry-fast.toml"
+pool_size = 98
+batch_size = 68
+upstream = "garnet"

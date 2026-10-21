@@ -1,0 +1,6 @@
+[umbra]
+include = "shared/pool-large.toml"
+pool_size = 37
+cache_ttl_s = 4
+batch_size = 16
+upstream = "lumen"

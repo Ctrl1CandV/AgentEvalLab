@@ -1,0 +1,7 @@
+[garnet]
+include = "shared/limits-standard.toml"
+cache_ttl_s = 17
+pool_size = 35
+max_retries = 22
+queue_depth = 47
+upstream = "spruce"

@@ -1,0 +1,5 @@
+[rowan]
+pool_size = 46
+timeout_ms = 9000
+cache_ttl_s = 42
+upstream = "spruce"

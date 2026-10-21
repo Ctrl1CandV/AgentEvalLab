@@ -1,0 +1,3 @@
+[atlas]
+queue_depth = 30
+upstream = "garnet"

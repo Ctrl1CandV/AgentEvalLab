@@ -1,0 +1,8 @@
+[beacon]
+timeout_ms = 1500
+max_retries = 7
+pool_size = 7
+queue_depth = 8
+batch_size = 37
+cache_ttl_s = 21
+upstream = "ember"

@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/limits-burst.toml"
+pool_size = 43
+timeout_ms = 750
+cache_ttl_s = 56
+upstream = "harbor"

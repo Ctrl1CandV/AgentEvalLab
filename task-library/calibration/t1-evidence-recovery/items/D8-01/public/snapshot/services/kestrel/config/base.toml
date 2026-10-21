@@ -1,0 +1,8 @@
+[kestrel]
+timeout_ms = 750
+max_retries = 9
+pool_size = 7
+queue_depth = 37
+batch_size = 8
+cache_ttl_s = 9
+upstream = "quill"

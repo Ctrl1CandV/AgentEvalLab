@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/limits-batch.toml"
+cache_ttl_s = 37
+batch_size = 41
+max_retries = 44
+upstream = "cinder"

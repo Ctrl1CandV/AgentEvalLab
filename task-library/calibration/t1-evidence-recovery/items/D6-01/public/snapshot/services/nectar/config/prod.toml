@@ -1,0 +1,4 @@
+[nectar]
+include = "shared/limits-standard.toml"
+batch_size = 5
+upstream = "mesa"

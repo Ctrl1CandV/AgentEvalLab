@@ -1,0 +1,7 @@
+[rowan]
+include = "shared/limits-standard.toml"
+pool_size = 24
+max_retries = 19
+queue_depth = 25
+cache_ttl_s = 40
+upstream = "iris"

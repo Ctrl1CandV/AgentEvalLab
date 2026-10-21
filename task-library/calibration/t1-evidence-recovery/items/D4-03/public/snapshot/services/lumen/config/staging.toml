@@ -1,0 +1,6 @@
+[lumen]
+include = "shared/limits-floor.toml"
+batch_size = 64
+pool_size = 32
+timeout_ms = 300
+upstream = "delta"

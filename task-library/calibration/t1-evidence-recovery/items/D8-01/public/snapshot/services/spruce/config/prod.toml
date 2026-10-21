@@ -1,0 +1,4 @@
+[spruce]
+include = "shared/limits-burst.toml"
+pool_size = 7
+upstream = "quill"

@@ -1,0 +1,6 @@
+[tundra]
+include = "shared/retry-fast.toml"
+pool_size = 24
+cache_ttl_s = 28
+batch_size = 24
+upstream = "pylon"

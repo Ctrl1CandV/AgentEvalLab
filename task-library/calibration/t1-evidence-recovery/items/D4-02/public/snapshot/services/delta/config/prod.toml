@@ -1,0 +1,6 @@
+[delta]
+include = "shared/limits-batch.toml"
+timeout_ms = 1000
+queue_depth = 7
+cache_ttl_s = 27
+upstream = "umbra"

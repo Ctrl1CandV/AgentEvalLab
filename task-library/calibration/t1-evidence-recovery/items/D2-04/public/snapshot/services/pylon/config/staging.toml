@@ -1,0 +1,5 @@
+[pylon]
+queue_depth = 16
+pool_size = 20
+cache_ttl_s = 44
+upstream = "nectar"

@@ -1,0 +1,4 @@
+[fjord]
+include = "shared/limits-standard.toml"
+cache_ttl_s = 20
+batch_size = 42

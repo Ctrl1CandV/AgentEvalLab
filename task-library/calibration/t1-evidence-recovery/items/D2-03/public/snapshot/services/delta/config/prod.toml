@@ -1,0 +1,3 @@
+[delta]
+include = "shared/pool-small.toml"
+batch_size = 38

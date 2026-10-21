@@ -1,0 +1,4 @@
+[cinder]
+include = "shared/limits-floor.toml"
+queue_depth = 30
+pool_size = 15

@@ -1,0 +1,7 @@
+[retry-safe]
+include = "shared/pool-large.toml"
+cache_ttl_s = 109
+queue_depth = 75
+max_retries = 74
+pool_size = 123
+upstream = "pylon"

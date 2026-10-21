@@ -1,0 +1,5 @@
+[umbra]
+batch_size = 14
+timeout_ms = 3000
+pool_size = 25
+upstream = "yonder"

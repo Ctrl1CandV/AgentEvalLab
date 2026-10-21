@@ -1,0 +1,8 @@
+[fjord]
+timeout_ms = 250
+max_retries = 20
+pool_size = 23
+queue_depth = 31
+batch_size = 13
+cache_ttl_s = 20
+upstream = "nectar"

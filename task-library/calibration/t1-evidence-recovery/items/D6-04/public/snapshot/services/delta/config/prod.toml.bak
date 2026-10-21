@@ -1,0 +1,6 @@
+[delta]
+include = "shared/retry-safe.toml"
+queue_depth = 18
+cache_ttl_s = 43
+timeout_ms = 761
+upstream = "nectar"

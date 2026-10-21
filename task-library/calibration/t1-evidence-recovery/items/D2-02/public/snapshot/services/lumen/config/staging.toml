@@ -1,0 +1,5 @@
+[lumen]
+max_retries = 32
+timeout_ms = 1500
+cache_ttl_s = 26
+upstream = "cinder"

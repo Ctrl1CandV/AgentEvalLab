@@ -1,0 +1,4 @@
+[orchid]
+include = "shared/pool-large.toml"
+max_retries = 7
+timeout_ms = 1500

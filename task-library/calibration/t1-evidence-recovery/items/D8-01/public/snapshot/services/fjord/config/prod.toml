@@ -1,0 +1,4 @@
+[fjord]
+include = "shared/pool-small.toml"
+batch_size = 8
+upstream = "garnet"

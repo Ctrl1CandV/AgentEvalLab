@@ -1,0 +1,6 @@
+[quill]
+include = "shared/retry-safe.toml"
+max_retries = 47
+queue_depth = 44
+batch_size = 46
+upstream = "willow"

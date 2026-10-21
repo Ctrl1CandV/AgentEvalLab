@@ -1,0 +1,4 @@
+[limits-batch]
+include = "shared/pool-small.toml"
+pool_size = 56
+timeout_ms = 94

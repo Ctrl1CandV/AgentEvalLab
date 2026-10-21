@@ -1,0 +1,6 @@
+[vesper]
+include = "shared/limits-burst.toml"
+queue_depth = 42
+max_retries = 42
+timeout_ms = 511
+upstream = "beacon"

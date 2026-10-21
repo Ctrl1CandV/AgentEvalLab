@@ -1,0 +1,6 @@
+[rowan]
+include = "shared/limits-standard.toml"
+batch_size = 35
+queue_depth = 40
+timeout_ms = 3000
+upstream = "tundra"

@@ -1,0 +1,7 @@
+[willow]
+include = "shared/retry-safe.toml"
+max_retries = 35
+queue_depth = 23
+timeout_ms = 511
+cache_ttl_s = 37
+upstream = "delta"

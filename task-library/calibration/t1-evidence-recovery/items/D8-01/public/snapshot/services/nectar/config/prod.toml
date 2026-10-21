@@ -1,0 +1,4 @@
+[nectar]
+include = "shared/limits-standard.toml"
+queue_depth = 16
+pool_size = 34

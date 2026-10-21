@@ -1,0 +1,5 @@
+[delta]
+batch_size = 16
+max_retries = 45
+pool_size = 35
+upstream = "iris"

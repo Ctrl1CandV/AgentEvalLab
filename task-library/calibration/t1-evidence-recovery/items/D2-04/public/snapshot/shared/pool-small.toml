@@ -1,0 +1,6 @@
+[pool-small]
+include = "shared/limits-batch.toml"
+queue_depth = 81
+cache_ttl_s = 117
+max_retries = 138
+upstream = "tundra"

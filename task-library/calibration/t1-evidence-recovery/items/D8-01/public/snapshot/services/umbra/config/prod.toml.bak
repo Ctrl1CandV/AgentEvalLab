@@ -1,0 +1,6 @@
+[umbra]
+include = "shared/pool-large.toml"
+timeout_ms = 507
+pool_size = 45
+max_retries = 46
+upstream = "vesper"

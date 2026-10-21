@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/limits-standard.toml"
+cache_ttl_s = 49
+timeout_ms = 261
+max_retries = 19
+upstream = "quill"

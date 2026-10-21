@@ -1,0 +1,7 @@
+[beacon]
+include = "shared/limits-floor.toml"
+cache_ttl_s = 50
+max_retries = 31
+batch_size = 13
+queue_depth = 24
+upstream = "orchid"

@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/limits-batch.toml"
+cache_ttl_s = 48
+queue_depth = 31
+timeout_ms = 261
+upstream = "fjord"

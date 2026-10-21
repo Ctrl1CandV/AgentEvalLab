@@ -1,0 +1,6 @@
+[pool-small]
+include = "shared/pool-large.toml"
+cache_ttl_s = 113
+pool_size = 119
+max_retries = 76
+batch_size = 62

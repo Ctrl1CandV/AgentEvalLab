@@ -1,0 +1,6 @@
+[willow]
+include = "shared/pool-small.toml"
+cache_ttl_s = 40
+max_retries = 19
+timeout_ms = 2000
+upstream = "kestrel"

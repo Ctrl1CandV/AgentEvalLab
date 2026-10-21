@@ -1,0 +1,6 @@
+[delta]
+include = "shared/pool-large.toml"
+queue_depth = 33
+batch_size = 30
+pool_size = 30
+upstream = "rowan"

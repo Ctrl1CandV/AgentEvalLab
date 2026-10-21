@@ -1,0 +1,5 @@
+[garnet]
+include = "shared/pool-small.toml"
+pool_size = 27
+batch_size = 21
+upstream = "orchid"

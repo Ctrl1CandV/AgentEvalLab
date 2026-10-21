@@ -1,0 +1,7 @@
+[lumen]
+include = "shared/pool-small.toml"
+cache_ttl_s = 42
+timeout_ms = 761
+batch_size = 19
+queue_depth = 47
+upstream = "iris"

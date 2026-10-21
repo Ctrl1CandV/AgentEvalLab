@@ -1,0 +1,7 @@
+[kestrel]
+include = "shared/limits-standard.toml"
+batch_size = 45
+pool_size = 29
+timeout_ms = 511
+queue_depth = 34
+upstream = "tundra"

@@ -1,0 +1,6 @@
+[tundra]
+include = "shared/limits-floor.toml"
+timeout_ms = 2011
+max_retries = 25
+cache_ttl_s = 23
+upstream = "juniper"

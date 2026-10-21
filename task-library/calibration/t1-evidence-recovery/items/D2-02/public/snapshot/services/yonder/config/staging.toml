@@ -1,0 +1,5 @@
+[yonder]
+batch_size = 46
+timeout_ms = 4500
+queue_depth = 38
+upstream = "beacon"

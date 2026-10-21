@@ -1,0 +1,8 @@
+[garnet]
+timeout_ms = 250
+max_retries = 26
+pool_size = 18
+queue_depth = 5
+batch_size = 4
+cache_ttl_s = 18
+upstream = "orchid"

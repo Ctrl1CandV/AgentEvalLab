@@ -1,0 +1,4 @@
+[beacon]
+include = "shared/retry-fast.toml"
+pool_size = 38
+upstream = "tundra"

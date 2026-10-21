@@ -1,0 +1,5 @@
+[quill]
+timeout_ms = 3000
+pool_size = 62
+batch_size = 31
+upstream = "rowan"

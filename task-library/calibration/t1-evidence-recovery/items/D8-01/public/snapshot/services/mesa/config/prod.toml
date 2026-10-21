@@ -1,0 +1,5 @@
+[mesa]
+include = "shared/limits-standard.toml"
+max_retries = 39
+pool_size = 13
+timeout_ms = 2000

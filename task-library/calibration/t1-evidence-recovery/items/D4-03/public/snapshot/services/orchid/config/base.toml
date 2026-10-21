@@ -1,0 +1,8 @@
+[orchid]
+timeout_ms = 750
+max_retries = 3
+pool_size = 39
+queue_depth = 12
+batch_size = 15
+cache_ttl_s = 21
+upstream = "mesa"

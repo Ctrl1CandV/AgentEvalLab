@@ -1,0 +1,8 @@
+[rowan]
+timeout_ms = 1000
+max_retries = 9
+pool_size = 13
+queue_depth = 13
+batch_size = 29
+cache_ttl_s = 29
+upstream = "quill"

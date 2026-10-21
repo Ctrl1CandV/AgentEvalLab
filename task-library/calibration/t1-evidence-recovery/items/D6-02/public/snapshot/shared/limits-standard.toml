@@ -1,0 +1,6 @@
+[limits-standard]
+cache_ttl_s = 73
+batch_size = 126
+queue_depth = 53
+timeout_ms = 59
+upstream = "mesa"

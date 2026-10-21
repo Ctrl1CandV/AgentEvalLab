@@ -1,0 +1,5 @@
+[juniper]
+max_retries = 28
+queue_depth = 57
+cache_ttl_s = 38
+upstream = "kestrel"

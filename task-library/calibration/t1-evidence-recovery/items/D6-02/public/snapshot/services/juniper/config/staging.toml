@@ -1,0 +1,5 @@
+[juniper]
+queue_depth = 51
+batch_size = 25
+timeout_ms = 6000
+upstream = "cinder"

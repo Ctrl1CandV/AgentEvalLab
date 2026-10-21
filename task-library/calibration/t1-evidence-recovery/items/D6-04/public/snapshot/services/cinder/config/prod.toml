@@ -1,0 +1,5 @@
+[cinder]
+include = "shared/retry-safe.toml"
+max_retries = 16
+queue_depth = 38
+upstream = "rowan"

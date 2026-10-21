@@ -1,0 +1,5 @@
+[umbra]
+batch_size = 37
+max_retries = 42
+timeout_ms = 4500
+upstream = "atlas"

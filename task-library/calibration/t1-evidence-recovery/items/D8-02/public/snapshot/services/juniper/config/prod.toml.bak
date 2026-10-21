@@ -1,0 +1,7 @@
+[juniper]
+include = "shared/retry-fast.toml"
+max_retries = 14
+cache_ttl_s = 30
+pool_size = 25
+batch_size = 45
+upstream = "cinder"

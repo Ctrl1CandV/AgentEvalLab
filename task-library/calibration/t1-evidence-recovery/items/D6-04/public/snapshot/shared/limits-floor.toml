@@ -1,0 +1,7 @@
+[limits-floor]
+include = "shared/limits-batch.toml"
+batch_size = 139
+timeout_ms = 70
+pool_size = 66
+queue_depth = 52
+upstream = "tundra"

@@ -1,0 +1,5 @@
+[rowan]
+pool_size = 34
+batch_size = 51
+timeout_ms = 3000
+upstream = "ember"

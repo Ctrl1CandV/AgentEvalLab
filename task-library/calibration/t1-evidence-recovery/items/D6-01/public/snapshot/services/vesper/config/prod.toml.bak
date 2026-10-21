@@ -1,0 +1,7 @@
+[vesper]
+include = "shared/retry-safe.toml"
+queue_depth = 28
+cache_ttl_s = 15
+pool_size = 38
+timeout_ms = 3011
+upstream = "lumen"

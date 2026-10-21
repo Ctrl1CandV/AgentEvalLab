@@ -1,0 +1,6 @@
+[garnet]
+include = "shared/retry-fast.toml"
+batch_size = 59
+timeout_ms = 300
+queue_depth = 56
+upstream = "fjord"

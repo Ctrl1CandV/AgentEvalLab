@@ -1,0 +1,6 @@
+[iris]
+include = "shared/pool-large.toml"
+batch_size = 36
+max_retries = 28
+timeout_ms = 261
+upstream = "mesa"

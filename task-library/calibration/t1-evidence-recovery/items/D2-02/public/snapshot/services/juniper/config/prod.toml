@@ -1,0 +1,5 @@
+[juniper]
+include = "shared/limits-standard.toml"
+max_retries = 20
+batch_size = 21
+upstream = "harbor"

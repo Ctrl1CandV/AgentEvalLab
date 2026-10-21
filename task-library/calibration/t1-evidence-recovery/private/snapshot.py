@@ -8,6 +8,8 @@ import hashlib
 import json
 import random
 
+import chains
+
 SERVICES = ["atlas", "beacon", "cinder", "delta", "ember", "fjord", "garnet", "harbor", "iris", "juniper", "kestrel", "lumen"]
 PACKAGE_STEMS = ["argon", "basalt", "cobalt", "dynamo", "eider", "flint", "gyre", "helix", "ion", "jasper", "krill", "lattice",
                  "mantle", "nimbus", "onyx", "prism", "quartz", "rivet", "sable", "talon", "umber", "vortex", "wick", "xenon", "yarrow", "zephyr"]
@@ -47,6 +49,9 @@ LEVELS = {
            "questions": ["lock_count", "log_join", "log_distinct", "log_total_large", "log_total_join", "log_median", "config_nested",
                          "config_deep", "config_at_date", "config_at_date", "recovery_hop", "recovery_two_hops", "absent_trap", "secret"]},
 }
+# Task 0.5.0 adds a depth ladder (chains.py): every question follows a chain of 2, 4, 6 or 8 references, each step with a
+# plausible distractor, in snapshots of small files, so depth rather than volume decides.
+LEVELS.update({level: {"chain": depth, "questions": ["chain"] * chains.QUESTIONS} for level, depth in chains.LEVELS.items()})
 MAX_QUESTIONS = max(len(level["questions"]) for level in LEVELS.values())
 
 
@@ -76,6 +81,8 @@ class Snapshot:
 def build(level_id, rng):
     """One snapshot with its questions; returns (snapshot, project, questions)."""
     level = LEVELS[level_id]
+    if level.get("chain"):
+        return build_chain(level_id, rng)
     project = f"{rng.choice(['north', 'quiet', 'amber', 'lucid', 'brisk'])}-{rng.choice(['relay', 'ledger', 'harvest', 'signal', 'canopy'])}"
     snap = Snapshot()
     services = rng.sample(SERVICES, level["services"])
@@ -223,6 +230,24 @@ def build(level_id, rng):
     used_requests = set()
     for kind in level["questions"]:
         questions.append(QUESTION_BUILDERS[kind](rng, snap, services, configs, packages, log_files, used_requests, extra))
+    return snap, project, questions
+
+
+def build_chain(level_id, rng):
+    """A depth-ladder snapshot; each proof becomes a line to be shown or a file to be shown whole (or, for a configuration
+    file, searched completely for the key it does not set)."""
+    files, project, chain_questions = chains.build(level_id, rng)
+    snap = Snapshot()
+    for path in sorted(files):
+        snap.add(path, files[path])
+    questions = []
+    for question in chain_questions:
+        proofs = []
+        for kind, path, detail in question.pop("proofs"):
+            proof = evidence(snap, path, detail) if kind == "line" else {"path": path, "whole": True, **({"absentKey": detail} if detail else {})}
+            if proof not in proofs:
+                proofs.append(proof)
+        questions.append({**question, "evidence": proofs})
     return snap, project, questions
 
 

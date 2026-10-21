@@ -1,0 +1,6 @@
+[orchid]
+include = "shared/retry-safe.toml"
+pool_size = 33
+queue_depth = 13
+batch_size = 33
+upstream = "nectar"

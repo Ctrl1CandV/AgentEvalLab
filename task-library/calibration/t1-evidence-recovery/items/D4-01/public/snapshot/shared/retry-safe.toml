@@ -1,0 +1,4 @@
+[retry-safe]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 111
+timeout_ms = 48

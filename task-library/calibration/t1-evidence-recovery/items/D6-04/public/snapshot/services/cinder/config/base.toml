@@ -1,0 +1,8 @@
+[cinder]
+timeout_ms = 1000
+max_retries = 12
+pool_size = 4
+queue_depth = 30
+batch_size = 3
+cache_ttl_s = 23
+upstream = "fjord"

@@ -1,0 +1,6 @@
+[umbra]
+include = "shared/limits-floor.toml"
+batch_size = 16
+max_retries = 18
+timeout_ms = 3011
+upstream = "tundra"

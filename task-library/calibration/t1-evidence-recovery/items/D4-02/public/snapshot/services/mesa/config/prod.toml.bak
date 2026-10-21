@@ -1,0 +1,7 @@
+[mesa]
+include = "shared/pool-small.toml"
+batch_size = 24
+queue_depth = 42
+timeout_ms = 511
+pool_size = 33
+upstream = "atlas"

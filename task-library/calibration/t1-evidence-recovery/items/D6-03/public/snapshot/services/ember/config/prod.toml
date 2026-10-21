@@ -1,0 +1,4 @@
+[ember]
+include = "shared/limits-burst.toml"
+max_retries = 26
+upstream = "quill"

@@ -1,0 +1,6 @@
+[limits-batch]
+include = "shared/pool-small.toml"
+queue_depth = 114
+cache_ttl_s = 134
+batch_size = 124
+upstream = "lumen"

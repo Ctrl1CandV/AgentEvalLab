@@ -1,0 +1,4 @@
+[vesper]
+queue_depth = 23
+batch_size = 7
+upstream = "beacon"

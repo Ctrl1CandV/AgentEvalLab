@@ -1,0 +1,4 @@
+[yonder]
+include = "shared/pool-small.toml"
+queue_depth = 41
+max_retries = 32

@@ -1,0 +1,6 @@
+[tundra]
+include = "shared/limits-batch.toml"
+batch_size = 41
+max_retries = 46
+queue_depth = 37
+upstream = "spruce"

@@ -1,0 +1,6 @@
+[iris]
+include = "shared/limits-batch.toml"
+max_retries = 46
+timeout_ms = 4500
+pool_size = 48
+upstream = "fjord"

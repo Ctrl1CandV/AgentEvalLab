@@ -1,0 +1,5 @@
+[willow]
+include = "shared/limits-floor.toml"
+pool_size = 23
+queue_depth = 11
+upstream = "delta"

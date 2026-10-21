@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/limits-floor.toml"
+timeout_ms = 4500
+max_retries = 46
+batch_size = 44
+upstream = "spruce"

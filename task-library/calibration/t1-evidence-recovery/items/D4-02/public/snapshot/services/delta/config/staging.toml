@@ -1,0 +1,6 @@
+[delta]
+include = "shared/limits-floor.toml"
+queue_depth = 31
+pool_size = 61
+batch_size = 36
+upstream = "vesper"

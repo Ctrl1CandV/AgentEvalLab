@@ -1,0 +1,5 @@
+[tundra]
+queue_depth = 52
+cache_ttl_s = 59
+timeout_ms = 6000
+upstream = "umbra"

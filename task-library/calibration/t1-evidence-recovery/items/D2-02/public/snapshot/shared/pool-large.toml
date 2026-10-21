@@ -1,0 +1,6 @@
+[pool-large]
+include = "shared/limits-batch.toml"
+timeout_ms = 135
+queue_depth = 94
+max_retries = 46
+batch_size = 122

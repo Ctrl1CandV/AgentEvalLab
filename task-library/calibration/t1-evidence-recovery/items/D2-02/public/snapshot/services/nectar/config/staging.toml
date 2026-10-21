@@ -1,0 +1,6 @@
+[nectar]
+include = "shared/pool-large.toml"
+batch_size = 31
+max_retries = 56
+pool_size = 17
+upstream = "yonder"

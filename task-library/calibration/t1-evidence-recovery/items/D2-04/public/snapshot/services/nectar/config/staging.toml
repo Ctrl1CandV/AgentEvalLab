@@ -1,0 +1,5 @@
+[nectar]
+cache_ttl_s = 33
+pool_size = 47
+batch_size = 25
+upstream = "pylon"

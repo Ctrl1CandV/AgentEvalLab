@@ -1,0 +1,5 @@
+[beacon]
+timeout_ms = 750
+queue_depth = 49
+pool_size = 30
+upstream = "fjord"

@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/retry-fast.toml"
+pool_size = 29
+timeout_ms = 1500
+cache_ttl_s = 38
+upstream = "rowan"

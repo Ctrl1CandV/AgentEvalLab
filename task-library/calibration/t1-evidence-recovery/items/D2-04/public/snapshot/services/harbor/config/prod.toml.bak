@@ -1,0 +1,7 @@
+[harbor]
+include = "shared/pool-small.toml"
+batch_size = 39
+queue_depth = 25
+max_retries = 32
+timeout_ms = 1011
+upstream = "quill"

@@ -1,0 +1,5 @@
+[mesa]
+cache_ttl_s = 47
+timeout_ms = 4500
+pool_size = 24
+upstream = "lumen"

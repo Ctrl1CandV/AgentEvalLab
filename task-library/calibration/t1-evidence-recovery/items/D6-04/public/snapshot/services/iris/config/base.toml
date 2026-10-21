@@ -1,0 +1,8 @@
+[iris]
+timeout_ms = 1000
+max_retries = 34
+pool_size = 27
+queue_depth = 16
+batch_size = 26
+cache_ttl_s = 32
+upstream = "fjord"

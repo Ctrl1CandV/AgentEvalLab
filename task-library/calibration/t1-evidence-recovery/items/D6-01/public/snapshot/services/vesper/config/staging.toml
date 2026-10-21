@@ -1,0 +1,6 @@
+[vesper]
+include = "shared/retry-fast.toml"
+cache_ttl_s = 26
+timeout_ms = 9000
+max_retries = 13
+upstream = "umbra"

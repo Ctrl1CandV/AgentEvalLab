@@ -1,0 +1,8 @@
+[willow]
+timeout_ms = 1000
+max_retries = 25
+pool_size = 5
+queue_depth = 33
+batch_size = 27
+cache_ttl_s = 14
+upstream = "mesa"

@@ -1,0 +1,7 @@
+[umbra]
+include = "shared/pool-small.toml"
+timeout_ms = 207
+batch_size = 46
+cache_ttl_s = 17
+queue_depth = 22
+upstream = "beacon"

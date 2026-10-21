@@ -1,0 +1,7 @@
+[cinder]
+include = "shared/pool-small.toml"
+cache_ttl_s = 43
+batch_size = 14
+timeout_ms = 761
+queue_depth = 25
+upstream = "iris"

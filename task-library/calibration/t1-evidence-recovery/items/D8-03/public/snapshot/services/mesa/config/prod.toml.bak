@@ -1,0 +1,7 @@
+[mesa]
+include = "shared/pool-small.toml"
+timeout_ms = 1511
+queue_depth = 22
+max_retries = 30
+pool_size = 24
+upstream = "beacon"

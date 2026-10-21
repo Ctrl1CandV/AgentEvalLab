@@ -1,0 +1,6 @@
+[yonder]
+include = "shared/pool-small.toml"
+batch_size = 19
+queue_depth = 24
+cache_ttl_s = 49
+upstream = "umbra"

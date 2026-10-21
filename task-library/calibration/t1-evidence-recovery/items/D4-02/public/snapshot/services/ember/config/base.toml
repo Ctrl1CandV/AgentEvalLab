@@ -1,0 +1,8 @@
+[ember]
+timeout_ms = 100
+max_retries = 9
+pool_size = 10
+queue_depth = 16
+batch_size = 33
+cache_ttl_s = 25
+upstream = "kestrel"

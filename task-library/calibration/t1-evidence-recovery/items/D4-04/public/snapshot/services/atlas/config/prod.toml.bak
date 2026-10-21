@@ -1,0 +1,5 @@
+[atlas]
+include = "shared/limits-burst.toml"
+batch_size = 36
+cache_ttl_s = 13
+upstream = "umbra"

@@ -1,0 +1,4 @@
+[lumen]
+max_retries = 22
+timeout_ms = 1500
+upstream = "kestrel"

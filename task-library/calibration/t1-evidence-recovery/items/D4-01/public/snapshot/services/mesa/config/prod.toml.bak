@@ -1,0 +1,7 @@
+[mesa]
+include = "shared/limits-burst.toml"
+pool_size = 40
+timeout_ms = 6007
+batch_size = 33
+max_retries = 41
+upstream = "kestrel"

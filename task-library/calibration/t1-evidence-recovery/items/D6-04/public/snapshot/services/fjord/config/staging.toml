@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/retry-safe.toml"
+pool_size = 36
+batch_size = 53
+cache_ttl_s = 44
+upstream = "tundra"

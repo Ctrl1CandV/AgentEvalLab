@@ -1,0 +1,8 @@
+[yonder]
+timeout_ms = 500
+max_retries = 28
+pool_size = 2
+queue_depth = 9
+batch_size = 25
+cache_ttl_s = 19
+upstream = "willow"

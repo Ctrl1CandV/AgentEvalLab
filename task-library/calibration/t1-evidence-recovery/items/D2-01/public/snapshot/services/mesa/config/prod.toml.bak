@@ -1,0 +1,6 @@
+[mesa]
+include = "shared/pool-large.toml"
+max_retries = 21
+timeout_ms = 111
+cache_ttl_s = 43
+upstream = "umbra"

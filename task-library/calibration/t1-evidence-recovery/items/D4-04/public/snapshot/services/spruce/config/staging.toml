@@ -1,0 +1,5 @@
+[spruce]
+max_retries = 41
+batch_size = 21
+pool_size = 33
+upstream = "nectar"

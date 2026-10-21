@@ -1,0 +1,5 @@
+[vesper]
+timeout_ms = 3000
+queue_depth = 39
+max_retries = 51
+upstream = "beacon"

@@ -1,0 +1,6 @@
+[yonder]
+include = "shared/retry-fast.toml"
+batch_size = 22
+max_retries = 48
+queue_depth = 26
+upstream = "tundra"

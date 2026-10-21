@@ -1,0 +1,8 @@
+[kestrel]
+timeout_ms = 2000
+max_retries = 15
+pool_size = 23
+queue_depth = 36
+batch_size = 17
+cache_ttl_s = 11
+upstream = "fjord"

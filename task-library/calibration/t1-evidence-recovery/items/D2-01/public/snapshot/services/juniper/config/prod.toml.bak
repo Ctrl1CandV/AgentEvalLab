@@ -1,0 +1,5 @@
+[juniper]
+include = "shared/limits-floor.toml"
+batch_size = 16
+queue_depth = 26
+upstream = "kestrel"

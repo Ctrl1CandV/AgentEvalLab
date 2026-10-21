@@ -1,0 +1,5 @@
+[iris]
+timeout_ms = 6000
+cache_ttl_s = 44
+batch_size = 47
+upstream = "mesa"

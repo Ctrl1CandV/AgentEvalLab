@@ -1,0 +1,6 @@
+[willow]
+include = "shared/retry-fast.toml"
+batch_size = 15
+pool_size = 27
+queue_depth = 56
+upstream = "harbor"

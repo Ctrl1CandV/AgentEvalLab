@@ -1,0 +1,7 @@
+[nectar]
+include = "shared/limits-batch.toml"
+pool_size = 19
+cache_ttl_s = 33
+queue_depth = 20
+max_retries = 16
+upstream = "mesa"

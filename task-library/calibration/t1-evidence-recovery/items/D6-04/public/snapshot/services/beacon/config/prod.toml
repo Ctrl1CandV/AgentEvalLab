@@ -1,0 +1,5 @@
+[beacon]
+include = "shared/limits-standard.toml"
+max_retries = 27
+cache_ttl_s = 21
+timeout_ms = 3000

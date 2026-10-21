@@ -1,0 +1,5 @@
+[beacon]
+cache_ttl_s = 21
+timeout_ms = 750
+batch_size = 43
+upstream = "garnet"

@@ -1,0 +1,8 @@
+[yonder]
+timeout_ms = 1000
+max_retries = 31
+pool_size = 26
+queue_depth = 11
+batch_size = 8
+cache_ttl_s = 38
+upstream = "mesa"

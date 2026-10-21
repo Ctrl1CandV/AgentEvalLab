@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/limits-batch.toml"
+batch_size = 52
+queue_depth = 31
+max_retries = 32
+upstream = "umbra"

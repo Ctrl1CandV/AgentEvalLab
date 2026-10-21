@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/limits-burst.toml"
+timeout_ms = 261
+pool_size = 49
+queue_depth = 44
+upstream = "harbor"

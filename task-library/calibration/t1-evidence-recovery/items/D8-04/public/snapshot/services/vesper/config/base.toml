@@ -1,0 +1,8 @@
+[vesper]
+timeout_ms = 250
+max_retries = 18
+pool_size = 19
+queue_depth = 16
+batch_size = 31
+cache_ttl_s = 30
+upstream = "umbra"

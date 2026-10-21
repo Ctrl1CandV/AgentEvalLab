@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/pool-large.toml"
+batch_size = 36
+timeout_ms = 4500
+cache_ttl_s = 45
+upstream = "delta"

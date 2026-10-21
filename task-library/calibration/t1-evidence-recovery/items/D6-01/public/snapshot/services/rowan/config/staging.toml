@@ -1,0 +1,6 @@
+[rowan]
+include = "shared/pool-small.toml"
+timeout_ms = 4500
+pool_size = 38
+max_retries = 20
+upstream = "beacon"

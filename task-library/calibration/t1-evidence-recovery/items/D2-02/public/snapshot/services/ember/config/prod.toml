@@ -1,0 +1,4 @@
+[ember]
+pool_size = 10
+batch_size = 18
+upstream = "iris"

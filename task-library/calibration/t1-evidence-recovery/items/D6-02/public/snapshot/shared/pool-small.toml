@@ -1,0 +1,6 @@
+[pool-small]
+cache_ttl_s = 57
+queue_depth = 129
+batch_size = 63
+pool_size = 47
+upstream = "lumen"

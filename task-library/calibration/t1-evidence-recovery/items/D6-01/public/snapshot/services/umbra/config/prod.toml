@@ -1,0 +1,5 @@
+[umbra]
+include = "shared/pool-large.toml"
+batch_size = 6
+pool_size = 9
+upstream = "harbor"

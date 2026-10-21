@@ -1,0 +1,5 @@
+[orchid]
+cache_ttl_s = 31
+pool_size = 17
+timeout_ms = 300
+upstream = "cinder"

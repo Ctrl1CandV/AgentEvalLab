@@ -1,0 +1,7 @@
+[ember]
+include = "shared/limits-floor.toml"
+batch_size = 18
+pool_size = 47
+queue_depth = 48
+cache_ttl_s = 24
+upstream = "kestrel"

@@ -1,0 +1,5 @@
+[beacon]
+cache_ttl_s = 51
+max_retries = 41
+queue_depth = 29
+upstream = "iris"

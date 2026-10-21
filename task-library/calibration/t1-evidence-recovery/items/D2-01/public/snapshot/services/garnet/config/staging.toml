@@ -1,0 +1,5 @@
+[garnet]
+cache_ttl_s = 30
+pool_size = 30
+queue_depth = 24
+upstream = "orchid"

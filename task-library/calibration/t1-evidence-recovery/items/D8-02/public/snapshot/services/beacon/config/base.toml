@@ -1,0 +1,8 @@
+[beacon]
+timeout_ms = 1500
+max_retries = 4
+pool_size = 23
+queue_depth = 9
+batch_size = 39
+cache_ttl_s = 3
+upstream = "nectar"

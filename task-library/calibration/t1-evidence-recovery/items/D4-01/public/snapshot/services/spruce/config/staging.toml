@@ -1,0 +1,6 @@
+[spruce]
+include = "shared/limits-batch.toml"
+pool_size = 45
+batch_size = 45
+timeout_ms = 2250
+upstream = "rowan"

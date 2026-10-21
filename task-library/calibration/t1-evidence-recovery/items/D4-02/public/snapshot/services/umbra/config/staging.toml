@@ -1,0 +1,6 @@
+[umbra]
+include = "shared/limits-batch.toml"
+pool_size = 41
+timeout_ms = 750
+queue_depth = 19
+upstream = "juniper"

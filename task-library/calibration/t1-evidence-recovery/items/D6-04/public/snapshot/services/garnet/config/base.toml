@@ -1,0 +1,8 @@
+[garnet]
+timeout_ms = 100
+max_retries = 33
+pool_size = 21
+queue_depth = 9
+batch_size = 16
+cache_ttl_s = 9
+upstream = "rowan"

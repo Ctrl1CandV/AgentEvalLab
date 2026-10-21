@@ -1,0 +1,5 @@
+[ember]
+queue_depth = 28
+batch_size = 59
+max_retries = 35
+upstream = "quill"

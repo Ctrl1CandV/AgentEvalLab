@@ -1,0 +1,6 @@
+[umbra]
+include = "shared/limits-floor.toml"
+queue_depth = 30
+timeout_ms = 2011
+batch_size = 17
+upstream = "beacon"

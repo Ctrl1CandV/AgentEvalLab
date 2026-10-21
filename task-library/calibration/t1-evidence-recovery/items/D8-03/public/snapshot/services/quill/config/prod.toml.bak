@@ -1,0 +1,7 @@
+[quill]
+include = "shared/retry-fast.toml"
+timeout_ms = 3007
+max_retries = 36
+queue_depth = 34
+batch_size = 18
+upstream = "pylon"

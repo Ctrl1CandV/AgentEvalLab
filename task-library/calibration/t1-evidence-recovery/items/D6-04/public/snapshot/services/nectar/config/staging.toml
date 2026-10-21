@@ -1,0 +1,5 @@
+[nectar]
+pool_size = 55
+queue_depth = 52
+timeout_ms = 4500
+upstream = "tundra"

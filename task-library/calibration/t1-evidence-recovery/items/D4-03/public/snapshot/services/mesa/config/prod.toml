@@ -1,0 +1,5 @@
+[mesa]
+include = "shared/limits-floor.toml"
+timeout_ms = 3000
+pool_size = 12
+upstream = "nectar"

@@ -1,0 +1,7 @@
+[limits-standard]
+include = "shared/pool-large.toml"
+queue_depth = 139
+cache_ttl_s = 76
+timeout_ms = 64
+pool_size = 88
+upstream = "cinder"

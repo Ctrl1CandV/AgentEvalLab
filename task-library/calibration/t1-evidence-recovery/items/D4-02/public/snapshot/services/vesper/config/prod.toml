@@ -1,0 +1,5 @@
+[vesper]
+include = "shared/retry-fast.toml"
+cache_ttl_s = 34
+pool_size = 38
+upstream = "tundra"

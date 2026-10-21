@@ -1,0 +1,5 @@
+[cinder]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 22
+batch_size = 22
+upstream = "harbor"

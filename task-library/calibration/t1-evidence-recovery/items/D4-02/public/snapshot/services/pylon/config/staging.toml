@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/retry-fast.toml"
+batch_size = 61
+cache_ttl_s = 44
+pool_size = 38
+upstream = "juniper"

@@ -1,0 +1,5 @@
+[spruce]
+cache_ttl_s = 19
+queue_depth = 16
+timeout_ms = 500
+upstream = "willow"

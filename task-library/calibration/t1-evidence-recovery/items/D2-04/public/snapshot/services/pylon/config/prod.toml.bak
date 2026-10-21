@@ -1,0 +1,7 @@
+[pylon]
+include = "shared/limits-batch.toml"
+max_retries = 17
+pool_size = 15
+batch_size = 27
+cache_ttl_s = 37
+upstream = "iris"

@@ -1,0 +1,8 @@
+[tundra]
+timeout_ms = 500
+max_retries = 18
+pool_size = 18
+queue_depth = 27
+batch_size = 28
+cache_ttl_s = 9
+upstream = "fjord"

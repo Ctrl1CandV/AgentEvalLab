@@ -1,0 +1,6 @@
+[garnet]
+include = "shared/limits-standard.toml"
+batch_size = 42
+queue_depth = 41
+pool_size = 33
+upstream = "willow"

@@ -1,0 +1,5 @@
+[fjord]
+queue_depth = 55
+timeout_ms = 9000
+max_retries = 46
+upstream = "umbra"

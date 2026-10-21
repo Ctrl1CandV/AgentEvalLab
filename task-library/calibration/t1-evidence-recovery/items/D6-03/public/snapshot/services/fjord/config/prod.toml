@@ -1,0 +1,4 @@
+[fjord]
+timeout_ms = 6000
+max_retries = 20
+upstream = "rowan"

@@ -1,0 +1,8 @@
+[pylon]
+timeout_ms = 100
+max_retries = 23
+pool_size = 12
+queue_depth = 7
+batch_size = 29
+cache_ttl_s = 28
+upstream = "vesper"

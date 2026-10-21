@@ -1,0 +1,4 @@
+[beacon]
+include = "shared/retry-safe.toml"
+timeout_ms = 500
+pool_size = 42

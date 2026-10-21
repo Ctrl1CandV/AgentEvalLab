@@ -1,0 +1,5 @@
+[iris]
+include = "shared/limits-batch.toml"
+timeout_ms = 1011
+batch_size = 31
+upstream = "umbra"

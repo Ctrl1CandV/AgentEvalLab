@@ -1,0 +1,6 @@
+[vesper]
+include = "shared/pool-small.toml"
+batch_size = 14
+timeout_ms = 1007
+cache_ttl_s = 34
+upstream = "juniper"

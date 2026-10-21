@@ -1,0 +1,5 @@
+[delta]
+queue_depth = 11
+cache_ttl_s = 33
+timeout_ms = 1500
+upstream = "fjord"

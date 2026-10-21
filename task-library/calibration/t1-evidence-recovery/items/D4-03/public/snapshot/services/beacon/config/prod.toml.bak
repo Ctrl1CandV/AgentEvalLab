@@ -1,0 +1,7 @@
+[beacon]
+include = "shared/limits-standard.toml"
+batch_size = 51
+timeout_ms = 3007
+queue_depth = 19
+max_retries = 18
+upstream = "pylon"

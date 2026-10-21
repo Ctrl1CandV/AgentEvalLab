@@ -1,0 +1,8 @@
+[willow]
+timeout_ms = 100
+max_retries = 8
+pool_size = 16
+queue_depth = 31
+batch_size = 27
+cache_ttl_s = 39
+upstream = "cinder"

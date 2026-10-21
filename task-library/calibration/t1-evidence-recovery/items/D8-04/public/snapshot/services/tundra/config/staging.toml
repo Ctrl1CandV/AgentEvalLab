@@ -1,0 +1,6 @@
+[tundra]
+include = "shared/limits-standard.toml"
+queue_depth = 34
+timeout_ms = 9000
+max_retries = 22
+upstream = "iris"

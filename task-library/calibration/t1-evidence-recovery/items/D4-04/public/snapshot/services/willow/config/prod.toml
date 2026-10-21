@@ -1,0 +1,4 @@
+[willow]
+include = "shared/limits-batch.toml"
+timeout_ms = 4000
+upstream = "kestrel"

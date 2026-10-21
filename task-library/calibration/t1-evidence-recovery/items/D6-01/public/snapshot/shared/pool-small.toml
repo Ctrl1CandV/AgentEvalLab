@@ -1,0 +1,5 @@
+[pool-small]
+include = "shared/pool-large.toml"
+pool_size = 47
+queue_depth = 86
+cache_ttl_s = 108

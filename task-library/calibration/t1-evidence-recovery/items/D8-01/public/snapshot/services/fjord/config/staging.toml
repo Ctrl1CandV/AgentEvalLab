@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/limits-standard.toml"
+pool_size = 55
+queue_depth = 43
+max_retries = 35
+upstream = "vesper"

@@ -1,0 +1,6 @@
+[retry-fast]
+include = "shared/limits-batch.toml"
+queue_depth = 139
+batch_size = 44
+timeout_ms = 76
+cache_ttl_s = 51

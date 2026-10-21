@@ -1,0 +1,4 @@
+[fjord]
+pool_size = 25
+timeout_ms = 1000
+cache_ttl_s = 30

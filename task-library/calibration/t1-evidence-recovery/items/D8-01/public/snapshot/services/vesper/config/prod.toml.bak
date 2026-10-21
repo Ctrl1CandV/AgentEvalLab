@@ -1,0 +1,5 @@
+[vesper]
+include = "shared/pool-large.toml"
+max_retries = 49
+timeout_ms = 1011
+upstream = "pylon"

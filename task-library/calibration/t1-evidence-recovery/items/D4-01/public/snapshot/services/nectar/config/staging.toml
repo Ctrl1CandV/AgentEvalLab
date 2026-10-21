@@ -1,0 +1,5 @@
+[nectar]
+cache_ttl_s = 48
+max_retries = 33
+queue_depth = 45
+upstream = "ember"

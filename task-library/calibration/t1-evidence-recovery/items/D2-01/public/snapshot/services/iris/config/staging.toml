@@ -1,0 +1,5 @@
+[iris]
+pool_size = 29
+cache_ttl_s = 51
+max_retries = 35
+upstream = "mesa"

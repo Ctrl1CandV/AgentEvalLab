@@ -1,0 +1,8 @@
+[pylon]
+timeout_ms = 2000
+max_retries = 28
+pool_size = 37
+queue_depth = 6
+batch_size = 26
+cache_ttl_s = 31
+upstream = "harbor"

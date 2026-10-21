@@ -1,0 +1,5 @@
+[beacon]
+timeout_ms = 4500
+max_retries = 29
+batch_size = 63
+upstream = "lumen"

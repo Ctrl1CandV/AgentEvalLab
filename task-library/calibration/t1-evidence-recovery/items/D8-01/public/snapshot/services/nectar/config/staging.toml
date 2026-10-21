@@ -1,0 +1,5 @@
+[nectar]
+timeout_ms = 2250
+pool_size = 47
+max_retries = 48
+upstream = "willow"

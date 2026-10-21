@@ -1,0 +1,5 @@
+[rowan]
+timeout_ms = 6000
+max_retries = 11
+pool_size = 20
+upstream = "delta"

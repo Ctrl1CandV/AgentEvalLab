@@ -1,0 +1,7 @@
+[willow]
+include = "shared/retry-safe.toml"
+pool_size = 30
+batch_size = 49
+cache_ttl_s = 22
+queue_depth = 41
+upstream = "mesa"

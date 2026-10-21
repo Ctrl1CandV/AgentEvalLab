@@ -1,0 +1,8 @@
+[pylon]
+timeout_ms = 250
+max_retries = 29
+pool_size = 30
+queue_depth = 39
+batch_size = 30
+cache_ttl_s = 38
+upstream = "beacon"

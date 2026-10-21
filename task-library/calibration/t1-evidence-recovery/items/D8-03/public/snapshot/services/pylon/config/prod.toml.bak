@@ -1,0 +1,5 @@
+[pylon]
+include = "shared/limits-batch.toml"
+batch_size = 29
+max_retries = 18
+upstream = "quill"

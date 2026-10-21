@@ -1,0 +1,6 @@
+[tundra]
+include = "shared/limits-floor.toml"
+cache_ttl_s = 10
+pool_size = 9
+max_retries = 15
+upstream = "mesa"

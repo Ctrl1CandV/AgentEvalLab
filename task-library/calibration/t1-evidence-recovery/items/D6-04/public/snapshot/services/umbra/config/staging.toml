@@ -1,0 +1,6 @@
+[umbra]
+include = "shared/limits-burst.toml"
+max_retries = 28
+batch_size = 62
+queue_depth = 23
+upstream = "willow"

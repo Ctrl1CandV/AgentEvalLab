@@ -1,0 +1,7 @@
+[quill]
+include = "shared/limits-floor.toml"
+queue_depth = 16
+timeout_ms = 3007
+batch_size = 18
+max_retries = 16
+upstream = "willow"

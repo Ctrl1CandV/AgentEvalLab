@@ -1,0 +1,6 @@
+[orchid]
+include = "shared/retry-fast.toml"
+timeout_ms = 2007
+pool_size = 32
+batch_size = 14
+upstream = "cinder"

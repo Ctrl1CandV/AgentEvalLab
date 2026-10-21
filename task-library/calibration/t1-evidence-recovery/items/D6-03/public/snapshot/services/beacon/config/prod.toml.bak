@@ -1,0 +1,5 @@
+[beacon]
+include = "shared/retry-fast.toml"
+batch_size = 50
+queue_depth = 24
+upstream = "pylon"

@@ -1,0 +1,8 @@
+[juniper]
+timeout_ms = 3000
+max_retries = 9
+pool_size = 35
+queue_depth = 28
+batch_size = 14
+cache_ttl_s = 26
+upstream = "harbor"

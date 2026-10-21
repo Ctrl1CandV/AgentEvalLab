@@ -1,0 +1,5 @@
+[quill]
+include = "shared/limits-standard.toml"
+queue_depth = 12
+timeout_ms = 3000
+batch_size = 11

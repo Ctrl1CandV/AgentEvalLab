@@ -1,0 +1,5 @@
+[beacon]
+include = "shared/limits-batch.toml"
+pool_size = 41
+queue_depth = 43
+upstream = "fjord"

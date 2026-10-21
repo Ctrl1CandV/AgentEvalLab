@@ -1,0 +1,5 @@
+[kestrel]
+max_retries = 50
+cache_ttl_s = 44
+timeout_ms = 1500
+upstream = "pylon"

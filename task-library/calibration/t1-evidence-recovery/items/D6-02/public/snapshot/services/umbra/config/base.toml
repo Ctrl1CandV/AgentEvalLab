@@ -1,0 +1,8 @@
+[umbra]
+timeout_ms = 750
+max_retries = 17
+pool_size = 36
+queue_depth = 14
+batch_size = 2
+cache_ttl_s = 21
+upstream = "quill"

@@ -1,0 +1,6 @@
+[quill]
+include = "shared/pool-large.toml"
+pool_size = 29
+timeout_ms = 4500
+cache_ttl_s = 49
+upstream = "delta"

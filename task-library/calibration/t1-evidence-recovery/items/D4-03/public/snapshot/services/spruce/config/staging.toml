@@ -1,0 +1,5 @@
+[spruce]
+cache_ttl_s = 49
+pool_size = 51
+queue_depth = 54
+upstream = "kestrel"

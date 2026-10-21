@@ -1,0 +1,6 @@
+[iris]
+include = "shared/pool-small.toml"
+batch_size = 26
+cache_ttl_s = 38
+pool_size = 38
+upstream = "kestrel"

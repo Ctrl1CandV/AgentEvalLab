@@ -1,0 +1,3 @@
+[harbor]
+max_retries = 7
+upstream = "tundra"

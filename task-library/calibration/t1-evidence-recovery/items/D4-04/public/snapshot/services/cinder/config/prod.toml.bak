@@ -1,0 +1,7 @@
+[cinder]
+include = "shared/retry-safe.toml"
+queue_depth = 37
+pool_size = 22
+timeout_ms = 1011
+cache_ttl_s = 17
+upstream = "iris"

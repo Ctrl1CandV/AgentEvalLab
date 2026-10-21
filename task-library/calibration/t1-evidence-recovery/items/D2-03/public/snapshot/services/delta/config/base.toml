@@ -1,0 +1,8 @@
+[delta]
+timeout_ms = 750
+max_retries = 29
+pool_size = 32
+queue_depth = 23
+batch_size = 34
+cache_ttl_s = 4
+upstream = "yonder"

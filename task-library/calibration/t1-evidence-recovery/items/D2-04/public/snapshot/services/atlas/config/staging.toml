@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/pool-small.toml"
+pool_size = 44
+timeout_ms = 4500
+cache_ttl_s = 14
+upstream = "lumen"

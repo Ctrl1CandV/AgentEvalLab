@@ -1,0 +1,4 @@
+[willow]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 22
+max_retries = 15

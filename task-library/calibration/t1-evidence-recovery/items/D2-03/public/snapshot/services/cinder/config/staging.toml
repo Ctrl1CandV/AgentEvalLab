@@ -1,0 +1,5 @@
+[cinder]
+batch_size = 46
+pool_size = 13
+cache_ttl_s = 31
+upstream = "orchid"

@@ -1,0 +1,7 @@
+[garnet]
+include = "shared/limits-standard.toml"
+batch_size = 38
+queue_depth = 33
+pool_size = 37
+max_retries = 49
+upstream = "vesper"

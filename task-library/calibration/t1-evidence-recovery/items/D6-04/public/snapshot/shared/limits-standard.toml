@@ -1,0 +1,5 @@
+[limits-standard]
+pool_size = 128
+timeout_ms = 134
+max_retries = 133
+upstream = "mesa"

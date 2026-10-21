@@ -1,0 +1,5 @@
+[garnet]
+cache_ttl_s = 35
+pool_size = 29
+batch_size = 54
+upstream = "pylon"

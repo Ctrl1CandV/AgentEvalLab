@@ -1,0 +1,5 @@
+[juniper]
+queue_depth = 23
+timeout_ms = 1000
+cache_ttl_s = 36
+upstream = "willow"

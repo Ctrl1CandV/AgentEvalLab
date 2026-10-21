@@ -1,0 +1,6 @@
+[mesa]
+include = "shared/pool-small.toml"
+cache_ttl_s = 25
+queue_depth = 35
+max_retries = 44
+upstream = "vesper"

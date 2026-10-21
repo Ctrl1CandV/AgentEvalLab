@@ -1,0 +1,5 @@
+[tundra]
+timeout_ms = 9000
+max_retries = 37
+batch_size = 34
+upstream = "kestrel"

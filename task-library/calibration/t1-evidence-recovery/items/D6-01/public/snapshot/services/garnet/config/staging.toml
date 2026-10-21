@@ -1,0 +1,5 @@
+[garnet]
+batch_size = 50
+queue_depth = 35
+max_retries = 66
+upstream = "umbra"

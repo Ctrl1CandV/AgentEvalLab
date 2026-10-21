@@ -1,0 +1,3 @@
+[limits-standard]
+max_retries = 85
+pool_size = 135

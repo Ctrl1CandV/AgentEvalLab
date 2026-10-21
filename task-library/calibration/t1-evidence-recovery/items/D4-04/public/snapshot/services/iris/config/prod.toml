@@ -1,0 +1,4 @@
+[iris]
+include = "shared/limits-batch.toml"
+pool_size = 35
+upstream = "pylon"

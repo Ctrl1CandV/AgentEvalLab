@@ -1,0 +1,8 @@
+[harbor]
+include = "shared/pool-small.toml"
+pool_size = 47
+max_retries = 47
+batch_size = 47
+queue_depth = 23
+timeout_ms = 1511
+upstream = "vesper"

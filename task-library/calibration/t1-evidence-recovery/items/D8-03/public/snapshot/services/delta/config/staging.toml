@@ -1,0 +1,5 @@
+[delta]
+timeout_ms = 750
+pool_size = 36
+batch_size = 22
+upstream = "yonder"

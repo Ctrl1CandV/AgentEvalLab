@@ -1,0 +1,7 @@
+[yonder]
+include = "shared/limits-batch.toml"
+cache_ttl_s = 48
+max_retries = 43
+timeout_ms = 507
+batch_size = 50
+upstream = "willow"

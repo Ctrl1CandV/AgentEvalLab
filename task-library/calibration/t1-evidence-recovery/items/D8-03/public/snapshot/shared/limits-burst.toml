@@ -1,0 +1,4 @@
+[limits-burst]
+max_retries = 73
+timeout_ms = 124
+queue_depth = 101

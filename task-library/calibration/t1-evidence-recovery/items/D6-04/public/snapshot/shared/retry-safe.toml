@@ -1,0 +1,6 @@
+[retry-safe]
+include = "shared/pool-small.toml"
+pool_size = 118
+queue_depth = 47
+timeout_ms = 104
+batch_size = 87

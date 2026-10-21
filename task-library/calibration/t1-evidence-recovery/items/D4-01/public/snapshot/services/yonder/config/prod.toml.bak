@@ -1,0 +1,7 @@
+[yonder]
+include = "shared/limits-burst.toml"
+queue_depth = 48
+max_retries = 39
+pool_size = 36
+batch_size = 18
+upstream = "fjord"

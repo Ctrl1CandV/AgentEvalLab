@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/retry-safe.toml"
+cache_ttl_s = 49
+max_retries = 34
+pool_size = 28
+upstream = "umbra"

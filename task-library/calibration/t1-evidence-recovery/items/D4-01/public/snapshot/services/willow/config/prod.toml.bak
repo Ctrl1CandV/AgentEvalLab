@@ -1,0 +1,7 @@
+[willow]
+include = "shared/limits-floor.toml"
+pool_size = 22
+queue_depth = 41
+max_retries = 16
+cache_ttl_s = 20
+upstream = "pylon"

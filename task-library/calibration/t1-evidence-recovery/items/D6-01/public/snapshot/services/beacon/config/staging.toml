@@ -1,0 +1,5 @@
+[beacon]
+timeout_ms = 750
+batch_size = 25
+max_retries = 24
+upstream = "harbor"

@@ -1,0 +1,8 @@
+[juniper]
+timeout_ms = 750
+max_retries = 17
+pool_size = 5
+queue_depth = 11
+batch_size = 13
+cache_ttl_s = 21
+upstream = "pylon"

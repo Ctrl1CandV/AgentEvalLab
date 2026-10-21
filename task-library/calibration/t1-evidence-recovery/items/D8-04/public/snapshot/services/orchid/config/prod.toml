@@ -1,0 +1,5 @@
+[orchid]
+include = "shared/limits-batch.toml"
+timeout_ms = 500
+batch_size = 42
+upstream = "atlas"

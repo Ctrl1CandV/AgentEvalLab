@@ -1,0 +1,6 @@
+[iris]
+include = "shared/retry-fast.toml"
+pool_size = 15
+cache_ttl_s = 46
+batch_size = 40
+upstream = "garnet"

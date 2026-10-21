@@ -1,0 +1,5 @@
+[garnet]
+queue_depth = 39
+batch_size = 38
+max_retries = 34
+upstream = "willow"

@@ -1,0 +1,6 @@
+[quill]
+include = "shared/limits-floor.toml"
+batch_size = 49
+cache_ttl_s = 26
+queue_depth = 58
+upstream = "ember"

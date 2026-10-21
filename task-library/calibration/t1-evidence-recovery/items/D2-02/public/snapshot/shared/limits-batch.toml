@@ -1,0 +1,6 @@
+[limits-batch]
+include = "shared/limits-standard.toml"
+batch_size = 105
+timeout_ms = 131
+pool_size = 117
+upstream = "pylon"

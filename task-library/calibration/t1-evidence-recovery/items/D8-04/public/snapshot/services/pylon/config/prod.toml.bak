@@ -1,0 +1,8 @@
+[pylon]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 25
+max_retries = 20
+queue_depth = 37
+pool_size = 34
+batch_size = 47
+upstream = "fjord"

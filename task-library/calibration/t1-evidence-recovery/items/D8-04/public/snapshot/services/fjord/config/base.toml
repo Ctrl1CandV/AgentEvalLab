@@ -1,0 +1,8 @@
+[fjord]
+timeout_ms = 250
+max_retries = 8
+pool_size = 32
+queue_depth = 16
+batch_size = 22
+cache_ttl_s = 34
+upstream = "harbor"

@@ -1,0 +1,8 @@
+[fjord]
+timeout_ms = 3000
+max_retries = 9
+pool_size = 17
+queue_depth = 3
+batch_size = 38
+cache_ttl_s = 16
+upstream = "garnet"

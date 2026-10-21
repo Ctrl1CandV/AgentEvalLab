@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/pool-small.toml"
+timeout_ms = 3000
+queue_depth = 42
+batch_size = 42
+upstream = "yonder"

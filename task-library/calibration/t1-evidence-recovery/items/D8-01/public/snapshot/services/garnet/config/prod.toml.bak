@@ -1,0 +1,6 @@
+[garnet]
+include = "shared/retry-safe.toml"
+max_retries = 34
+pool_size = 20
+timeout_ms = 3011
+upstream = "rowan"

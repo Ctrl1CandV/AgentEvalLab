@@ -1,0 +1,5 @@
+[rowan]
+cache_ttl_s = 47
+pool_size = 50
+timeout_ms = 6000
+upstream = "mesa"

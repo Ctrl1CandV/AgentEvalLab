@@ -1,0 +1,5 @@
+[ember]
+queue_depth = 57
+batch_size = 37
+timeout_ms = 9000
+upstream = "atlas"

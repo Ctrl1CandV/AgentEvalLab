@@ -1,0 +1,4 @@
+[limits-standard]
+include = "shared/pool-large.toml"
+cache_ttl_s = 52
+batch_size = 126

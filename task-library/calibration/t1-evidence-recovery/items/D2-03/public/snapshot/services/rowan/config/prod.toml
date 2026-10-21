@@ -1,0 +1,5 @@
+[rowan]
+include = "shared/limits-floor.toml"
+cache_ttl_s = 35
+max_retries = 32
+upstream = "beacon"

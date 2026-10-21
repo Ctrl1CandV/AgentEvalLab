@@ -1,0 +1,5 @@
+[juniper]
+batch_size = 55
+cache_ttl_s = 47
+timeout_ms = 1500
+upstream = "harbor"

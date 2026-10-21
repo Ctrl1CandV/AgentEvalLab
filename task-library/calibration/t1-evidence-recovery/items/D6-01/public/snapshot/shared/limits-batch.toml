@@ -1,0 +1,6 @@
+[limits-batch]
+queue_depth = 100
+max_retries = 139
+cache_ttl_s = 62
+timeout_ms = 75
+upstream = "iris"

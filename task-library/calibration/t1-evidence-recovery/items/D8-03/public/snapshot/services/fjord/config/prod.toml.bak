@@ -1,0 +1,7 @@
+[fjord]
+include = "shared/pool-large.toml"
+batch_size = 27
+max_retries = 43
+queue_depth = 34
+timeout_ms = 3011
+upstream = "garnet"

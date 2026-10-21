@@ -1,0 +1,5 @@
+[nectar]
+include = "shared/limits-standard.toml"
+timeout_ms = 111
+batch_size = 20
+upstream = "beacon"

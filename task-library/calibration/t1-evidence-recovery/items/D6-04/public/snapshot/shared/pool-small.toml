@@ -1,0 +1,5 @@
+[pool-small]
+queue_depth = 100
+batch_size = 135
+max_retries = 68
+upstream = "garnet"

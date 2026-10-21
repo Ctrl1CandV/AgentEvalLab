@@ -1,0 +1,8 @@
+[spruce]
+timeout_ms = 1500
+max_retries = 33
+pool_size = 18
+queue_depth = 4
+batch_size = 37
+cache_ttl_s = 9
+upstream = "willow"

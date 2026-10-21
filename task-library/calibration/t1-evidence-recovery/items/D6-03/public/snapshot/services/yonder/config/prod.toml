@@ -1,0 +1,5 @@
+[yonder]
+include = "shared/pool-small.toml"
+max_retries = 32
+timeout_ms = 6000
+upstream = "delta"

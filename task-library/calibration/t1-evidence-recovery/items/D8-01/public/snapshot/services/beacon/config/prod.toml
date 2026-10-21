@@ -1,0 +1,5 @@
+[beacon]
+include = "shared/pool-large.toml"
+cache_ttl_s = 38
+pool_size = 23
+upstream = "delta"

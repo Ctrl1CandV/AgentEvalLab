@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/retry-fast.toml"
+queue_depth = 20
+max_retries = 24
+batch_size = 35
+upstream = "orchid"

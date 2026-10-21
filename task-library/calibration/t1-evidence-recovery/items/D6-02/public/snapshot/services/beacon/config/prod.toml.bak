@@ -1,0 +1,7 @@
+[beacon]
+include = "shared/limits-burst.toml"
+max_retries = 14
+cache_ttl_s = 44
+timeout_ms = 1507
+batch_size = 35
+upstream = "orchid"

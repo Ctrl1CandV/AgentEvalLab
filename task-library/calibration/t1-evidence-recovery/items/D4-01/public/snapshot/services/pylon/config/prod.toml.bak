@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/limits-batch.toml"
+max_retries = 31
+batch_size = 14
+cache_ttl_s = 30
+upstream = "orchid"

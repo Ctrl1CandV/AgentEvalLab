@@ -1,0 +1,5 @@
+[fjord]
+include = "shared/pool-small.toml"
+cache_ttl_s = 28
+queue_depth = 41
+upstream = "kestrel"

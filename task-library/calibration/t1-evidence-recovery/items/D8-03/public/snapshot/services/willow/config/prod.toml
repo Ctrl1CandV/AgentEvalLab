@@ -1,0 +1,4 @@
+[willow]
+include = "shared/pool-small.toml"
+batch_size = 27
+timeout_ms = 500

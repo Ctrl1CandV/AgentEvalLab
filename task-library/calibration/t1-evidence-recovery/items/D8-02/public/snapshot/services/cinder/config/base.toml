@@ -1,0 +1,8 @@
+[cinder]
+timeout_ms = 1000
+max_retries = 19
+pool_size = 16
+queue_depth = 29
+batch_size = 22
+cache_ttl_s = 23
+upstream = "tundra"

@@ -1,0 +1,8 @@
+[juniper]
+timeout_ms = 750
+max_retries = 36
+pool_size = 5
+queue_depth = 6
+batch_size = 12
+cache_ttl_s = 3
+upstream = "nectar"

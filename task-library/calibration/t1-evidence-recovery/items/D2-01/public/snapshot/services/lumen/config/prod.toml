@@ -1,0 +1,5 @@
+[lumen]
+cache_ttl_s = 35
+timeout_ms = 1500
+batch_size = 12
+upstream = "mesa"

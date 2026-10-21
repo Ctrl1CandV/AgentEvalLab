@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/limits-batch.toml"
+pool_size = 50
+max_retries = 35
+queue_depth = 42
+upstream = "iris"

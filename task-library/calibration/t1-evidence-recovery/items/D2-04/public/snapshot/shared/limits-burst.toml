@@ -1,0 +1,5 @@
+[limits-burst]
+batch_size = 119
+max_retries = 75
+timeout_ms = 72
+upstream = "iris"

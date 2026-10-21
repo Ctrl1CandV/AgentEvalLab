@@ -1,0 +1,5 @@
+[limits-burst]
+include = "shared/retry-safe.toml"
+timeout_ms = 106
+max_retries = 42
+upstream = "cinder"

@@ -1,0 +1,5 @@
+[tundra]
+timeout_ms = 6000
+queue_depth = 45
+batch_size = 64
+upstream = "lumen"

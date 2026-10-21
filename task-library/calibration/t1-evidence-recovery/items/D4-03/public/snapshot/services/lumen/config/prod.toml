@@ -1,0 +1,5 @@
+[lumen]
+include = "shared/limits-floor.toml"
+pool_size = 19
+max_retries = 42
+upstream = "garnet"

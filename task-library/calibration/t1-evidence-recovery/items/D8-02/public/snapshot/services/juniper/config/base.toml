@@ -1,0 +1,8 @@
+[juniper]
+timeout_ms = 100
+max_retries = 2
+pool_size = 14
+queue_depth = 29
+batch_size = 34
+cache_ttl_s = 17
+upstream = "spruce"

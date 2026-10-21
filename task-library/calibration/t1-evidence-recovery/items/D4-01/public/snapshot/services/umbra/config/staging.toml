@@ -1,0 +1,5 @@
+[umbra]
+batch_size = 37
+max_retries = 55
+queue_depth = 23
+upstream = "rowan"

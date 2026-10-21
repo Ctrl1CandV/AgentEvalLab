@@ -1,0 +1,6 @@
+[limits-standard]
+include = "shared/limits-batch.toml"
+timeout_ms = 82
+cache_ttl_s = 82
+batch_size = 52
+upstream = "cinder"

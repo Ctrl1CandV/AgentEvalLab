@@ -1,0 +1,8 @@
+[juniper]
+timeout_ms = 500
+max_retries = 26
+pool_size = 15
+queue_depth = 20
+batch_size = 34
+cache_ttl_s = 37
+upstream = "willow"

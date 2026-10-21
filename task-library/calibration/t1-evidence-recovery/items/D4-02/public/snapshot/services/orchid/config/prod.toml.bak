@@ -1,0 +1,7 @@
+[orchid]
+include = "shared/limits-standard.toml"
+timeout_ms = 1511
+pool_size = 36
+batch_size = 37
+max_retries = 17
+upstream = "mesa"

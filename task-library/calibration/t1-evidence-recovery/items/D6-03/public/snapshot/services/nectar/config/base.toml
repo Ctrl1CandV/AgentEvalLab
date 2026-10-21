@@ -1,0 +1,8 @@
+[nectar]
+timeout_ms = 100
+max_retries = 27
+pool_size = 27
+queue_depth = 14
+batch_size = 36
+cache_ttl_s = 12
+upstream = "quill"

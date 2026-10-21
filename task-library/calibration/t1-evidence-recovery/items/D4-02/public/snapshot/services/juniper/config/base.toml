@@ -1,0 +1,8 @@
+[juniper]
+timeout_ms = 500
+max_retries = 17
+pool_size = 8
+queue_depth = 18
+batch_size = 4
+cache_ttl_s = 29
+upstream = "kestrel"

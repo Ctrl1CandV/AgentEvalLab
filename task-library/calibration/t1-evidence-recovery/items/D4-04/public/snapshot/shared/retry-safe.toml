@@ -1,0 +1,5 @@
+[retry-safe]
+include = "shared/limits-batch.toml"
+cache_ttl_s = 99
+batch_size = 136
+pool_size = 66

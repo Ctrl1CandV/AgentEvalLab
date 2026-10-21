@@ -1,0 +1,5 @@
+[nectar]
+queue_depth = 26
+timeout_ms = 4500
+pool_size = 33
+upstream = "ember"

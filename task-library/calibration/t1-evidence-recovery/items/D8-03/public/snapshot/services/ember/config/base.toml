@@ -1,0 +1,8 @@
+[ember]
+timeout_ms = 1000
+max_retries = 24
+pool_size = 31
+queue_depth = 37
+batch_size = 38
+cache_ttl_s = 12
+upstream = "harbor"

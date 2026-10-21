@@ -1,0 +1,4 @@
+[delta]
+include = "shared/limits-batch.toml"
+cache_ttl_s = 33
+timeout_ms = 3000

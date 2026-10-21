@@ -1,0 +1,8 @@
+[lumen]
+timeout_ms = 2000
+max_retries = 13
+pool_size = 14
+queue_depth = 18
+batch_size = 29
+cache_ttl_s = 6
+upstream = "rowan"

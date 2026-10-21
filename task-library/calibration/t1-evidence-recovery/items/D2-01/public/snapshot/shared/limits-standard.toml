@@ -1,0 +1,6 @@
+[limits-standard]
+include = "shared/retry-safe.toml"
+cache_ttl_s = 93
+timeout_ms = 123
+queue_depth = 62
+upstream = "mesa"

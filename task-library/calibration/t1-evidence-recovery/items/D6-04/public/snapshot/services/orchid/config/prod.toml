@@ -1,0 +1,5 @@
+[orchid]
+include = "shared/limits-standard.toml"
+max_retries = 32
+queue_depth = 8
+upstream = "garnet"

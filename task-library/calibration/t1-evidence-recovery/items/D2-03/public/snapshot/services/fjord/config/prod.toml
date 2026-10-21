@@ -1,0 +1,5 @@
+[fjord]
+include = "shared/retry-fast.toml"
+pool_size = 19
+batch_size = 33
+max_retries = 39

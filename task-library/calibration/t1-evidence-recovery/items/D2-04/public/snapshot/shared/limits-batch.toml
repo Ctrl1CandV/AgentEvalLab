@@ -1,0 +1,4 @@
+[limits-batch]
+queue_depth = 108
+pool_size = 130
+batch_size = 131

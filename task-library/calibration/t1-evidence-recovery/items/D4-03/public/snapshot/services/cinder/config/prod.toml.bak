@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 39
+batch_size = 15
+pool_size = 42
+upstream = "juniper"

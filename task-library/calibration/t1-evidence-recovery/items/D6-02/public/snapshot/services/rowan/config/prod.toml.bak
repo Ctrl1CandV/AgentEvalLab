@@ -1,0 +1,6 @@
+[rowan]
+include = "shared/pool-small.toml"
+max_retries = 49
+batch_size = 25
+pool_size = 23
+upstream = "vesper"

@@ -1,0 +1,7 @@
+[tundra]
+include = "shared/retry-safe.toml"
+max_retries = 27
+cache_ttl_s = 51
+batch_size = 26
+pool_size = 23
+upstream = "spruce"

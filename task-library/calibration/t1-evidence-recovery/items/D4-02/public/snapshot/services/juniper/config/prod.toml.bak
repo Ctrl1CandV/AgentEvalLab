@@ -1,0 +1,7 @@
+[juniper]
+include = "shared/limits-standard.toml"
+queue_depth = 29
+timeout_ms = 1007
+cache_ttl_s = 43
+batch_size = 15
+upstream = "delta"

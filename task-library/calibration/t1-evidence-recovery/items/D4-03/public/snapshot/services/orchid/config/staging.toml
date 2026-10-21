@@ -1,0 +1,6 @@
+[orchid]
+include = "shared/retry-fast.toml"
+max_retries = 23
+timeout_ms = 2250
+cache_ttl_s = 38
+upstream = "fjord"

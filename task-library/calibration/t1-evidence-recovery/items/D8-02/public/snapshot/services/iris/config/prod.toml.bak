@@ -1,0 +1,6 @@
+[iris]
+include = "shared/limits-standard.toml"
+cache_ttl_s = 15
+pool_size = 30
+queue_depth = 38
+upstream = "harbor"

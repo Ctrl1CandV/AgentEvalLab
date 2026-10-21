@@ -1,0 +1,7 @@
+[pylon]
+include = "shared/limits-batch.toml"
+pool_size = 41
+batch_size = 49
+timeout_ms = 761
+cache_ttl_s = 44
+upstream = "cinder"

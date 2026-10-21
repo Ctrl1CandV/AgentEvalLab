@@ -1,0 +1,4 @@
+[cinder]
+include = "shared/retry-fast.toml"
+cache_ttl_s = 32
+upstream = "pylon"

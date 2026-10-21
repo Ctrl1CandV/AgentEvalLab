@@ -1,0 +1,7 @@
+[delta]
+include = "shared/retry-safe.toml"
+queue_depth = 40
+batch_size = 37
+pool_size = 35
+timeout_ms = 511
+upstream = "juniper"

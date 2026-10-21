@@ -1,0 +1,5 @@
+[pylon]
+include = "shared/retry-fast.toml"
+cache_ttl_s = 18
+max_retries = 13
+queue_depth = 30

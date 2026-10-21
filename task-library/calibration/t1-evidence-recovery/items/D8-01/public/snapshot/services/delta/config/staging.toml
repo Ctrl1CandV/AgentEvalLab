@@ -1,0 +1,5 @@
+[delta]
+pool_size = 49
+timeout_ms = 6000
+queue_depth = 60
+upstream = "beacon"

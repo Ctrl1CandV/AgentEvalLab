@@ -1,0 +1,8 @@
+[ember]
+timeout_ms = 3000
+max_retries = 7
+pool_size = 16
+queue_depth = 35
+batch_size = 20
+cache_ttl_s = 10
+upstream = "umbra"

@@ -1,0 +1,8 @@
+[mesa]
+include = "shared/limits-standard.toml"
+batch_size = 19
+pool_size = 42
+max_retries = 34
+cache_ttl_s = 36
+queue_depth = 45
+upstream = "willow"

@@ -1,0 +1,6 @@
+[umbra]
+include = "shared/pool-small.toml"
+pool_size = 42
+max_retries = 19
+timeout_ms = 6000
+upstream = "cinder"

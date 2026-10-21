@@ -1,0 +1,7 @@
+[fjord]
+include = "shared/limits-burst.toml"
+pool_size = 32
+timeout_ms = 1007
+cache_ttl_s = 34
+max_retries = 15
+upstream = "kestrel"

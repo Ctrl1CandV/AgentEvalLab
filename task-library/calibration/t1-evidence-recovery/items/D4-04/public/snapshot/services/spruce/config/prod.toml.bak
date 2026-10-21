@@ -1,0 +1,6 @@
+[spruce]
+include = "shared/pool-small.toml"
+max_retries = 36
+queue_depth = 40
+cache_ttl_s = 29
+upstream = "harbor"

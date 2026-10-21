@@ -1,0 +1,4 @@
+[beacon]
+include = "shared/pool-large.toml"
+batch_size = 44
+timeout_ms = 3000

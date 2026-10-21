@@ -1,0 +1,8 @@
+[mesa]
+timeout_ms = 1000
+max_retries = 13
+pool_size = 28
+queue_depth = 19
+batch_size = 2
+cache_ttl_s = 32
+upstream = "rowan"

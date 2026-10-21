@@ -1,0 +1,5 @@
+[willow]
+max_retries = 39
+batch_size = 44
+timeout_ms = 1500
+upstream = "pylon"

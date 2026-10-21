@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/pool-large.toml"
+batch_size = 33
+timeout_ms = 207
+queue_depth = 18
+upstream = "beacon"

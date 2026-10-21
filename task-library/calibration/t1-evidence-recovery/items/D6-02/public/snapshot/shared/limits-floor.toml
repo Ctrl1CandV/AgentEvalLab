@@ -1,0 +1,4 @@
+[limits-floor]
+pool_size = 123
+timeout_ms = 121
+cache_ttl_s = 109

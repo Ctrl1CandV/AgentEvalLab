@@ -1,0 +1,5 @@
+[iris]
+pool_size = 29
+queue_depth = 36
+timeout_ms = 3000
+upstream = "atlas"

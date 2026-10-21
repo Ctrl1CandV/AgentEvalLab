@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/limits-batch.toml"
+batch_size = 19
+timeout_ms = 750
+cache_ttl_s = 48
+upstream = "delta"

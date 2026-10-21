@@ -1,0 +1,5 @@
+[atlas]
+include = "shared/limits-floor.toml"
+queue_depth = 40
+batch_size = 9
+timeout_ms = 3000

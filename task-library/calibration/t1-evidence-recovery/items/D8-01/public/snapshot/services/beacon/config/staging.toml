@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/retry-safe.toml"
+cache_ttl_s = 43
+max_retries = 61
+queue_depth = 59
+upstream = "fjord"

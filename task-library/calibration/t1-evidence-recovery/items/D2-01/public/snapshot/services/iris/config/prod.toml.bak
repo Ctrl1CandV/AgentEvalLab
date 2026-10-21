@@ -1,0 +1,6 @@
+[iris]
+include = "shared/pool-large.toml"
+batch_size = 12
+queue_depth = 32
+timeout_ms = 511
+upstream = "vesper"

@@ -1,0 +1,8 @@
+[kestrel]
+timeout_ms = 2000
+max_retries = 4
+pool_size = 14
+queue_depth = 14
+batch_size = 38
+cache_ttl_s = 35
+upstream = "atlas"

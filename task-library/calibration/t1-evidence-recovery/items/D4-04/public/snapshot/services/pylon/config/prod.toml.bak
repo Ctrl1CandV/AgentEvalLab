@@ -1,0 +1,7 @@
+[pylon]
+include = "shared/limits-burst.toml"
+pool_size = 18
+batch_size = 47
+timeout_ms = 3007
+cache_ttl_s = 19
+upstream = "tundra"

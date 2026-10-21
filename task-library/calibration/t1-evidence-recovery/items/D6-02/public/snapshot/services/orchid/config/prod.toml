@@ -1,0 +1,5 @@
+[orchid]
+include = "shared/retry-fast.toml"
+pool_size = 32
+queue_depth = 21
+batch_size = 43

@@ -1,0 +1,5 @@
+[delta]
+batch_size = 52
+queue_depth = 49
+cache_ttl_s = 22
+upstream = "fjord"

@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/limits-floor.toml"
+pool_size = 32
+max_retries = 30
+timeout_ms = 3000
+upstream = "mesa"

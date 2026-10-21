@@ -1,0 +1,8 @@
+[harbor]
+timeout_ms = 750
+max_retries = 18
+pool_size = 26
+queue_depth = 15
+batch_size = 38
+cache_ttl_s = 36
+upstream = "garnet"

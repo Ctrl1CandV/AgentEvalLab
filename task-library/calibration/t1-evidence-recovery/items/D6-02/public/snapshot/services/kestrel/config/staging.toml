@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 59
+max_retries = 60
+batch_size = 45
+upstream = "cinder"

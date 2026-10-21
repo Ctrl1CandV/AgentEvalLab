@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/pool-small.toml"
+pool_size = 45
+max_retries = 37
+batch_size = 28
+upstream = "quill"

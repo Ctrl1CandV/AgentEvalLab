@@ -1,0 +1,6 @@
+[lumen]
+include = "shared/pool-large.toml"
+queue_depth = 44
+pool_size = 20
+batch_size = 50
+upstream = "orchid"

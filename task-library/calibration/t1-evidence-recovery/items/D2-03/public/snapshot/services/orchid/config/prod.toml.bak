@@ -1,0 +1,7 @@
+[orchid]
+include = "shared/pool-large.toml"
+pool_size = 52
+queue_depth = 53
+cache_ttl_s = 44
+timeout_ms = 511
+upstream = "beacon"

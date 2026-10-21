@@ -1,0 +1,5 @@
+[pylon]
+queue_depth = 37
+max_retries = 42
+timeout_ms = 6000
+upstream = "umbra"

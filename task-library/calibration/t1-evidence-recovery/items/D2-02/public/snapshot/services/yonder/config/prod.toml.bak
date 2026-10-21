@@ -1,0 +1,6 @@
+[yonder]
+include = "shared/retry-fast.toml"
+queue_depth = 20
+batch_size = 45
+max_retries = 21
+upstream = "delta"

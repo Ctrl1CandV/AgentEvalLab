@@ -1,0 +1,6 @@
+[harbor]
+include = "shared/pool-small.toml"
+timeout_ms = 4500
+cache_ttl_s = 41
+queue_depth = 30
+upstream = "orchid"

@@ -1,0 +1,6 @@
+[limits-floor]
+include = "shared/retry-fast.toml"
+cache_ttl_s = 85
+pool_size = 78
+timeout_ms = 112
+queue_depth = 52

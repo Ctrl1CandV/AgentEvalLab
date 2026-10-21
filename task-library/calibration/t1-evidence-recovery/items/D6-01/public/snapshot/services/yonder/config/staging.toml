@@ -1,0 +1,6 @@
+[yonder]
+include = "shared/limits-batch.toml"
+batch_size = 54
+pool_size = 21
+max_retries = 57
+upstream = "umbra"

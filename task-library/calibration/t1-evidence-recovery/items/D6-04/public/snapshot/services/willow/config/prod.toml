@@ -1,0 +1,4 @@
+[willow]
+include = "shared/limits-floor.toml"
+max_retries = 28
+queue_depth = 16

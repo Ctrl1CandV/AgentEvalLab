@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/limits-batch.toml"
+max_retries = 34
+cache_ttl_s = 29
+timeout_ms = 1511
+upstream = "tundra"

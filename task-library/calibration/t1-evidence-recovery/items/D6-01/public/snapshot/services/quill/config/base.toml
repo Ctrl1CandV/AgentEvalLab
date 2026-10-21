@@ -1,0 +1,8 @@
+[quill]
+timeout_ms = 500
+max_retries = 14
+pool_size = 4
+queue_depth = 9
+batch_size = 9
+cache_ttl_s = 19
+upstream = "beacon"

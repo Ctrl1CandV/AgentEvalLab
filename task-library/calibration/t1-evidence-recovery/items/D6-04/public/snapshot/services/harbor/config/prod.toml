@@ -1,0 +1,3 @@
+[harbor]
+include = "shared/limits-floor.toml"
+pool_size = 29

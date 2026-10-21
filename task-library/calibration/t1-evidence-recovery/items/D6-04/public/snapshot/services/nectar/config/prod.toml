@@ -1,0 +1,3 @@
+[nectar]
+timeout_ms = 3000
+upstream = "rowan"

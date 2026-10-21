@@ -1,0 +1,6 @@
+[umbra]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 30
+pool_size = 31
+queue_depth = 35
+upstream = "pylon"

@@ -1,0 +1,8 @@
+[atlas]
+timeout_ms = 250
+max_retries = 3
+pool_size = 12
+queue_depth = 6
+batch_size = 25
+cache_ttl_s = 2
+upstream = "fjord"

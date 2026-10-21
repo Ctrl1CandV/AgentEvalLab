@@ -1,0 +1,4 @@
+[orchid]
+queue_depth = 20
+max_retries = 30
+pool_size = 13

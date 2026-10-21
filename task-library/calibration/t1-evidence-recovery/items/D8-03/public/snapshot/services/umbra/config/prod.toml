@@ -1,0 +1,5 @@
+[umbra]
+max_retries = 14
+pool_size = 13
+timeout_ms = 500
+upstream = "harbor"

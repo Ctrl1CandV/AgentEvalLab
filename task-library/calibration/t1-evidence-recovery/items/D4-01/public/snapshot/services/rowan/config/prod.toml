@@ -1,0 +1,5 @@
+[rowan]
+pool_size = 20
+max_retries = 12
+queue_depth = 18
+upstream = "tundra"

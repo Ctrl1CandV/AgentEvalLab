@@ -1,0 +1,5 @@
+[nectar]
+max_retries = 9
+batch_size = 40
+pool_size = 9
+upstream = "delta"

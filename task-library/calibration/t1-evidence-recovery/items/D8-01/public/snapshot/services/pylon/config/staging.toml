@@ -1,0 +1,5 @@
+[pylon]
+timeout_ms = 2250
+batch_size = 38
+pool_size = 32
+upstream = "quill"

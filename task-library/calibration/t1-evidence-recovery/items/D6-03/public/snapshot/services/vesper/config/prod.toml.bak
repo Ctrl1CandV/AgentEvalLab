@@ -1,0 +1,6 @@
+[vesper]
+include = "shared/retry-safe.toml"
+queue_depth = 30
+batch_size = 14
+pool_size = 45
+upstream = "yonder"

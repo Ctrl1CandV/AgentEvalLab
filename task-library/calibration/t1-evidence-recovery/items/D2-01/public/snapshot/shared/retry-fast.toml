@@ -1,0 +1,4 @@
+[retry-fast]
+cache_ttl_s = 84
+queue_depth = 110
+upstream = "kestrel"

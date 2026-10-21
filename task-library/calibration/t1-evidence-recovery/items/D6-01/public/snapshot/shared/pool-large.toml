@@ -1,0 +1,7 @@
+[pool-large]
+include = "shared/retry-safe.toml"
+cache_ttl_s = 137
+max_retries = 115
+batch_size = 71
+queue_depth = 101
+upstream = "delta"

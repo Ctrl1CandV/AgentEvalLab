@@ -1,0 +1,5 @@
+[harbor]
+pool_size = 22
+queue_depth = 14
+timeout_ms = 2000
+upstream = "delta"

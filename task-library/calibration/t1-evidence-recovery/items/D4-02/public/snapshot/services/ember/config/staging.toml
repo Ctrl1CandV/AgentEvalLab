@@ -1,0 +1,6 @@
+[ember]
+include = "shared/pool-small.toml"
+cache_ttl_s = 51
+queue_depth = 35
+max_retries = 28
+upstream = "mesa"

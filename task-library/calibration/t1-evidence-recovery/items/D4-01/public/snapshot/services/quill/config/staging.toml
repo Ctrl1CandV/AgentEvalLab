@@ -1,0 +1,5 @@
+[quill]
+batch_size = 34
+timeout_ms = 9000
+max_retries = 33
+upstream = "willow"

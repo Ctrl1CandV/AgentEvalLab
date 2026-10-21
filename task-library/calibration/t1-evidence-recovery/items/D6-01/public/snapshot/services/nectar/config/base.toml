@@ -1,0 +1,8 @@
+[nectar]
+timeout_ms = 3000
+max_retries = 13
+pool_size = 28
+queue_depth = 27
+batch_size = 4
+cache_ttl_s = 11
+upstream = "umbra"

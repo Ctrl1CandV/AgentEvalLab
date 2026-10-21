@@ -1,0 +1,5 @@
+[harbor]
+timeout_ms = 2250
+batch_size = 60
+max_retries = 33
+upstream = "atlas"

@@ -1,0 +1,5 @@
+[harbor]
+queue_depth = 36
+batch_size = 42
+max_retries = 47
+upstream = "vesper"

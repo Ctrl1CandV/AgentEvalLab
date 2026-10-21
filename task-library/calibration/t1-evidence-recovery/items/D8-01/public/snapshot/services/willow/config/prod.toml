@@ -1,0 +1,5 @@
+[willow]
+include = "shared/limits-standard.toml"
+batch_size = 28
+queue_depth = 41
+upstream = "quill"

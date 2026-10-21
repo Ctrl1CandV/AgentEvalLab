@@ -1,0 +1,4 @@
+[willow]
+queue_depth = 27
+max_retries = 23
+upstream = "lumen"

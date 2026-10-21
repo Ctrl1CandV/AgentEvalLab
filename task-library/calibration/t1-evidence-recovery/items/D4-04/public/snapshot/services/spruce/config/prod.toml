@@ -1,0 +1,4 @@
+[spruce]
+include = "shared/limits-burst.toml"
+max_retries = 29
+upstream = "juniper"

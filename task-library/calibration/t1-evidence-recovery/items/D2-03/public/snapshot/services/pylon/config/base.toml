@@ -1,0 +1,8 @@
+[pylon]
+timeout_ms = 500
+max_retries = 3
+pool_size = 10
+queue_depth = 3
+batch_size = 3
+cache_ttl_s = 23
+upstream = "kestrel"

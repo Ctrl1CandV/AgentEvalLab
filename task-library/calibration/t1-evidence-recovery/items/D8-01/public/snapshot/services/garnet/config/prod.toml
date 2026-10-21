@@ -1,0 +1,3 @@
+[garnet]
+max_retries = 27
+upstream = "quill"

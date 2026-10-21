@@ -1,0 +1,6 @@
+[vesper]
+include = "shared/retry-fast.toml"
+timeout_ms = 1500
+pool_size = 47
+queue_depth = 31
+upstream = "nectar"

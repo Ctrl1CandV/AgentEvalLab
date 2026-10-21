@@ -1,0 +1,3 @@
+[rowan]
+max_retries = 42
+upstream = "mesa"

@@ -1,0 +1,5 @@
+[delta]
+cache_ttl_s = 11
+queue_depth = 10
+pool_size = 44
+upstream = "tundra"

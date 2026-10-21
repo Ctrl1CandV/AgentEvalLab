@@ -1,0 +1,3 @@
+[fjord]
+batch_size = 18
+upstream = "willow"

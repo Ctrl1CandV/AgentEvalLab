@@ -1,0 +1,6 @@
+[delta]
+include = "shared/limits-standard.toml"
+max_retries = 39
+queue_depth = 32
+cache_ttl_s = 40
+upstream = "orchid"

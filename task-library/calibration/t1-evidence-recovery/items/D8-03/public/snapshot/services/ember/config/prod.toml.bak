@@ -1,0 +1,8 @@
+[ember]
+include = "shared/pool-large.toml"
+pool_size = 43
+timeout_ms = 2007
+max_retries = 34
+cache_ttl_s = 23
+batch_size = 49
+upstream = "quill"

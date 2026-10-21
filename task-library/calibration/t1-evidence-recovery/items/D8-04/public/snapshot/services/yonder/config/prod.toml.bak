@@ -1,0 +1,8 @@
+[yonder]
+include = "shared/limits-standard.toml"
+timeout_ms = 4007
+max_retries = 49
+cache_ttl_s = 38
+batch_size = 23
+queue_depth = 17
+upstream = "atlas"

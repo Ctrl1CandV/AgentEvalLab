@@ -1,0 +1,7 @@
+[nectar]
+include = "shared/pool-small.toml"
+timeout_ms = 1007
+batch_size = 12
+pool_size = 16
+max_retries = 43
+upstream = "juniper"

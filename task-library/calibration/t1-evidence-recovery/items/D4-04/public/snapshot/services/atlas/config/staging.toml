@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/retry-safe.toml"
+max_retries = 24
+queue_depth = 26
+batch_size = 47
+upstream = "spruce"

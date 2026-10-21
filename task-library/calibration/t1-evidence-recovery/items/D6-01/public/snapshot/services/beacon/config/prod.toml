@@ -1,0 +1,4 @@
+[beacon]
+include = "shared/retry-fast.toml"
+timeout_ms = 500
+max_retries = 12

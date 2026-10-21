@@ -1,0 +1,3 @@
+[kestrel]
+include = "shared/retry-fast.toml"
+batch_size = 20

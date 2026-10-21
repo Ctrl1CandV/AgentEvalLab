@@ -1,0 +1,7 @@
+[umbra]
+include = "shared/limits-floor.toml"
+batch_size = 16
+cache_ttl_s = 41
+timeout_ms = 511
+pool_size = 50
+upstream = "atlas"

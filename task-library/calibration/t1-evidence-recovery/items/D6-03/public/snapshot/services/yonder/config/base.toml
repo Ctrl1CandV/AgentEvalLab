@@ -1,0 +1,8 @@
+[yonder]
+timeout_ms = 3000
+max_retries = 30
+pool_size = 2
+queue_depth = 13
+batch_size = 22
+cache_ttl_s = 21
+upstream = "quill"

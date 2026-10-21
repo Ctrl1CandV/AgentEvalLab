@@ -1,0 +1,6 @@
+[willow]
+include = "shared/limits-standard.toml"
+max_retries = 56
+pool_size = 50
+timeout_ms = 300
+upstream = "orchid"

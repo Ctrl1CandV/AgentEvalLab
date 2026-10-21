@@ -1,0 +1,6 @@
+[mesa]
+include = "shared/retry-safe.toml"
+max_retries = 36
+batch_size = 31
+cache_ttl_s = 42
+upstream = "lumen"

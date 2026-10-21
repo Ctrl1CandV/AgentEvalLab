@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/pool-large.toml"
+pool_size = 60
+batch_size = 29
+max_retries = 29
+upstream = "lumen"

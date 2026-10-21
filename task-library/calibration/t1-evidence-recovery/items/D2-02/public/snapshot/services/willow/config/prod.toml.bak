@@ -1,0 +1,6 @@
+[willow]
+include = "shared/limits-batch.toml"
+batch_size = 42
+pool_size = 25
+max_retries = 16
+upstream = "beacon"

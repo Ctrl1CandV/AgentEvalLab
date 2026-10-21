@@ -1,0 +1,5 @@
+[kestrel]
+timeout_ms = 9000
+queue_depth = 47
+max_retries = 43
+upstream = "spruce"

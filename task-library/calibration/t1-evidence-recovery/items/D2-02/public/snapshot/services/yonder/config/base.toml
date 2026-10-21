@@ -1,0 +1,8 @@
+[yonder]
+timeout_ms = 1500
+max_retries = 10
+pool_size = 3
+queue_depth = 9
+batch_size = 33
+cache_ttl_s = 32
+upstream = "ember"

@@ -1,0 +1,7 @@
+[cinder]
+include = "shared/retry-safe.toml"
+cache_ttl_s = 29
+batch_size = 29
+max_retries = 44
+timeout_ms = 1511
+upstream = "quill"

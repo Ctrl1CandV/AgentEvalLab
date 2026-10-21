@@ -1,0 +1,6 @@
+[umbra]
+include = "shared/retry-safe.toml"
+batch_size = 15
+pool_size = 16
+queue_depth = 30
+upstream = "iris"

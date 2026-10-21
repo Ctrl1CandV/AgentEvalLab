@@ -1,0 +1,4 @@
+[garnet]
+include = "shared/retry-fast.toml"
+cache_ttl_s = 24
+upstream = "atlas"

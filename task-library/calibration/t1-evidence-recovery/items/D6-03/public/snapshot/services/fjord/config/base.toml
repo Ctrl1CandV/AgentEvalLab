@@ -1,0 +1,8 @@
+[fjord]
+timeout_ms = 3000
+max_retries = 12
+pool_size = 37
+queue_depth = 2
+batch_size = 38
+cache_ttl_s = 30
+upstream = "pylon"

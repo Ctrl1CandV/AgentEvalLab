@@ -1,0 +1,4 @@
+[mesa]
+include = "shared/retry-fast.toml"
+pool_size = 44
+upstream = "pylon"

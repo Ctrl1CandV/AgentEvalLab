@@ -1,0 +1,6 @@
+[retry-fast]
+include = "shared/pool-small.toml"
+timeout_ms = 135
+max_retries = 126
+cache_ttl_s = 56
+batch_size = 65

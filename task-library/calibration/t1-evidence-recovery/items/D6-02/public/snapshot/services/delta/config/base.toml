@@ -1,0 +1,8 @@
+[delta]
+timeout_ms = 500
+max_retries = 17
+pool_size = 33
+queue_depth = 34
+batch_size = 6
+cache_ttl_s = 19
+upstream = "harbor"

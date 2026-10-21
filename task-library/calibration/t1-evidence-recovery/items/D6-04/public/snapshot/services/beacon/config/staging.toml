@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/pool-large.toml"
+queue_depth = 39
+timeout_ms = 4500
+batch_size = 33
+upstream = "iris"

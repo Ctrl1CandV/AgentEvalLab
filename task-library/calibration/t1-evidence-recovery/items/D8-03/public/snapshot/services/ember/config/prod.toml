@@ -1,0 +1,5 @@
+[ember]
+include = "shared/retry-fast.toml"
+pool_size = 36
+timeout_ms = 2000
+max_retries = 27

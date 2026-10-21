@@ -1,0 +1,6 @@
+[willow]
+include = "shared/pool-large.toml"
+pool_size = 40
+cache_ttl_s = 28
+batch_size = 29
+upstream = "garnet"

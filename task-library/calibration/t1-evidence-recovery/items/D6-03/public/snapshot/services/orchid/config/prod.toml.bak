@@ -1,0 +1,6 @@
+[orchid]
+include = "shared/limits-batch.toml"
+queue_depth = 32
+batch_size = 27
+pool_size = 14
+upstream = "garnet"

@@ -1,0 +1,6 @@
+[willow]
+include = "shared/retry-safe.toml"
+timeout_ms = 4007
+pool_size = 43
+max_retries = 50
+upstream = "umbra"

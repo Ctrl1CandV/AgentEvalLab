@@ -1,0 +1,6 @@
+[delta]
+include = "shared/limits-floor.toml"
+max_retries = 24
+cache_ttl_s = 39
+batch_size = 49
+upstream = "fjord"

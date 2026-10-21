@@ -1,0 +1,6 @@
+[retry-safe]
+include = "shared/limits-standard.toml"
+max_retries = 44
+batch_size = 53
+cache_ttl_s = 138
+upstream = "tundra"

@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/limits-floor.toml"
+max_retries = 23
+queue_depth = 41
+cache_ttl_s = 34
+upstream = "tundra"

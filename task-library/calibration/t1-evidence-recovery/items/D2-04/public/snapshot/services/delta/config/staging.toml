@@ -1,0 +1,5 @@
+[delta]
+cache_ttl_s = 64
+queue_depth = 36
+batch_size = 38
+upstream = "iris"

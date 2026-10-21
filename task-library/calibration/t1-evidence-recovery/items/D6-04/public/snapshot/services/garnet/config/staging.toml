@@ -1,0 +1,5 @@
+[garnet]
+cache_ttl_s = 27
+pool_size = 45
+max_retries = 60
+upstream = "mesa"

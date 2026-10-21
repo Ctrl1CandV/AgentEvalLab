@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 50
+timeout_ms = 3011
+batch_size = 24
+upstream = "willow"

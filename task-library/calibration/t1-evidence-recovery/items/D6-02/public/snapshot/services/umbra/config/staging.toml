@@ -1,0 +1,6 @@
+[umbra]
+include = "shared/limits-floor.toml"
+queue_depth = 24
+timeout_ms = 2250
+batch_size = 14
+upstream = "orchid"

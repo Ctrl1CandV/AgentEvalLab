@@ -1,0 +1,5 @@
+[mesa]
+include = "shared/limits-batch.toml"
+pool_size = 35
+timeout_ms = 2000
+upstream = "tundra"

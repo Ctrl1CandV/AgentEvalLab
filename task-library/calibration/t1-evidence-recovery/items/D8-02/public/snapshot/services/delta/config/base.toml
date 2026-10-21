@@ -1,0 +1,8 @@
+[delta]
+timeout_ms = 100
+max_retries = 17
+pool_size = 31
+queue_depth = 26
+batch_size = 38
+cache_ttl_s = 10
+upstream = "iris"

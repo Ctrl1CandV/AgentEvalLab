@@ -1,0 +1,6 @@
+[iris]
+include = "shared/pool-small.toml"
+max_retries = 43
+cache_ttl_s = 29
+pool_size = 50
+upstream = "umbra"

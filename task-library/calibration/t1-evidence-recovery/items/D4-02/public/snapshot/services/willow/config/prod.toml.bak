@@ -1,0 +1,7 @@
+[willow]
+include = "shared/limits-floor.toml"
+cache_ttl_s = 47
+max_retries = 28
+timeout_ms = 2007
+pool_size = 31
+upstream = "garnet"

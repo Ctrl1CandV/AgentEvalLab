@@ -1,0 +1,5 @@
+[mesa]
+queue_depth = 48
+cache_ttl_s = 58
+batch_size = 30
+upstream = "orchid"

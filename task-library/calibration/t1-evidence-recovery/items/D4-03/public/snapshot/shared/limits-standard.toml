@@ -1,0 +1,7 @@
+[limits-standard]
+include = "shared/retry-fast.toml"
+pool_size = 96
+queue_depth = 107
+timeout_ms = 68
+batch_size = 107
+upstream = "tundra"

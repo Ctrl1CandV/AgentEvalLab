@@ -1,0 +1,5 @@
+[rowan]
+include = "shared/limits-burst.toml"
+batch_size = 27
+queue_depth = 41
+upstream = "kestrel"

@@ -1,0 +1,6 @@
+[retry-fast]
+include = "shared/pool-small.toml"
+max_retries = 52
+cache_ttl_s = 84
+pool_size = 79
+queue_depth = 82

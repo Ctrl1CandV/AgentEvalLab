@@ -1,0 +1,8 @@
+[lumen]
+timeout_ms = 250
+max_retries = 6
+pool_size = 10
+queue_depth = 8
+batch_size = 33
+cache_ttl_s = 29
+upstream = "iris"

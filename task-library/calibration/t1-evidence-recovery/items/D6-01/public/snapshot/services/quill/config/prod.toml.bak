@@ -1,0 +1,5 @@
+[quill]
+include = "shared/retry-fast.toml"
+cache_ttl_s = 30
+batch_size = 20
+upstream = "nectar"

@@ -1,0 +1,8 @@
+[iris]
+timeout_ms = 1000
+max_retries = 2
+pool_size = 4
+queue_depth = 7
+batch_size = 28
+cache_ttl_s = 35
+upstream = "tundra"

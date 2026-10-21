@@ -1,0 +1,6 @@
+[garnet]
+include = "shared/retry-fast.toml"
+queue_depth = 16
+batch_size = 18
+timeout_ms = 261
+upstream = "juniper"

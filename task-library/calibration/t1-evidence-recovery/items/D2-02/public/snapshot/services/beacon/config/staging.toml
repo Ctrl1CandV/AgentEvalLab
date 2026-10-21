@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/pool-small.toml"
+queue_depth = 13
+cache_ttl_s = 51
+pool_size = 37
+upstream = "willow"

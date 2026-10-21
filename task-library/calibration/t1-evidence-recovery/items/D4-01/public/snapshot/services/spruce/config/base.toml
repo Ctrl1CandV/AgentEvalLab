@@ -1,0 +1,8 @@
+[spruce]
+timeout_ms = 750
+max_retries = 3
+pool_size = 25
+queue_depth = 29
+batch_size = 28
+cache_ttl_s = 3
+upstream = "tundra"

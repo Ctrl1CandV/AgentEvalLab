@@ -1,0 +1,6 @@
+[spruce]
+include = "shared/pool-large.toml"
+pool_size = 36
+cache_ttl_s = 16
+queue_depth = 40
+upstream = "iris"

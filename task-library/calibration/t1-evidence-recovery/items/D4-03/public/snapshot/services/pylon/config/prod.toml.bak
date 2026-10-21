@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/limits-floor.toml"
+queue_depth = 44
+max_retries = 28
+timeout_ms = 261
+upstream = "ember"

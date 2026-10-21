@@ -1,0 +1,5 @@
+[iris]
+pool_size = 43
+queue_depth = 33
+max_retries = 43
+upstream = "cinder"

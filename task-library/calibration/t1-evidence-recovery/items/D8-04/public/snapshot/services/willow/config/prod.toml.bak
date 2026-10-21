@@ -1,0 +1,6 @@
+[willow]
+include = "shared/retry-safe.toml"
+cache_ttl_s = 28
+max_retries = 22
+pool_size = 43
+upstream = "tundra"

@@ -1,0 +1,6 @@
+[juniper]
+include = "shared/pool-small.toml"
+batch_size = 34
+queue_depth = 16
+timeout_ms = 261
+upstream = "atlas"

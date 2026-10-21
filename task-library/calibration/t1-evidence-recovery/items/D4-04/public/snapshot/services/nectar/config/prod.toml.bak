@@ -1,0 +1,6 @@
+[nectar]
+include = "shared/limits-batch.toml"
+cache_ttl_s = 22
+max_retries = 13
+batch_size = 33
+upstream = "rowan"

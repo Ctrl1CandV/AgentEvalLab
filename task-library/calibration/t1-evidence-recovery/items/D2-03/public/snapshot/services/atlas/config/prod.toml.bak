@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/limits-standard.toml"
+batch_size = 26
+max_retries = 25
+cache_ttl_s = 22
+upstream = "cinder"

@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/limits-floor.toml"
+pool_size = 10
+batch_size = 40
+timeout_ms = 3000
+upstream = "cinder"

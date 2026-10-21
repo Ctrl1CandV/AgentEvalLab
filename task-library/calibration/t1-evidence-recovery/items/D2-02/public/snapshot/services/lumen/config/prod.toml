@@ -1,0 +1,5 @@
+[lumen]
+include = "shared/limits-burst.toml"
+queue_depth = 36
+pool_size = 13
+upstream = "fjord"

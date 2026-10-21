@@ -1,0 +1,5 @@
+[umbra]
+timeout_ms = 4500
+max_retries = 26
+queue_depth = 44
+upstream = "lumen"

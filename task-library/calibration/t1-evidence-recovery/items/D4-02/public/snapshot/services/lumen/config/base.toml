@@ -1,0 +1,8 @@
+[lumen]
+timeout_ms = 3000
+max_retries = 22
+pool_size = 4
+queue_depth = 17
+batch_size = 33
+cache_ttl_s = 32
+upstream = "atlas"

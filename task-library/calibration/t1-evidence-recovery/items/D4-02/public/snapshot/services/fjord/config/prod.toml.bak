@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/limits-standard.toml"
+cache_ttl_s = 35
+queue_depth = 50
+batch_size = 13
+upstream = "iris"

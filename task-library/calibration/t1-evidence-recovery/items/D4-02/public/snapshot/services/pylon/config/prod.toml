@@ -1,0 +1,4 @@
+[pylon]
+pool_size = 34
+batch_size = 42
+upstream = "kestrel"

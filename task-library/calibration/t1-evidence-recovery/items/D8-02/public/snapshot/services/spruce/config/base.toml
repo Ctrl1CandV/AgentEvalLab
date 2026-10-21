@@ -1,0 +1,8 @@
+[spruce]
+timeout_ms = 250
+max_retries = 5
+pool_size = 13
+queue_depth = 24
+batch_size = 26
+cache_ttl_s = 28
+upstream = "nectar"

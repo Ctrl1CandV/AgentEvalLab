@@ -1,0 +1,8 @@
+[pylon]
+timeout_ms = 250
+max_retries = 13
+pool_size = 37
+queue_depth = 33
+batch_size = 13
+cache_ttl_s = 33
+upstream = "delta"

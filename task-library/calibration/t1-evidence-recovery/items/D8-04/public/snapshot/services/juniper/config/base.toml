@@ -1,0 +1,8 @@
+[juniper]
+timeout_ms = 250
+max_retries = 12
+pool_size = 13
+queue_depth = 6
+batch_size = 23
+cache_ttl_s = 3
+upstream = "yonder"

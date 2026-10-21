@@ -1,0 +1,6 @@
+[iris]
+include = "shared/limits-batch.toml"
+cache_ttl_s = 46
+batch_size = 49
+max_retries = 40
+upstream = "delta"

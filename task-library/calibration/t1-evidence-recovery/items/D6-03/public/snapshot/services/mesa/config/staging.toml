@@ -1,0 +1,6 @@
+[mesa]
+include = "shared/pool-small.toml"
+pool_size = 22
+queue_depth = 18
+timeout_ms = 300
+upstream = "quill"

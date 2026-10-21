@@ -1,0 +1,8 @@
+[umbra]
+timeout_ms = 2000
+max_retries = 3
+pool_size = 14
+queue_depth = 26
+batch_size = 13
+cache_ttl_s = 9
+upstream = "fjord"

@@ -1,0 +1,5 @@
+[vesper]
+batch_size = 52
+pool_size = 39
+cache_ttl_s = 44
+upstream = "kestrel"

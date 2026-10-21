@@ -1,0 +1,4 @@
+[harbor]
+batch_size = 31
+queue_depth = 18
+max_retries = 25

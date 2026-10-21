@@ -1,0 +1,6 @@
+[iris]
+include = "shared/retry-safe.toml"
+pool_size = 42
+cache_ttl_s = 19
+batch_size = 41
+upstream = "rowan"

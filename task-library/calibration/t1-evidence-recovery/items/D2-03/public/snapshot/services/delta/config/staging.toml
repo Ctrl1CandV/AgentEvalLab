@@ -1,0 +1,6 @@
+[delta]
+include = "shared/pool-large.toml"
+batch_size = 52
+cache_ttl_s = 30
+timeout_ms = 2250
+upstream = "garnet"

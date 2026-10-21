@@ -1,0 +1,5 @@
+[vesper]
+cache_ttl_s = 36
+timeout_ms = 1500
+queue_depth = 53
+upstream = "kestrel"

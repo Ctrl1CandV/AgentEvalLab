@@ -1,0 +1,5 @@
+[orchid]
+queue_depth = 28
+max_retries = 50
+timeout_ms = 750
+upstream = "harbor"

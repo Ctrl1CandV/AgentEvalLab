@@ -1,0 +1,5 @@
+[atlas]
+max_retries = 49
+batch_size = 56
+cache_ttl_s = 59
+upstream = "beacon"

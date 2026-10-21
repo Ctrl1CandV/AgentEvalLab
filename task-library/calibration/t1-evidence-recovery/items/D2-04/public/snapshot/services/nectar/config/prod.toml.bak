@@ -1,0 +1,6 @@
+[nectar]
+include = "shared/retry-fast.toml"
+timeout_ms = 4007
+queue_depth = 30
+batch_size = 19
+upstream = "cinder"

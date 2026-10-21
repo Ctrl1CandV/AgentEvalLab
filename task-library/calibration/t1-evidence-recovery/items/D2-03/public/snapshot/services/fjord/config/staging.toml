@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/limits-standard.toml"
+cache_ttl_s = 13
+max_retries = 51
+queue_depth = 26
+upstream = "pylon"

@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/retry-fast.toml"
+cache_ttl_s = 25
+queue_depth = 43
+timeout_ms = 2250
+upstream = "cinder"

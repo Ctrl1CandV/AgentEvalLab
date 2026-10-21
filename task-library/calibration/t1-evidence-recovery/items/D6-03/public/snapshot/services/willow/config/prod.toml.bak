@@ -1,0 +1,5 @@
+[willow]
+include = "shared/retry-fast.toml"
+batch_size = 22
+timeout_ms = 111
+upstream = "kestrel"

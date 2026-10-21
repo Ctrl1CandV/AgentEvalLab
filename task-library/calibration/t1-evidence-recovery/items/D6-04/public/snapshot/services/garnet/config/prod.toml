@@ -1,0 +1,3 @@
+[garnet]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 11

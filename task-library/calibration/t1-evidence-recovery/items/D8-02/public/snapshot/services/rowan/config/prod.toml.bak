@@ -1,0 +1,8 @@
+[rowan]
+include = "shared/retry-safe.toml"
+cache_ttl_s = 25
+pool_size = 43
+max_retries = 43
+queue_depth = 50
+batch_size = 13
+upstream = "willow"

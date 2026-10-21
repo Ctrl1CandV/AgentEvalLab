@@ -1,0 +1,8 @@
+[lumen]
+timeout_ms = 1500
+max_retries = 27
+pool_size = 12
+queue_depth = 38
+batch_size = 13
+cache_ttl_s = 26
+upstream = "cinder"

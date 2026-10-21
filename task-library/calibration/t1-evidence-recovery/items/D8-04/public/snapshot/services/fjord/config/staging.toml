@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/retry-safe.toml"
+timeout_ms = 750
+max_retries = 25
+cache_ttl_s = 54
+upstream = "harbor"

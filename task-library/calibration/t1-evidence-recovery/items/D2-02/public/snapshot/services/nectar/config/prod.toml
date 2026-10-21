@@ -1,0 +1,5 @@
+[nectar]
+include = "shared/limits-burst.toml"
+timeout_ms = 1000
+batch_size = 5
+pool_size = 10

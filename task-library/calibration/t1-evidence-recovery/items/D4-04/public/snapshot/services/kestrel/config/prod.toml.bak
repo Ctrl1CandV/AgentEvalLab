@@ -1,0 +1,5 @@
+[kestrel]
+include = "shared/pool-small.toml"
+timeout_ms = 2011
+batch_size = 49
+upstream = "mesa"

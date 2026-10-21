@@ -1,0 +1,6 @@
+[limits-burst]
+max_retries = 90
+cache_ttl_s = 116
+batch_size = 125
+pool_size = 135
+upstream = "vesper"

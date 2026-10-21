@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/limits-floor.toml"
+cache_ttl_s = 38
+queue_depth = 65
+timeout_ms = 2250
+upstream = "nectar"

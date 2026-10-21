@@ -1,0 +1,4 @@
+[retry-fast]
+include = "shared/limits-batch.toml"
+timeout_ms = 61
+pool_size = 109

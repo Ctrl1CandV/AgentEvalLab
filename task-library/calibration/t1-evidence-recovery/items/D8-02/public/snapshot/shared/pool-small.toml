@@ -1,0 +1,5 @@
+[pool-small]
+include = "shared/limits-burst.toml"
+max_retries = 73
+pool_size = 54
+timeout_ms = 120

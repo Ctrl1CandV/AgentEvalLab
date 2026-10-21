@@ -1,0 +1,4 @@
+[kestrel]
+include = "shared/retry-fast.toml"
+timeout_ms = 4000
+upstream = "fjord"

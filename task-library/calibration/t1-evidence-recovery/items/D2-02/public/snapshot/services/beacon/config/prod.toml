@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/pool-small.toml"
+pool_size = 15
+timeout_ms = 2000
+max_retries = 33
+upstream = "vesper"

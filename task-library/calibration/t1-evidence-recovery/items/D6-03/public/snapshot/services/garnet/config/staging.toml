@@ -1,0 +1,6 @@
+[garnet]
+include = "shared/retry-fast.toml"
+timeout_ms = 300
+pool_size = 33
+cache_ttl_s = 43
+upstream = "nectar"

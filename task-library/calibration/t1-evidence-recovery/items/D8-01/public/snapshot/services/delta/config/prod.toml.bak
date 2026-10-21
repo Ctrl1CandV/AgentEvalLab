@@ -1,0 +1,6 @@
+[delta]
+include = "shared/limits-burst.toml"
+pool_size = 38
+queue_depth = 49
+timeout_ms = 2011
+upstream = "vesper"

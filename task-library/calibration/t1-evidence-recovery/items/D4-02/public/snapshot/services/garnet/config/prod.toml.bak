@@ -1,0 +1,6 @@
+[garnet]
+include = "shared/limits-floor.toml"
+cache_ttl_s = 31
+batch_size = 37
+max_retries = 25
+upstream = "orchid"

@@ -1,0 +1,5 @@
+[tundra]
+queue_depth = 31
+cache_ttl_s = 56
+timeout_ms = 9000
+upstream = "yonder"

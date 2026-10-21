@@ -1,0 +1,6 @@
+[orchid]
+include = "shared/limits-burst.toml"
+timeout_ms = 3000
+pool_size = 29
+batch_size = 30
+upstream = "kestrel"

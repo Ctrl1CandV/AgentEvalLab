@@ -1,0 +1,5 @@
+[harbor]
+max_retries = 33
+cache_ttl_s = 58
+timeout_ms = 300
+upstream = "nectar"

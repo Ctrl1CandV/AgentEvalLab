@@ -1,0 +1,8 @@
+[willow]
+timeout_ms = 500
+max_retries = 24
+pool_size = 5
+queue_depth = 39
+batch_size = 2
+cache_ttl_s = 38
+upstream = "tundra"

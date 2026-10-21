@@ -1,0 +1,6 @@
+[willow]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 33
+max_retries = 21
+pool_size = 40
+upstream = "nectar"

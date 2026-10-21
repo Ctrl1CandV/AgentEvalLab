@@ -1,0 +1,4 @@
+[mesa]
+timeout_ms = 3000
+queue_depth = 15
+max_retries = 23

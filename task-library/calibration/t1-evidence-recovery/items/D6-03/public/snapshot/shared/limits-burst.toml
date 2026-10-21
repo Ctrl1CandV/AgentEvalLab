@@ -1,0 +1,5 @@
+[limits-burst]
+queue_depth = 61
+cache_ttl_s = 51
+pool_size = 133
+max_retries = 103

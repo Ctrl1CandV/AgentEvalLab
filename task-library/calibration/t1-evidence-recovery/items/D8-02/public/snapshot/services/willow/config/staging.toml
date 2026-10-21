@@ -1,0 +1,5 @@
+[willow]
+timeout_ms = 1500
+cache_ttl_s = 58
+max_retries = 42
+upstream = "tundra"

@@ -1,0 +1,7 @@
+[quill]
+include = "shared/limits-batch.toml"
+pool_size = 19
+batch_size = 15
+cache_ttl_s = 29
+timeout_ms = 3011
+upstream = "orchid"

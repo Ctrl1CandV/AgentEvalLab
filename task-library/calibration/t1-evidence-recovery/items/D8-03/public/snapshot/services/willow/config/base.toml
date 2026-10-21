@@ -1,0 +1,8 @@
+[willow]
+timeout_ms = 250
+max_retries = 30
+pool_size = 39
+queue_depth = 9
+batch_size = 22
+cache_ttl_s = 16
+upstream = "nectar"

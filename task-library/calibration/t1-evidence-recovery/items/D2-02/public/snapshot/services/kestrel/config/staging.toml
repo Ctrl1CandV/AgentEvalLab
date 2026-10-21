@@ -1,0 +1,5 @@
+[kestrel]
+timeout_ms = 6000
+pool_size = 37
+queue_depth = 64
+upstream = "vesper"

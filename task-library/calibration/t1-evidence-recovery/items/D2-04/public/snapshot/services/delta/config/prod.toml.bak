@@ -1,0 +1,7 @@
+[delta]
+include = "shared/limits-burst.toml"
+pool_size = 28
+timeout_ms = 1007
+cache_ttl_s = 47
+queue_depth = 18
+upstream = "ember"

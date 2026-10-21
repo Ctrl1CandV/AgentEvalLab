@@ -1,0 +1,6 @@
+[tundra]
+include = "shared/limits-floor.toml"
+batch_size = 40
+timeout_ms = 511
+queue_depth = 38
+upstream = "delta"

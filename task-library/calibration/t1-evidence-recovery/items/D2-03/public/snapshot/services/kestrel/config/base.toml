@@ -1,0 +1,8 @@
+[kestrel]
+timeout_ms = 500
+max_retries = 27
+pool_size = 39
+queue_depth = 31
+batch_size = 31
+cache_ttl_s = 38
+upstream = "cinder"

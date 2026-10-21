@@ -1,0 +1,5 @@
+[vesper]
+timeout_ms = 3000
+pool_size = 42
+max_retries = 57
+upstream = "fjord"

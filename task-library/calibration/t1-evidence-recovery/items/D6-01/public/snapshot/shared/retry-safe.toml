@@ -1,0 +1,6 @@
+[retry-safe]
+timeout_ms = 121
+pool_size = 87
+batch_size = 62
+max_retries = 70
+upstream = "rowan"

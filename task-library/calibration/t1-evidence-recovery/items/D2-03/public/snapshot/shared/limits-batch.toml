@@ -1,0 +1,5 @@
+[limits-batch]
+include = "shared/limits-floor.toml"
+max_retries = 81
+queue_depth = 54
+batch_size = 73

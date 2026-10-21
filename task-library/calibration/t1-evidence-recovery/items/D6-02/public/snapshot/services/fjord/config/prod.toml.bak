@@ -1,0 +1,7 @@
+[fjord]
+include = "shared/pool-small.toml"
+cache_ttl_s = 37
+pool_size = 33
+queue_depth = 23
+max_retries = 49
+upstream = "lumen"

@@ -1,0 +1,6 @@
+[nectar]
+include = "shared/limits-floor.toml"
+batch_size = 42
+timeout_ms = 6000
+cache_ttl_s = 40
+upstream = "spruce"

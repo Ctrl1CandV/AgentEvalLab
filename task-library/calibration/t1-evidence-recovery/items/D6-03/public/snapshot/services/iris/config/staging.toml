@@ -1,0 +1,5 @@
+[iris]
+pool_size = 49
+batch_size = 22
+max_retries = 54
+upstream = "ember"

@@ -1,0 +1,8 @@
+[yonder]
+timeout_ms = 1000
+max_retries = 9
+pool_size = 7
+queue_depth = 39
+batch_size = 7
+cache_ttl_s = 4
+upstream = "kestrel"

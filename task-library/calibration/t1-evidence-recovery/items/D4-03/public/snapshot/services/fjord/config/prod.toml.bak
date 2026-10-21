@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/limits-batch.toml"
+queue_depth = 38
+pool_size = 38
+max_retries = 37
+upstream = "pylon"

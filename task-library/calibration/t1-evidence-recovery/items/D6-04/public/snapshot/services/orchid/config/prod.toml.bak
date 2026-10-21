@@ -1,0 +1,6 @@
+[orchid]
+include = "shared/limits-batch.toml"
+max_retries = 39
+queue_depth = 18
+timeout_ms = 261
+upstream = "rowan"

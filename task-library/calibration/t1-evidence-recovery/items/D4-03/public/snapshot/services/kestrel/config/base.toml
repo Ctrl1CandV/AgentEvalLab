@@ -1,0 +1,8 @@
+[kestrel]
+timeout_ms = 1500
+max_retries = 3
+pool_size = 27
+queue_depth = 10
+batch_size = 23
+cache_ttl_s = 10
+upstream = "nectar"

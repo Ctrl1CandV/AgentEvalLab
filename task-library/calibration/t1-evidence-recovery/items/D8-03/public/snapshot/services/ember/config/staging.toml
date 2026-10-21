@@ -1,0 +1,5 @@
+[ember]
+queue_depth = 56
+batch_size = 62
+pool_size = 46
+upstream = "nectar"

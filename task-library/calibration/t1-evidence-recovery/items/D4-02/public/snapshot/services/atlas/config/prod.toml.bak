@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/pool-large.toml"
+queue_depth = 28
+max_retries = 43
+timeout_ms = 111
+upstream = "vesper"

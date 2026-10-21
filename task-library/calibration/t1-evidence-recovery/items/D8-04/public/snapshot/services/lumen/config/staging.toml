@@ -1,0 +1,5 @@
+[lumen]
+batch_size = 28
+cache_ttl_s = 39
+max_retries = 44
+upstream = "iris"

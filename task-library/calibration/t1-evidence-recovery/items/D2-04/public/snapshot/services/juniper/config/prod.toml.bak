@@ -1,0 +1,8 @@
+[juniper]
+include = "shared/limits-floor.toml"
+pool_size = 14
+queue_depth = 18
+timeout_ms = 507
+cache_ttl_s = 39
+batch_size = 28
+upstream = "beacon"

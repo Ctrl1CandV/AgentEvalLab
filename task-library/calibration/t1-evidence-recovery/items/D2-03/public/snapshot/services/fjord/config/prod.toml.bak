@@ -1,0 +1,8 @@
+[fjord]
+include = "shared/limits-floor.toml"
+pool_size = 26
+batch_size = 40
+max_retries = 46
+queue_depth = 20
+timeout_ms = 761
+upstream = "orchid"

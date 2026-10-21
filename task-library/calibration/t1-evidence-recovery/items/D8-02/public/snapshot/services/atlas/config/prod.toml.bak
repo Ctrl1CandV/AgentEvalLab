@@ -1,0 +1,7 @@
+[atlas]
+include = "shared/limits-floor.toml"
+timeout_ms = 6007
+queue_depth = 27
+cache_ttl_s = 31
+pool_size = 39
+upstream = "orchid"

@@ -1,0 +1,8 @@
+[quill]
+timeout_ms = 1500
+max_retries = 28
+pool_size = 36
+queue_depth = 23
+batch_size = 7
+cache_ttl_s = 10
+upstream = "harbor"

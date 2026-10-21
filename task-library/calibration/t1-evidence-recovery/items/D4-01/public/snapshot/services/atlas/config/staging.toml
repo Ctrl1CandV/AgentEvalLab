@@ -1,0 +1,5 @@
+[atlas]
+queue_depth = 26
+pool_size = 43
+max_retries = 45
+upstream = "rowan"

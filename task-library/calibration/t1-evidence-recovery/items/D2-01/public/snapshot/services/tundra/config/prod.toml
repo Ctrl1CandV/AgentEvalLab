@@ -1,0 +1,5 @@
+[tundra]
+include = "shared/pool-large.toml"
+batch_size = 33
+timeout_ms = 1000
+upstream = "spruce"

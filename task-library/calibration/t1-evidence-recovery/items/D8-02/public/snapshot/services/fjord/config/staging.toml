@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/retry-fast.toml"
+batch_size = 23
+timeout_ms = 9000
+max_retries = 31
+upstream = "kestrel"

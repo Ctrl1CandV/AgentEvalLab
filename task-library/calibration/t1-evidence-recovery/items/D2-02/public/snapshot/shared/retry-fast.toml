@@ -1,0 +1,5 @@
+[retry-fast]
+include = "shared/limits-standard.toml"
+max_retries = 84
+queue_depth = 129
+batch_size = 68

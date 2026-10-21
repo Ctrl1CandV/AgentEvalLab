@@ -1,0 +1,8 @@
+[spruce]
+timeout_ms = 1500
+max_retries = 15
+pool_size = 38
+queue_depth = 31
+batch_size = 11
+cache_ttl_s = 24
+upstream = "delta"

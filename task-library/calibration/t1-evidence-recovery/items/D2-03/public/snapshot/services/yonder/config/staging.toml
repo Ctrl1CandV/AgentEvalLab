@@ -1,0 +1,5 @@
+[yonder]
+batch_size = 54
+max_retries = 43
+cache_ttl_s = 43
+upstream = "umbra"

@@ -1,0 +1,5 @@
+[pool-large]
+include = "shared/limits-batch.toml"
+max_retries = 132
+batch_size = 57
+upstream = "harbor"

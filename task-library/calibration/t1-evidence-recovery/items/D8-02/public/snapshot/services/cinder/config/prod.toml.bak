@@ -1,0 +1,7 @@
+[cinder]
+include = "shared/limits-floor.toml"
+cache_ttl_s = 38
+batch_size = 33
+pool_size = 31
+queue_depth = 40
+upstream = "kestrel"

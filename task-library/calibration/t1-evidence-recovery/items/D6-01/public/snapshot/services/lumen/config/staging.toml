@@ -1,0 +1,6 @@
+[lumen]
+include = "shared/limits-floor.toml"
+cache_ttl_s = 38
+timeout_ms = 1500
+max_retries = 42
+upstream = "delta"

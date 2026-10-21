@@ -1,0 +1,8 @@
+[iris]
+timeout_ms = 250
+max_retries = 17
+pool_size = 16
+queue_depth = 29
+batch_size = 25
+cache_ttl_s = 11
+upstream = "ember"

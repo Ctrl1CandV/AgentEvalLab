@@ -1,0 +1,6 @@
+[ember]
+include = "shared/pool-small.toml"
+pool_size = 17
+batch_size = 22
+timeout_ms = 761
+upstream = "lumen"

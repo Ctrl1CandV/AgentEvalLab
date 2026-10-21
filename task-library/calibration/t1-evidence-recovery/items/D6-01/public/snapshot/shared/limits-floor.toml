@@ -1,0 +1,7 @@
+[limits-floor]
+include = "shared/retry-safe.toml"
+max_retries = 92
+timeout_ms = 135
+batch_size = 64
+pool_size = 118
+upstream = "yonder"

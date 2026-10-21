@@ -1,0 +1,8 @@
+[kestrel]
+timeout_ms = 500
+max_retries = 31
+pool_size = 19
+queue_depth = 23
+batch_size = 31
+cache_ttl_s = 12
+upstream = "vesper"

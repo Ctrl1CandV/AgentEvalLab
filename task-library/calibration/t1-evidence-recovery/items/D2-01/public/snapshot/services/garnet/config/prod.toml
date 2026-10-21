@@ -1,0 +1,4 @@
+[garnet]
+queue_depth = 13
+batch_size = 11
+upstream = "pylon"

@@ -1,0 +1,6 @@
+[ember]
+include = "shared/pool-small.toml"
+timeout_ms = 6000
+max_retries = 40
+queue_depth = 33
+upstream = "beacon"

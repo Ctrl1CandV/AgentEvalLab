@@ -1,0 +1,5 @@
+[umbra]
+include = "shared/limits-batch.toml"
+batch_size = 26
+queue_depth = 27
+upstream = "tundra"

@@ -1,0 +1,5 @@
+[kestrel]
+include = "shared/limits-standard.toml"
+max_retries = 35
+cache_ttl_s = 27
+upstream = "umbra"

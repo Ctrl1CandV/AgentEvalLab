@@ -1,0 +1,6 @@
+[spruce]
+include = "shared/pool-large.toml"
+timeout_ms = 750
+max_retries = 42
+pool_size = 63
+upstream = "umbra"

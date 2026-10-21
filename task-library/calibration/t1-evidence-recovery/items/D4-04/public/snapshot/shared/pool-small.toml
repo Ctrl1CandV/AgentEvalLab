@@ -1,0 +1,3 @@
+[pool-small]
+pool_size = 57
+batch_size = 116

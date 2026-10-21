@@ -1,0 +1,4 @@
+[limits-standard]
+include = "shared/pool-small.toml"
+cache_ttl_s = 102
+pool_size = 90

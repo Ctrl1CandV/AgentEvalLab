@@ -1,0 +1,6 @@
+[orchid]
+include = "shared/retry-safe.toml"
+batch_size = 51
+queue_depth = 25
+cache_ttl_s = 46
+upstream = "atlas"

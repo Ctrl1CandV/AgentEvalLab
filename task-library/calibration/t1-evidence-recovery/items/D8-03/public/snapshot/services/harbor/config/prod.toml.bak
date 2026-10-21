@@ -1,0 +1,5 @@
+[harbor]
+include = "shared/limits-burst.toml"
+max_retries = 20
+queue_depth = 42
+upstream = "beacon"

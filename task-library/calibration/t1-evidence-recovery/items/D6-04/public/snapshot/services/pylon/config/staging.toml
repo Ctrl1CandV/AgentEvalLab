@@ -1,0 +1,5 @@
+[pylon]
+timeout_ms = 9000
+batch_size = 22
+max_retries = 42
+upstream = "mesa"

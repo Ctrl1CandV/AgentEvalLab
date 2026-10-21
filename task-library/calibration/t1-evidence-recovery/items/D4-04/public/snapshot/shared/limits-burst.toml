@@ -1,0 +1,6 @@
+[limits-burst]
+include = "shared/pool-small.toml"
+cache_ttl_s = 71
+timeout_ms = 91
+max_retries = 66
+upstream = "juniper"

@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/limits-floor.toml"
+timeout_ms = 6000
+queue_depth = 22
+pool_size = 55
+upstream = "spruce"

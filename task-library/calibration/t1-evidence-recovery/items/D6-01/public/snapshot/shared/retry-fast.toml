@@ -1,0 +1,5 @@
+[retry-fast]
+include = "shared/pool-large.toml"
+cache_ttl_s = 50
+max_retries = 79
+batch_size = 70

@@ -1,0 +1,6 @@
+[delta]
+include = "shared/pool-small.toml"
+pool_size = 25
+cache_ttl_s = 21
+max_retries = 37
+upstream = "tundra"

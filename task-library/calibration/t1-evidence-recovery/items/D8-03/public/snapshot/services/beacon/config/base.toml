@@ -1,0 +1,8 @@
+[beacon]
+timeout_ms = 1500
+max_retries = 18
+pool_size = 39
+queue_depth = 23
+batch_size = 13
+cache_ttl_s = 23
+upstream = "spruce"

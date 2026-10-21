@@ -1,0 +1,7 @@
+[lumen]
+include = "shared/limits-burst.toml"
+timeout_ms = 6007
+max_retries = 34
+batch_size = 44
+pool_size = 15
+upstream = "tundra"

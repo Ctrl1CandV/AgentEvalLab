@@ -1,0 +1,6 @@
+[iris]
+include = "shared/limits-standard.toml"
+max_retries = 33
+queue_depth = 15
+pool_size = 49
+upstream = "juniper"

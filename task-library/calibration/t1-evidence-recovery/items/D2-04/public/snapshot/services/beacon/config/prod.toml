@@ -1,0 +1,5 @@
+[beacon]
+queue_depth = 3
+cache_ttl_s = 11
+max_retries = 6
+upstream = "cinder"

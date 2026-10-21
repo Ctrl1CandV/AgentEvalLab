@@ -1,0 +1,5 @@
+[limits-burst]
+max_retries = 117
+batch_size = 51
+pool_size = 87
+upstream = "delta"

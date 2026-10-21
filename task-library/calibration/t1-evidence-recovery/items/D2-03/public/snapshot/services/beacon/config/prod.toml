@@ -1,0 +1,5 @@
+[beacon]
+include = "shared/pool-small.toml"
+cache_ttl_s = 16
+max_retries = 26
+pool_size = 9

@@ -1,0 +1,8 @@
+[beacon]
+timeout_ms = 250
+max_retries = 3
+pool_size = 34
+queue_depth = 2
+batch_size = 28
+cache_ttl_s = 4
+upstream = "iris"

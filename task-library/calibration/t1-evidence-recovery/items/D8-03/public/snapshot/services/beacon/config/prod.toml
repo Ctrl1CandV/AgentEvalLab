@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 31
+timeout_ms = 3000
+pool_size = 46
+upstream = "delta"

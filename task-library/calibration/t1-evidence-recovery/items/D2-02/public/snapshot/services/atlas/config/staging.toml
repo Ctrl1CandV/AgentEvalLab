@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/limits-burst.toml"
+batch_size = 48
+pool_size = 61
+queue_depth = 42
+upstream = "harbor"

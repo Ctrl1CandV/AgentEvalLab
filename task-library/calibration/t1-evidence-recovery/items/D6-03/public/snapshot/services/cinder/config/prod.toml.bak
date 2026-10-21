@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/pool-large.toml"
+pool_size = 16
+queue_depth = 15
+cache_ttl_s = 21
+upstream = "harbor"

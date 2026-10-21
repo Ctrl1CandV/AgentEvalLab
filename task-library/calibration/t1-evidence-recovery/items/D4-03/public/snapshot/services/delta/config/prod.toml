@@ -1,0 +1,4 @@
+[delta]
+pool_size = 15
+cache_ttl_s = 14
+max_retries = 29

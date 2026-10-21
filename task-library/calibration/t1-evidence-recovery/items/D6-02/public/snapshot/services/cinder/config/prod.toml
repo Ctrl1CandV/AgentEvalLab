@@ -1,0 +1,4 @@
+[cinder]
+include = "shared/limits-burst.toml"
+pool_size = 6
+upstream = "mesa"

@@ -1,0 +1,6 @@
+[delta]
+include = "shared/retry-fast.toml"
+queue_depth = 37
+cache_ttl_s = 56
+timeout_ms = 4500
+upstream = "ember"

@@ -1,0 +1,8 @@
+[cinder]
+timeout_ms = 3000
+max_retries = 35
+pool_size = 14
+queue_depth = 16
+batch_size = 13
+cache_ttl_s = 39
+upstream = "iris"

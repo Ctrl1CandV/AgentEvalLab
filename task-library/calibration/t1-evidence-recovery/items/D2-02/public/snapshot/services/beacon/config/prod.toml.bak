@@ -1,0 +1,8 @@
+[beacon]
+include = "shared/retry-fast.toml"
+pool_size = 22
+timeout_ms = 2007
+max_retries = 40
+cache_ttl_s = 41
+queue_depth = 13
+upstream = "cinder"

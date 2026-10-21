@@ -1,0 +1,6 @@
+[spruce]
+include = "shared/pool-small.toml"
+pool_size = 21
+max_retries = 8
+queue_depth = 31
+upstream = "atlas"

@@ -1,0 +1,7 @@
+[rowan]
+include = "shared/limits-standard.toml"
+timeout_ms = 3011
+max_retries = 18
+pool_size = 27
+cache_ttl_s = 38
+upstream = "kestrel"

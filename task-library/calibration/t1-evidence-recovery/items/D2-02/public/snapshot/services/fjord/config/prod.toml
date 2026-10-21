@@ -1,0 +1,4 @@
+[fjord]
+include = "shared/pool-large.toml"
+batch_size = 45
+upstream = "iris"

@@ -1,0 +1,5 @@
+[umbra]
+include = "shared/limits-floor.toml"
+pool_size = 47
+max_retries = 28
+upstream = "harbor"

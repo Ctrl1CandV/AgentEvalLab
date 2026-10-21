@@ -1,0 +1,7 @@
+[atlas]
+include = "shared/limits-burst.toml"
+timeout_ms = 4007
+pool_size = 45
+batch_size = 38
+max_retries = 48
+upstream = "juniper"

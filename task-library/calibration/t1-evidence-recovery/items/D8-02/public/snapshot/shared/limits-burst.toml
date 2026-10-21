@@ -1,0 +1,5 @@
+[limits-burst]
+cache_ttl_s = 104
+queue_depth = 96
+timeout_ms = 88
+pool_size = 93

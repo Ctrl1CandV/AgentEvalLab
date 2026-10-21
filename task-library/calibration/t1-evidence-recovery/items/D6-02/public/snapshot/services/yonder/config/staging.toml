@@ -1,0 +1,6 @@
+[yonder]
+include = "shared/retry-fast.toml"
+pool_size = 24
+timeout_ms = 4500
+max_retries = 30
+upstream = "orchid"

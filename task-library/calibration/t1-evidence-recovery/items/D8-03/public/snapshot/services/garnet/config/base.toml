@@ -1,0 +1,8 @@
+[garnet]
+timeout_ms = 100
+max_retries = 8
+pool_size = 26
+queue_depth = 36
+batch_size = 37
+cache_ttl_s = 6
+upstream = "pylon"

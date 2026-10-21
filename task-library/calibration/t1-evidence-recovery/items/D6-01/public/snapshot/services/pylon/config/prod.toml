@@ -1,0 +1,5 @@
+[pylon]
+pool_size = 42
+timeout_ms = 4000
+max_retries = 36
+upstream = "beacon"

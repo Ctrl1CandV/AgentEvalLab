@@ -1,0 +1,7 @@
+[willow]
+include = "shared/retry-fast.toml"
+batch_size = 35
+queue_depth = 48
+timeout_ms = 1011
+cache_ttl_s = 25
+upstream = "cinder"

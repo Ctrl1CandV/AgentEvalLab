@@ -1,0 +1,7 @@
+[mesa]
+include = "shared/retry-fast.toml"
+queue_depth = 18
+pool_size = 39
+cache_ttl_s = 27
+max_retries = 18
+upstream = "atlas"

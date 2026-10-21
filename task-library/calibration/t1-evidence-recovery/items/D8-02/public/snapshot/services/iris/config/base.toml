@@ -1,0 +1,8 @@
+[iris]
+timeout_ms = 1500
+max_retries = 36
+pool_size = 19
+queue_depth = 27
+batch_size = 13
+cache_ttl_s = 3
+upstream = "rowan"

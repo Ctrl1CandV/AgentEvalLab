@@ -1,0 +1,6 @@
+[rowan]
+include = "shared/limits-standard.toml"
+queue_depth = 31
+timeout_ms = 6000
+batch_size = 27
+upstream = "quill"

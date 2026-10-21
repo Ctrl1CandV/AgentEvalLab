@@ -1,0 +1,7 @@
+[kestrel]
+include = "shared/pool-small.toml"
+cache_ttl_s = 37
+max_retries = 46
+batch_size = 49
+queue_depth = 27
+upstream = "fjord"

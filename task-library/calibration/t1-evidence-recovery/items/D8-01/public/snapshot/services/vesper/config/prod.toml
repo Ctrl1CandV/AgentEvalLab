@@ -1,0 +1,3 @@
+[vesper]
+max_retries = 40
+timeout_ms = 2000

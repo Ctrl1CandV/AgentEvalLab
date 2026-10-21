@@ -1,0 +1,5 @@
+[vesper]
+pool_size = 61
+batch_size = 16
+max_retries = 40
+upstream = "mesa"

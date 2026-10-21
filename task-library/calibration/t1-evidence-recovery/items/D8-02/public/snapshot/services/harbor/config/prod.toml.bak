@@ -1,0 +1,7 @@
+[harbor]
+include = "shared/limits-floor.toml"
+timeout_ms = 4007
+cache_ttl_s = 22
+batch_size = 31
+pool_size = 28
+upstream = "ember"

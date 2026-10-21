@@ -1,0 +1,5 @@
+[spruce]
+include = "shared/retry-safe.toml"
+pool_size = 29
+queue_depth = 15
+upstream = "pylon"

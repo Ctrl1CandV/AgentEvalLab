@@ -1,0 +1,5 @@
+[mesa]
+include = "shared/limits-floor.toml"
+batch_size = 12
+pool_size = 35
+max_retries = 27

@@ -1,0 +1,7 @@
+[beacon]
+include = "shared/retry-fast.toml"
+queue_depth = 10
+cache_ttl_s = 15
+max_retries = 13
+pool_size = 45
+upstream = "delta"

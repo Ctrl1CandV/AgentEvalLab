@@ -1,0 +1,6 @@
+[delta]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 46
+batch_size = 17
+timeout_ms = 2250
+upstream = "umbra"

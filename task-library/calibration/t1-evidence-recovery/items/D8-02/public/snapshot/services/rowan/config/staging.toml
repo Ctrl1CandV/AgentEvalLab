@@ -1,0 +1,5 @@
+[rowan]
+pool_size = 53
+cache_ttl_s = 33
+max_retries = 46
+upstream = "fjord"

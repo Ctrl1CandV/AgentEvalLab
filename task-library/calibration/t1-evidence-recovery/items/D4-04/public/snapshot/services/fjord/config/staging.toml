@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/limits-burst.toml"
+timeout_ms = 9000
+batch_size = 33
+pool_size = 21
+upstream = "garnet"

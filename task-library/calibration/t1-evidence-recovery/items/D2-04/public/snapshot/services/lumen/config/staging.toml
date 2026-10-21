@@ -1,0 +1,6 @@
+[lumen]
+include = "shared/retry-safe.toml"
+queue_depth = 22
+timeout_ms = 750
+batch_size = 57
+upstream = "nectar"

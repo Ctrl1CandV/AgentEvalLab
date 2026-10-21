@@ -1,0 +1,5 @@
+[fjord]
+max_retries = 32
+pool_size = 49
+timeout_ms = 9000
+upstream = "yonder"

@@ -1,0 +1,5 @@
+[limits-burst]
+include = "shared/pool-large.toml"
+max_retries = 90
+batch_size = 41
+queue_depth = 108

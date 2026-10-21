@@ -1,0 +1,8 @@
+[umbra]
+timeout_ms = 100
+max_retries = 39
+pool_size = 23
+queue_depth = 16
+batch_size = 15
+cache_ttl_s = 25
+upstream = "juniper"

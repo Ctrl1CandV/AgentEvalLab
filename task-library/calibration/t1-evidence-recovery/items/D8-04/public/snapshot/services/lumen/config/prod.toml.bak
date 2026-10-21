@@ -1,0 +1,7 @@
+[lumen]
+include = "shared/retry-safe.toml"
+max_retries = 29
+timeout_ms = 1507
+pool_size = 18
+queue_depth = 20
+upstream = "pylon"

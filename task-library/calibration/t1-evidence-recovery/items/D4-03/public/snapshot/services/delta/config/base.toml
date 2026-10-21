@@ -1,0 +1,8 @@
+[delta]
+timeout_ms = 3000
+max_retries = 26
+pool_size = 14
+queue_depth = 7
+batch_size = 2
+cache_ttl_s = 10
+upstream = "fjord"

@@ -1,0 +1,8 @@
+[nectar]
+timeout_ms = 1500
+max_retries = 14
+pool_size = 33
+queue_depth = 39
+batch_size = 28
+cache_ttl_s = 17
+upstream = "cinder"

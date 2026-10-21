@@ -1,0 +1,6 @@
+[rowan]
+include = "shared/limits-standard.toml"
+cache_ttl_s = 42
+max_retries = 41
+pool_size = 35
+upstream = "cinder"

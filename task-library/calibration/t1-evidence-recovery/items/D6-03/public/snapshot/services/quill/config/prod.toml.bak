@@ -1,0 +1,6 @@
+[quill]
+include = "shared/limits-standard.toml"
+pool_size = 16
+timeout_ms = 761
+queue_depth = 45
+upstream = "mesa"

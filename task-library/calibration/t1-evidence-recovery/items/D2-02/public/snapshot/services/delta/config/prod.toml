@@ -1,0 +1,4 @@
+[delta]
+include = "shared/pool-large.toml"
+max_retries = 17
+upstream = "cinder"

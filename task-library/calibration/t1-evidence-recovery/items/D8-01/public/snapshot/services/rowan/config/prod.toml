@@ -1,0 +1,4 @@
+[rowan]
+batch_size = 23
+pool_size = 32
+queue_depth = 27

@@ -1,0 +1,4 @@
+[cinder]
+queue_depth = 28
+cache_ttl_s = 12
+upstream = "harbor"

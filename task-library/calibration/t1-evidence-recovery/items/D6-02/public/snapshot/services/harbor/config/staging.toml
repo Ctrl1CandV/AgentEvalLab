@@ -1,0 +1,5 @@
+[harbor]
+batch_size = 20
+queue_depth = 35
+cache_ttl_s = 43
+upstream = "delta"

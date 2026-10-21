@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/pool-large.toml"
+queue_depth = 33
+pool_size = 34
+batch_size = 31
+upstream = "umbra"

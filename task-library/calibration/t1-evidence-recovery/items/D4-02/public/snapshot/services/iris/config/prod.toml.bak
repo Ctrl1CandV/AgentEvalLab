@@ -1,0 +1,6 @@
+[iris]
+include = "shared/limits-standard.toml"
+batch_size = 31
+cache_ttl_s = 45
+pool_size = 44
+upstream = "pylon"

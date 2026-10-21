@@ -1,0 +1,6 @@
+[iris]
+include = "shared/limits-burst.toml"
+pool_size = 15
+timeout_ms = 2007
+max_retries = 13
+upstream = "atlas"

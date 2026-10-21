@@ -1,0 +1,5 @@
+[spruce]
+timeout_ms = 4500
+pool_size = 54
+cache_ttl_s = 30
+upstream = "fjord"

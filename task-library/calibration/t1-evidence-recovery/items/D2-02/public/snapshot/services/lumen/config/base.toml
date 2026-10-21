@@ -1,0 +1,8 @@
+[lumen]
+timeout_ms = 500
+max_retries = 4
+pool_size = 10
+queue_depth = 33
+batch_size = 39
+cache_ttl_s = 9
+upstream = "pylon"

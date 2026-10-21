@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/limits-batch.toml"
+max_retries = 61
+cache_ttl_s = 53
+queue_depth = 42
+upstream = "fjord"

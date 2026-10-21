@@ -1,0 +1,5 @@
+[quill]
+include = "shared/limits-standard.toml"
+cache_ttl_s = 20
+batch_size = 14
+upstream = "rowan"

@@ -1,0 +1,5 @@
+[lumen]
+queue_depth = 54
+pool_size = 15
+cache_ttl_s = 51
+upstream = "kestrel"

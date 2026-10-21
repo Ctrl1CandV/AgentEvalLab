@@ -1,0 +1,8 @@
+[tundra]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 17
+pool_size = 16
+max_retries = 22
+queue_depth = 45
+batch_size = 21
+upstream = "umbra"

@@ -1,0 +1,5 @@
+[fjord]
+include = "shared/limits-batch.toml"
+cache_ttl_s = 42
+timeout_ms = 500
+upstream = "willow"

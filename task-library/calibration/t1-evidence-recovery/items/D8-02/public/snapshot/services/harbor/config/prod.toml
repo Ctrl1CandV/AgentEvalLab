@@ -1,0 +1,3 @@
+[harbor]
+timeout_ms = 4000
+cache_ttl_s = 15

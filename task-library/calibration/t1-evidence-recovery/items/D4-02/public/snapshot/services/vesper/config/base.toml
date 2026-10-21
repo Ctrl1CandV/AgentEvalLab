@@ -1,0 +1,8 @@
+[vesper]
+timeout_ms = 1000
+max_retries = 29
+pool_size = 31
+queue_depth = 23
+batch_size = 27
+cache_ttl_s = 31
+upstream = "delta"

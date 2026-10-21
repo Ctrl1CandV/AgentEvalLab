@@ -1,0 +1,5 @@
+[nectar]
+include = "shared/pool-large.toml"
+timeout_ms = 4000
+queue_depth = 24
+upstream = "umbra"

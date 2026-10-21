@@ -1,0 +1,4 @@
+[pylon]
+timeout_ms = 500
+max_retries = 33
+cache_ttl_s = 41

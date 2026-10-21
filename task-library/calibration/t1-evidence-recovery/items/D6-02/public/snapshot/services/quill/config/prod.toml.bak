@@ -1,0 +1,6 @@
+[quill]
+include = "shared/limits-batch.toml"
+queue_depth = 10
+max_retries = 35
+timeout_ms = 1011
+upstream = "vesper"

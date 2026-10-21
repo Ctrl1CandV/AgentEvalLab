@@ -1,0 +1,5 @@
+[willow]
+pool_size = 29
+queue_depth = 44
+max_retries = 32
+upstream = "garnet"

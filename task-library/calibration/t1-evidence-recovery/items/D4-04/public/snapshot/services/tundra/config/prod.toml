@@ -1,0 +1,5 @@
+[tundra]
+batch_size = 14
+timeout_ms = 4000
+pool_size = 11
+upstream = "nectar"

@@ -1,0 +1,7 @@
+[limits-batch]
+include = "shared/pool-small.toml"
+pool_size = 74
+timeout_ms = 42
+queue_depth = 77
+batch_size = 128
+upstream = "cinder"

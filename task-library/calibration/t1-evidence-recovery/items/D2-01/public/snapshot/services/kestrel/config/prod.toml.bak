@@ -1,0 +1,7 @@
+[kestrel]
+include = "shared/limits-batch.toml"
+max_retries = 27
+queue_depth = 43
+timeout_ms = 111
+batch_size = 17
+upstream = "spruce"

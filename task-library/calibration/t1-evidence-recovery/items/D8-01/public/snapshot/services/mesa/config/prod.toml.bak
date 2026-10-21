@@ -1,0 +1,7 @@
+[mesa]
+include = "shared/retry-safe.toml"
+max_retries = 46
+pool_size = 20
+timeout_ms = 1011
+queue_depth = 27
+upstream = "umbra"

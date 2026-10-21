@@ -1,0 +1,5 @@
+[quill]
+timeout_ms = 1500
+pool_size = 25
+cache_ttl_s = 36
+upstream = "nectar"

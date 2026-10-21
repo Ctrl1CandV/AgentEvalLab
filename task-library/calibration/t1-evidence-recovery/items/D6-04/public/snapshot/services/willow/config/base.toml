@@ -1,0 +1,8 @@
+[willow]
+timeout_ms = 500
+max_retries = 27
+pool_size = 16
+queue_depth = 8
+batch_size = 25
+cache_ttl_s = 26
+upstream = "rowan"

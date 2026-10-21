@@ -1,0 +1,7 @@
+[juniper]
+include = "shared/pool-small.toml"
+timeout_ms = 1007
+batch_size = 43
+max_retries = 37
+cache_ttl_s = 48
+upstream = "fjord"

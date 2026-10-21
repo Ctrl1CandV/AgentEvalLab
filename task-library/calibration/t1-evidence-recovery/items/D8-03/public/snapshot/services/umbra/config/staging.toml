@@ -1,0 +1,5 @@
+[umbra]
+pool_size = 29
+batch_size = 18
+max_retries = 30
+upstream = "beacon"

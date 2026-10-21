@@ -1,0 +1,6 @@
+[juniper]
+include = "shared/limits-batch.toml"
+cache_ttl_s = 14
+timeout_ms = 761
+max_retries = 47
+upstream = "garnet"

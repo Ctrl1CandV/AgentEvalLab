@@ -1,0 +1,8 @@
+[quill]
+timeout_ms = 3000
+max_retries = 10
+pool_size = 11
+queue_depth = 7
+batch_size = 5
+cache_ttl_s = 18
+upstream = "tundra"

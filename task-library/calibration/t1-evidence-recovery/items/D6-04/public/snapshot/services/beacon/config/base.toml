@@ -1,0 +1,8 @@
+[beacon]
+timeout_ms = 1500
+max_retries = 24
+pool_size = 12
+queue_depth = 15
+batch_size = 8
+cache_ttl_s = 18
+upstream = "fjord"

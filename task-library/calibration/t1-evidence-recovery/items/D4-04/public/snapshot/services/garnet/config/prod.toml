@@ -1,0 +1,5 @@
+[garnet]
+include = "shared/pool-small.toml"
+timeout_ms = 1000
+cache_ttl_s = 23
+upstream = "nectar"

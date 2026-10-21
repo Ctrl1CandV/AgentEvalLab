@@ -1,0 +1,4 @@
+[ember]
+timeout_ms = 6000
+max_retries = 17
+upstream = "beacon"

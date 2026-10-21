@@ -1,0 +1,6 @@
+[harbor]
+include = "shared/limits-batch.toml"
+max_retries = 14
+batch_size = 21
+pool_size = 30
+upstream = "iris"

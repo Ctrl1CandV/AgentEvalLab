@@ -1,0 +1,6 @@
+[pool-large]
+include = "shared/limits-standard.toml"
+cache_ttl_s = 119
+queue_depth = 78
+batch_size = 44
+upstream = "yonder"

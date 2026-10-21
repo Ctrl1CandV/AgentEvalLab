@@ -1,0 +1,6 @@
+[garnet]
+include = "shared/limits-floor.toml"
+batch_size = 28
+queue_depth = 26
+pool_size = 30
+upstream = "iris"

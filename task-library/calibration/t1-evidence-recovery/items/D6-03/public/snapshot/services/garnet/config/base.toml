@@ -1,0 +1,8 @@
+[garnet]
+timeout_ms = 100
+max_retries = 22
+pool_size = 16
+queue_depth = 4
+batch_size = 10
+cache_ttl_s = 27
+upstream = "kestrel"

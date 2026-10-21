@@ -1,0 +1,7 @@
+[ember]
+include = "shared/retry-safe.toml"
+max_retries = 37
+batch_size = 30
+pool_size = 40
+timeout_ms = 1011
+upstream = "willow"

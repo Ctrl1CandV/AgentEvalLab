@@ -1,0 +1,5 @@
+[juniper]
+pool_size = 45
+max_retries = 36
+cache_ttl_s = 29
+upstream = "yonder"

@@ -1,0 +1,6 @@
+[orchid]
+include = "shared/retry-fast.toml"
+queue_depth = 38
+cache_ttl_s = 30
+max_retries = 46
+upstream = "cinder"

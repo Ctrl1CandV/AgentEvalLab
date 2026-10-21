@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/limits-floor.toml"
+timeout_ms = 4500
+pool_size = 32
+max_retries = 22
+upstream = "willow"

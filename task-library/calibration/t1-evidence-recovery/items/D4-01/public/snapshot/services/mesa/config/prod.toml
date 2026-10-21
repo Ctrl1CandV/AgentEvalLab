@@ -1,0 +1,3 @@
+[mesa]
+pool_size = 33
+timeout_ms = 6000

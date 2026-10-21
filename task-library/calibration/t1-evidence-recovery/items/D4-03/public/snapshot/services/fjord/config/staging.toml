@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/limits-floor.toml"
+max_retries = 51
+batch_size = 22
+pool_size = 38
+upstream = "spruce"

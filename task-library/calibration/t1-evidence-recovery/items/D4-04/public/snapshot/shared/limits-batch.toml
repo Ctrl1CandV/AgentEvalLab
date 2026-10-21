@@ -1,0 +1,5 @@
+[limits-batch]
+include = "shared/pool-small.toml"
+cache_ttl_s = 135
+batch_size = 97
+queue_depth = 56

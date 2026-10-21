@@ -1,0 +1,7 @@
+[willow]
+include = "shared/retry-fast.toml"
+max_retries = 16
+queue_depth = 44
+batch_size = 38
+cache_ttl_s = 50
+upstream = "spruce"

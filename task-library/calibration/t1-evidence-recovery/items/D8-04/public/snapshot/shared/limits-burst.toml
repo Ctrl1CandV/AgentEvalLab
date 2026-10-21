@@ -1,0 +1,5 @@
+[limits-burst]
+include = "shared/limits-floor.toml"
+batch_size = 116
+queue_depth = 70
+upstream = "ember"

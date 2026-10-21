@@ -1,0 +1,6 @@
+[mesa]
+include = "shared/limits-batch.toml"
+batch_size = 13
+timeout_ms = 1011
+pool_size = 39
+upstream = "orchid"

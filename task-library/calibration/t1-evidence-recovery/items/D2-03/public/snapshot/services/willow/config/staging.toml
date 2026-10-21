@@ -1,0 +1,6 @@
+[willow]
+include = "shared/retry-fast.toml"
+batch_size = 50
+max_retries = 24
+pool_size = 32
+upstream = "beacon"

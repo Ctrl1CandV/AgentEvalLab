@@ -1,0 +1,7 @@
+[beacon]
+include = "shared/pool-large.toml"
+cache_ttl_s = 34
+timeout_ms = 3007
+pool_size = 53
+max_retries = 29
+upstream = "yonder"

@@ -1,0 +1,8 @@
+[harbor]
+timeout_ms = 1000
+max_retries = 24
+pool_size = 28
+queue_depth = 12
+batch_size = 28
+cache_ttl_s = 32
+upstream = "willow"

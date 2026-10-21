@@ -1,0 +1,4 @@
+[fjord]
+include = "shared/limits-floor.toml"
+batch_size = 20
+max_retries = 36

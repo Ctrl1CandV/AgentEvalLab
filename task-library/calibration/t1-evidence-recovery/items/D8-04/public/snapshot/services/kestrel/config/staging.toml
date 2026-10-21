@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/limits-floor.toml"
+pool_size = 56
+cache_ttl_s = 38
+timeout_ms = 6000
+upstream = "juniper"

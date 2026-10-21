@@ -1,0 +1,8 @@
+[pylon]
+timeout_ms = 2000
+max_retries = 17
+pool_size = 38
+queue_depth = 18
+batch_size = 3
+cache_ttl_s = 19
+upstream = "nectar"

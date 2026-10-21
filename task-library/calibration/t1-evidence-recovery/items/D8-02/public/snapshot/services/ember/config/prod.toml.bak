@@ -1,0 +1,6 @@
+[ember]
+include = "shared/limits-floor.toml"
+timeout_ms = 6007
+max_retries = 24
+pool_size = 19
+upstream = "orchid"

@@ -1,0 +1,8 @@
+[spruce]
+timeout_ms = 250
+max_retries = 28
+pool_size = 34
+queue_depth = 15
+batch_size = 8
+cache_ttl_s = 16
+upstream = "umbra"

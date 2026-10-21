@@ -1,0 +1,6 @@
+[delta]
+include = "shared/pool-small.toml"
+timeout_ms = 207
+batch_size = 42
+queue_depth = 40
+upstream = "orchid"

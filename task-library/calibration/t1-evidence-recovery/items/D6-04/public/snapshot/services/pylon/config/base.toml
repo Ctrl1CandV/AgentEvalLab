@@ -1,0 +1,8 @@
+[pylon]
+timeout_ms = 3000
+max_retries = 23
+pool_size = 25
+queue_depth = 21
+batch_size = 5
+cache_ttl_s = 7
+upstream = "tundra"

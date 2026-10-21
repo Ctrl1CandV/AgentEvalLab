@@ -1,0 +1,8 @@
+[yonder]
+timeout_ms = 1500
+max_retries = 2
+pool_size = 3
+queue_depth = 32
+batch_size = 21
+cache_ttl_s = 7
+upstream = "orchid"

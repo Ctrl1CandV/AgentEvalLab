@@ -1,0 +1,6 @@
+[vesper]
+include = "shared/retry-safe.toml"
+queue_depth = 53
+cache_ttl_s = 56
+timeout_ms = 2250
+upstream = "fjord"

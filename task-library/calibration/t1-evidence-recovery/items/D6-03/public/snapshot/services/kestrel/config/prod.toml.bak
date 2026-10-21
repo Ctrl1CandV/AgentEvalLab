@@ -1,0 +1,7 @@
+[kestrel]
+include = "shared/pool-large.toml"
+queue_depth = 24
+batch_size = 13
+timeout_ms = 1011
+pool_size = 38
+upstream = "iris"

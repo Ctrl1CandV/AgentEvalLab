@@ -1,0 +1,6 @@
+[nectar]
+include = "shared/limits-batch.toml"
+max_retries = 15
+cache_ttl_s = 34
+queue_depth = 43
+upstream = "spruce"

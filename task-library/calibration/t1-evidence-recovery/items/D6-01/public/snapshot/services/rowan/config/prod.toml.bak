@@ -1,0 +1,6 @@
+[rowan]
+include = "shared/retry-safe.toml"
+timeout_ms = 3007
+cache_ttl_s = 44
+queue_depth = 22
+upstream = "spruce"

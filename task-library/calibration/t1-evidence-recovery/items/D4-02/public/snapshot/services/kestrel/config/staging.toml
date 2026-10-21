@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/limits-floor.toml"
+max_retries = 55
+pool_size = 31
+cache_ttl_s = 25
+upstream = "vesper"

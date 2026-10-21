@@ -1,0 +1,6 @@
+[iris]
+include = "shared/pool-large.toml"
+cache_ttl_s = 41
+queue_depth = 27
+timeout_ms = 1011
+upstream = "harbor"

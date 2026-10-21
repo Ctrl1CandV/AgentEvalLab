@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/limits-burst.toml"
+batch_size = 27
+max_retries = 26
+pool_size = 34
+upstream = "umbra"

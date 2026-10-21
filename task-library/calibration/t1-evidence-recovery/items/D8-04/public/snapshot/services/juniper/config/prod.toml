@@ -1,0 +1,5 @@
+[juniper]
+include = "shared/limits-standard.toml"
+batch_size = 27
+queue_depth = 9
+upstream = "harbor"

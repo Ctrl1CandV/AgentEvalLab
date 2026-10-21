@@ -1,0 +1,6 @@
+[pool-large]
+include = "shared/pool-small.toml"
+cache_ttl_s = 98
+pool_size = 126
+queue_depth = 109
+upstream = "orchid"

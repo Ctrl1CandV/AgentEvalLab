@@ -1,0 +1,5 @@
+[umbra]
+timeout_ms = 1500
+queue_depth = 55
+batch_size = 35
+upstream = "beacon"

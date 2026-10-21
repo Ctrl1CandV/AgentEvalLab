@@ -1,0 +1,7 @@
+[fjord]
+include = "shared/retry-safe.toml"
+cache_ttl_s = 27
+batch_size = 49
+timeout_ms = 3011
+pool_size = 28
+upstream = "kestrel"

@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/pool-small.toml"
+batch_size = 17
+pool_size = 14
+timeout_ms = 3011
+upstream = "atlas"

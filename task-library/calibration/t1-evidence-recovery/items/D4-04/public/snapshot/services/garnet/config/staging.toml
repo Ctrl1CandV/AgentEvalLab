@@ -1,0 +1,5 @@
+[garnet]
+cache_ttl_s = 30
+batch_size = 46
+pool_size = 40
+upstream = "harbor"

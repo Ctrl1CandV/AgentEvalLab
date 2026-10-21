@@ -1,0 +1,5 @@
+[harbor]
+include = "shared/pool-small.toml"
+pool_size = 35
+max_retries = 50
+upstream = "kestrel"

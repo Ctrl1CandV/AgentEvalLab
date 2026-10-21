@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/limits-standard.toml"
+pool_size = 27
+timeout_ms = 111
+queue_depth = 18
+upstream = "yonder"

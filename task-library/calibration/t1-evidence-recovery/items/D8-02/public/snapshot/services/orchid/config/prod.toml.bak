@@ -1,0 +1,6 @@
+[orchid]
+include = "shared/limits-floor.toml"
+cache_ttl_s = 19
+timeout_ms = 207
+batch_size = 49
+upstream = "beacon"

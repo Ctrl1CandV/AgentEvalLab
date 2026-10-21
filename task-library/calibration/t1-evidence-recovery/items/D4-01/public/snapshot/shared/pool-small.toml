@@ -1,0 +1,6 @@
+[pool-small]
+include = "shared/limits-burst.toml"
+max_retries = 123
+timeout_ms = 100
+queue_depth = 85
+batch_size = 80

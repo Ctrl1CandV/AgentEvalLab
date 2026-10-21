@@ -1,0 +1,8 @@
+[kestrel]
+timeout_ms = 250
+max_retries = 37
+pool_size = 15
+queue_depth = 23
+batch_size = 21
+cache_ttl_s = 37
+upstream = "lumen"

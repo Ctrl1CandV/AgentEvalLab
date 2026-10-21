@@ -1,0 +1,7 @@
+[umbra]
+include = "shared/pool-large.toml"
+queue_depth = 23
+cache_ttl_s = 29
+timeout_ms = 2011
+pool_size = 23
+upstream = "tundra"

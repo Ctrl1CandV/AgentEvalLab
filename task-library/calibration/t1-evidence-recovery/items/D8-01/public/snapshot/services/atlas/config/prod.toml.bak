@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/limits-standard.toml"
+queue_depth = 37
+cache_ttl_s = 45
+max_retries = 37
+upstream = "beacon"

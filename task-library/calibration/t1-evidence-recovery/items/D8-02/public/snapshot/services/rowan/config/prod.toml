@@ -1,0 +1,6 @@
+[rowan]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 18
+pool_size = 36
+max_retries = 36
+upstream = "orchid"

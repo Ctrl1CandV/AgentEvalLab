@@ -1,0 +1,6 @@
+[nectar]
+include = "shared/retry-fast.toml"
+queue_depth = 46
+max_retries = 26
+timeout_ms = 1011
+upstream = "spruce"

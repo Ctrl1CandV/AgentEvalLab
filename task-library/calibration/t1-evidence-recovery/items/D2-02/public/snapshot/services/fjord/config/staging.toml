@@ -1,0 +1,5 @@
+[fjord]
+batch_size = 67
+queue_depth = 48
+timeout_ms = 3000
+upstream = "willow"

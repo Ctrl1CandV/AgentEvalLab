@@ -1,0 +1,5 @@
+[spruce]
+timeout_ms = 3000
+queue_depth = 37
+max_retries = 18
+upstream = "pylon"

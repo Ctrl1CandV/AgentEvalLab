@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/pool-small.toml"
+cache_ttl_s = 58
+max_retries = 47
+queue_depth = 32
+upstream = "beacon"

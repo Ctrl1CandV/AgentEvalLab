@@ -1,0 +1,3 @@
+[pool-small]
+pool_size = 105
+timeout_ms = 72

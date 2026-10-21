@@ -1,0 +1,6 @@
+[orchid]
+include = "shared/retry-safe.toml"
+batch_size = 31
+cache_ttl_s = 36
+timeout_ms = 750
+upstream = "tundra"

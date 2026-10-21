@@ -1,0 +1,4 @@
+[pool-small]
+timeout_ms = 55
+queue_depth = 122
+upstream = "kestrel"

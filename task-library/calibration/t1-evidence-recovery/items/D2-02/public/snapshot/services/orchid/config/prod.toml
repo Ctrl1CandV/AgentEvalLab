@@ -1,0 +1,5 @@
+[orchid]
+include = "shared/pool-large.toml"
+timeout_ms = 2000
+pool_size = 29
+batch_size = 9

@@ -1,0 +1,5 @@
+[lumen]
+pool_size = 36
+queue_depth = 46
+timeout_ms = 6000
+upstream = "fjord"

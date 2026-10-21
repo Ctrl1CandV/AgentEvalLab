@@ -1,0 +1,6 @@
+[yonder]
+include = "shared/retry-fast.toml"
+cache_ttl_s = 29
+max_retries = 39
+queue_depth = 20
+upstream = "rowan"

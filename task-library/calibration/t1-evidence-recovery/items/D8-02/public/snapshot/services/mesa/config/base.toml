@@ -1,0 +1,8 @@
+[mesa]
+timeout_ms = 500
+max_retries = 7
+pool_size = 30
+queue_depth = 5
+batch_size = 17
+cache_ttl_s = 16
+upstream = "ember"

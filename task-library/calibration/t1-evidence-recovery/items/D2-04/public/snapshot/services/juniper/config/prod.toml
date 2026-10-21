@@ -1,0 +1,5 @@
+[juniper]
+pool_size = 7
+queue_depth = 11
+timeout_ms = 500
+upstream = "umbra"

@@ -1,0 +1,8 @@
+[mesa]
+timeout_ms = 100
+max_retries = 18
+pool_size = 10
+queue_depth = 7
+batch_size = 15
+cache_ttl_s = 20
+upstream = "iris"

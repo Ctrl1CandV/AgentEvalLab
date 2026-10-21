@@ -1,0 +1,6 @@
+[limits-floor]
+queue_depth = 56
+timeout_ms = 59
+batch_size = 85
+max_retries = 94
+upstream = "umbra"

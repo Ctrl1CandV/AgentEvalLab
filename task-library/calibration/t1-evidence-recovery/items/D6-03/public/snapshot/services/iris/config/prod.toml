@@ -1,0 +1,6 @@
+[iris]
+include = "shared/retry-fast.toml"
+timeout_ms = 200
+queue_depth = 10
+max_retries = 46
+upstream = "delta"

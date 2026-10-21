@@ -1,0 +1,4 @@
+[iris]
+include = "shared/pool-small.toml"
+cache_ttl_s = 34
+upstream = "garnet"

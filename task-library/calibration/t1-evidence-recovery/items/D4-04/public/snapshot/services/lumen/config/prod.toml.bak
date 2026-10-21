@@ -1,0 +1,6 @@
+[lumen]
+include = "shared/retry-fast.toml"
+timeout_ms = 4007
+max_retries = 24
+queue_depth = 29
+upstream = "tundra"

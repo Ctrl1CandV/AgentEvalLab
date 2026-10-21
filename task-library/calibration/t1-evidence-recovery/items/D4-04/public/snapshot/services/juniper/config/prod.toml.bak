@@ -1,0 +1,6 @@
+[juniper]
+include = "shared/retry-fast.toml"
+cache_ttl_s = 35
+batch_size = 25
+max_retries = 20
+upstream = "pylon"

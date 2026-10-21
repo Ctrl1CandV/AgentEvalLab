@@ -102,3 +102,37 @@ L7 now keeps L6's data size: eight logs of 1,100 lines and 400 packages, about 1
 - distinct counts, three-deep includes, and two upstream steps.
 
 Self-calibration: see `logs/self-calibration-0.4.1.log`. L1–L6 are unchanged.
+
+## Version 0.5.0 (2026-10-21)
+
+**Why.** L7 (0.4.1) still put deepseek-flash at 96% and qwen3.8-flash at 85%, and the only lever left in the L levels was volume, which at twelve 1,300-line logs turned into budget exhaustion (0.4.0). PLAN-006 B2 replaces volume with depth: errors compound with the number of references a question follows, as grid size does for R3.
+
+**The depth ladder** (`private/chains.py`): levels D2, D4, D6 and D8, four items each, five chain questions per item. Snapshots are small (126 files, about 15,000 characters: 18 services with base, prod, staging and retired configs, seven shared files in include chains, changes, reviews and incidents), so depth, not volume, decides.
+
+- A chain runs incident → review → change → the service the change set → its production `upstream`, followed once, twice or three times → a key's effective production value. `upstream` follows the precedence rules too.
+- Depth counts the files needed after the incident. D2 asks for the value the incident's change set; D4 to D8 combine one to three upstream steps with values from prod.toml, an included file, a file that one includes, or base.toml.
+- Distractors at every step:
+  - the incident's timeline names a second review, whose change was rolled back without effect;
+  - the review names a superseded proposal;
+  - the changed key has a later change;
+  - staging.toml, prod.toml.bak and base.toml name other upstreams;
+  - shared files, base.toml, staging.toml and retired copies set the same keys.
+
+  Both decoy changes belong to services whose chains end at another answer.
+- New question kind `chain`, graded like `config`. The trace must show:
+  - every file of the chain, the incident, review and change in full;
+  - each step's deciding line;
+  - the proofs that nearer files do not set a key.
+
+  A whole-file proof of a configuration file may be a complete search for the key it is about, `upstream` included (grader 1.6.0).
+
+L1–L7 snapshots and keys are unchanged.
+
+**Self-calibration** (`python3 private/grader.py --self-calibrate`, 1690/1690; `logs/self-calibration-0.5.0.log`):
+
+- An independent solver reads only the snapshot text, follows each chain and reproduces every key.
+- Taking one step's distractor instead changes the answer:
+  - the decoy review and the superseded change always do;
+  - over all applicable distractors, 60 of 60 at D2, 100 of 140 at D4, 104 of 140 at D6 and 96 of 140 at D8 do. The rest lead, by chance, to the same end.
+- A trace that reads every file of a chain passes; one that leaves out any single file fails; a wrong value fails.
+

@@ -1,0 +1,3 @@
+[willow]
+max_retries = 9
+queue_depth = 37

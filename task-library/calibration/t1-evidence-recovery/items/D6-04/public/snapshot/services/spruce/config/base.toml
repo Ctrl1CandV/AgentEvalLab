@@ -1,0 +1,8 @@
+[spruce]
+timeout_ms = 1000
+max_retries = 34
+pool_size = 22
+queue_depth = 38
+batch_size = 4
+cache_ttl_s = 5
+upstream = "rowan"

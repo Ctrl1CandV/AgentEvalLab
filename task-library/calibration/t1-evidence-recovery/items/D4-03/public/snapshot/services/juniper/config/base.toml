@@ -1,0 +1,8 @@
+[juniper]
+timeout_ms = 2000
+max_retries = 2
+pool_size = 8
+queue_depth = 20
+batch_size = 24
+cache_ttl_s = 13
+upstream = "garnet"

@@ -1,0 +1,5 @@
+[beacon]
+queue_depth = 29
+timeout_ms = 9000
+pool_size = 20
+upstream = "cinder"

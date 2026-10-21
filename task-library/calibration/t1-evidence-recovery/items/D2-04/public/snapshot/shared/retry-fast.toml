@@ -1,0 +1,5 @@
+[retry-fast]
+include = "shared/limits-batch.toml"
+cache_ttl_s = 100
+timeout_ms = 135
+max_retries = 80

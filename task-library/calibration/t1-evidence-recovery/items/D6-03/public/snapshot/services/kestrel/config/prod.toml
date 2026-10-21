@@ -1,0 +1,4 @@
+[kestrel]
+queue_depth = 17
+batch_size = 6
+upstream = "harbor"

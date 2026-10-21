@@ -1,0 +1,7 @@
+[umbra]
+include = "shared/limits-standard.toml"
+pool_size = 44
+cache_ttl_s = 13
+batch_size = 23
+max_retries = 35
+upstream = "tundra"

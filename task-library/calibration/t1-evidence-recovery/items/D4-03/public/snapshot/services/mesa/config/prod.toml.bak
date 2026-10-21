@@ -1,0 +1,7 @@
+[mesa]
+include = "shared/limits-standard.toml"
+timeout_ms = 3007
+pool_size = 19
+max_retries = 14
+batch_size = 48
+upstream = "cinder"

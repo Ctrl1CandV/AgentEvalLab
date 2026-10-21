@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/retry-fast.toml"
+batch_size = 49
+cache_ttl_s = 14
+queue_depth = 20
+upstream = "atlas"

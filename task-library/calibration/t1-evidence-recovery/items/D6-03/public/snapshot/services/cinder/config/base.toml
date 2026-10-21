@@ -1,0 +1,8 @@
+[cinder]
+timeout_ms = 1000
+max_retries = 36
+pool_size = 6
+queue_depth = 4
+batch_size = 32
+cache_ttl_s = 10
+upstream = "delta"

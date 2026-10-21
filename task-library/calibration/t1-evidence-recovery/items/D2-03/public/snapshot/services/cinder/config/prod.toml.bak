@@ -1,0 +1,7 @@
+[cinder]
+include = "shared/retry-fast.toml"
+cache_ttl_s = 19
+queue_depth = 24
+max_retries = 43
+pool_size = 14
+upstream = "atlas"

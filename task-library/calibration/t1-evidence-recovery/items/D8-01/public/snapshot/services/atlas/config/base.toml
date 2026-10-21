@@ -1,0 +1,8 @@
+[atlas]
+timeout_ms = 3000
+max_retries = 26
+pool_size = 28
+queue_depth = 24
+batch_size = 30
+cache_ttl_s = 34
+upstream = "nectar"

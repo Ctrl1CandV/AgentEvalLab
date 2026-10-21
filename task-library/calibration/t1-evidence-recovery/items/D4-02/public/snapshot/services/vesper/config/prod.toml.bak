@@ -1,0 +1,6 @@
+[vesper]
+include = "shared/pool-small.toml"
+cache_ttl_s = 41
+pool_size = 42
+batch_size = 38
+upstream = "kestrel"

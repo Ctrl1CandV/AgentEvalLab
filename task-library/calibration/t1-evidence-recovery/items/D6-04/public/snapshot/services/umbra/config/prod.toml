@@ -1,0 +1,6 @@
+[umbra]
+include = "shared/limits-standard.toml"
+timeout_ms = 200
+batch_size = 42
+cache_ttl_s = 10
+upstream = "cinder"

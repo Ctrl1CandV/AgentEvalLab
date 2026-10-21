@@ -1,0 +1,5 @@
+[mesa]
+batch_size = 23
+pool_size = 62
+cache_ttl_s = 59
+upstream = "pylon"

@@ -1,0 +1,6 @@
+[willow]
+include = "shared/retry-fast.toml"
+pool_size = 21
+batch_size = 42
+cache_ttl_s = 15
+upstream = "quill"

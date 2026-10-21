@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/limits-batch.toml"
+pool_size = 22
+timeout_ms = 511
+cache_ttl_s = 34
+upstream = "delta"

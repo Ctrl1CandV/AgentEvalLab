@@ -1,0 +1,6 @@
+[juniper]
+include = "shared/retry-safe.toml"
+batch_size = 19
+queue_depth = 36
+cache_ttl_s = 49
+upstream = "orchid"

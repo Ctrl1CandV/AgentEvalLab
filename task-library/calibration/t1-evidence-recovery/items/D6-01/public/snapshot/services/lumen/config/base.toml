@@ -1,0 +1,8 @@
+[lumen]
+timeout_ms = 500
+max_retries = 23
+pool_size = 34
+queue_depth = 18
+batch_size = 18
+cache_ttl_s = 26
+upstream = "harbor"

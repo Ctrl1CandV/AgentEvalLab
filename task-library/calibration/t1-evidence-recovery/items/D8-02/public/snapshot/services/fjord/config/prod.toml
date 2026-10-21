@@ -1,0 +1,5 @@
+[fjord]
+timeout_ms = 6000
+batch_size = 9
+max_retries = 8
+upstream = "mesa"

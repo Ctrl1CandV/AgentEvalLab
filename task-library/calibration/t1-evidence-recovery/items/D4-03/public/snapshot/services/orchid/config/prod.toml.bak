@@ -1,0 +1,6 @@
+[orchid]
+include = "shared/pool-small.toml"
+max_retries = 14
+timeout_ms = 1507
+queue_depth = 23
+upstream = "kestrel"

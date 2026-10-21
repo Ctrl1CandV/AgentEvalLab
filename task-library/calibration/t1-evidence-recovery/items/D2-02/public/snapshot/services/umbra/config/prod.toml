@@ -1,0 +1,5 @@
+[umbra]
+include = "shared/limits-standard.toml"
+batch_size = 9
+cache_ttl_s = 34
+timeout_ms = 1000

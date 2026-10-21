@@ -1,0 +1,8 @@
+[umbra]
+timeout_ms = 250
+max_retries = 11
+pool_size = 6
+queue_depth = 15
+batch_size = 6
+cache_ttl_s = 38
+upstream = "delta"

@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/pool-large.toml"
+cache_ttl_s = 24
+queue_depth = 34
+batch_size = 39
+upstream = "spruce"

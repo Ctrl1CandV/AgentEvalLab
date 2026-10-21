@@ -1,0 +1,5 @@
+[nectar]
+max_retries = 50
+batch_size = 56
+pool_size = 46
+upstream = "pylon"

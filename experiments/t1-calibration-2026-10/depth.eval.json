@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 3,
+  "name": "t1-calibration-2026-10-depth",
+  "models": [
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "aliplan",
+      "id": "qwen3.8-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    },
+    {
+      "provider": "mimoplan",
+      "id": "mimo-v2.6-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 1,
+  "budget": {
+    "timeoutMs": 3600000,
+    "maxTurns": 200,
+    "maxModelCalls": 200,
+    "maxToolCalls": 250,
+    "maxOutputChars": 524288,
+    "maxOutputTokensPerCall": 131072,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 1000000
+  },
+  "artifactLimits": {
+    "maxFiles": 500,
+    "maxFileBytes": 10485760,
+    "maxTrialBytes": 52428800,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 16000000,
+    "concurrency": 4
+  },
+  "trustedLocalExecution": true,
+  "budgetNotice": true,
+  "cases": [
+    {
+      "id": "t1-evidence-recovery",
+      "packagePath": "task-library/calibration/t1-evidence-recovery",
+      "packageManifestSha256": "764021523e260c28d13d993402d18cfec716f9c77fe5fc4f9e7c6cd738a5aa56",
+      "readOnly": true,
+      "toolProfile": "doc-evidence",
+      "input": {
+        "prompt": "Use the tools to answer every question, then give the JSON answer."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 180000
+      },
+      "items": {
+        "levels": [
+          "D2",
+          "D4",
+          "D6",
+          "D8"
+        ]
+      }
+    }
+  ]
+}

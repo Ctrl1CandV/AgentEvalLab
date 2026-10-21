@@ -1,0 +1,8 @@
+[pylon]
+timeout_ms = 750
+max_retries = 23
+pool_size = 14
+queue_depth = 32
+batch_size = 28
+cache_ttl_s = 18
+upstream = "rowan"

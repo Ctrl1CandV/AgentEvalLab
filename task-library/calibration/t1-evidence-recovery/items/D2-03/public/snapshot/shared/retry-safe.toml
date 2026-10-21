@@ -1,0 +1,4 @@
+[retry-safe]
+timeout_ms = 78
+batch_size = 137
+upstream = "yonder"

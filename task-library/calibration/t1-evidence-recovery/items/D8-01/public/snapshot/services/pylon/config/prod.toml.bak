@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/retry-fast.toml"
+queue_depth = 43
+max_retries = 32
+pool_size = 25
+upstream = "willow"

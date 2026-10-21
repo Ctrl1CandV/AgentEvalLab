@@ -1,0 +1,8 @@
+[spruce]
+timeout_ms = 2000
+max_retries = 24
+pool_size = 23
+queue_depth = 29
+batch_size = 10
+cache_ttl_s = 18
+upstream = "harbor"

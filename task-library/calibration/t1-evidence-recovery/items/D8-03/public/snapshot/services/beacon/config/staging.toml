@@ -1,0 +1,5 @@
+[beacon]
+queue_depth = 39
+max_retries = 47
+batch_size = 32
+upstream = "willow"

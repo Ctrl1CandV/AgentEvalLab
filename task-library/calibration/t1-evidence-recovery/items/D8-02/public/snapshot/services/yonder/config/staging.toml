@@ -1,0 +1,5 @@
+[yonder]
+max_retries = 56
+batch_size = 65
+pool_size = 43
+upstream = "atlas"

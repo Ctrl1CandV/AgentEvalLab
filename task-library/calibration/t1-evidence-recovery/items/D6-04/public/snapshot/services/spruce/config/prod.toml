@@ -1,0 +1,4 @@
+[spruce]
+include = "shared/limits-batch.toml"
+batch_size = 12
+upstream = "fjord"

@@ -1,0 +1,4 @@
+[kestrel]
+batch_size = 29
+timeout_ms = 200
+queue_depth = 14

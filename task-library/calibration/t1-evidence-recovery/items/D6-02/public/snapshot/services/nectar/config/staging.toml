@@ -1,0 +1,5 @@
+[nectar]
+queue_depth = 34
+timeout_ms = 300
+pool_size = 32
+upstream = "rowan"

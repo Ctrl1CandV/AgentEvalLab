@@ -1,0 +1,5 @@
+[retry-fast]
+max_retries = 59
+pool_size = 131
+batch_size = 86
+cache_ttl_s = 53

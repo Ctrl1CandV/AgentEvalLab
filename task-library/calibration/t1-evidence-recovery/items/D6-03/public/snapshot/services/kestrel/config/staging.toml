@@ -1,0 +1,5 @@
+[kestrel]
+timeout_ms = 3000
+pool_size = 40
+max_retries = 48
+upstream = "orchid"

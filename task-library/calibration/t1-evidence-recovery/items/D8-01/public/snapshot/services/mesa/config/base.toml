@@ -1,0 +1,8 @@
+[mesa]
+timeout_ms = 1000
+max_retries = 34
+pool_size = 11
+queue_depth = 16
+batch_size = 2
+cache_ttl_s = 2
+upstream = "quill"

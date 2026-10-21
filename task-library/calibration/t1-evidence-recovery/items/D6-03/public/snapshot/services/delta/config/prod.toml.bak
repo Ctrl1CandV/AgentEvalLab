@@ -1,0 +1,7 @@
+[delta]
+include = "shared/limits-burst.toml"
+cache_ttl_s = 40
+timeout_ms = 3007
+queue_depth = 29
+pool_size = 39
+upstream = "rowan"

@@ -1,0 +1,5 @@
+[ember]
+pool_size = 25
+timeout_ms = 6000
+queue_depth = 21
+upstream = "fjord"

@@ -1,0 +1,5 @@
+[cinder]
+pool_size = 24
+batch_size = 17
+timeout_ms = 2250
+upstream = "atlas"

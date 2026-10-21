@@ -1,0 +1,4 @@
+[tundra]
+timeout_ms = 4000
+max_retries = 18
+upstream = "vesper"

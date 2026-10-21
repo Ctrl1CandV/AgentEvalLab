@@ -1,0 +1,5 @@
+[pylon]
+pool_size = 51
+timeout_ms = 6000
+cache_ttl_s = 46
+upstream = "kestrel"

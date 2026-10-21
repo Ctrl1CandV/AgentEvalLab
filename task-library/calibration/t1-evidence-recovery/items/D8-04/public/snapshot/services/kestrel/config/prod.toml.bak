@@ -1,0 +1,7 @@
+[kestrel]
+include = "shared/limits-standard.toml"
+timeout_ms = 4007
+pool_size = 42
+queue_depth = 31
+cache_ttl_s = 28
+upstream = "yonder"

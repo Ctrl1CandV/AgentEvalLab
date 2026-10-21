@@ -1,0 +1,5 @@
+[quill]
+queue_depth = 45
+pool_size = 19
+max_retries = 40
+upstream = "cinder"

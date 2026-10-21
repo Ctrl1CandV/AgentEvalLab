@@ -1,0 +1,7 @@
+[umbra]
+include = "shared/pool-small.toml"
+max_retries = 21
+pool_size = 17
+timeout_ms = 507
+cache_ttl_s = 49
+upstream = "orchid"

@@ -1,0 +1,5 @@
+[pool-large]
+include = "shared/retry-fast.toml"
+queue_depth = 81
+pool_size = 91
+upstream = "atlas"

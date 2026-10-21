@@ -1,0 +1,5 @@
+[umbra]
+cache_ttl_s = 28
+timeout_ms = 750
+batch_size = 20
+upstream = "garnet"

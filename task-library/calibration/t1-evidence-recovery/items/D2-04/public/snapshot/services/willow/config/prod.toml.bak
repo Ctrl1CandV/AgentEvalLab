@@ -1,0 +1,7 @@
+[willow]
+include = "shared/limits-floor.toml"
+queue_depth = 52
+timeout_ms = 1007
+cache_ttl_s = 32
+max_retries = 36
+upstream = "atlas"

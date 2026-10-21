@@ -1,0 +1,4 @@
+[kestrel]
+include = "shared/pool-large.toml"
+queue_depth = 32
+upstream = "umbra"

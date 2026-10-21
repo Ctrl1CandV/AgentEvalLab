@@ -1,0 +1,7 @@
+[juniper]
+include = "shared/pool-small.toml"
+max_retries = 27
+batch_size = 28
+queue_depth = 22
+cache_ttl_s = 32
+upstream = "atlas"

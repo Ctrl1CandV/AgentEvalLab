@@ -1,0 +1,8 @@
+[vesper]
+timeout_ms = 750
+max_retries = 29
+pool_size = 39
+queue_depth = 25
+batch_size = 20
+cache_ttl_s = 34
+upstream = "mesa"

@@ -1,0 +1,8 @@
+[garnet]
+timeout_ms = 3000
+max_retries = 20
+pool_size = 9
+queue_depth = 14
+batch_size = 28
+cache_ttl_s = 24
+upstream = "willow"

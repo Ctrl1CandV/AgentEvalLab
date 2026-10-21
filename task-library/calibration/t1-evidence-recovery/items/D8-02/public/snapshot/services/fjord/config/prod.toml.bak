@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/retry-fast.toml"
+timeout_ms = 6007
+batch_size = 18
+max_retries = 16
+upstream = "delta"

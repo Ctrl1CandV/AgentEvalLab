@@ -1,0 +1,8 @@
+[cinder]
+timeout_ms = 1500
+max_retries = 19
+pool_size = 2
+queue_depth = 36
+batch_size = 21
+cache_ttl_s = 24
+upstream = "ember"

@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/limits-batch.toml"
+max_retries = 29
+pool_size = 17
+queue_depth = 30
+upstream = "mesa"

@@ -1,0 +1,7 @@
+[cinder]
+include = "shared/limits-batch.toml"
+max_retries = 20
+queue_depth = 19
+pool_size = 39
+timeout_ms = 1011
+upstream = "yonder"

@@ -1,0 +1,8 @@
+[rowan]
+timeout_ms = 1000
+max_retries = 37
+pool_size = 12
+queue_depth = 13
+batch_size = 14
+cache_ttl_s = 33
+upstream = "nectar"

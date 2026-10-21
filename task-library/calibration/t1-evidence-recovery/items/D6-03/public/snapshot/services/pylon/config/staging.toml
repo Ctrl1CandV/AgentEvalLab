@@ -1,0 +1,5 @@
+[pylon]
+max_retries = 44
+batch_size = 37
+queue_depth = 21
+upstream = "orchid"

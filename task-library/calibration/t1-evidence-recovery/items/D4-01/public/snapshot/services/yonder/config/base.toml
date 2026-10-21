@@ -1,0 +1,8 @@
+[yonder]
+timeout_ms = 3000
+max_retries = 27
+pool_size = 25
+queue_depth = 37
+batch_size = 7
+cache_ttl_s = 26
+upstream = "spruce"

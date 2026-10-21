@@ -1,0 +1,5 @@
+[orchid]
+include = "shared/limits-standard.toml"
+timeout_ms = 261
+batch_size = 49
+upstream = "kestrel"

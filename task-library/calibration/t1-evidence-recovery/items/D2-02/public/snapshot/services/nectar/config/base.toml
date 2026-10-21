@@ -1,0 +1,8 @@
+[nectar]
+timeout_ms = 500
+max_retries = 32
+pool_size = 5
+queue_depth = 37
+batch_size = 4
+cache_ttl_s = 32
+upstream = "yonder"

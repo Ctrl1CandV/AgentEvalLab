@@ -1,0 +1,8 @@
+[orchid]
+include = "shared/limits-standard.toml"
+queue_depth = 27
+max_retries = 37
+pool_size = 20
+cache_ttl_s = 14
+batch_size = 18
+upstream = "yonder"

@@ -1,0 +1,6 @@
+[delta]
+include = "shared/retry-fast.toml"
+timeout_ms = 511
+queue_depth = 13
+cache_ttl_s = 34
+upstream = "garnet"

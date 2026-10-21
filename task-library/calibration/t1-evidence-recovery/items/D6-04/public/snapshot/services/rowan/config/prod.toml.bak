@@ -1,0 +1,5 @@
+[rowan]
+include = "shared/pool-small.toml"
+batch_size = 33
+max_retries = 26
+upstream = "cinder"

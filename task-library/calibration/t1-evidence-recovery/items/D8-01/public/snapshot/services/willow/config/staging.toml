@@ -1,0 +1,6 @@
+[willow]
+include = "shared/limits-standard.toml"
+queue_depth = 47
+batch_size = 51
+timeout_ms = 3000
+upstream = "beacon"

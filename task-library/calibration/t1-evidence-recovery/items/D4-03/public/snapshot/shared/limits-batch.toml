@@ -1,0 +1,5 @@
+[limits-batch]
+include = "shared/limits-standard.toml"
+timeout_ms = 75
+batch_size = 84
+pool_size = 101

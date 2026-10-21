@@ -1,0 +1,6 @@
+[quill]
+include = "shared/pool-small.toml"
+batch_size = 36
+pool_size = 58
+cache_ttl_s = 21
+upstream = "mesa"

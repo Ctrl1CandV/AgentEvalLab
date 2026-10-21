@@ -1,0 +1,4 @@
+[kestrel]
+include = "shared/limits-standard.toml"
+cache_ttl_s = 30
+max_retries = 39

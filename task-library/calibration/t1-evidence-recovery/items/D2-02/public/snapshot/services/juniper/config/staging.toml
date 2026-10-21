@@ -1,0 +1,5 @@
+[juniper]
+max_retries = 43
+batch_size = 38
+timeout_ms = 2250
+upstream = "ember"

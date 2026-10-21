@@ -1,0 +1,3 @@
+[atlas]
+batch_size = 19
+upstream = "ember"

@@ -1,0 +1,8 @@
+[lumen]
+timeout_ms = 750
+max_retries = 15
+pool_size = 7
+queue_depth = 9
+batch_size = 4
+cache_ttl_s = 13
+upstream = "vesper"

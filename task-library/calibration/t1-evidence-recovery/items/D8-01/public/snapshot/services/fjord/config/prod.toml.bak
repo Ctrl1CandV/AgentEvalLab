@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/limits-standard.toml"
+batch_size = 15
+cache_ttl_s = 38
+pool_size = 50
+upstream = "willow"

@@ -1,0 +1,5 @@
+[ember]
+queue_depth = 55
+max_retries = 49
+batch_size = 23
+upstream = "rowan"

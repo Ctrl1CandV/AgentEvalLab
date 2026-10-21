@@ -1,0 +1,3 @@
+[juniper]
+include = "shared/limits-standard.toml"
+pool_size = 42

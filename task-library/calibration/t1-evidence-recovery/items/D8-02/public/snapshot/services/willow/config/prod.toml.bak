@@ -1,0 +1,6 @@
+[willow]
+include = "shared/limits-burst.toml"
+batch_size = 10
+queue_depth = 50
+pool_size = 16
+upstream = "atlas"

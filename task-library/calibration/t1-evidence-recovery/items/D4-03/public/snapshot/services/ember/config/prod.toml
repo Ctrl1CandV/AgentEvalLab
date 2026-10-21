@@ -1,0 +1,3 @@
+[ember]
+include = "shared/limits-batch.toml"
+max_retries = 10

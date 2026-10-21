@@ -1,0 +1,3 @@
+[vesper]
+batch_size = 37
+max_retries = 21

@@ -1,0 +1,6 @@
+[limits-floor]
+include = "shared/limits-batch.toml"
+batch_size = 90
+pool_size = 132
+cache_ttl_s = 69
+timeout_ms = 133

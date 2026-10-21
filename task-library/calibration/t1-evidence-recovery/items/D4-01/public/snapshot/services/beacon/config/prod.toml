@@ -1,0 +1,5 @@
+[beacon]
+include = "shared/pool-large.toml"
+cache_ttl_s = 43
+max_retries = 24
+batch_size = 8

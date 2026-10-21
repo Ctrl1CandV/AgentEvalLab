@@ -1,0 +1,7 @@
+[kestrel]
+include = "shared/limits-batch.toml"
+max_retries = 42
+cache_ttl_s = 34
+queue_depth = 18
+batch_size = 39
+upstream = "juniper"

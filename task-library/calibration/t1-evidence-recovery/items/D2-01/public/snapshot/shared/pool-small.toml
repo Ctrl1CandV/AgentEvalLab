@@ -1,0 +1,5 @@
+[pool-small]
+timeout_ms = 47
+max_retries = 126
+batch_size = 103
+cache_ttl_s = 84

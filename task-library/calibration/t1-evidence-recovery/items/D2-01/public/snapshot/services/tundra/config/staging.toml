@@ -1,0 +1,6 @@
+[tundra]
+include = "shared/limits-batch.toml"
+timeout_ms = 1500
+queue_depth = 41
+max_retries = 45
+upstream = "fjord"

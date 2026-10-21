@@ -1,0 +1,8 @@
+[beacon]
+timeout_ms = 1000
+max_retries = 31
+pool_size = 14
+queue_depth = 2
+batch_size = 31
+cache_ttl_s = 30
+upstream = "willow"

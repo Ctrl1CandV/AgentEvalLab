@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/limits-floor.toml"
+pool_size = 16
+max_retries = 20
+batch_size = 19
+upstream = "umbra"
