@@ -73,3 +73,18 @@ Under 0.4.0's ladder (16/6/3/1.5×), deepseek, qwen and mimo-pro passed every ch
 | qwen3.8-flash | 1.26×: 5/7 | wrong output on every day: 0/7 |
 
 A 0.4.1 run is still needed for results.
+
+## speedup 0.4.1, formal run (2026-10-21)
+
+The first suite run (PLAN-006 Part A), `runs/suites/20261021-120039-dev-fe3b`, at commit `53c833c`, with deepseek-flash and qwen3.8-flash, one trial each, 2,000,000 tokens per trial:
+
+| Model | Checks | Time against the reference | Tokens |
+| --- | --- | --- | ---: |
+| deepseek-flash | 0/7 | 3.1×, all outputs right | 2.05M (budget stop) |
+| qwen3.8-flash | 4/7: outputs and `speed-3` | between 1.5× and 3× | 2.04M (budget stop) |
+
+deepseek's program is correct but took 2.5 seconds against the reference's 0.8, measured again on an idle machine. The trial ended at its budget while it was still tuning and difference-testing. In 0.4.0 its two programs ran at 0.64× and 0.69×. Under 0.4.1 a correct program just above 3× earned nothing, a cliff that 0.5.0 removes with a `speed-8` rung (see the package's `calibration.md`).
+
+## E4 0.5.0: speedup and compress (2026-10-21)
+
+`terminal.eval.json` runs both scored items. `compress.eval.json` runs `compress` alone. The grader has 20 minutes per trial, because the compress check makes up to twelve candidate runs of up to 60 seconds after about a minute of anchors.

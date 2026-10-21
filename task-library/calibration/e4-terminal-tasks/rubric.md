@@ -1,16 +1,18 @@
 # Rubric: E4 Command-Line Work
 
-Each item is a workspace with a task in the style of Terminal-Bench, done through the command tool. Version 0.1.0's four single-fault items (a database migration, a slow program, a Git bisection and a broken build) proved too easy and stay as anchors. Version 0.2.0 adds three compound items: a service with six faults reported only as user symptoms, a make and shell pipeline with four faults between its tools, and lost work to recover from Git's unreachable objects. They proved easy too. Version 0.3.0 adds a reverse-engineering item: a decoder for a log format known only from its encoder's bytecode. It proved easy for the strong models too, so version 0.4.0 adds an item scored on a ladder: a speedup against an optimised reference. Hidden checks run the deliverables in the bubblewrap sandbox, on a fresh copy of the submission and mostly on inputs the model has not seen. Expected results come from oracle solutions. Every check is critical, and the score is the fraction of checks passed.
+Each item is a workspace with a task in the style of Terminal-Bench, done through the command tool. Version 0.1.0's four single-fault items (a database migration, a slow program, a Git bisection and a broken build) proved too easy and stay as anchors. Version 0.2.0 adds three compound items: a service with six faults reported only as user symptoms, a make and shell pipeline with four faults between its tools, and lost work to recover from Git's unreachable objects. They proved easy too. Version 0.3.0 adds a reverse-engineering item: a decoder for a log format known only from its encoder's bytecode. It proved easy for the strong models too, so version 0.4.0 adds an item scored on a ladder: a speedup against an optimised reference. Version 0.5.0 adds a second item scored on a continuous scale: a lossless compressor for CDN edge logs, placed between LZMA and a compressor written for the format. Hidden checks run the deliverables in the bubblewrap sandbox, on a fresh copy of the submission and mostly on inputs the model has not seen. Expected results come from oracle solutions. Every check is critical, and the score is the fraction of checks passed.
 
 ## Guard checks
 
 Some checks confirm that a change broke nothing, which an untouched workspace would also pass. They count only when the item's main goal is met:
 
 - `perf`: the output checks count only when the program is fast;
+- `speedup`: the output checks count only when `speed-8` passes;
 - `bisect`: the behaviour checks count only when the regression is fixed;
 - `build`: the flags check counts only when the project builds;
 - `migrate`: `atomic` and `idempotent` count only when the script migrates valid databases;
-- `stockroom` and `pipeline`: `regression` counts only when some other check passes.
+- `stockroom` and `pipeline`: `regression` counts only when some other check passes;
+- `compress`: `roundtrip` and `roundtrip-quirks` count only when `ratio-50` passes, so gzip or LZMA alone earns nothing.
 
 An untouched workspace scores 0 on every item.
 
@@ -26,4 +28,5 @@ An untouched workspace scores 0 on every item.
 | pipeline | Fix a make, shell and Python pipeline: exports without a final line break, zero-padded store ids, EU exports with `;` and decimal commas (documented, but absent from the workspace), and a missing make dependency | `line-ends`, `store-ids`, `eu-format`, `rebuild`, `combined`, `regression` (guard) |
 | recover | Recover the rebased version of a deleted branch and the last dropped stash from unreachable Git objects, past a pre-rebase tip and an older stash that carry the same titles | `search-commit`, `search-tree`, `stash-commit`, `stash-file` |
 | codec | Recover a log compressor's format from its CPython 3.13 bytecode, write `decode.py`, and restore the archive | `words`, `short-tokens`, `numbers`, `timestamps`, `spaces`, `long-literals`, `eviction`, `multi-day`, `bytes`, `edges` (hidden logs aimed at one feature each, compressed afresh; every file must come back byte for byte); `restore` |
-| speedup | Make a slow, quirky report program fast with byte-identical output | `small`, `quirks`, `large` (the original's exact output on a normal day, a quirk day and 200,000 events; guards that count once `speed-3` passes); `speed-3`, `speed-1.5`, `speed-1.1`, `speed-0.75` (time on the large day against the reference, on one core, best of three; 0.4.0 used 16, 6, 3 and 1.5) |
+| speedup | Make a slow, quirky report program fast with byte-identical output | `small`, `quirks`, `large` (the original's exact output on a normal day, a quirk day and 200,000 events; guards that count once `speed-8` passes); `speed-8`, `speed-3`, `speed-1.5`, `speed-1.1`, `speed-0.75` (time on the large day against the reference, on one core, best of three; 0.4.0 used 16, 6, 3 and 1.5, and 0.4.1 had no `speed-8`) |
+| compress | Rewrite `packlog.py` to compress CDN edge request logs as small as possible, restoring any input byte for byte | `roundtrip` (two hidden days of 50,000 and 30,000 lines, each run within 60 seconds, scaled up when the machine is busy); `roundtrip-quirks` (a damaged log, an empty file, a last line without a newline and random bytes); `ratio-50`, `ratio-80`, `ratio-90`, `ratio-97` (the two days' total compressed size on a scale from LZMA preset 9e, 0%, to the reference written for the format, 100%; they need `roundtrip`). Compression and decompression run in separate fresh copies of the workspace, and only the compressed file passes between them. |

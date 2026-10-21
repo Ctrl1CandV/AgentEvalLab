@@ -521,7 +521,9 @@ export class SuiteRunner {
         adjustments: [...new Set(entries.flatMap(entry => entry.adjustments))], results, notRun,
         infrastructure: units.filter(unit => unit.infrastructure).map(({ label, trialId, itemId, outcome, providerError, runDirectory }) =>
           ({ label, trialId, itemId, outcome, providerError, runDirectory: relative(this.options.repoRoot, runDirectory) })),
-        providerStops, failedChecks: failedChecks(units, (unit, checkId) => reasons.get(`${unit.trialId}\u0000${checkId}`) ?? null), runDirectories,
+        providerStops, runDirectories,
+        failedChecks: failedChecks(units, (unit, checkId) => reasons.get(`${unit.trialId}\u0000${checkId}`) ?? null)
+          .map(check => ({ ...check, samples: check.samples.map(sample => ({ ...sample, trial: relative(this.options.repoRoot, sample.trial) })) })),
         ...(tournament ? { tournament } : {}),
       });
     }

@@ -5,9 +5,10 @@ public/ directory, with data.py, naive.py and reference.py beside this script. P
 - `small`, `large`: analyze.py prints exactly the original's output on a normal day and on a day of 200,000 events,
   both of well-formed rows (timestamps in several offsets).
 - `quirks`: the same on a day full of malformed and unusual rows.
-- `speed-3`, `speed-1.5`, `speed-1.1`, `speed-0.75`: on the large day, analyze.py takes at most that many times as long as
-  the reference (best of three runs each, interleaved, on one CPU core). They need `small` and `large` right.
-- Guards: `small`, `large` and `quirks` count only when `speed-3` passes, so the untouched original earns nothing.
+- `speed-8`, `speed-3`, `speed-1.5`, `speed-1.1`, `speed-0.75`: on the large day, analyze.py takes at most that many times
+  as long as the reference (best of three runs each, interleaved, on one CPU core). They need `small` and `large` right.
+- Guards: `small`, `large` and `quirks` count only when `speed-8` passes, so the untouched original (about 70 times the
+  reference's time) earns nothing.
 """
 import json
 import os
@@ -73,7 +74,7 @@ def main():
         actual, candidate_time = run(candidate, paths["large"])
         right["large"] = actual is not None and actual == expected
         ratio = float("inf")
-        if right["small"] and right["large"] and candidate_time <= 3 * reference_time * 1.5:
+        if right["small"] and right["large"] and candidate_time <= 8 * reference_time * 1.5:
             for _ in range(2):
                 reference_time = min(reference_time, run("reference.py", paths["large"], SOURCES["reference.py"])[1])
                 output, seconds = run(candidate, paths["large"])
@@ -81,8 +82,8 @@ def main():
                     candidate_time = min(candidate_time, seconds)
             ratio = candidate_time / reference_time
     gate = right["small"] and right["large"]
-    verdicts = {f"speed-{label}": gate and ratio <= factor for label, factor in (("3", 3), ("1.5", 1.5), ("1.1", 1.1), ("0.75", 0.75))}
-    fast = verdicts["speed-3"]
+    verdicts = {f"speed-{label}": gate and ratio <= factor for label, factor in (("8", 8), ("3", 3), ("1.5", 1.5), ("1.1", 1.1), ("0.75", 0.75))}
+    fast = verdicts["speed-8"]
     verdicts.update({"small": right["small"] and fast, "large": right["large"] and fast, "quirks": right["quirks"] and fast})
     print(json.dumps({**verdicts, "ratio": None if ratio == float("inf") else round(ratio, 3)}, sort_keys=True))
 

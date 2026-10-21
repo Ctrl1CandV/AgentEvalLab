@@ -107,3 +107,67 @@ codec did not separate the strong models: deepseek, qwen and mimo-v2.6-flash dec
 
 The first run under 0.4.0 is regraded with grader 1.3.1.
 
+## Version 0.5.0 (2026-10-21)
+
+**compress**, a second item scored on a continuous scale (PLAN-006 B1). The logs are a simulated hour of CDN edge traffic (`private/compress_item/logdata.py`).
+
+- **Clients** come from a pool. Each has a fixed address, region, user agent, account and HTTP version. Their sessions walk the shop's pages, edges number their requests, and the collector writes lines slightly out of order.
+- **The structure is real but must be found in the data:**
+  - the edge, user agent, account and protocol follow from the address;
+  - request ids count up per edge;
+  - images follow the product a client just viewed;
+  - a resource's size depends only on the resource and status;
+  - the upstream follows from the route.
+- **The task.** Rewrite the gzip-only `packlog.py` (compress and decompress). It must restore any input byte for byte: damaged lines, invalid UTF-8, CRLF, blank lines, empty files. The workspace has a 15,000-line sample with a few damaged lines.
+- **The scale.**
+  - 0% is `lzma.compress(data, preset=9 | lzma.PRESET_EXTREME)`, 14.4 bytes per line on the sample.
+  - 100% is `private/compress_item/packref.py`, 5.9 bytes per line. It codes fields as separate streams:
+    - timestamps as deltas;
+    - addresses through a recency cache;
+    - edge, account, protocol and user agent as "same as this address last time";
+    - request ids as deltas per edge;
+    - paths as a shape plus numbers, reusing the client's last numbers;
+    - sizes and upstreams memoised by resource and route;
+    - every stream through LZMA.
+
+    Lines that do not come back exactly from their fields are stored raw. It takes 1.2 seconds for 50,000 lines.
+- **Where simpler compressors land** on the hidden days (measured with `packref.py` variants):
+
+  | Compressor | Position |
+  | --- | ---: |
+  | gzip -9 | −85% |
+  | bz2 -9 | 12% |
+  | fields split into columns, each through LZMA | 12% |
+  | the same, timestamps as deltas | 15% |
+  | the reference without the per-address profile or per-edge request ids | 56% |
+  | the reference without the per-address profile | 78% |
+  | the reference without per-edge request ids | 78% |
+  | the reference without the size memo | 89% |
+  | the reference without number reuse | 96.5% |
+
+  Splitting columns alone is worth little against LZMA. The ladder's rungs are structural insights about the data.
+- **Checks.**
+  - `roundtrip`: days a and b (50,000 and 30,000 lines). The time limit is 60 seconds per run, raised to 40 times the reference's measured time when the machine is busy, so load never fails a run.
+  - `roundtrip-quirks`: a log with 30% damaged lines, an empty file, a last line without a newline, and 64 KB of random bytes.
+  - `ratio-50/80/90/97`.
+  - The round trips are guards that count once `ratio-50` passes.
+- **Trust boundary.**
+  - The check imports the generator and the reference, then deletes their files.
+  - Each run starts from a fresh copy of the delivered workspace, made from a copy whose hashes are checked before each decompression.
+  - Only the compressed file moves between the two runs, and anything a run leaves in /tmp is removed.
+- **Self-calibration** (`logs/self-calibration-0.5.0.log`), all as expected:
+  - the reference passes all six checks;
+  - the untouched gzip program, an LZMA preset 9e wrapper, a program that stashes the original in /tmp and in the pristine copy, and one over the time limit pass nothing;
+  - the variants without the profile and request ids pass `ratio-50` and the guards; without the size memo they reach `ratio-80`, and without number reuse `ratio-90`;
+  - a compressor that reads lines as UTF-8 text misses only `roundtrip-quirks`.
+
+**speedup gets a lower rung, `speed-8`.** The formal 0.4.1 run (suite `20261021-120039-dev-fe3b`) put deepseek-flash at 0%. The audit:
+
+- Its delivered program is correct on every hidden day.
+- It takes 2.5 seconds against the reference's 0.8, 3.1 times as long, measured again on an idle machine. The trial ended at its token budget in the middle of more tuning.
+- Under 0.4.1 a correct program 3.1 times as slow as the reference earned nothing. One 2.9 times as slow earned 4 of 7.
+
+The deduction was the model's own, but such a cliff turns small speed differences into the whole score. In 0.5.0 the output checks count once `speed-8` passes, and the original, about 70 times as slow, still earns nothing. A correct program 3.1 times as slow now earns 4 of 8. The `strptime`-everywhere mutant (4–5 times) passes the outputs and `speed-8`.
+
+**Family score.** E4 is now `speedup` and `compress`, each scored as the fraction of its checks (`experiments/e4-calibration-2026-10/terminal.eval.json`).
+

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 3,
+  "name": "e4-calibration-2026-10-compress",
+  "models": [
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "aliplan",
+      "id": "qwen3.8-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    },
+    {
+      "provider": "mimoplan",
+      "id": "mimo-v2.6-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 1,
+  "budget": {
+    "timeoutMs": 3600000,
+    "maxTurns": 100,
+    "maxModelCalls": 100,
+    "maxToolCalls": 150,
+    "maxOutputChars": 524288,
+    "maxOutputTokensPerCall": 131072,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 2000000
+  },
+  "artifactLimits": {
+    "maxFiles": 2000,
+    "maxFileBytes": 134217728,
+    "maxTrialBytes": 536870912,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 2000000,
+    "concurrency": 4
+  },
+  "trustedLocalExecution": true,
+  "budgetNotice": true,
+  "cases": [
+    {
+      "id": "e4-terminal-tasks",
+      "packagePath": "task-library/calibration/e4-terminal-tasks",
+      "packageManifestSha256": "1b5d5c982e9ff499a991c273f6bdeb3953f437ce1f7cd7dd5fef6f44d9f19e9a",
+      "input": {
+        "prompt": "Complete the task above in the workspace, check your work, and end with a short summary."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 1200000
+      },
+      "items": [
+        "compress"
+      ]
+    }
+  ]
+}

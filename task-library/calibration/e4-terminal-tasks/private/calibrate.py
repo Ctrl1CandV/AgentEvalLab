@@ -72,7 +72,7 @@ def speedup_scenarios():
     fast_path = "    match = CANONICAL.match(text)\n    if match is None:\n        return strict(text)\n"
     assert fast_path in reference
     checks = set(grader.CHECKS["speedup"])
-    # Every timestamp through strptime, twice: about four to five times the reference's time, beyond the ladder.
+    # Every timestamp through strptime, twice: about four to five times the reference's time, between speed-8 and speed-3.
     slow_parse = reference.replace(fast_path, "    strict(text)\n    match = None\n    if match is None:\n        return strict(text)\n")
     # DictReader instead of csv.reader: about 1.3 times the reference's time, inside the 1.1-1.5 band.
     dict_reader = reference.replace("reader = csv.reader(handle)\n        header = next(reader, [])",
@@ -86,10 +86,51 @@ def speedup_scenarios():
         ("speedup", "oracle", {"analyze.py": reference}, None, checks - {"speed-0.75"}),
         ("speedup", "untouched", {}, None, set()),
         ("speedup", "original-as-shipped", {"analyze.py": naive}, None, set()),
-        ("speedup", "strptime-everywhere", {"analyze.py": slow_parse}, None, set()),
+        # Correct but 4-5 times the reference: the outputs and speed-8 count, nothing faster.
+        ("speedup", "strptime-everywhere", {"analyze.py": slow_parse}, None, {"small", "large", "quirks", "speed-8"}),
         ("speedup", "dict-reader", {"analyze.py": dict_reader}, None, checks - {"speed-1.1", "speed-0.75"}),
         ("speedup", "no-strptime-fallback", {"analyze.py": no_fallback}, None, checks - {"quirks", "speed-0.75"}),
         ("speedup", "session-gap-inclusive", {"analyze.py": wrong_gap}, None, checks - {"quirks", "speed-0.75"}),
+    ]
+
+
+def compress_scenarios():
+    reference = read(os.path.join(HERE, "compress_item", "packref.py"))
+    checks = set(grader.CHECKS["compress"])
+
+    def without(*pieces):
+        text = reference
+        for old, new in pieces:
+            assert old in text, old
+            text = text.replace(old, new)
+        return text
+    profile = ("if profiles.get(ip) == profile:", "if False:")
+    rid = ("last_rid.get(edge, 0)", "last_rid.get(b'', 0)"), ("last_rid[edge] = rid_value", "last_rid[b''] = rid_value")
+    lzma_only = ("import lzma\nimport sys\n\nmode, source, target = sys.argv[1:]\ndata = open(source, 'rb').read()\n"
+                 "out = lzma.compress(data, preset=9 | lzma.PRESET_EXTREME) if mode == 'compress' else lzma.decompress(data)\n"
+                 "open(target, 'wb').write(out)\n")
+    # Keeps the original where the decompressing run could find it: in /tmp, or in the copy every run starts from.
+    stash = ("import os, shutil, sys\nmode, source, target = sys.argv[1:]\nfor place in ('/tmp/packlog-stash', '../pristine/stash'):\n"
+             "    if mode == 'compress':\n        try:\n            shutil.copy(source, place)\n        except OSError:\n            pass\n"
+             "if mode == 'compress':\n    open(target, 'wb').write(b'x')\nelse:\n"
+             "    for place in ('/tmp/packlog-stash', '../pristine/stash'):\n        if os.path.exists(place):\n"
+             "            shutil.copy(place, target)\n            break\n")
+    return [
+        ("compress", "oracle", {"packlog.py": reference}, None, checks),
+        ("compress", "untouched", {}, None, set()),
+        ("compress", "lzma-preset-9e", {"packlog.py": lzma_only}, None, set()),
+        ("compress", "stash-for-decompress", {"packlog.py": stash}, None, set()),
+        # Measured on the hidden days: about 56% of the way without the per-address profile and the per-edge request ids,
+        # 89% without the size memo, 96.5% without reusing a client's last path numbers.
+        ("compress", "no-profile-no-rid", {"packlog.py": without(profile, *rid)}, None, {"roundtrip", "roundtrip-quirks", "ratio-50"}),
+        ("compress", "no-size-memo", {"packlog.py": without(("if sizes.get(key) == size_value:", "if False:"))}, None,
+         {"roundtrip", "roundtrip-quirks", "ratio-50", "ratio-80"}),
+        ("compress", "no-number-reuse", {"packlog.py": without(("previous_numbers[position] == value", "False"))}, None, checks - {"ratio-97"}),
+        # Reads lines as UTF-8 text: fine on normal days, a crash on the damaged log's Latin-1 bytes.
+        ("compress", "text-lines", {"packlog.py": without(("    for line in parts:\n        match = LINE.fullmatch(line)",
+                                                           "    for line in parts:\n        line.decode('utf-8')\n        match = LINE.fullmatch(line)"))},
+         None, checks - {"roundtrip-quirks"}),
+        ("compress", "over-time-limit", {"packlog.py": without(("def main():\n", "def main():\n    import time\n    time.sleep(200)\n"))}, None, set()),
     ]
 
 
@@ -146,7 +187,7 @@ def scenarios():
         ("recover", "first-stash", {**tree, "recovered/search.txt": lost["search"], "recovered/stash.txt": lost["decoys"]["stash"],
                                     "recovered/RELEASE.md": lost_history.RELEASE_OLD_STASH}, None, {"search-commit", "search-tree"}),
     ]
-    return stockroom + pipeline + recover + codec_scenarios() + speedup_scenarios() + [
+    return stockroom + pipeline + recover + codec_scenarios() + speedup_scenarios() + compress_scenarios() + [
         ("perf", "oracle", {"report.py": perf_oracle}, None, everything(grader.CHECKS["perf"])),
         ("perf", "untouched", {}, None, everything()),
         ("perf", "fast-but-case-sensitive-users", {"report.py": perf_oracle.replace("user.lower()", "user")}, None, {"speed", "empty"}),
@@ -183,9 +224,11 @@ def scenarios():
     ]
 
 
-def self_calibrate(launcher):
+def self_calibrate(launcher, only=None):
     rows = []
     for item_id, name, files, prepare, expected in scenarios():
+        if only and item_id not in only:
+            continue
         directory = submission(item_id, files, prepare)
         try:
             results = grader.grade(item_id, directory, launcher)

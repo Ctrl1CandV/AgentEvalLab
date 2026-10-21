@@ -4,6 +4,7 @@
 Usage: python3 private/build_package.py   (run from the package directory)
 Generation is seeded; the Git history uses fixed authors and dates, so its commit hashes are reproducible.
 """
+import gzip
 import hashlib
 import json
 import os
@@ -25,6 +26,7 @@ from perf import data as perf_data  # noqa: E402
 import grader  # noqa: E402
 from codec_item import cases as codec_cases, lgz  # noqa: E402
 from speedup_item import data as speedup_data  # noqa: E402
+from compress_item import logdata as compress_data  # noqa: E402
 
 VERSION = grader.TASK_VERSION
 GRADER_VERSION = grader.GRADER_VERSION
@@ -57,6 +59,7 @@ def generate():
         # existing tar while the answers it encodes are unchanged.
         if archive.exists() and answers_path.exists() and json.loads(answers_path.read_text(encoding="utf-8")) == answers:
             generate_speedup()
+            generate_compress()
             return generate_codec()
         with tarfile.open(archive, "w", format=tarfile.GNU_FORMAT) as tar:
             # Sorted entries, fixed times and owners: the archive's bytes depend only on the repository's contents.
@@ -70,7 +73,16 @@ def generate():
                     tar.addfile(info)
     (HERE / "recover_item" / "answers.json").write_text(json.dumps(answers, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     generate_speedup()
+    generate_compress()
     generate_codec()
+
+
+def generate_compress():
+    """The gzip-only packlog.py as shipped and a sample log, gzipped with a fixed header so its bytes are reproducible."""
+    public = ROOT / "items" / "compress" / "public"
+    public.mkdir(parents=True, exist_ok=True)
+    shutil.copy(HERE / "compress_item" / "baseline.py", public / "packlog.py")
+    (public / "edge-sample.log.gz").write_bytes(gzip.compress(compress_data.events(*compress_data.SAMPLE), compresslevel=9, mtime=0))
 
 
 def generate_speedup():

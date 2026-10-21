@@ -18,8 +18,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PACKAGE = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 TASK_ID = "e4-terminal-tasks"
-TASK_VERSION = "0.4.1"
-GRADER_VERSION = "1.3.1"
+TASK_VERSION = "0.5.0"
+GRADER_VERSION = "1.4.0"
 CHECKS = {
     "perf": ["workspace-output", "quirks", "empty", "speed"],
     "migrate": ["schema", "names", "emails", "dates", "totals", "statuses", "orphans", "idempotent", "atomic", "workspace-db"],
@@ -28,8 +28,9 @@ CHECKS = {
     "stockroom": ["strict-env", "timezone", "stock-cache", "duplicates", "money", "export-speed", "regression"],
     "pipeline": ["line-ends", "store-ids", "eu-format", "rebuild", "combined", "regression"],
     "recover": ["search-commit", "search-tree", "stash-commit", "stash-file"],
-    "speedup": ["small", "large", "quirks", "speed-3", "speed-1.5", "speed-1.1", "speed-0.75"],
+    "speedup": ["small", "large", "quirks", "speed-8", "speed-3", "speed-1.5", "speed-1.1", "speed-0.75"],
     "codec": ["words", "short-tokens", "numbers", "timestamps", "spaces", "long-literals", "eviction", "multi-day", "bytes", "edges", "restore"],
+    "compress": ["roundtrip", "roundtrip-quirks", "ratio-50", "ratio-80", "ratio-90", "ratio-97"],
 }
 SPEED_LIMIT_SECONDS = 2.0
 COMMAND_TIMEOUT_SECONDS = 60
@@ -271,7 +272,7 @@ def grade_build(submission, runner):
 
 # stockroom ---------------------------------------------------------------------------------------------------------
 
-def hidden_checks(item_id, submission, runner, required):
+def hidden_checks(item_id, submission, runner, required, timeout=600):
     """Runs an item's hidden check script on a copy of the delivered workspace; it prints {check: true/false}. The item's
     other modules (the codec's encoder and cases) go beside it."""
     if not os.path.exists(os.path.join(submission, required)):
@@ -283,7 +284,7 @@ def hidden_checks(item_id, submission, runner, required):
             if name.endswith(".py") and name != "checks.py":
                 shutil.copy(os.path.join(item_directory, name), os.path.join(directory, name))
         shutil.copy(os.path.join(item_directory, "checks.py"), os.path.join(directory, "hidden_checks.py"))
-        run = runner.run(directory, ["python3", "hidden_checks.py", directory], timeout=600)
+        run = runner.run(directory, ["python3", "hidden_checks.py", directory], timeout=timeout)
         try:
             verdicts = json.loads(run.stdout.decode("utf-8").strip().splitlines()[-1]) if run is not None and run.returncode == 0 else {}
         except (UnicodeDecodeError, json.JSONDecodeError, IndexError):
@@ -307,6 +308,11 @@ def grade_codec(submission, runner):
 
 def grade_speedup(submission, runner):
     return hidden_checks("speedup", submission, runner, "analyze.py")
+
+
+def grade_compress(submission, runner):
+    # Twelve candidate runs of up to 60 seconds each, after about a minute of anchors.
+    return hidden_checks("compress", submission, runner, "packlog.py", timeout=850)
 
 
 # recover -----------------------------------------------------------------------------------------------------------
@@ -335,7 +341,7 @@ def grade_recover(submission, runner):
 
 
 GRADERS = {"perf": grade_perf, "migrate": grade_migrate, "bisect": grade_bisect, "build": grade_build, "stockroom": grade_stockroom,
-           "pipeline": grade_pipeline, "recover": grade_recover, "codec": grade_codec, "speedup": grade_speedup}
+           "pipeline": grade_pipeline, "recover": grade_recover, "codec": grade_codec, "speedup": grade_speedup, "compress": grade_compress}
 
 
 def grade(item_id, submission, launcher):
@@ -373,9 +379,10 @@ def main():
     parser.add_argument("--result")
     parser.add_argument("--self-calibrate", action="store_true")
     parser.add_argument("--launcher", help="sandbox launcher for self-calibration")
+    parser.add_argument("--items", help="self-calibrate only these items (comma-separated)")
     args = parser.parse_args()
     if args.self_calibrate:
-        raise SystemExit(importlib.import_module("calibrate").self_calibrate(args.launcher))
+        raise SystemExit(importlib.import_module("calibrate").self_calibrate(args.launcher, args.items.split(",") if args.items else None))
     if not args.request or not args.result:
         parser.error("--request and --result are required")
     grade_request(args.request, args.result)
