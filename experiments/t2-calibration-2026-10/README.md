@@ -20,3 +20,9 @@ npm run harness -- --plan experiments/t2-calibration-2026-10/calibration.eval.js
 ```bash
 npm run harness -- --plan experiments/t2-calibration-2026-10/v0.2.eval.json
 ```
+
+## T2 0.3.0: optimisation tickets (2026-10-21)
+
+`v0.3.eval.json` runs the twelve optimisation tickets (levels S, M and L) once each, with 600,000 tokens, 80 responses and 120 tool calls per trial, stated to the model. Each response may hold 131,072 output tokens and 524,288 characters. The 0.2.0 tickets stay in the package as anchors and are not in the family score.
+
+In the first suite run (`runs/suites/20261021-120039-dev-fe3b`, 0.2.0 with the response limits raised), deepseek-flash scored 100% and qwen3.8-flash 96.7%, two tickets losing only the format deduction.

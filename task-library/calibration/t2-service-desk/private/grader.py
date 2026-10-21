@@ -14,11 +14,13 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import desk  # noqa: E402
+import makegood  # noqa: E402
 import tickets  # noqa: E402
+from decimal import Decimal  # noqa: E402
 
 TASK_ID = "t2-service-desk"
-TASK_VERSION = "0.2.0"
-GRADER_VERSION = "1.0.1"
+TASK_VERSION = "0.3.0"
+GRADER_VERSION = "1.1.0"
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)
 CLOSING_FENCE = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```\s*$", re.S | re.I)
 
@@ -98,10 +100,69 @@ def entities(db):
     return {f"order-{key}": value for key, value in db["orders"].items()} | {f"customer-{key}": value for key, value in db["customers"].items()}
 
 
+COST_LADDER = (("cost-5", Decimal("1.05")), ("cost-1", Decimal("1.01")), ("cost-0", Decimal("1")))
+
+
+def makegood_orders(ticket_id):
+    """Orders with an accepted report, in report order."""
+    ticket = tickets.MAKEGOOD[ticket_id]
+    orders = []
+    for report in ticket["reports"]:
+        if makegood.accepted(tickets.BASE_DB, ticket, report) and report["order"] not in orders:
+            orders.append(report["order"])
+    return orders
+
+
 def check_names(ticket_id):
-    """The ticket's checks: one per entity it should change, then no-other-changes and reply."""
+    """The ticket's checks: one per entity it should change, then no-other-changes and reply. An optimisation ticket
+    has one check per order to make good, then no-other-changes, reply and the cost ladder."""
+    if ticket_id in tickets.MAKEGOOD:
+        return [f"resolved-{order}" for order in makegood_orders(ticket_id)] + ["no-other-changes", "reply"] + [name for name, _ in COST_LADDER]
     base, expected = entities(tickets.BASE_DB), entities(replay(tickets.TICKETS[ticket_id]["actions"]))
     return [name for name in expected if normalized(expected[name]) != normalized(base[name])] + ["no-other-changes", "reply"]
+
+
+def expected_reply(ticket_id):
+    if ticket_id in tickets.MAKEGOOD:
+        ticket = tickets.MAKEGOOD[ticket_id]
+        flags = [makegood.accepted(tickets.BASE_DB, ticket, report) for report in ticket["reports"]]
+        return [number for number, ok in enumerate(flags, 1) if ok], [number for number, ok in enumerate(flags, 1) if not ok]
+    ticket = tickets.TICKETS[ticket_id]
+    return ticket["done"], ticket["declined"]
+
+
+def grade_makegood(ticket_id, delivered, commands, results, reply_ok):
+    """Each order's accepted reports made good unit for unit with allowed options; nothing else changed; then the
+    resolution's cost against the optimum."""
+    base = tickets.BASE_DB
+    ticket = tickets.MAKEGOOD[ticket_id]
+    reports = {(report["order"], report["sku"]): report for report in ticket["reports"] if makegood.accepted(base, ticket, report)}
+    entries = [{"order": order_id, **entry} for order_id, order in delivered["orders"].items() for entry in order.get("make_good", [])]
+    resolved = {(order, sku): 0 for order, sku in reports}
+    allowed_entries = True
+    for entry in entries:
+        key = (entry["order"], entry["sku"])
+        if key not in reports:
+            allowed_entries = False
+            continue
+        allowed = makegood.options(base, ticket, reports[key])
+        option = (entry["option"], entry["sent"] if entry["option"] == "substitute" else (entry["sku"] if entry["option"] == "replace" else None))
+        if option not in allowed:
+            resolved[key] = None
+        elif resolved[key] is not None:
+            resolved[key] += entry["qty"]
+    for order in makegood_orders(ticket_id):
+        results[f"resolved-{order}"] = all(count == reports[key]["qty"] for key, count in resolved.items() if key[0] == order)
+    only_makegood = all(command[0] == "make-good" for command in commands) and allowed_entries and \
+        all(count is None or count <= reports[key]["qty"] for key, count in resolved.items())
+    compliant = only_makegood and all(results[f"resolved-{order}"] for order in makegood_orders(ticket_id))
+    results["no-other-changes"] = only_makegood and (reply_ok or any(results[f"resolved-{order}"] for order in makegood_orders(ticket_id)))
+    if compliant:
+        cost, best = makegood.resolution_cost(base, entries), makegood.optimum(base, ticket)
+        for name, factor in COST_LADDER:
+            results[name] = cost <= best * factor + Decimal("0.005")
+        results["cost"] = f"{cost:.4f}"
+        results["optimum"] = f"{best:.4f}"
 
 
 def grade(ticket_id, submission, answer_text):
@@ -120,13 +181,17 @@ def grade(ticket_id, submission, answer_text):
         consistent = False
     if not consistent:
         return results, "inconsistent"
+    done, declined = expected_reply(ticket_id)
+    reply_ok = (mode != "unparsed" and isinstance(answer, dict) and isinstance(answer.get("done"), list) and isinstance(answer.get("declined"), list)
+                and sorted(answer["done"]) == sorted(done) and sorted(answer["declined"]) == sorted(declined))
+    results["reply"] = reply_ok
+    results["answer-format"] = mode == "strict"
+    if ticket_id in tickets.MAKEGOOD:
+        grade_makegood(ticket_id, delivered, commands, results, reply_ok)
+        return results, "consistent"
     base, expected, actual = entities(tickets.BASE_DB), entities(replay(tickets.TICKETS[ticket_id]["actions"])), entities(delivered)
     for name in names[:-2]:
         results[name] = name in actual and normalized(actual[name]) == normalized(expected[name])
-    ticket = tickets.TICKETS[ticket_id]
-    reply_ok = (mode != "unparsed" and isinstance(answer, dict) and isinstance(answer.get("done"), list) and isinstance(answer.get("declined"), list)
-                and sorted(answer["done"]) == sorted(ticket["done"]) and sorted(answer["declined"]) == sorted(ticket["declined"]))
-    results["reply"] = reply_ok
     untouched = all(normalized(actual.get(name)) == normalized(entity) for name, entity in base.items() if name not in names) and set(actual) == set(base)
     # No other changes guards the actions, so it counts only once something the ticket asks for is right: an
     # untouched shop passes it.
@@ -149,7 +214,7 @@ def grade_request(request_path, result_path):
     with open(request_path, encoding="utf-8") as handle:
         request = json.load(handle)
     ticket_id = request["context"].get("itemId")
-    if ticket_id not in tickets.TICKETS:
+    if ticket_id not in tickets.TICKETS and ticket_id not in tickets.MAKEGOOD:
         raise ValueError("unknown item")
     evidence_root = request["evidenceRoot"]
     try:
@@ -162,7 +227,7 @@ def grade_request(request_path, result_path):
     active = set(request["context"]["activeRequirementIds"])
     checks = [{"id": f"{ticket_id}-{name}" if name != "answer-format" else "answer-format", "requirementId": requirement(ticket_id, name),
                "status": "pass" if passed else "fail", "evidenceRefs": ["checks.json"]}
-              for name, passed in sorted(results.items()) if requirement(ticket_id, name) in active]
+              for name, passed in sorted(results.items()) if requirement(ticket_id, name) in active and isinstance(passed, bool)]
     write_json(result_path, {"schemaVersion": 1, "requestId": request["requestId"], "taskId": TASK_ID, "taskVersion": TASK_VERSION,
                              "graderVersion": GRADER_VERSION, "gradingStatus": "completed", "checks": checks, "dimensions": [],
                              "unscoredCheckIds": [], "reason": None, "error": None})

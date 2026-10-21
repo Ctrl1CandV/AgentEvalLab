@@ -1,0 +1,1961 @@
+{
+ "customers": {
+  "C-1001": {
+   "alternate_emails": [
+    {
+     "address": "ana.r@work.example",
+     "verified": true
+    }
+   ],
+   "credit": "0.00",
+   "email": "ana.ruiz@example.com",
+   "name": "Ana Ruiz",
+   "tier": "standard"
+  },
+  "C-1002": {
+   "alternate_emails": [],
+   "credit": "0.00",
+   "email": "ben@okoro.example",
+   "name": "Ben Okoro",
+   "tier": "gold"
+  },
+  "C-1003": {
+   "alternate_emails": [
+    {
+     "address": "c.wei@mail.example",
+     "verified": false
+    }
+   ],
+   "credit": "5.00",
+   "email": "chen.wei@example.com",
+   "name": "Chen Wei",
+   "tier": "silver"
+  },
+  "C-1004": {
+   "alternate_emails": [],
+   "credit": "0.00",
+   "email": "dana.k@example.com",
+   "name": "Dana Kim",
+   "tier": "standard"
+  },
+  "C-1005": {
+   "alternate_emails": [],
+   "credit": "12.00",
+   "email": "emil@novak.example",
+   "name": "Emil Novak",
+   "tier": "silver"
+  },
+  "C-1006": {
+   "alternate_emails": [
+    {
+     "address": "fh@studio.example",
+     "verified": true
+    }
+   ],
+   "credit": "0.00",
+   "email": "farah.h@example.com",
+   "name": "Farah Haddad",
+   "tier": "gold"
+  },
+  "C-2001": {
+   "alternate_emails": [],
+   "credit": "16.00",
+   "email": "os1.lea@example.com",
+   "name": "Customer OS1",
+   "tier": "standard"
+  },
+  "C-2002": {
+   "alternate_emails": [],
+   "credit": "9.00",
+   "email": "os2.lea@example.com",
+   "name": "Customer OS2",
+   "tier": "gold"
+  },
+  "C-2003": {
+   "alternate_emails": [],
+   "credit": "6.00",
+   "email": "os3.noa@example.com",
+   "name": "Customer OS3",
+   "tier": "silver"
+  },
+  "C-2004": {
+   "alternate_emails": [],
+   "credit": "19.00",
+   "email": "os4.ivy@example.com",
+   "name": "Customer OS4",
+   "tier": "silver"
+  },
+  "C-2005": {
+   "alternate_emails": [],
+   "credit": "8.00",
+   "email": "om1.pia@example.com",
+   "name": "Customer OM1",
+   "tier": "silver"
+  },
+  "C-2006": {
+   "alternate_emails": [],
+   "credit": "13.00",
+   "email": "om2.jon@example.com",
+   "name": "Customer OM2",
+   "tier": "standard"
+  },
+  "C-2007": {
+   "alternate_emails": [],
+   "credit": "16.00",
+   "email": "om3.ivy@example.com",
+   "name": "Customer OM3",
+   "tier": "silver"
+  },
+  "C-2008": {
+   "alternate_emails": [],
+   "credit": "1.00",
+   "email": "om4.max@example.com",
+   "name": "Customer OM4",
+   "tier": "gold"
+  },
+  "C-2009": {
+   "alternate_emails": [],
+   "credit": "13.00",
+   "email": "ol1.jon@example.com",
+   "name": "Customer OL1",
+   "tier": "silver"
+  },
+  "C-2010": {
+   "alternate_emails": [],
+   "credit": "9.00",
+   "email": "ol2.kai@example.com",
+   "name": "Customer OL2",
+   "tier": "gold"
+  },
+  "C-2011": {
+   "alternate_emails": [],
+   "credit": "15.00",
+   "email": "ol3.kai@example.com",
+   "name": "Customer OL3",
+   "tier": "gold"
+  },
+  "C-2012": {
+   "alternate_emails": [],
+   "credit": "14.00",
+   "email": "ol4.max@example.com",
+   "name": "Customer OL4",
+   "tier": "gold"
+  }
+ },
+ "orders": {
+  "O-5001": {
+   "address": "4 Elm Row, Leeds",
+   "compensated": null,
+   "coupon": 10,
+   "customer": "C-1001",
+   "delivered": null,
+   "lines": [
+    {
+     "price": "45.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "HM-400",
+     "state": "active"
+    },
+    {
+     "price": "28.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "BK-300",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "70.60",
+    "credit": "0.00"
+   },
+   "placed": "2026-10-18",
+   "promised": "2026-10-23",
+   "refunds": [],
+   "shipping": "4.90",
+   "status": "processing"
+  },
+  "O-5002": {
+   "address": "4 Elm Row, Leeds",
+   "compensated": null,
+   "coupon": 0,
+   "customer": "C-1001",
+   "delivered": "2026-09-20",
+   "lines": [
+    {
+     "price": "129.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "EL-100",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "129.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-12",
+   "promised": "2026-09-16",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-5003": {
+   "address": "4 Elm Row, Leeds",
+   "compensated": null,
+   "coupon": 0,
+   "customer": "C-1001",
+   "delivered": "2026-10-11",
+   "lines": [
+    {
+     "price": "99.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "EL-103",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "198.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-10-06",
+   "promised": "2026-10-10",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-5004": {
+   "address": "17 Dock Road, Bristol",
+   "compensated": null,
+   "coupon": 15,
+   "customer": "C-1002",
+   "delivered": "2026-09-10",
+   "lines": [
+    {
+     "price": "159.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "EL-102",
+     "state": "active"
+    },
+    {
+     "price": "65.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "HM-401",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "300.00",
+    "credit": "25.55"
+   },
+   "placed": "2026-09-03",
+   "promised": "2026-09-08",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-5005": {
+   "address": "2 Mill Lane, York",
+   "compensated": null,
+   "coupon": 0,
+   "customer": "C-1003",
+   "delivered": null,
+   "lines": [
+    {
+     "price": "35.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "HM-402",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "74.90",
+    "credit": "0.00"
+   },
+   "placed": "2026-10-10",
+   "promised": "2026-10-15",
+   "refunds": [],
+   "shipping": "4.90",
+   "status": "shipped"
+  },
+  "O-5006": {
+   "address": "2 Mill Lane, York",
+   "compensated": null,
+   "coupon": 0,
+   "customer": "C-1003",
+   "delivered": "2026-10-02",
+   "lines": [
+    {
+     "price": "19.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "BK-301",
+     "state": "active"
+    },
+    {
+     "price": "99.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "EL-200",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "0.00",
+    "credit": "118.50"
+   },
+   "placed": "2026-09-25",
+   "promised": "2026-09-29",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-5007": {
+   "address": "8 Park View, Bath",
+   "compensated": null,
+   "coupon": 20,
+   "customer": "C-1004",
+   "delivered": "2026-10-09",
+   "lines": [
+    {
+     "price": "65.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "HM-401",
+     "state": "active"
+    },
+    {
+     "price": "39.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "EL-101",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "83.20",
+    "credit": "0.00"
+   },
+   "placed": "2026-10-05",
+   "promised": "2026-10-09",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-5008": {
+   "address": "8 Park View, Bath",
+   "compensated": "4.50",
+   "coupon": 0,
+   "customer": "C-1004",
+   "delivered": "2026-09-15",
+   "lines": [
+    {
+     "price": "45.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "HM-400",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "45.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-08-30",
+   "promised": "2026-09-05",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-5009": {
+   "address": "8 Park View, Bath",
+   "compensated": null,
+   "coupon": 0,
+   "customer": "C-1004",
+   "delivered": "2026-10-16",
+   "lines": [
+    {
+     "price": "99.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "EL-103",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "99.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-10-12",
+   "promised": "2026-10-16",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-5010": {
+   "address": "11 Vinohradska, Brno",
+   "compensated": null,
+   "coupon": 10,
+   "customer": "C-1005",
+   "delivered": "2026-09-01",
+   "lines": [
+    {
+     "price": "120.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "CL-500",
+     "state": "active"
+    },
+    {
+     "price": "24.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "FD-600",
+     "state": "active"
+    },
+    {
+     "price": "75.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "CL-502",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "200.00",
+    "credit": "18.70"
+   },
+   "placed": "2026-08-22",
+   "promised": "2026-08-28",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-5011": {
+   "address": "5 Rue Neuve, Lyon",
+   "compensated": null,
+   "coupon": 0,
+   "customer": "C-1006",
+   "delivered": "2026-09-08",
+   "lines": [
+    {
+     "price": "45.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "BK-302",
+     "state": "active"
+    },
+    {
+     "price": "28.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "BK-300",
+     "state": "active"
+    },
+    {
+     "price": "99.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "EL-200",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "172.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-01",
+   "promised": "2026-09-05",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-5012": {
+   "address": "17 Dock Road, Bristol",
+   "compensated": null,
+   "coupon": 0,
+   "customer": "C-1002",
+   "delivered": "2026-10-14",
+   "lines": [
+    {
+     "price": "39.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "EL-101",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "39.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-10-08",
+   "promised": "2026-10-12",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-5013": {
+   "address": "17 Dock Road, Bristol",
+   "compensated": null,
+   "coupon": 0,
+   "customer": "C-1002",
+   "delivered": null,
+   "lines": [
+    {
+     "price": "35.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "HM-402",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "39.90",
+    "credit": "0.00"
+   },
+   "placed": "2026-10-19",
+   "promised": "2026-10-24",
+   "refunds": [],
+   "shipping": "4.90",
+   "status": "processing"
+  },
+  "O-5014": {
+   "address": "2 Mill Lane, York",
+   "compensated": null,
+   "coupon": 10,
+   "customer": "C-1003",
+   "delivered": "2026-10-08",
+   "lines": [
+    {
+     "price": "19.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "EL-201",
+     "state": "active"
+    },
+    {
+     "price": "99.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "EL-200",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "100.00",
+    "credit": "23.30"
+   },
+   "placed": "2026-10-03",
+   "promised": "2026-10-06",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-5015": {
+   "address": "5 Rue Neuve, Lyon",
+   "compensated": null,
+   "coupon": 10,
+   "customer": "C-1006",
+   "delivered": "2026-10-15",
+   "lines": [
+    {
+     "price": "180.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "CL-501",
+     "state": "active"
+    },
+    {
+     "price": "99.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "EL-103",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "251.10",
+    "credit": "0.00"
+   },
+   "placed": "2026-10-10",
+   "promised": "2026-10-14",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6001": {
+   "address": "47 Harbour Lane, Delft",
+   "compensated": null,
+   "country": "NL",
+   "coupon": 10,
+   "customer": "C-2001",
+   "delivered": "2026-10-09",
+   "lines": [
+    {
+     "price": "19.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-701",
+     "state": "active"
+    },
+    {
+     "price": "122.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1200",
+     "state": "active"
+    },
+    {
+     "price": "93.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1202",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "211.50",
+    "credit": "211.50"
+   },
+   "placed": "2026-10-04",
+   "promised": "2026-10-08",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6007": {
+   "address": "80 Mill Lane, Hull",
+   "compensated": null,
+   "country": "UK",
+   "coupon": 0,
+   "customer": "C-2002",
+   "delivered": "2026-10-17",
+   "lines": [
+    {
+     "price": "54.00",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-801",
+     "state": "active"
+    },
+    {
+     "price": "16.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1001",
+     "state": "active"
+    },
+    {
+     "price": "122.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1200",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "211.25",
+    "credit": "211.25"
+   },
+   "placed": "2026-10-12",
+   "promised": "2026-10-16",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6013": {
+   "address": "37 Harbour Lane, Lyon",
+   "compensated": null,
+   "country": "FR",
+   "coupon": 0,
+   "customer": "C-2003",
+   "delivered": "2026-10-02",
+   "lines": [
+    {
+     "price": "48.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1302",
+     "state": "active"
+    },
+    {
+     "price": "42.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1100",
+     "state": "active"
+    },
+    {
+     "price": "28.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-802",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "118.50",
+    "credit": "118.50"
+   },
+   "placed": "2026-09-27",
+   "promised": "2026-10-01",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6019": {
+   "address": "7 Quay Street, Lille",
+   "compensated": null,
+   "country": "FR",
+   "coupon": 0,
+   "customer": "C-2004",
+   "delivered": "2026-09-24",
+   "lines": [
+    {
+     "price": "43.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-800",
+     "state": "active"
+    },
+    {
+     "price": "65.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1101",
+     "state": "active"
+    },
+    {
+     "price": "14.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-703",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "201.50",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-19",
+   "promised": "2026-09-23",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6025": {
+   "address": "56 Elm Row, Lyon",
+   "compensated": null,
+   "country": "FR",
+   "coupon": 0,
+   "customer": "C-2005",
+   "delivered": "2026-09-26",
+   "lines": [
+    {
+     "price": "21.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1002",
+     "state": "active"
+    },
+    {
+     "price": "24.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1301",
+     "state": "active"
+    },
+    {
+     "price": "42.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1100",
+     "state": "active"
+    },
+    {
+     "price": "122.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1200",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "353.50",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-21",
+   "promised": "2026-09-25",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6026": {
+   "address": "43 Elm Row, Kiel",
+   "compensated": null,
+   "country": "DE",
+   "coupon": 20,
+   "customer": "C-2005",
+   "delivered": "2026-10-16",
+   "lines": [
+    {
+     "price": "21.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1002",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "34.40",
+    "credit": "0.00"
+   },
+   "placed": "2026-10-11",
+   "promised": "2026-10-15",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6031": {
+   "address": "9 Dock Road, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 0,
+   "customer": "C-2006",
+   "delivered": "2026-10-13",
+   "lines": [
+    {
+     "price": "16.50",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-1001",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "24.75",
+    "credit": "24.75"
+   },
+   "placed": "2026-10-08",
+   "promised": "2026-10-12",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6032": {
+   "address": "9 Dock Road, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 0,
+   "customer": "C-2006",
+   "delivered": "2026-09-30",
+   "lines": [
+    {
+     "price": "43.50",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-800",
+     "state": "active"
+    },
+    {
+     "price": "54.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-801",
+     "state": "active"
+    },
+    {
+     "price": "21.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1002",
+     "state": "active"
+    },
+    {
+     "price": "19.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-701",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "225.50",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-25",
+   "promised": "2026-09-29",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6037": {
+   "address": "33 Canal Street, Lille",
+   "compensated": null,
+   "country": "FR",
+   "coupon": 0,
+   "customer": "C-2007",
+   "delivered": "2026-09-29",
+   "lines": [
+    {
+     "price": "42.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-902",
+     "state": "active"
+    },
+    {
+     "price": "86.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1102",
+     "state": "active"
+    },
+    {
+     "price": "103.50",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-900",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "240.25",
+    "credit": "240.25"
+   },
+   "placed": "2026-09-24",
+   "promised": "2026-09-28",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6038": {
+   "address": "19 Elm Row, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 20,
+   "customer": "C-2007",
+   "delivered": "2026-10-08",
+   "lines": [
+    {
+     "price": "122.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1200",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "97.60",
+    "credit": "0.00"
+   },
+   "placed": "2026-10-03",
+   "promised": "2026-10-07",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6043": {
+   "address": "56 Quay Street, Bonn",
+   "compensated": null,
+   "country": "DE",
+   "coupon": 0,
+   "customer": "C-2008",
+   "delivered": "2026-10-05",
+   "lines": [
+    {
+     "price": "12.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1000",
+     "state": "active"
+    },
+    {
+     "price": "62.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-901",
+     "state": "active"
+    },
+    {
+     "price": "157.00",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-1201",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "558.50",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-30",
+   "promised": "2026-10-04",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6044": {
+   "address": "36 Dock Road, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 0,
+   "customer": "C-2008",
+   "delivered": "2026-10-14",
+   "lines": [
+    {
+     "price": "12.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1000",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "10.00",
+    "credit": "2.50"
+   },
+   "placed": "2026-10-09",
+   "promised": "2026-10-13",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6049": {
+   "address": "70 Mill Lane, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 0,
+   "customer": "C-2009",
+   "delivered": "2026-09-30",
+   "lines": [
+    {
+     "price": "19.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-700",
+     "state": "active"
+    },
+    {
+     "price": "14.00",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-703",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "80.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-25",
+   "promised": "2026-09-29",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6050": {
+   "address": "7 Elm Row, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 0,
+   "customer": "C-2009",
+   "delivered": "2026-10-03",
+   "lines": [
+    {
+     "price": "19.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-701",
+     "state": "active"
+    },
+    {
+     "price": "48.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1302",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "67.50",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-28",
+   "promised": "2026-10-02",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6051": {
+   "address": "81 Station Road, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 15,
+   "customer": "C-2009",
+   "delivered": "2026-10-06",
+   "lines": [
+    {
+     "price": "54.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-801",
+     "state": "active"
+    },
+    {
+     "price": "86.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1102",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "119.00",
+    "credit": "119.00"
+   },
+   "placed": "2026-10-01",
+   "promised": "2026-10-05",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6052": {
+   "address": "7 Elm Row, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 15,
+   "customer": "C-2009",
+   "delivered": "2026-09-27",
+   "lines": [
+    {
+     "price": "14.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-703",
+     "state": "active"
+    },
+    {
+     "price": "93.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1202",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "170.86",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-22",
+   "promised": "2026-09-26",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6053": {
+   "address": "7 Elm Row, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 0,
+   "customer": "C-2009",
+   "delivered": "2026-09-13",
+   "lines": [
+    {
+     "price": "65.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1101",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "65.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-08",
+   "promised": "2026-09-12",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6055": {
+   "address": "89 Park View, Delft",
+   "compensated": null,
+   "country": "NL",
+   "coupon": 0,
+   "customer": "C-2010",
+   "delivered": "2026-09-30",
+   "lines": [
+    {
+     "price": "45.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-903",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "45.50",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-25",
+   "promised": "2026-09-29",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6056": {
+   "address": "64 Canal Street, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 15,
+   "customer": "C-2010",
+   "delivered": "2026-09-24",
+   "lines": [
+    {
+     "price": "86.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1102",
+     "state": "active"
+    },
+    {
+     "price": "42.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-902",
+     "state": "active"
+    },
+    {
+     "price": "19.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-701",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "125.38",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-19",
+   "promised": "2026-09-23",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6057": {
+   "address": "38 Harbour Lane, Delft",
+   "compensated": null,
+   "country": "NL",
+   "coupon": 0,
+   "customer": "C-2010",
+   "delivered": "2026-10-07",
+   "lines": [
+    {
+     "price": "19.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-701",
+     "state": "active"
+    },
+    {
+     "price": "103.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-900",
+     "state": "active"
+    },
+    {
+     "price": "45.50",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-903",
+     "state": "active"
+    },
+    {
+     "price": "157.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1201",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "338.50",
+    "credit": "338.50"
+   },
+   "placed": "2026-10-02",
+   "promised": "2026-10-06",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6058": {
+   "address": "89 Park View, Delft",
+   "compensated": null,
+   "country": "NL",
+   "coupon": 0,
+   "customer": "C-2010",
+   "delivered": "2026-09-02",
+   "lines": [
+    {
+     "price": "42.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-902",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "42.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-08-28",
+   "promised": "2026-09-01",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6061": {
+   "address": "54 Canal Street, Leeds",
+   "compensated": null,
+   "country": "UK",
+   "coupon": 0,
+   "customer": "C-2011",
+   "delivered": "2026-09-26",
+   "lines": [
+    {
+     "price": "93.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1202",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "93.50",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-21",
+   "promised": "2026-09-25",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6062": {
+   "address": "61 Station Road, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 0,
+   "customer": "C-2011",
+   "delivered": "2026-09-27",
+   "lines": [
+    {
+     "price": "9.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-702",
+     "state": "active"
+    },
+    {
+     "price": "122.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1200",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "131.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-22",
+   "promised": "2026-09-26",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6063": {
+   "address": "27 Elm Row, Kiel",
+   "compensated": null,
+   "country": "DE",
+   "coupon": 0,
+   "customer": "C-2011",
+   "delivered": "2026-10-07",
+   "lines": [
+    {
+     "price": "19.00",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-700",
+     "state": "active"
+    },
+    {
+     "price": "9.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-702",
+     "state": "active"
+    },
+    {
+     "price": "94.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1402",
+     "state": "active"
+    },
+    {
+     "price": "72.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1400",
+     "state": "active"
+    },
+    {
+     "price": "42.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-902",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "220.00",
+    "credit": "55.00"
+   },
+   "placed": "2026-10-02",
+   "promised": "2026-10-06",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6064": {
+   "address": "27 Elm Row, Kiel",
+   "compensated": null,
+   "country": "DE",
+   "coupon": 0,
+   "customer": "C-2011",
+   "delivered": "2026-09-09",
+   "lines": [
+    {
+     "price": "21.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1002",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "21.50",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-04",
+   "promised": "2026-09-08",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6067": {
+   "address": "32 Station Road, Bonn",
+   "compensated": null,
+   "country": "DE",
+   "coupon": 0,
+   "customer": "C-2012",
+   "delivered": "2026-10-14",
+   "lines": [
+    {
+     "price": "157.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1201",
+     "state": "active"
+    },
+    {
+     "price": "14.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-703",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "92.50",
+    "credit": "92.50"
+   },
+   "placed": "2026-10-09",
+   "promised": "2026-10-13",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6068": {
+   "address": "33 Park View, Hull",
+   "compensated": null,
+   "country": "UK",
+   "coupon": 10,
+   "customer": "C-2012",
+   "delivered": "2026-09-27",
+   "lines": [
+    {
+     "price": "146.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1401",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "131.85",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-22",
+   "promised": "2026-09-26",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6069": {
+   "address": "33 Park View, Hull",
+   "compensated": null,
+   "country": "UK",
+   "coupon": 0,
+   "customer": "C-2012",
+   "delivered": "2026-09-24",
+   "lines": [
+    {
+     "price": "16.50",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-1001",
+     "state": "active"
+    },
+    {
+     "price": "12.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1000",
+     "state": "active"
+    },
+    {
+     "price": "9.00",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-702",
+     "state": "active"
+    },
+    {
+     "price": "38.50",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-1300",
+     "state": "active"
+    },
+    {
+     "price": "65.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1101",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "282.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-19",
+   "promised": "2026-09-23",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6070": {
+   "address": "33 Park View, Hull",
+   "compensated": null,
+   "country": "UK",
+   "coupon": 0,
+   "customer": "C-2012",
+   "delivered": "2026-09-15",
+   "lines": [
+    {
+     "price": "28.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-802",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "28.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-10",
+   "promised": "2026-09-14",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  }
+ },
+ "products": {
+  "BK-300": {
+   "category": "books",
+   "family": "book",
+   "final_sale": false,
+   "name": "Atlas of Rivers",
+   "price": "28.00"
+  },
+  "BK-301": {
+   "category": "books",
+   "family": "book",
+   "final_sale": false,
+   "name": "Field Guide to Moths",
+   "price": "19.50"
+  },
+  "BK-302": {
+   "category": "books",
+   "family": "book",
+   "final_sale": true,
+   "name": "Collected Letters, signed",
+   "price": "45.00"
+  },
+  "CL-500": {
+   "category": "clothing",
+   "family": "jacket",
+   "final_sale": false,
+   "name": "Rain jacket",
+   "price": "120.00"
+  },
+  "CL-501": {
+   "category": "clothing",
+   "family": "jacket",
+   "final_sale": false,
+   "name": "Down jacket",
+   "price": "180.00"
+  },
+  "CL-502": {
+   "category": "clothing",
+   "family": "jacket",
+   "final_sale": false,
+   "name": "Fleece jacket",
+   "price": "75.00"
+  },
+  "EL-100": {
+   "category": "electronics",
+   "family": "headphones",
+   "final_sale": false,
+   "name": "Noise-cancelling headphones",
+   "price": "129.00"
+  },
+  "EL-101": {
+   "category": "electronics",
+   "family": "headphones",
+   "final_sale": false,
+   "name": "Wired headphones",
+   "price": "39.00"
+  },
+  "EL-102": {
+   "category": "electronics",
+   "family": "headphones",
+   "final_sale": false,
+   "name": "Studio headphones",
+   "price": "159.00"
+  },
+  "EL-103": {
+   "category": "electronics",
+   "family": "headphones",
+   "final_sale": false,
+   "name": "Sport earbuds",
+   "price": "89.00"
+  },
+  "EL-200": {
+   "category": "electronics",
+   "family": "ereader",
+   "final_sale": false,
+   "name": "E-reader",
+   "price": "99.00"
+  },
+  "EL-201": {
+   "category": "electronics",
+   "family": "ereader-cover",
+   "final_sale": false,
+   "name": "E-reader cover",
+   "price": "19.00"
+  },
+  "FD-600": {
+   "category": "food",
+   "family": "coffee",
+   "final_sale": false,
+   "name": "Coffee beans, 1 kg",
+   "price": "24.00"
+  },
+  "HM-400": {
+   "category": "home",
+   "family": "throw",
+   "final_sale": false,
+   "name": "Linen throw",
+   "price": "45.00"
+  },
+  "HM-401": {
+   "category": "home",
+   "family": "throw",
+   "final_sale": false,
+   "name": "Wool throw",
+   "price": "65.00"
+  },
+  "HM-402": {
+   "category": "home",
+   "family": "throw",
+   "final_sale": false,
+   "name": "Cotton throw",
+   "price": "35.00"
+  },
+  "MG-1000": {
+   "category": "home",
+   "cost": "5.00",
+   "family": "towel",
+   "final_sale": false,
+   "name": "Cotton towel",
+   "price": "12.50",
+   "stock": 4
+  },
+  "MG-1001": {
+   "category": "home",
+   "cost": "6.93",
+   "family": "towel",
+   "final_sale": false,
+   "name": "Linen towel",
+   "price": "16.50",
+   "stock": 1
+  },
+  "MG-1002": {
+   "category": "home",
+   "cost": "8.60",
+   "family": "towel",
+   "final_sale": false,
+   "name": "Waffle towel",
+   "price": "21.50",
+   "stock": 2
+  },
+  "MG-1100": {
+   "category": "kitchen",
+   "cost": "27.20",
+   "family": "kettle",
+   "final_sale": false,
+   "name": "Steel kettle",
+   "price": "42.50",
+   "stock": 1
+  },
+  "MG-1101": {
+   "category": "kitchen",
+   "cost": "31.20",
+   "family": "kettle",
+   "final_sale": false,
+   "name": "Glass kettle",
+   "price": "65.00",
+   "stock": 1
+  },
+  "MG-1102": {
+   "category": "kitchen",
+   "cost": "44.72",
+   "family": "kettle",
+   "final_sale": false,
+   "name": "Gooseneck kettle",
+   "price": "86.00",
+   "stock": 2
+  },
+  "MG-1200": {
+   "category": "electronics",
+   "cost": "79.30",
+   "family": "speaker",
+   "final_sale": false,
+   "name": "Bookshelf speaker",
+   "price": "122.00",
+   "stock": 1
+  },
+  "MG-1201": {
+   "category": "electronics",
+   "cost": "73.79",
+   "family": "speaker",
+   "final_sale": false,
+   "name": "Portable speaker",
+   "price": "157.00",
+   "stock": 0
+  },
+  "MG-1202": {
+   "category": "electronics",
+   "cost": "59.84",
+   "family": "speaker",
+   "final_sale": false,
+   "name": "Smart speaker",
+   "price": "93.50",
+   "stock": 0
+  },
+  "MG-1300": {
+   "category": "garden",
+   "cost": "20.41",
+   "family": "planter",
+   "final_sale": false,
+   "name": "Clay planter",
+   "price": "38.50",
+   "stock": 3
+  },
+  "MG-1301": {
+   "category": "garden",
+   "cost": "10.56",
+   "family": "planter",
+   "final_sale": false,
+   "name": "Fibre planter",
+   "price": "24.00",
+   "stock": 4
+  },
+  "MG-1302": {
+   "category": "garden",
+   "cost": "20.16",
+   "family": "planter",
+   "final_sale": false,
+   "name": "Hanging planter",
+   "price": "48.00",
+   "stock": 0
+  },
+  "MG-1400": {
+   "category": "home",
+   "cost": "34.08",
+   "family": "chair",
+   "final_sale": false,
+   "name": "Folding chair",
+   "price": "72.50",
+   "stock": 4
+  },
+  "MG-1401": {
+   "category": "home",
+   "cost": "57.14",
+   "family": "chair",
+   "final_sale": false,
+   "name": "Oak chair",
+   "price": "146.50",
+   "stock": 3
+  },
+  "MG-1402": {
+   "category": "home",
+   "cost": "59.54",
+   "family": "chair",
+   "final_sale": false,
+   "name": "Caf\u00e9 chair",
+   "price": "94.50",
+   "stock": 1
+  },
+  "MG-700": {
+   "category": "kitchen",
+   "cost": "11.40",
+   "family": "mug",
+   "final_sale": false,
+   "name": "Stoneware mug",
+   "price": "19.00",
+   "stock": 1
+  },
+  "MG-701": {
+   "category": "kitchen",
+   "cost": "8.19",
+   "family": "mug",
+   "final_sale": false,
+   "name": "Porcelain mug",
+   "price": "19.50",
+   "stock": 3
+  },
+  "MG-702": {
+   "category": "kitchen",
+   "cost": "3.87",
+   "family": "mug",
+   "final_sale": false,
+   "name": "Enamel mug",
+   "price": "9.00",
+   "stock": 1
+  },
+  "MG-703": {
+   "category": "kitchen",
+   "cost": "7.84",
+   "family": "mug",
+   "final_sale": false,
+   "name": "Glass mug",
+   "price": "14.00",
+   "stock": 0
+  },
+  "MG-800": {
+   "category": "kitchen",
+   "cost": "20.01",
+   "family": "teapot",
+   "final_sale": false,
+   "name": "Cast-iron teapot",
+   "price": "43.50",
+   "stock": 1
+  },
+  "MG-801": {
+   "category": "kitchen",
+   "cost": "30.24",
+   "family": "teapot",
+   "final_sale": false,
+   "name": "Glass teapot",
+   "price": "54.00",
+   "stock": 2
+  },
+  "MG-802": {
+   "category": "kitchen",
+   "cost": "14.28",
+   "family": "teapot",
+   "final_sale": false,
+   "name": "Ceramic teapot",
+   "price": "28.00",
+   "stock": 0
+  },
+  "MG-900": {
+   "category": "home",
+   "cost": "42.44",
+   "family": "lamp",
+   "final_sale": false,
+   "name": "Desk lamp",
+   "price": "103.50",
+   "stock": 3
+  },
+  "MG-901": {
+   "category": "home",
+   "cost": "30.63",
+   "family": "lamp",
+   "final_sale": false,
+   "name": "Clamp lamp",
+   "price": "62.50",
+   "stock": 0
+  },
+  "MG-902": {
+   "category": "home",
+   "cost": "23.94",
+   "family": "lamp",
+   "final_sale": false,
+   "name": "Arc lamp",
+   "price": "42.00",
+   "stock": 0
+  },
+  "MG-903": {
+   "category": "home",
+   "cost": "29.12",
+   "family": "lamp",
+   "final_sale": false,
+   "name": "Task lamp",
+   "price": "45.50",
+   "stock": 1
+  }
+ },
+ "rates": {
+  "CZ": "9.90",
+  "DE": "9.90",
+  "FR": "9.90",
+  "NL": "9.90",
+  "UK": "4.90",
+  "US": "24.90"
+ }
+}

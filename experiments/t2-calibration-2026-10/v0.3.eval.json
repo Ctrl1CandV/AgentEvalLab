@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 3,
+  "name": "t2-calibration-2026-10-v0.3",
+  "models": [
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "aliplan",
+      "id": "qwen3.8-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    },
+    {
+      "provider": "mimoplan",
+      "id": "mimo-v2.6-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 1,
+  "budget": {
+    "timeoutMs": 2400000,
+    "maxTurns": 80,
+    "maxModelCalls": 80,
+    "maxToolCalls": 120,
+    "maxOutputChars": 524288,
+    "maxOutputTokensPerCall": 131072,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 600000
+  },
+  "artifactLimits": {
+    "maxFiles": 500,
+    "maxFileBytes": 2097152,
+    "maxTrialBytes": 10485760,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 7200000,
+    "concurrency": 6
+  },
+  "trustedLocalExecution": true,
+  "budgetNotice": true,
+  "cases": [
+    {
+      "id": "t2-service-desk",
+      "packagePath": "task-library/calibration/t2-service-desk",
+      "packageManifestSha256": "ac8880f338a27f796ff1baf367bc856951413043ec11498922f03d6b7856d744",
+      "input": {
+        "prompt": "Handle the ticket above as POLICY.md says, and end with the JSON reply."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 600000
+      },
+      "items": {
+        "levels": [
+          "S",
+          "M",
+          "L"
+        ]
+      }
+    }
+  ]
+}

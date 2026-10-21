@@ -20,6 +20,13 @@ Commands:
   adjust-price ORDER SKU AMOUNT     record a price-drop refund for a line, added to the customer's store credit
   compensate ORDER AMOUNT           record a late-order compensation, added to the customer's store credit
   set-address ORDER ADDRESS         replace an order's delivery address
+  make-good ORDER SKU QTY OPTION [NEW_SKU]
+                                    make good QTY damaged or missing units of a line. OPTION is one of:
+                                      replace     send QTY units of the same product (taken from stock)
+                                      substitute  send QTY units of NEW_SKU instead (taken from stock)
+                                      refund      refund the unit price paid x QTY, store credit first
+                                      credit      add store credit of the unit price paid x 1.10, rounded to cents,
+                                                  x QTY
 
 Cancellations refund store credit first, up to the part of the order paid with store credit or a gift card
 (payments.credit) that earlier refunds of the order have not yet returned as store credit, and the rest to the card.
@@ -95,9 +102,43 @@ def cancel_line(db, order, line):
             pay_back(db, order, "SHIPPING", 0, Decimal(order["shipping"]), "cancellation")
 
 
+def make_good(db, args):
+    if len(args) not in (4, 5):
+        raise Refused("make-good takes ORDER SKU QTY OPTION [NEW_SKU]")
+    order = order_of(db, args[0])
+    line = line_of(order, args[1])
+    if not args[2].isdigit() or int(args[2]) < 1:
+        raise Refused("quantity must be a positive integer")
+    qty, option = int(args[2]), args[3]
+    if (option == "substitute") != (len(args) == 5):
+        raise Refused("substitute takes NEW_SKU; the other options take none")
+    entry = {"sku": line["sku"], "qty": qty, "option": option, "sent": None, "amount": None}
+    if option in ("replace", "substitute"):
+        sent = line["sku"] if option == "replace" else args[4]
+        if sent not in db["products"]:
+            raise Refused(f"no product {sent}")
+        if db["products"][sent].get("stock", 0) < qty:
+            raise Refused(f"not enough stock of {sent}")
+        db["products"][sent]["stock"] -= qty
+        entry["sent"] = sent
+    elif option == "refund":
+        amount = unit_paid(order, line) * qty
+        pay_back(db, order, line["sku"], qty, amount, "make-good")
+        entry["amount"] = str(amount)
+    elif option == "credit":
+        amount = cents(unit_paid(order, line) * Decimal("1.10")) * qty
+        add_credit(db, order["customer"], amount)
+        entry["amount"] = str(amount)
+    else:
+        raise Refused(f"unknown option {option}")
+    order.setdefault("make_good", []).append(entry)
+
+
 def apply(db, command, args):
     """Apply one changing command to db; raises Refused for an invalid command."""
-    if command == "cancel-order":
+    if command == "make-good":
+        make_good(db, args)
+    elif command == "cancel-order":
         order = order_of(db, args[0])
         if order["status"] == "cancelled":
             raise Refused("order already cancelled")
@@ -156,7 +197,7 @@ def apply(db, command, args):
         raise Refused(f"unknown command {command}")
 
 
-ARITY = {"cancel-order": 1, "cancel-line": 2, "refund": 5, "exchange": 3, "add-credit": 2, "adjust-price": 3, "compensate": 2,
+ARITY = {"make-good": None, "cancel-order": 1, "cancel-line": 2, "refund": 5, "exchange": 3, "add-credit": 2, "adjust-price": 3, "compensate": 2,
          "set-address": 2}
 
 
@@ -187,7 +228,7 @@ def main(argv):
         db = json.load(handle)
     try:
         if command in ARITY:
-            if len(args) != ARITY[command]:
+            if command != "make-good" and len(args) != ARITY[command]:
                 raise Refused(f"{command} takes {ARITY[command]} arguments")
             apply(db, command, args)
             with open(DB, "w", encoding="utf-8") as handle:

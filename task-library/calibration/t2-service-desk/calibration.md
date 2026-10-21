@@ -41,3 +41,60 @@ T2 is the policy-bound tool-use family of Task Set v2 (PLAN-005 WP5), after τ-b
 - **Tool.** `refund` takes the card and store-credit parts; `adjust-price` records a price drop; `products FAMILY` lists a family; cancellations split their refunds and, when the last line goes, refund the shipping fee.
 - **Data and tickets.** Six customers (two with alternate addresses, one unverified), sixteen products, fifteen orders, and twelve tickets of two to four requests. Each ticket's actions were worked out by hand and again by `private/oracle.py` from the policy; they agree.
 - **Self-calibration (92 scenarios).** The data adds up (every order's payments equal what was paid). For every ticket, the expected handling passes every check (alone, after prose, fenced), loses only `answer-format` when followed by prose, and passes nothing done directly in `db.json` or left untouched. Nine wrong handlings, one per trap, pass exactly the checks they should. See `logs/self-calibration-0.2.0.log`.
+
+## Version 0.3.0 (2026-10-21)
+
+**Why.** 0.2.0 saturated: in the 2026-10-20 runs qwen scored 100%, deepseek and mimo-pro 97.5%. In the first suite run (2026-10-21, `runs/suites/20261021-120039-dev-fe3b`) deepseek again scored 100% and qwen 96.7%, losing only format deductions. These models apply a written policy almost without error. PLAN-006 B3 moves T2 to optimisation within the policy: several resolutions comply, and the policy states which one is required.
+
+**Policy section 11, damaged and missing items.**
+
+- Reports are accepted within 30 days of delivery, for units still held.
+- Every accepted unit is made good by one of four options:
+  - the same product sent again;
+  - a substitute of the same family priced at least at the unit price paid;
+  - a refund;
+  - store credit at 110%.
+- The required resolution is the one that costs the shop least for the whole ticket:
+  - products sent, at cost;
+  - one carrier rate per delivery address that receives anything (UK 4.90, EU 9.90, US 24.90);
+  - refunds in full;
+  - credit at 70% of its amount.
+- The decisions are coupled:
+  - stock is shared between orders;
+  - orders to one address share a shipment;
+  - customers may refuse credit, insist on the same model, or bar an address.
+- `desk.py` gains `make-good ORDER SKU QTY replace|substitute NEW_SKU|refund|credit`. It computes refunds (store credit first) and credit amounts, and takes products from stock.
+
+**Tickets** (`private/makegood.py`, seed `t2-makegood-2026-10`, written to `private/makegood.json`). A catalogue of 26 products in eight families, with list price, cost and stock, and twelve tickets with their own customers and orders:
+
+| Level | Orders | Reports | Units | Optimum (EUR) | Ignoring carrier rates | Refunding everything |
+| --- | --- | --- | --- | --- | --- | --- |
+| S (`os1`–`os4`) | 1 | 3 | 4–5 | 119–193 | +0% | +9% to +57% |
+| M (`om1`–`om4`) | 2 | 2–5 | 2–9 | 152–389 | +2.2% to +6.5% | +6.5% to +50% |
+| L (`ol1`–`ol4`) | 3–4, plus an old order | 7–9 | 9–15 | 260–412 | +1.8% to +4.7% | +31% to +54% |
+
+- **Selection.** A ticket is kept only when:
+  - refunding everything costs at least 5% more than the optimum;
+  - the optimum both sends something and pays money back for something;
+  - at M and L, the shortcut that ignores carrier rates costs at least 1% more.
+- **Constraints.** Three tickets refuse credit, two bar an address, and seven ask for the same model on some line. Every L ticket has a report on an order delivered 35–50 days ago, which must be declined.
+
+**Grader 1.1.0:**
+
+- one `resolved-ORDER` check per order with an accepted report;
+- `no-other-changes` and `reply`;
+- `cost-5`, `cost-1` and `cost-0` against the least cost, counted only for a compliant resolution.
+
+**Self-calibration** (`logs/self-calibration-0.3.0.log`): 171 scenarios, all as expected.
+
+- The data adds up, and on the eight tickets with at most eight units an enumeration of every option reproduces the min-cost flow's optimum.
+- On every optimisation ticket:
+  - the optimum passes everything; without a reply, it loses only `reply` and the format;
+  - the untouched shop passes nothing;
+  - refunding everything is compliant and passes no cost rung;
+  - ignoring carrier rates is compliant and reaches the rungs its cost reaches: every rung on S tickets, `cost-5` on most M and L tickets;
+  - one unit short fails that order and every cost rung;
+  - credit despite a refusal fails that order;
+  - making good the old order's report fails `no-other-changes`.
+- The 0.2.0 tickets pass as before.
+

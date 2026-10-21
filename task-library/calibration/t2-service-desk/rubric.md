@@ -11,3 +11,14 @@ Each item is one customer ticket of two to four numbered requests, handled with 
 - **`answer-format`** (non-critical): the reply ends with one JSON object, bare or in a closing fenced block, as POLICY.md asks. Otherwise the shared recovery rule applies, and a recovered reply loses 20%.
 
 The score is the fraction of critical checks passed, less the format deduction.
+
+## Optimisation tickets (task 0.3.0)
+
+Twelve tickets, `os1`–`os4` (level S), `om1`–`om4` (M) and `ol1`–`ol4` (L), report damaged and missing units under POLICY.md section 11. Each accepted unit is made good by sending the same product, sending a substitute of the same family priced at least at the unit price paid, a refund, or store credit at 110%. The policy asks for the resolution of the whole ticket that costs the shop least: products sent at cost, one carrier rate per delivery address that receives anything, refunds in full and credit at 70%. Stock is shared between orders, orders may share an address, and the customer may refuse credit, insist on the same model or bar an address. Levels grow by orders (1, 2, 3–4 plus a declined report on an old order), lines and units. The 0.2.0 tickets `t01`–`t12` stay as anchors.
+
+- **Integrity (gate)**, as above.
+- **`resolved-ORDER`** (critical), one per order with an accepted report: every reported unit made good, each with an option the policy and the customer allow.
+- **`no-other-changes`** (critical): every command is a make-good of an accepted report, never more units than reported. It counts only when the reply or some order passes.
+- **`reply`** (critical): the accepted reports as done, the others as declined.
+- **`cost-5`, `cost-1`, `cost-0`** (critical): the resolution's cost is within 5% and 1% of the least cost, and equal to it (within half a cent). They count only when every order is resolved and nothing else changed. The least cost comes from `private/makegood.py`: for every set of addresses that may receive a shipment, a min-cost flow assigns units to products in stock or to their cheaper money option.
+- **`answer-format`**, as above.

@@ -53,6 +53,28 @@ A delivery address can be changed (`set-address`) only while the order is `pendi
 - Do exactly what the ticket asks and this policy allows, and nothing else: no unrequested compensation, credit or gesture of goodwill, even when the customer would qualify. Decline anything the policy does not allow or does not provide for, whatever the customer says about earlier promises or their status.
 - Never change `data/` other than through `desk.py`.
 
+## 11. Damaged and missing items
+
+A customer may report units of a line of a delivered order as damaged or missing, within **30 days** of the delivery date (day 0, the last day included), for units they still hold (the line's quantity less the units already returned). Decline any other report.
+
+Every unit of an accepted report is made good with `make-good ORDER SKU QTY OPTION`, in one of four ways:
+
+- **replace**: send a unit of the same product;
+- **substitute**: send a unit of another product of the **same family** whose current list price is **not lower than the line's unit price paid**;
+- **refund**: refund the unit price paid (`desk.py` computes it and pays store credit first, as for a cancellation);
+- **credit**: give store credit of the unit price paid × 1.10, rounded half up to cents (`desk.py` computes it).
+
+A product can be sent only while it is in stock (`stock`, shown with the product). The units of one report may be made good in different ways, with one command per way.
+
+Respect what the customer asks: when they refuse store credit, do not give credit; when they ask for exactly the same model, send only the same product (a refund or credit remains allowed); when they ask that nothing be sent to an address, send nothing to it.
+
+Among the resolutions this section allows, carry out the one that **costs the shop least** for the whole ticket. The cost is:
+
+- each product sent, at its `cost` (what the shop paid for it);
+- one carrier shipment for each delivery address that receives anything from this ticket, however many orders and units go there, at the rate for its country: UK 4.90, FR, DE, CZ and NL 9.90, US 24.90 (`country` is shown with the order; addresses are compared ignoring letter case);
+- each refund, in full;
+- each store credit, at 70% of its amount.
+
 ## Your reply
 
 End with one JSON object that lists the ticket's numbered requests you carried out and those you declined:

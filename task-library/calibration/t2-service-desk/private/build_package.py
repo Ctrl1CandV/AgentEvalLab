@@ -10,7 +10,8 @@ import sys
 ROOT = pathlib.Path(".")
 HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-import grader  # noqa: E402
+import importlib  # noqa: E402
+import makegood  # noqa: E402
 import tickets  # noqa: E402
 
 
@@ -22,11 +23,24 @@ def visible(path):
     return path.is_file() and not any(part.startswith(".") or part == "__pycache__" for part in path.parts) and not path.name.endswith(".pyc")
 
 
+def generate_makegood():
+    """Write the optimisation tickets, their catalogue, customers and orders, and reload the modules that read them."""
+    global tickets, grader
+    products, customers, orders, generated = makegood.generate(tickets.MAKEGOOD_SEED, tickets.BASE_DB)
+    (HERE / "makegood.json").write_text(json.dumps({"seed": tickets.MAKEGOOD_SEED, "rates": makegood.RATES, "products": products,
+                                                    "customers": customers, "orders": orders, "tickets": generated},
+                                                   indent=1, sort_keys=True) + "\n", encoding="utf-8")
+    tickets = importlib.reload(tickets)
+    grader = importlib.import_module("grader")
+    grader = importlib.reload(grader)
+
+
 def main():
+    generate_makegood()
     if (ROOT / "items").exists():
         shutil.rmtree(ROOT / "items")
     requirements, items = {}, []
-    for ticket_id in tickets.TICKETS:
+    for ticket_id in [*tickets.TICKETS, *tickets.MAKEGOOD]:
         public = ROOT / "items" / ticket_id / "public"
         (public / "data").mkdir(parents=True)
         shutil.copy(HERE / "desk.py", public / "desk.py")
@@ -41,7 +55,8 @@ def main():
                                          "checkIds": [f"{ticket_id}-{name}"]}
             ids.append(requirement)
         files = sorted(str(path.relative_to(ROOT)) for path in (ROOT / "items" / ticket_id).rglob("*") if visible(path))
-        items.append({"id": ticket_id, "level": ticket_id, "files": [{"path": path, "sha256": digest(path)} for path in files],
+        level = tickets.MAKEGOOD[ticket_id]["level"] if ticket_id in tickets.MAKEGOOD else ticket_id
+        items.append({"id": ticket_id, "level": level, "files": [{"path": path, "sha256": digest(path)} for path in files],
                       "activeRequirementIds": ids + ["REQ-FORMAT"]})
     requirements["REQ-FORMAT"] = {"id": "REQ-FORMAT", "critical": False, "introducedAt": f"{grader.TASK_ID} {grader.TASK_VERSION}", "checkIds": ["answer-format"]}
     trusted = ["calibration.md", "rubric.md"] + sorted(str(path.relative_to(ROOT)) for path in (ROOT / "private").rglob("*") if visible(path))

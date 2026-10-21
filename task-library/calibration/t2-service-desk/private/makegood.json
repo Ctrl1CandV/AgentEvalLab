@@ -1,0 +1,1941 @@
+{
+ "customers": {
+  "C-2001": {
+   "alternate_emails": [],
+   "credit": "16.00",
+   "email": "os1.lea@example.com",
+   "name": "Customer OS1",
+   "tier": "standard"
+  },
+  "C-2002": {
+   "alternate_emails": [],
+   "credit": "9.00",
+   "email": "os2.lea@example.com",
+   "name": "Customer OS2",
+   "tier": "gold"
+  },
+  "C-2003": {
+   "alternate_emails": [],
+   "credit": "6.00",
+   "email": "os3.noa@example.com",
+   "name": "Customer OS3",
+   "tier": "silver"
+  },
+  "C-2004": {
+   "alternate_emails": [],
+   "credit": "19.00",
+   "email": "os4.ivy@example.com",
+   "name": "Customer OS4",
+   "tier": "silver"
+  },
+  "C-2005": {
+   "alternate_emails": [],
+   "credit": "8.00",
+   "email": "om1.pia@example.com",
+   "name": "Customer OM1",
+   "tier": "silver"
+  },
+  "C-2006": {
+   "alternate_emails": [],
+   "credit": "13.00",
+   "email": "om2.jon@example.com",
+   "name": "Customer OM2",
+   "tier": "standard"
+  },
+  "C-2007": {
+   "alternate_emails": [],
+   "credit": "16.00",
+   "email": "om3.ivy@example.com",
+   "name": "Customer OM3",
+   "tier": "silver"
+  },
+  "C-2008": {
+   "alternate_emails": [],
+   "credit": "1.00",
+   "email": "om4.max@example.com",
+   "name": "Customer OM4",
+   "tier": "gold"
+  },
+  "C-2009": {
+   "alternate_emails": [],
+   "credit": "13.00",
+   "email": "ol1.jon@example.com",
+   "name": "Customer OL1",
+   "tier": "silver"
+  },
+  "C-2010": {
+   "alternate_emails": [],
+   "credit": "9.00",
+   "email": "ol2.kai@example.com",
+   "name": "Customer OL2",
+   "tier": "gold"
+  },
+  "C-2011": {
+   "alternate_emails": [],
+   "credit": "15.00",
+   "email": "ol3.kai@example.com",
+   "name": "Customer OL3",
+   "tier": "gold"
+  },
+  "C-2012": {
+   "alternate_emails": [],
+   "credit": "14.00",
+   "email": "ol4.max@example.com",
+   "name": "Customer OL4",
+   "tier": "gold"
+  }
+ },
+ "orders": {
+  "O-6001": {
+   "address": "47 Harbour Lane, Delft",
+   "compensated": null,
+   "country": "NL",
+   "coupon": 10,
+   "customer": "C-2001",
+   "delivered": "2026-10-09",
+   "lines": [
+    {
+     "price": "19.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-701",
+     "state": "active"
+    },
+    {
+     "price": "122.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1200",
+     "state": "active"
+    },
+    {
+     "price": "93.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1202",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "211.50",
+    "credit": "211.50"
+   },
+   "placed": "2026-10-04",
+   "promised": "2026-10-08",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6007": {
+   "address": "80 Mill Lane, Hull",
+   "compensated": null,
+   "country": "UK",
+   "coupon": 0,
+   "customer": "C-2002",
+   "delivered": "2026-10-17",
+   "lines": [
+    {
+     "price": "54.00",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-801",
+     "state": "active"
+    },
+    {
+     "price": "16.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1001",
+     "state": "active"
+    },
+    {
+     "price": "122.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1200",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "211.25",
+    "credit": "211.25"
+   },
+   "placed": "2026-10-12",
+   "promised": "2026-10-16",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6013": {
+   "address": "37 Harbour Lane, Lyon",
+   "compensated": null,
+   "country": "FR",
+   "coupon": 0,
+   "customer": "C-2003",
+   "delivered": "2026-10-02",
+   "lines": [
+    {
+     "price": "48.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1302",
+     "state": "active"
+    },
+    {
+     "price": "42.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1100",
+     "state": "active"
+    },
+    {
+     "price": "28.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-802",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "118.50",
+    "credit": "118.50"
+   },
+   "placed": "2026-09-27",
+   "promised": "2026-10-01",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6019": {
+   "address": "7 Quay Street, Lille",
+   "compensated": null,
+   "country": "FR",
+   "coupon": 0,
+   "customer": "C-2004",
+   "delivered": "2026-09-24",
+   "lines": [
+    {
+     "price": "43.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-800",
+     "state": "active"
+    },
+    {
+     "price": "65.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1101",
+     "state": "active"
+    },
+    {
+     "price": "14.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-703",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "201.50",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-19",
+   "promised": "2026-09-23",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6025": {
+   "address": "56 Elm Row, Lyon",
+   "compensated": null,
+   "country": "FR",
+   "coupon": 0,
+   "customer": "C-2005",
+   "delivered": "2026-09-26",
+   "lines": [
+    {
+     "price": "21.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1002",
+     "state": "active"
+    },
+    {
+     "price": "24.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1301",
+     "state": "active"
+    },
+    {
+     "price": "42.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1100",
+     "state": "active"
+    },
+    {
+     "price": "122.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1200",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "353.50",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-21",
+   "promised": "2026-09-25",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6026": {
+   "address": "43 Elm Row, Kiel",
+   "compensated": null,
+   "country": "DE",
+   "coupon": 20,
+   "customer": "C-2005",
+   "delivered": "2026-10-16",
+   "lines": [
+    {
+     "price": "21.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1002",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "34.40",
+    "credit": "0.00"
+   },
+   "placed": "2026-10-11",
+   "promised": "2026-10-15",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6031": {
+   "address": "9 Dock Road, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 0,
+   "customer": "C-2006",
+   "delivered": "2026-10-13",
+   "lines": [
+    {
+     "price": "16.50",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-1001",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "24.75",
+    "credit": "24.75"
+   },
+   "placed": "2026-10-08",
+   "promised": "2026-10-12",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6032": {
+   "address": "9 Dock Road, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 0,
+   "customer": "C-2006",
+   "delivered": "2026-09-30",
+   "lines": [
+    {
+     "price": "43.50",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-800",
+     "state": "active"
+    },
+    {
+     "price": "54.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-801",
+     "state": "active"
+    },
+    {
+     "price": "21.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1002",
+     "state": "active"
+    },
+    {
+     "price": "19.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-701",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "225.50",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-25",
+   "promised": "2026-09-29",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6037": {
+   "address": "33 Canal Street, Lille",
+   "compensated": null,
+   "country": "FR",
+   "coupon": 0,
+   "customer": "C-2007",
+   "delivered": "2026-09-29",
+   "lines": [
+    {
+     "price": "42.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-902",
+     "state": "active"
+    },
+    {
+     "price": "86.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1102",
+     "state": "active"
+    },
+    {
+     "price": "103.50",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-900",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "240.25",
+    "credit": "240.25"
+   },
+   "placed": "2026-09-24",
+   "promised": "2026-09-28",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6038": {
+   "address": "19 Elm Row, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 20,
+   "customer": "C-2007",
+   "delivered": "2026-10-08",
+   "lines": [
+    {
+     "price": "122.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1200",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "97.60",
+    "credit": "0.00"
+   },
+   "placed": "2026-10-03",
+   "promised": "2026-10-07",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6043": {
+   "address": "56 Quay Street, Bonn",
+   "compensated": null,
+   "country": "DE",
+   "coupon": 0,
+   "customer": "C-2008",
+   "delivered": "2026-10-05",
+   "lines": [
+    {
+     "price": "12.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1000",
+     "state": "active"
+    },
+    {
+     "price": "62.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-901",
+     "state": "active"
+    },
+    {
+     "price": "157.00",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-1201",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "558.50",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-30",
+   "promised": "2026-10-04",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6044": {
+   "address": "36 Dock Road, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 0,
+   "customer": "C-2008",
+   "delivered": "2026-10-14",
+   "lines": [
+    {
+     "price": "12.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1000",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "10.00",
+    "credit": "2.50"
+   },
+   "placed": "2026-10-09",
+   "promised": "2026-10-13",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6049": {
+   "address": "70 Mill Lane, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 0,
+   "customer": "C-2009",
+   "delivered": "2026-09-30",
+   "lines": [
+    {
+     "price": "19.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-700",
+     "state": "active"
+    },
+    {
+     "price": "14.00",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-703",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "80.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-25",
+   "promised": "2026-09-29",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6050": {
+   "address": "7 Elm Row, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 0,
+   "customer": "C-2009",
+   "delivered": "2026-10-03",
+   "lines": [
+    {
+     "price": "19.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-701",
+     "state": "active"
+    },
+    {
+     "price": "48.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1302",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "67.50",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-28",
+   "promised": "2026-10-02",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6051": {
+   "address": "81 Station Road, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 15,
+   "customer": "C-2009",
+   "delivered": "2026-10-06",
+   "lines": [
+    {
+     "price": "54.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-801",
+     "state": "active"
+    },
+    {
+     "price": "86.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1102",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "119.00",
+    "credit": "119.00"
+   },
+   "placed": "2026-10-01",
+   "promised": "2026-10-05",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6052": {
+   "address": "7 Elm Row, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 15,
+   "customer": "C-2009",
+   "delivered": "2026-09-27",
+   "lines": [
+    {
+     "price": "14.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-703",
+     "state": "active"
+    },
+    {
+     "price": "93.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1202",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "170.86",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-22",
+   "promised": "2026-09-26",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6053": {
+   "address": "7 Elm Row, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 0,
+   "customer": "C-2009",
+   "delivered": "2026-09-13",
+   "lines": [
+    {
+     "price": "65.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1101",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "65.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-08",
+   "promised": "2026-09-12",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6055": {
+   "address": "89 Park View, Delft",
+   "compensated": null,
+   "country": "NL",
+   "coupon": 0,
+   "customer": "C-2010",
+   "delivered": "2026-09-30",
+   "lines": [
+    {
+     "price": "45.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-903",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "45.50",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-25",
+   "promised": "2026-09-29",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6056": {
+   "address": "64 Canal Street, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 15,
+   "customer": "C-2010",
+   "delivered": "2026-09-24",
+   "lines": [
+    {
+     "price": "86.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1102",
+     "state": "active"
+    },
+    {
+     "price": "42.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-902",
+     "state": "active"
+    },
+    {
+     "price": "19.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-701",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "125.38",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-19",
+   "promised": "2026-09-23",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6057": {
+   "address": "38 Harbour Lane, Delft",
+   "compensated": null,
+   "country": "NL",
+   "coupon": 0,
+   "customer": "C-2010",
+   "delivered": "2026-10-07",
+   "lines": [
+    {
+     "price": "19.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-701",
+     "state": "active"
+    },
+    {
+     "price": "103.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-900",
+     "state": "active"
+    },
+    {
+     "price": "45.50",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-903",
+     "state": "active"
+    },
+    {
+     "price": "157.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1201",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "338.50",
+    "credit": "338.50"
+   },
+   "placed": "2026-10-02",
+   "promised": "2026-10-06",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6058": {
+   "address": "89 Park View, Delft",
+   "compensated": null,
+   "country": "NL",
+   "coupon": 0,
+   "customer": "C-2010",
+   "delivered": "2026-09-02",
+   "lines": [
+    {
+     "price": "42.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-902",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "42.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-08-28",
+   "promised": "2026-09-01",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6061": {
+   "address": "54 Canal Street, Leeds",
+   "compensated": null,
+   "country": "UK",
+   "coupon": 0,
+   "customer": "C-2011",
+   "delivered": "2026-09-26",
+   "lines": [
+    {
+     "price": "93.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1202",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "93.50",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-21",
+   "promised": "2026-09-25",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6062": {
+   "address": "61 Station Road, Austin",
+   "compensated": null,
+   "country": "US",
+   "coupon": 0,
+   "customer": "C-2011",
+   "delivered": "2026-09-27",
+   "lines": [
+    {
+     "price": "9.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-702",
+     "state": "active"
+    },
+    {
+     "price": "122.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1200",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "131.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-22",
+   "promised": "2026-09-26",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6063": {
+   "address": "27 Elm Row, Kiel",
+   "compensated": null,
+   "country": "DE",
+   "coupon": 0,
+   "customer": "C-2011",
+   "delivered": "2026-10-07",
+   "lines": [
+    {
+     "price": "19.00",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-700",
+     "state": "active"
+    },
+    {
+     "price": "9.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-702",
+     "state": "active"
+    },
+    {
+     "price": "94.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1402",
+     "state": "active"
+    },
+    {
+     "price": "72.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1400",
+     "state": "active"
+    },
+    {
+     "price": "42.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-902",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "220.00",
+    "credit": "55.00"
+   },
+   "placed": "2026-10-02",
+   "promised": "2026-10-06",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6064": {
+   "address": "27 Elm Row, Kiel",
+   "compensated": null,
+   "country": "DE",
+   "coupon": 0,
+   "customer": "C-2011",
+   "delivered": "2026-09-09",
+   "lines": [
+    {
+     "price": "21.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1002",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "21.50",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-04",
+   "promised": "2026-09-08",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6067": {
+   "address": "32 Station Road, Bonn",
+   "compensated": null,
+   "country": "DE",
+   "coupon": 0,
+   "customer": "C-2012",
+   "delivered": "2026-10-14",
+   "lines": [
+    {
+     "price": "157.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1201",
+     "state": "active"
+    },
+    {
+     "price": "14.00",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-703",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "92.50",
+    "credit": "92.50"
+   },
+   "placed": "2026-10-09",
+   "promised": "2026-10-13",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6068": {
+   "address": "33 Park View, Hull",
+   "compensated": null,
+   "country": "UK",
+   "coupon": 10,
+   "customer": "C-2012",
+   "delivered": "2026-09-27",
+   "lines": [
+    {
+     "price": "146.50",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1401",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "131.85",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-22",
+   "promised": "2026-09-26",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6069": {
+   "address": "33 Park View, Hull",
+   "compensated": null,
+   "country": "UK",
+   "coupon": 0,
+   "customer": "C-2012",
+   "delivered": "2026-09-24",
+   "lines": [
+    {
+     "price": "16.50",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-1001",
+     "state": "active"
+    },
+    {
+     "price": "12.50",
+     "qty": 2,
+     "returned": 0,
+     "sku": "MG-1000",
+     "state": "active"
+    },
+    {
+     "price": "9.00",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-702",
+     "state": "active"
+    },
+    {
+     "price": "38.50",
+     "qty": 3,
+     "returned": 0,
+     "sku": "MG-1300",
+     "state": "active"
+    },
+    {
+     "price": "65.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-1101",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "282.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-19",
+   "promised": "2026-09-23",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  },
+  "O-6070": {
+   "address": "33 Park View, Hull",
+   "compensated": null,
+   "country": "UK",
+   "coupon": 0,
+   "customer": "C-2012",
+   "delivered": "2026-09-15",
+   "lines": [
+    {
+     "price": "28.00",
+     "qty": 1,
+     "returned": 0,
+     "sku": "MG-802",
+     "state": "active"
+    }
+   ],
+   "payments": {
+    "card": "28.00",
+    "credit": "0.00"
+   },
+   "placed": "2026-09-10",
+   "promised": "2026-09-14",
+   "refunds": [],
+   "shipping": "0.00",
+   "status": "delivered"
+  }
+ },
+ "products": {
+  "MG-1000": {
+   "category": "home",
+   "cost": "5.00",
+   "family": "towel",
+   "final_sale": false,
+   "name": "Cotton towel",
+   "price": "12.50",
+   "stock": 4
+  },
+  "MG-1001": {
+   "category": "home",
+   "cost": "6.93",
+   "family": "towel",
+   "final_sale": false,
+   "name": "Linen towel",
+   "price": "16.50",
+   "stock": 1
+  },
+  "MG-1002": {
+   "category": "home",
+   "cost": "8.60",
+   "family": "towel",
+   "final_sale": false,
+   "name": "Waffle towel",
+   "price": "21.50",
+   "stock": 2
+  },
+  "MG-1100": {
+   "category": "kitchen",
+   "cost": "27.20",
+   "family": "kettle",
+   "final_sale": false,
+   "name": "Steel kettle",
+   "price": "42.50",
+   "stock": 1
+  },
+  "MG-1101": {
+   "category": "kitchen",
+   "cost": "31.20",
+   "family": "kettle",
+   "final_sale": false,
+   "name": "Glass kettle",
+   "price": "65.00",
+   "stock": 1
+  },
+  "MG-1102": {
+   "category": "kitchen",
+   "cost": "44.72",
+   "family": "kettle",
+   "final_sale": false,
+   "name": "Gooseneck kettle",
+   "price": "86.00",
+   "stock": 2
+  },
+  "MG-1200": {
+   "category": "electronics",
+   "cost": "79.30",
+   "family": "speaker",
+   "final_sale": false,
+   "name": "Bookshelf speaker",
+   "price": "122.00",
+   "stock": 1
+  },
+  "MG-1201": {
+   "category": "electronics",
+   "cost": "73.79",
+   "family": "speaker",
+   "final_sale": false,
+   "name": "Portable speaker",
+   "price": "157.00",
+   "stock": 0
+  },
+  "MG-1202": {
+   "category": "electronics",
+   "cost": "59.84",
+   "family": "speaker",
+   "final_sale": false,
+   "name": "Smart speaker",
+   "price": "93.50",
+   "stock": 0
+  },
+  "MG-1300": {
+   "category": "garden",
+   "cost": "20.41",
+   "family": "planter",
+   "final_sale": false,
+   "name": "Clay planter",
+   "price": "38.50",
+   "stock": 3
+  },
+  "MG-1301": {
+   "category": "garden",
+   "cost": "10.56",
+   "family": "planter",
+   "final_sale": false,
+   "name": "Fibre planter",
+   "price": "24.00",
+   "stock": 4
+  },
+  "MG-1302": {
+   "category": "garden",
+   "cost": "20.16",
+   "family": "planter",
+   "final_sale": false,
+   "name": "Hanging planter",
+   "price": "48.00",
+   "stock": 0
+  },
+  "MG-1400": {
+   "category": "home",
+   "cost": "34.08",
+   "family": "chair",
+   "final_sale": false,
+   "name": "Folding chair",
+   "price": "72.50",
+   "stock": 4
+  },
+  "MG-1401": {
+   "category": "home",
+   "cost": "57.14",
+   "family": "chair",
+   "final_sale": false,
+   "name": "Oak chair",
+   "price": "146.50",
+   "stock": 3
+  },
+  "MG-1402": {
+   "category": "home",
+   "cost": "59.54",
+   "family": "chair",
+   "final_sale": false,
+   "name": "Caf\u00e9 chair",
+   "price": "94.50",
+   "stock": 1
+  },
+  "MG-700": {
+   "category": "kitchen",
+   "cost": "11.40",
+   "family": "mug",
+   "final_sale": false,
+   "name": "Stoneware mug",
+   "price": "19.00",
+   "stock": 1
+  },
+  "MG-701": {
+   "category": "kitchen",
+   "cost": "8.19",
+   "family": "mug",
+   "final_sale": false,
+   "name": "Porcelain mug",
+   "price": "19.50",
+   "stock": 3
+  },
+  "MG-702": {
+   "category": "kitchen",
+   "cost": "3.87",
+   "family": "mug",
+   "final_sale": false,
+   "name": "Enamel mug",
+   "price": "9.00",
+   "stock": 1
+  },
+  "MG-703": {
+   "category": "kitchen",
+   "cost": "7.84",
+   "family": "mug",
+   "final_sale": false,
+   "name": "Glass mug",
+   "price": "14.00",
+   "stock": 0
+  },
+  "MG-800": {
+   "category": "kitchen",
+   "cost": "20.01",
+   "family": "teapot",
+   "final_sale": false,
+   "name": "Cast-iron teapot",
+   "price": "43.50",
+   "stock": 1
+  },
+  "MG-801": {
+   "category": "kitchen",
+   "cost": "30.24",
+   "family": "teapot",
+   "final_sale": false,
+   "name": "Glass teapot",
+   "price": "54.00",
+   "stock": 2
+  },
+  "MG-802": {
+   "category": "kitchen",
+   "cost": "14.28",
+   "family": "teapot",
+   "final_sale": false,
+   "name": "Ceramic teapot",
+   "price": "28.00",
+   "stock": 0
+  },
+  "MG-900": {
+   "category": "home",
+   "cost": "42.44",
+   "family": "lamp",
+   "final_sale": false,
+   "name": "Desk lamp",
+   "price": "103.50",
+   "stock": 3
+  },
+  "MG-901": {
+   "category": "home",
+   "cost": "30.63",
+   "family": "lamp",
+   "final_sale": false,
+   "name": "Clamp lamp",
+   "price": "62.50",
+   "stock": 0
+  },
+  "MG-902": {
+   "category": "home",
+   "cost": "23.94",
+   "family": "lamp",
+   "final_sale": false,
+   "name": "Arc lamp",
+   "price": "42.00",
+   "stock": 0
+  },
+  "MG-903": {
+   "category": "home",
+   "cost": "29.12",
+   "family": "lamp",
+   "final_sale": false,
+   "name": "Task lamp",
+   "price": "45.50",
+   "stock": 1
+  }
+ },
+ "rates": {
+  "CZ": "9.90",
+  "DE": "9.90",
+  "FR": "9.90",
+  "NL": "9.90",
+  "UK": "4.90",
+  "US": "24.90"
+ },
+ "seed": "t2-makegood-2026-10",
+ "tickets": [
+  {
+   "constraints": {
+    "no_credit": false,
+    "no_shipping_to": null
+   },
+   "customer": "C-2001",
+   "id": "os1",
+   "level": "S",
+   "prompt": "## Ticket OS1\n\nFrom: os1.lea@example.com\n\nSeveral things went wrong with my recent orders.\n\n(1) One smart speaker from order O-6001 was missing from the parcel.\n(2) One bookshelf speaker from order O-6001 arrived damaged.\n(3) Two porcelain mugs from order O-6001 arrived broken.\n",
+   "reports": [
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6001",
+     "qty": 1,
+     "sku": "MG-1202"
+    },
+    {
+     "how": "arrived damaged",
+     "order": "O-6001",
+     "qty": 1,
+     "sku": "MG-1200"
+    },
+    {
+     "how": "arrived broken",
+     "order": "O-6001",
+     "qty": 2,
+     "sku": "MG-701"
+    }
+   ],
+   "same_product": [],
+   "sender": "os1.lea@example.com"
+  },
+  {
+   "constraints": {
+    "no_credit": false,
+    "no_shipping_to": null
+   },
+   "customer": "C-2002",
+   "id": "os2",
+   "level": "S",
+   "prompt": "## Ticket OS2\n\nFrom: os2.lea@example.com\n\nSeveral things went wrong with my recent orders.\n\n(1) Three glass teapots from order O-6007 were missing from the parcel.\n(2) One linen towel from order O-6007 arrived broken.\n(3) One bookshelf speaker from order O-6007 arrived damaged.\n",
+   "reports": [
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6007",
+     "qty": 3,
+     "sku": "MG-801"
+    },
+    {
+     "how": "arrived broken",
+     "order": "O-6007",
+     "qty": 1,
+     "sku": "MG-1001"
+    },
+    {
+     "how": "arrived damaged",
+     "order": "O-6007",
+     "qty": 1,
+     "sku": "MG-1200"
+    }
+   ],
+   "same_product": [],
+   "sender": "os2.lea@example.com"
+  },
+  {
+   "constraints": {
+    "no_credit": true,
+    "no_shipping_to": null
+   },
+   "customer": "C-2003",
+   "id": "os3",
+   "level": "S",
+   "prompt": "## Ticket OS3\n\nFrom: os3.noa@example.com\n\nSeveral things went wrong with my recent orders. Please do not give me store credit; I do not plan to order again soon.\n\n(1) One hanging planter from order O-6013 arrived broken.\n(2) Two steel kettles from order O-6013 were missing from the parcel. If you send one, it must be exactly the same model.\n(3) One ceramic teapot from order O-6013 arrived damaged.\n",
+   "reports": [
+    {
+     "how": "arrived broken",
+     "order": "O-6013",
+     "qty": 1,
+     "sku": "MG-1302"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6013",
+     "qty": 2,
+     "sku": "MG-1100"
+    },
+    {
+     "how": "arrived damaged",
+     "order": "O-6013",
+     "qty": 1,
+     "sku": "MG-802"
+    }
+   ],
+   "same_product": [
+    [
+     "O-6013",
+     "MG-1100"
+    ]
+   ],
+   "sender": "os3.noa@example.com"
+  },
+  {
+   "constraints": {
+    "no_credit": false,
+    "no_shipping_to": null
+   },
+   "customer": "C-2004",
+   "id": "os4",
+   "level": "S",
+   "prompt": "## Ticket OS4\n\nFrom: os4.ivy@example.com\n\nSeveral things went wrong with my recent orders.\n\n(1) One glass mug from order O-6019 arrived broken.\n(2) One cast-iron teapot from order O-6019 arrived broken.\n(3) Two glass kettles from order O-6019 were missing from the parcel. If you send one, it must be exactly the same model.\n",
+   "reports": [
+    {
+     "how": "arrived broken",
+     "order": "O-6019",
+     "qty": 1,
+     "sku": "MG-703"
+    },
+    {
+     "how": "arrived broken",
+     "order": "O-6019",
+     "qty": 1,
+     "sku": "MG-800"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6019",
+     "qty": 2,
+     "sku": "MG-1101"
+    }
+   ],
+   "same_product": [
+    [
+     "O-6019",
+     "MG-1101"
+    ]
+   ],
+   "sender": "os4.ivy@example.com"
+  },
+  {
+   "constraints": {
+    "no_credit": false,
+    "no_shipping_to": null
+   },
+   "customer": "C-2005",
+   "id": "om1",
+   "level": "M",
+   "prompt": "## Ticket OM1\n\nFrom: om1.pia@example.com\n\nSeveral things went wrong with my recent orders.\n\n(1) One waffle towel from order O-6026 arrived broken. If you send one, it must be exactly the same model.\n(2) One steel kettle from order O-6025 was missing from the parcel.\n(3) One waffle towel from order O-6025 arrived damaged.\n(4) One fibre planter from order O-6025 arrived broken.\n(5) Two bookshelf speakers from order O-6025 arrived damaged.\n",
+   "reports": [
+    {
+     "how": "arrived broken",
+     "order": "O-6026",
+     "qty": 1,
+     "sku": "MG-1002"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6025",
+     "qty": 1,
+     "sku": "MG-1100"
+    },
+    {
+     "how": "arrived damaged",
+     "order": "O-6025",
+     "qty": 1,
+     "sku": "MG-1002"
+    },
+    {
+     "how": "arrived broken",
+     "order": "O-6025",
+     "qty": 1,
+     "sku": "MG-1301"
+    },
+    {
+     "how": "arrived damaged",
+     "order": "O-6025",
+     "qty": 2,
+     "sku": "MG-1200"
+    }
+   ],
+   "same_product": [
+    [
+     "O-6026",
+     "MG-1002"
+    ]
+   ],
+   "sender": "om1.pia@example.com"
+  },
+  {
+   "constraints": {
+    "no_credit": false,
+    "no_shipping_to": null
+   },
+   "customer": "C-2006",
+   "id": "om2",
+   "level": "M",
+   "prompt": "## Ticket OM2\n\nFrom: om2.jon@example.com\n\nSeveral things went wrong with my recent orders.\n\n(1) Three linen towels from order O-6031 arrived broken.\n(2) One waffle towel from order O-6032 arrived damaged.\n(3) One porcelain mug from order O-6032 arrived broken.\n(4) Three cast-iron teapots from order O-6032 were missing from the parcel.\n(5) One glass teapot from order O-6032 arrived damaged.\n",
+   "reports": [
+    {
+     "how": "arrived broken",
+     "order": "O-6031",
+     "qty": 3,
+     "sku": "MG-1001"
+    },
+    {
+     "how": "arrived damaged",
+     "order": "O-6032",
+     "qty": 1,
+     "sku": "MG-1002"
+    },
+    {
+     "how": "arrived broken",
+     "order": "O-6032",
+     "qty": 1,
+     "sku": "MG-701"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6032",
+     "qty": 3,
+     "sku": "MG-800"
+    },
+    {
+     "how": "arrived damaged",
+     "order": "O-6032",
+     "qty": 1,
+     "sku": "MG-801"
+    }
+   ],
+   "same_product": [],
+   "sender": "om2.jon@example.com"
+  },
+  {
+   "constraints": {
+    "no_credit": true,
+    "no_shipping_to": null
+   },
+   "customer": "C-2007",
+   "id": "om3",
+   "level": "M",
+   "prompt": "## Ticket OM3\n\nFrom: om3.ivy@example.com\n\nSeveral things went wrong with my recent orders. Please do not give me store credit; I do not plan to order again soon.\n\n(1) One bookshelf speaker from order O-6038 was missing from the parcel.\n(2) One gooseneck kettle from order O-6037 was missing from the parcel.\n",
+   "reports": [
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6038",
+     "qty": 1,
+     "sku": "MG-1200"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6037",
+     "qty": 1,
+     "sku": "MG-1102"
+    }
+   ],
+   "same_product": [],
+   "sender": "om3.ivy@example.com"
+  },
+  {
+   "constraints": {
+    "no_credit": true,
+    "no_shipping_to": null
+   },
+   "customer": "C-2008",
+   "id": "om4",
+   "level": "M",
+   "prompt": "## Ticket OM4\n\nFrom: om4.max@example.com\n\nSeveral things went wrong with my recent orders. Please do not give me store credit; I do not plan to order again soon.\n\n(1) Two cotton towels from order O-6043 arrived damaged. If you send one, it must be exactly the same model.\n(2) One cotton towel from order O-6044 was missing from the parcel. If you send one, it must be exactly the same model.\n(3) One clamp lamp from order O-6043 was missing from the parcel.\n(4) Two portable speakers from order O-6043 were missing from the parcel. If you send one, it must be exactly the same model.\n",
+   "reports": [
+    {
+     "how": "arrived damaged",
+     "order": "O-6043",
+     "qty": 2,
+     "sku": "MG-1000"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6044",
+     "qty": 1,
+     "sku": "MG-1000"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6043",
+     "qty": 1,
+     "sku": "MG-901"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6043",
+     "qty": 2,
+     "sku": "MG-1201"
+    }
+   ],
+   "same_product": [
+    [
+     "O-6043",
+     "MG-1000"
+    ],
+    [
+     "O-6043",
+     "MG-1201"
+    ],
+    [
+     "O-6044",
+     "MG-1000"
+    ]
+   ],
+   "sender": "om4.max@example.com"
+  },
+  {
+   "constraints": {
+    "no_credit": false,
+    "no_shipping_to": "70 Mill Lane, Austin"
+   },
+   "customer": "C-2009",
+   "id": "ol1",
+   "level": "L",
+   "prompt": "## Ticket OL1\n\nFrom: ol1.jon@example.com\n\nSeveral things went wrong with my recent orders. Please do not send anything to 70 Mill Lane, Austin; nobody is there this month.\n\n(1) Two smart speakers from order O-6052 arrived damaged.\n(2) Two glass mugs from order O-6049 arrived broken.\n(3) One porcelain mug from order O-6050 was missing from the parcel.\n(4) Two gooseneck kettles from order O-6051 were missing from the parcel.\n(5) One hanging planter from order O-6050 arrived broken.\n(6) One stoneware mug from order O-6049 arrived damaged. If you send one, it must be exactly the same model.\n(7) One glass mug from order O-6052 arrived broken.\n(8) One glass kettle from order O-6053 arrived broken.\n(9) One glass teapot from order O-6051 arrived damaged.\n",
+   "reports": [
+    {
+     "how": "arrived damaged",
+     "order": "O-6052",
+     "qty": 2,
+     "sku": "MG-1202"
+    },
+    {
+     "how": "arrived broken",
+     "order": "O-6049",
+     "qty": 2,
+     "sku": "MG-703"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6050",
+     "qty": 1,
+     "sku": "MG-701"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6051",
+     "qty": 2,
+     "sku": "MG-1102"
+    },
+    {
+     "how": "arrived broken",
+     "order": "O-6050",
+     "qty": 1,
+     "sku": "MG-1302"
+    },
+    {
+     "how": "arrived damaged",
+     "order": "O-6049",
+     "qty": 1,
+     "sku": "MG-700"
+    },
+    {
+     "how": "arrived broken",
+     "order": "O-6052",
+     "qty": 1,
+     "sku": "MG-703"
+    },
+    {
+     "how": "arrived broken",
+     "order": "O-6053",
+     "qty": 1,
+     "sku": "MG-1101"
+    },
+    {
+     "how": "arrived damaged",
+     "order": "O-6051",
+     "qty": 1,
+     "sku": "MG-801"
+    }
+   ],
+   "same_product": [
+    [
+     "O-6049",
+     "MG-700"
+    ]
+   ],
+   "sender": "ol1.jon@example.com"
+  },
+  {
+   "constraints": {
+    "no_credit": false,
+    "no_shipping_to": "89 Park View, Delft"
+   },
+   "customer": "C-2010",
+   "id": "ol2",
+   "level": "L",
+   "prompt": "## Ticket OL2\n\nFrom: ol2.kai@example.com\n\nSeveral things went wrong with my recent orders. Please do not send anything to 89 Park View, Delft; nobody is there this month.\n\n(1) Three task lamps from order O-6057 arrived damaged. If you send one, it must be exactly the same model.\n(2) One gooseneck kettle from order O-6056 arrived broken.\n(3) One arc lamp from order O-6056 was missing from the parcel.\n(4) One porcelain mug from order O-6057 was missing from the parcel.\n(5) One task lamp from order O-6055 arrived damaged. If you send one, it must be exactly the same model.\n(6) One porcelain mug from order O-6056 was missing from the parcel. If you send one, it must be exactly the same model.\n(7) One desk lamp from order O-6057 arrived broken.\n(8) One arc lamp from order O-6058 arrived broken.\n(9) One portable speaker from order O-6057 was missing from the parcel.\n",
+   "reports": [
+    {
+     "how": "arrived damaged",
+     "order": "O-6057",
+     "qty": 3,
+     "sku": "MG-903"
+    },
+    {
+     "how": "arrived broken",
+     "order": "O-6056",
+     "qty": 1,
+     "sku": "MG-1102"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6056",
+     "qty": 1,
+     "sku": "MG-902"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6057",
+     "qty": 1,
+     "sku": "MG-701"
+    },
+    {
+     "how": "arrived damaged",
+     "order": "O-6055",
+     "qty": 1,
+     "sku": "MG-903"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6056",
+     "qty": 1,
+     "sku": "MG-701"
+    },
+    {
+     "how": "arrived broken",
+     "order": "O-6057",
+     "qty": 1,
+     "sku": "MG-900"
+    },
+    {
+     "how": "arrived broken",
+     "order": "O-6058",
+     "qty": 1,
+     "sku": "MG-902"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6057",
+     "qty": 1,
+     "sku": "MG-1201"
+    }
+   ],
+   "same_product": [
+    [
+     "O-6055",
+     "MG-903"
+    ],
+    [
+     "O-6056",
+     "MG-701"
+    ],
+    [
+     "O-6057",
+     "MG-903"
+    ]
+   ],
+   "sender": "ol2.kai@example.com"
+  },
+  {
+   "constraints": {
+    "no_credit": false,
+    "no_shipping_to": null
+   },
+   "customer": "C-2011",
+   "id": "ol3",
+   "level": "L",
+   "prompt": "## Ticket OL3\n\nFrom: ol3.kai@example.com\n\nSeveral things went wrong with my recent orders.\n\n(1) One enamel mug from order O-6063 arrived broken.\n(2) One folding chair from order O-6063 arrived broken.\n(3) One caf\u00e9 chair from order O-6063 arrived damaged.\n(4) One enamel mug from order O-6062 was missing from the parcel.\n(5) One waffle towel from order O-6064 arrived broken.\n(6) One smart speaker from order O-6061 was missing from the parcel.\n(7) One stoneware mug from order O-6063 arrived damaged.\n(8) One arc lamp from order O-6063 was missing from the parcel.\n(9) One bookshelf speaker from order O-6062 was missing from the parcel.\n",
+   "reports": [
+    {
+     "how": "arrived broken",
+     "order": "O-6063",
+     "qty": 1,
+     "sku": "MG-702"
+    },
+    {
+     "how": "arrived broken",
+     "order": "O-6063",
+     "qty": 1,
+     "sku": "MG-1400"
+    },
+    {
+     "how": "arrived damaged",
+     "order": "O-6063",
+     "qty": 1,
+     "sku": "MG-1402"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6062",
+     "qty": 1,
+     "sku": "MG-702"
+    },
+    {
+     "how": "arrived broken",
+     "order": "O-6064",
+     "qty": 1,
+     "sku": "MG-1002"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6061",
+     "qty": 1,
+     "sku": "MG-1202"
+    },
+    {
+     "how": "arrived damaged",
+     "order": "O-6063",
+     "qty": 1,
+     "sku": "MG-700"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6063",
+     "qty": 1,
+     "sku": "MG-902"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6062",
+     "qty": 1,
+     "sku": "MG-1200"
+    }
+   ],
+   "same_product": [],
+   "sender": "ol3.kai@example.com"
+  },
+  {
+   "constraints": {
+    "no_credit": false,
+    "no_shipping_to": null
+   },
+   "customer": "C-2012",
+   "id": "ol4",
+   "level": "L",
+   "prompt": "## Ticket OL4\n\nFrom: ol4.max@example.com\n\nSeveral things went wrong with my recent orders.\n\n(1) Three enamel mugs from order O-6069 were missing from the parcel.\n(2) Two cotton towels from order O-6069 arrived broken.\n(3) Two glass mugs from order O-6067 were missing from the parcel.\n(4) Three linen towels from order O-6069 were missing from the parcel.\n(5) One portable speaker from order O-6067 arrived broken.\n(6) One ceramic teapot from order O-6070 arrived broken. If you send one, it must be exactly the same model.\n(7) Three clay planters from order O-6069 arrived damaged.\n",
+   "reports": [
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6069",
+     "qty": 3,
+     "sku": "MG-702"
+    },
+    {
+     "how": "arrived broken",
+     "order": "O-6069",
+     "qty": 2,
+     "sku": "MG-1000"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6067",
+     "qty": 2,
+     "sku": "MG-703"
+    },
+    {
+     "how": "was missing from the parcel",
+     "order": "O-6069",
+     "qty": 3,
+     "sku": "MG-1001"
+    },
+    {
+     "how": "arrived broken",
+     "order": "O-6067",
+     "qty": 1,
+     "sku": "MG-1201"
+    },
+    {
+     "how": "arrived broken",
+     "order": "O-6070",
+     "qty": 1,
+     "sku": "MG-802"
+    },
+    {
+     "how": "arrived damaged",
+     "order": "O-6069",
+     "qty": 3,
+     "sku": "MG-1300"
+    }
+   ],
+   "same_product": [
+    [
+     "O-6070",
+     "MG-802"
+    ]
+   ],
+   "sender": "ol4.max@example.com"
+  }
+ ]
+}
