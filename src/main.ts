@@ -46,6 +46,7 @@ async function main(): Promise<void> {
       resume: { type: "string" },
       merge: { type: "string", multiple: true },
       "allow-dirty": { type: "boolean" },
+      "stopped-providers": { type: "string" },
       help: { type: "boolean" },
     },
   });
@@ -53,7 +54,7 @@ async function main(): Promise<void> {
   if (values.help) {
     console.log([
       'npm run harness -- --model provider:id --prompt "..." [--out runs] [--validate-only]',
-      "npm run harness -- --plan plan.eval.json [--out runs] [--validate-only] [--resume runs/<run>] [--allow-dirty]",
+      "npm run harness -- --plan plan.eval.json [--out runs] [--validate-only] [--resume runs/<run> [--stopped-providers deepseek=PROVIDER_BALANCE,...]] [--allow-dirty]",
       "npm run harness -- --merge runs/<run-a> --merge runs/<run-b> [--out runs]",
       "npm run harness -- --plan plan.eval.json --regrade runs/<run>/<trial> --reason \"reason\"",
       "npm run harness -- --plan plan.eval.json --import-review runs/<run>/<trial> --review review.json --reason \"reason\"",
@@ -124,6 +125,17 @@ async function main(): Promise<void> {
     if (typeof plan.budget.maxTrialTokens !== "number" && typeof plan.batch?.maxTotalTokens !== "number" &&
         typeof plan.batch?.maxTotalTokensPerModel !== "number") throw new Error("BATCH_TOKEN_CEILING_REQUIRED");
     if (values.resume && plan.execution?.kind === "trajectory") throw new Error("RESUME_UNSUPPORTED_FOR_TRAJECTORY");
+    // A resume can skip providers stopped for balance or authentication in the earlier attempt (the suite's retry pass).
+    let stoppedProviders: Record<string, string> | undefined;
+    if (values["stopped-providers"]) {
+      if (!values.resume) throw new Error("RESUME_ARGUMENTS_INVALID");
+      stoppedProviders = {};
+      for (const entry of values["stopped-providers"].split(",")) {
+        const match = /^([A-Za-z0-9._-]+)=([A-Z][A-Z0-9_]*)$/.exec(entry);
+        if (!match) throw new Error("STOPPED_PROVIDERS_INVALID");
+        stoppedProviders[match[1]!] = match[2]!;
+      }
+    }
     // A live run must map to one committed code revision; the fingerprint records the commit and dirty flag.
     const repositoryRoot = fileURLToPath(new URL("../", import.meta.url));
     if (!values["allow-dirty"] && (await git(repositoryRoot, ["status", "--porcelain"])).trim()) throw new Error("WORKTREE_DIRTY");
@@ -137,7 +149,7 @@ async function main(): Promise<void> {
       if (stopped) process.exitCode = 1;
       return;
     }
-    const result = await runEvaluation(plan, { outputRoot: values.out, resumeDirectory: values.resume });
+    const result = await runEvaluation(plan, { outputRoot: values.out, resumeDirectory: values.resume, stoppedProviders });
     console.log(JSON.stringify({ directory: result.directory, summary: result.report.summary }, null, 2));
     if (!result.report.completed || result.report.summary.executionFailures || result.report.summary.evaluatorErrors || result.report.summary.resourceLimitRuns || result.report.summary.cleanupFailures || result.report.records.some(record => record.evaluation.status === "failed")) process.exitCode = 1;
     return;

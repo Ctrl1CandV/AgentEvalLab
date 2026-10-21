@@ -23,6 +23,7 @@ import { evaluatedCondition, sha256 } from "./condition.js";
 import { BatchGuard, resolveBatchPolicy, type NotRunEntry } from "./batch.js";
 import { budgetStatement, defaultReminderThresholds } from "../harness/budget-notice.js";
 import { loadRecordedTrials } from "./regrade.js";
+import { providerSlotsFromEnvironment } from "./provider-slots.js";
 import type { EvaluationOptions, EvaluationPlan, TrialRecord } from "./types.js";
 
 interface TrialSlot {
@@ -111,6 +112,9 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
   }
   const records: TrialRecord[] = [];
   const guard = new BatchGuard(batchPolicy);
+  // A resumed run can skip providers already stopped for balance or authentication; their trials are listed as not run.
+  for (const [provider, reason] of Object.entries(options.stoppedProviders ?? {})) guard.providerStops[provider] = reason;
+  const providerSlots = options.providerSlots ?? providerSlotsFromEnvironment();
   const notice = resolveBudgetNotice(plan);
   const notRun: NotRunEntry[] = [];
   let sequence = await countLines(join(directory, "events.jsonl"));
@@ -141,6 +145,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
         return;
       }
       const release = guard.reserve(modelId, plan.budget.maxTrialTokens ?? 0);
+      const releaseSlot = await providerSlots.acquire(model.provider);
       const start = performance.now();
       const id = randomUUID();
       const trialDirectory = join(directory, id);
@@ -285,6 +290,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
         record.durationMs = performance.now() - start;
         record.execution = persistedExecution(record.execution, plan.budget.maxOutputChars);
         records.push(record);
+        await releaseSlot();
         await writeFile(join(trialDirectory, "result.json"), JSON.stringify(record, null, 2));
       }
       release();

@@ -12,7 +12,8 @@
     "test": "node --import tsx --test tests/*.test.ts",
     "check": "tsc --noEmit",
     "harness": "NODE_USE_ENV_PROXY=1 node --import tsx src/main.ts",
-    "provider-check": "NODE_USE_ENV_PROXY=1 node --import tsx scripts/provider-check.ts"
+    "provider-check": "NODE_USE_ENV_PROXY=1 node --import tsx scripts/provider-check.ts",
+    "suite": "NODE_USE_ENV_PROXY=1 node --import tsx scripts/suite.ts"
   },
   "keywords": [],
   "author": "",

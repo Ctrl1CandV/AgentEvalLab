@@ -7,8 +7,11 @@ Mirrors the preflight rules in src/evaluation/manifest.ts:
 - example and experiment plans pin the current manifest digest.
 
 Usage:
-  python3 scripts/task_packages.py check
+  python3 scripts/task_packages.py check [--plans <plan.eval.json> ...]
   python3 scripts/task_packages.py rehash <package-dir> [<package-dir> ...]
+
+check --plans checks every package but only the named plans' pins (a suite's
+preflight); historical plans that pin earlier package versions are left out.
 
 rehash rewrites digests for files already listed in a manifest, refreshes
 metadata.json "content_hashes_sha256_16" prefixes, then updates example- and
@@ -103,10 +106,11 @@ def check_package(package):
     return manifest, problems
 
 
-def example_pins():
+def example_pins(plan_paths=None):
     pins = []
-    plan_paths = glob.glob(os.path.join(ROOT, "examples", "*.eval.json")) + \
-        glob.glob(os.path.join(ROOT, "experiments", "**", "*.eval.json"), recursive=True)
+    if plan_paths is None:
+        plan_paths = glob.glob(os.path.join(ROOT, "examples", "*.eval.json")) + \
+            glob.glob(os.path.join(ROOT, "experiments", "**", "*.eval.json"), recursive=True)
     for plan_path in sorted(plan_paths):
         plan = load_json(plan_path)
         for index, case in enumerate(plan.get("cases", [])):
@@ -116,7 +120,7 @@ def example_pins():
     return pins
 
 
-def check(_args):
+def check(args):
     failed = False
     for package in package_dirs():
         manifest, problems = check_package(package)
@@ -125,7 +129,8 @@ def check(_args):
         for problem in problems:
             print("         " + problem)
         failed = failed or bool(problems)
-    for plan_path, index, package, pinned in example_pins():
+    plans = [os.path.abspath(path) for path in args.plans] if getattr(args, "plans", None) else None
+    for plan_path, index, package, pinned in example_pins(plans):
         manifest_path = os.path.join(package, "manifest.json")
         if not os.path.isfile(manifest_path):
             print("FAILED %s case %d: package has no manifest" % (relative(plan_path), index))
@@ -190,7 +195,8 @@ def rehash(args):
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     commands = parser.add_subparsers(dest="command", required=True)
-    commands.add_parser("check")
+    check_parser = commands.add_parser("check")
+    check_parser.add_argument("--plans", nargs="+")
     rehash_parser = commands.add_parser("rehash")
     rehash_parser.add_argument("packages", nargs="+")
     args = parser.parse_args()

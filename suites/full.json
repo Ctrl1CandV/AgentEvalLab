@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "name": "full",
+  "description": "The evaluation suite: every family. Models and repetitions are chosen at the real evaluation stage, with the user's go-ahead.",
+  "target": {
+    "model": "deepseek:deepseek-flash",
+    "maxScore": 0.8
+  },
+  "providerConcurrency": {
+    "*": 6,
+    "api.airy.work": 3
+  },
+  "families": [
+    {
+      "id": "R3",
+      "kind": "single",
+      "template": "experiments/r3-calibration-2026-10/l5-l7.eval.json",
+      "score": {
+        "levels": [
+          "L5",
+          "L6",
+          "L7"
+        ]
+      }
+    },
+    {
+      "id": "T1",
+      "kind": "single",
+      "template": "experiments/t1-calibration-2026-10/l7.eval.json",
+      "score": {
+        "levels": [
+          "L7"
+        ]
+      }
+    },
+    {
+      "id": "E2",
+      "kind": "single",
+      "template": "experiments/e2-calibration-2026-10/routes.eval.json",
+      "score": {
+        "items": [
+          "routes"
+        ]
+      },
+      "openEnded": true
+    },
+    {
+      "id": "E4",
+      "kind": "single",
+      "template": "experiments/e4-calibration-2026-10/speedup.eval.json",
+      "score": {
+        "items": [
+          "speedup"
+        ]
+      },
+      "openEnded": true
+    },
+    {
+      "id": "E3",
+      "kind": "trajectory",
+      "template": "experiments/e3-calibration-2026-10/trajectory.eval.json"
+    },
+    {
+      "id": "T2",
+      "kind": "single",
+      "template": "experiments/t2-calibration-2026-10/v0.2.eval.json"
+    },
+    {
+      "id": "VIS",
+      "kind": "visual",
+      "template": "experiments/vis-calibration-2026-10/calibration.eval.json",
+      "visualPackage": "task-library/calibration/vis-001-original-landing"
+    }
+  ]
+}

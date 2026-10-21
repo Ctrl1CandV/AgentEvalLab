@@ -19,6 +19,7 @@ import { evaluatedCondition, sha256 } from "./condition.js";
 import { BatchGuard, resolveBatchPolicy, type BatchPolicy, type NotRunEntry } from "./batch.js";
 import { resolveBudgetNotice } from "./run.js";
 import { sandboxLauncher, type Isolation } from "../sandbox.js";
+import { providerSlotsFromEnvironment } from "./provider-slots.js";
 import type { EvaluationOptions, EvaluationPlan, PublicCheckResult, TrajectoryMetrics, TrajectoryRecord, TrajectorySession, TrajectoryStageResult } from "./types.js";
 import { modelLabel } from "./report.js";
 
@@ -309,6 +310,7 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
   const plannedRuns = plan.models.length * plan.cases.length;
   const batchPolicy = resolveBatchPolicy(plan);
   const guard = new BatchGuard(batchPolicy);
+  const providerSlots = options.providerSlots ?? providerSlotsFromEnvironment();
   const notRun: NotRunEntry[] = [];
   await writeFile(join(directory, "experiment.json"), JSON.stringify({
     schemaVersion: 2, name: plan.name, fingerprint, packageFingerprints, condition, execution: plan.execution, isolation: plan.isolation ?? "sandbox",
@@ -335,6 +337,8 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
       if (!descriptor?.manifest?.stages || !descriptor.manifestSha256) throw new Error("TRAJECTORY_PACKAGE_REQUIRED");
       const profile = item.toolProfile ?? descriptor.manifest.toolProfiles?.[0] ?? "workspace-basic";
       const stageIds = descriptor.manifest.stages.map(stage => stage.id);
+      // A trajectory sends one request at a time, so it holds one of its provider's slots until its session ends.
+      const releaseSlot = await providerSlots.acquire(model.provider);
       const start = performance.now();
       const totalExecution = emptyExecution();
       const recordValue: TrajectoryRecord = {
@@ -527,6 +531,7 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
         if (workspace) {
           try { await workspace.cleanup(); } catch { recordValue.cleanup = "error"; }
         }
+        await releaseSlot();
         recordValue.durationMs = performance.now() - start;
         if (executionStart !== null && executionElapsedMs === 0) executionElapsedMs = performance.now() - executionStart;
         recordValue.aggregateExecution = persistedExecution(totalExecution, plan.budget.maxOutputChars);

@@ -43,6 +43,17 @@ npm run harness -- --plan examples/eng-001.eval.json --validate-only
 
 Results are written under `runs/<run-id>/`. Networked commands go through the host proxy: the `harness` and `provider-check` npm scripts set `NODE_USE_ENV_PROXY=1` so Node's fetch honours `HTTPS_PROXY`. Check a provider with `npm run provider-check -- provider:model`, which sends at most six small requests. A live run requires a token ceiling in the plan (`batch.maxTotalTokens` or `batch.maxTotalTokensPerModel`; tokens are fixed units, without prices) and a clean, committed worktree (`--allow-dirty` overrides; the commit and dirty flag are recorded either way). An interrupted single-run batch can be continued with `--resume runs/<run-id>`. `node --import tsx scripts/null-agent-baseline.ts <plan>` runs a plan offline with an agent that does nothing, as a trivial baseline and an end-to-end check.
 
+### Suites
+
+A suite runs several task families with one command and writes one report ([PLAN-006](docs/plans/PLAN-006-suite-runner-and-hardening-round-2.md)):
+
+```bash
+npm run suite -- --suite suites/dev.json --models deepseek:deepseek-flash,aliplan:qwen3.8-flash --families E4,T2 --dry-run
+npm run suite -- --resume runs/suites/<id>
+```
+
+The suite freezes HEAD into a worktree under `runs/suites/<id>/worktree`, generates one plan per family from the template the suite file names, checks the packages and validates every plan, prints a worst-case token estimate, and runs each family once with the null agent (no tokens; every trial must be graded and earn nothing). `--dry-run` stops there; `--resume` continues a dry run or an interrupted suite. A launch starts every family at once, caps concurrent trials per provider endpoint across all processes, resumes each run once for its infrastructure failures (skipping providers stopped for balance or authentication), and writes `runs/suites/<id>/report.md` and `report.json` with per-family scores, a cross-family table and flags. A model without `?thinking=` runs at its declared middle level; `suites/dev.json` refuses launches that break the dev-run policy (pro models, a second model from the airy.work relay, more than one repetition).
+
 ## Project map
 
 - `src/harness/`: Pi Agent runner and tool profiles
@@ -51,6 +62,7 @@ Results are written under `runs/<run-id>/`. Networked commands go through the ho
 - `task-library/calibration/`: versioned task packages and offline calibration
 - `examples/`: sample evaluation plans
 - `experiments/`: plans for live runs, each with its protocol README
+- `suites/`, `src/suite/`: suite files and the one-command suite runner
 - `docs/HANDOFF.md`: current state and next steps
 
 ## Evidence limits

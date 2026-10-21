@@ -185,6 +185,10 @@ export interface EvaluationOptions {
   resumeDirectory?: string;
   runner?: Runner<WorkspaceInput>;
   sessionFactory?: TrajectorySessionFactory;
+  /** Providers to treat as stopped from the start, with the reason (a resumed run skipping exhausted balances). */
+  stoppedProviders?: Record<string, string>;
+  /** Cross-process cap on concurrent trials per provider endpoint; defaults to the one the environment configures. */
+  providerSlots?: import("./provider-slots.js").ProviderSlots;
 }
 
 export type { TaskPackageManifest };

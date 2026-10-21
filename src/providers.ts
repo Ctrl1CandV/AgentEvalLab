@@ -54,6 +54,11 @@ export interface CustomModelConfig {
   prices: ModelPrices | null;
   /** False until the values have been checked against the provider (PLAN-004 WP7). */
   verified: boolean;
+  /**
+   * The thinking level evaluations run this model at unless a plan says otherwise: the vendor's middle level, or
+   * "provider-default" where thinking has no levels (PLAN-005). Suites resolve a bare provider:id with it.
+   */
+  middleThinking?: import("./types.js").PlanThinkingLevel;
 }
 
 // Pi only sends an explicit "thinking disabled" parameter for models declared with reasoning: true, so a
@@ -67,7 +72,8 @@ const deepseekFlash: CustomModelConfig = {
   // Checked 2026-10-18 against https://api-docs.deepseek.com/guides/thinking_mode/: effort low, high or max (default
   // high); other names are silently remapped, so they are declared null and rejected by validation. Temperature has
   // no effect in thinking mode.
-  thinkingLevelMap: { minimal: null, low: "low", medium: null, high: "high", xhigh: null, max: "max" }, prices: null, verified: true, vision: true
+  thinkingLevelMap: { minimal: null, low: "low", medium: null, high: "high", xhigh: null, max: "max" }, prices: null, verified: true, vision: true,
+  middleThinking: "high",
 };
 
 // Checked 2026-10-14 against https://help.aliyun.com/zh/model-studio/qwen3-8-flash: 1M context, 131,072
@@ -78,7 +84,7 @@ const deepseekFlash: CustomModelConfig = {
 // block and the right answer. Image input is documented and a screenshot probe on 2026-10-20 read the page exactly.
 const qwen38Flash: CustomModelConfig = {
   id: "qwen3.8-flash", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: true, thinking: "configurable", prices: null,
-  verified: true, vision: true
+  verified: true, vision: true, middleThinking: "provider-default",
 };
 
 // Checked 2026-10-14 against https://developers.openai.com/api/docs/models/gpt-6-luna: 1,050,000 context
@@ -90,7 +96,8 @@ const qwen38Flash: CustomModelConfig = {
 // max_completion_tokens; the runner enforces the output cap from reported usage.
 const gpt6Luna: CustomModelConfig = {
   id: "gpt-6-luna", contextWindow: 1_050_000, maxTokens: 128_000, reasoning: true, thinking: "configurable",
-  thinkingLevelMap: { off: "none", minimal: null, xhigh: "xhigh", max: "max" }, prices: null, verified: true, vision: true
+  thinkingLevelMap: { off: "none", minimal: null, xhigh: "xhigh", max: "max" }, prices: null, verified: true, vision: true,
+  middleThinking: "medium",
 };
 
 // Checked 2026-10-14 against https://docs.bigmodel.cn/cn/guide/models/vlm/glm-5.3-flash: 1M context, 128K
@@ -103,7 +110,7 @@ const gpt6Luna: CustomModelConfig = {
 const glm53: CustomModelConfig = {
   id: "glm-5.3", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: true, thinking: "always-on",
   thinkingLevelMap: { off: null, minimal: null, low: "low", medium: null, high: "high", xhigh: null, max: "max" }, adaptiveThinking: true,
-  prices: null, verified: true
+  prices: null, verified: true, middleThinking: "high",
 };
 
 // Checked 2026-10-18 against https://platform.stepfun.ai/docs/en/guides/models/step-5-preview: 1M context, 64K
@@ -112,7 +119,7 @@ const glm53: CustomModelConfig = {
 const step5Preview: CustomModelConfig = {
   id: "step-5-preview", contextWindow: 1_000_000, maxTokens: 64_000, reasoning: true, thinking: "always-on",
   thinkingLevelMap: { off: null, minimal: null, low: "low", medium: "medium", high: "high", xhigh: null, max: null }, adaptiveThinking: true,
-  prices: null, verified: true, vision: true
+  prices: null, verified: true, vision: true, middleThinking: "medium",
 };
 
 // Checked 2026-10-18 against third-party guides citing Moonshot's documentation (no official page was reachable):
@@ -123,12 +130,12 @@ const step5Preview: CustomModelConfig = {
 const kimiK3: CustomModelConfig = {
   id: "kimi-k3", contextWindow: 1_048_576, maxTokens: 131_072, reasoning: true, thinking: "always-on",
   thinkingLevelMap: { off: null, minimal: null, low: "low", medium: null, high: "high", xhigh: null, max: "max" }, adaptiveThinking: true,
-  prices: null, verified: true, vision: true
+  prices: null, verified: true, vision: true, middleThinking: "high",
 };
 
 const glm53Flash: CustomModelConfig = {
   id: "glm-5.3-flash", contextWindow: 1_000_000, maxTokens: 131_072, reasoning: false, thinking: "always-on",
-  prices: null, verified: true, vision: true
+  prices: null, verified: true, vision: true, middleThinking: "provider-default",
 };
 
 // Checked 2026-10-20 against https://mimo.mi.com/models/en-US/mimo-v2.6-flash and the Deep Thinking guide
@@ -141,7 +148,7 @@ const glm53Flash: CustomModelConfig = {
 // prices are declared.
 const mimoV26Pro: CustomModelConfig = {
   id: "mimo-v2.6-pro", contextWindow: 1_048_576, maxTokens: 131_072, reasoning: true, thinking: "configurable", prices: null,
-  verified: true, vision: true
+  verified: true, vision: true, middleThinking: "provider-default",
 };
 const mimoV26Flash: CustomModelConfig = { ...mimoV26Pro, id: "mimo-v2.6-flash" };
 
