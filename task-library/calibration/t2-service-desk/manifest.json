@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "t2-service-desk",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "familyId": "t2-service-desk",
   "capability": "tool",
   "usage": "development",
@@ -23,29 +23,33 @@
     "public": [
       {
         "path": "instruction.md",
-        "sha256": "1c40284e882e014d85b6b9ab9d5b40cd2513d8ca50bd736c6119b43c961323c5"
+        "sha256": "f4b9e120e5bc7e2173c680e98d28a27516cd29f9db409714b513cf27f5958efe"
       }
     ],
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "08372e84de4d20dea7c09ed9255e9b3d6ccafeb826550ab9aba6df9ed9f5db7c"
+        "sha256": "95c15d2e2328a8d3169f45201bc43107a75ea3d527c471c087483a046f8d4697"
       },
       {
         "path": "rubric.md",
-        "sha256": "c30f0b7989fe77d564049edfcb8e5de32b5dadd28c62f09aab394c8827bc4bdc"
+        "sha256": "4c804b2220d380d28413ef6651c98574cb5a8fdf0505eb8212b74b8e16c78f82"
       },
       {
         "path": "private/POLICY.md",
         "sha256": "abcfc599b4d88a208f2700a88c66c0af597571319e98d81b4ab68999c82aebf8"
       },
       {
+        "path": "private/SHIFT_POLICY.md",
+        "sha256": "b305d2433ff652813dc6a5a83f2db15a13ae72c88850bfa53356fc43870144fa"
+      },
+      {
         "path": "private/build_package.py",
-        "sha256": "ebec743ae5ff467125f3d9ed89990af5409c78e44ba95a322e0c36489c033dd5"
+        "sha256": "979fc749bcdadbc7dea88a68c5d49574d12632512d7bddf88ed00ae9509360af"
       },
       {
         "path": "private/calibrate.py",
-        "sha256": "122e8a821003c79eda8dec9b6fd489981f5f48b38e7fe93697f0fe8fe679e66e"
+        "sha256": "2a6df34f48996e9653a5773afde6e67c5a2b1e78ab7c8370ba4ea57296d9fecb"
       },
       {
         "path": "private/desk.py",
@@ -53,7 +57,7 @@
       },
       {
         "path": "private/grader.py",
-        "sha256": "b344b63c2134d3ec448ceeecd05c83593afe4ae8753ee0e5e8e47cc867a5aa74"
+        "sha256": "e090455cd79c62159c64404bea7d13ca504d90a276fda21f2749107b53e60175"
       },
       {
         "path": "private/makegood.json",
@@ -68,6 +72,18 @@
         "sha256": "d5038f99b4a911e17787c40b050020f8d208f5eee6369974c9c88f795646bc35"
       },
       {
+        "path": "private/shift.py",
+        "sha256": "ff4978bb84fcec0e96ea6a7b16366ac78691e210e64e1e5645041613da080468"
+      },
+      {
+        "path": "private/shift_desk.py",
+        "sha256": "a78c6ed4971d707fdf707a26b994004fe404830429f045d0d3a4a5a97502d783"
+      },
+      {
+        "path": "private/shifts.json",
+        "sha256": "5d5ffb26f8d081e2490f4770eff5c8d49594f866d09193af129eaa783ec30ea5"
+      },
+      {
         "path": "private/tickets.py",
         "sha256": "af80eec2c906969567d3ecd29363cf2533f76f0baf28f207e1e9925b57002360"
       }
@@ -77,7 +93,7 @@
     {
       "id": "REQ-T01-ORDER-O-5001",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t01-order-O-5001"
       ]
@@ -85,7 +101,7 @@
     {
       "id": "REQ-T01-ORDER-O-5002",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t01-order-O-5002"
       ]
@@ -93,7 +109,7 @@
     {
       "id": "REQ-T01-CUSTOMER-C-1001",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t01-customer-C-1001"
       ]
@@ -101,7 +117,7 @@
     {
       "id": "REQ-T01-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t01-no-other-changes"
       ]
@@ -109,7 +125,7 @@
     {
       "id": "REQ-T01-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t01-reply"
       ]
@@ -117,7 +133,7 @@
     {
       "id": "REQ-T02-ORDER-O-5004",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t02-order-O-5004"
       ]
@@ -125,7 +141,7 @@
     {
       "id": "REQ-T02-CUSTOMER-C-1002",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t02-customer-C-1002"
       ]
@@ -133,7 +149,7 @@
     {
       "id": "REQ-T02-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t02-no-other-changes"
       ]
@@ -141,7 +157,7 @@
     {
       "id": "REQ-T02-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t02-reply"
       ]
@@ -149,7 +165,7 @@
     {
       "id": "REQ-T03-ORDER-O-5005",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t03-order-O-5005"
       ]
@@ -157,7 +173,7 @@
     {
       "id": "REQ-T03-ORDER-O-5006",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t03-order-O-5006"
       ]
@@ -165,7 +181,7 @@
     {
       "id": "REQ-T03-CUSTOMER-C-1003",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t03-customer-C-1003"
       ]
@@ -173,7 +189,7 @@
     {
       "id": "REQ-T03-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t03-no-other-changes"
       ]
@@ -181,7 +197,7 @@
     {
       "id": "REQ-T03-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t03-reply"
       ]
@@ -189,7 +205,7 @@
     {
       "id": "REQ-T04-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t04-no-other-changes"
       ]
@@ -197,7 +213,7 @@
     {
       "id": "REQ-T04-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t04-reply"
       ]
@@ -205,7 +221,7 @@
     {
       "id": "REQ-T05-ORDER-O-5007",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t05-order-O-5007"
       ]
@@ -213,7 +229,7 @@
     {
       "id": "REQ-T05-ORDER-O-5009",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t05-order-O-5009"
       ]
@@ -221,7 +237,7 @@
     {
       "id": "REQ-T05-CUSTOMER-C-1004",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t05-customer-C-1004"
       ]
@@ -229,7 +245,7 @@
     {
       "id": "REQ-T05-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t05-no-other-changes"
       ]
@@ -237,7 +253,7 @@
     {
       "id": "REQ-T05-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t05-reply"
       ]
@@ -245,7 +261,7 @@
     {
       "id": "REQ-T06-ORDER-O-5010",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t06-order-O-5010"
       ]
@@ -253,7 +269,7 @@
     {
       "id": "REQ-T06-CUSTOMER-C-1005",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t06-customer-C-1005"
       ]
@@ -261,7 +277,7 @@
     {
       "id": "REQ-T06-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t06-no-other-changes"
       ]
@@ -269,7 +285,7 @@
     {
       "id": "REQ-T06-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t06-reply"
       ]
@@ -277,7 +293,7 @@
     {
       "id": "REQ-T07-ORDER-O-5011",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t07-order-O-5011"
       ]
@@ -285,7 +301,7 @@
     {
       "id": "REQ-T07-CUSTOMER-C-1006",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t07-customer-C-1006"
       ]
@@ -293,7 +309,7 @@
     {
       "id": "REQ-T07-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t07-no-other-changes"
       ]
@@ -301,7 +317,7 @@
     {
       "id": "REQ-T07-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t07-reply"
       ]
@@ -309,7 +325,7 @@
     {
       "id": "REQ-T08-ORDER-O-5013",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t08-order-O-5013"
       ]
@@ -317,7 +333,7 @@
     {
       "id": "REQ-T08-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t08-no-other-changes"
       ]
@@ -325,7 +341,7 @@
     {
       "id": "REQ-T08-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t08-reply"
       ]
@@ -333,7 +349,7 @@
     {
       "id": "REQ-T09-ORDER-O-5001",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t09-order-O-5001"
       ]
@@ -341,7 +357,7 @@
     {
       "id": "REQ-T09-ORDER-O-5002",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t09-order-O-5002"
       ]
@@ -349,7 +365,7 @@
     {
       "id": "REQ-T09-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t09-no-other-changes"
       ]
@@ -357,7 +373,7 @@
     {
       "id": "REQ-T09-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t09-reply"
       ]
@@ -365,7 +381,7 @@
     {
       "id": "REQ-T10-ORDER-O-5003",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t10-order-O-5003"
       ]
@@ -373,7 +389,7 @@
     {
       "id": "REQ-T10-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t10-no-other-changes"
       ]
@@ -381,7 +397,7 @@
     {
       "id": "REQ-T10-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t10-reply"
       ]
@@ -389,7 +405,7 @@
     {
       "id": "REQ-T11-ORDER-O-5014",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t11-order-O-5014"
       ]
@@ -397,7 +413,7 @@
     {
       "id": "REQ-T11-CUSTOMER-C-1003",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t11-customer-C-1003"
       ]
@@ -405,7 +421,7 @@
     {
       "id": "REQ-T11-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t11-no-other-changes"
       ]
@@ -413,7 +429,7 @@
     {
       "id": "REQ-T11-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t11-reply"
       ]
@@ -421,7 +437,7 @@
     {
       "id": "REQ-T12-ORDER-O-5015",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t12-order-O-5015"
       ]
@@ -429,7 +445,7 @@
     {
       "id": "REQ-T12-CUSTOMER-C-1006",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t12-customer-C-1006"
       ]
@@ -437,7 +453,7 @@
     {
       "id": "REQ-T12-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t12-no-other-changes"
       ]
@@ -445,7 +461,7 @@
     {
       "id": "REQ-T12-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "t12-reply"
       ]
@@ -453,7 +469,7 @@
     {
       "id": "REQ-OS1-RESOLVED-O-6001",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os1-resolved-O-6001"
       ]
@@ -461,7 +477,7 @@
     {
       "id": "REQ-OS1-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os1-no-other-changes"
       ]
@@ -469,7 +485,7 @@
     {
       "id": "REQ-OS1-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os1-reply"
       ]
@@ -477,7 +493,7 @@
     {
       "id": "REQ-OS1-COST-5",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os1-cost-5"
       ]
@@ -485,7 +501,7 @@
     {
       "id": "REQ-OS1-COST-1",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os1-cost-1"
       ]
@@ -493,7 +509,7 @@
     {
       "id": "REQ-OS1-COST-0",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os1-cost-0"
       ]
@@ -501,7 +517,7 @@
     {
       "id": "REQ-OS2-RESOLVED-O-6007",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os2-resolved-O-6007"
       ]
@@ -509,7 +525,7 @@
     {
       "id": "REQ-OS2-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os2-no-other-changes"
       ]
@@ -517,7 +533,7 @@
     {
       "id": "REQ-OS2-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os2-reply"
       ]
@@ -525,7 +541,7 @@
     {
       "id": "REQ-OS2-COST-5",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os2-cost-5"
       ]
@@ -533,7 +549,7 @@
     {
       "id": "REQ-OS2-COST-1",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os2-cost-1"
       ]
@@ -541,7 +557,7 @@
     {
       "id": "REQ-OS2-COST-0",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os2-cost-0"
       ]
@@ -549,7 +565,7 @@
     {
       "id": "REQ-OS3-RESOLVED-O-6013",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os3-resolved-O-6013"
       ]
@@ -557,7 +573,7 @@
     {
       "id": "REQ-OS3-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os3-no-other-changes"
       ]
@@ -565,7 +581,7 @@
     {
       "id": "REQ-OS3-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os3-reply"
       ]
@@ -573,7 +589,7 @@
     {
       "id": "REQ-OS3-COST-5",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os3-cost-5"
       ]
@@ -581,7 +597,7 @@
     {
       "id": "REQ-OS3-COST-1",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os3-cost-1"
       ]
@@ -589,7 +605,7 @@
     {
       "id": "REQ-OS3-COST-0",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os3-cost-0"
       ]
@@ -597,7 +613,7 @@
     {
       "id": "REQ-OS4-RESOLVED-O-6019",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os4-resolved-O-6019"
       ]
@@ -605,7 +621,7 @@
     {
       "id": "REQ-OS4-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os4-no-other-changes"
       ]
@@ -613,7 +629,7 @@
     {
       "id": "REQ-OS4-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os4-reply"
       ]
@@ -621,7 +637,7 @@
     {
       "id": "REQ-OS4-COST-5",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os4-cost-5"
       ]
@@ -629,7 +645,7 @@
     {
       "id": "REQ-OS4-COST-1",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os4-cost-1"
       ]
@@ -637,7 +653,7 @@
     {
       "id": "REQ-OS4-COST-0",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "os4-cost-0"
       ]
@@ -645,7 +661,7 @@
     {
       "id": "REQ-OM1-RESOLVED-O-6026",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om1-resolved-O-6026"
       ]
@@ -653,7 +669,7 @@
     {
       "id": "REQ-OM1-RESOLVED-O-6025",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om1-resolved-O-6025"
       ]
@@ -661,7 +677,7 @@
     {
       "id": "REQ-OM1-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om1-no-other-changes"
       ]
@@ -669,7 +685,7 @@
     {
       "id": "REQ-OM1-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om1-reply"
       ]
@@ -677,7 +693,7 @@
     {
       "id": "REQ-OM1-COST-5",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om1-cost-5"
       ]
@@ -685,7 +701,7 @@
     {
       "id": "REQ-OM1-COST-1",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om1-cost-1"
       ]
@@ -693,7 +709,7 @@
     {
       "id": "REQ-OM1-COST-0",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om1-cost-0"
       ]
@@ -701,7 +717,7 @@
     {
       "id": "REQ-OM2-RESOLVED-O-6031",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om2-resolved-O-6031"
       ]
@@ -709,7 +725,7 @@
     {
       "id": "REQ-OM2-RESOLVED-O-6032",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om2-resolved-O-6032"
       ]
@@ -717,7 +733,7 @@
     {
       "id": "REQ-OM2-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om2-no-other-changes"
       ]
@@ -725,7 +741,7 @@
     {
       "id": "REQ-OM2-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om2-reply"
       ]
@@ -733,7 +749,7 @@
     {
       "id": "REQ-OM2-COST-5",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om2-cost-5"
       ]
@@ -741,7 +757,7 @@
     {
       "id": "REQ-OM2-COST-1",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om2-cost-1"
       ]
@@ -749,7 +765,7 @@
     {
       "id": "REQ-OM2-COST-0",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om2-cost-0"
       ]
@@ -757,7 +773,7 @@
     {
       "id": "REQ-OM3-RESOLVED-O-6038",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om3-resolved-O-6038"
       ]
@@ -765,7 +781,7 @@
     {
       "id": "REQ-OM3-RESOLVED-O-6037",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om3-resolved-O-6037"
       ]
@@ -773,7 +789,7 @@
     {
       "id": "REQ-OM3-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om3-no-other-changes"
       ]
@@ -781,7 +797,7 @@
     {
       "id": "REQ-OM3-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om3-reply"
       ]
@@ -789,7 +805,7 @@
     {
       "id": "REQ-OM3-COST-5",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om3-cost-5"
       ]
@@ -797,7 +813,7 @@
     {
       "id": "REQ-OM3-COST-1",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om3-cost-1"
       ]
@@ -805,7 +821,7 @@
     {
       "id": "REQ-OM3-COST-0",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om3-cost-0"
       ]
@@ -813,7 +829,7 @@
     {
       "id": "REQ-OM4-RESOLVED-O-6043",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om4-resolved-O-6043"
       ]
@@ -821,7 +837,7 @@
     {
       "id": "REQ-OM4-RESOLVED-O-6044",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om4-resolved-O-6044"
       ]
@@ -829,7 +845,7 @@
     {
       "id": "REQ-OM4-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om4-no-other-changes"
       ]
@@ -837,7 +853,7 @@
     {
       "id": "REQ-OM4-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om4-reply"
       ]
@@ -845,7 +861,7 @@
     {
       "id": "REQ-OM4-COST-5",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om4-cost-5"
       ]
@@ -853,7 +869,7 @@
     {
       "id": "REQ-OM4-COST-1",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om4-cost-1"
       ]
@@ -861,7 +877,7 @@
     {
       "id": "REQ-OM4-COST-0",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "om4-cost-0"
       ]
@@ -869,7 +885,7 @@
     {
       "id": "REQ-OL1-RESOLVED-O-6052",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol1-resolved-O-6052"
       ]
@@ -877,7 +893,7 @@
     {
       "id": "REQ-OL1-RESOLVED-O-6049",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol1-resolved-O-6049"
       ]
@@ -885,7 +901,7 @@
     {
       "id": "REQ-OL1-RESOLVED-O-6050",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol1-resolved-O-6050"
       ]
@@ -893,7 +909,7 @@
     {
       "id": "REQ-OL1-RESOLVED-O-6051",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol1-resolved-O-6051"
       ]
@@ -901,7 +917,7 @@
     {
       "id": "REQ-OL1-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol1-no-other-changes"
       ]
@@ -909,7 +925,7 @@
     {
       "id": "REQ-OL1-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol1-reply"
       ]
@@ -917,7 +933,7 @@
     {
       "id": "REQ-OL1-COST-5",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol1-cost-5"
       ]
@@ -925,7 +941,7 @@
     {
       "id": "REQ-OL1-COST-1",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol1-cost-1"
       ]
@@ -933,7 +949,7 @@
     {
       "id": "REQ-OL1-COST-0",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol1-cost-0"
       ]
@@ -941,7 +957,7 @@
     {
       "id": "REQ-OL2-RESOLVED-O-6057",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol2-resolved-O-6057"
       ]
@@ -949,7 +965,7 @@
     {
       "id": "REQ-OL2-RESOLVED-O-6056",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol2-resolved-O-6056"
       ]
@@ -957,7 +973,7 @@
     {
       "id": "REQ-OL2-RESOLVED-O-6055",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol2-resolved-O-6055"
       ]
@@ -965,7 +981,7 @@
     {
       "id": "REQ-OL2-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol2-no-other-changes"
       ]
@@ -973,7 +989,7 @@
     {
       "id": "REQ-OL2-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol2-reply"
       ]
@@ -981,7 +997,7 @@
     {
       "id": "REQ-OL2-COST-5",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol2-cost-5"
       ]
@@ -989,7 +1005,7 @@
     {
       "id": "REQ-OL2-COST-1",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol2-cost-1"
       ]
@@ -997,7 +1013,7 @@
     {
       "id": "REQ-OL2-COST-0",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol2-cost-0"
       ]
@@ -1005,7 +1021,7 @@
     {
       "id": "REQ-OL3-RESOLVED-O-6063",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol3-resolved-O-6063"
       ]
@@ -1013,7 +1029,7 @@
     {
       "id": "REQ-OL3-RESOLVED-O-6062",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol3-resolved-O-6062"
       ]
@@ -1021,7 +1037,7 @@
     {
       "id": "REQ-OL3-RESOLVED-O-6061",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol3-resolved-O-6061"
       ]
@@ -1029,7 +1045,7 @@
     {
       "id": "REQ-OL3-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol3-no-other-changes"
       ]
@@ -1037,7 +1053,7 @@
     {
       "id": "REQ-OL3-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol3-reply"
       ]
@@ -1045,7 +1061,7 @@
     {
       "id": "REQ-OL3-COST-5",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol3-cost-5"
       ]
@@ -1053,7 +1069,7 @@
     {
       "id": "REQ-OL3-COST-1",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol3-cost-1"
       ]
@@ -1061,7 +1077,7 @@
     {
       "id": "REQ-OL3-COST-0",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol3-cost-0"
       ]
@@ -1069,7 +1085,7 @@
     {
       "id": "REQ-OL4-RESOLVED-O-6069",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol4-resolved-O-6069"
       ]
@@ -1077,7 +1093,7 @@
     {
       "id": "REQ-OL4-RESOLVED-O-6067",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol4-resolved-O-6067"
       ]
@@ -1085,7 +1101,7 @@
     {
       "id": "REQ-OL4-NO-OTHER-CHANGES",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol4-no-other-changes"
       ]
@@ -1093,7 +1109,7 @@
     {
       "id": "REQ-OL4-REPLY",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol4-reply"
       ]
@@ -1101,7 +1117,7 @@
     {
       "id": "REQ-OL4-COST-5",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol4-cost-5"
       ]
@@ -1109,7 +1125,7 @@
     {
       "id": "REQ-OL4-COST-1",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol4-cost-1"
       ]
@@ -1117,15 +1133,1215 @@
     {
       "id": "REQ-OL4-COST-0",
       "critical": true,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "ol4-cost-0"
       ]
     },
     {
+      "id": "REQ-SH1-T1-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t1-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T1-ACTIONS",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t1-actions"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T1-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t1-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T1-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t1-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T1-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t1-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T1-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t1-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T2-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t2-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T2-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t2-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T2-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t2-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T2-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t2-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T2-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t2-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T3-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t3-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T3-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t3-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T3-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t3-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T3-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t3-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T3-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t3-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T4-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t4-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T4-ACTIONS",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t4-actions"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T4-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t4-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T5-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t5-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T5-ACTIONS",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t5-actions"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T5-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t5-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T6-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t6-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T6-ACTIONS",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t6-actions"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T6-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t6-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T6-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t6-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T6-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t6-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T6-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t6-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T7-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t7-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T7-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t7-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T7-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t7-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T7-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t7-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T7-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t7-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T8-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t8-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T8-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t8-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T8-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t8-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T8-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t8-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH1-T8-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh1-t8-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T1-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t1-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T1-ACTIONS",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t1-actions"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T1-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t1-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T2-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t2-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T2-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t2-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T2-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t2-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T2-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t2-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T2-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t2-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T3-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t3-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T3-ACTIONS",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t3-actions"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T3-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t3-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T3-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t3-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T3-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t3-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T3-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t3-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T4-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t4-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T4-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t4-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T4-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t4-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T4-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t4-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T4-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t4-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T5-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t5-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T5-ACTIONS",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t5-actions"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T5-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t5-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T6-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t6-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T6-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t6-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T6-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t6-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T6-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t6-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T6-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t6-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T7-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t7-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T7-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t7-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T7-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t7-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T7-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t7-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T7-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t7-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T8-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t8-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T8-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t8-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T8-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t8-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T8-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t8-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH2-T8-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh2-t8-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T1-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t1-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T1-ACTIONS",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t1-actions"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T1-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t1-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T1-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t1-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T1-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t1-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T1-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t1-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T2-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t2-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T2-ACTIONS",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t2-actions"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T2-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t2-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T3-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t3-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T3-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t3-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T3-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t3-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T3-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t3-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T3-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t3-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T4-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t4-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T4-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t4-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T4-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t4-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T4-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t4-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T4-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t4-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T5-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t5-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T5-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t5-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T5-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t5-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T5-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t5-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T5-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t5-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T6-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t6-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T6-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t6-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T6-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t6-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T6-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t6-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T6-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t6-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T7-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t7-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T7-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t7-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T7-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t7-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T7-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t7-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T7-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t7-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T8-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t8-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T8-ACTIONS",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t8-actions"
+      ]
+    },
+    {
+      "id": "REQ-SH3-T8-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh3-t8-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T1-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t1-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T1-ACTIONS",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t1-actions"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T1-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t1-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T2-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t2-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T2-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t2-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T2-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t2-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T2-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t2-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T2-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t2-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T3-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t3-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T3-ACTIONS",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t3-actions"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T3-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t3-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T3-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t3-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T3-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t3-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T3-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t3-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T4-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t4-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T4-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t4-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T4-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t4-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T4-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t4-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T4-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t4-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T5-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t5-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T5-ACTIONS",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t5-actions"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T5-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t5-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T5-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t5-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T5-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t5-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T5-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t5-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T6-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t6-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T6-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t6-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T6-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t6-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T6-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t6-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T6-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t6-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T7-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t7-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T7-ACTIONS",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t7-actions"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T7-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t7-clean"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T8-REPLY",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t8-reply"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T8-MAKEGOOD",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t8-makegood"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T8-COST-5",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t8-cost-5"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T8-COST-0",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t8-cost-0"
+      ]
+    },
+    {
+      "id": "REQ-SH4-T8-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-service-desk 0.4.0",
+      "checkIds": [
+        "sh4-t8-clean"
+      ]
+    },
+    {
       "id": "REQ-FORMAT",
       "critical": false,
-      "introducedAt": "t2-service-desk 0.3.0",
+      "introducedAt": "t2-service-desk 0.4.0",
       "checkIds": [
         "answer-format"
       ]
@@ -1962,6 +3178,272 @@
         "REQ-OL4-COST-0",
         "REQ-FORMAT"
       ]
+    },
+    {
+      "id": "sh1",
+      "level": "shift",
+      "files": [
+        {
+          "path": "items/sh1/prompt.md",
+          "sha256": "2cd9a35ff72ddb2c542c9c3363d1a1137aab67643cf5fa04febc5530902d2409"
+        },
+        {
+          "path": "items/sh1/public/POLICY.md",
+          "sha256": "b305d2433ff652813dc6a5a83f2db15a13ae72c88850bfa53356fc43870144fa"
+        },
+        {
+          "path": "items/sh1/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/sh1/public/data/db.json",
+          "sha256": "2b921b230bcc45daacbecb7b5f8035f64b261122fc92bb8c7764a35f2f1c8b0d"
+        },
+        {
+          "path": "items/sh1/public/desk.py",
+          "sha256": "a78c6ed4971d707fdf707a26b994004fe404830429f045d0d3a4a5a97502d783"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-SH1-T1-REPLY",
+        "REQ-SH1-T1-ACTIONS",
+        "REQ-SH1-T1-MAKEGOOD",
+        "REQ-SH1-T1-COST-5",
+        "REQ-SH1-T1-COST-0",
+        "REQ-SH1-T1-CLEAN",
+        "REQ-SH1-T2-REPLY",
+        "REQ-SH1-T2-MAKEGOOD",
+        "REQ-SH1-T2-COST-5",
+        "REQ-SH1-T2-COST-0",
+        "REQ-SH1-T2-CLEAN",
+        "REQ-SH1-T3-REPLY",
+        "REQ-SH1-T3-MAKEGOOD",
+        "REQ-SH1-T3-COST-5",
+        "REQ-SH1-T3-COST-0",
+        "REQ-SH1-T3-CLEAN",
+        "REQ-SH1-T4-REPLY",
+        "REQ-SH1-T4-ACTIONS",
+        "REQ-SH1-T4-CLEAN",
+        "REQ-SH1-T5-REPLY",
+        "REQ-SH1-T5-ACTIONS",
+        "REQ-SH1-T5-CLEAN",
+        "REQ-SH1-T6-REPLY",
+        "REQ-SH1-T6-ACTIONS",
+        "REQ-SH1-T6-MAKEGOOD",
+        "REQ-SH1-T6-COST-5",
+        "REQ-SH1-T6-COST-0",
+        "REQ-SH1-T6-CLEAN",
+        "REQ-SH1-T7-REPLY",
+        "REQ-SH1-T7-MAKEGOOD",
+        "REQ-SH1-T7-COST-5",
+        "REQ-SH1-T7-COST-0",
+        "REQ-SH1-T7-CLEAN",
+        "REQ-SH1-T8-REPLY",
+        "REQ-SH1-T8-MAKEGOOD",
+        "REQ-SH1-T8-COST-5",
+        "REQ-SH1-T8-COST-0",
+        "REQ-SH1-T8-CLEAN",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "sh2",
+      "level": "shift",
+      "files": [
+        {
+          "path": "items/sh2/prompt.md",
+          "sha256": "0ca46245acf6e0b791729b9bd1b7bbbbcbdc6aae94762775429d88f1cd57ae9e"
+        },
+        {
+          "path": "items/sh2/public/POLICY.md",
+          "sha256": "b305d2433ff652813dc6a5a83f2db15a13ae72c88850bfa53356fc43870144fa"
+        },
+        {
+          "path": "items/sh2/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/sh2/public/data/db.json",
+          "sha256": "986c3128d591cd48b473ddb00d65ea01eb226fd284a0759f3742e22bd73f1332"
+        },
+        {
+          "path": "items/sh2/public/desk.py",
+          "sha256": "a78c6ed4971d707fdf707a26b994004fe404830429f045d0d3a4a5a97502d783"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-SH2-T1-REPLY",
+        "REQ-SH2-T1-ACTIONS",
+        "REQ-SH2-T1-CLEAN",
+        "REQ-SH2-T2-REPLY",
+        "REQ-SH2-T2-MAKEGOOD",
+        "REQ-SH2-T2-COST-5",
+        "REQ-SH2-T2-COST-0",
+        "REQ-SH2-T2-CLEAN",
+        "REQ-SH2-T3-REPLY",
+        "REQ-SH2-T3-ACTIONS",
+        "REQ-SH2-T3-MAKEGOOD",
+        "REQ-SH2-T3-COST-5",
+        "REQ-SH2-T3-COST-0",
+        "REQ-SH2-T3-CLEAN",
+        "REQ-SH2-T4-REPLY",
+        "REQ-SH2-T4-MAKEGOOD",
+        "REQ-SH2-T4-COST-5",
+        "REQ-SH2-T4-COST-0",
+        "REQ-SH2-T4-CLEAN",
+        "REQ-SH2-T5-REPLY",
+        "REQ-SH2-T5-ACTIONS",
+        "REQ-SH2-T5-CLEAN",
+        "REQ-SH2-T6-REPLY",
+        "REQ-SH2-T6-MAKEGOOD",
+        "REQ-SH2-T6-COST-5",
+        "REQ-SH2-T6-COST-0",
+        "REQ-SH2-T6-CLEAN",
+        "REQ-SH2-T7-REPLY",
+        "REQ-SH2-T7-MAKEGOOD",
+        "REQ-SH2-T7-COST-5",
+        "REQ-SH2-T7-COST-0",
+        "REQ-SH2-T7-CLEAN",
+        "REQ-SH2-T8-REPLY",
+        "REQ-SH2-T8-MAKEGOOD",
+        "REQ-SH2-T8-COST-5",
+        "REQ-SH2-T8-COST-0",
+        "REQ-SH2-T8-CLEAN",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "sh3",
+      "level": "shift",
+      "files": [
+        {
+          "path": "items/sh3/prompt.md",
+          "sha256": "250d25454d49b4177810ba56c6935383d6eaaa25172129b90e75116d92cb5900"
+        },
+        {
+          "path": "items/sh3/public/POLICY.md",
+          "sha256": "b305d2433ff652813dc6a5a83f2db15a13ae72c88850bfa53356fc43870144fa"
+        },
+        {
+          "path": "items/sh3/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/sh3/public/data/db.json",
+          "sha256": "87af42b9e7d488cd47eb58e06ebc3613083934155e03907a6389ef30dbd6f3ff"
+        },
+        {
+          "path": "items/sh3/public/desk.py",
+          "sha256": "a78c6ed4971d707fdf707a26b994004fe404830429f045d0d3a4a5a97502d783"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-SH3-T1-REPLY",
+        "REQ-SH3-T1-ACTIONS",
+        "REQ-SH3-T1-MAKEGOOD",
+        "REQ-SH3-T1-COST-5",
+        "REQ-SH3-T1-COST-0",
+        "REQ-SH3-T1-CLEAN",
+        "REQ-SH3-T2-REPLY",
+        "REQ-SH3-T2-ACTIONS",
+        "REQ-SH3-T2-CLEAN",
+        "REQ-SH3-T3-REPLY",
+        "REQ-SH3-T3-MAKEGOOD",
+        "REQ-SH3-T3-COST-5",
+        "REQ-SH3-T3-COST-0",
+        "REQ-SH3-T3-CLEAN",
+        "REQ-SH3-T4-REPLY",
+        "REQ-SH3-T4-MAKEGOOD",
+        "REQ-SH3-T4-COST-5",
+        "REQ-SH3-T4-COST-0",
+        "REQ-SH3-T4-CLEAN",
+        "REQ-SH3-T5-REPLY",
+        "REQ-SH3-T5-MAKEGOOD",
+        "REQ-SH3-T5-COST-5",
+        "REQ-SH3-T5-COST-0",
+        "REQ-SH3-T5-CLEAN",
+        "REQ-SH3-T6-REPLY",
+        "REQ-SH3-T6-MAKEGOOD",
+        "REQ-SH3-T6-COST-5",
+        "REQ-SH3-T6-COST-0",
+        "REQ-SH3-T6-CLEAN",
+        "REQ-SH3-T7-REPLY",
+        "REQ-SH3-T7-MAKEGOOD",
+        "REQ-SH3-T7-COST-5",
+        "REQ-SH3-T7-COST-0",
+        "REQ-SH3-T7-CLEAN",
+        "REQ-SH3-T8-REPLY",
+        "REQ-SH3-T8-ACTIONS",
+        "REQ-SH3-T8-CLEAN",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "sh4",
+      "level": "shift",
+      "files": [
+        {
+          "path": "items/sh4/prompt.md",
+          "sha256": "a48daa8a1df26b65428e78e3118ad60bef2a7828cde4b85ecc13a4d4fc9637c1"
+        },
+        {
+          "path": "items/sh4/public/POLICY.md",
+          "sha256": "b305d2433ff652813dc6a5a83f2db15a13ae72c88850bfa53356fc43870144fa"
+        },
+        {
+          "path": "items/sh4/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/sh4/public/data/db.json",
+          "sha256": "cd62846de99a9cc0630b7ba82f83a55a8197f9898a22733bb99e0a24c97fe39f"
+        },
+        {
+          "path": "items/sh4/public/desk.py",
+          "sha256": "a78c6ed4971d707fdf707a26b994004fe404830429f045d0d3a4a5a97502d783"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-SH4-T1-REPLY",
+        "REQ-SH4-T1-ACTIONS",
+        "REQ-SH4-T1-CLEAN",
+        "REQ-SH4-T2-REPLY",
+        "REQ-SH4-T2-MAKEGOOD",
+        "REQ-SH4-T2-COST-5",
+        "REQ-SH4-T2-COST-0",
+        "REQ-SH4-T2-CLEAN",
+        "REQ-SH4-T3-REPLY",
+        "REQ-SH4-T3-ACTIONS",
+        "REQ-SH4-T3-MAKEGOOD",
+        "REQ-SH4-T3-COST-5",
+        "REQ-SH4-T3-COST-0",
+        "REQ-SH4-T3-CLEAN",
+        "REQ-SH4-T4-REPLY",
+        "REQ-SH4-T4-MAKEGOOD",
+        "REQ-SH4-T4-COST-5",
+        "REQ-SH4-T4-COST-0",
+        "REQ-SH4-T4-CLEAN",
+        "REQ-SH4-T5-REPLY",
+        "REQ-SH4-T5-ACTIONS",
+        "REQ-SH4-T5-MAKEGOOD",
+        "REQ-SH4-T5-COST-5",
+        "REQ-SH4-T5-COST-0",
+        "REQ-SH4-T5-CLEAN",
+        "REQ-SH4-T6-REPLY",
+        "REQ-SH4-T6-MAKEGOOD",
+        "REQ-SH4-T6-COST-5",
+        "REQ-SH4-T6-COST-0",
+        "REQ-SH4-T6-CLEAN",
+        "REQ-SH4-T7-REPLY",
+        "REQ-SH4-T7-ACTIONS",
+        "REQ-SH4-T7-CLEAN",
+        "REQ-SH4-T8-REPLY",
+        "REQ-SH4-T8-MAKEGOOD",
+        "REQ-SH4-T8-COST-5",
+        "REQ-SH4-T8-COST-0",
+        "REQ-SH4-T8-CLEAN",
+        "REQ-FORMAT"
+      ]
     }
   ],
   "toolProfiles": [
@@ -1969,7 +3451,7 @@
   ],
   "grader": {
     "id": "t2-desk-state",
-    "version": "1.1.1",
+    "version": "1.2.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

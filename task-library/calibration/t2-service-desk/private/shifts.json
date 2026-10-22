@@ -1,0 +1,6623 @@
+{
+ "sh1": {
+  "db": {
+   "customers": {
+    "C-4001": {
+     "alternate_emails": [],
+     "credit": "0.00",
+     "credits": [
+      {
+       "amount": "23.07",
+       "date": "2026-09-08",
+       "kind": "make-good"
+      }
+     ],
+     "email": "bo.lindqvist@example.com",
+     "name": "Bo Lindqvist",
+     "tier": "standard"
+    },
+    "C-4002": {
+     "alternate_emails": [
+      {
+       "address": "jun@mail.example",
+       "verified": true
+      }
+     ],
+     "credit": "9.00",
+     "credits": [
+      {
+       "amount": "4.45",
+       "date": "2026-09-26",
+       "kind": "compensation"
+      }
+     ],
+     "email": "jun.park@example.com",
+     "name": "Jun Park",
+     "tier": "standard"
+    },
+    "C-4003": {
+     "alternate_emails": [],
+     "credit": "27.00",
+     "credits": [
+      {
+       "amount": "17.64",
+       "date": "2026-09-11",
+       "kind": "compensation"
+      }
+     ],
+     "email": "ada.brook@example.com",
+     "name": "Ada Brook",
+     "tier": "gold"
+    },
+    "C-4004": {
+     "alternate_emails": [
+      {
+       "address": "femi@mail.example",
+       "verified": true
+      }
+     ],
+     "credit": "23.00",
+     "credits": [
+      {
+       "amount": "20.29",
+       "date": "2026-09-08",
+       "kind": "compensation"
+      }
+     ],
+     "email": "femi.ade@example.com",
+     "name": "Femi Ade",
+     "tier": "standard"
+    },
+    "C-4005": {
+     "alternate_emails": [],
+     "credit": "3.00",
+     "credits": [
+      {
+       "amount": "10.37",
+       "date": "2026-09-19",
+       "kind": "compensation"
+      },
+      {
+       "amount": "18.66",
+       "date": "2026-09-20",
+       "kind": "make-good"
+      },
+      {
+       "amount": "36.21",
+       "date": "2026-09-28",
+       "kind": "compensation"
+      }
+     ],
+     "email": "dev.patel@example.com",
+     "name": "Dev Patel",
+     "tier": "standard"
+    },
+    "C-4006": {
+     "alternate_emails": [],
+     "credit": "8.00",
+     "credits": [],
+     "email": "ivo.kral@example.com",
+     "name": "Ivo Kral",
+     "tier": "standard"
+    },
+    "C-4007": {
+     "alternate_emails": [],
+     "credit": "3.00",
+     "credits": [
+      {
+       "amount": "8.67",
+       "date": "2026-10-04",
+       "kind": "make-good"
+      }
+     ],
+     "email": "hana.ito@example.com",
+     "name": "Hana Ito",
+     "tier": "standard"
+    },
+    "C-4008": {
+     "alternate_emails": [],
+     "credit": "8.00",
+     "credits": [
+      {
+       "amount": "13.36",
+       "date": "2026-09-05",
+       "kind": "make-good"
+      },
+      {
+       "amount": "14.25",
+       "date": "2026-10-02",
+       "kind": "compensation"
+      }
+     ],
+     "email": "cleo.marsh@example.com",
+     "name": "Cleo Marsh",
+     "tier": "silver"
+    }
+   },
+   "orders": {
+    "O-8001": {
+     "address": "76 Dock Road, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 20,
+     "customer": "C-4001",
+     "delivered": "2026-10-17",
+     "lines": [
+      {
+       "price": "71.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-501",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "28.60",
+      "credit": "28.60"
+     },
+     "placed": "2026-10-13",
+     "promised": "2026-10-17",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8002": {
+     "address": "76 Dock Road, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 15,
+     "customer": "C-4001",
+     "delivered": "2026-10-16",
+     "lines": [
+      {
+       "price": "111.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-802",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "75.48",
+      "credit": "18.87"
+     },
+     "placed": "2026-10-07",
+     "promised": "2026-10-14",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8003": {
+     "address": "76 Dock Road, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 0,
+     "customer": "C-4002",
+     "delivered": "2026-09-23",
+     "lines": [
+      {
+       "price": "18.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-701",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "18.00",
+      "credit": "18.00"
+     },
+     "placed": "2026-09-14",
+     "promised": "2026-09-20",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8004": {
+     "address": "76 Dock Road, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 0,
+     "customer": "C-4002",
+     "delivered": "2026-09-21",
+     "lines": [
+      {
+       "price": "78.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-801",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "157.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-11",
+     "promised": "2026-09-15",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8005": {
+     "address": "28 Mill Lane, Kiel",
+     "compensated": null,
+     "country": "DE",
+     "coupon": 20,
+     "customer": "C-4003",
+     "delivered": "2026-09-29",
+     "lines": [
+      {
+       "price": "137.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-1002",
+       "state": "active"
+      },
+      {
+       "price": "29.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-902",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "212.48",
+      "credit": "53.12"
+     },
+     "placed": "2026-09-17",
+     "promised": "2026-09-23",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8006": {
+     "address": "37 Mill Lane, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 20,
+     "customer": "C-4003",
+     "delivered": "2026-10-16",
+     "lines": [
+      {
+       "price": "115.50",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-301",
+       "state": "active"
+      },
+      {
+       "price": "111.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-802",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "366.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-06",
+     "promised": "2026-10-12",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8007": {
+     "address": "28 Mill Lane, Kiel",
+     "compensated": null,
+     "country": "DE",
+     "coupon": 20,
+     "customer": "C-4004",
+     "delivered": "2026-10-14",
+     "lines": [
+      {
+       "price": "18.50",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-901",
+       "state": "active"
+      },
+      {
+       "price": "111.00",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-802",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "310.80",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-09",
+     "promised": "2026-10-12",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8008": {
+     "address": "28 Mill Lane, Kiel",
+     "compensated": null,
+     "country": "DE",
+     "coupon": 15,
+     "customer": "C-4004",
+     "delivered": "2026-10-17",
+     "lines": [
+      {
+       "price": "97.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-303",
+       "state": "active"
+      },
+      {
+       "price": "96.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-302",
+       "state": "active"
+      },
+      {
+       "price": "78.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-801",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "231.21",
+      "credit": "231.21"
+     },
+     "placed": "2026-10-09",
+     "promised": "2026-10-14",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8009": {
+     "address": "10 Harbour Lane, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 20,
+     "customer": "C-4005",
+     "delivered": "2026-10-06",
+     "lines": [
+      {
+       "price": "165.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-601",
+       "state": "active"
+      },
+      {
+       "price": "51.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-500",
+       "state": "active"
+      },
+      {
+       "price": "13.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-402",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "326.80",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-24",
+     "promised": "2026-09-30",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8010": {
+     "address": "10 Harbour Lane, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 0,
+     "customer": "C-4005",
+     "delivered": "2026-10-03",
+     "lines": [
+      {
+       "price": "137.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-1002",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "68.50",
+      "credit": "68.50"
+     },
+     "placed": "2026-09-21",
+     "promised": "2026-09-27",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8011": {
+     "address": "79 Canal Street, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 10,
+     "customer": "C-4006",
+     "delivered": "2026-08-08",
+     "lines": [
+      {
+       "price": "18.00",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-701",
+       "state": "active"
+      },
+      {
+       "price": "24.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-103",
+       "state": "active"
+      },
+      {
+       "price": "18.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-901",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "54.22",
+      "credit": "54.23"
+     },
+     "placed": "2026-07-31",
+     "promised": "2026-08-06",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8012": {
+     "address": "96 Canal Street, Bonn",
+     "compensated": null,
+     "country": "DE",
+     "coupon": 0,
+     "customer": "C-4006",
+     "delivered": "2026-09-27",
+     "lines": [
+      {
+       "price": "13.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-402",
+       "state": "active"
+      },
+      {
+       "price": "30.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-702",
+       "state": "active"
+      },
+      {
+       "price": "45.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-200",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "51.25",
+      "credit": "51.25"
+     },
+     "placed": "2026-09-18",
+     "promised": "2026-09-25",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8013": {
+     "address": "60 Quay Street, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 0,
+     "customer": "C-4007",
+     "delivered": "2026-09-13",
+     "lines": [
+      {
+       "price": "24.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-900",
+       "state": "active"
+      },
+      {
+       "price": "151.50",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-1000",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "402.00",
+      "credit": "100.50"
+     },
+     "placed": "2026-09-04",
+     "promised": "2026-09-10",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8014": {
+     "address": "58 Park View, Bath",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 15,
+     "customer": "C-4007",
+     "delivered": "2026-09-20",
+     "lines": [
+      {
+       "price": "45.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-200",
+       "state": "active"
+      },
+      {
+       "price": "151.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-1001",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "167.46",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-12",
+     "promised": "2026-09-16",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8015": {
+     "address": "14 Dock Road, Austin",
+     "compensated": null,
+     "country": "US",
+     "coupon": 0,
+     "customer": "C-4008",
+     "delivered": "2026-10-15",
+     "lines": [
+      {
+       "price": "51.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-500",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "103.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-03",
+     "promised": "2026-10-09",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8016": {
+     "address": "14 Dock Road, Austin",
+     "compensated": null,
+     "country": "US",
+     "coupon": 10,
+     "customer": "C-4008",
+     "delivered": "2026-10-05",
+     "lines": [
+      {
+       "price": "51.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-500",
+       "state": "active"
+      },
+      {
+       "price": "151.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-1000",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "365.40",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-29",
+     "promised": "2026-10-03",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8017": {
+     "address": "76 Dock Road, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 10,
+     "customer": "C-4001",
+     "delivered": "2026-10-03",
+     "lines": [
+      {
+       "price": "99.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-300",
+       "state": "active"
+      },
+      {
+       "price": "97.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-303",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "213.48",
+      "credit": "53.37"
+     },
+     "placed": "2026-09-28",
+     "promised": "2026-10-01",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8018": {
+     "address": "76 Dock Road, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 15,
+     "customer": "C-4002",
+     "delivered": "2026-10-17",
+     "lines": [
+      {
+       "price": "45.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-200",
+       "state": "active"
+      },
+      {
+       "price": "24.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-103",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "79.48",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-11",
+     "promised": "2026-10-15",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8019": {
+     "address": "28 Mill Lane, Kiel",
+     "compensated": null,
+     "country": "DE",
+     "coupon": 0,
+     "customer": "C-4003",
+     "delivered": "2026-10-02",
+     "lines": [
+      {
+       "price": "165.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-601",
+       "state": "active"
+      },
+      {
+       "price": "78.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-801",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "389.60",
+      "credit": "97.40"
+     },
+     "placed": "2026-09-27",
+     "promised": "2026-09-30",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8020": {
+     "address": "28 Mill Lane, Kiel",
+     "compensated": null,
+     "country": "DE",
+     "coupon": 0,
+     "customer": "C-4004",
+     "delivered": "2026-10-08",
+     "lines": [
+      {
+       "price": "18.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-901",
+       "state": "active"
+      },
+      {
+       "price": "167.50",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-600",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "521.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-01",
+     "promised": "2026-10-06",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8021": {
+     "address": "10 Harbour Lane, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 10,
+     "customer": "C-4005",
+     "delivered": "2026-10-10",
+     "lines": [
+      {
+       "price": "97.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-303",
+       "state": "active"
+      },
+      {
+       "price": "167.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-600",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "326.25",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-02",
+     "promised": "2026-10-06",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8022": {
+     "address": "10 Harbour Lane, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 0,
+     "customer": "C-4005",
+     "delivered": "2026-10-07",
+     "lines": [
+      {
+       "price": "167.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-600",
+       "state": "active"
+      },
+      {
+       "price": "99.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-300",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "366.50",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-26",
+     "promised": "2026-10-03",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8023": {
+     "address": "10 Harbour Lane, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 0,
+     "customer": "C-4005",
+     "delivered": "2026-10-13",
+     "lines": [
+      {
+       "price": "18.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-901",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "9.25",
+      "credit": "9.25"
+     },
+     "placed": "2026-10-09",
+     "promised": "2026-10-12",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8024": {
+     "address": "79 Canal Street, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 15,
+     "customer": "C-4006",
+     "delivered": "2026-07-20",
+     "lines": [
+      {
+       "price": "55.00",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-202",
+       "state": "active"
+      },
+      {
+       "price": "118.00",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-602",
+       "state": "active"
+      }
+     ],
+     "make_good": [
+      {
+       "amount": "46.75",
+       "date": "2026-07-21",
+       "option": "refund",
+       "qty": 1,
+       "sent": null,
+       "sku": "SH-202"
+      },
+      {
+       "amount": "46.75",
+       "date": "2026-07-22",
+       "option": "refund",
+       "qty": 1,
+       "sent": null,
+       "sku": "SH-202"
+      },
+      {
+       "amount": "100.30",
+       "date": "2026-08-28",
+       "option": "refund",
+       "qty": 1,
+       "sent": null,
+       "sku": "SH-602"
+      }
+     ],
+     "payments": {
+      "card": "441.15",
+      "credit": "0.00"
+     },
+     "placed": "2026-07-19",
+     "promised": "2026-07-22",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8025": {
+     "address": "79 Canal Street, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 10,
+     "customer": "C-4006",
+     "delivered": "2026-10-09",
+     "lines": [
+      {
+       "price": "126.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-800",
+       "state": "active"
+      },
+      {
+       "price": "18.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-701",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "145.80",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-03",
+     "promised": "2026-10-09",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8026": {
+     "address": "79 Canal Street, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 0,
+     "customer": "C-4006",
+     "delivered": "2026-10-05",
+     "lines": [
+      {
+       "price": "29.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-902",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "46.40",
+      "credit": "11.60"
+     },
+     "placed": "2026-09-27",
+     "promised": "2026-10-03",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8027": {
+     "address": "28 Mill Lane, Kiel",
+     "compensated": null,
+     "country": "DE",
+     "coupon": 10,
+     "customer": "C-4003",
+     "delivered": "2026-09-07",
+     "lines": [
+      {
+       "price": "151.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-1000",
+       "state": "active"
+      },
+      {
+       "price": "137.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-1002",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "382.95",
+      "credit": "0.00"
+     },
+     "placed": "2026-08-29",
+     "promised": "2026-09-05",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8028": {
+     "address": "28 Mill Lane, Kiel",
+     "compensated": null,
+     "country": "DE",
+     "coupon": 15,
+     "customer": "C-4004",
+     "delivered": "2026-10-16",
+     "lines": [
+      {
+       "price": "151.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-1000",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "103.02",
+      "credit": "25.76"
+     },
+     "placed": "2026-10-11",
+     "promised": "2026-10-16",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    }
+   },
+   "products": {
+    "SH-100": {
+     "category": "kitchen",
+     "cost": "5.67",
+     "family": "mug",
+     "final_sale": false,
+     "name": "Stoneware mug",
+     "price": "13.50",
+     "stock": 1
+    },
+    "SH-1000": {
+     "category": "clothing",
+     "cost": "65.15",
+     "family": "jacket",
+     "final_sale": false,
+     "name": "Rain jacket",
+     "price": "151.50",
+     "stock": 3
+    },
+    "SH-1001": {
+     "category": "clothing",
+     "cost": "63.63",
+     "family": "jacket",
+     "final_sale": false,
+     "name": "Fleece jacket",
+     "price": "151.50",
+     "stock": 1
+    },
+    "SH-1002": {
+     "category": "clothing",
+     "cost": "80.83",
+     "family": "jacket",
+     "final_sale": false,
+     "name": "Down jacket",
+     "price": "137.00",
+     "stock": 0
+    },
+    "SH-101": {
+     "category": "kitchen",
+     "cost": "9.14",
+     "family": "mug",
+     "final_sale": false,
+     "name": "Porcelain mug",
+     "price": "14.50",
+     "stock": 1
+    },
+    "SH-102": {
+     "category": "kitchen",
+     "cost": "7.16",
+     "family": "mug",
+     "final_sale": false,
+     "name": "Enamel mug",
+     "price": "13.50",
+     "stock": 1
+    },
+    "SH-103": {
+     "category": "kitchen",
+     "cost": "12.96",
+     "family": "mug",
+     "final_sale": false,
+     "name": "Glass mug",
+     "price": "24.00",
+     "stock": 1
+    },
+    "SH-1100": {
+     "category": "food",
+     "cost": "7.00",
+     "family": "coffee",
+     "final_sale": false,
+     "name": "Coffee beans",
+     "price": "17.50",
+     "stock": 1
+    },
+    "SH-1101": {
+     "category": "food",
+     "cost": "10.62",
+     "family": "coffee",
+     "final_sale": false,
+     "name": "Espresso blend",
+     "price": "18.00",
+     "stock": 1
+    },
+    "SH-200": {
+     "category": "kitchen",
+     "cost": "29.12",
+     "family": "teapot",
+     "final_sale": false,
+     "name": "Cast-iron teapot",
+     "price": "45.50",
+     "stock": 3
+    },
+    "SH-201": {
+     "category": "kitchen",
+     "cost": "25.35",
+     "family": "teapot",
+     "final_sale": false,
+     "name": "Glass teapot",
+     "price": "39.00",
+     "stock": 1
+    },
+    "SH-202": {
+     "category": "kitchen",
+     "cost": "20.90",
+     "family": "teapot",
+     "final_sale": false,
+     "name": "Ceramic teapot",
+     "price": "55.00",
+     "stock": 3
+    },
+    "SH-300": {
+     "category": "home",
+     "cost": "49.75",
+     "family": "lamp",
+     "final_sale": false,
+     "name": "Desk lamp",
+     "price": "99.50",
+     "stock": 2
+    },
+    "SH-301": {
+     "category": "home",
+     "cost": "70.46",
+     "family": "lamp",
+     "final_sale": false,
+     "name": "Clamp lamp",
+     "price": "115.50",
+     "stock": 1
+    },
+    "SH-302": {
+     "category": "home",
+     "cost": "39.36",
+     "family": "lamp",
+     "final_sale": false,
+     "name": "Arc lamp",
+     "price": "96.00",
+     "stock": 2
+    },
+    "SH-303": {
+     "category": "home",
+     "cost": "39.00",
+     "family": "lamp",
+     "final_sale": false,
+     "name": "Task lamp",
+     "price": "97.50",
+     "stock": 2
+    },
+    "SH-400": {
+     "category": "home",
+     "cost": "17.11",
+     "family": "towel",
+     "final_sale": false,
+     "name": "Cotton towel",
+     "price": "29.50",
+     "stock": 0
+    },
+    "SH-401": {
+     "category": "home",
+     "cost": "8.91",
+     "family": "towel",
+     "final_sale": false,
+     "name": "Linen towel",
+     "price": "16.50",
+     "stock": 1
+    },
+    "SH-402": {
+     "category": "home",
+     "cost": "5.81",
+     "family": "towel",
+     "final_sale": false,
+     "name": "Waffle towel",
+     "price": "13.50",
+     "stock": 2
+    },
+    "SH-500": {
+     "category": "kitchen",
+     "cost": "29.36",
+     "family": "kettle",
+     "final_sale": false,
+     "name": "Steel kettle",
+     "price": "51.50",
+     "stock": 1
+    },
+    "SH-501": {
+     "category": "kitchen",
+     "cost": "29.32",
+     "family": "kettle",
+     "final_sale": false,
+     "name": "Glass kettle",
+     "price": "71.50",
+     "stock": 0
+    },
+    "SH-502": {
+     "category": "kitchen",
+     "cost": "33.75",
+     "family": "kettle",
+     "final_sale": false,
+     "name": "Gooseneck kettle",
+     "price": "75.00",
+     "stock": 1
+    },
+    "SH-600": {
+     "category": "electronics",
+     "cost": "72.03",
+     "family": "speaker",
+     "final_sale": false,
+     "name": "Bookshelf speaker",
+     "price": "167.50",
+     "stock": 2
+    },
+    "SH-601": {
+     "category": "electronics",
+     "cost": "79.20",
+     "family": "speaker",
+     "final_sale": false,
+     "name": "Portable speaker",
+     "price": "165.00",
+     "stock": 2
+    },
+    "SH-602": {
+     "category": "electronics",
+     "cost": "73.16",
+     "family": "speaker",
+     "final_sale": false,
+     "name": "Smart speaker",
+     "price": "118.00",
+     "stock": 1
+    },
+    "SH-700": {
+     "category": "garden",
+     "cost": "12.50",
+     "family": "planter",
+     "final_sale": false,
+     "name": "Clay planter",
+     "price": "25.00",
+     "stock": 2
+    },
+    "SH-701": {
+     "category": "garden",
+     "cost": "7.74",
+     "family": "planter",
+     "final_sale": false,
+     "name": "Fibre planter",
+     "price": "18.00",
+     "stock": 2
+    },
+    "SH-702": {
+     "category": "garden",
+     "cost": "18.90",
+     "family": "planter",
+     "final_sale": false,
+     "name": "Hanging planter",
+     "price": "30.00",
+     "stock": 1
+    },
+    "SH-800": {
+     "category": "home",
+     "cost": "64.26",
+     "family": "chair",
+     "final_sale": false,
+     "name": "Folding chair",
+     "price": "126.00",
+     "stock": 1
+    },
+    "SH-801": {
+     "category": "home",
+     "cost": "49.46",
+     "family": "chair",
+     "final_sale": false,
+     "name": "Oak chair",
+     "price": "78.50",
+     "stock": 3
+    },
+    "SH-802": {
+     "category": "home",
+     "cost": "48.84",
+     "family": "chair",
+     "final_sale": false,
+     "name": "Caf\u00e9 chair",
+     "price": "111.00",
+     "stock": 2
+    },
+    "SH-900": {
+     "category": "books",
+     "cost": "12.00",
+     "family": "book",
+     "final_sale": false,
+     "name": "Atlas of Rivers",
+     "price": "24.00",
+     "stock": 1
+    },
+    "SH-901": {
+     "category": "books",
+     "cost": "8.14",
+     "family": "book",
+     "final_sale": false,
+     "name": "Field Guide",
+     "price": "18.50",
+     "stock": 2
+    },
+    "SH-902": {
+     "category": "books",
+     "cost": "14.79",
+     "family": "book",
+     "final_sale": false,
+     "name": "Collected Letters",
+     "price": "29.00",
+     "stock": 0
+    }
+   },
+   "rates": {
+    "CZ": "9.90",
+    "DE": "9.90",
+    "FR": "9.90",
+    "NL": "9.90",
+    "UK": "4.90",
+    "US": "24.90"
+   },
+   "recalls": [
+    {
+     "countries": [
+      "CZ",
+      "DE",
+      "FR",
+      "US"
+     ],
+     "id": "RC-49",
+     "placed_from": "2026-08-25",
+     "placed_to": "2026-09-04",
+     "sku": "SH-1000"
+    },
+    {
+     "countries": [
+      "CZ",
+      "DE",
+      "FR",
+      "NL"
+     ],
+     "id": "RC-96",
+     "placed_from": "2026-10-20",
+     "placed_to": "2026-11-25",
+     "sku": "SH-101"
+    }
+   ],
+   "shipments": [],
+   "today": "2026-10-20"
+  },
+  "effects": {
+   "boundary": [
+    "T5",
+    "T6"
+   ],
+   "no-consolidation": [
+    "T7"
+   ],
+   "recall-ignored": [
+    "T1",
+    "T7"
+   ],
+   "recall-sku-only": [
+    "T7"
+   ],
+   "today-goodwill": [
+    "T6"
+   ],
+   "today-reports": [
+    "T5"
+   ]
+  },
+  "prompt": "## Shift SH1\n\nToday's queue holds 8 tickets. Handle them in this order, under POLICY.md, and end with the one JSON reply it describes.\n\n## Ticket T1\n\nFrom: ada.brook@example.com\n\n(1) Two portable speakers from order O-8019 arrived broken.\n(2) Please take back one rain jacket from order O-8027.\n(3) Two down jackets from order O-8005 arrived broken.\n\n## Ticket T2\n\nFrom: bo.lindqvist@example.com\n\n(1) Order O-8002 arrived late. Please compensate me as your policy says.\n(2) Two desk lamps from order O-8017 arrived damaged.\n\n## Ticket T3\n\nFrom: ivo.kral@example.com\n\nPlease do not give me store credit.\n\n(1) One folding chair from order O-8025 arrived broken.\n\n## Ticket T4\n\nFrom: dev.patel@example.com\n\n(1) Please take back two task lamps from order O-8021.\n(2) Order O-8021 arrived late. Please compensate me as your policy says.\n\n## Ticket T5\n\nFrom: ivo.kral@example.com\n\n(1) One collected letters from order O-8026 arrived damaged.\n\n## Ticket T6\n\nFrom: dev.patel@example.com\n\n(1) One field guide from order O-8023 arrived damaged. If you send one, it must be exactly the same model.\n(2) Order O-8022 arrived late. Please compensate me as your policy says.\n(3) Please take back one waffle towel from order O-8009.\n\n## Ticket T7\n\nFrom: femi@mail.example\n\n(1) One rain jacket from order O-8028 arrived damaged.\n(2) One field guide from order O-8007 arrived broken.\n(3) One field guide from order O-8020 was missing from the parcel.\n\n## Ticket T8\n\nFrom: jun.park@example.com\n\n(1) One cast-iron teapot from order O-8018 was missing from the parcel. If you send one, it must be exactly the same model.\n(2) Two fibre planters from order O-8003 were missing from the parcel.\n",
+  "seed": "t2-shift-2026-10:sh1",
+  "tickets": [
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4003",
+    "id": "T1",
+    "requests": [
+     {
+      "how": "arrived broken",
+      "kind": "report",
+      "order": "O-8019",
+      "qty": 2,
+      "sku": "SH-601"
+     },
+     {
+      "defective": false,
+      "kind": "return",
+      "order": "O-8027",
+      "qty": 1,
+      "sku": "SH-1000"
+     },
+     {
+      "how": "arrived broken",
+      "kind": "report",
+      "order": "O-8005",
+      "qty": 2,
+      "sku": "SH-1002"
+     }
+    ],
+    "sender": "ada.brook@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4001",
+    "id": "T2",
+    "requests": [
+     {
+      "kind": "compensate",
+      "order": "O-8002"
+     },
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8017",
+      "qty": 2,
+      "sku": "SH-300"
+     }
+    ],
+    "sender": "bo.lindqvist@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": true,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4006",
+    "id": "T3",
+    "requests": [
+     {
+      "how": "arrived broken",
+      "kind": "report",
+      "order": "O-8025",
+      "qty": 1,
+      "sku": "SH-800"
+     }
+    ],
+    "sender": "ivo.kral@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4005",
+    "id": "T4",
+    "requests": [
+     {
+      "defective": false,
+      "kind": "return",
+      "order": "O-8021",
+      "qty": 2,
+      "sku": "SH-303"
+     },
+     {
+      "kind": "compensate",
+      "order": "O-8021"
+     }
+    ],
+    "sender": "dev.patel@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4006",
+    "id": "T5",
+    "requests": [
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8026",
+      "qty": 1,
+      "sku": "SH-902"
+     }
+    ],
+    "sender": "ivo.kral@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": [
+      [
+       "O-8023",
+       "SH-901"
+      ]
+     ]
+    },
+    "customer": "C-4005",
+    "id": "T6",
+    "requests": [
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8023",
+      "qty": 1,
+      "sku": "SH-901"
+     },
+     {
+      "kind": "compensate",
+      "order": "O-8022"
+     },
+     {
+      "defective": false,
+      "kind": "return",
+      "order": "O-8009",
+      "qty": 1,
+      "sku": "SH-402"
+     }
+    ],
+    "sender": "dev.patel@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4004",
+    "id": "T7",
+    "requests": [
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8028",
+      "qty": 1,
+      "sku": "SH-1000"
+     },
+     {
+      "how": "arrived broken",
+      "kind": "report",
+      "order": "O-8007",
+      "qty": 1,
+      "sku": "SH-901"
+     },
+     {
+      "how": "was missing from the parcel",
+      "kind": "report",
+      "order": "O-8020",
+      "qty": 1,
+      "sku": "SH-901"
+     }
+    ],
+    "sender": "femi@mail.example"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": [
+      [
+       "O-8018",
+       "SH-200"
+      ]
+     ]
+    },
+    "customer": "C-4002",
+    "id": "T8",
+    "requests": [
+     {
+      "how": "was missing from the parcel",
+      "kind": "report",
+      "order": "O-8018",
+      "qty": 1,
+      "sku": "SH-200"
+     },
+     {
+      "how": "was missing from the parcel",
+      "kind": "report",
+      "order": "O-8003",
+      "qty": 2,
+      "sku": "SH-701"
+     }
+    ],
+    "sender": "jun.park@example.com"
+   }
+  ]
+ },
+ "sh2": {
+  "db": {
+   "customers": {
+    "C-4001": {
+     "alternate_emails": [],
+     "credit": "8.00",
+     "credits": [
+      {
+       "amount": "11.68",
+       "date": "2026-10-08",
+       "kind": "make-good"
+      },
+      {
+       "amount": "21.48",
+       "date": "2026-10-11",
+       "kind": "compensation"
+      }
+     ],
+     "email": "femi.ade@example.com",
+     "name": "Femi Ade",
+     "tier": "standard"
+    },
+    "C-4002": {
+     "alternate_emails": [],
+     "credit": "20.00",
+     "credits": [
+      {
+       "amount": "3.94",
+       "date": "2026-09-27",
+       "kind": "make-good"
+      },
+      {
+       "amount": "14.90",
+       "date": "2026-09-27",
+       "kind": "compensation"
+      }
+     ],
+     "email": "dev.patel@example.com",
+     "name": "Dev Patel",
+     "tier": "standard"
+    },
+    "C-4003": {
+     "alternate_emails": [],
+     "credit": "8.00",
+     "credits": [
+      {
+       "amount": "8.79",
+       "date": "2026-08-31",
+       "kind": "make-good"
+      },
+      {
+       "amount": "4.74",
+       "date": "2026-09-20",
+       "kind": "make-good"
+      }
+     ],
+     "email": "ada.brook@example.com",
+     "name": "Ada Brook",
+     "tier": "standard"
+    },
+    "C-4004": {
+     "alternate_emails": [
+      {
+       "address": "gus@mail.example",
+       "verified": true
+      }
+     ],
+     "credit": "12.00",
+     "credits": [
+      {
+       "amount": "23.78",
+       "date": "2026-09-04",
+       "kind": "make-good"
+      },
+      {
+       "amount": "9.96",
+       "date": "2026-10-12",
+       "kind": "compensation"
+      }
+     ],
+     "email": "gus.moreno@example.com",
+     "name": "Gus Moreno",
+     "tier": "standard"
+    },
+    "C-4005": {
+     "alternate_emails": [],
+     "credit": "13.00",
+     "credits": [
+      {
+       "amount": "10.85",
+       "date": "2026-09-19",
+       "kind": "compensation"
+      },
+      {
+       "amount": "25.87",
+       "date": "2026-09-20",
+       "kind": "make-good"
+      },
+      {
+       "amount": "34.30",
+       "date": "2026-09-29",
+       "kind": "compensation"
+      }
+     ],
+     "email": "hana.ito@example.com",
+     "name": "Hana Ito",
+     "tier": "gold"
+    },
+    "C-4006": {
+     "alternate_emails": [],
+     "credit": "3.00",
+     "credits": [],
+     "email": "bo.lindqvist@example.com",
+     "name": "Bo Lindqvist",
+     "tier": "gold"
+    },
+    "C-4007": {
+     "alternate_emails": [],
+     "credit": "14.00",
+     "credits": [
+      {
+       "amount": "4.23",
+       "date": "2026-09-19",
+       "kind": "make-good"
+      }
+     ],
+     "email": "cleo.marsh@example.com",
+     "name": "Cleo Marsh",
+     "tier": "gold"
+    },
+    "C-4008": {
+     "alternate_emails": [
+      {
+       "address": "esme@mail.example",
+       "verified": true
+      }
+     ],
+     "credit": "1.00",
+     "credits": [
+      {
+       "amount": "7.02",
+       "date": "2026-09-01",
+       "kind": "make-good"
+      },
+      {
+       "amount": "6.46",
+       "date": "2026-10-06",
+       "kind": "make-good"
+      }
+     ],
+     "email": "esme.vance@example.com",
+     "name": "Esme Vance",
+     "tier": "standard"
+    }
+   },
+   "orders": {
+    "O-8001": {
+     "address": "76 Quay Street, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 15,
+     "customer": "C-4001",
+     "delivered": "2026-10-13",
+     "lines": [
+      {
+       "price": "79.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-1001",
+       "state": "active"
+      },
+      {
+       "price": "40.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-300",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "80.92",
+      "credit": "20.23"
+     },
+     "placed": "2026-10-06",
+     "promised": "2026-10-12",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8002": {
+     "address": "86 Quay Street, Hull",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 0,
+     "customer": "C-4001",
+     "delivered": "2026-08-10",
+     "lines": [
+      {
+       "price": "36.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-901",
+       "state": "active"
+      },
+      {
+       "price": "138.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-600",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "349.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-08-01",
+     "promised": "2026-08-04",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8003": {
+     "address": "86 Quay Street, Hull",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 15,
+     "customer": "C-4002",
+     "delivered": "2026-08-31",
+     "lines": [
+      {
+       "price": "14.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-900",
+       "state": "active"
+      },
+      {
+       "price": "100.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-601",
+       "state": "active"
+      },
+      {
+       "price": "54.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-201",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "114.11",
+      "credit": "114.12"
+     },
+     "placed": "2026-08-23",
+     "promised": "2026-08-29",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8004": {
+     "address": "39 Elm Row, Brno",
+     "compensated": null,
+     "country": "CZ",
+     "coupon": 0,
+     "customer": "C-4002",
+     "delivered": "2026-09-02",
+     "lines": [
+      {
+       "price": "56.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-502",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "45.20",
+      "credit": "11.30"
+     },
+     "placed": "2026-08-27",
+     "promised": "2026-08-31",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8005": {
+     "address": "88 Dock Road, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 0,
+     "customer": "C-4003",
+     "delivered": "2026-09-23",
+     "lines": [
+      {
+       "price": "76.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-800",
+       "state": "active"
+      },
+      {
+       "price": "13.00",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-902",
+       "state": "active"
+      },
+      {
+       "price": "35.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-700",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "150.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-16",
+     "promised": "2026-09-23",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8006": {
+     "address": "88 Dock Road, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 15,
+     "customer": "C-4003",
+     "delivered": "2026-10-10",
+     "lines": [
+      {
+       "price": "19.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-102",
+       "state": "active"
+      },
+      {
+       "price": "35.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-700",
+       "state": "active"
+      },
+      {
+       "price": "13.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-902",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "113.90",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-05",
+     "promised": "2026-10-09",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8007": {
+     "address": "88 Dock Road, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 10,
+     "customer": "C-4004",
+     "delivered": "2026-09-14",
+     "lines": [
+      {
+       "price": "14.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-401",
+       "state": "active"
+      },
+      {
+       "price": "92.50",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-801",
+       "state": "active"
+      },
+      {
+       "price": "79.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-1000",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "333.90",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-09",
+     "promised": "2026-09-13",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8008": {
+     "address": "88 Dock Road, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 10,
+     "customer": "C-4004",
+     "delivered": "2026-09-23",
+     "lines": [
+      {
+       "price": "64.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-301",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "58.05",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-16",
+     "promised": "2026-09-22",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8009": {
+     "address": "32 Elm Row, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 0,
+     "customer": "C-4005",
+     "delivered": "2026-10-03",
+     "lines": [
+      {
+       "price": "22.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-101",
+       "state": "active"
+      },
+      {
+       "price": "14.00",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-401",
+       "state": "active"
+      },
+      {
+       "price": "13.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-902",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "99.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-28",
+     "promised": "2026-10-02",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8010": {
+     "address": "32 Elm Row, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 0,
+     "customer": "C-4005",
+     "delivered": "2026-09-28",
+     "lines": [
+      {
+       "price": "95.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-302",
+       "state": "active"
+      },
+      {
+       "price": "17.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-402",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "226.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-24",
+     "promised": "2026-09-27",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8011": {
+     "address": "42 Mill Lane, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 0,
+     "customer": "C-4006",
+     "delivered": "2026-09-04",
+     "lines": [
+      {
+       "price": "10.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-103",
+       "state": "active"
+      },
+      {
+       "price": "51.00",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-802",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "139.20",
+      "credit": "34.80"
+     },
+     "placed": "2026-08-30",
+     "promised": "2026-09-04",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8012": {
+     "address": "28 Mill Lane, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 20,
+     "customer": "C-4006",
+     "delivered": "2026-08-20",
+     "lines": [
+      {
+       "price": "10.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-103",
+       "state": "active"
+      },
+      {
+       "price": "22.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-101",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "26.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-08-16",
+     "promised": "2026-08-19",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8013": {
+     "address": "59 Harbour Lane, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 0,
+     "customer": "C-4007",
+     "delivered": "2026-10-07",
+     "lines": [
+      {
+       "price": "79.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-1000",
+       "state": "active"
+      },
+      {
+       "price": "37.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-202",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "77.25",
+      "credit": "77.25"
+     },
+     "placed": "2026-10-04",
+     "promised": "2026-10-07",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8014": {
+     "address": "71 Quay Street, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 10,
+     "customer": "C-4007",
+     "delivered": "2026-08-10",
+     "lines": [
+      {
+       "price": "137.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-303",
+       "state": "active"
+      },
+      {
+       "price": "14.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-401",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "148.95",
+      "credit": "0.00"
+     },
+     "placed": "2026-08-02",
+     "promised": "2026-08-08",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8015": {
+     "address": "85 Dock Road, Austin",
+     "compensated": null,
+     "country": "US",
+     "coupon": 0,
+     "customer": "C-4008",
+     "delivered": "2026-09-10",
+     "lines": [
+      {
+       "price": "14.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-401",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "14.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-03",
+     "promised": "2026-09-09",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8016": {
+     "address": "85 Dock Road, Austin",
+     "compensated": null,
+     "country": "US",
+     "coupon": 0,
+     "customer": "C-4008",
+     "delivered": "2026-09-22",
+     "lines": [
+      {
+       "price": "22.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-101",
+       "state": "active"
+      },
+      {
+       "price": "76.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-800",
+       "state": "active"
+      },
+      {
+       "price": "100.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-601",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "298.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-16",
+     "promised": "2026-09-21",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8017": {
+     "address": "86 Quay Street, Hull",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 0,
+     "customer": "C-4001",
+     "delivered": "2026-10-01",
+     "lines": [
+      {
+       "price": "165.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-602",
+       "state": "active"
+      },
+      {
+       "price": "10.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-103",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "341.50",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-25",
+     "promised": "2026-10-01",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8018": {
+     "address": "86 Quay Street, Hull",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 0,
+     "customer": "C-4002",
+     "delivered": "2026-10-04",
+     "lines": [
+      {
+       "price": "37.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-202",
+       "state": "active"
+      },
+      {
+       "price": "138.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-600",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "175.50",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-29",
+     "promised": "2026-10-04",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8019": {
+     "address": "88 Dock Road, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 15,
+     "customer": "C-4003",
+     "delivered": "2026-10-08",
+     "lines": [
+      {
+       "price": "137.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-303",
+       "state": "active"
+      },
+      {
+       "price": "44.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-200",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "309.42",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-02",
+     "promised": "2026-10-06",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8020": {
+     "address": "88 Dock Road, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 20,
+     "customer": "C-4004",
+     "delivered": "2026-10-05",
+     "lines": [
+      {
+       "price": "19.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-102",
+       "state": "active"
+      },
+      {
+       "price": "37.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-202",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "45.20",
+      "credit": "45.20"
+     },
+     "placed": "2026-09-26",
+     "promised": "2026-10-03",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8021": {
+     "address": "32 Elm Row, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 10,
+     "customer": "C-4005",
+     "delivered": "2026-10-10",
+     "lines": [
+      {
+       "price": "95.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-302",
+       "state": "active"
+      },
+      {
+       "price": "76.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-800",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "120.15",
+      "credit": "120.15"
+     },
+     "placed": "2026-09-29",
+     "promised": "2026-10-06",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8022": {
+     "address": "32 Elm Row, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 0,
+     "customer": "C-4005",
+     "delivered": "2026-10-09",
+     "lines": [
+      {
+       "price": "95.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-302",
+       "state": "active"
+      },
+      {
+       "price": "64.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-301",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "160.00",
+      "credit": "160.00"
+     },
+     "placed": "2026-10-03",
+     "promised": "2026-10-06",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8023": {
+     "address": "32 Elm Row, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 0,
+     "customer": "C-4005",
+     "delivered": "2026-10-15",
+     "lines": [
+      {
+       "price": "55.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-500",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "110.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-09",
+     "promised": "2026-10-14",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8024": {
+     "address": "28 Mill Lane, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 20,
+     "customer": "C-4006",
+     "delivered": "2026-07-20",
+     "lines": [
+      {
+       "price": "17.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-402",
+       "state": "active"
+      },
+      {
+       "price": "13.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-902",
+       "state": "active"
+      }
+     ],
+     "make_good": [
+      {
+       "amount": "10.40",
+       "date": "2026-07-21",
+       "option": "refund",
+       "qty": 1,
+       "sent": null,
+       "sku": "SH-902"
+      },
+      {
+       "amount": "10.40",
+       "date": "2026-07-22",
+       "option": "refund",
+       "qty": 1,
+       "sent": null,
+       "sku": "SH-902"
+      },
+      {
+       "amount": "14.00",
+       "date": "2026-08-24",
+       "option": "refund",
+       "qty": 1,
+       "sent": null,
+       "sku": "SH-402"
+      }
+     ],
+     "payments": {
+      "card": "34.80",
+      "credit": "0.00"
+     },
+     "placed": "2026-07-21",
+     "promised": "2026-07-28",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8025": {
+     "address": "28 Mill Lane, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 15,
+     "customer": "C-4006",
+     "delivered": "2026-10-06",
+     "lines": [
+      {
+       "price": "22.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-100",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "19.13",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-27",
+     "promised": "2026-10-04",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8026": {
+     "address": "28 Mill Lane, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 0,
+     "customer": "C-4006",
+     "delivered": "2026-10-09",
+     "lines": [
+      {
+       "price": "16.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-702",
+       "state": "active"
+      },
+      {
+       "price": "95.50",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-302",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "242.00",
+      "credit": "60.50"
+     },
+     "placed": "2026-10-04",
+     "promised": "2026-10-08",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8027": {
+     "address": "88 Dock Road, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 10,
+     "customer": "C-4003",
+     "delivered": "2026-08-29",
+     "lines": [
+      {
+       "price": "64.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-301",
+       "state": "active"
+      },
+      {
+       "price": "14.00",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-401",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "95.85",
+      "credit": "0.00"
+     },
+     "placed": "2026-08-21",
+     "promised": "2026-08-27",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8028": {
+     "address": "88 Dock Road, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 10,
+     "customer": "C-4004",
+     "delivered": "2026-10-08",
+     "lines": [
+      {
+       "price": "64.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-301",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "58.05",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-01",
+     "promised": "2026-10-07",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    }
+   },
+   "products": {
+    "SH-100": {
+     "category": "kitchen",
+     "cost": "11.93",
+     "family": "mug",
+     "final_sale": false,
+     "name": "Stoneware mug",
+     "price": "22.50",
+     "stock": 3
+    },
+    "SH-1000": {
+     "category": "clothing",
+     "cost": "49.29",
+     "family": "jacket",
+     "final_sale": false,
+     "name": "Rain jacket",
+     "price": "79.50",
+     "stock": 3
+    },
+    "SH-1001": {
+     "category": "clothing",
+     "cost": "43.45",
+     "family": "jacket",
+     "final_sale": false,
+     "name": "Fleece jacket",
+     "price": "79.00",
+     "stock": 2
+    },
+    "SH-1002": {
+     "category": "clothing",
+     "cost": "40.20",
+     "family": "jacket",
+     "final_sale": false,
+     "name": "Down jacket",
+     "price": "100.50",
+     "stock": 2
+    },
+    "SH-101": {
+     "category": "kitchen",
+     "cost": "12.54",
+     "family": "mug",
+     "final_sale": false,
+     "name": "Porcelain mug",
+     "price": "22.00",
+     "stock": 0
+    },
+    "SH-102": {
+     "category": "kitchen",
+     "cost": "9.88",
+     "family": "mug",
+     "final_sale": false,
+     "name": "Enamel mug",
+     "price": "19.00",
+     "stock": 1
+    },
+    "SH-103": {
+     "category": "kitchen",
+     "cost": "5.88",
+     "family": "mug",
+     "final_sale": false,
+     "name": "Glass mug",
+     "price": "10.50",
+     "stock": 2
+    },
+    "SH-1100": {
+     "category": "food",
+     "cost": "5.13",
+     "family": "coffee",
+     "final_sale": false,
+     "name": "Coffee beans",
+     "price": "13.50",
+     "stock": 0
+    },
+    "SH-1101": {
+     "category": "food",
+     "cost": "7.20",
+     "family": "coffee",
+     "final_sale": false,
+     "name": "Espresso blend",
+     "price": "15.00",
+     "stock": 1
+    },
+    "SH-200": {
+     "category": "kitchen",
+     "cost": "28.04",
+     "family": "teapot",
+     "final_sale": false,
+     "name": "Cast-iron teapot",
+     "price": "44.50",
+     "stock": 0
+    },
+    "SH-201": {
+     "category": "kitchen",
+     "cost": "22.35",
+     "family": "teapot",
+     "final_sale": false,
+     "name": "Glass teapot",
+     "price": "54.50",
+     "stock": 2
+    },
+    "SH-202": {
+     "category": "kitchen",
+     "cost": "14.25",
+     "family": "teapot",
+     "final_sale": false,
+     "name": "Ceramic teapot",
+     "price": "37.50",
+     "stock": 3
+    },
+    "SH-300": {
+     "category": "home",
+     "cost": "24.00",
+     "family": "lamp",
+     "final_sale": false,
+     "name": "Desk lamp",
+     "price": "40.00",
+     "stock": 2
+    },
+    "SH-301": {
+     "category": "home",
+     "cost": "36.12",
+     "family": "lamp",
+     "final_sale": false,
+     "name": "Clamp lamp",
+     "price": "64.50",
+     "stock": 2
+    },
+    "SH-302": {
+     "category": "home",
+     "cost": "62.08",
+     "family": "lamp",
+     "final_sale": false,
+     "name": "Arc lamp",
+     "price": "95.50",
+     "stock": 1
+    },
+    "SH-303": {
+     "category": "home",
+     "cost": "52.25",
+     "family": "lamp",
+     "final_sale": false,
+     "name": "Task lamp",
+     "price": "137.50",
+     "stock": 3
+    },
+    "SH-400": {
+     "category": "home",
+     "cost": "10.80",
+     "family": "towel",
+     "final_sale": false,
+     "name": "Cotton towel",
+     "price": "27.00",
+     "stock": 3
+    },
+    "SH-401": {
+     "category": "home",
+     "cost": "7.98",
+     "family": "towel",
+     "final_sale": false,
+     "name": "Linen towel",
+     "price": "14.00",
+     "stock": 2
+    },
+    "SH-402": {
+     "category": "home",
+     "cost": "10.15",
+     "family": "towel",
+     "final_sale": false,
+     "name": "Waffle towel",
+     "price": "17.50",
+     "stock": 2
+    },
+    "SH-500": {
+     "category": "kitchen",
+     "cost": "32.45",
+     "family": "kettle",
+     "final_sale": false,
+     "name": "Steel kettle",
+     "price": "55.00",
+     "stock": 3
+    },
+    "SH-501": {
+     "category": "kitchen",
+     "cost": "23.14",
+     "family": "kettle",
+     "final_sale": false,
+     "name": "Glass kettle",
+     "price": "44.50",
+     "stock": 3
+    },
+    "SH-502": {
+     "category": "kitchen",
+     "cost": "28.25",
+     "family": "kettle",
+     "final_sale": false,
+     "name": "Gooseneck kettle",
+     "price": "56.50",
+     "stock": 0
+    },
+    "SH-600": {
+     "category": "electronics",
+     "cost": "75.90",
+     "family": "speaker",
+     "final_sale": false,
+     "name": "Bookshelf speaker",
+     "price": "138.00",
+     "stock": 3
+    },
+    "SH-601": {
+     "category": "electronics",
+     "cost": "61.00",
+     "family": "speaker",
+     "final_sale": false,
+     "name": "Portable speaker",
+     "price": "100.00",
+     "stock": 1
+    },
+    "SH-602": {
+     "category": "electronics",
+     "cost": "104.27",
+     "family": "speaker",
+     "final_sale": false,
+     "name": "Smart speaker",
+     "price": "165.50",
+     "stock": 3
+    },
+    "SH-700": {
+     "category": "garden",
+     "cost": "13.65",
+     "family": "planter",
+     "final_sale": false,
+     "name": "Clay planter",
+     "price": "35.00",
+     "stock": 1
+    },
+    "SH-701": {
+     "category": "garden",
+     "cost": "15.86",
+     "family": "planter",
+     "final_sale": false,
+     "name": "Fibre planter",
+     "price": "26.00",
+     "stock": 2
+    },
+    "SH-702": {
+     "category": "garden",
+     "cost": "6.40",
+     "family": "planter",
+     "final_sale": false,
+     "name": "Hanging planter",
+     "price": "16.00",
+     "stock": 2
+    },
+    "SH-800": {
+     "category": "home",
+     "cost": "28.88",
+     "family": "chair",
+     "final_sale": false,
+     "name": "Folding chair",
+     "price": "76.00",
+     "stock": 2
+    },
+    "SH-801": {
+     "category": "home",
+     "cost": "50.88",
+     "family": "chair",
+     "final_sale": false,
+     "name": "Oak chair",
+     "price": "92.50",
+     "stock": 0
+    },
+    "SH-802": {
+     "category": "home",
+     "cost": "32.64",
+     "family": "chair",
+     "final_sale": false,
+     "name": "Caf\u00e9 chair",
+     "price": "51.00",
+     "stock": 0
+    },
+    "SH-900": {
+     "category": "books",
+     "cost": "8.68",
+     "family": "book",
+     "final_sale": false,
+     "name": "Atlas of Rivers",
+     "price": "14.00",
+     "stock": 2
+    },
+    "SH-901": {
+     "category": "books",
+     "cost": "23.73",
+     "family": "book",
+     "final_sale": false,
+     "name": "Field Guide",
+     "price": "36.50",
+     "stock": 2
+    },
+    "SH-902": {
+     "category": "books",
+     "cost": "7.67",
+     "family": "book",
+     "final_sale": false,
+     "name": "Collected Letters",
+     "price": "13.00",
+     "stock": 0
+    }
+   },
+   "rates": {
+    "CZ": "9.90",
+    "DE": "9.90",
+    "FR": "9.90",
+    "NL": "9.90",
+    "UK": "4.90",
+    "US": "24.90"
+   },
+   "recalls": [
+    {
+     "countries": [
+      "DE",
+      "FR",
+      "US"
+     ],
+     "id": "RC-42",
+     "placed_from": "2026-08-19",
+     "placed_to": "2026-08-25",
+     "sku": "SH-301"
+    },
+    {
+     "countries": [
+      "DE",
+      "UK",
+      "US"
+     ],
+     "id": "RC-57",
+     "placed_from": "2026-08-29",
+     "placed_to": "2026-09-26",
+     "sku": "SH-802"
+    }
+   ],
+   "shipments": [],
+   "today": "2026-10-20"
+  },
+  "effects": {
+   "boundary": [
+    "T5",
+    "T7"
+   ],
+   "no-consolidation": [
+    "T8"
+   ],
+   "recall-ignored": [
+    "T3",
+    "T8"
+   ],
+   "recall-sku-only": [
+    "T8"
+   ],
+   "today-goodwill": [
+    "T7"
+   ],
+   "today-reports": [
+    "T5"
+   ]
+  },
+  "prompt": "## Shift SH2\n\nToday's queue holds 8 tickets. Handle them in this order, under POLICY.md, and end with the one JSON reply it describes.\n\n## Ticket T1\n\nFrom: hana.ito@example.com\n\n(1) Order O-8021 arrived late. Please compensate me as your policy says.\n(2) Please take back one steel kettle from order O-8023.\n\n## Ticket T2\n\nFrom: bo.lindqvist@example.com\n\nPlease do not give me store credit.\n\n(1) Two collected letters from order O-8024 arrived damaged.\n(2) One stoneware mug from order O-8025 arrived broken.\n\n## Ticket T3\n\nFrom: ada.brook@example.com\n\n(1) Please take back one clamp lamp from order O-8027.\n(2) Two task lamps from order O-8019 arrived broken.\n\n## Ticket T4\n\nFrom: femi.ade@example.com\n\n(1) Two smart speakers from order O-8017 arrived damaged.\n\n## Ticket T5\n\nFrom: bo.lindqvist@example.com\n\nPlease do not give me store credit.\n\n(1) One hanging planter from order O-8026 arrived damaged.\n\n## Ticket T6\n\nFrom: dev.patel@example.com\n\nPlease do not send anything to 39 Elm Row, Brno.\n\n(1) One ceramic teapot from order O-8018 was missing from the parcel. If you send one, it must be exactly the same model.\n(2) Order O-8004 arrived late. Please compensate me as your policy says.\n\n## Ticket T7\n\nFrom: hana.ito@example.com\n\n(1) One steel kettle from order O-8023 arrived damaged.\n(2) Order O-8022 arrived late. Please compensate me as your policy says.\n(3) Order O-8010 arrived late. Please compensate me as your policy says.\n\n## Ticket T8\n\nFrom: gus.moreno@example.com\n\n(1) Two enamel mugs from order O-8020 were missing from the parcel. If you send one, it must be exactly the same model.\n(2) One clamp lamp from order O-8028 arrived damaged.\n",
+  "seed": "t2-shift-2026-10:sh2",
+  "tickets": [
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4005",
+    "id": "T1",
+    "requests": [
+     {
+      "kind": "compensate",
+      "order": "O-8021"
+     },
+     {
+      "defective": false,
+      "kind": "return",
+      "order": "O-8023",
+      "qty": 1,
+      "sku": "SH-500"
+     }
+    ],
+    "sender": "hana.ito@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": true,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4006",
+    "id": "T2",
+    "requests": [
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8024",
+      "qty": 2,
+      "sku": "SH-902"
+     },
+     {
+      "how": "arrived broken",
+      "kind": "report",
+      "order": "O-8025",
+      "qty": 1,
+      "sku": "SH-100"
+     }
+    ],
+    "sender": "bo.lindqvist@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4003",
+    "id": "T3",
+    "requests": [
+     {
+      "defective": false,
+      "kind": "return",
+      "order": "O-8027",
+      "qty": 1,
+      "sku": "SH-301"
+     },
+     {
+      "how": "arrived broken",
+      "kind": "report",
+      "order": "O-8019",
+      "qty": 2,
+      "sku": "SH-303"
+     }
+    ],
+    "sender": "ada.brook@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4001",
+    "id": "T4",
+    "requests": [
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8017",
+      "qty": 2,
+      "sku": "SH-602"
+     }
+    ],
+    "sender": "femi.ade@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": true,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4006",
+    "id": "T5",
+    "requests": [
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8026",
+      "qty": 1,
+      "sku": "SH-702"
+     }
+    ],
+    "sender": "bo.lindqvist@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": "39 Elm Row, Brno",
+     "same_product": [
+      [
+       "O-8018",
+       "SH-202"
+      ]
+     ]
+    },
+    "customer": "C-4002",
+    "id": "T6",
+    "requests": [
+     {
+      "how": "was missing from the parcel",
+      "kind": "report",
+      "order": "O-8018",
+      "qty": 1,
+      "sku": "SH-202"
+     },
+     {
+      "kind": "compensate",
+      "order": "O-8004"
+     }
+    ],
+    "sender": "dev.patel@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4005",
+    "id": "T7",
+    "requests": [
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8023",
+      "qty": 1,
+      "sku": "SH-500"
+     },
+     {
+      "kind": "compensate",
+      "order": "O-8022"
+     },
+     {
+      "kind": "compensate",
+      "order": "O-8010"
+     }
+    ],
+    "sender": "hana.ito@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": [
+      [
+       "O-8020",
+       "SH-102"
+      ]
+     ]
+    },
+    "customer": "C-4004",
+    "id": "T8",
+    "requests": [
+     {
+      "how": "was missing from the parcel",
+      "kind": "report",
+      "order": "O-8020",
+      "qty": 2,
+      "sku": "SH-102"
+     },
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8028",
+      "qty": 1,
+      "sku": "SH-301"
+     }
+    ],
+    "sender": "gus.moreno@example.com"
+   }
+  ]
+ },
+ "sh3": {
+  "db": {
+   "customers": {
+    "C-4001": {
+     "alternate_emails": [
+      {
+       "address": "ada@mail.example",
+       "verified": true
+      }
+     ],
+     "credit": "21.00",
+     "credits": [
+      {
+       "amount": "9.10",
+       "date": "2026-09-25",
+       "kind": "compensation"
+      }
+     ],
+     "email": "ada.brook@example.com",
+     "name": "Ada Brook",
+     "tier": "standard"
+    },
+    "C-4002": {
+     "alternate_emails": [
+      {
+       "address": "esme@mail.example",
+       "verified": false
+      }
+     ],
+     "credit": "10.00",
+     "credits": [],
+     "email": "esme.vance@example.com",
+     "name": "Esme Vance",
+     "tier": "standard"
+    },
+    "C-4003": {
+     "alternate_emails": [],
+     "credit": "12.00",
+     "credits": [
+      {
+       "amount": "22.80",
+       "date": "2026-09-21",
+       "kind": "make-good"
+      }
+     ],
+     "email": "dev.patel@example.com",
+     "name": "Dev Patel",
+     "tier": "standard"
+    },
+    "C-4004": {
+     "alternate_emails": [],
+     "credit": "16.00",
+     "credits": [
+      {
+       "amount": "21.02",
+       "date": "2026-10-03",
+       "kind": "compensation"
+      }
+     ],
+     "email": "cleo.marsh@example.com",
+     "name": "Cleo Marsh",
+     "tier": "gold"
+    },
+    "C-4005": {
+     "alternate_emails": [],
+     "credit": "15.00",
+     "credits": [
+      {
+       "amount": "17.91",
+       "date": "2026-09-19",
+       "kind": "compensation"
+      },
+      {
+       "amount": "27.97",
+       "date": "2026-09-20",
+       "kind": "make-good"
+      },
+      {
+       "amount": "32.84",
+       "date": "2026-09-24",
+       "kind": "compensation"
+      }
+     ],
+     "email": "gus.moreno@example.com",
+     "name": "Gus Moreno",
+     "tier": "gold"
+    },
+    "C-4006": {
+     "alternate_emails": [],
+     "credit": "18.00",
+     "credits": [],
+     "email": "ivo.kral@example.com",
+     "name": "Ivo Kral",
+     "tier": "standard"
+    },
+    "C-4007": {
+     "alternate_emails": [
+      {
+       "address": "jun@mail.example",
+       "verified": false
+      }
+     ],
+     "credit": "22.00",
+     "credits": [],
+     "email": "jun.park@example.com",
+     "name": "Jun Park",
+     "tier": "silver"
+    },
+    "C-4008": {
+     "alternate_emails": [],
+     "credit": "18.00",
+     "credits": [
+      {
+       "amount": "18.11",
+       "date": "2026-09-03",
+       "kind": "compensation"
+      },
+      {
+       "amount": "19.09",
+       "date": "2026-10-09",
+       "kind": "compensation"
+      }
+     ],
+     "email": "bo.lindqvist@example.com",
+     "name": "Bo Lindqvist",
+     "tier": "standard"
+    }
+   },
+   "orders": {
+    "O-8001": {
+     "address": "10 Dock Road, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 20,
+     "customer": "C-4001",
+     "delivered": "2026-10-12",
+     "lines": [
+      {
+       "price": "81.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-801",
+       "state": "active"
+      },
+      {
+       "price": "15.00",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-101",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "166.40",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-05",
+     "promised": "2026-10-10",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8002": {
+     "address": "10 Dock Road, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 10,
+     "customer": "C-4001",
+     "delivered": "2026-09-23",
+     "lines": [
+      {
+       "price": "104.50",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-1001",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "282.15",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-16",
+     "promised": "2026-09-21",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8003": {
+     "address": "4 Canal Street, Bonn",
+     "compensated": null,
+     "country": "DE",
+     "coupon": 0,
+     "customer": "C-4002",
+     "delivered": "2026-10-11",
+     "lines": [
+      {
+       "price": "50.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-303",
+       "state": "active"
+      },
+      {
+       "price": "115.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-600",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "331.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-02",
+     "promised": "2026-10-09",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8004": {
+     "address": "10 Dock Road, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 15,
+     "customer": "C-4002",
+     "delivered": "2026-09-24",
+     "lines": [
+      {
+       "price": "88.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-501",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "37.40",
+      "credit": "37.40"
+     },
+     "placed": "2026-09-18",
+     "promised": "2026-09-24",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8005": {
+     "address": "18 Quay Street, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 10,
+     "customer": "C-4003",
+     "delivered": "2026-09-07",
+     "lines": [
+      {
+       "price": "52.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-502",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "46.80",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-02",
+     "promised": "2026-09-06",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8006": {
+     "address": "34 Quay Street, Kiel",
+     "compensated": null,
+     "country": "DE",
+     "coupon": 15,
+     "customer": "C-4003",
+     "delivered": "2026-10-05",
+     "lines": [
+      {
+       "price": "17.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-900",
+       "state": "active"
+      },
+      {
+       "price": "23.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-102",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "54.40",
+      "credit": "13.60"
+     },
+     "placed": "2026-09-28",
+     "promised": "2026-10-01",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8007": {
+     "address": "22 Mill Lane, York",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 20,
+     "customer": "C-4004",
+     "delivered": "2026-09-30",
+     "lines": [
+      {
+       "price": "24.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-401",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "38.40",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-24",
+     "promised": "2026-09-28",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8008": {
+     "address": "22 Mill Lane, York",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 0,
+     "customer": "C-4004",
+     "delivered": "2026-09-30",
+     "lines": [
+      {
+       "price": "20.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-400",
+       "state": "active"
+      },
+      {
+       "price": "67.00",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-200",
+       "state": "active"
+      },
+      {
+       "price": "19.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-100",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "130.00",
+      "credit": "130.00"
+     },
+     "placed": "2026-09-24",
+     "promised": "2026-09-30",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8009": {
+     "address": "31 Canal Street, Lyon",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 15,
+     "customer": "C-4005",
+     "delivered": "2026-10-07",
+     "lines": [
+      {
+       "price": "104.50",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-1001",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "266.49",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-02",
+     "promised": "2026-10-06",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8010": {
+     "address": "75 Canal Street, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 0,
+     "customer": "C-4005",
+     "delivered": "2026-09-15",
+     "lines": [
+      {
+       "price": "71.00",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-300",
+       "state": "active"
+      },
+      {
+       "price": "45.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-201",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "258.50",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-08",
+     "promised": "2026-09-11",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8011": {
+     "address": "19 Canal Street, Brno",
+     "compensated": null,
+     "country": "CZ",
+     "coupon": 0,
+     "customer": "C-4006",
+     "delivered": "2026-09-28",
+     "lines": [
+      {
+       "price": "19.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-100",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "19.50",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-22",
+     "promised": "2026-09-25",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8012": {
+     "address": "19 Canal Street, Brno",
+     "compensated": null,
+     "country": "CZ",
+     "coupon": 0,
+     "customer": "C-4006",
+     "delivered": "2026-10-10",
+     "lines": [
+      {
+       "price": "160.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-601",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "320.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-04",
+     "promised": "2026-10-08",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8013": {
+     "address": "49 Elm Row, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 0,
+     "customer": "C-4007",
+     "delivered": "2026-10-07",
+     "lines": [
+      {
+       "price": "45.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-201",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "22.75",
+      "credit": "22.75"
+     },
+     "placed": "2026-09-28",
+     "promised": "2026-10-03",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8014": {
+     "address": "49 Elm Row, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 0,
+     "customer": "C-4007",
+     "delivered": "2026-10-01",
+     "lines": [
+      {
+       "price": "45.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-500",
+       "state": "active"
+      },
+      {
+       "price": "88.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-501",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "133.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-26",
+     "promised": "2026-10-01",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8015": {
+     "address": "36 Park View, Brno",
+     "compensated": null,
+     "country": "CZ",
+     "coupon": 15,
+     "customer": "C-4008",
+     "delivered": "2026-08-23",
+     "lines": [
+      {
+       "price": "15.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-101",
+       "state": "active"
+      },
+      {
+       "price": "83.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-802",
+       "state": "active"
+      },
+      {
+       "price": "67.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-200",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "140.25",
+      "credit": "140.25"
+     },
+     "placed": "2026-08-15",
+     "promised": "2026-08-19",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8016": {
+     "address": "83 Elm Row, Bonn",
+     "compensated": null,
+     "country": "DE",
+     "coupon": 20,
+     "customer": "C-4008",
+     "delivered": "2026-10-07",
+     "lines": [
+      {
+       "price": "52.00",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-502",
+       "state": "active"
+      },
+      {
+       "price": "115.50",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-600",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "402.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-01",
+     "promised": "2026-10-04",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8017": {
+     "address": "10 Dock Road, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 10,
+     "customer": "C-4001",
+     "delivered": "2026-10-02",
+     "lines": [
+      {
+       "price": "92.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-1000",
+       "state": "active"
+      },
+      {
+       "price": "81.50",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-801",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "192.82",
+      "credit": "192.83"
+     },
+     "placed": "2026-09-26",
+     "promised": "2026-09-30",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8018": {
+     "address": "10 Dock Road, Leeds",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 20,
+     "customer": "C-4002",
+     "delivered": "2026-10-04",
+     "lines": [
+      {
+       "price": "50.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-303",
+       "state": "active"
+      },
+      {
+       "price": "57.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-302",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "86.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-30",
+     "promised": "2026-10-04",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8019": {
+     "address": "22 Mill Lane, York",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 0,
+     "customer": "C-4003",
+     "delivered": "2026-10-10",
+     "lines": [
+      {
+       "price": "104.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-800",
+       "state": "active"
+      },
+      {
+       "price": "88.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-501",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "297.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-06",
+     "promised": "2026-10-10",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8020": {
+     "address": "22 Mill Lane, York",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 10,
+     "customer": "C-4004",
+     "delivered": "2026-10-13",
+     "lines": [
+      {
+       "price": "50.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-303",
+       "state": "active"
+      },
+      {
+       "price": "83.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-802",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "239.40",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-06",
+     "promised": "2026-10-11",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8021": {
+     "address": "75 Canal Street, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 15,
+     "customer": "C-4005",
+     "delivered": "2026-10-12",
+     "lines": [
+      {
+       "price": "104.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-1001",
+       "state": "active"
+      },
+      {
+       "price": "104.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-800",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "266.49",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-01",
+     "promised": "2026-10-06",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8022": {
+     "address": "75 Canal Street, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 15,
+     "customer": "C-4005",
+     "delivered": "2026-10-03",
+     "lines": [
+      {
+       "price": "177.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-1002",
+       "state": "active"
+      },
+      {
+       "price": "71.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-300",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "421.60",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-22",
+     "promised": "2026-09-27",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8023": {
+     "address": "75 Canal Street, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 15,
+     "customer": "C-4005",
+     "delivered": "2026-10-12",
+     "lines": [
+      {
+       "price": "45.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-500",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "38.25",
+      "credit": "38.25"
+     },
+     "placed": "2026-10-09",
+     "promised": "2026-10-12",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8024": {
+     "address": "19 Canal Street, Brno",
+     "compensated": null,
+     "country": "CZ",
+     "coupon": 0,
+     "customer": "C-4006",
+     "delivered": "2026-07-20",
+     "lines": [
+      {
+       "price": "45.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-500",
+       "state": "active"
+      }
+     ],
+     "make_good": [
+      {
+       "amount": "45.00",
+       "date": "2026-07-21",
+       "option": "refund",
+       "qty": 1,
+       "sent": null,
+       "sku": "SH-500"
+      },
+      {
+       "amount": "45.00",
+       "date": "2026-07-22",
+       "option": "refund",
+       "qty": 1,
+       "sent": null,
+       "sku": "SH-500"
+      },
+      {
+       "amount": "45.00",
+       "date": "2026-09-16",
+       "option": "refund",
+       "qty": 1,
+       "sent": null,
+       "sku": "SH-500"
+      }
+     ],
+     "payments": {
+      "card": "72.00",
+      "credit": "18.00"
+     },
+     "placed": "2026-07-26",
+     "promised": "2026-07-30",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8025": {
+     "address": "19 Canal Street, Brno",
+     "compensated": null,
+     "country": "CZ",
+     "coupon": 20,
+     "customer": "C-4006",
+     "delivered": "2026-10-11",
+     "lines": [
+      {
+       "price": "45.50",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-201",
+       "state": "active"
+      },
+      {
+       "price": "19.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-100",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "140.40",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-04",
+     "promised": "2026-10-09",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8026": {
+     "address": "19 Canal Street, Brno",
+     "compensated": null,
+     "country": "CZ",
+     "coupon": 10,
+     "customer": "C-4006",
+     "delivered": "2026-10-05",
+     "lines": [
+      {
+       "price": "104.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-800",
+       "state": "active"
+      },
+      {
+       "price": "67.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-200",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "248.40",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-30",
+     "promised": "2026-10-05",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8027": {
+     "address": "22 Mill Lane, York",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 0,
+     "customer": "C-4003",
+     "delivered": "2026-09-09",
+     "lines": [
+      {
+       "price": "82.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-301",
+       "state": "active"
+      },
+      {
+       "price": "104.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-1001",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "291.50",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-05",
+     "promised": "2026-09-08",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8028": {
+     "address": "22 Mill Lane, York",
+     "compensated": null,
+     "country": "UK",
+     "coupon": 0,
+     "customer": "C-4004",
+     "delivered": "2026-10-07",
+     "lines": [
+      {
+       "price": "82.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-301",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "82.50",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-03",
+     "promised": "2026-10-06",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    }
+   },
+   "products": {
+    "SH-100": {
+     "category": "kitchen",
+     "cost": "9.17",
+     "family": "mug",
+     "final_sale": false,
+     "name": "Stoneware mug",
+     "price": "19.50",
+     "stock": 1
+    },
+    "SH-1000": {
+     "category": "clothing",
+     "cost": "41.40",
+     "family": "jacket",
+     "final_sale": false,
+     "name": "Rain jacket",
+     "price": "92.00",
+     "stock": 2
+    },
+    "SH-1001": {
+     "category": "clothing",
+     "cost": "61.66",
+     "family": "jacket",
+     "final_sale": true,
+     "name": "Fleece jacket",
+     "price": "104.50",
+     "stock": 2
+    },
+    "SH-1002": {
+     "category": "clothing",
+     "cost": "67.26",
+     "family": "jacket",
+     "final_sale": true,
+     "name": "Down jacket",
+     "price": "177.00",
+     "stock": 2
+    },
+    "SH-101": {
+     "category": "kitchen",
+     "cost": "7.95",
+     "family": "mug",
+     "final_sale": false,
+     "name": "Porcelain mug",
+     "price": "15.00",
+     "stock": 1
+    },
+    "SH-102": {
+     "category": "kitchen",
+     "cost": "12.42",
+     "family": "mug",
+     "final_sale": false,
+     "name": "Enamel mug",
+     "price": "23.00",
+     "stock": 2
+    },
+    "SH-103": {
+     "category": "kitchen",
+     "cost": "8.55",
+     "family": "mug",
+     "final_sale": false,
+     "name": "Glass mug",
+     "price": "22.50",
+     "stock": 0
+    },
+    "SH-1100": {
+     "category": "food",
+     "cost": "7.28",
+     "family": "coffee",
+     "final_sale": false,
+     "name": "Coffee beans",
+     "price": "13.00",
+     "stock": 2
+    },
+    "SH-1101": {
+     "category": "food",
+     "cost": "5.13",
+     "family": "coffee",
+     "final_sale": false,
+     "name": "Espresso blend",
+     "price": "9.50",
+     "stock": 2
+    },
+    "SH-200": {
+     "category": "kitchen",
+     "cost": "28.81",
+     "family": "teapot",
+     "final_sale": false,
+     "name": "Cast-iron teapot",
+     "price": "67.00",
+     "stock": 2
+    },
+    "SH-201": {
+     "category": "kitchen",
+     "cost": "27.30",
+     "family": "teapot",
+     "final_sale": false,
+     "name": "Glass teapot",
+     "price": "45.50",
+     "stock": 1
+    },
+    "SH-202": {
+     "category": "kitchen",
+     "cost": "27.30",
+     "family": "teapot",
+     "final_sale": false,
+     "name": "Ceramic teapot",
+     "price": "65.00",
+     "stock": 0
+    },
+    "SH-300": {
+     "category": "home",
+     "cost": "34.08",
+     "family": "lamp",
+     "final_sale": false,
+     "name": "Desk lamp",
+     "price": "71.00",
+     "stock": 3
+    },
+    "SH-301": {
+     "category": "home",
+     "cost": "33.83",
+     "family": "lamp",
+     "final_sale": false,
+     "name": "Clamp lamp",
+     "price": "82.50",
+     "stock": 2
+    },
+    "SH-302": {
+     "category": "home",
+     "cost": "31.63",
+     "family": "lamp",
+     "final_sale": false,
+     "name": "Arc lamp",
+     "price": "57.50",
+     "stock": 3
+    },
+    "SH-303": {
+     "category": "home",
+     "cost": "27.00",
+     "family": "lamp",
+     "final_sale": false,
+     "name": "Task lamp",
+     "price": "50.00",
+     "stock": 3
+    },
+    "SH-400": {
+     "category": "home",
+     "cost": "8.40",
+     "family": "towel",
+     "final_sale": false,
+     "name": "Cotton towel",
+     "price": "20.00",
+     "stock": 2
+    },
+    "SH-401": {
+     "category": "home",
+     "cost": "9.36",
+     "family": "towel",
+     "final_sale": false,
+     "name": "Linen towel",
+     "price": "24.00",
+     "stock": 1
+    },
+    "SH-402": {
+     "category": "home",
+     "cost": "10.26",
+     "family": "towel",
+     "final_sale": false,
+     "name": "Waffle towel",
+     "price": "27.00",
+     "stock": 3
+    },
+    "SH-500": {
+     "category": "kitchen",
+     "cost": "20.25",
+     "family": "kettle",
+     "final_sale": false,
+     "name": "Steel kettle",
+     "price": "45.00",
+     "stock": 1
+    },
+    "SH-501": {
+     "category": "kitchen",
+     "cost": "46.64",
+     "family": "kettle",
+     "final_sale": false,
+     "name": "Glass kettle",
+     "price": "88.00",
+     "stock": 2
+    },
+    "SH-502": {
+     "category": "kitchen",
+     "cost": "33.80",
+     "family": "kettle",
+     "final_sale": false,
+     "name": "Gooseneck kettle",
+     "price": "52.00",
+     "stock": 2
+    },
+    "SH-600": {
+     "category": "electronics",
+     "cost": "65.84",
+     "family": "speaker",
+     "final_sale": false,
+     "name": "Bookshelf speaker",
+     "price": "115.50",
+     "stock": 3
+    },
+    "SH-601": {
+     "category": "electronics",
+     "cost": "68.80",
+     "family": "speaker",
+     "final_sale": false,
+     "name": "Portable speaker",
+     "price": "160.00",
+     "stock": 2
+    },
+    "SH-602": {
+     "category": "electronics",
+     "cost": "30.36",
+     "family": "speaker",
+     "final_sale": false,
+     "name": "Smart speaker",
+     "price": "66.00",
+     "stock": 0
+    },
+    "SH-700": {
+     "category": "garden",
+     "cost": "15.96",
+     "family": "planter",
+     "final_sale": false,
+     "name": "Clay planter",
+     "price": "38.00",
+     "stock": 0
+    },
+    "SH-701": {
+     "category": "garden",
+     "cost": "10.40",
+     "family": "planter",
+     "final_sale": false,
+     "name": "Fibre planter",
+     "price": "26.00",
+     "stock": 2
+    },
+    "SH-702": {
+     "category": "garden",
+     "cost": "11.55",
+     "family": "planter",
+     "final_sale": false,
+     "name": "Hanging planter",
+     "price": "27.50",
+     "stock": 2
+    },
+    "SH-800": {
+     "category": "home",
+     "cost": "39.71",
+     "family": "chair",
+     "final_sale": false,
+     "name": "Folding chair",
+     "price": "104.50",
+     "stock": 3
+    },
+    "SH-801": {
+     "category": "home",
+     "cost": "31.79",
+     "family": "chair",
+     "final_sale": false,
+     "name": "Oak chair",
+     "price": "81.50",
+     "stock": 2
+    },
+    "SH-802": {
+     "category": "home",
+     "cost": "40.67",
+     "family": "chair",
+     "final_sale": false,
+     "name": "Caf\u00e9 chair",
+     "price": "83.00",
+     "stock": 1
+    },
+    "SH-900": {
+     "category": "books",
+     "cost": "7.48",
+     "family": "book",
+     "final_sale": false,
+     "name": "Atlas of Rivers",
+     "price": "17.00",
+     "stock": 1
+    },
+    "SH-901": {
+     "category": "books",
+     "cost": "15.91",
+     "family": "book",
+     "final_sale": false,
+     "name": "Field Guide",
+     "price": "37.00",
+     "stock": 2
+    },
+    "SH-902": {
+     "category": "books",
+     "cost": "16.42",
+     "family": "book",
+     "final_sale": false,
+     "name": "Collected Letters",
+     "price": "33.50",
+     "stock": 1
+    }
+   },
+   "rates": {
+    "CZ": "9.90",
+    "DE": "9.90",
+    "FR": "9.90",
+    "NL": "9.90",
+    "UK": "4.90",
+    "US": "24.90"
+   },
+   "recalls": [
+    {
+     "countries": [
+      "DE",
+      "NL",
+      "UK",
+      "US"
+     ],
+     "id": "RC-25",
+     "placed_from": "2026-09-01",
+     "placed_to": "2026-09-08",
+     "sku": "SH-301"
+    },
+    {
+     "countries": [
+      "DE",
+      "FR",
+      "NL"
+     ],
+     "id": "RC-79",
+     "placed_from": "2026-09-26",
+     "placed_to": "2026-10-19",
+     "sku": "SH-200"
+    }
+   ],
+   "shipments": [],
+   "today": "2026-10-20"
+  },
+  "effects": {
+   "boundary": [
+    "T6",
+    "T8"
+   ],
+   "no-consolidation": [
+    "T7"
+   ],
+   "recall-ignored": [
+    "T1",
+    "T5"
+   ],
+   "recall-sku-only": [
+    "T5"
+   ],
+   "today-goodwill": [
+    "T6"
+   ],
+   "today-reports": [
+    "T8"
+   ]
+  },
+  "prompt": "## Shift SH3\n\nToday's queue holds 8 tickets. Handle them in this order, under POLICY.md, and end with the one JSON reply it describes.\n\n## Ticket T1\n\nFrom: dev.patel@example.com\n\nPlease do not give me store credit.\n\n(1) Please take back one clamp lamp from order O-8027.\n(2) Two folding chairs from order O-8019 arrived broken.\n\n## Ticket T2\n\nFrom: gus.moreno@example.com\n\n(1) Order O-8021 arrived late. Please compensate me as your policy says.\n\n## Ticket T3\n\nFrom: ada@mail.example\n\n(1) Two rain jackets from order O-8017 arrived damaged.\n(2) Order O-8001 arrived late. Please compensate me as your policy says.\n\n## Ticket T4\n\nFrom: ivo.kral@example.com\n\n(1) One glass teapot from order O-8025 arrived broken.\n\n## Ticket T5\n\nFrom: cleo.marsh@example.com\n\n(1) One clamp lamp from order O-8028 arrived damaged.\n(2) Two task lamps from order O-8020 were missing from the parcel.\n\n## Ticket T6\n\nFrom: gus.moreno@example.com\n\n(1) Order O-8021 arrived late. Please compensate me as your policy says.\n(2) One steel kettle from order O-8023 arrived damaged.\n(3) Order O-8022 arrived late. Please compensate me as your policy says.\n\n## Ticket T7\n\nFrom: esme.vance@example.com\n\n(1) One task lamp from order O-8018 was missing from the parcel.\n\n## Ticket T8\n\nFrom: ivo.kral@example.com\n\n(1) One folding chair from order O-8026 arrived damaged.\n",
+  "seed": "t2-shift-2026-10:sh3",
+  "tickets": [
+   {
+    "constraints": {
+     "no_credit": true,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4003",
+    "id": "T1",
+    "requests": [
+     {
+      "defective": false,
+      "kind": "return",
+      "order": "O-8027",
+      "qty": 1,
+      "sku": "SH-301"
+     },
+     {
+      "how": "arrived broken",
+      "kind": "report",
+      "order": "O-8019",
+      "qty": 2,
+      "sku": "SH-800"
+     }
+    ],
+    "sender": "dev.patel@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4005",
+    "id": "T2",
+    "requests": [
+     {
+      "kind": "compensate",
+      "order": "O-8021"
+     }
+    ],
+    "sender": "gus.moreno@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4001",
+    "id": "T3",
+    "requests": [
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8017",
+      "qty": 2,
+      "sku": "SH-1000"
+     },
+     {
+      "kind": "compensate",
+      "order": "O-8001"
+     }
+    ],
+    "sender": "ada@mail.example"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4006",
+    "id": "T4",
+    "requests": [
+     {
+      "how": "arrived broken",
+      "kind": "report",
+      "order": "O-8025",
+      "qty": 1,
+      "sku": "SH-201"
+     }
+    ],
+    "sender": "ivo.kral@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4004",
+    "id": "T5",
+    "requests": [
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8028",
+      "qty": 1,
+      "sku": "SH-301"
+     },
+     {
+      "how": "was missing from the parcel",
+      "kind": "report",
+      "order": "O-8020",
+      "qty": 2,
+      "sku": "SH-303"
+     }
+    ],
+    "sender": "cleo.marsh@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4005",
+    "id": "T6",
+    "requests": [
+     {
+      "kind": "compensate",
+      "order": "O-8021"
+     },
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8023",
+      "qty": 1,
+      "sku": "SH-500"
+     },
+     {
+      "kind": "compensate",
+      "order": "O-8022"
+     }
+    ],
+    "sender": "gus.moreno@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4002",
+    "id": "T7",
+    "requests": [
+     {
+      "how": "was missing from the parcel",
+      "kind": "report",
+      "order": "O-8018",
+      "qty": 1,
+      "sku": "SH-303"
+     }
+    ],
+    "sender": "esme.vance@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4006",
+    "id": "T8",
+    "requests": [
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8026",
+      "qty": 1,
+      "sku": "SH-800"
+     }
+    ],
+    "sender": "ivo.kral@example.com"
+   }
+  ]
+ },
+ "sh4": {
+  "db": {
+   "customers": {
+    "C-4001": {
+     "alternate_emails": [],
+     "credit": "19.00",
+     "credits": [
+      {
+       "amount": "22.95",
+       "date": "2026-09-02",
+       "kind": "compensation"
+      }
+     ],
+     "email": "ada.brook@example.com",
+     "name": "Ada Brook",
+     "tier": "standard"
+    },
+    "C-4002": {
+     "alternate_emails": [
+      {
+       "address": "femi@mail.example",
+       "verified": false
+      }
+     ],
+     "credit": "16.00",
+     "credits": [
+      {
+       "amount": "14.92",
+       "date": "2026-10-16",
+       "kind": "make-good"
+      }
+     ],
+     "email": "femi.ade@example.com",
+     "name": "Femi Ade",
+     "tier": "silver"
+    },
+    "C-4003": {
+     "alternate_emails": [
+      {
+       "address": "ivo@mail.example",
+       "verified": true
+      }
+     ],
+     "credit": "16.00",
+     "credits": [
+      {
+       "amount": "20.89",
+       "date": "2026-09-13",
+       "kind": "make-good"
+      },
+      {
+       "amount": "12.49",
+       "date": "2026-10-11",
+       "kind": "compensation"
+      }
+     ],
+     "email": "ivo.kral@example.com",
+     "name": "Ivo Kral",
+     "tier": "silver"
+    },
+    "C-4004": {
+     "alternate_emails": [
+      {
+       "address": "cleo@mail.example",
+       "verified": true
+      }
+     ],
+     "credit": "6.00",
+     "credits": [],
+     "email": "cleo.marsh@example.com",
+     "name": "Cleo Marsh",
+     "tier": "standard"
+    },
+    "C-4005": {
+     "alternate_emails": [
+      {
+       "address": "bo@mail.example",
+       "verified": false
+      }
+     ],
+     "credit": "9.00",
+     "credits": [
+      {
+       "amount": "10.39",
+       "date": "2026-09-19",
+       "kind": "compensation"
+      },
+      {
+       "amount": "21.61",
+       "date": "2026-09-20",
+       "kind": "make-good"
+      },
+      {
+       "amount": "52.90",
+       "date": "2026-10-06",
+       "kind": "compensation"
+      }
+     ],
+     "email": "bo.lindqvist@example.com",
+     "name": "Bo Lindqvist",
+     "tier": "standard"
+    },
+    "C-4006": {
+     "alternate_emails": [],
+     "credit": "13.00",
+     "credits": [],
+     "email": "hana.ito@example.com",
+     "name": "Hana Ito",
+     "tier": "silver"
+    },
+    "C-4007": {
+     "alternate_emails": [
+      {
+       "address": "gus@mail.example",
+       "verified": true
+      }
+     ],
+     "credit": "5.00",
+     "credits": [
+      {
+       "amount": "3.29",
+       "date": "2026-09-14",
+       "kind": "compensation"
+      },
+      {
+       "amount": "16.57",
+       "date": "2026-10-13",
+       "kind": "make-good"
+      }
+     ],
+     "email": "gus.moreno@example.com",
+     "name": "Gus Moreno",
+     "tier": "silver"
+    },
+    "C-4008": {
+     "alternate_emails": [],
+     "credit": "8.00",
+     "credits": [
+      {
+       "amount": "11.91",
+       "date": "2026-10-06",
+       "kind": "compensation"
+      },
+      {
+       "amount": "7.02",
+       "date": "2026-10-10",
+       "kind": "make-good"
+      }
+     ],
+     "email": "jun.park@example.com",
+     "name": "Jun Park",
+     "tier": "gold"
+    }
+   },
+   "orders": {
+    "O-8001": {
+     "address": "92 Station Road, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 0,
+     "customer": "C-4001",
+     "delivered": "2026-09-24",
+     "lines": [
+      {
+       "price": "19.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-101",
+       "state": "active"
+      },
+      {
+       "price": "33.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-900",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "105.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-17",
+     "promised": "2026-09-22",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8002": {
+     "address": "92 Station Road, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 0,
+     "customer": "C-4001",
+     "delivered": "2026-09-30",
+     "lines": [
+      {
+       "price": "131.50",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-602",
+       "state": "active"
+      },
+      {
+       "price": "15.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-100",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "409.50",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-24",
+     "promised": "2026-09-30",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8003": {
+     "address": "92 Station Road, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 20,
+     "customer": "C-4002",
+     "delivered": "2026-10-17",
+     "lines": [
+      {
+       "price": "84.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-502",
+       "state": "active"
+      },
+      {
+       "price": "124.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-301",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "234.80",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-12",
+     "promised": "2026-10-16",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8004": {
+     "address": "92 Station Road, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 0,
+     "customer": "C-4002",
+     "delivered": "2026-10-09",
+     "lines": [
+      {
+       "price": "61.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-200",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "122.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-02",
+     "promised": "2026-10-09",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8005": {
+     "address": "50 Elm Row, Austin",
+     "compensated": null,
+     "country": "US",
+     "coupon": 0,
+     "customer": "C-4003",
+     "delivered": "2026-08-24",
+     "lines": [
+      {
+       "price": "84.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-502",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "67.60",
+      "credit": "16.90"
+     },
+     "placed": "2026-08-17",
+     "promised": "2026-08-23",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8006": {
+     "address": "50 Elm Row, Austin",
+     "compensated": null,
+     "country": "US",
+     "coupon": 0,
+     "customer": "C-4003",
+     "delivered": "2026-10-04",
+     "lines": [
+      {
+       "price": "137.50",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-303",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "412.50",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-30",
+     "promised": "2026-10-03",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8007": {
+     "address": "50 Elm Row, Austin",
+     "compensated": null,
+     "country": "US",
+     "coupon": 0,
+     "customer": "C-4004",
+     "delivered": "2026-08-30",
+     "lines": [
+      {
+       "price": "112.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-801",
+       "state": "active"
+      },
+      {
+       "price": "19.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-101",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "132.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-08-21",
+     "promised": "2026-08-24",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8008": {
+     "address": "50 Elm Row, Austin",
+     "compensated": null,
+     "country": "US",
+     "coupon": 0,
+     "customer": "C-4004",
+     "delivered": "2026-09-19",
+     "lines": [
+      {
+       "price": "84.50",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-502",
+       "state": "active"
+      },
+      {
+       "price": "87.00",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-800",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "514.50",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-08",
+     "promised": "2026-09-15",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8009": {
+     "address": "32 Dock Road, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 0,
+     "customer": "C-4005",
+     "delivered": "2026-08-21",
+     "lines": [
+      {
+       "price": "158.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-600",
+       "state": "active"
+      },
+      {
+       "price": "91.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-1001",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "408.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-08-18",
+     "promised": "2026-08-21",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8010": {
+     "address": "32 Dock Road, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 0,
+     "customer": "C-4005",
+     "delivered": "2026-10-08",
+     "lines": [
+      {
+       "price": "33.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-900",
+       "state": "active"
+      },
+      {
+       "price": "18.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-700",
+       "state": "active"
+      },
+      {
+       "price": "10.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-102",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "105.50",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-29",
+     "promised": "2026-10-06",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8011": {
+     "address": "23 Mill Lane, Lyon",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 0,
+     "customer": "C-4006",
+     "delivered": "2026-09-22",
+     "lines": [
+      {
+       "price": "33.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-900",
+       "state": "active"
+      },
+      {
+       "price": "29.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-902",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "95.50",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-14",
+     "promised": "2026-09-20",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8012": {
+     "address": "41 Park View, Brno",
+     "compensated": null,
+     "country": "CZ",
+     "coupon": 0,
+     "customer": "C-4006",
+     "delivered": "2026-10-07",
+     "lines": [
+      {
+       "price": "134.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-601",
+       "state": "active"
+      },
+      {
+       "price": "91.00",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-1001",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "433.60",
+      "credit": "108.40"
+     },
+     "placed": "2026-09-27",
+     "promised": "2026-10-03",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8013": {
+     "address": "19 Elm Row, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 10,
+     "customer": "C-4007",
+     "delivered": "2026-08-23",
+     "lines": [
+      {
+       "price": "128.50",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-1002",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "277.56",
+      "credit": "69.39"
+     },
+     "placed": "2026-08-12",
+     "promised": "2026-08-19",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8014": {
+     "address": "54 Station Road, Austin",
+     "compensated": null,
+     "country": "US",
+     "coupon": 0,
+     "customer": "C-4007",
+     "delivered": "2026-08-27",
+     "lines": [
+      {
+       "price": "124.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-301",
+       "state": "active"
+      },
+      {
+       "price": "40.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-500",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "231.60",
+      "credit": "57.90"
+     },
+     "placed": "2026-08-22",
+     "promised": "2026-08-25",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8015": {
+     "address": "36 Harbour Lane, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 0,
+     "customer": "C-4008",
+     "delivered": "2026-09-05",
+     "lines": [
+      {
+       "price": "39.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-901",
+       "state": "active"
+      },
+      {
+       "price": "33.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-900",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "112.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-01",
+     "promised": "2026-09-04",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8016": {
+     "address": "36 Harbour Lane, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 20,
+     "customer": "C-4008",
+     "delivered": "2026-09-03",
+     "lines": [
+      {
+       "price": "33.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-900",
+       "state": "active"
+      },
+      {
+       "price": "70.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-201",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "164.80",
+      "credit": "0.00"
+     },
+     "placed": "2026-08-27",
+     "promised": "2026-08-30",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8017": {
+     "address": "92 Station Road, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 0,
+     "customer": "C-4001",
+     "delivered": "2026-10-15",
+     "lines": [
+      {
+       "price": "128.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-1002",
+       "state": "active"
+      },
+      {
+       "price": "46.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-300",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "350.00",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-10",
+     "promised": "2026-10-13",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8018": {
+     "address": "92 Station Road, Delft",
+     "compensated": null,
+     "country": "NL",
+     "coupon": 20,
+     "customer": "C-4002",
+     "delivered": "2026-10-16",
+     "lines": [
+      {
+       "price": "19.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-101",
+       "state": "active"
+      },
+      {
+       "price": "124.50",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-301",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "264.00",
+      "credit": "66.00"
+     },
+     "placed": "2026-10-09",
+     "promised": "2026-10-16",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8019": {
+     "address": "50 Elm Row, Austin",
+     "compensated": null,
+     "country": "US",
+     "coupon": 0,
+     "customer": "C-4003",
+     "delivered": "2026-10-04",
+     "lines": [
+      {
+       "price": "128.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-1002",
+       "state": "active"
+      },
+      {
+       "price": "15.00",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-103",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "229.60",
+      "credit": "57.40"
+     },
+     "placed": "2026-09-28",
+     "promised": "2026-10-03",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8020": {
+     "address": "50 Elm Row, Austin",
+     "compensated": null,
+     "country": "US",
+     "coupon": 0,
+     "customer": "C-4004",
+     "delivered": "2026-10-16",
+     "lines": [
+      {
+       "price": "22.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-402",
+       "state": "active"
+      },
+      {
+       "price": "28.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-401",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "50.50",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-09",
+     "promised": "2026-10-14",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8021": {
+     "address": "32 Dock Road, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 0,
+     "customer": "C-4005",
+     "delivered": "2026-09-29",
+     "lines": [
+      {
+       "price": "91.00",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-1001",
+       "state": "active"
+      },
+      {
+       "price": "158.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-600",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "124.75",
+      "credit": "124.75"
+     },
+     "placed": "2026-09-16",
+     "promised": "2026-09-23",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8022": {
+     "address": "32 Dock Road, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 0,
+     "customer": "C-4005",
+     "delivered": "2026-10-08",
+     "lines": [
+      {
+       "price": "94.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-501",
+       "state": "active"
+      },
+      {
+       "price": "138.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-802",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "327.50",
+      "credit": "0.00"
+     },
+     "placed": "2026-10-01",
+     "promised": "2026-10-04",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8023": {
+     "address": "32 Dock Road, Lille",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 20,
+     "customer": "C-4005",
+     "delivered": "2026-10-13",
+     "lines": [
+      {
+       "price": "34.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-702",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "44.16",
+      "credit": "11.04"
+     },
+     "placed": "2026-10-06",
+     "promised": "2026-10-11",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8024": {
+     "address": "23 Mill Lane, Lyon",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 10,
+     "customer": "C-4006",
+     "delivered": "2026-07-20",
+     "lines": [
+      {
+       "price": "94.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-501",
+       "state": "active"
+      }
+     ],
+     "make_good": [
+      {
+       "amount": "85.05",
+       "date": "2026-07-21",
+       "option": "refund",
+       "qty": 1,
+       "sent": null,
+       "sku": "SH-501"
+      },
+      {
+       "amount": "85.05",
+       "date": "2026-07-22",
+       "option": "refund",
+       "qty": 1,
+       "sent": null,
+       "sku": "SH-501"
+      },
+      {
+       "amount": "85.05",
+       "date": "2026-08-11",
+       "option": "refund",
+       "qty": 1,
+       "sent": null,
+       "sku": "SH-501"
+      }
+     ],
+     "payments": {
+      "card": "170.10",
+      "credit": "0.00"
+     },
+     "placed": "2026-07-18",
+     "promised": "2026-07-21",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8025": {
+     "address": "23 Mill Lane, Lyon",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 0,
+     "customer": "C-4006",
+     "delivered": "2026-10-10",
+     "lines": [
+      {
+       "price": "112.50",
+       "qty": 2,
+       "returned": 0,
+       "sku": "SH-801",
+       "state": "active"
+      },
+      {
+       "price": "91.00",
+       "qty": 3,
+       "returned": 0,
+       "sku": "SH-1001",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "249.00",
+      "credit": "249.00"
+     },
+     "placed": "2026-10-05",
+     "promised": "2026-10-08",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8026": {
+     "address": "23 Mill Lane, Lyon",
+     "compensated": null,
+     "country": "FR",
+     "coupon": 0,
+     "customer": "C-4006",
+     "delivered": "2026-09-28",
+     "lines": [
+      {
+       "price": "128.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-1002",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "102.80",
+      "credit": "25.70"
+     },
+     "placed": "2026-09-22",
+     "promised": "2026-09-26",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8027": {
+     "address": "50 Elm Row, Austin",
+     "compensated": null,
+     "country": "US",
+     "coupon": 15,
+     "customer": "C-4003",
+     "delivered": "2026-09-12",
+     "lines": [
+      {
+       "price": "137.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-303",
+       "state": "active"
+      },
+      {
+       "price": "40.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-500",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "151.31",
+      "credit": "0.00"
+     },
+     "placed": "2026-09-07",
+     "promised": "2026-09-10",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    },
+    "O-8028": {
+     "address": "50 Elm Row, Austin",
+     "compensated": null,
+     "country": "US",
+     "coupon": 15,
+     "customer": "C-4004",
+     "delivered": "2026-10-08",
+     "lines": [
+      {
+       "price": "137.50",
+       "qty": 1,
+       "returned": 0,
+       "sku": "SH-303",
+       "state": "active"
+      }
+     ],
+     "make_good": [],
+     "payments": {
+      "card": "58.44",
+      "credit": "58.44"
+     },
+     "placed": "2026-10-03",
+     "promised": "2026-10-07",
+     "refunds": [],
+     "shipping": "0.00",
+     "status": "delivered"
+    }
+   },
+   "products": {
+    "SH-100": {
+     "category": "kitchen",
+     "cost": "8.10",
+     "family": "mug",
+     "final_sale": false,
+     "name": "Stoneware mug",
+     "price": "15.00",
+     "stock": 2
+    },
+    "SH-1000": {
+     "category": "clothing",
+     "cost": "53.56",
+     "family": "jacket",
+     "final_sale": false,
+     "name": "Rain jacket",
+     "price": "103.00",
+     "stock": 0
+    },
+    "SH-1001": {
+     "category": "clothing",
+     "cost": "58.24",
+     "family": "jacket",
+     "final_sale": true,
+     "name": "Fleece jacket",
+     "price": "91.00",
+     "stock": 3
+    },
+    "SH-1002": {
+     "category": "clothing",
+     "cost": "73.25",
+     "family": "jacket",
+     "final_sale": false,
+     "name": "Down jacket",
+     "price": "128.50",
+     "stock": 2
+    },
+    "SH-101": {
+     "category": "kitchen",
+     "cost": "7.41",
+     "family": "mug",
+     "final_sale": false,
+     "name": "Porcelain mug",
+     "price": "19.50",
+     "stock": 2
+    },
+    "SH-102": {
+     "category": "kitchen",
+     "cost": "5.99",
+     "family": "mug",
+     "final_sale": false,
+     "name": "Enamel mug",
+     "price": "10.50",
+     "stock": 2
+    },
+    "SH-103": {
+     "category": "kitchen",
+     "cost": "6.60",
+     "family": "mug",
+     "final_sale": false,
+     "name": "Glass mug",
+     "price": "15.00",
+     "stock": 0
+    },
+    "SH-1100": {
+     "category": "food",
+     "cost": "4.40",
+     "family": "coffee",
+     "final_sale": false,
+     "name": "Coffee beans",
+     "price": "10.00",
+     "stock": 0
+    },
+    "SH-1101": {
+     "category": "food",
+     "cost": "8.22",
+     "family": "coffee",
+     "final_sale": false,
+     "name": "Espresso blend",
+     "price": "15.50",
+     "stock": 1
+    },
+    "SH-200": {
+     "category": "kitchen",
+     "cost": "37.21",
+     "family": "teapot",
+     "final_sale": false,
+     "name": "Cast-iron teapot",
+     "price": "61.00",
+     "stock": 0
+    },
+    "SH-201": {
+     "category": "kitchen",
+     "cost": "29.40",
+     "family": "teapot",
+     "final_sale": false,
+     "name": "Glass teapot",
+     "price": "70.00",
+     "stock": 0
+    },
+    "SH-202": {
+     "category": "kitchen",
+     "cost": "22.77",
+     "family": "teapot",
+     "final_sale": false,
+     "name": "Ceramic teapot",
+     "price": "49.50",
+     "stock": 1
+    },
+    "SH-300": {
+     "category": "home",
+     "cost": "20.93",
+     "family": "lamp",
+     "final_sale": false,
+     "name": "Desk lamp",
+     "price": "46.50",
+     "stock": 1
+    },
+    "SH-301": {
+     "category": "home",
+     "cost": "67.23",
+     "family": "lamp",
+     "final_sale": false,
+     "name": "Clamp lamp",
+     "price": "124.50",
+     "stock": 1
+    },
+    "SH-302": {
+     "category": "home",
+     "cost": "60.03",
+     "family": "lamp",
+     "final_sale": false,
+     "name": "Arc lamp",
+     "price": "103.50",
+     "stock": 2
+    },
+    "SH-303": {
+     "category": "home",
+     "cost": "81.13",
+     "family": "lamp",
+     "final_sale": false,
+     "name": "Task lamp",
+     "price": "137.50",
+     "stock": 1
+    },
+    "SH-400": {
+     "category": "home",
+     "cost": "14.64",
+     "family": "towel",
+     "final_sale": false,
+     "name": "Cotton towel",
+     "price": "24.00",
+     "stock": 1
+    },
+    "SH-401": {
+     "category": "home",
+     "cost": "13.72",
+     "family": "towel",
+     "final_sale": false,
+     "name": "Linen towel",
+     "price": "28.00",
+     "stock": 1
+    },
+    "SH-402": {
+     "category": "home",
+     "cost": "9.45",
+     "family": "towel",
+     "final_sale": false,
+     "name": "Waffle towel",
+     "price": "22.50",
+     "stock": 1
+    },
+    "SH-500": {
+     "category": "kitchen",
+     "cost": "17.82",
+     "family": "kettle",
+     "final_sale": false,
+     "name": "Steel kettle",
+     "price": "40.50",
+     "stock": 0
+    },
+    "SH-501": {
+     "category": "kitchen",
+     "cost": "46.31",
+     "family": "kettle",
+     "final_sale": false,
+     "name": "Glass kettle",
+     "price": "94.50",
+     "stock": 3
+    },
+    "SH-502": {
+     "category": "kitchen",
+     "cost": "45.63",
+     "family": "kettle",
+     "final_sale": false,
+     "name": "Gooseneck kettle",
+     "price": "84.50",
+     "stock": 3
+    },
+    "SH-600": {
+     "category": "electronics",
+     "cost": "101.44",
+     "family": "speaker",
+     "final_sale": false,
+     "name": "Bookshelf speaker",
+     "price": "158.50",
+     "stock": 2
+    },
+    "SH-601": {
+     "category": "electronics",
+     "cost": "53.80",
+     "family": "speaker",
+     "final_sale": false,
+     "name": "Portable speaker",
+     "price": "134.50",
+     "stock": 1
+    },
+    "SH-602": {
+     "category": "electronics",
+     "cost": "69.70",
+     "family": "speaker",
+     "final_sale": false,
+     "name": "Smart speaker",
+     "price": "131.50",
+     "stock": 2
+    },
+    "SH-700": {
+     "category": "garden",
+     "cost": "7.77",
+     "family": "planter",
+     "final_sale": false,
+     "name": "Clay planter",
+     "price": "18.50",
+     "stock": 2
+    },
+    "SH-701": {
+     "category": "garden",
+     "cost": "19.64",
+     "family": "planter",
+     "final_sale": false,
+     "name": "Fibre planter",
+     "price": "38.50",
+     "stock": 1
+    },
+    "SH-702": {
+     "category": "garden",
+     "cost": "18.63",
+     "family": "planter",
+     "final_sale": false,
+     "name": "Hanging planter",
+     "price": "34.50",
+     "stock": 1
+    },
+    "SH-800": {
+     "category": "home",
+     "cost": "46.11",
+     "family": "chair",
+     "final_sale": false,
+     "name": "Folding chair",
+     "price": "87.00",
+     "stock": 1
+    },
+    "SH-801": {
+     "category": "home",
+     "cost": "43.88",
+     "family": "chair",
+     "final_sale": false,
+     "name": "Oak chair",
+     "price": "112.50",
+     "stock": 1
+    },
+    "SH-802": {
+     "category": "home",
+     "cost": "78.95",
+     "family": "chair",
+     "final_sale": false,
+     "name": "Caf\u00e9 chair",
+     "price": "138.50",
+     "stock": 0
+    },
+    "SH-900": {
+     "category": "books",
+     "cost": "16.50",
+     "family": "book",
+     "final_sale": false,
+     "name": "Atlas of Rivers",
+     "price": "33.00",
+     "stock": 2
+    },
+    "SH-901": {
+     "category": "books",
+     "cost": "19.75",
+     "family": "book",
+     "final_sale": false,
+     "name": "Field Guide",
+     "price": "39.50",
+     "stock": 1
+    },
+    "SH-902": {
+     "category": "books",
+     "cost": "13.57",
+     "family": "book",
+     "final_sale": false,
+     "name": "Collected Letters",
+     "price": "29.50",
+     "stock": 2
+    }
+   },
+   "rates": {
+    "CZ": "9.90",
+    "DE": "9.90",
+    "FR": "9.90",
+    "NL": "9.90",
+    "UK": "4.90",
+    "US": "24.90"
+   },
+   "recalls": [
+    {
+     "countries": [
+      "CZ",
+      "DE",
+      "US"
+     ],
+     "id": "RC-48",
+     "placed_from": "2026-09-06",
+     "placed_to": "2026-09-09",
+     "sku": "SH-303"
+    },
+    {
+     "countries": [
+      "CZ",
+      "FR",
+      "UK"
+     ],
+     "id": "RC-68",
+     "placed_from": "2026-09-04",
+     "placed_to": "2026-09-28",
+     "sku": "SH-800"
+    }
+   ],
+   "shipments": [],
+   "today": "2026-10-20"
+  },
+  "effects": {
+   "boundary": [
+    "T7",
+    "T8"
+   ],
+   "no-consolidation": [
+    "T6"
+   ],
+   "recall-ignored": [
+    "T3"
+   ],
+   "recall-sku-only": [
+    "T5"
+   ],
+   "today-goodwill": [
+    "T8"
+   ],
+   "today-reports": [
+    "T7"
+   ]
+  },
+  "prompt": "## Shift SH4\n\nToday's queue holds 8 tickets. Handle them in this order, under POLICY.md, and end with the one JSON reply it describes.\n\n## Ticket T1\n\nFrom: bo.lindqvist@example.com\n\n(1) Please take back one hanging planter from order O-8023.\n(2) Order O-8021 arrived late. Please compensate me as your policy says.\n\n## Ticket T2\n\nFrom: ada.brook@example.com\n\n(1) Two down jackets from order O-8017 arrived damaged.\n(2) One porcelain mug from order O-8001 was missing from the parcel.\n\n## Ticket T3\n\nFrom: ivo.kral@example.com\n\n(1) Please take back one task lamp from order O-8027.\n(2) Two down jackets from order O-8019 arrived broken.\n(3) Order O-8027 arrived late. Please compensate me as your policy says.\n\n## Ticket T4\n\nFrom: hana.ito@example.com\n\n(1) One oak chair from order O-8025 arrived broken.\n\n## Ticket T5\n\nFrom: cleo.marsh@example.com\n\n(1) One task lamp from order O-8028 arrived damaged.\n(2) Order O-8007 arrived late. Please compensate me as your policy says.\n(3) One waffle towel from order O-8020 was missing from the parcel.\n\n## Ticket T6\n\nFrom: femi.ade@example.com\n\n(1) Two porcelain mugs from order O-8018 were missing from the parcel.\n(2) One cast-iron teapot from order O-8004 arrived damaged.\n\n## Ticket T7\n\nFrom: hana.ito@example.com\n\n(1) One down jacket from order O-8026 arrived damaged.\n(2) One glass kettle from order O-8024 was missing from the parcel.\n\n## Ticket T8\n\nFrom: bo.lindqvist@example.com\n\n(1) Order O-8022 arrived late. Please compensate me as your policy says.\n(2) One hanging planter from order O-8023 arrived damaged. If you send one, it must be exactly the same model.\n",
+  "seed": "t2-shift-2026-10:sh4",
+  "tickets": [
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4005",
+    "id": "T1",
+    "requests": [
+     {
+      "defective": false,
+      "kind": "return",
+      "order": "O-8023",
+      "qty": 1,
+      "sku": "SH-702"
+     },
+     {
+      "kind": "compensate",
+      "order": "O-8021"
+     }
+    ],
+    "sender": "bo.lindqvist@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4001",
+    "id": "T2",
+    "requests": [
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8017",
+      "qty": 2,
+      "sku": "SH-1002"
+     },
+     {
+      "how": "was missing from the parcel",
+      "kind": "report",
+      "order": "O-8001",
+      "qty": 1,
+      "sku": "SH-101"
+     }
+    ],
+    "sender": "ada.brook@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4003",
+    "id": "T3",
+    "requests": [
+     {
+      "defective": false,
+      "kind": "return",
+      "order": "O-8027",
+      "qty": 1,
+      "sku": "SH-303"
+     },
+     {
+      "how": "arrived broken",
+      "kind": "report",
+      "order": "O-8019",
+      "qty": 2,
+      "sku": "SH-1002"
+     },
+     {
+      "kind": "compensate",
+      "order": "O-8027"
+     }
+    ],
+    "sender": "ivo.kral@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4006",
+    "id": "T4",
+    "requests": [
+     {
+      "how": "arrived broken",
+      "kind": "report",
+      "order": "O-8025",
+      "qty": 1,
+      "sku": "SH-801"
+     }
+    ],
+    "sender": "hana.ito@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4004",
+    "id": "T5",
+    "requests": [
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8028",
+      "qty": 1,
+      "sku": "SH-303"
+     },
+     {
+      "kind": "compensate",
+      "order": "O-8007"
+     },
+     {
+      "how": "was missing from the parcel",
+      "kind": "report",
+      "order": "O-8020",
+      "qty": 1,
+      "sku": "SH-402"
+     }
+    ],
+    "sender": "cleo.marsh@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4002",
+    "id": "T6",
+    "requests": [
+     {
+      "how": "was missing from the parcel",
+      "kind": "report",
+      "order": "O-8018",
+      "qty": 2,
+      "sku": "SH-101"
+     },
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8004",
+      "qty": 1,
+      "sku": "SH-200"
+     }
+    ],
+    "sender": "femi.ade@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": []
+    },
+    "customer": "C-4006",
+    "id": "T7",
+    "requests": [
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8026",
+      "qty": 1,
+      "sku": "SH-1002"
+     },
+     {
+      "how": "was missing from the parcel",
+      "kind": "report",
+      "order": "O-8024",
+      "qty": 1,
+      "sku": "SH-501"
+     }
+    ],
+    "sender": "hana.ito@example.com"
+   },
+   {
+    "constraints": {
+     "no_credit": false,
+     "no_shipping_to": null,
+     "same_product": [
+      [
+       "O-8023",
+       "SH-702"
+      ]
+     ]
+    },
+    "customer": "C-4005",
+    "id": "T8",
+    "requests": [
+     {
+      "kind": "compensate",
+      "order": "O-8022"
+     },
+     {
+      "how": "arrived damaged",
+      "kind": "report",
+      "order": "O-8023",
+      "qty": 1,
+      "sku": "SH-702"
+     }
+    ],
+    "sender": "bo.lindqvist@example.com"
+   }
+  ]
+ }
+}

@@ -12,6 +12,7 @@ HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import importlib  # noqa: E402
 import makegood  # noqa: E402
+import shift  # noqa: E402
 import tickets  # noqa: E402
 
 
@@ -36,18 +37,24 @@ def generate_makegood():
 
 
 def main():
+    global grader
     generate_makegood()
+    shift.write_all()
+    grader = importlib.reload(grader)
     if (ROOT / "items").exists():
         shutil.rmtree(ROOT / "items")
     requirements, items = {}, []
-    for ticket_id in [*tickets.TICKETS, *tickets.MAKEGOOD]:
+    for ticket_id in [*tickets.TICKETS, *tickets.MAKEGOOD, *grader.SHIFTS]:
         public = ROOT / "items" / ticket_id / "public"
         (public / "data").mkdir(parents=True)
-        shutil.copy(HERE / "desk.py", public / "desk.py")
-        shutil.copy(HERE / "POLICY.md", public / "POLICY.md")
-        (public / "data" / "db.json").write_text(json.dumps(tickets.BASE_DB, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+        # A shift (task 0.4.0) has its own shop, desk tool and policy.
+        shifted = ticket_id in grader.SHIFTS
+        shutil.copy(HERE / ("shift_desk.py" if shifted else "desk.py"), public / "desk.py")
+        shutil.copy(HERE / ("SHIFT_POLICY.md" if shifted else "POLICY.md"), public / "POLICY.md")
+        data = grader.SHIFTS[ticket_id]["db"] if shifted else tickets.BASE_DB
+        (public / "data" / "db.json").write_text(json.dumps(data, indent=1, sort_keys=True) + "\n", encoding="utf-8")
         (public / "data" / "audit.log").write_text("", encoding="utf-8")
-        (ROOT / "items" / ticket_id / "prompt.md").write_text(tickets.prompt(ticket_id), encoding="utf-8")
+        (ROOT / "items" / ticket_id / "prompt.md").write_text(grader.SHIFTS[ticket_id]["prompt"] if shifted else tickets.prompt(ticket_id), encoding="utf-8")
         ids = []
         for name in grader.check_names(ticket_id):
             requirement = grader.requirement(ticket_id, name)
@@ -55,7 +62,7 @@ def main():
                                          "checkIds": [f"{ticket_id}-{name}"]}
             ids.append(requirement)
         files = sorted(str(path.relative_to(ROOT)) for path in (ROOT / "items" / ticket_id).rglob("*") if visible(path))
-        level = tickets.MAKEGOOD[ticket_id]["level"] if ticket_id in tickets.MAKEGOOD else ticket_id
+        level = tickets.MAKEGOOD[ticket_id]["level"] if ticket_id in tickets.MAKEGOOD else "shift" if shifted else ticket_id
         items.append({"id": ticket_id, "level": level, "files": [{"path": path, "sha256": digest(path)} for path in files],
                       "activeRequirementIds": ids + ["REQ-FORMAT"]})
     requirements["REQ-FORMAT"] = {"id": "REQ-FORMAT", "critical": False, "introducedAt": f"{grader.TASK_ID} {grader.TASK_VERSION}", "checkIds": ["answer-format"]}

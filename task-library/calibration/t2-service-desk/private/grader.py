@@ -15,12 +15,14 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import desk  # noqa: E402
 import makegood  # noqa: E402
+import shift  # noqa: E402
+import shift_desk  # noqa: E402
 import tickets  # noqa: E402
 from decimal import Decimal  # noqa: E402
 
 TASK_ID = "t2-service-desk"
-TASK_VERSION = "0.3.0"
-GRADER_VERSION = "1.1.1"
+TASK_VERSION = "0.4.0"
+GRADER_VERSION = "1.2.0"
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)
 # The last fenced block only: its body may not contain another fence, so an earlier block in the reply cannot start the
 # match (grader 1.1.0 failed replies that showed commands in a fenced block before the closing JSON block).
@@ -115,9 +117,14 @@ def makegood_orders(ticket_id):
     return orders
 
 
+SHIFTS = shift.load()
+
+
 def check_names(ticket_id):
-    """The ticket's checks: one per entity it should change, then no-other-changes and reply. An optimisation ticket
+    """A shift's checks are per ticket (shift.check_names). The ticket's checks: one per entity it should change, then no-other-changes and reply. An optimisation ticket
     has one check per order to make good, then no-other-changes, reply and the cost ladder."""
+    if ticket_id in SHIFTS:
+        return shift.check_names(SHIFTS[ticket_id]["tickets"], SHIFTS[ticket_id]["db"])
     if ticket_id in tickets.MAKEGOOD:
         return [f"resolved-{order}" for order in makegood_orders(ticket_id)] + ["no-other-changes", "reply"] + [name for name, _ in COST_LADDER]
     base, expected = entities(tickets.BASE_DB), entities(replay(tickets.TICKETS[ticket_id]["actions"]))
@@ -167,7 +174,40 @@ def grade_makegood(ticket_id, delivered, commands, results, reply_ok):
         results["optimum"] = f"{best:.4f}"
 
 
+def grade_shift(shift_id, submission, answer_text):
+    """A shift: the integrity gate replays the audit log through the shift's desk tool on its starting data; then each
+    ticket is graded on the state when it began (shift.grade_shift)."""
+    names = check_names(shift_id)
+    results = {name: False for name in names}
+    results["answer-format"] = False
+    mode, answer = parse_answer(answer_text)
+    base = SHIFTS[shift_id]["db"]
+    try:
+        with open(os.path.join(submission, "data", "db.json"), encoding="utf-8") as handle:
+            delivered = json.load(handle)
+        with open(os.path.join(submission, "data", "audit.log"), encoding="utf-8") as handle:
+            commands = [json.loads(line) for line in handle if line.strip()]
+        replayed = copy.deepcopy(base)
+        consistent = all(isinstance(command, list) and command and all(isinstance(part, str) for part in command) for command in commands)
+        if consistent:
+            for command in commands:
+                shift_desk.apply(replayed, command[0], command[1:])
+            consistent = json.loads(json.dumps(replayed)) == delivered
+    except (OSError, ValueError, shift_desk.Refused, KeyError, IndexError, TypeError):
+        consistent = False
+    if not consistent:
+        return results, "inconsistent"
+    checked, details = shift.grade_shift(base, SHIFTS[shift_id]["tickets"], commands, answer if mode != "unparsed" and isinstance(answer, dict) else {})
+    results.update(checked)
+    results["costs"] = details
+    # The format deduction is for a reply that had to be recovered. A missing or unusable reply already fails the replies.
+    results["answer-format"] = mode != "recovered"
+    return results, "consistent"
+
+
 def grade(ticket_id, submission, answer_text):
+    if ticket_id in SHIFTS:
+        return grade_shift(ticket_id, submission, answer_text)
     names = check_names(ticket_id)
     results = {name: False for name in names}
     results["answer-format"] = False
@@ -217,7 +257,7 @@ def grade_request(request_path, result_path):
     with open(request_path, encoding="utf-8") as handle:
         request = json.load(handle)
     ticket_id = request["context"].get("itemId")
-    if ticket_id not in tickets.TICKETS and ticket_id not in tickets.MAKEGOOD:
+    if ticket_id not in tickets.TICKETS and ticket_id not in tickets.MAKEGOOD and ticket_id not in SHIFTS:
         raise ValueError("unknown item")
     evidence_root = request["evidenceRoot"]
     try:

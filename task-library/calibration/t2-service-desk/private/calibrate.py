@@ -13,6 +13,8 @@ from decimal import Decimal
 import grader
 import makegood
 import oracle
+import shift
+import shift_desk
 import tickets
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -147,6 +149,135 @@ def makegood_scenarios():
     return rows
 
 
+def shift_workspace(shift_id, commands, cli=False):
+    """A shift's starting public files after its commands: through desk.py itself when cli, else applied in process and
+    written as desk.py writes them."""
+    directory = tempfile.mkdtemp(prefix="t2-shift-")
+    public = os.path.join(directory, "public")
+    os.makedirs(os.path.join(public, "data"))
+    shutil.copy(os.path.join(HERE, "shift_desk.py"), os.path.join(public, "desk.py"))
+    db = copy.deepcopy(grader.SHIFTS[shift_id]["db"])
+    with open(os.path.join(public, "data", "db.json"), "w", encoding="utf-8") as handle:
+        json.dump(db, handle, indent=1, sort_keys=True)
+    open(os.path.join(public, "data", "audit.log"), "w").close()
+    if cli:
+        for command in commands:
+            run = subprocess.run([sys.executable, "desk.py", *command], cwd=public, capture_output=True, text=True)
+            assert run.returncode == 0, (command, run.stderr)
+        return directory
+    for command in commands:
+        shift_desk.apply(db, command[0], command[1:])
+    with open(os.path.join(public, "data", "db.json"), "w", encoding="utf-8") as handle:
+        json.dump(db, handle, indent=1, sort_keys=True)
+    with open(os.path.join(public, "data", "audit.log"), "w", encoding="utf-8") as handle:
+        handle.writelines(json.dumps(command) + "\n" for command in commands)
+    return directory
+
+
+def own_state_run(base, tickets_, slip=None):
+    """A desk that handles every ticket as the oracle would on the state it has itself produced, except that `slip`
+    (ticket id, function) rewrites that ticket's commands and reply. Returns (commands, reply)."""
+    db = copy.deepcopy(base)
+    commands, answer = [], {}
+    for ticket in tickets_:
+        result = shift.handle(db, ticket)
+        mine, done, declined = result["commands"], result["done"], result["declined"]
+        if slip and slip[0] == ticket["id"]:
+            mine, done, declined = slip[1](db, ticket, result)
+        for command in mine:
+            shift_desk.apply(db, command[0], command[1:])
+        commands += mine
+        answer[ticket["id"]] = {"done": done, "declined": declined}
+    return commands, answer
+
+
+def shift_scenarios():
+    """Shifts: the oracle passes everything; an untouched shop and a reply alone pass what they should; a desk that
+    slips once, then handles every later ticket correctly on the state it produced, loses only the slipped ticket's
+    checks (attribution); and a desk that misreads one rule throughout loses checks."""
+    rows = []
+    for shift_id, record in grader.SHIFTS.items():
+        base, tickets_ = record["db"], record["tickets"]
+        names = set(grader.check_names(shift_id)) | {"answer-format"}
+        results, _ = shift.run(base, tickets_)
+        commands = [command for _, result in results for command in result["commands"]]
+        answer = {ticket["id"]: {"done": result["done"], "declined": result["declined"]} for ticket, (_, result) in zip(tickets_, results)}
+        rows.append((shift_id, "oracle-through-desk-py", commands, "cli", json.dumps(answer), names))
+        rows.append((shift_id, "untouched", [], None, None, {"answer-format"}))
+        # The oracle's reply alone, on a shop where nothing was done: a ticket's reply passes when it is also right for
+        # that untouched shop (a review or the goodwill limit may then not apply), and so does the no-other-changes
+        # check of a ticket that only declines. Nothing that needs carrying out passes.
+        work = {name.rsplit("-", 1)[0] for name in names if name.endswith(("-actions", "-makegood"))}
+        still = {ticket["id"].lower() for ticket in tickets_ if (lambda untouched: (untouched["done"], untouched["declined"]) ==
+                                                                 (answer[ticket["id"]]["done"], answer[ticket["id"]]["declined"]))(shift.handle(base, ticket))}
+        rows.append((shift_id, "reply-only", [], None, json.dumps(answer),
+                     {f"{prefix}-reply" for prefix in still} | {f"{prefix}-clean" for prefix in still if prefix not in work} | {"answer-format"}))
+        # Without begin markers the ticket boundaries are inferred from the orders the commands touch.
+        rows.append((shift_id, "oracle-without-begin", [command for command in commands if command[0] != "begin"], None, json.dumps(answer), names))
+        rows.append((shift_id, "oracle-recovered-reply", commands, None, "Shift done: " + json.dumps(answer) + " (end)", names - {"answer-format"}))
+        # One slip, then correct handling on the desk's own state: only the slipped ticket loses checks.
+        for ticket, (state, result) in zip(tickets_, results):
+            prefix = ticket["id"].lower()
+            if result["accepted"]:
+                def refund_all(db, ticket_, result_):
+                    entries = [{"order": report["order"], "sku": report["sku"], "qty": report["qty"], "option": "refund", "sent": None}
+                               for report in result_["accepted"]]
+                    kept = [command for command in result_["commands"] if command[0] != "make-good"]
+                    return kept + makegood.commands(entries), result_["done"], result_["declined"]
+                slipped, slipped_answer = own_state_run(base, tickets_, (ticket["id"], refund_all))
+                refunds = sum((makegood.unit_paid(state["orders"][report["order"]], shift.find_line(state["orders"][report["order"]], report["sku"])) * report["qty"]
+                               for report in result["accepted"]), Decimal("0"))
+                lost = set() if refunds <= result["cost"] + Decimal("0.005") else {f"{prefix}-cost-0"}
+                lost |= set() if refunds <= result["cost"] * Decimal("1.05") + Decimal("0.005") else {f"{prefix}-cost-5"}
+                rows.append((shift_id, f"refunds-everything-in-{ticket['id']}-only", slipped, None, json.dumps(slipped_answer), names - lost))
+
+                def drop_first(db, ticket_, result_):
+                    report = result_["accepted"][0]
+                    number = ticket_["requests"].index(report) + 1
+                    redone = shift.handle(db, {**ticket_, "requests": [request if request is not report else {**request, "kind": "skipped"}
+                                                                       for request in ticket_["requests"]]})
+                    done = [value for value in result_["done"] if value != number]
+                    return redone["commands"], done, sorted(result_["declined"] + [number])
+                slipped, slipped_answer = own_state_run(base, tickets_, (ticket["id"], drop_first))
+                # Every other ticket passes everything; the slipped ticket at least loses its reply.
+                others = {name for name in names if not name.startswith(prefix + "-")}
+                rows.append((shift_id, f"declines-an-accepted-report-in-{ticket['id']}-only", slipped, None, json.dumps(slipped_answer),
+                             lambda passed, others=others, prefix=prefix: others <= passed and f"{prefix}-reply" not in passed))
+                break
+        for mistake in shift.MISTAKES:
+            wrong, _ = shift.run(base, tickets_, (mistake,))
+            wrong_commands = [command for _, result in wrong for command in result["commands"]]
+            wrong_answer = {ticket["id"]: {"done": result["done"], "declined": result["declined"]} for ticket, (_, result) in zip(tickets_, wrong)}
+            rows.append((shift_id, f"misreads-{mistake}", wrong_commands, None, json.dumps(wrong_answer), None))
+    return rows
+
+
+def shift_brute_force(state, ticket, result, limit=8):
+    """The least make-good cost of a ticket by enumeration, with stock and today's shipments; None for large tickets."""
+    units = []
+    for report in result["accepted"]:
+        order = state["orders"][report["order"]]
+        place = (order["country"], order["address"].strip().lower())
+        units += [(place, shift.options(state, ticket, report, result["credit_ok"]))] * report["qty"]
+    if len(units) > limit:
+        return None
+    free = shift.shipped_today(state)
+    best = None
+    for choice in itertools.product(*[sorted(allowed, key=str) for _, allowed in units]):
+        stock, cost, places = {}, Decimal("0"), set()
+        for (place, allowed), option in zip(units, choice):
+            sent, unit_cost = allowed[option]
+            cost += unit_cost
+            if sent is not None:
+                stock[sent] = stock.get(sent, 0) + 1
+                places.add(place)
+        if any(count > state["products"][sku].get("stock", 0) for sku, count in stock.items()):
+            continue
+        cost += sum((Decimal(state["rates"][country]) for country, address in places if (country, address) not in free), Decimal("0"))
+        best = cost if best is None or cost < best else best
+    return best if best is not None else Decimal("0")
+
+
 def data_checks():
     """The starting data is consistent, and oracle.py derives every ticket's commands and lists as written by hand."""
     failures = []
@@ -162,6 +293,20 @@ def data_checks():
         brute = brute_force(ticket)
         if brute is not None and brute != best:
             failures.append(f"{ticket_id}: the min-cost flow gives {best}, enumeration {brute}")
+    for shift_id, record in grader.SHIFTS.items():
+        for order_id, order in record["db"]["orders"].items():
+            paid = sum(oracle.unit_paid(order, line) * line["qty"] for line in order["lines"]) + Decimal(order["shipping"])
+            if paid != Decimal(order["payments"]["card"]) + Decimal(order["payments"]["credit"]):
+                failures.append(f"{shift_id} {order_id}: payments do not add up to {paid}")
+        results, _ = shift.run(record["db"], record["tickets"])
+        for ticket, (state, result) in zip(record["tickets"], results):
+            brute = shift_brute_force(state, ticket, result) if result["accepted"] else None
+            if brute is not None and brute != result["cost"]:
+                failures.append(f"{shift_id} {ticket['id']}: the min-cost flow gives {result['cost']}, enumeration {brute}")
+        effects = shift.mistake_effects(record["db"], record["tickets"])
+        if effects != record["effects"] or not all(effects.values()):
+            failures.append(f"{shift_id}: misreading effects {effects} differ from the recorded {record['effects']} or miss one")
+        print(f"{shift_id}: misreadings change tickets " + ", ".join(f"{name} {', '.join(touched)}" for name, touched in effects.items()))
     return failures
 
 
@@ -207,6 +352,21 @@ def self_calibrate():
         good = passed == expected
         ok &= good
         print(f"{ticket_id} {name}: {integrity}, passes {sorted(passed)}" + ("" if good else f"  EXPECTED {sorted(expected)}"))
-    rows = len(scenarios())
+    shift_rows = shift_scenarios()
+    for shift_id, name, commands, mode, answer, expected in shift_rows:
+        directory = shift_workspace(shift_id, commands, cli=mode == "cli")
+        try:
+            results, integrity = grader.grade(shift_id, os.path.join(directory, "public"), answer)
+        finally:
+            shutil.rmtree(directory, ignore_errors=True)
+        passed = {check for check, value in results.items() if value is True}
+        content = [check for check in grader.check_names(shift_id)]
+        score = sum(1 for check in content if results.get(check) is True) / len(content)
+        # A misreading throughout the shift must cost something; the other scenarios pass exactly the expected checks.
+        good = score < 1 if expected is None else expected(passed) if callable(expected) else passed == expected
+        ok &= good
+        print(f"{shift_id} {name}: {integrity}, score {score:.3f}, fails {sorted(set(content) - passed)}"
+              + ("" if good else f"  EXPECTED {'a loss' if expected is None else 'the slip alone' if callable(expected) else sorted(expected)}"))
+    rows = len(scenarios()) + len(shift_rows)
     print(f"RESULT: {'PASS' if ok else 'FAIL'} ({rows} scenarios, data and oracle checks {'passed' if not failures else 'failed'})")
     return 0 if ok else 1

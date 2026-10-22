@@ -22,3 +22,31 @@ Twelve tickets, `os1`–`os4` (level S), `om1`–`om4` (M) and `ol1`–`ol4` (L)
 - **`reply`** (critical): the accepted reports as done, the others as declined.
 - **`cost-5`, `cost-1`, `cost-0`** (critical): the resolution's cost is within 5% and 1% of the least cost, and equal to it (within half a cent). They count only when every order is resolved and nothing else changed. The least cost comes from `private/makegood.py`: for every set of addresses that may receive a shipment, a min-cost flow assigns units to products in stock or to their cheaper money option.
 - **`answer-format`**, as above.
+
+## Shifts (task 0.4.0)
+
+Four items, `sh1`–`sh4`, are each a **shift**: eight tickets from six customers, handled in order in one workspace. Each shift has its own shop, a desk tool with dated make-goods, credits and shipments, and its own policy (`private/SHIFT_POLICY.md`). The policy keeps the 0.3.0 rules and adds four whose conditions must be derived and couple the tickets:
+
+- **recalls**: a notice covers a product's units on orders placed within its dates and delivered to one of its countries. Covered units are returned whatever the window and made good only by refund, and a recalled product is never sent;
+- **claims review**: when a customer already has three reports made good since 2026-07-22, the next report goes to `review`. Today's earlier tickets and this ticket's accepted reports count;
+- **goodwill limit**: no store credit in a ticket for a customer with 80.00 or more of compensation and make-good credit since 2026-09-20, today's included;
+- **consolidation**: an address that already received a shipment today costs no further carrier rate.
+
+The generator plants the couplings:
+
+- two households, whose members write in turn;
+- a customer whose first compensation crosses the goodwill limit and who writes again;
+- a customer one report short of review who writes twice;
+- a recall that covers one order and misses another order of the same product;
+- history entries on and just before the first counted day of each limit.
+
+**Each ticket is graded against the oracle run on the state the model's own commands had produced when the ticket began.** The tickets are separated by the `desk.py begin T<n>` markers, or, without any marker, by the orders each command touches. So one mistake is deducted in the ticket where it was made: a later ticket is right when it is right for the shop as the model left it.
+
+- **Integrity (gate)**: the delivered data equals a replay of the audit log through the shift's `desk.py`.
+- **`tN-reply`** (critical): the reply's entry for the ticket lists exactly the done and the declined requests.
+- **`tN-actions`** (critical, when the ticket has returns, compensations or reviews): exactly the oracle's, with a return split over several commands summed per line.
+- **`tN-makegood`** (critical, when the ticket accepts reports): every accepted unit made good with an option the policy and the customer allow in that state.
+- **`tN-cost-5`, `tN-cost-0`** (critical): the make-good's cost is within 5% of the least cost and equal to it, counted only when `tN-makegood` passes. The least cost counts free carriage to addresses already shipped to today.
+- **`tN-clean`** (critical): nothing beyond the ticket. It counts only when the ticket's work passes, or, for a ticket that only declines, when its reply does.
+
+A ticket that was never begun can pass only its reply. The **answer-format** check works as above, on the one JSON object for the whole shift.

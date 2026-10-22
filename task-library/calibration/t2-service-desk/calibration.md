@@ -107,3 +107,45 @@ The first 0.3.0 run (`runs/suites/20261021-124022-dev-1249`) found two grader de
 
 Self-calibration: 195 scenarios, including a closing block after another fenced block. All 36 trials of the run were regraded.
 
+
+## Version 0.4.0 (2026-10-22): shifts
+
+**Why.** In 0.3.0 (`runs/suites/20261021-124022-dev-1249`) deepseek-flash scored 95.2% and qwen3.8-flash 100%. A ticket of at most 15 units is small enough to optimise exactly, and every rule's conditions sat on the order being handled.
+
+**What changes.** The user decided (2026-10-22) that hardening should come from several chains that depend on one another, not from scale alone. So 0.4.0 adds rules whose conditions must be derived from other records, and which couple the tickets of a shift.
+
+**Items.** `sh1`–`sh4`, each one shift of eight tickets from six customers in one workspace (`private/shift.py`, `private/shift_desk.py`, `private/SHIFT_POLICY.md`; data in `private/shifts.json`). The policy adds recalls, a claims review, a goodwill limit and same-day consolidation of shipments (see the rubric).
+
+**Planted couplings.**
+
+- two households;
+- a customer whose first compensation crosses the goodwill limit and who writes again;
+- a customer one report short of review who writes twice;
+- a recall covering one order (a return past its window) and missing another order of the same product (placed after the notice's dates);
+- history entries on the first counted day of each limit and on the day before.
+
+**Selection.** Six misreadings are modelled:
+
+- today's reports or today's goodwill left out;
+- the first counted day read as excluded;
+- consolidation ignored;
+- recalls ignored;
+- every unit of a recalled product treated as covered.
+
+A shift is kept only when each misreading would fail some ticket's checks, judged on the true state before that ticket. At least four tickets must have make-goods, and the shift must mix reports, returns and compensations. The tickets each misreading changes are recorded in `shifts.json` and in the self-calibration log.
+
+**Grading** (grader 1.2.0): per ticket, against the oracle on the state when the ticket began, as the rubric describes.
+
+**Self-calibration** (`logs/self-calibration-0.4.0.log`), 247 scenarios, all as expected:
+
+- The data adds up. On every shift ticket with at most eight units, an enumeration of every option, with stock and today's shipments, reproduces the min-cost flow's optimum. The recorded misreading effects are reproduced.
+- The oracle's commands, run through the shift's `desk.py` itself, pass every check, and so do they without `begin` markers, the boundaries then being inferred.
+- An untouched shop scores 0. The oracle's reply alone scores 15–16%: the replies that are also right for an untouched shop, and the no-other-changes check of tickets that only decline.
+- **Attribution.** A desk that slips once, then handles every later ticket correctly on the state it produced, loses only the slipped ticket's checks:
+  - refunding everything costs that ticket's cost rungs;
+  - declining an accepted report costs its reply, make-good and cost rungs.
+
+  Later tickets stay right when the slip changes their correct handling, for instance when the review threshold is then not reached.
+- **Misreadings.** A desk that misreads one rule throughout loses the checks of the tickets the misreading touches, 5–22% of the shift.
+
+L1 tickets `t01`–`t12` and the optimisation tickets `os1`–`ol4` are unchanged.
