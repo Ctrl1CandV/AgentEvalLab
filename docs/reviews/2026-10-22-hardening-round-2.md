@@ -88,7 +88,7 @@ Policy section 11 lets each damaged or missing unit be made good four ways and r
 
 Shared stock, shared addresses and customer constraints couple the decisions. A min-cost flow over every set of shipping addresses gives the optimum, and enumeration agrees on the eight smaller tickets.
 
-**Result: deepseek 95.2%, qwen 100%, mimo 78.6%.** qwen and deepseek wrote small solvers and reached the optimum on 12 and 11 of 12 tickets. deepseek's one miss (`om2`, 7.3% above the optimum) gave credit where sending a unit from stock was cheaper. Every other deduction was a budget stop or mimo's own failure:
+**Result: deepseek 95.2%, qwen 100%, mimo 78.6%.** qwen and deepseek reached the optimum on 12 and 11 of 12 tickets. They worked most tickets out by reasoning, with tickets of at most 15 units; deepseek ran its own Python on 3 tickets and qwen on 5. deepseek's one miss (`om2`, 7.3% above the optimum) gave credit where sending a unit from stock was cheaper. Every other deduction was a budget stop or mimo's own failure:
 
 - planning without acting;
 - a repetition loop;
@@ -115,7 +115,7 @@ Grader 2.1.0 also fixes an attribution defect found by the suite's dry run. A nu
 The 2026-10-20 review found that more detail does not harden a family. This round shows that more depth or scale does not either, while the brief stays well specified:
 
 - **T1:** reference chains eight deep with a distractor at every step.
-- **T2:** an exactly specified optimisation with a computable optimum. The models write the solver.
+- **T2:** an exactly specified optimisation with a computable optimum, small enough to work out by hand. The models do, with a script for some tickets.
 - **E3:** a scale requirement with a stated reference. The models write the scalable code.
 
 deepseek and qwen carry these out at 95–100%. What spreads them is still:

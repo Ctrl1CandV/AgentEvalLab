@@ -41,4 +41,4 @@ Every remaining deduction was audited and is the model's own:
 - deepseek and mimo stopped at the token budget on `ol4` after making every unit good at the optimum, so they gave no reply.
 - mimo planned `os4` without running a command, looped one sentence on `os2` until a response passed 524,288 characters, and stopped at the budget on `om4`, 4.5% above the optimum.
 
-qwen and deepseek wrote small solvers for most tickets. **Optimisation at this size did not harden T2 for them.**
+qwen and deepseek worked most tickets out by reasoning; deepseek ran its own Python on 3 tickets and qwen on 5. **Optimisation at this size did not harden T2 for them.**
