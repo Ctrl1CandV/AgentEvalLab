@@ -342,11 +342,16 @@ export class SuiteRunner {
     }
     const records = await loadRecordedTrials(directory);
     if (!records.length) return { ok: false, detail: "no trial recorded" };
+    // The format check earns nothing by itself, and a task may pass it when there is no reply at all (so that a missing
+    // reply is not deducted twice); only content checks count against the null agent.
+    const packagePath = plan.cases[0]?.packagePath;
+    const manifest = packagePath ? await readJson<{ scoring?: { formatCheckId?: string } }>(join(this.state.worktree, packagePath, "manifest.json")).catch(() => null) : null;
+    const formatCheckId = manifest?.scoring?.formatCheckId;
     for (const record of records) {
       if (record.evaluation.status !== "passed" && record.evaluation.status !== "failed") {
         return { ok: false, detail: `trial ${record.id} was not graded (${record.evaluation.status}${record.evaluation.error ? `: ${record.evaluation.error}` : ""})` };
       }
-      const passing = record.evaluation.checks.filter(check => check.passed === true).map(check => check.id);
+      const passing = record.evaluation.checks.filter(check => check.passed === true && check.id !== formatCheckId).map(check => check.id);
       if ((record.evaluation.score ?? 0) > maxScore || (maxScore === 0 && passing.length)) {
         return { ok: false, detail: `the null agent earns ${record.evaluation.score}; passing checks: ${passing.join(", ") || "none"}` };
       }
