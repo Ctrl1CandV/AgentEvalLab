@@ -89,18 +89,27 @@ export function trialUnit(familyId: string, runDirectory: string, record: TrialR
 
 /** Every check a trajectory is scored on: the checks of the requirements active in its final stage. */
 export async function trajectoryCheckIds(root: string, packagePath: string): Promise<string[]> {
+  return (await trajectoryChecks(root, packagePath)).checkIds;
+}
+
+/** The final stage's check ids and the manifest's check weights (unlisted checks weigh 1). */
+export async function trajectoryChecks(root: string, packagePath: string): Promise<{ checkIds: string[]; weights: Record<string, number> }> {
   const manifest = JSON.parse(await readFile(resolve(root, packagePath, "manifest.json"), "utf8")) as {
     requirements: Array<{ id: string; checkIds: string[] }>; stages: Array<{ activeRequirementIds: string[] }>;
+    scoring?: { weights?: Record<string, number> };
   };
   const final = new Set(manifest.stages.at(-1)!.activeRequirementIds);
-  return manifest.requirements.filter(requirement => final.has(requirement.id)).flatMap(requirement => requirement.checkIds);
+  return { checkIds: manifest.requirements.filter(requirement => final.has(requirement.id)).flatMap(requirement => requirement.checkIds),
+    weights: manifest.scoring?.weights ?? {} };
 }
 
 /**
- * A trajectory scores the share of its final-stage checks that pass in its last graded snapshot; checks of stages it
- * did not reach count as failed, so the score rewards progress and keeping earlier stages working (E3 README).
+ * A trajectory scores the weighted share of its final-stage checks that pass in its last graded snapshot; checks of
+ * stages it did not reach count as failed, so the score rewards progress and keeping earlier stages working (E3
+ * README). Weights come from the manifest's scoring (eng-005 0.5.0 weighs its ladders as much as its correctness).
  */
-export function trajectoryUnit(familyId: string, runDirectory: string, record: TrajectoryRecord, checkIds: string[]): FamilyUnit {
+export function trajectoryUnit(familyId: string, runDirectory: string, record: TrajectoryRecord, checkIds: string[],
+  weights: Record<string, number> = {}): FamilyUnit {
   const grades = record.stages.flatMap(stage => stage.cycles.map(cycle => cycle.privateGrade))
     .filter(grade => grade && (grade.status === "passed" || grade.status === "failed"));
   const last = grades.at(-1);
@@ -108,7 +117,9 @@ export function trajectoryUnit(familyId: string, runDirectory: string, record: T
   const execution = record.aggregateExecution;
   const infrastructure = execution.failureKind === "infrastructure";
   // A trajectory stopped by the provider before any snapshot was graded says nothing about the model.
-  const score = infrastructure && !last ? null : checkIds.filter(id => passing.has(id)).length / checkIds.length;
+  const weight = (id: string) => weights[id] ?? 1;
+  const total = checkIds.reduce((sum, id) => sum + weight(id), 0);
+  const score = infrastructure && !last ? null : checkIds.filter(id => passing.has(id)).reduce((sum, id) => sum + weight(id), 0) / total;
   return {
     familyId, model: modelKey(record.model), label: modelLabel(record.model), runDirectory, trialId: record.id, itemId: null,
     level: record.stages.filter(stage => stage.cycles.some(cycle => cycle.privateGrade)).at(-1)?.stageId ?? null,
@@ -134,12 +145,12 @@ export async function loadSingleRun(family: FamilySpec, runDirectory: string, sc
   };
 }
 
-export async function loadTrajectoryRun(family: FamilySpec, runDirectory: string, checkIds: string[]): Promise<RunContents> {
+export async function loadTrajectoryRun(family: FamilySpec, runDirectory: string, checkIds: string[], weights: Record<string, number> = {}): Promise<RunContents> {
   const report = JSON.parse(await readFile(join(runDirectory, "report.json"), "utf8")) as {
     records: TrajectoryRecord[]; batch?: { notRun?: NotRunEntry[]; providerStops?: Record<string, string> };
   };
   return {
-    units: report.records.map(record => trajectoryUnit(family.id, runDirectory, record, checkIds)),
+    units: report.records.map(record => trajectoryUnit(family.id, runDirectory, record, checkIds, weights)),
     notRun: (report.batch?.notRun ?? []).map(entry => ({ ...entry, familyId: family.id, runDirectory })),
     providerStops: report.batch?.providerStops ?? {},
   };

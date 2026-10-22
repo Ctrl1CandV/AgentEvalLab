@@ -1,5 +1,6 @@
 import { AppError, invalid } from "./errors.ts";
 import { addDependency, createOrder, exportOrders, listOrders, showOrder, updateOrder } from "./service.ts";
+import { planOrders } from "./plan.ts";
 import type { WorkOrderStatus } from "./types.ts";
 
 type Handler = (args: string[]) => Promise<unknown>;
@@ -54,6 +55,11 @@ commands.set("update", async args => {
 commands.set("depends", async args => {
   if (args.length !== 3 || args[0] !== "add" || !args[1] || !args[2]) invalid("Usage: depends add <ID> <PREREQUISITE-ID>.");
   return addDependency(args[1]!, args[2]!);
+});
+commands.set("plan", async args => {
+  const values = options(args, ["--crews"]);
+  if (!values.has("--crews")) invalid("plan needs --crews N.");
+  return planOrders(positive(values.get("--crews"), 1, 50));
 });
 commands.set("export", async args => {
   if (args.length > 1 || (args[0] !== undefined && args[0] !== "json")) invalid("Only JSON export is supported.");

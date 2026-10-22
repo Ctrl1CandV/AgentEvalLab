@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "eng-005-long-cycle-maintenance",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "familyId": "eng-workflow-evolution",
   "capability": "engineering",
   "usage": "development",
@@ -23,7 +23,7 @@
     "public": [
       {
         "path": "instruction.md",
-        "sha256": "a31f3a99a8bb65976a533c9eca87e18fbfbcd5907f9a38aa4a3b982f955c2fc0"
+        "sha256": "e66a20bb2b68696774fe6b351f585630e2e7154463ed88970a51fcee02621c37"
       },
       {
         "path": "public/project-brief.md",
@@ -37,7 +37,15 @@
       },
       {
         "path": "private/grader.py",
-        "sha256": "1eed9ed0cb63487a6cfb551575bc9ae92e0d9bee75a54190b7eff90bd4cb3978"
+        "sha256": "536c4086aa2d2a6ab2c6c5c6171553ae67a9a243e992400823f73bab74afda58"
+      },
+      {
+        "path": "private/plan-best.json",
+        "sha256": "337640bd9d68a3e4b733110b5edcd517798e820e79ce8bcd23cdfe9c3d5745f8"
+      },
+      {
+        "path": "private/plan.py",
+        "sha256": "fd91a479488fef546ef7cc61e0c5fb0301cd99d5facb29f4ea67774d6d3e9d60"
       },
       {
         "path": "private/scale-reference/package.json",
@@ -184,8 +192,48 @@
         "scale.speed-1.1",
         "scale.speed-0.75"
       ]
+    },
+    {
+      "id": "PLAN",
+      "critical": true,
+      "introducedAt": "PLAN",
+      "checkIds": [
+        "plan.valid-small",
+        "plan.valid-large",
+        "plan.valid-scale",
+        "plan.read-only",
+        "plan.errors",
+        "plan.fields-preserved"
+      ]
+    },
+    {
+      "id": "PLAN_QUALITY",
+      "critical": false,
+      "introducedAt": "PLAN_QUALITY",
+      "checkIds": [
+        "plan.quality-25",
+        "plan.quality-50",
+        "plan.quality-65",
+        "plan.quality-80",
+        "plan.quality-90",
+        "plan.quality-97"
+      ]
     }
   ],
+  "scoring": {
+    "weights": {
+      "scale.speed-3": 5,
+      "scale.speed-1.5": 5,
+      "scale.speed-1.1": 5,
+      "scale.speed-0.75": 5,
+      "plan.quality-25": 5,
+      "plan.quality-50": 5,
+      "plan.quality-65": 5,
+      "plan.quality-80": 5,
+      "plan.quality-90": 5,
+      "plan.quality-97": 5
+    }
+  },
   "stages": [
     {
       "id": "S1",
@@ -436,6 +484,59 @@
           "public-s6"
         ]
       }
+    },
+    {
+      "id": "S7",
+      "instruction": "stages/S7/instruction.md",
+      "files": [
+        {
+          "path": "stages/S7/instruction.md",
+          "sha256": "a6a7b5ae73ebc8ff1947146156edaa77513236d80bc15d53ffe71670ba77e527"
+        },
+        {
+          "path": "stages/S7/public/checker.py",
+          "sha256": "579d76777a21c6bb4cb36957a862e5555523f6654f82eb41cb83667936a57996"
+        },
+        {
+          "path": "stages/S7/public/make_plan_store.py",
+          "sha256": "665797feecfe5aef969f8568fea2b862669c70c2c585a7ea0fe64a8491f676d6"
+        },
+        {
+          "path": "stages/S7/public/plan_tools.py",
+          "sha256": "a9d1c5e92b8df493cc066f13d79d7e5aa222e18a888688f8534485114bd99b66"
+        }
+      ],
+      "activeRequirementIds": [
+        "BASE_CLI",
+        "BASE_DATA",
+        "QUERY",
+        "DEPENDENCY",
+        "NO_MUTATION",
+        "MIGRATION",
+        "ERRORS_DOCS",
+        "SCALE",
+        "SCALE_SPEED",
+        "PLAN",
+        "PLAN_QUALITY"
+      ],
+      "publicChecker": {
+        "entryPoint": "stages/S7/public/checker.py",
+        "executable": "python3",
+        "args": [
+          "{entryPoint}",
+          "--submission",
+          "{submission}",
+          "--stage",
+          "S7",
+          "--sandbox-launcher",
+          "{sandbox}"
+        ],
+        "timeoutMs": 90000,
+        "maxOutputBytes": 100000,
+        "checkIds": [
+          "public-s7"
+        ]
+      }
     }
   ],
   "toolProfiles": [
@@ -444,7 +545,7 @@
   ],
   "grader": {
     "id": "eng005-checkpoint-grader",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

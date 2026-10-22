@@ -1,5 +1,6 @@
 import { AppError, invalid } from "./errors.ts";
 import { addDependency, createOrder, exportOrders, listOrders, showOrder, updateOrder } from "./service.ts";
+import { planOrders } from "./plan.ts";
 import type { WorkOrderStatus } from "./types.ts";
 
 function options(args: string[], allowed: string[]): Map<string, string> {
@@ -54,6 +55,12 @@ async function main(args: string[]): Promise<void> {
   }
   if (command === "depends" && rest[0] === "add" && rest[1] && rest[2] && rest.length === 3) {
     console.log(JSON.stringify(await addDependency(rest[1], rest[2])));
+    return;
+  }
+  if (command === "plan") {
+    const parsed = options(rest, ["--crews"]);
+    if (!parsed.has("--crews")) invalid("plan needs --crews N.");
+    console.log(JSON.stringify(await planOrders(positiveInteger(parsed.get("--crews"), 1, 50))));
     return;
   }
   if (command === "export" && (rest[0] === "json" || rest[0] === undefined)) {

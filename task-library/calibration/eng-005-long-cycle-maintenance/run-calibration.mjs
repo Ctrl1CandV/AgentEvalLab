@@ -58,8 +58,9 @@ async function privateGrade(submission, stageId, cycleId = "cycle-1", mustPass =
     const result = JSON.parse(await readFile(resultPath, "utf8"));
     const expected = manifest.requirements.filter(item => stage.activeRequirementIds.includes(item.id)).flatMap(item => item.checkIds).sort();
     const actual = result.checks.map(item => item.id).sort();
-    // The references are the speed bar, so the fastest rungs depend on timing noise: they are recorded, not required.
-    const required = result.checks.filter(item => !TIMING_RUNGS.includes(item.id));
+    // The references are the speed bar, so the fastest rungs depend on timing noise; the plan quality rungs rank plans
+    // above the references'. Both are recorded, not required.
+    const required = result.checks.filter(item => !TIMING_RUNGS.includes(item.id) && !item.id.startsWith("plan.quality-"));
     if (result.requestId !== requestId || result.taskVersion !== manifest.version || result.graderVersion !== manifest.grader.version ||
         result.gradingStatus !== "completed" || JSON.stringify(actual) !== JSON.stringify(expected) ||
         (mustPass && required.some(item => item.status !== "pass"))) {
@@ -209,6 +210,32 @@ try {
   }
   scaleResults["linear-lookups"] = { passed: linearPassed };
   report.mutants.scale = scaleResults;
+
+  // S7 (0.5.0): plans that break a rule fail its validity check; a plan that writes the store fails read-only; ranking
+  // by id instead of priority per hour falls below the greedy plan's place.
+  const planSource = await readFile(join(refA, "src/plan.ts"), "utf8");
+  const planMutants = {
+    "plan-ignores-dependencies": [planSource.replace('before: (order.dependsOn ?? []).filter(id => status.get(id) !== "DONE") });', "before: [] });"),
+      grade => grade.some(([id, status]) => id === "plan.valid-small" && status === "fail") && grade.some(([id, status]) => id === "plan.valid-large" && status === "fail")],
+    "plan-writes-store": [planSource.replace("  const store = await readStore();\n  const jobs = jobsOf(store.workOrders);",
+      "  const store = await readStore();\n  await (await import(\"node:fs/promises\")).writeFile((await import(\"./store.ts\")).STORE_PATH, JSON.stringify(store));\n  const jobs = jobsOf(store.workOrders);"),
+      grade => grade.some(([id, status]) => id === "plan.read-only" && status === "fail")],
+    "plan-ranks-by-id": [planSource.replace("const ratio = (id: string) => jobs.get(id)!.priority / jobs.get(id)!.hours;", "const ratio = (_id: string) => 0;"),
+      grade => grade.some(([id, status]) => id === "plan.quality-50" && status === "fail") && grade.every(([id, status]) => !id.startsWith("plan.valid") || status === "pass")],
+    "plan-done-prerequisites-block": [planSource.replace('before: (order.dependsOn ?? []).filter(id => status.get(id) !== "DONE") });', "before: order.dependsOn ?? [] });"),
+      grade => grade.some(([id, status]) => id.startsWith("plan.valid") && status === "fail")],
+  };
+  const planResults = {};
+  for (const [name, [source, expected]] of Object.entries(planMutants)) {
+    if (source === planSource) throw new Error(`MUTANT_ANCHOR_NOT_FOUND:${name}`);
+    const mutant = join(scratch, name);
+    await cp(refA, mutant, { recursive: true });
+    await writeFile(join(mutant, "src/plan.ts"), source, "utf8");
+    const grade = await privateGrade(mutant, "S7", "cycle-1", false);
+    if (!expected(grade)) throw new Error(`PLAN_MUTANT_NOT_DETECTED:${name}:${JSON.stringify(grade.filter(([id]) => id.startsWith("plan.")))}`);
+    planResults[name] = { failed: grade.filter(([id, status]) => id.startsWith("plan.") && status === "fail").map(([id]) => id) };
+  }
+  report.mutants.plan = planResults;
 
   const timeoutCandidate = join(scratch, "candidate-timeout");
   await cp(refA, timeoutCandidate, { recursive: true });

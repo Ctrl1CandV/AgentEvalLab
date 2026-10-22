@@ -1,6 +1,6 @@
 # Work Order CLI Long-Cycle Maintenance Task
 
-You will handle six fixed maintenance requests in sequence. At the end of each stage, a public checker evaluates that stage's behavior. If it reports public failures, you receive one feedback message and one repair opportunity. A stage failure does not automatically stop later requests. All stages share one working directory and conversation history.
+You will handle seven fixed maintenance requests in sequence. At the end of each stage, a public checker evaluates that stage's behavior. If it reports public failures, you receive one feedback message and one repair opportunity. A stage failure does not automatically stop later requests. All stages share one working directory and conversation history.
 
 Treat only the currently provided stage brief as the active request. Preserve baseline data, existing CLI commands, and behavior established earlier. Do not modify checkers, acceptance scripts, or fixed data to satisfy checks; independent scoring happens after your session ends.
 

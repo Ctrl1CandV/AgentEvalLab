@@ -1,0 +1,27 @@
+{
+ "chains": {
+  "cost": 5999,
+  "method": "exact",
+  "seconds": 0.0
+ },
+ "general": {
+  "cost": 106750,
+  "method": "best of the greedy plan, a successor-aware ranking and 1800 s of local search",
+  "seconds": 1800.2
+ },
+ "large": {
+  "cost": 5531667,
+  "method": "best of the greedy plan, a successor-aware ranking and 1800 s of local search",
+  "seconds": 1800.1
+ },
+ "small": {
+  "cost": 295,
+  "method": "exact",
+  "seconds": 1.0
+ },
+ "tiny": {
+  "cost": 354,
+  "method": "exact",
+  "seconds": 0.1
+ }
+}

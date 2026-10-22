@@ -21,7 +21,7 @@ const list = async directory => {
   return results.sort();
 };
 const files = async paths => Promise.all(paths.sort().map(async path => ({ path, sha256: await sha256(path) })));
-const stageIds = ["S1", "S2", "S3", "S4", "S5", "S6"];
+const stageIds = ["S1", "S2", "S3", "S4", "S5", "S6", "S7"];
 const previousRequirements = [];
 const stageRequirements = {
   S1: ["BASE_CLI", "BASE_DATA", "QUERY"],
@@ -30,6 +30,7 @@ const stageRequirements = {
   S4: ["BASE_CLI", "BASE_DATA", "QUERY", "DEPENDENCY", "NO_MUTATION", "MIGRATION"],
   S5: ["BASE_CLI", "BASE_DATA", "QUERY", "DEPENDENCY", "NO_MUTATION", "MIGRATION", "ERRORS_DOCS"],
   S6: ["BASE_CLI", "BASE_DATA", "QUERY", "DEPENDENCY", "NO_MUTATION", "MIGRATION", "ERRORS_DOCS", "SCALE", "SCALE_SPEED"],
+  S7: ["BASE_CLI", "BASE_DATA", "QUERY", "DEPENDENCY", "NO_MUTATION", "MIGRATION", "ERRORS_DOCS", "SCALE", "SCALE_SPEED", "PLAN", "PLAN_QUALITY"],
 };
 const requirementChecks = {
   BASE_CLI: ["base.read", "base.create", "base.update", "base.export"],
@@ -44,9 +45,14 @@ const requirementChecks = {
   ERRORS_DOCS: ["errors.protocol", "errors.codes", "docs.usage", "errors.codes-all", "errors.store-invalid", "errors.clean-output"],
   SCALE: ["scale.list", "scale.dependencies", "scale.status"],
   SCALE_SPEED: ["scale.speed-3", "scale.speed-1.5", "scale.speed-1.1", "scale.speed-0.75"],
+  PLAN: ["plan.valid-small", "plan.valid-large", "plan.valid-scale", "plan.read-only", "plan.errors", "plan.fields-preserved"],
+  PLAN_QUALITY: ["plan.quality-25", "plan.quality-50", "plan.quality-65", "plan.quality-80", "plan.quality-90", "plan.quality-97"],
 };
+// The ladders rank deliveries on open-ended goals; everything else is correctness that a careful delivery passes.
+const ladders = ["SCALE_SPEED", "PLAN_QUALITY"];
 const allPublic = ["instruction.md", "public/project-brief.md"];
-const allTrusted = ["private/grader.py", "private/base-fixture.json", "private/v1-fixture.json", "private/scale.py",
+const allTrusted = ["private/grader.py", "private/base-fixture.json", "private/v1-fixture.json", "private/scale.py", "private/plan.py",
+  "private/plan-best.json",
   ...(await list("private/scale-reference"))];
 const stages = [];
 for (const id of stageIds) {
@@ -61,8 +67,8 @@ for (const id of stageIds) {
       entryPoint: `${stageRoot}/public/checker.py`,
       executable: "python3",
       args: ["{entryPoint}", "--submission", "{submission}", "--stage", id, "--sandbox-launcher", "{sandbox}"],
-      // S6's checker writes a 100,000-order store and runs four commands of up to 10 seconds each.
-      timeoutMs: id === "S6" ? 120_000 : 25_000,
+      // S6's checker writes a 100,000-order store and runs four commands of up to 10 seconds each; S7's runs seven.
+      timeoutMs: id === "S6" ? 120_000 : id === "S7" ? 90_000 : 25_000,
       maxOutputBytes: 100_000,
       checkIds: [`public-${id.toLowerCase()}`],
     },
@@ -72,7 +78,7 @@ const baselineCommit = execFileSync("git", ["rev-parse", "HEAD"], { cwd: join(ro
 const manifest = {
   schemaVersion: 1,
   id: "eng-005-long-cycle-maintenance",
-  version: "0.4.0",
+  version: "0.5.0",
   familyId: "eng-workflow-evolution",
   capability: "engineering",
   usage: "development",
@@ -80,11 +86,16 @@ const manifest = {
   license: { taskText: "Original task specification and materials authored by this project; free to use and adapt.", thirdPartyContent: [] },
   entryPoint: { instruction: "instruction.md" },
   files: { public: await files(allPublic), trusted: await files(allTrusted) },
-  // The speed rungs rank deliveries against the reference; correctness at scale is what S6 accepts.
-  requirements: Object.entries(requirementChecks).map(([id, checkIds]) => ({ id, critical: id !== "SCALE_SPEED", introducedAt: id, checkIds })),
+  // The ladders rank deliveries; correctness is what each stage accepts.
+  requirements: Object.entries(requirementChecks).map(([id, checkIds]) => ({ id, critical: !ladders.includes(id), introducedAt: id, checkIds })),
+  // The final score is half correctness and half the ladders (user decision, 2026-10-22): each ladder rung weighs as
+  // much as the correctness checks divided by the rungs.
+  scoring: { weights: Object.fromEntries(ladders.flatMap(id => requirementChecks[id]).map(check => [check,
+    Object.entries(requirementChecks).filter(([id]) => !ladders.includes(id)).flatMap(([, ids]) => ids).length /
+    ladders.flatMap(id => requirementChecks[id]).length])) },
   stages,
   toolProfiles: ["workspace-basic", "workspace-augmented"],
-  grader: { id: "eng005-checkpoint-grader", version: "2.1.0", entryPoint: "private/grader.py", executable: "python3",
+  grader: { id: "eng005-checkpoint-grader", version: "2.2.0", entryPoint: "private/grader.py", executable: "python3",
     args: ["{entryPoint}", "--request", "{request}", "--result", "{result}"] },
   environment: { runtime: "Node.js 22.x + Python 3.x", dependencies: "Node built-ins and Python standard library; no network", network: false,
     runtimeCheck: { executable: "node", args: ["--version"], expectedSubstring: "v22." } },

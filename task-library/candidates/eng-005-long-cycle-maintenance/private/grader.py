@@ -9,6 +9,10 @@ read-only commands and event details after migration, and every listed error cod
 Version 2.1.0 (task 0.4.0) adds S6, scale (private/scale.py), and makes the untouched baseline earn nothing: the base
 and seed checks guard against regressions, so they count only when some check of a stage's own requirement passes,
 and the checks that a command is rejected also need the command to work where it should.
+
+Version 2.2.0 (task 0.5.0) adds S7, planning (private/plan.py): valid plans on five hidden stores and the S6 scale
+store, read-only planning, error codes, the new fields kept by earlier commands, and a quality ladder on the mean
+place of the plans between the naive plan (0), the greedy plan (0.5) and the best plan known (1).
 """
 import os
 import time
@@ -35,7 +39,11 @@ CHECKS = {
     "SCALE": ["scale.list", "scale.dependencies", "scale.status"],
     # The speed rungs are a ladder against the reference, not acceptance, so their requirement is not critical.
     "SCALE_SPEED": ["scale.speed-3", "scale.speed-1.5", "scale.speed-1.1", "scale.speed-0.75"],
+    "PLAN": ["plan.valid-small", "plan.valid-large", "plan.valid-scale", "plan.read-only", "plan.errors", "plan.fields-preserved"],
+    # The quality rungs place plans between the naive, the greedy and the best known plan; like the speed rungs, a ladder.
+    "PLAN_QUALITY": ["plan.quality-25", "plan.quality-50", "plan.quality-65", "plan.quality-80", "plan.quality-90", "plan.quality-97"],
 }
+PLAN_SECONDS = 10
 GUARDS = {"BASE_CLI", "BASE_DATA"}
 SCALE_SEED = "eng005-scale-hidden"
 SPEED_LADDER = (("3", 3.0), ("1.5", 1.5), ("1.1", 1.1), ("0.75", 0.75))
@@ -433,6 +441,83 @@ def scale_checks(temp: Path, submission: Path) -> dict[str, bool]:
     return checks
 
 
+def plan_checks(temp: Path, submission: Path) -> dict[str, bool]:
+    """S7: plans on the hidden stores and the scale store, validated and placed on the quality scale; read-only planning;
+    error codes; and hours and priority kept by earlier commands."""
+    import plan as planning
+    import scale
+    names = CHECKS["PLAN"] + CHECKS["PLAN_QUALITY"]
+    if not (submission / "src" / "cli.ts").exists():
+        return {name: False for name in names}
+    cpus = sorted(os.sched_getaffinity(0))
+    os.sched_setaffinity(0, {cpus[os.getpid() % len(cpus)]})
+    anchors = planning.anchors()
+
+    def planned(name: str, value: dict, crews: int):
+        root = clone(submission, temp / f"plan-{name}")
+        path = root / "data" / "work-orders.json"
+        path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        before = path.read_bytes()
+        result = invoke(root, ["plan", "--crews", str(crews)], timeout=PLAN_SECONDS)
+        cost, reason = planning.check(value, crews, result.stdout) if result.returncode == 0 else (None, f"exit {result.returncode}")
+        return cost, reason, path.read_bytes() == before
+
+    valid, unchanged, places, report = {}, [], {}, {}
+    for name, anchor in anchors.items():
+        cost, reason, same = planned(name, planning.store(name), anchor["crews"])
+        valid[name], places[name] = cost is not None, planning.place(cost, anchor)
+        unchanged.append(same)
+        report[name] = {"cost": cost, "reason": reason, "place": round(places[name], 4), **{key: anchor[key] for key in ("naive", "greedy", "best")}}
+    scale_value = scale.store(SCALE_SEED)
+    scale_cost, scale_reason, scale_same = planned("scale", scale_value, 8)
+    report["scale"] = {"cost": scale_cost, "reason": scale_reason}
+    unchanged.append(scale_same)
+    mean = sum(places.values()) / len(places)
+    checks = {"plan.valid-small": all(valid[name] for name in ("tiny", "small", "chains")),
+              "plan.valid-large": all(valid[name] for name in ("general", "large")),
+              "plan.valid-scale": scale_cost is not None}
+    # Read-only: no plan wrote its store, and a version 1 store is not migrated by planning.
+    v1 = clone(submission, temp / "plan-v1")
+    v1_path = v1 / "data" / "work-orders.json"
+    v1_store = json.loads((Path(__file__).parent / "v1-fixture.json").read_text(encoding="utf-8"))
+    v1_path.write_text(json.dumps(v1_store, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    v1_before = v1_path.read_bytes()
+    v1_plan = invoke(v1, ["plan", "--crews", "2"], timeout=PLAN_SECONDS)
+    checks["plan.read-only"] = all(unchanged) and v1_plan.returncode == 0 and v1_path.read_bytes() == v1_before and any(valid.values())
+    # Errors: bad crews and options; invalid hours or priority in the store.
+    errors = clone(submission, temp / "plan-errors")
+    codes = [error_payload(invoke(errors, args)) == "INVALID_ARGUMENT"
+             for args in (["plan"], ["plan", "--crews", "0"], ["plan", "--crews", "51"], ["plan", "--crews", "two"], ["plan", "--crews", "2", "--fast", "1"])]
+    for field, value in (("hours", 0), ("hours", "3"), ("priority", 6), ("priority", 2.5)):
+        broken = clone(submission, temp / f"plan-invalid-{field}-{value}")
+        store_value = json.loads((Path(__file__).parent / "base-fixture.json").read_text(encoding="utf-8"))
+        store_value["workOrders"][0][field] = value
+        (broken / "data" / "work-orders.json").write_text(json.dumps(store_value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        codes.append(error_payload(invoke(broken, ["plan", "--crews", "2"])) == "STORE_INVALID")
+    checks["plan.errors"] = all(codes) and any(valid.values())
+    # Earlier commands keep hours and priority; create sets neither.
+    kept = clone(submission, temp / "plan-fields")
+    kept_path = kept / "data" / "work-orders.json"
+    store_value = json.loads(kept_path.read_text(encoding="utf-8"))
+    for index, order in enumerate(store_value["workOrders"]):
+        order["hours"], order["priority"] = index + 2, 5 - index % 5
+    kept_path.write_text(json.dumps(store_value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    steps = [invoke(kept, args).returncode == 0 for args in (["update", "WO-101", "--title", "Kept fields"], ["depends", "add", "WO-103", "WO-104"],
+                                                              ["update", "WO-102", "--description", "Still kept"], ["create", "PLAN-NEW", "No fields"])]
+    try:
+        after = {order["id"]: order for order in load_store(kept)["workOrders"]}
+        fields_kept = all(after[order["id"]].get("hours") == order["hours"] and after[order["id"]].get("priority") == order["priority"]
+                          for order in store_value["workOrders"])
+        checks["plan.fields-preserved"] = all(steps) and fields_kept and "hours" not in after["PLAN-NEW"] and "priority" not in after["PLAN-NEW"] \
+            and any(valid.values())
+    except (OSError, json.JSONDecodeError, KeyError, TypeError):
+        checks["plan.fields-preserved"] = False
+    for label, threshold in planning.RUNGS:
+        checks[f"plan.quality-{label}"] = mean >= threshold - 1e-9
+    print(json.dumps({"plan": {"mean": round(mean, 4), "stores": report}}), file=sys.stderr)
+    return checks
+
+
 def data_preservation_check(submission: Path, fixture: dict) -> bool:
     try:
         state = load_store(submission)
@@ -489,6 +574,8 @@ def main() -> None:
                 outcomes.update(errors_hidden_checks(hidden, submission))
             elif group == "SCALE":
                 outcomes.update(scale_checks(temp_path / "scale", submission))
+            elif group == "PLAN":
+                outcomes.update(plan_checks(temp_path / "plan", submission))
     # The base and seed checks guard against regressions: an untouched project passes them, so they count only when
     # some check of a stage's own requirement passes.
     if not any(outcomes.get(check, False) for requirement in active if requirement not in GUARDS for check in CHECKS.get(requirement, [])):
@@ -498,7 +585,7 @@ def main() -> None:
     checks = [{"id": check_id, "requirementId": ALL_CHECKS[check_id], "status": "pass" if outcomes.get(check_id, False) else "fail", "evidenceRefs": []}
               for check_id in selected]
     result = {"schemaVersion": 1, "requestId": request["requestId"], "taskId": request["task"]["id"],
-              "taskVersion": request["task"]["version"], "graderVersion": "2.1.0", "gradingStatus": "completed",
+              "taskVersion": request["task"]["version"], "graderVersion": "2.2.0", "gradingStatus": "completed",
               "checks": checks, "dimensions": [], "unscoredCheckIds": [], "reason": None, "error": None}
     args.result.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 

@@ -86,11 +86,11 @@
     {
       "id": "T2",
       "kind": "single",
-      "template": "experiments/t2-calibration-2026-10/shift-dev.eval.json",
+      "template": "experiments/t2-finance-2026-10/dev.eval.json",
       "score": {
         "items": [
-          "sh1",
-          "sh2"
+          "fn1",
+          "fn2"
         ]
       }
     },

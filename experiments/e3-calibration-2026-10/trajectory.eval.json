@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "name": "e3-calibration-2026-10-s6",
+  "name": "e3-calibration-2026-10-s7",
   "models": [
     {
       "provider": "supergpt",
@@ -61,14 +61,14 @@
     "publicRepairMax": 1
   },
   "budget": {
-    "timeoutMs": 18000000,
+    "timeoutMs": 21600000,
     "maxTurns": 400,
     "maxModelCalls": 400,
     "maxToolCalls": 1000,
     "maxOutputTokensPerCall": 131072,
     "maxOutputChars": 524288,
     "maxToolResultChars": 100000,
-    "maxTrialTokens": 8000000
+    "maxTrialTokens": 11000000
   },
   "artifactLimits": {
     "maxFiles": 500,
@@ -80,7 +80,7 @@
   "batch": {
     "maxRetries": 2,
     "maxConsecutiveInfrastructureFailures": 3,
-    "maxTotalTokensPerModel": 8000000
+    "maxTotalTokensPerModel": 11000000
   },
   "trustedLocalExecution": true,
   "cases": [
@@ -91,7 +91,7 @@
         "commit": "679119874c31d2cff12cc48f57c86a1fcec6bcbc"
       },
       "packagePath": "task-library/candidates/eng-005-long-cycle-maintenance",
-      "packageManifestSha256": "bb0d0a036f8f2eecf5ed1aae160224e00cfaab198fa6d7bd34efbeb166d5073f",
+      "packageManifestSha256": "4c31baa827e82044c91acccbf6cffb39e63d29790a448d455befc375d8f151d7",
       "toolProfile": "workspace-augmented",
       "input": {
         "prompt": "Work in the provided repository. Keep the original commands and records compatible while completing each released stage. Inspect the current stage instruction before acting."

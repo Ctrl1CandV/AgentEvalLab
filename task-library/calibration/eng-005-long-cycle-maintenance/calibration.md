@@ -114,3 +114,62 @@ Grader 2.1.0 makes base and seed checks guards that count only when a check of a
 
 **First run (2026-10-22, `runs/suites/20261022-050033-dev-0cdf`).** deepseek-flash and qwen3.8-flash each passed every check of S1–S5 without a repair. Each was stopped in S6 by the stage's 2,000,000 tokens, with a delivery that passes the three correctness checks and every speed rung but `speed-0.75`: 47/48 (97.9%). The null agent scored 0 in the suite's smoke step. S6 did not harden E3 for these models.
 
+
+## Version 0.5.0 (2026-10-22): S7, planning
+
+**Why.** In 0.4.0, deepseek-flash and qwen3.8-flash scored 47/48: they passed every correctness check and every speed rung but the last. Speed was 4 of 48 checks, so S6 could not separate them.
+
+**What changes.** The user decided (2026-10-22) to add a stage that asks for different methods in different situations, and to make the score half correctness and half the open-ended ladders.
+
+**S7** adds `plan --crews N`:
+
+- it schedules every order that is not DONE on N identical crews;
+- each order runs for its `hours`, after its prerequisites that are not DONE;
+- the goal is to minimise the sum of priority × end, P|prec|ΣwC.
+
+**Stores.** Five hidden stores (`private/plan.py`) cover cases with and without exact methods:
+
+| Store | Orders | Crews | Best known |
+| --- | ---: | ---: | --- |
+| tiny | 7 | 2 | exhaustive optimum |
+| small | 9 | 3 | exhaustive optimum |
+| chains | 40 | 1 | Sidney's rule |
+| general | 300 | 5 | best of 30 minutes of local search |
+| large | 3,000 | 16 | best of 30 minutes of local search |
+
+- The small stores are drawn until the greedy plan is at least 10% above the optimum.
+- Dependency stores have gateways: long, low-priority orders that short, high-priority orders depend on.
+
+**Scale.** Each plan is placed between three anchors, all stated in the brief:
+
+- **0**: the naive plan in id order;
+- **0.5**: the greedy plan by priority per hour;
+- **1**: the best plan known (`private/plan-best.json`): costs 354, 295, 5,999, 106,750 and 5,531,667. The greedy plans cost 416, 367, 7,059, 144,984 and 6,043,894.
+
+The public files hold the store generator (`make_plan_store.py`) and the validation with both lower anchors (`plan_tools.py`). The public checker reports each plan's cost beside the naive and greedy costs.
+
+**Requirements:**
+
+- `PLAN` (critical): `plan.valid-small`, `plan.valid-large`, `plan.valid-scale` (the S6 store within 10 seconds), `plan.read-only`, `plan.errors` and `plan.fields-preserved` (earlier commands keep `hours` and `priority`). The last three count only when some plan is valid.
+- `PLAN_QUALITY` (a ladder): the mean place over the five stores reaches 0.25, 0.5, 0.65, 0.8, 0.9 and 0.97.
+
+**Score.** The manifest weighs each of the ten ladder rungs (four speed, six quality) at 5, and each of the 50 correctness checks at 1. A trajectory's score is therefore half correctness and half ladders. The suite applies the weights (`trajectoryUnit`).
+
+**References.**
+
+- ref-a plans greedily, exactly the 0.5 anchor, and its mean place is 0.5.
+- ref-b ranks orders by the best priority per hour of a dependency path they start, and searches stores of up to nine orders exhaustively. Its mean place is 0.938, below the 0.97 rung:
+  - tiny and small 1.0;
+  - chains 0.86;
+  - general 0.85;
+  - large 0.97.
+- Both plan the scale store in about a second.
+
+**Self-calibration** (`node run-calibration.mjs`; `logs/acceptance-self-calibration.json`): both references are deterministic over three repetitions of all seven stages and pass every S7 correctness check. The quality rungs are recorded, not required. Four S7 mutants land where expected:
+
+- ignoring dependencies fails validity;
+- letting DONE prerequisites block fails validity;
+- writing the store fails `plan.read-only`;
+- ranking by id falls below the 0.5 rung.
+
+**Budget.** The plan gives the trajectory 11,000,000 tokens and six hours; each stage keeps 2,000,000.

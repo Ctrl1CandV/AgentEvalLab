@@ -8,7 +8,7 @@ import { loadRecordedTrials } from "../evaluation/regrade.js";
 import { modelLabel } from "../evaluation/report.js";
 import { providerHost } from "../evaluation/provider-slots.js";
 import { caseItems, generateFamilyPlans, packageItems, smokePlan, type GeneratedPlan } from "./plans.js";
-import { familyResults, loadSingleRun, loadTrajectoryRun, trajectoryCheckIds, trajectoryUnit, type FamilyUnit, type NotRunUnit, type RunContents } from "./score.js";
+import { familyResults, loadSingleRun, loadTrajectoryRun, trajectoryChecks, trajectoryUnit, type FamilyUnit, type NotRunUnit, type RunContents } from "./score.js";
 import { failedChecks, markdownSuiteReport, suiteFlags, type FamilyReport, type SuiteReport } from "./report.js";
 import { checkPolicy, parseModelSpec, validateSuite, type FamilySpec, type SuiteFile } from "./spec.js";
 import type { TrajectoryRecord } from "../evaluation/types.js";
@@ -330,12 +330,12 @@ export class SuiteRunner {
     if (kind === "trajectory") {
       const report = await readJson<{ records: TrajectoryRecord[] }>(join(directory, "report.json")).catch(() => null);
       if (!report?.records.length) return { ok: false, detail: "no trajectory recorded" };
-      const checkIds = await trajectoryCheckIds(this.state.worktree, plan.cases[0]!.packagePath!);
+      const { checkIds, weights } = await trajectoryChecks(this.state.worktree, plan.cases[0]!.packagePath!);
       for (const record of report.records) {
         const grades = record.stages.flatMap(stage => stage.cycles.map(cycle => cycle.privateGrade).filter(Boolean));
         const broken = grades.filter(grade => grade!.status !== "passed" && grade!.status !== "failed");
         if (!grades.length || broken.length) return { ok: false, detail: `${grades.length} snapshots graded, ${broken.length} not graded cleanly` };
-        const unit = trajectoryUnit(family.id, directory, record, checkIds);
+        const unit = trajectoryUnit(family.id, directory, record, checkIds, weights);
         if ((unit.score ?? 0) > maxScore) return { ok: false, detail: `the null agent scores ${unit.score!.toFixed(3)}; passing: ${unit.passedChecks.join(", ")}` };
         return { ok: true, detail: `${grades.length} snapshots graded, null score ${unit.score?.toFixed(3)}` };
       }
@@ -455,7 +455,8 @@ export class SuiteRunner {
     const family = this.family(entry.familyId);
     if (entry.kind === "trajectory") {
       const plan = await readJson<EvaluationPlan>(entry.path);
-      return loadTrajectoryRun(family, runDirectory, await trajectoryCheckIds(this.state.worktree, plan.cases[0]!.packagePath!));
+      const { checkIds, weights } = await trajectoryChecks(this.state.worktree, plan.cases[0]!.packagePath!);
+      return loadTrajectoryRun(family, runDirectory, checkIds, weights);
     }
     return loadSingleRun(family, runDirectory, scoredOnly);
   }

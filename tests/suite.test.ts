@@ -374,3 +374,19 @@ test("report flags cover saturation, budget stops, infrastructure rates and stop
   const flags = suiteFlags({ target: { model: "deepseek:deepseek-flash", maxScore: 0.8 } }, families, specs).map(flag => `${flag.kind} ${flag.family}`);
   assert.deepEqual(flags.sort(), ["budget-stops STOPS", "infrastructure STOPS", "provider-stopped null", "saturated SAT", "target-above SAT"]);
 });
+
+test("a trajectory's score weighs its final-stage checks by the manifest's weights", async () => {
+  const { trajectoryUnit } = await import("../src/suite/score.js");
+  const grade = { status: "passed", checks: [{ id: "a", passed: true }, { id: "b", passed: true }, { id: "rung", passed: false }] };
+  const record = {
+    id: "t1", status: "completed", stopReason: null, model: { provider: "p", id: "m", thinkingLevel: "high", temperature: 0 },
+    aggregateExecution: { ...emptyExecution(), failureKind: null },
+    stages: [{ stageId: "S1", status: "completed", cycles: [{ privateGrade: grade }], activeRequirementIds: [], durationMs: 0 }],
+  } as never;
+  const unweighted = trajectoryUnit("E3", "dir", record, ["a", "b", "rung"]);
+  assert.equal(unweighted.score, 2 / 3);
+  // The rung weighs as much as both correctness checks together: half of the score.
+  const weighted = trajectoryUnit("E3", "dir", record, ["a", "b", "rung"], { rung: 2 });
+  assert.equal(weighted.score, 0.5);
+  assert.deepEqual(weighted.failedChecks, ["rung"]);
+});
