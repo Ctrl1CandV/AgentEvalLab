@@ -49,14 +49,18 @@ def scenarios():
     for ticket_id, ticket in tickets.TICKETS.items():
         names = set(grader.check_names(ticket_id)) | {"answer-format"}
         rows.append((ticket_id, "oracle", ticket["actions"], None, reply(ticket), names))
-        rows.append((ticket_id, "untouched", [], None, None, set()))
+        # No reply is no format failure: it fails `reply` (and every record check here), so nothing scores.
+        rows.append((ticket_id, "untouched", [], None, None, {"answer-format"}))
         # POLICY.md asks for a reply that ends with the object, so prose before it, and a closing fence, are fine.
         rows.append((ticket_id, "oracle-after-prose", ticket["actions"], None, "Done.\n\n" + reply(ticket), names))
         rows.append((ticket_id, "oracle-fenced", ticket["actions"], None, "Done.\n\n```json\n" + reply(ticket) + "\n```\n", names))
+        # Commands shown in an earlier fenced block do not hide the closing JSON block (grader 1.1.1).
+        rows.append((ticket_id, "oracle-fenced-after-a-fence", ticket["actions"], None,
+                     "Commands:\n\n```\npython3 desk.py ...\n```\n\nDone.\n\n```json\n" + reply(ticket) + "\n```", names))
         rows.append((ticket_id, "oracle-then-prose", ticket["actions"], None, reply(ticket) + "\n\nAll handled.", names - {"answer-format"}))
         # Without a reply, a ticket that only declines is the same as doing nothing.
         rows.append((ticket_id, "oracle-without-reply", ticket["actions"], None, "All handled.",
-                     {name for name in names if name.startswith(("order-", "customer-"))} | ({"no-other-changes"} if ticket["actions"] else set())))
+                     {name for name in names if name.startswith(("order-", "customer-"))} | ({"no-other-changes"} if ticket["actions"] else set()) | {"answer-format"}))
         if ticket["actions"]:
             expected = grader.replay(ticket["actions"])
             rows.append((ticket_id, "direct-edit", [], lambda db, expected=expected: db.update(copy.deepcopy(expected)), reply(ticket), set()))
@@ -103,8 +107,10 @@ def makegood_scenarios():
         answer = json.dumps({"done": done, "declined": declined})
         best, entries = makegood.solve(base, ticket)
         rows.append((ticket_id, "optimum", makegood.commands(entries), None, answer, names))
-        rows.append((ticket_id, "untouched", [], None, None, set()))
-        rows.append((ticket_id, "optimum-without-reply", makegood.commands(entries), None, "All handled.", names - {"reply", "answer-format"}))
+        rows.append((ticket_id, "untouched", [], None, None, {"answer-format"}))
+        rows.append((ticket_id, "optimum-without-reply", makegood.commands(entries), None, "All handled.", names - {"reply"}))
+        rows.append((ticket_id, "optimum-fenced-after-a-fence", makegood.commands(entries), None,
+                     "Commands:\n\n```\nmake-good ...\n```\n\n```json\n" + answer + "\n```", names))
 
         def ladder(resolution):
             cost = makegood.resolution_cost(base, resolution)

@@ -8,7 +8,7 @@ Each item is one customer ticket of two to four numbered requests, handled with 
 - **One critical check per order or customer the ticket should change.** It passes when that record equals the expected state, refunds compared in any order. The expected states come from the actions written by hand for each ticket; `private/oracle.py` derives the same actions from the policy and each request's structured intent, and the self-calibration checks that the two agree.
 - **`no-other-changes`** (critical): every other record is unchanged. It counts only when the reply or some record check passes, because an untouched shop passes it.
 - **`reply`** (critical): the final JSON lists exactly the done and the declined request numbers.
-- **`answer-format`** (non-critical): the reply ends with one JSON object, bare or in a closing fenced block, as POLICY.md asks. Otherwise the shared recovery rule applies, and a recovered reply loses 20%.
+- **`answer-format`** (non-critical): the reply ends with one JSON object, bare or in a closing fenced block, as POLICY.md asks. Otherwise the shared recovery rule applies, and a recovered reply loses 20%. A missing or unusable reply fails `reply`; it is not also a format failure (grader 1.1.1).
 
 The score is the fraction of critical checks passed, less the format deduction.
 

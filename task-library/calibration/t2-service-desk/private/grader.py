@@ -20,9 +20,11 @@ from decimal import Decimal  # noqa: E402
 
 TASK_ID = "t2-service-desk"
 TASK_VERSION = "0.3.0"
-GRADER_VERSION = "1.1.0"
+GRADER_VERSION = "1.1.1"
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)
-CLOSING_FENCE = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```\s*$", re.S | re.I)
+# The last fenced block only: its body may not contain another fence, so an earlier block in the reply cannot start the
+# match (grader 1.1.0 failed replies that showed commands in a fenced block before the closing JSON block).
+CLOSING_FENCE = re.compile(r"```(?:json)?[ \t]*\r?\n((?:(?!```).)*?)\r?\n?```\s*$", re.S | re.I)
 
 
 def json_object(value):
@@ -185,7 +187,8 @@ def grade(ticket_id, submission, answer_text):
     reply_ok = (mode != "unparsed" and isinstance(answer, dict) and isinstance(answer.get("done"), list) and isinstance(answer.get("declined"), list)
                 and sorted(answer["done"]) == sorted(done) and sorted(answer["declined"]) == sorted(declined))
     results["reply"] = reply_ok
-    results["answer-format"] = mode == "strict"
+    # The format deduction is for a reply that had to be recovered. A missing or unusable reply already fails `reply`.
+    results["answer-format"] = mode != "recovered"
     if ticket_id in tickets.MAKEGOOD:
         grade_makegood(ticket_id, delivered, commands, results, reply_ok)
         return results, "consistent"
@@ -196,7 +199,7 @@ def grade(ticket_id, submission, answer_text):
     # No other changes guards the actions, so it counts only once something the ticket asks for is right: an
     # untouched shop passes it.
     results["no-other-changes"] = untouched and (reply_ok or any(results[name] for name in names[:-2]))
-    results["answer-format"] = mode == "strict"
+    results["answer-format"] = mode != "recovered"
     return results, "consistent"
 
 

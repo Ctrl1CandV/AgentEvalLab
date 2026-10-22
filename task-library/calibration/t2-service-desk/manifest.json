@@ -29,11 +29,11 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "75d86aa75b803238c3c8bcfea79caec9ea9b3b4132af69a56672d3ac480cf44f"
+        "sha256": "08372e84de4d20dea7c09ed9255e9b3d6ccafeb826550ab9aba6df9ed9f5db7c"
       },
       {
         "path": "rubric.md",
-        "sha256": "f163ede0c8e4f31210c67fa5d0b670af58b3611c8aeeeb45e529f9dd907299a6"
+        "sha256": "c30f0b7989fe77d564049edfcb8e5de32b5dadd28c62f09aab394c8827bc4bdc"
       },
       {
         "path": "private/POLICY.md",
@@ -45,7 +45,7 @@
       },
       {
         "path": "private/calibrate.py",
-        "sha256": "b2407731f362e688efc11c31c35d7028b712e5a7c5a3e7ac110c556578b07f0b"
+        "sha256": "122e8a821003c79eda8dec9b6fd489981f5f48b38e7fe93697f0fe8fe679e66e"
       },
       {
         "path": "private/desk.py",
@@ -53,7 +53,7 @@
       },
       {
         "path": "private/grader.py",
-        "sha256": "697e85b0beaa800f1e15d7521037aa00edebb60b49d36155eb6f9d62697efe70"
+        "sha256": "b344b63c2134d3ec448ceeecd05c83593afe4ae8753ee0e5e8e47cc867a5aa74"
       },
       {
         "path": "private/makegood.json",
@@ -1969,7 +1969,7 @@
   ],
   "grader": {
     "id": "t2-desk-state",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

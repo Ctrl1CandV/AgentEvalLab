@@ -98,3 +98,12 @@ T2 is the policy-bound tool-use family of Task Set v2 (PLAN-005 WP5), after τ-b
   - making good the old order's report fails `no-other-changes`.
 - The 0.2.0 tickets pass as before.
 
+## Grader 1.1.1 (2026-10-21)
+
+The first 0.3.0 run (`runs/suites/20261021-124022-dev-1249`) found two grader defects.
+
+- **A closing JSON block after an earlier fenced block failed the format.** The pattern for the closing fence began matching at the reply's first fence, so deepseek-flash (`os1`) and qwen3.8-flash (`om1`) lost 20%. Both had shown their commands in a block before the final block. The pattern now matches only the last block.
+- **A missing reply was deducted twice.** It fails `reply`, and the format deduction then took 20% of what the trial's actions earned. This hit three trials stopped by their budget after finishing every make-good: deepseek and mimo-v2.6-flash on `ol4`, mimo on `om4`. The deduction is for a reply that had to be recovered; a missing or unusable reply now fails `reply` only.
+
+Self-calibration: 195 scenarios, including a closing block after another fenced block. All 36 trials of the run were regraded.
+
