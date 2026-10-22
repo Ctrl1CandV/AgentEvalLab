@@ -17,7 +17,7 @@ import snapshot  # noqa: E402
 
 TASK_ID = "t1-evidence-recovery"
 TASK_VERSION = "0.5.0"
-GRADER_VERSION = "1.6.0"
+GRADER_VERSION = "1.6.1"
 TRUSTED = ["calibration.md", "rubric.md", "private/chains.py", "private/generate.py", "private/grader.py", "private/keys.json", "private/snapshot.py"]
 
 

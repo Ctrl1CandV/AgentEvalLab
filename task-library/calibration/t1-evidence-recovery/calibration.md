@@ -136,3 +136,7 @@ L1–L7 snapshots and keys are unchanged.
   - over all applicable distractors, 60 of 60 at D2, 100 of 140 at D4, 104 of 140 at D6 and 96 of 140 at D8 do. The rest lead, by chance, to the same end.
 - A trace that reads every file of a chain passes; one that leaves out any single file fails; a wrong value fails.
 
+### Grader 1.6.1 (2026-10-22)
+
+The first depth-ladder run (`runs/suites/20261021-123806-dev-d275`) found one grader defect. mimo-v2.6-flash listed each answer as an object in its prose, then gave the full answer object at the end. Grader 1.6.0 refused a reply with several objects, so the trial scored nothing, although the answer was clear. That zeroed a format violation, which the scoring rules forbid. A reply that ends with an object is now recovered from that object, at the format deduction. The self-calibration adds that case (1734/1734), and the run's 24 trials were regraded.
+

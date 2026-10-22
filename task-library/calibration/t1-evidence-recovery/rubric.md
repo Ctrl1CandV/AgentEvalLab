@@ -21,7 +21,7 @@ One critical check per question; the score is the fraction answered correctly.
 
 A line counts as shown when a search match returned it in full, or when read pages covered all its characters. Paths are compared after removing a leading `./`.
 
-`answer-format` (non-critical) passes when the answer is one JSON object, as instructed. An answer that is not one JSON object is recovered when exactly one JSON object can be found in it: an object that only lacks up to three closing braces at its end, the only fenced code block that holds one, or else the only top-level object in surrounding prose. A recovered answer is graded on its content and loses 20% of its score. An answer with no candidate, or with several, fails every check.
+`answer-format` (non-critical) passes when the answer is one JSON object, as instructed. An answer that is not one JSON object is recovered when exactly one JSON object can be found in it: an object that only lacks up to three closing braces at its end, the only fenced code block that holds one, the object the reply ends with (grader 1.6.1), or else the only top-level object in surrounding prose. A recovered answer is graded on its content and loses 20% of its score. An answer with no candidate, or with several, fails every check.
 
 Grader 1.1.0 added the search proof of absence and the narrower secret rule, and 1.2.0 extended the proof to truncated searches that had passed the file (2026-10-19), after the calibration showed both correct behaviours failing under 1.0.0.
 

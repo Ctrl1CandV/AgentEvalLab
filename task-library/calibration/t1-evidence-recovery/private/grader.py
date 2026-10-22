@@ -14,7 +14,7 @@ import snapshot  # noqa: E402
 
 TASK_ID = "t1-evidence-recovery"
 TASK_VERSION = "0.5.0"
-GRADER_VERSION = "1.6.0"
+GRADER_VERSION = "1.6.1"
 KEYS_PATH = os.path.join(HERE, "keys.json")
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)
 
@@ -47,6 +47,17 @@ def parse_answer(text):
     fenced = [found for found in (json_object(block) for block in FENCED_BLOCK.findall(text)) if found is not None]
     if fenced:
         return ("recovered", fenced[0]) if len(fenced) == 1 else ("unparsed", None)
+    # A reply that ends with an object has given its answer there, whatever objects its prose showed before it
+    # (grader 1.6.1: a model that listed each answer, then the full object, scored nothing under 1.6.0).
+    decoder = json.JSONDecoder()
+    stripped = text.rstrip()
+    for start in reversed([index for index, char in enumerate(stripped) if char == "{"]):
+        try:
+            value, end = decoder.raw_decode(stripped, start)
+        except json.JSONDecodeError:
+            continue
+        if end == len(stripped) and isinstance(value, dict):
+            return "recovered", value
     decoder, objects, index = json.JSONDecoder(), [], 0
     while (start := text.find("{", index)) >= 0:
         try:
@@ -499,6 +510,11 @@ def self_calibrate():
         repaired = grade(item_id, mode, answer, trace, keys)
         rows.append((f"{item_id}-missing-brace-recovered", mode == "recovered" and all(value for check, value in repaired.items() if check != "answer-format")
                      and repaired["answer-format"] is False))
+        listed = "\n".join(f"Q{index}: {json.dumps(value)}" for index, value in reference.items())
+        mode, answer = parse_answer(f"Answers one by one:\n{listed}\n\nAll together:\n{json.dumps(reference)}")
+        ended = grade(item_id, mode, answer, trace, keys)
+        rows.append((f"{item_id}-final-object-after-listed-answers-recovered", mode == "recovered" and
+                     all(value for check, value in ended.items() if check != "answer-format") and ended["answer-format"] is False))
         mode, answer = parse_answer("Here are my answers.\n\n" + json.dumps(reference))
         recovered = grade(item_id, mode, answer, trace, keys)
         rows.append((f"{item_id}-prose-recovered", mode == "recovered" and all(value for check, value in recovered.items() if check != "answer-format")
