@@ -2,6 +2,25 @@
 
 Status: approved by the user on 2026-10-21. Follows [PLAN-005](PLAN-005-discriminating-attributable-evaluation.md) and the [hardening round of 2026-10-20](../reviews/2026-10-20-hardening-round.md).
 
+**Done (2026-10-22).** Part A and B1–B4 are built, self-calibrated and run once on deepseek-flash with qwen3.8-flash (and mimo-v2.6-flash for E4, T1 and T2). Results and the decisions left are in the [round-2 review](../reviews/2026-10-22-hardening-round-2.md).
+
+| Family | Now | deepseek |
+| --- | --- | ---: |
+| R3 | 0.3.0 | 72% |
+| E2 routes | 0.5.0 | 71% |
+| E4 speedup + compress | 0.5.0 | 85% |
+| T1 depth ladder | 0.5.0 | 95% |
+| T2 optimisation | 0.3.0 | 95% |
+| E3 with S6 | eng-005 0.4.0 | 98% |
+
+T1, T2 and E3 did not reach the target.
+
+Changes from this plan:
+
+- E4 runs as two suite families, `E4-speedup` and `E4-compress`, because compress needed 4,000,000 tokens per trial. The E4 score is their mean.
+- The speedup ladder gained a `speed-8` gate.
+- E3's S6 speed rungs are a non-critical requirement (`SCALE_SPEED`).
+
 ## Decisions (user, 2026-10-21)
 
 - **Build the one-command chain first.** Choose models, run every family, get one report. Dev rounds use the same chain on the families being changed, so there is no separate round script.

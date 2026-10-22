@@ -112,3 +112,5 @@ Grader 2.1.0 makes base and seed checks guards that count only when a check of a
 
 **Score.** A trajectory scores the share of the final stage's 48 checks that pass in its last graded snapshot. Plans give the whole task 8,000,000 tokens and each stage 2,000,000; the grader gets 15 minutes per snapshot.
 
+**First run (2026-10-22, `runs/suites/20261022-050033-dev-0cdf`).** deepseek-flash and qwen3.8-flash each passed every check of S1–S5 without a repair. Each was stopped in S6 by the stage's 2,000,000 tokens, with a delivery that passes the three correctness checks and every speed rung but `speed-0.75`: 47/48 (97.9%). The null agent scored 0 in the suite's smoke step. S6 did not harden E3 for these models.
+

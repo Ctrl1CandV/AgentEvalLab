@@ -186,3 +186,5 @@ The check was rerun by hand on each delivered program and agreed. No trial timed
 
 The compress trials made 30–38 requests within 2,000,000 tokens, about 60,000 tokens each, because every request resends a session full of programs and samples. No model left a working compressor. The budget is meant to let most models finish, so it was too small for this item. compress now has 4,000,000 tokens per trial; speedup keeps 2,000,000.
 
+At 4,000,000 tokens (`runs/suites/20261022-050033-dev-0cdf`), deepseek-flash reached 92.7% of the way to the reference (5/6) and qwen3.8-flash 81.8% (4/6). Both programs round-trip every hidden input within the time limit.
+

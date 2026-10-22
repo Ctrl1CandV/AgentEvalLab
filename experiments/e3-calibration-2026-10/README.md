@@ -65,3 +65,14 @@ The twenty hidden checks did not separate the strong models: three of them passe
 ## eng-005 0.4.0: a sixth stage, scale (2026-10-21)
 
 `trajectory.eval.json` now pins eng-005 0.4.0 with six stages. The whole task gets 8,000,000 tokens, 400 responses, 1,000 tool calls and five hours. Each stage gets 2,000,000 tokens, 80 responses, 200 tool calls and 45 minutes. Each response may hold 131,072 tokens and 524,288 characters, and the grader gets 15 minutes per snapshot. The suite runner splits the plan into one trajectory per model. See the package's calibration record for S6 and for the grader change that makes an untouched project score 0 (it scored 19.5% under 0.3.0).
+
+### Run with eng-005 0.4.0 (2026-10-22)
+
+`runs/suites/20261022-050033-dev-0cdf`, commit `93bbb8d`, one trajectory each. The null agent scored 0 in the suite's smoke step (19.5% under 0.3.0).
+
+| Model | Score | S1–S5 | S6 | Tokens | Time |
+| --- | ---: | --- | --- | ---: | ---: |
+| deepseek-flash | 47/48 (97.9%) | every check, no repair | stage token limit (2.11M); the delivery passes all three `SCALE` checks and `speed-3`, `-1.5`, `-1.1` | 6.63M | 12 min |
+| qwen3.8-flash | 47/48 (97.9%) | every check, no repair | stage token limit (2.04M); same checks | 6.83M | 28 min |
+
+**S6 did not harden E3.** Both models made the tool scale within one stage, and both came within 1.1 times the reference's time. Only `speed-0.75` failed. Speed rungs are 4 of 48 checks, so even a slow but correct S6 would leave a trajectory at 92%.

@@ -100,3 +100,12 @@ Run `runs/suites/20261021-123806-dev-d275` (dev suite, commit `4c8c616`), speedu
 The compress checks were rerun by hand on both delivered programs and gave the same verdicts. Neither model's result comes from the check.
 
 deepseek's compress trial ran on 2026-10-22 (`runs/suites/20261022-040520-dev-7f6a`). It scored 0/6: at the budget its `packlog.py` was mid-edit, a range coder that raises a TypeError. All three models ended without a working compressor after 30–38 requests of about 60,000 tokens each, so compress now has 4,000,000 tokens per trial (see the package's `calibration.md`).
+
+compress at 4,000,000 tokens (`runs/suites/20261022-050033-dev-0cdf`, commit `93bbb8d`):
+
+| Model | Checks | Position on the scale (measured again offline) | Compress / decompress, day a | Tokens |
+| --- | --- | ---: | --- | ---: |
+| deepseek-flash | 5/6 (all but `ratio-97`) | 92.7% | 9.3 s / 3.4 s | 4.11M |
+| qwen3.8-flash | 4/6 (`ratio-50`, `ratio-80` and both round trips) | 81.8% | 30.2 s / 0.4 s | 4.16M |
+
+E4 for the round is the mean of speedup and compress: deepseek (87.5% + 83.3%) / 2 = 85.4%, qwen (100% + 66.7%) / 2 = 83.3%. mimo-v2.6-flash has not run compress at 4,000,000 tokens.
