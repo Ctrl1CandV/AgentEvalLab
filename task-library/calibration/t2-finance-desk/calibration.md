@@ -34,3 +34,18 @@ T2's second package, after `t2-service-desk`.
   - the untouched books and a reply alone score 0;
   - a desk that slips once, misbooking a receipt or holding a duplicate, and then handles every later request right on its own books, loses only that request's checks;
   - each modelled misreading loses the checks of the requests it touches: 6–26% of the day.
+
+### Pilot 2026-10-22 (task 0.1.0)
+
+Run `runs/suites/20261022-135908-dev-4b33`: fn1 and fn2 on deepseek-flash, qwen3.8-flash and mimo-v2.6-flash, 4,000,000 tokens per day. No grader defect was found.
+
+| Model | Score | Median tokens per day | Notes |
+| --- | ---: | ---: | --- |
+| deepseek-flash | 97.1% | 1.96M | fn2 100%; fn1 lost the revaluation |
+| qwen3.8-flash | 100% | 2.98M | |
+| mimo-v2.6-flash | 70.0% | 2.79M | fn2 100%; stopped by the budget on fn1 |
+
+- **deepseek on fn1.** Its revaluation line for INV-5004 named partner C-110 (Basalt Retail Inc.). The invoice is C-111's (Basalt Supplies Inc.) in the books, so the error is its own.
+- **mimo on fn1.** It was stopped by the budget after R5 and gave no reply.
+
+**Reading.** The strong models turn the manual into code and compute every rule exactly. Even at corporate-finance complexity, a fully specified procedure separates models only by care with near-identical names and by budget management.

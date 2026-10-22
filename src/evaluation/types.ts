@@ -72,6 +72,8 @@ export type ExecutionPolicy =
 export interface TrajectoryStageResult {
   stageId: string;
   status: "completed" | "stopped" | "not_reached";
+  /** Why a stage stopped while the trajectory went on: it used up its own budget. */
+  stopReason?: string;
   cycles: Array<{
     cycleId: "cycle-1" | "cycle-2";
     execution: ExecutionResult;

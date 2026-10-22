@@ -417,13 +417,20 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
             const cycle: TrajectoryStageResult["cycles"][number] = { cycleId, execution: persistedExecution(execution, budget.maxOutputChars), publicCheck: null, snapshot: null };
             stageRecord.cycles.push(cycle);
             await events.emit("trajectory_submission_completed", { modelCalls: totalExecution.modelCalls, toolCalls: totalExecution.toolCalls }, { stageId: stageInfo.id, cycleId, status: execution.status });
-            // A budget or model stop ends the trajectory but is the model's own outcome, so what it delivered is graded,
-            // as in a single run; after an infrastructure failure nothing more is graded.
+            // A budget or model stop is the model's own outcome, so what it delivered is graded, as in a single run;
+            // after an infrastructure failure nothing more is graded. A stage that used up only its own budget ends
+            // there and the next stage is released while the whole task's budget lasts, since only that budget may stop
+            // a model (an open-ended stage such as eng-005's S6 uses its whole budget by design).
             const stopped = execution.status !== "done";
+            const stageOnly = stopped && execution.failureKind === "budget" &&
+              remainingBudget(plan.budget, plan.execution.stageBudget, totalExecution, emptyExecution(), performance.now() - executionStart, 0, outputChars, 0) !== null;
             if (stopped) {
-              recordValue.stopReason = execution.error ?? execution.status.toUpperCase();
               stageRecord.status = "stopped";
-              stop = true;
+              if (stageOnly) stageRecord.stopReason = execution.error ?? execution.status.toUpperCase();
+              else {
+                recordValue.stopReason = execution.error ?? execution.status.toUpperCase();
+                stop = true;
+              }
               if (execution.failureKind === "infrastructure") break;
             }
             // A batch ceiling or a stop of this model's provider ends this trajectory after its current submission is graded.

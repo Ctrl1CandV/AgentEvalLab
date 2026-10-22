@@ -348,23 +348,52 @@ test("trajectory provider failure stops before snapshot and does not create late
   } finally { await rm(outputRoot, { recursive: true, force: true }); }
 });
 
-test("a stage stopped by its budget is graded on what it delivered, without a public check or repair", async () => {
+test("a stage stopped by its own budget is graded on what it delivered, and the next stage is released", async () => {
   const plan = JSON.parse(await readFile("examples/eng-005-long-cycle.eval.json", "utf8")) as EvaluationPlan;
   validatePlan(plan);
   const outputRoot = await mkdtemp(join(tmpdir(), "eng005-budget-stop-test-"));
+  const sent: string[] = [];
   const sessionFactory: TrajectorySessionFactory = () => ({
-    async send() { return { ...emptyExecution(), status: "budget_exceeded", failureKind: "budget", error: "TRIAL_TOKEN_LIMIT", modelCalls: 1, turns: 1 }; },
+    async send(_input, _budget, _emit, context) {
+      sent.push(context.stageId);
+      // S2 runs out of its own budget; the trajectory still has room, so S3 follows.
+      if (context.stageId === "S2") return { ...emptyExecution(), status: "budget_exceeded", failureKind: "budget", error: "TRIAL_TOKEN_LIMIT", modelCalls: 1, turns: 1 };
+      return { ...emptyExecution(), output: "done", modelCalls: 1, turns: 1 };
+    },
+    async dispose() {},
+  });
+  try {
+    const result = await runTrajectoryEvaluation(plan, { outputRoot, sessionFactory });
+    const trajectory = result.report.records[0]!;
+    const stopped = trajectory.stages[1]!;
+    assert.equal(stopped.status, "stopped");
+    assert.equal(stopped.stopReason, "TRIAL_TOKEN_LIMIT");
+    assert.equal(stopped.cycles.length, 1);
+    assert.ok(stopped.cycles[0]!.snapshot, "the delivery is preserved");
+    assert.equal(stopped.cycles[0]!.publicCheck, null);
+    assert.ok(stopped.cycles[0]!.privateGrade, "and graded");
+    assert.ok(sent.includes("S3") && sent.includes("S7"), "later stages are released");
+    assert.equal(trajectory.stages.filter(stage => stage.status === "not_reached").length, 0);
+    assert.equal(trajectory.stopReason, null);
+  } finally { await rm(outputRoot, { recursive: true, force: true }); }
+});
+
+test("a stop by the whole task's budget still ends the trajectory", async () => {
+  const plan = JSON.parse(await readFile("examples/eng-005-long-cycle.eval.json", "utf8")) as EvaluationPlan;
+  plan.budget.maxTrialTokens = 1_000;
+  validatePlan(plan);
+  const outputRoot = await mkdtemp(join(tmpdir(), "eng005-total-budget-stop-test-"));
+  const usage = { requestId: "r", interactionClass: "candidate" as const, status: "completed" as const, usageStatus: "reported" as const, durationMs: 1,
+    inputTokens: 900, outputTokens: 200, cacheReadTokens: 0, cacheWriteTokens: 0, reasoningTokens: 0, totalTokens: 1_100, costUsd: null, attempts: 1, failureClass: null };
+  const sessionFactory: TrajectorySessionFactory = () => ({
+    async send() { return { ...emptyExecution(), status: "budget_exceeded", failureKind: "budget", error: "TRIAL_TOKEN_LIMIT", modelCalls: 1, turns: 1, requestUsage: [usage] }; },
     async dispose() {},
   });
   try {
     const result = await runTrajectoryEvaluation(plan, { outputRoot, sessionFactory });
     const trajectory = result.report.records[0]!;
     assert.equal(trajectory.stopReason, "TRIAL_TOKEN_LIMIT");
-    const cycles = trajectory.stages[0]!.cycles;
-    assert.equal(cycles.length, 1);
-    assert.ok(cycles[0]!.snapshot, "the delivery is preserved");
-    assert.equal(cycles[0]!.publicCheck, null);
-    assert.ok(cycles[0]!.privateGrade, "and graded");
+    assert.ok(trajectory.stages[0]!.cycles[0]!.privateGrade, "the delivery is graded");
     assert.deepEqual(trajectory.stages.map(stage => stage.status), ["stopped", "not_reached", "not_reached", "not_reached", "not_reached", "not_reached", "not_reached"]);
   } finally { await rm(outputRoot, { recursive: true, force: true }); }
 });
@@ -401,12 +430,17 @@ test("trajectory event persistence failure remains explicit in the saved trial r
   } finally { await rm(outputRoot, { recursive: true, force: true }); }
 });
 
+// A stop that uses up the whole task's budget (a stage's own budget would let the trajectory go on).
+const exhausted = { requestId: "r", interactionClass: "candidate" as const, status: "completed" as const, usageStatus: "reported" as const, durationMs: 1,
+  inputTokens: 900, outputTokens: 200, cacheReadTokens: 0, cacheWriteTokens: 0, reasoningTokens: 0, totalTokens: 1_100, costUsd: null, attempts: 1, failureClass: null };
+
 test("trajectory disposal failure is reflected in cleanup status", async () => {
   const plan = JSON.parse(await readFile("examples/eng-005-long-cycle.eval.json", "utf8")) as EvaluationPlan;
+  plan.budget.maxTrialTokens = 1_000;
   validatePlan(plan);
   const outputRoot = await mkdtemp(join(tmpdir(), "eng005-dispose-failure-test-"));
   const sessionFactory: TrajectorySessionFactory = () => ({
-    async send() { return { ...emptyExecution(), status: "timeout", failureKind: "budget", error: "TIMEOUT" }; },
+    async send() { return { ...emptyExecution(), status: "timeout", failureKind: "budget", error: "TIMEOUT", requestUsage: [exhausted] }; },
     async dispose() { throw new Error("synthetic dispose fault"); },
   });
   try {
@@ -421,13 +455,14 @@ test("trajectory disposal failure is reflected in cleanup status", async () => {
 
 test("trajectory records workspace cleanup failure after preserving the stopped run", async () => {
   const plan = JSON.parse(await readFile("examples/eng-005-long-cycle.eval.json", "utf8")) as EvaluationPlan;
+  plan.budget.maxTrialTokens = 1_000;
   validatePlan(plan);
   const outputRoot = await mkdtemp(join(tmpdir(), "eng005-workspace-cleanup-test-"));
   let workspacePath = "";
   const sessionFactory: TrajectorySessionFactory = () => ({
     async send(input) {
       workspacePath = input.workspacePath;
-      return { ...emptyExecution(), status: "timeout", failureKind: "budget", error: "TIMEOUT" };
+      return { ...emptyExecution(), status: "timeout", failureKind: "budget", error: "TIMEOUT", requestUsage: [exhausted] };
     },
     async dispose() {
       const ownedRoot = dirname(workspacePath);

@@ -29,7 +29,7 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "5e9b17f671230b224e0d54d5aa18be6a4c47630ba3c0fc0937b45dd6812bd0d9"
+        "sha256": "1a2ce85f03d4756ee6cfe9422b1538064a7a04fb35ed561d37124315cc447b44"
       },
       {
         "path": "rubric.md",
