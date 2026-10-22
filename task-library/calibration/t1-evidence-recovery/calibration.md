@@ -198,3 +198,33 @@ L1–L7 and D2–D8 items and keys are unchanged.
 
 The first depth-ladder run (`runs/suites/20261021-123806-dev-d275`) found one grader defect. mimo-v2.6-flash listed each answer as an object in its prose, then gave the full answer object at the end. Grader 1.6.0 refused a reply with several objects, so the trial scored nothing, although the answer was clear. That zeroed a format violation, which the scoring rules forbid. A reply that ends with an object is now recovered from that object, at the format deduction. The self-calibration adds that case (1734/1734), and the run's 24 trials were regraded.
 
+
+### Pilot 2026-10-22 (task 0.6.0) and grader 1.7.1
+
+Run `runs/suites/20261022-102932-dev-87d3`: F4-01, F4-02, F5-01 and F5-02 on deepseek-flash, qwen3.8-flash and mimo-v2.6-flash.
+
+**One grader defect** (grader 1.7.1, the 12 trials regraded). The approver's evidence was the whole rotation file, the whole platform file and the whole swaps file, and the freeze's the whole calendar. Models that found the deciding row with a search had seen what decides, yet lost the approver: deepseek on three questions, qwen and mimo on others, all with the right name. Evidence is now the deciding lines, shown by a read or a search:
+
+- the rotation row in force;
+- the day's commander row;
+- the swap that applies;
+- every freeze line.
+
+The self-calibration adds the search case (2973/2973).
+
+**Results after the regrade:**
+
+| Model | Score | Content | Deductions |
+| --- | ---: | ---: | --- |
+| deepseek-flash | 94.3% | 2 of 48 facts wrong | both reach |
+| qwen3.8-flash | 85.0% | 100% | format only: prose or fences around the JSON |
+| mimo-v2.6-flash | 20.0% | | |
+
+- deepseek's two reach errors cascade into the procedure, approver and deadline of their questions:
+  - F4-02 counted a service whose upstream changed to the service only after the start time;
+  - F5-01 missed a service whose upstream comes from base.toml.
+- mimo ended two trials mid-work without an answer and looped until the output limit on a third.
+
+Every deduction is the model's own. Median tokens per item were 405k (deepseek), 491k (qwen) and 93k (mimo).
+
+**Reading.** Multi-factor adjudication did not lower the strong models' scores much. They keep explicit notes and work each fact through in turn, so bookkeeping across chains does not trip them. Only the reach fact, a fan-out with history, produced errors. The levels separate the weaker model sharply.

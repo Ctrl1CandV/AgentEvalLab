@@ -6,4 +6,4 @@ adjudication F2: of 12 questions, each misreading changes the conclusion of late
 adjudication F3: of 12 questions, each misreading changes the conclusion of late-amendments 7, rejected-amendments 6, ignore-amendments 6, handover-utc 5, freeze-utc 5, current-config 4, ignore-tier3 3, no-includes 2, ignore-exemptions 1
 adjudication F4: of 12 questions, each misreading changes the conclusion of ignore-swaps 11, count-lines 9, current-config 7, handover-utc 6, freeze-utc 5, ignore-amendments 4, late-amendments 3, current-owner 3, no-includes 3, ignore-exemptions 3, rejected-amendments 1
 adjudication F5: of 12 questions, each misreading changes the conclusion of ignore-swaps 11, current-config 10, count-lines 10, late-amendments 6, handover-utc 5, ignore-tier3 5, rejected-amendments 5, ignore-amendments 4, current-owner 4, no-includes 3, freeze-utc 3, ignore-exemptions 2
-RESULT: PASS (2925/2925)
+RESULT: PASS (2973/2973)

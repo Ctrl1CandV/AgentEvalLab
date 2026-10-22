@@ -16721,7 +16721,7 @@
       },
       {
        "path": "oncall/checkout.md",
-       "whole": true
+       "line": 8
       }
      ],
      "deadline": []
@@ -16785,7 +16785,7 @@
       },
       {
        "path": "oncall/billing.md",
-       "whole": true
+       "line": 8
       }
      ],
      "deadline": []
@@ -16849,7 +16849,7 @@
       },
       {
        "path": "oncall/messaging.md",
-       "whole": true
+       "line": 10
       }
      ],
      "deadline": []
@@ -16918,7 +16918,7 @@
       },
       {
        "path": "oncall/checkout.md",
-       "whole": true
+       "line": 8
       }
      ],
      "deadline": []
@@ -16987,7 +16987,7 @@
       },
       {
        "path": "oncall/messaging.md",
-       "whole": true
+       "line": 9
       }
      ],
      "deadline": []
@@ -17051,7 +17051,7 @@
       },
       {
        "path": "oncall/messaging.md",
-       "whole": true
+       "line": 10
       }
      ],
      "deadline": []
@@ -17125,7 +17125,7 @@
       },
       {
        "path": "oncall/identity.md",
-       "whole": true
+       "line": 9
       }
      ],
      "deadline": []
@@ -17189,7 +17189,7 @@
       },
       {
        "path": "oncall/search.md",
-       "whole": true
+       "line": 7
       }
      ],
      "deadline": []
@@ -17253,7 +17253,7 @@
       },
       {
        "path": "oncall/identity.md",
-       "whole": true
+       "line": 10
       }
      ],
      "deadline": []
@@ -17327,7 +17327,7 @@
       },
       {
        "path": "oncall/messaging.md",
-       "whole": true
+       "line": 8
       }
      ],
      "deadline": []
@@ -17396,7 +17396,7 @@
       },
       {
        "path": "oncall/messaging.md",
-       "whole": true
+       "line": 8
       }
      ],
      "deadline": []
@@ -17460,7 +17460,7 @@
       },
       {
        "path": "oncall/billing.md",
-       "whole": true
+       "line": 9
       }
      ],
      "deadline": []
@@ -17524,7 +17524,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [],
@@ -17536,7 +17552,7 @@
       },
       {
        "path": "oncall/billing.md",
-       "whole": true
+       "line": 8
       }
      ],
      "deadline": []
@@ -17597,7 +17613,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [
@@ -17614,7 +17646,7 @@
       },
       {
        "path": "oncall/checkout.md",
-       "whole": true
+       "line": 9
       }
      ],
      "deadline": []
@@ -17674,7 +17706,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [
@@ -17691,7 +17739,7 @@
       },
       {
        "path": "oncall/checkout.md",
-       "whole": true
+       "line": 9
       }
      ],
      "deadline": []
@@ -17756,7 +17804,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [],
@@ -17768,7 +17832,7 @@
       },
       {
        "path": "oncall/messaging.md",
-       "whole": true
+       "line": 8
       }
      ],
      "deadline": []
@@ -17828,7 +17892,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [
@@ -17845,7 +17925,7 @@
       },
       {
        "path": "oncall/identity.md",
-       "whole": true
+       "line": 8
       }
      ],
      "deadline": []
@@ -17906,7 +17986,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [
@@ -17923,7 +18019,7 @@
       },
       {
        "path": "oncall/messaging.md",
-       "whole": true
+       "line": 10
       }
      ],
      "deadline": []
@@ -17988,7 +18084,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [],
@@ -18000,7 +18112,7 @@
       },
       {
        "path": "oncall/identity.md",
-       "whole": true
+       "line": 8
       }
      ],
      "deadline": []
@@ -18060,7 +18172,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [
@@ -18077,7 +18205,7 @@
       },
       {
        "path": "oncall/identity.md",
-       "whole": true
+       "line": 10
       }
      ],
      "deadline": []
@@ -18137,7 +18265,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [],
@@ -18149,7 +18293,7 @@
       },
       {
        "path": "oncall/billing.md",
-       "whole": true
+       "line": 9
       }
      ],
      "deadline": []
@@ -18215,7 +18359,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [
@@ -18232,7 +18392,7 @@
       },
       {
        "path": "oncall/billing.md",
-       "whole": true
+       "line": 8
       }
      ],
      "deadline": []
@@ -18292,7 +18452,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [],
@@ -18304,7 +18480,7 @@
       },
       {
        "path": "oncall/billing.md",
-       "whole": true
+       "line": 10
       }
      ],
      "deadline": []
@@ -18364,7 +18540,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [
@@ -18381,7 +18573,7 @@
       },
       {
        "path": "oncall/search.md",
-       "whole": true
+       "line": 9
       }
      ],
      "deadline": []
@@ -18447,7 +18639,15 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
       }
      ],
      "class": [
@@ -18476,7 +18676,7 @@
       },
       {
        "path": "oncall/checkout.md",
-       "whole": true
+       "line": 8
       }
      ],
      "deadline": []
@@ -18542,7 +18742,15 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
       }
      ],
      "class": [
@@ -18571,11 +18779,11 @@
       },
       {
        "path": "oncall/search.md",
-       "whole": true
+       "line": 9
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 7
       }
      ],
      "deadline": []
@@ -18643,7 +18851,15 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
       }
      ],
      "class": [
@@ -18678,11 +18894,11 @@
      "approver": [
       {
        "path": "oncall/platform.md",
-       "whole": true
+       "line": 14
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 4
       }
      ],
      "deadline": []
@@ -18755,7 +18971,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [],
@@ -18780,11 +19012,11 @@
      "approver": [
       {
        "path": "oncall/platform.md",
-       "whole": true
+       "line": 10
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 5
       }
      ],
      "deadline": []
@@ -18852,7 +19084,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [
@@ -18887,11 +19135,11 @@
      "approver": [
       {
        "path": "oncall/platform.md",
-       "whole": true
+       "line": 14
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 7
       }
      ],
      "deadline": []
@@ -18959,7 +19207,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [],
@@ -18983,11 +19247,11 @@
       },
       {
        "path": "oncall/search.md",
-       "whole": true
+       "line": 10
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 10
       }
      ],
      "deadline": []
@@ -19060,7 +19324,19 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
       }
      ],
      "class": [],
@@ -19090,11 +19366,11 @@
      "approver": [
       {
        "path": "oncall/platform.md",
-       "whole": true
+       "line": 18
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 5
       }
      ],
      "deadline": []
@@ -19162,7 +19438,19 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
       }
      ],
      "class": [
@@ -19192,11 +19480,11 @@
      "approver": [
       {
        "path": "oncall/platform.md",
-       "whole": true
+       "line": 21
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 7
       }
      ],
      "deadline": []
@@ -19264,7 +19552,19 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
       }
      ],
      "class": [
@@ -19293,11 +19593,11 @@
       },
       {
        "path": "oncall/storage.md",
-       "whole": true
+       "line": 7
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 4
       }
      ],
      "deadline": []
@@ -19370,7 +19670,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [
@@ -19405,11 +19721,11 @@
      "approver": [
       {
        "path": "oncall/platform.md",
-       "whole": true
+       "line": 10
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 5
       }
      ],
      "deadline": []
@@ -19477,7 +19793,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [],
@@ -19501,11 +19833,11 @@
       },
       {
        "path": "oncall/storage.md",
-       "whole": true
+       "line": 8
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 6
       }
      ],
      "deadline": []
@@ -19571,7 +19903,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [
@@ -19600,11 +19948,11 @@
       },
       {
        "path": "oncall/billing.md",
-       "whole": true
+       "line": 9
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 8
       }
      ],
      "deadline": []
@@ -19679,7 +20027,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [
@@ -19709,11 +20073,11 @@
      "approver": [
       {
        "path": "oncall/platform.md",
-       "whole": true
+       "line": 21
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 7
       }
      ],
      "deadline": [],
@@ -19796,7 +20160,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [
@@ -19825,11 +20205,11 @@
       },
       {
        "path": "oncall/messaging.md",
-       "whole": true
+       "line": 10
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 9
       }
      ],
      "deadline": [],
@@ -19913,7 +20293,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [],
@@ -19937,11 +20333,11 @@
       },
       {
        "path": "oncall/billing.md",
-       "whole": true
+       "line": 9
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 8
       }
      ],
      "deadline": [],
@@ -20030,7 +20426,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [],
@@ -20054,11 +20466,11 @@
       },
       {
        "path": "oncall/checkout.md",
-       "whole": true
+       "line": 9
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 7
       }
      ],
      "deadline": [],
@@ -20138,7 +20550,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [],
@@ -20163,11 +20591,11 @@
      "approver": [
       {
        "path": "oncall/platform.md",
-       "whole": true
+       "line": 28
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 8
       }
      ],
      "deadline": [],
@@ -20251,7 +20679,23 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 9
       }
      ],
      "class": [
@@ -20281,11 +20725,11 @@
      "approver": [
       {
        "path": "oncall/platform.md",
-       "whole": true
+       "line": 14
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 5
       }
      ],
      "deadline": [],
@@ -20371,7 +20815,19 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
       }
      ],
      "class": [],
@@ -20396,7 +20852,7 @@
      "approver": [
       {
        "path": "oncall/platform.md",
-       "whole": true
+       "line": 21
       }
      ],
      "deadline": [],
@@ -20478,7 +20934,19 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
       }
      ],
      "class": [],
@@ -20502,11 +20970,11 @@
       },
       {
        "path": "oncall/search.md",
-       "whole": true
+       "line": 8
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 5
       }
      ],
      "deadline": [],
@@ -20587,7 +21055,19 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
       }
      ],
      "class": [
@@ -20616,11 +21096,11 @@
       },
       {
        "path": "oncall/billing.md",
-       "whole": true
+       "line": 10
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 9
       }
      ],
      "deadline": [],
@@ -20706,7 +21186,19 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
       }
      ],
      "class": [
@@ -20735,11 +21227,11 @@
       },
       {
        "path": "oncall/messaging.md",
-       "whole": true
+       "line": 10
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 8
       }
      ],
      "deadline": [],
@@ -20824,7 +21316,19 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
       }
      ],
      "class": [],
@@ -20849,11 +21353,11 @@
      "approver": [
       {
        "path": "oncall/platform.md",
-       "whole": true
+       "line": 27
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 7
       }
      ],
      "deadline": [],
@@ -20937,7 +21441,19 @@
      "freeze": [
       {
        "path": "calendar/freezes.md",
-       "whole": true
+       "line": 5
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 6
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 7
+      },
+      {
+       "path": "calendar/freezes.md",
+       "line": 8
       }
      ],
      "class": [],
@@ -20962,11 +21478,11 @@
      "approver": [
       {
        "path": "oncall/platform.md",
-       "whole": true
+       "line": 30
       },
       {
        "path": "oncall/swaps.md",
-       "whole": true
+       "line": 10
       }
      ],
      "deadline": [],

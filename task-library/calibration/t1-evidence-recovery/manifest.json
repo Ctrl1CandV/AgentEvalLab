@@ -37,7 +37,7 @@
       },
       {
         "path": "private/cases.py",
-        "sha256": "822a53e5c95f180896b554599f9273e4557f6fe95d4507ad59d7d143064b4944"
+        "sha256": "f5c65306ef4257167e03cb4a5e4c8b26dfc68abe415934ded9821f99b6a40436"
       },
       {
         "path": "private/chains.py",
@@ -45,19 +45,19 @@
       },
       {
         "path": "private/generate.py",
-        "sha256": "670303645395c13719b0bb32e04397ad7e038ed757e65e7d9afe64e07c82c83b"
+        "sha256": "659414aa1ca180ddb0f56facdddf5b30483e866c25571642234cf29662460826"
       },
       {
         "path": "private/grader.py",
-        "sha256": "7e48ec250cf741890f6e47bd071cf38e89d58e043861f66a6fe5b5c80c43710a"
+        "sha256": "ba15e2cdd40d8a5747936d1f8389ea1d2b15507a18bfee8743acbfc15b9c8c94"
       },
       {
         "path": "private/keys.json",
-        "sha256": "d10493c827e9621c198ec01cf3545aeb983cb7e993513b4af4a922767aedbc63"
+        "sha256": "4d01f36e87e637e3b82077b8e797c248941381a0d3b0e22e6d67b7e2c0e52e91"
       },
       {
         "path": "private/snapshot.py",
-        "sha256": "bd332fe16ccbfd62837eca48b8f222c17f94e6414bd501c66e1573a58b59006c"
+        "sha256": "538e276920c709a802e4e8036d90463d07683601abcb1703197387801a5b23dc"
       }
     ]
   },
@@ -28087,7 +28087,7 @@
   ],
   "grader": {
     "id": "t1-evidence-trace",
-    "version": "1.7.0",
+    "version": "1.7.1",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

@@ -15,7 +15,7 @@ import snapshot  # noqa: E402
 
 TASK_ID = "t1-evidence-recovery"
 TASK_VERSION = "0.6.0"
-GRADER_VERSION = "1.7.0"
+GRADER_VERSION = "1.7.1"
 KEYS_PATH = os.path.join(HERE, "keys.json")
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)
 
@@ -662,6 +662,14 @@ def calibrate_case(item_id, index, question, keys, rows, mistakes):
         needs = [field for field, proofs in question["proofs"].items() if missing in gate or any(proof["path"] == missing for proof in proofs)]
         rows.append((f"{item_id}-q{index}-without-{missing}-fails-its-fields",
                      all(partial[f"q{index}-{field}"] is (field not in needs) for field in question["proofs"])))
+    # The deciding rotation row and swap may be shown by a search instead of reading their files (grader 1.7.1).
+    rows_shown = [proof for proof in question["proofs"]["approver"] if "line" in proof]
+    if rows_shown:
+        lines_of = Observations(item_id, [])
+        matches = [{"path": proof["path"], "line": proof["line"] + 1, "text": lines_of.lines(proof["path"])[proof["line"]]} for proof in rows_shown]
+        unread = [path for path in paths if path not in {proof["path"] for proof in rows_shown}]
+        searched = grade(item_id, "strict", reference, read_events(unread, item_id) + search_trace(matches), keys)
+        rows.append((f"{item_id}-q{index}-approver-row-by-search", searched[f"q{index}-approver"]))
     for field in question["proofs"]:
         wrong = dict(reference)
         wrong[f"Q{index}"] = dict(reference[f"Q{index}"], **{field: wrong_value(field, question["answer"][field])})

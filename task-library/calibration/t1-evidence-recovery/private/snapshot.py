@@ -92,6 +92,10 @@ def build(level_id, rng):
         snap = Snapshot()
         for path in sorted(files):
             snap.add(path, files[path])
+        # A deciding line is located by its text.
+        located = lambda proof: evidence(snap, proof["path"], proof["lineText"]) if "lineText" in proof else proof  # noqa: E731
+        for question in questions:
+            question["proofs"] = {field: [located(proof) for proof in proofs] for field, proofs in question["proofs"].items()}
         return snap, project, questions
     project = f"{rng.choice(['north', 'quiet', 'amber', 'lucid', 'brisk'])}-{rng.choice(['relay', 'ledger', 'harvest', 'signal', 'canopy'])}"
     snap = Snapshot()

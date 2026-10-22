@@ -728,9 +728,7 @@ def render(world, rng, project, questions):
     if features["freeze"]:
         files["calendar/freezes.md"] = ["# Change freezes", "",
                                         "Times are Berlin time, which is UTC+2 throughout September 2026. A freeze runs from its start (included) to",
-                                        "its end (excluded).", ""] + \
-                                       [f"- {stamp(freeze['start'])} to {stamp(freeze['end'])}." + (f" Exempt: {', '.join(sorted(freeze['exempt']))}." if freeze["exempt"] else "")
-                                        for freeze in world.freezes]
+                                        "its end (excluded).", ""] + [freeze_line(freeze) for freeze in world.freezes]
     for team in world.team_names:
         files[f"oncall/{team}.md"] = [f"# On call: {team}", "",
                                       "Each week runs from Monday 09:00 Berlin time to the next Monday 09:00. Berlin time is UTC+2 throughout",
@@ -743,10 +741,17 @@ def render(world, rng, project, questions):
                                       [f"| {day.isoformat()} | {name} |" for day, name in world.commanders.items()]
     if features["swaps"]:
         files["oncall/swaps.md"] = ["# Swaps", "", "Times are UTC. A swap runs from its start (included) to its end (excluded).", ""] + \
-                                   [f"- {stamp(swap['start'])} to {stamp(swap['end'])}: {swap['by']} covers "
-                                    + (f"the {swap['team']} {swap['role']}" if swap["team"] else "the incident commander") + f" for {swap['for']}."
-                                    for swap in world.swaps]
+                                   [swap_line(swap) for swap in world.swaps]
     return files, [case_key(world, question) for question in questions]
+
+
+def freeze_line(freeze):
+    return f"- {stamp(freeze['start'])} to {stamp(freeze['end'])}." + (f" Exempt: {', '.join(sorted(freeze['exempt']))}." if freeze["exempt"] else "")
+
+
+def swap_line(swap):
+    return f"- {stamp(swap['start'])} to {stamp(swap['end'])}: {swap['by']} covers " + \
+        (f"the {swap['team']} {swap['role']}" if swap["team"] else "the incident commander") + f" for {swap['for']}."
 
 
 FORMS = {"tier": "<1, 2 or 3>", "freeze": "<true or false>", "class": '"<standard, emergency or rollback>"', "reach": "<integer>",
@@ -768,18 +773,28 @@ def case_key(world, question):
             whole("docs/RESPONSE.md")]
     in_force = [amendment for amendment in world.amendments if amendment["amends"] == question["cause"] and amendment["status"] == "approved"
                 and amendment["effective"] <= start]
+    # A deciding line may be shown by a search as well as by a read (grader 1.7.1): every freeze line, the rotation row
+    # in force, and the swap that applies.
+    line = lambda path, text: {"path": path, "lineText": text}
+    freeze_lines = [line("calendar/freezes.md", freeze_line(freeze)) for freeze in world.freezes] if features["freeze"] else []
     proofs = {"tier": [whole(f"services/{service}/config/prod.toml", "tier")],
-              "freeze": [whole("calendar/freezes.md")],
+              "freeze": freeze_lines,
               "class": [whole(f"changes/amendments/{amendment['id']}.md") for amendment in in_force],
               "reach": [whole(f"services/{other}/config/prod.toml", "upstream") for other in world.services
                         if other != service and world.effective(other, "upstream", start) == service],
               "procedure": [], "deadline": []}
     if truth["team"] is None:
-        approver = [whole("oncall/platform.md")]
+        day = max(day for day in DAYS if dt.datetime.combine(day, dt.time(8)) - OFFSET <= start)
+        approver = [line("oncall/platform.md", f"| {day.isoformat()} | {world.commanders[day]} |")]
     else:
-        approver = [whole(f"services/{service}/OWNERS"), whole(f"oncall/{truth['team']}.md")]
-    if world.features["swaps"] and world.on_call(truth["team"], truth["role"], start) != world.on_call(truth["team"], truth["role"], start, {"ignore-swaps"}):
-        approver.append(whole("oncall/swaps.md"))
+        week = max(monday for monday in MONDAYS if dt.datetime.combine(monday, dt.time(9)) - OFFSET <= start)
+        primary, secondary = world.rotation[truth["team"]][week]
+        approver = [whole(f"services/{service}/OWNERS"), line(f"oncall/{truth['team']}.md", f"| {week.isoformat()} | {primary} | {secondary} |")]
+    if world.features["swaps"]:
+        base_person = world.on_call(truth["team"], truth["role"], start, {"ignore-swaps"})
+        for swap in world.swaps:
+            if swap["team"] == truth["team"] and swap["role"] == truth["role"] and swap["for"] == base_person and swap["start"] <= start < swap["end"]:
+                approver.append(line("oncall/swaps.md", swap_line(swap)))
     proofs["approver"] = approver
     if features["what_if"]:
         proofs["cf_procedure"] = proofs["cf_deadline"] = [whole(f"changes/{question['what_if']}.md")]
