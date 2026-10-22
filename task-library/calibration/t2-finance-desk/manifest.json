@@ -1,0 +1,1489 @@
+{
+  "schemaVersion": 1,
+  "id": "t2-finance-desk",
+  "version": "0.1.0",
+  "familyId": "t2-service-desk",
+  "capability": "tool",
+  "usage": "development",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "docs/design/TASK_SET_V2.md",
+      "tau-bench (Yao et al., 2024) and tau2-bench (Barres et al., 2025), as models of the task form"
+    ]
+  },
+  "license": {
+    "taskText": "Original project-authored manual, books, tool and requests.",
+    "thirdPartyContent": []
+  },
+  "entryPoint": {
+    "instruction": "instruction.md"
+  },
+  "files": {
+    "public": [
+      {
+        "path": "instruction.md",
+        "sha256": "cd86b51b3c6f2bd899e26b407b7431463c3fc3e4e29c7b6ac580aeda583a68bb"
+      }
+    ],
+    "trusted": [
+      {
+        "path": "calibration.md",
+        "sha256": "5e9b17f671230b224e0d54d5aa18be6a4c47630ba3c0fc0937b45dd6812bd0d9"
+      },
+      {
+        "path": "rubric.md",
+        "sha256": "dc38abb7ea112d1915493ddd324eb8681cc742394d0bb361d60615185d98358c"
+      },
+      {
+        "path": "private/MANUAL.md",
+        "sha256": "ca72579ed8c9c9b0c9e56a05a33ece759f7d40fb7d08cc07bc6bf41972e3999d"
+      },
+      {
+        "path": "private/build_package.py",
+        "sha256": "7f834a4d5cefa311bbcbc92c105f642b7cfb48a3c8784c9c55becefec3805abc"
+      },
+      {
+        "path": "private/calibrate.py",
+        "sha256": "aa09f5f3cb0288ac8ef010965ed4fa2517401d2a878b90cf475c3bf5b05349f0"
+      },
+      {
+        "path": "private/days.json",
+        "sha256": "4da0eddf3dcef890f333939d1bfa6db9e49247c681ca16e3d5894f33ec2ef0a8"
+      },
+      {
+        "path": "private/finance.py",
+        "sha256": "375bab070f1fbab93fdfe6dc1b7aef11a2facd628c9877efd465ae04dc78488e"
+      },
+      {
+        "path": "private/grader.py",
+        "sha256": "35de6a0a70570f0d0ada9ecc8fca524acea1b68066716b3549d501f9f4dfbc12"
+      },
+      {
+        "path": "private/ledger.py",
+        "sha256": "3edaf01d6c7a4299a46bdcc26da86725d5a3ebb991676a7609936467ebd28335"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "REQ-FN1-R1-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r1-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R1-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r1-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R1-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r1-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R1-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r1-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R2-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r2-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R2-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r2-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R2-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r2-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R2-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r2-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R3-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r3-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R3-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r3-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R3-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r3-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R3-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r3-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R4-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r4-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R4-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r4-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R4-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r4-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R4-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r4-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R5-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r5-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R5-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r5-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R5-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r5-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R6-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r6-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R6-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r6-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R6-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r6-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R7-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r7-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R7-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r7-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R7-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r7-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R8-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r8-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R8-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r8-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R8-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r8-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R8-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r8-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R9-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r9-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R9-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r9-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R9-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r9-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R10-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r10-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R10-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r10-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R10-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn1-r10-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R1-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r1-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R1-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r1-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R1-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r1-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R1-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r1-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R2-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r2-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R2-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r2-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R2-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r2-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R2-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r2-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R3-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r3-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R3-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r3-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R3-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r3-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R3-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r3-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R4-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r4-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R4-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r4-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R4-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r4-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R4-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r4-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R5-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r5-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R5-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r5-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R5-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r5-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R6-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r6-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R6-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r6-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R6-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r6-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R7-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r7-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R7-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r7-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R7-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r7-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R8-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r8-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R8-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r8-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R8-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r8-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R8-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r8-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R9-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r9-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R9-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r9-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R9-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r9-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R10-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r10-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R10-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r10-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R10-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn2-r10-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R1-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r1-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R1-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r1-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R1-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r1-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R1-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r1-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R2-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r2-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R2-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r2-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R2-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r2-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R2-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r2-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R3-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r3-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R3-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r3-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R3-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r3-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R3-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r3-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R4-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r4-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R4-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r4-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R4-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r4-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R4-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r4-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R5-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r5-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R5-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r5-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R5-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r5-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R6-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r6-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R6-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r6-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R6-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r6-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R7-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r7-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R7-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r7-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R7-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r7-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R8-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r8-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R8-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r8-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R8-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r8-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R8-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r8-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R9-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r9-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R9-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r9-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R9-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r9-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R10-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r10-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R10-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r10-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R10-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn3-r10-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R1-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r1-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R1-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r1-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R1-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r1-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R1-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r1-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R2-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r2-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R2-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r2-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R2-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r2-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R2-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r2-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R3-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r3-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R3-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r3-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R3-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r3-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R3-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r3-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R4-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r4-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R4-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r4-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R4-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r4-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R4-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r4-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R5-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r5-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R5-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r5-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R5-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r5-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R6-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r6-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R6-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r6-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R6-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r6-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R7-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r7-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R7-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r7-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R7-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r7-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R8-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r8-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R8-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r8-allocation"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R8-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r8-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R8-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r8-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R9-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r9-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R9-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r9-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R9-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r9-clean"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R10-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r10-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R10-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r10-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R10-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "fn4-r10-clean"
+      ]
+    },
+    {
+      "id": "REQ-FORMAT",
+      "critical": false,
+      "introducedAt": "t2-finance-desk 0.1.0",
+      "checkIds": [
+        "answer-format"
+      ]
+    }
+  ],
+  "scoring": {
+    "formatCheckId": "answer-format",
+    "formatPenalty": 0.2
+  },
+  "items": [
+    {
+      "id": "fn1",
+      "level": "close",
+      "files": [
+        {
+          "path": "items/fn1/prompt.md",
+          "sha256": "bc2952b5a47809340f63602e8e0d564146f588c8eeb3802045b4fef274224f7b"
+        },
+        {
+          "path": "items/fn1/public/MANUAL.md",
+          "sha256": "ca72579ed8c9c9b0c9e56a05a33ece759f7d40fb7d08cc07bc6bf41972e3999d"
+        },
+        {
+          "path": "items/fn1/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/fn1/public/data/books.json",
+          "sha256": "55be42c867bd48745979eccacb08c7d20eecc4d7096c4b06726342673f5120bd"
+        },
+        {
+          "path": "items/fn1/public/ledger.py",
+          "sha256": "3edaf01d6c7a4299a46bdcc26da86725d5a3ebb991676a7609936467ebd28335"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FN1-R1-OUTCOME",
+        "REQ-FN1-R1-ALLOCATION",
+        "REQ-FN1-R1-AMOUNTS",
+        "REQ-FN1-R1-CLEAN",
+        "REQ-FN1-R2-OUTCOME",
+        "REQ-FN1-R2-ALLOCATION",
+        "REQ-FN1-R2-AMOUNTS",
+        "REQ-FN1-R2-CLEAN",
+        "REQ-FN1-R3-OUTCOME",
+        "REQ-FN1-R3-ALLOCATION",
+        "REQ-FN1-R3-AMOUNTS",
+        "REQ-FN1-R3-CLEAN",
+        "REQ-FN1-R4-OUTCOME",
+        "REQ-FN1-R4-ALLOCATION",
+        "REQ-FN1-R4-AMOUNTS",
+        "REQ-FN1-R4-CLEAN",
+        "REQ-FN1-R5-OUTCOME",
+        "REQ-FN1-R5-AMOUNTS",
+        "REQ-FN1-R5-CLEAN",
+        "REQ-FN1-R6-OUTCOME",
+        "REQ-FN1-R6-AMOUNTS",
+        "REQ-FN1-R6-CLEAN",
+        "REQ-FN1-R7-OUTCOME",
+        "REQ-FN1-R7-AMOUNTS",
+        "REQ-FN1-R7-CLEAN",
+        "REQ-FN1-R8-OUTCOME",
+        "REQ-FN1-R8-ALLOCATION",
+        "REQ-FN1-R8-AMOUNTS",
+        "REQ-FN1-R8-CLEAN",
+        "REQ-FN1-R9-OUTCOME",
+        "REQ-FN1-R9-AMOUNTS",
+        "REQ-FN1-R9-CLEAN",
+        "REQ-FN1-R10-OUTCOME",
+        "REQ-FN1-R10-AMOUNTS",
+        "REQ-FN1-R10-CLEAN",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "fn2",
+      "level": "close",
+      "files": [
+        {
+          "path": "items/fn2/prompt.md",
+          "sha256": "531f616653ecd04c31e4129b2f134e39aa18dff6b20b537d5692e32e7d7b82ae"
+        },
+        {
+          "path": "items/fn2/public/MANUAL.md",
+          "sha256": "ca72579ed8c9c9b0c9e56a05a33ece759f7d40fb7d08cc07bc6bf41972e3999d"
+        },
+        {
+          "path": "items/fn2/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/fn2/public/data/books.json",
+          "sha256": "f4f3e3eb84f4789015887488179494b1661b8ab141370759749de2179be5402a"
+        },
+        {
+          "path": "items/fn2/public/ledger.py",
+          "sha256": "3edaf01d6c7a4299a46bdcc26da86725d5a3ebb991676a7609936467ebd28335"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FN2-R1-OUTCOME",
+        "REQ-FN2-R1-ALLOCATION",
+        "REQ-FN2-R1-AMOUNTS",
+        "REQ-FN2-R1-CLEAN",
+        "REQ-FN2-R2-OUTCOME",
+        "REQ-FN2-R2-ALLOCATION",
+        "REQ-FN2-R2-AMOUNTS",
+        "REQ-FN2-R2-CLEAN",
+        "REQ-FN2-R3-OUTCOME",
+        "REQ-FN2-R3-ALLOCATION",
+        "REQ-FN2-R3-AMOUNTS",
+        "REQ-FN2-R3-CLEAN",
+        "REQ-FN2-R4-OUTCOME",
+        "REQ-FN2-R4-ALLOCATION",
+        "REQ-FN2-R4-AMOUNTS",
+        "REQ-FN2-R4-CLEAN",
+        "REQ-FN2-R5-OUTCOME",
+        "REQ-FN2-R5-AMOUNTS",
+        "REQ-FN2-R5-CLEAN",
+        "REQ-FN2-R6-OUTCOME",
+        "REQ-FN2-R6-AMOUNTS",
+        "REQ-FN2-R6-CLEAN",
+        "REQ-FN2-R7-OUTCOME",
+        "REQ-FN2-R7-AMOUNTS",
+        "REQ-FN2-R7-CLEAN",
+        "REQ-FN2-R8-OUTCOME",
+        "REQ-FN2-R8-ALLOCATION",
+        "REQ-FN2-R8-AMOUNTS",
+        "REQ-FN2-R8-CLEAN",
+        "REQ-FN2-R9-OUTCOME",
+        "REQ-FN2-R9-AMOUNTS",
+        "REQ-FN2-R9-CLEAN",
+        "REQ-FN2-R10-OUTCOME",
+        "REQ-FN2-R10-AMOUNTS",
+        "REQ-FN2-R10-CLEAN",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "fn3",
+      "level": "close",
+      "files": [
+        {
+          "path": "items/fn3/prompt.md",
+          "sha256": "843eaa7884aefa914c159504a4508cc148f85b185f45b990398c43a47d021131"
+        },
+        {
+          "path": "items/fn3/public/MANUAL.md",
+          "sha256": "ca72579ed8c9c9b0c9e56a05a33ece759f7d40fb7d08cc07bc6bf41972e3999d"
+        },
+        {
+          "path": "items/fn3/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/fn3/public/data/books.json",
+          "sha256": "908551b337a7a36c861b06e7e58285315a023f30f98af2c876e5ed77fb1c860d"
+        },
+        {
+          "path": "items/fn3/public/ledger.py",
+          "sha256": "3edaf01d6c7a4299a46bdcc26da86725d5a3ebb991676a7609936467ebd28335"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FN3-R1-OUTCOME",
+        "REQ-FN3-R1-ALLOCATION",
+        "REQ-FN3-R1-AMOUNTS",
+        "REQ-FN3-R1-CLEAN",
+        "REQ-FN3-R2-OUTCOME",
+        "REQ-FN3-R2-ALLOCATION",
+        "REQ-FN3-R2-AMOUNTS",
+        "REQ-FN3-R2-CLEAN",
+        "REQ-FN3-R3-OUTCOME",
+        "REQ-FN3-R3-ALLOCATION",
+        "REQ-FN3-R3-AMOUNTS",
+        "REQ-FN3-R3-CLEAN",
+        "REQ-FN3-R4-OUTCOME",
+        "REQ-FN3-R4-ALLOCATION",
+        "REQ-FN3-R4-AMOUNTS",
+        "REQ-FN3-R4-CLEAN",
+        "REQ-FN3-R5-OUTCOME",
+        "REQ-FN3-R5-AMOUNTS",
+        "REQ-FN3-R5-CLEAN",
+        "REQ-FN3-R6-OUTCOME",
+        "REQ-FN3-R6-AMOUNTS",
+        "REQ-FN3-R6-CLEAN",
+        "REQ-FN3-R7-OUTCOME",
+        "REQ-FN3-R7-AMOUNTS",
+        "REQ-FN3-R7-CLEAN",
+        "REQ-FN3-R8-OUTCOME",
+        "REQ-FN3-R8-ALLOCATION",
+        "REQ-FN3-R8-AMOUNTS",
+        "REQ-FN3-R8-CLEAN",
+        "REQ-FN3-R9-OUTCOME",
+        "REQ-FN3-R9-AMOUNTS",
+        "REQ-FN3-R9-CLEAN",
+        "REQ-FN3-R10-OUTCOME",
+        "REQ-FN3-R10-AMOUNTS",
+        "REQ-FN3-R10-CLEAN",
+        "REQ-FORMAT"
+      ]
+    },
+    {
+      "id": "fn4",
+      "level": "close",
+      "files": [
+        {
+          "path": "items/fn4/prompt.md",
+          "sha256": "376686b0338862cefa44b990471a9e29be8c3cd5905423987d0d0544c144a2ac"
+        },
+        {
+          "path": "items/fn4/public/MANUAL.md",
+          "sha256": "ca72579ed8c9c9b0c9e56a05a33ece759f7d40fb7d08cc07bc6bf41972e3999d"
+        },
+        {
+          "path": "items/fn4/public/data/audit.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "items/fn4/public/data/books.json",
+          "sha256": "e82f4c7acc4ccfbe88a54a678a57b68b0ae9cd86878a52831a4edd60a8b4cd2e"
+        },
+        {
+          "path": "items/fn4/public/ledger.py",
+          "sha256": "3edaf01d6c7a4299a46bdcc26da86725d5a3ebb991676a7609936467ebd28335"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FN4-R1-OUTCOME",
+        "REQ-FN4-R1-ALLOCATION",
+        "REQ-FN4-R1-AMOUNTS",
+        "REQ-FN4-R1-CLEAN",
+        "REQ-FN4-R2-OUTCOME",
+        "REQ-FN4-R2-ALLOCATION",
+        "REQ-FN4-R2-AMOUNTS",
+        "REQ-FN4-R2-CLEAN",
+        "REQ-FN4-R3-OUTCOME",
+        "REQ-FN4-R3-ALLOCATION",
+        "REQ-FN4-R3-AMOUNTS",
+        "REQ-FN4-R3-CLEAN",
+        "REQ-FN4-R4-OUTCOME",
+        "REQ-FN4-R4-ALLOCATION",
+        "REQ-FN4-R4-AMOUNTS",
+        "REQ-FN4-R4-CLEAN",
+        "REQ-FN4-R5-OUTCOME",
+        "REQ-FN4-R5-AMOUNTS",
+        "REQ-FN4-R5-CLEAN",
+        "REQ-FN4-R6-OUTCOME",
+        "REQ-FN4-R6-AMOUNTS",
+        "REQ-FN4-R6-CLEAN",
+        "REQ-FN4-R7-OUTCOME",
+        "REQ-FN4-R7-AMOUNTS",
+        "REQ-FN4-R7-CLEAN",
+        "REQ-FN4-R8-OUTCOME",
+        "REQ-FN4-R8-ALLOCATION",
+        "REQ-FN4-R8-AMOUNTS",
+        "REQ-FN4-R8-CLEAN",
+        "REQ-FN4-R9-OUTCOME",
+        "REQ-FN4-R9-AMOUNTS",
+        "REQ-FN4-R9-CLEAN",
+        "REQ-FN4-R10-OUTCOME",
+        "REQ-FN4-R10-AMOUNTS",
+        "REQ-FN4-R10-CLEAN",
+        "REQ-FORMAT"
+      ]
+    }
+  ],
+  "toolProfiles": [
+    "workspace-basic"
+  ],
+  "grader": {
+    "id": "t2-finance-ledger",
+    "version": "1.0.0",
+    "entryPoint": "private/grader.py",
+    "executable": "python3",
+    "args": [
+      "{entryPoint}",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ],
+    "answerSource": "execution-output"
+  },
+  "environment": {
+    "runtime": "Python 3.13",
+    "dependencies": "Python standard library; no network",
+    "network": false,
+    "runtimeCheck": {
+      "executable": "python3",
+      "args": [
+        "--version"
+      ],
+      "expectedSubstring": "Python 3.13."
+    }
+  }
+}

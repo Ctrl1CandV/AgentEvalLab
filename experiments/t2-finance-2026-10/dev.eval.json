@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 3,
+  "name": "t2-finance-2026-10-dev",
+  "models": [
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "aliplan",
+      "id": "qwen3.8-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    },
+    {
+      "provider": "mimoplan",
+      "id": "mimo-v2.6-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 1,
+  "budget": {
+    "timeoutMs": 7200000,
+    "maxTurns": 400,
+    "maxModelCalls": 400,
+    "maxToolCalls": 700,
+    "maxOutputChars": 524288,
+    "maxOutputTokensPerCall": 131072,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 4000000
+  },
+  "artifactLimits": {
+    "maxFiles": 500,
+    "maxFileBytes": 2097152,
+    "maxTrialBytes": 10485760,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 10000000,
+    "concurrency": 6
+  },
+  "trustedLocalExecution": true,
+  "budgetNotice": true,
+  "cases": [
+    {
+      "id": "t2-finance-desk",
+      "packagePath": "task-library/calibration/t2-finance-desk",
+      "packageManifestSha256": "7a9f5edbdb83e306c7ebe8db78e6546c45964709ad5eaa28e1e09ead3459223b",
+      "input": {
+        "prompt": "Use the tools to handle every request, then give the JSON reply."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 600000
+      },
+      "items": [
+        "fn1",
+        "fn2"
+      ]
+    }
+  ]
+}
