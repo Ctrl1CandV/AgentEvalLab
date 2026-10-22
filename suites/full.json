@@ -26,13 +26,11 @@
     {
       "id": "T1",
       "kind": "single",
-      "template": "experiments/t1-calibration-2026-10/depth.eval.json",
+      "template": "experiments/t1-calibration-2026-10/cases.eval.json",
       "score": {
         "levels": [
-          "D2",
-          "D4",
-          "D6",
-          "D8"
+          "F4",
+          "F5"
         ]
       }
     },
@@ -77,12 +75,13 @@
     {
       "id": "T2",
       "kind": "single",
-      "template": "experiments/t2-calibration-2026-10/v0.3.eval.json",
+      "template": "experiments/t2-finance-2026-10/full.eval.json",
       "score": {
-        "levels": [
-          "S",
-          "M",
-          "L"
+        "items": [
+          "fn1",
+          "fn2",
+          "fn3",
+          "fn4"
         ]
       }
     },
