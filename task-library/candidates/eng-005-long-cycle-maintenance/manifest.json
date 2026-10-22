@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "eng-005-long-cycle-maintenance",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "familyId": "eng-workflow-evolution",
   "capability": "engineering",
   "usage": "development",
@@ -23,7 +23,7 @@
     "public": [
       {
         "path": "instruction.md",
-        "sha256": "f42127a6e2a9630cd11ef3339a4b83fb4e4d215f36598c7a402ac455e9128d96"
+        "sha256": "a31f3a99a8bb65976a533c9eca87e18fbfbcd5907f9a38aa4a3b982f955c2fc0"
       },
       {
         "path": "public/project-brief.md",
@@ -37,7 +37,35 @@
       },
       {
         "path": "private/grader.py",
-        "sha256": "8952dc36f78b1e043db84126b0b77c0a99bd56957b888fc63b2196166b67e3c6"
+        "sha256": "1eed9ed0cb63487a6cfb551575bc9ae92e0d9bee75a54190b7eff90bd4cb3978"
+      },
+      {
+        "path": "private/scale-reference/package.json",
+        "sha256": "86a95749a20f7f27a2afec88214a8c86d5787262875f626315b98c3d4c4776cc"
+      },
+      {
+        "path": "private/scale-reference/src/cli.ts",
+        "sha256": "311050fb81e071cb9309a46ce46eab325a153b50ec6e29a442e0d68a644302df"
+      },
+      {
+        "path": "private/scale-reference/src/errors.ts",
+        "sha256": "31571706b4299e5be6bd27d2b25fd098f38cb8d46dec19a0a0abbb77d647da9f"
+      },
+      {
+        "path": "private/scale-reference/src/service.ts",
+        "sha256": "4adc43f9893e9d53f2b4a89829852695caf4d2176bcd775996c65dd73802a05d"
+      },
+      {
+        "path": "private/scale-reference/src/store.ts",
+        "sha256": "fb6e4188a8ca6302e9e41fac984427d77499a085a784bc8d0ebd935dbcb7a63c"
+      },
+      {
+        "path": "private/scale-reference/src/types.ts",
+        "sha256": "002211ac54991e666f4b0812f3d1b273fe21679dd5cdc3f97a7f61dc929e37c2"
+      },
+      {
+        "path": "private/scale.py",
+        "sha256": "79d6409b75570bf35027b759c27293dbd715c13d4cc6b3eed94c714044a568d2"
       },
       {
         "path": "private/v1-fixture.json",
@@ -134,6 +162,27 @@
         "errors.codes-all",
         "errors.store-invalid",
         "errors.clean-output"
+      ]
+    },
+    {
+      "id": "SCALE",
+      "critical": true,
+      "introducedAt": "SCALE",
+      "checkIds": [
+        "scale.list",
+        "scale.dependencies",
+        "scale.status"
+      ]
+    },
+    {
+      "id": "SCALE_SPEED",
+      "critical": false,
+      "introducedAt": "SCALE_SPEED",
+      "checkIds": [
+        "scale.speed-3",
+        "scale.speed-1.5",
+        "scale.speed-1.1",
+        "scale.speed-0.75"
       ]
     }
   ],
@@ -340,6 +389,53 @@
           "public-s5"
         ]
       }
+    },
+    {
+      "id": "S6",
+      "instruction": "stages/S6/instruction.md",
+      "files": [
+        {
+          "path": "stages/S6/instruction.md",
+          "sha256": "c2f14747c151a35ccd1e902729c4a9cd804a57d547aad08b5ecad90fa157f85f"
+        },
+        {
+          "path": "stages/S6/public/checker.py",
+          "sha256": "fca4ce1bd35f5fd4f2ece1cd23e83c1845a22c3b19ddfadf31ed7b0eb831f64a"
+        },
+        {
+          "path": "stages/S6/public/make_store.py",
+          "sha256": "7fc1535426011cc7599315b1afe2aace44ec7e0b14b30733697ce607633b1fbd"
+        }
+      ],
+      "activeRequirementIds": [
+        "BASE_CLI",
+        "BASE_DATA",
+        "QUERY",
+        "DEPENDENCY",
+        "NO_MUTATION",
+        "MIGRATION",
+        "ERRORS_DOCS",
+        "SCALE",
+        "SCALE_SPEED"
+      ],
+      "publicChecker": {
+        "entryPoint": "stages/S6/public/checker.py",
+        "executable": "python3",
+        "args": [
+          "{entryPoint}",
+          "--submission",
+          "{submission}",
+          "--stage",
+          "S6",
+          "--sandbox-launcher",
+          "{sandbox}"
+        ],
+        "timeoutMs": 120000,
+        "maxOutputBytes": 100000,
+        "checkIds": [
+          "public-s6"
+        ]
+      }
     }
   ],
   "toolProfiles": [
@@ -348,7 +444,7 @@
   ],
   "grader": {
     "id": "eng005-checkpoint-grader",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

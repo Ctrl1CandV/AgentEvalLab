@@ -50,7 +50,8 @@ export async function updateOrder(id: string, updates: { status?: string; title?
     }
     if (next === "DONE") {
       const dependencies = order.dependsOn ?? [];
-      if (dependencies.some(id => store.workOrders.find(candidate => candidate.id === id)?.status !== "DONE")) {
+      const byId = index(store);
+      if (dependencies.some(id => byId.get(id)?.status !== "DONE")) {
         throw new AppError("DEPENDENCY_NOT_COMPLETE", "Every prerequisite must be DONE first.");
       }
     }
@@ -71,12 +72,26 @@ export async function createOrder(id: string, title: string): Promise<WorkOrder>
   return order;
 }
 
-function reaches(store: Awaited<ReturnType<typeof readStore>>, currentId: string, targetId: string, seen = new Set<string>()): boolean {
-  if (currentId === targetId) return true;
-  if (seen.has(currentId)) return false;
-  seen.add(currentId);
-  const current = store.workOrders.find(order => order.id === currentId);
-  return (current?.dependsOn ?? []).some(id => reaches(store, id, targetId, seen));
+function index(store: Awaited<ReturnType<typeof readStore>>): Map<string, WorkOrder> {
+  return new Map(store.workOrders.map(order => [order.id, order]));
+}
+
+/** Whether targetId is reachable from startId through dependsOn: an iterative search that visits each order once. */
+function reaches(store: Awaited<ReturnType<typeof readStore>>, startId: string, targetId: string): boolean {
+  const byId = index(store);
+  const seen = new Set<string>([startId]);
+  const pending = [startId];
+  while (pending.length) {
+    const currentId = pending.pop()!;
+    if (currentId === targetId) return true;
+    for (const next of byId.get(currentId)?.dependsOn ?? []) {
+      if (!seen.has(next)) {
+        seen.add(next);
+        pending.push(next);
+      }
+    }
+  }
+  return false;
 }
 
 export async function addDependency(id: string, prerequisiteId: string): Promise<WorkOrder> {

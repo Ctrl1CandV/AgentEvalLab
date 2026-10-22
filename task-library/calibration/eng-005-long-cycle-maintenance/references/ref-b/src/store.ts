@@ -42,7 +42,8 @@ function appendEvent(store: StoreV2, type: string, orderId: string | null): void
 }
 
 function forWrite(store: Store): StoreV2 {
-  if (store.version === 2) return structuredClone(store);
+  // Rejected operations never save, so a version 2 store is written as it is, without a copy.
+  if (store.version === 2) return store;
   const migrated: StoreV2 = {
     version: 2,
     workOrders: store.workOrders.map(order => ({ ...order, dependsOn: [...(order.dependsOn ?? [])] })),

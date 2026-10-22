@@ -1,6 +1,6 @@
 {
   "schemaVersion": 3,
-  "name": "e3-calibration-2026-10",
+  "name": "e3-calibration-2026-10-s6",
   "models": [
     {
       "provider": "supergpt",
@@ -53,22 +53,22 @@
       "maxTurns": 80,
       "maxModelCalls": 80,
       "maxToolCalls": 200,
-      "maxOutputTokensPerCall": 32768,
-      "maxOutputChars": 60000,
+      "maxOutputTokensPerCall": 131072,
+      "maxOutputChars": 524288,
       "maxToolResultChars": 100000,
       "maxTrialTokens": 2000000
     },
     "publicRepairMax": 1
   },
   "budget": {
-    "timeoutMs": 14400000,
-    "maxTurns": 320,
-    "maxModelCalls": 320,
-    "maxToolCalls": 800,
-    "maxOutputTokensPerCall": 32768,
-    "maxOutputChars": 300000,
+    "timeoutMs": 18000000,
+    "maxTurns": 400,
+    "maxModelCalls": 400,
+    "maxToolCalls": 1000,
+    "maxOutputTokensPerCall": 131072,
+    "maxOutputChars": 524288,
     "maxToolResultChars": 100000,
-    "maxTrialTokens": 6000000
+    "maxTrialTokens": 8000000
   },
   "artifactLimits": {
     "maxFiles": 500,
@@ -80,7 +80,7 @@
   "batch": {
     "maxRetries": 2,
     "maxConsecutiveInfrastructureFailures": 3,
-    "maxTotalTokensPerModel": 7000000
+    "maxTotalTokensPerModel": 8000000
   },
   "trustedLocalExecution": true,
   "cases": [
@@ -91,14 +91,14 @@
         "commit": "679119874c31d2cff12cc48f57c86a1fcec6bcbc"
       },
       "packagePath": "task-library/candidates/eng-005-long-cycle-maintenance",
-      "packageManifestSha256": "1dccfc269e49917acc85d3e40d653a4169b5dd10c3a1b5eb9baaf4c7c9b434a9",
+      "packageManifestSha256": "bb0d0a036f8f2eecf5ed1aae160224e00cfaab198fa6d7bd34efbeb166d5073f",
       "toolProfile": "workspace-augmented",
       "input": {
         "prompt": "Work in the provided repository. Keep the original commands and records compatible while completing each released stage. Inspect the current stage instruction before acting."
       },
       "evaluator": {
         "kind": "task-package",
-        "timeoutMs": 300000,
+        "timeoutMs": 900000,
         "maxOutputBytes": 20000
       }
     }

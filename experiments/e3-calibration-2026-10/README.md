@@ -61,3 +61,7 @@ One trajectory per model, each from `trajectory-<model>.eval.json` at commit `81
 | glm-5.3, step-5-preview | — | — | not run: the airy.work relay had no balance | — |
 
 The twenty hidden checks did not separate the strong models: three of them passed every hidden check of S1–S4. E3 in this form is saturated, and the strong models' only weakness is cost. qwen and deepseek used the whole six-million-token budget; luna needed 0.9M. The next version must make the stages harder to reason about, not more detailed. New plans also allow responses of 131,072 tokens, as R3 and E2 do, so that the task budget, not one response, is what stops a model.
+
+## eng-005 0.4.0: a sixth stage, scale (2026-10-21)
+
+`trajectory.eval.json` now pins eng-005 0.4.0 with six stages. The whole task gets 8,000,000 tokens, 400 responses, 1,000 tool calls and five hours. Each stage gets 2,000,000 tokens, 80 responses, 200 tool calls and 45 minutes. Each response may hold 131,072 tokens and 524,288 characters, and the grader gets 15 minutes per snapshot. The suite runner splits the plan into one trajectory per model. See the package's calibration record for S6 and for the grader change that makes an untouched project score 0 (it scored 19.5% under 0.3.0).

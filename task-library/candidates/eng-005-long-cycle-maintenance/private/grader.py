@@ -5,7 +5,13 @@ Version 2.0.0 adds hidden checks for behaviour the stage briefs state but the pu
 ties under descending order, defaults, empty results, every rejected list option, duplicate and unknown dependencies,
 longer cycles, backward transitions, several prerequisites, atomicity of every rejected dependency or status change,
 read-only commands and event details after migration, and every listed error code with clean output.
+
+Version 2.1.0 (task 0.4.0) adds S6, scale (private/scale.py), and makes the untouched baseline earn nothing: the base
+and seed checks guard against regressions, so they count only when some check of a stage's own requirement passes,
+and the checks that a command is rejected also need the command to work where it should.
 """
+import os
+import time
 import argparse
 import datetime
 import json
@@ -26,7 +32,13 @@ CHECKS = {
     "MIGRATION": ["migration.schema", "migration.preserve", "migration.events", "migration.idempotent", "migration.read-only",
                   "migration.event-details", "migration.failed-no-write", "migration.cli-shape"],
     "ERRORS_DOCS": ["errors.protocol", "errors.codes", "docs.usage", "errors.codes-all", "errors.store-invalid", "errors.clean-output"],
+    "SCALE": ["scale.list", "scale.dependencies", "scale.status"],
+    # The speed rungs are a ladder against the reference, not acceptance, so their requirement is not critical.
+    "SCALE_SPEED": ["scale.speed-3", "scale.speed-1.5", "scale.speed-1.1", "scale.speed-0.75"],
 }
+GUARDS = {"BASE_CLI", "BASE_DATA"}
+SCALE_SEED = "eng005-scale-hidden"
+SPEED_LADDER = (("3", 3.0), ("1.5", 1.5), ("1.1", 1.1), ("0.75", 0.75))
 ALL_CHECKS = {check: requirement for requirement, ids in CHECKS.items() for check in ids}
 SANDBOX_LAUNCHER = None  # set from the grader request in main
 
@@ -36,11 +48,11 @@ def sandboxed(command: list[str], root: Path) -> list[str]:
     return [sys.executable, SANDBOX_LAUNCHER, "--rw", str(root), "--", *command] if SANDBOX_LAUNCHER else command
 
 
-def invoke(root: Path, args: list[str]) -> subprocess.CompletedProcess[str]:
+def invoke(root: Path, args: list[str], timeout: float = 6) -> subprocess.CompletedProcess[str]:
     command = ["node", "--disable-warning=ExperimentalWarning", "--experimental-strip-types", "src/cli.ts", *args]
     try:
         return subprocess.run(sandboxed(command, root), cwd=root, text=True, encoding="utf-8", errors="replace",
-                              capture_output=True, timeout=6, check=False)
+                              capture_output=True, timeout=timeout, check=False)
     except subprocess.TimeoutExpired as error:
         stdout = error.stdout or ""
         stderr = error.stderr or "candidate command timed out"
@@ -107,8 +119,9 @@ def query_checks(root: Path) -> dict[str, bool]:
 def dependency_checks(root: Path) -> dict[str, bool]:
     checks: dict[str, bool] = {}
     self_result = invoke(root, ["depends", "add", "WO-101", "WO-101"])
-    checks["dependency.self"] = self_result.returncode != 0
     first = invoke(root, ["depends", "add", "WO-101", "WO-102"])
+    # A rejection counts only from a command that works: an unimplemented command is rejected too.
+    checks["dependency.self"] = self_result.returncode != 0 and first.returncode == 0
     cycle = invoke(root, ["depends", "add", "WO-102", "WO-101"])
     checks["dependency.cycle"] = first.returncode == 0 and cycle.returncode != 0
     invalid_jump = invoke(root, ["update", "WO-101", "--status", "DONE"])
@@ -145,8 +158,13 @@ def migration_checks(root: Path, fixture: dict) -> dict[str, bool]:
     path.write_text(json.dumps(fixture, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     original = path.read_bytes()
     shown = invoke(root, ["show", "FIX-01"])
-    checks["migration.schema"] = shown.returncode == 0 and path.read_bytes() == original
+    unchanged = shown.returncode == 0 and path.read_bytes() == original
     first = invoke(root, ["update", "FIX-01", "--title", "Updated server room inspection"])
+    try:
+        # A read keeps version 1; the first write migrates to version 2.
+        checks["migration.schema"] = unchanged and first.returncode == 0 and load_store(root).get("version") == 2
+    except (json.JSONDecodeError, OSError, AttributeError):
+        checks["migration.schema"] = False
     try:
         state = load_store(root)
         orders = {order["id"]: order for order in state["workOrders"]}
@@ -252,7 +270,7 @@ def dependency_hidden_checks(temp: Path, submission: Path) -> dict[str, bool]:
         invoke(root, ["depends", "add", "WO-103", "WO-104"]).returncode != 0
     root = clone(submission, temp / "unknown")
     checks["dependency.unknown"] = invoke(root, ["depends", "add", "WO-103", "WO-999"]).returncode != 0 and \
-        invoke(root, ["depends", "add", "WO-999", "WO-103"]).returncode != 0
+        invoke(root, ["depends", "add", "WO-999", "WO-103"]).returncode != 0 and invoke(root, ["depends", "add", "WO-103", "WO-104"]).returncode == 0
     root = clone(submission, temp / "transitive")
     checks["dependency.transitive-cycle"] = invoke(root, ["depends", "add", "WO-103", "WO-104"]).returncode == 0 and \
         invoke(root, ["depends", "add", "WO-104", "WO-101"]).returncode == 0 and invoke(root, ["depends", "add", "WO-101", "WO-103"]).returncode != 0
@@ -355,6 +373,66 @@ def errors_hidden_checks(temp: Path, submission: Path) -> dict[str, bool]:
             "errors.clean-output": clean and error_payload(store_result) is not None}
 
 
+def scale_checks(temp: Path, submission: Path) -> dict[str, bool]:
+    """S6: the workload on a 100,000-order store; outputs and final store against the reference, then time against it."""
+    import scale
+    names = CHECKS["SCALE"] + CHECKS["SCALE_SPEED"]
+    if not (submission / "src" / "cli.ts").exists():
+        return {name: False for name in names}
+    cpus = sorted(os.sched_getaffinity(0))
+    os.sched_setaffinity(0, {cpus[os.getpid() % len(cpus)]})
+    text = json.dumps(scale.store(SCALE_SEED), ensure_ascii=False, indent=2) + "\n"
+    reference = Path(__file__).parent / "scale-reference"
+
+    def prepared(name: str, source: Path) -> Path:
+        root = temp / name
+        shutil.copytree(source, root, ignore=shutil.ignore_patterns(".git", "node_modules", "__pycache__"))
+        (root / "data").mkdir(exist_ok=True)
+        (root / "data" / "work-orders.json").write_text(text, encoding="utf-8")
+        return root
+
+    def run(source: Path, name: str):
+        root = prepared(name, source)
+        try:
+            started = time.perf_counter()
+            results = [(label, group, invoke(root, args, timeout=30)) for label, args, group in scale.workload()]
+            seconds = time.perf_counter() - started
+            final = scale.final_state((root / "data" / "work-orders.json").read_text(encoding="utf-8"))
+            return results, seconds, final
+        finally:
+            shutil.rmtree(root, ignore_errors=True)
+
+    expected, reference_time, expected_final = run(reference, "scale-reference-1")
+    actual, candidate_time, actual_final = run(submission, "scale-candidate-1")
+    same = {"list": True, "dependencies": True, "status": True}
+    for (label, group, want), (_, _, got) in zip(expected, actual):
+        if group == "list":
+            same[group] &= got.returncode == want.returncode and scale.listing(got.stdout) == scale.listing(want.stdout)
+        else:
+            same[group] &= scale.outcome(got.returncode, got.stdout) == scale.outcome(want.returncode, want.stdout)
+    finals = actual_final is not None and expected_final is not None
+    orders_same = finals and actual_final["version"] == 2 and \
+        {key: order.get("dependsOn") for key, order in actual_final["orders"].items()} == {key: order.get("dependsOn") for key, order in expected_final["orders"].items()}
+    # Status, titles and descriptions match the reference; the events record exactly this run's successful writes, so a
+    # dependency failure, which status-group commands do not cause, is not counted twice.
+    fields = lambda final: {key: (order.get("status"), order.get("title"), order.get("description")) for key, order in final["orders"].items()}
+    writes = sum(1 for _, group, result in actual if result.returncode == 0 and group != "list")
+    status_same = finals and fields(actual_final) == fields(expected_final) and actual_final["contiguous"] and \
+        len(actual_final["eventOrders"]) - 1_000 == writes
+    checks = {"scale.list": same["list"], "scale.dependencies": same["dependencies"] and orders_same, "scale.status": same["status"] and status_same}
+    ratio = float("inf")
+    if all(checks.values()):
+        for repetition in (2, 3):
+            reference_time = min(reference_time, run(reference, f"scale-reference-{repetition}")[1])
+            candidate_time = min(candidate_time, run(submission, f"scale-candidate-{repetition}")[1])
+        ratio = candidate_time / reference_time
+    for label, factor in SPEED_LADDER:
+        checks[f"scale.speed-{label}"] = all(checks[name] for name in ("scale.list", "scale.dependencies", "scale.status")) and ratio <= factor
+    print(json.dumps({"scale": {"ratio": None if ratio == float("inf") else round(ratio, 3), "reference": round(reference_time, 2),
+                                "candidate": round(candidate_time, 2)}}), file=sys.stderr)
+    return checks
+
+
 def data_preservation_check(submission: Path, fixture: dict) -> bool:
     try:
         state = load_store(submission)
@@ -409,10 +487,18 @@ def main() -> None:
             elif group == "ERRORS_DOCS":
                 outcomes.update(errors_docs_checks(group_root))
                 outcomes.update(errors_hidden_checks(hidden, submission))
+            elif group == "SCALE":
+                outcomes.update(scale_checks(temp_path / "scale", submission))
+    # The base and seed checks guard against regressions: an untouched project passes them, so they count only when
+    # some check of a stage's own requirement passes.
+    if not any(outcomes.get(check, False) for requirement in active if requirement not in GUARDS for check in CHECKS.get(requirement, [])):
+        for requirement in GUARDS:
+            for check in CHECKS[requirement]:
+                outcomes[check] = False
     checks = [{"id": check_id, "requirementId": ALL_CHECKS[check_id], "status": "pass" if outcomes.get(check_id, False) else "fail", "evidenceRefs": []}
               for check_id in selected]
     result = {"schemaVersion": 1, "requestId": request["requestId"], "taskId": request["task"]["id"],
-              "taskVersion": request["task"]["version"], "graderVersion": "2.0.0", "gradingStatus": "completed",
+              "taskVersion": request["task"]["version"], "graderVersion": "2.1.0", "gradingStatus": "completed",
               "checks": checks, "dimensions": [], "unscoredCheckIds": [], "reason": None, "error": None}
     args.result.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 

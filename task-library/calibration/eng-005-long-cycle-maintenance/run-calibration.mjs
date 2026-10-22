@@ -58,14 +58,20 @@ async function privateGrade(submission, stageId, cycleId = "cycle-1", mustPass =
     const result = JSON.parse(await readFile(resultPath, "utf8"));
     const expected = manifest.requirements.filter(item => stage.activeRequirementIds.includes(item.id)).flatMap(item => item.checkIds).sort();
     const actual = result.checks.map(item => item.id).sort();
+    // The references are the speed bar, so the fastest rungs depend on timing noise: they are recorded, not required.
+    const required = result.checks.filter(item => !TIMING_RUNGS.includes(item.id));
     if (result.requestId !== requestId || result.taskVersion !== manifest.version || result.graderVersion !== manifest.grader.version ||
         result.gradingStatus !== "completed" || JSON.stringify(actual) !== JSON.stringify(expected) ||
-        (mustPass && result.checks.some(item => item.status !== "pass"))) {
+        (mustPass && required.some(item => item.status !== "pass"))) {
       throw new Error(`PRIVATE_REFERENCE_FAILED:${stageId}:${JSON.stringify(result.checks)}`);
     }
     return result.checks.map(item => [item.id, item.status]);
   } finally { await rm(temporary, { recursive: true, force: true }); }
 }
+
+const TIMING_RUNGS = ["scale.speed-1.1", "scale.speed-0.75"];
+/** A grade without the timing rungs, for comparing repetitions. */
+const stable = checks => checks.filter(([id]) => !TIMING_RUNGS.includes(id));
 
 const report = { schemaVersion: 1, taskId: manifest.id, taskVersion: manifest.version, manifestSha256,
   runtime: process.version, references: [], mutants: {} };
@@ -79,7 +85,7 @@ for (const name of ["ref-a", "ref-b"]) {
       const hiddenChecks = await privateGrade(root, stage.id);
       checkpoints.push({ stageId: stage.id, publicStatus: publicResult.status, privateChecks: hiddenChecks });
     }
-    const signature = JSON.stringify(checkpoints);
+    const signature = JSON.stringify(checkpoints.map(point => ({ ...point, privateChecks: stable(point.privateChecks) })));
     if (repetitions.length && repetitions[0].signature !== signature) throw new Error(`REFERENCE_NONDETERMINISTIC:${name}`);
     repetitions.push({ repetition, signature, checkpoints });
   }
@@ -153,6 +159,56 @@ try {
     throw new Error(`TRANSITIVE_CYCLE_NOT_DETECTED:${cycleFailures}`);
   }
   report.mutants.directCyclesOnly = { failed: cycleFailures };
+
+  // S6 (0.4.0): the shortcuts a model may have written in S1-S5 fail at scale; a correct but slower one keeps its
+  // correctness checks and the slower rungs.
+  const scaleService = await readFile(join(refA, "src/service.ts"), "utf8");
+  const iterative = scaleService.slice(scaleService.indexOf("/** Whether targetId is reachable"), scaleService.indexOf("export async function addDependency"));
+  if (!iterative.includes("while (pending.length)")) throw new Error("MUTANT_ANCHOR_NOT_FOUND:ITERATIVE_SEARCH");
+  const scaleMutants = {
+    // The S1-S5 reference as it was: a recursive search that scans the array for every order.
+    "recursive-linear-search": iterative.replace(/[\s\S]*/, `function reaches(store: Awaited<ReturnType<typeof readStore>>, currentId: string, targetId: string, seen = new Set<string>()): boolean {
+  if (currentId === targetId) return true;
+  if (seen.has(currentId)) return false;
+  seen.add(currentId);
+  const current = store.workOrders.find(order => order.id === currentId);
+  return (current?.dependsOn ?? []).some(id => reaches(store, id, targetId, seen));
+}
+
+`),
+    // An iterative search without a visited set: correct on chains, but the ladder's paths never end.
+    "no-visited-set": iterative.replace("      if (!seen.has(next)) {\n        seen.add(next);\n        pending.push(next);\n      }", "      pending.push(next);"),
+  };
+  const scaleResults = {};
+  for (const [name, replacement] of Object.entries(scaleMutants)) {
+    if (replacement === iterative) throw new Error(`MUTANT_ANCHOR_NOT_FOUND:${name}`);
+    const mutant = join(scratch, name);
+    await cp(refA, mutant, { recursive: true });
+    await writeFile(join(mutant, "src/service.ts"), scaleService.replace(iterative, replacement), "utf8");
+    const grade = await privateGrade(mutant, "S6", "cycle-1", false);
+    const failed = grade.filter(([id, status]) => id.startsWith("scale.") && status === "fail").map(([id]) => id);
+    if (!failed.includes("scale.dependencies") || failed.includes("scale.status") || failed.includes("scale.list") || !failed.includes("scale.speed-3")) {
+      throw new Error(`SCALE_MUTANT_NOT_DETECTED:${name}:${failed}`);
+    }
+    scaleResults[name] = { failed };
+  }
+  // Linear lookups of prerequisites and a full copy before every write: correct, and slower than the reference.
+  const linear = join(scratch, "linear-lookups");
+  await cp(refA, linear, { recursive: true });
+  const linearService = scaleService.replace("      if (dependencies.some(id => byId.get(id)?.status !== \"DONE\")) {",
+    "      if (dependencies.some(id => store.workOrders.find(candidate => candidate.id === id)?.status !== \"DONE\")) {");
+  const storeSource = await readFile(join(refA, "src/store.ts"), "utf8");
+  const copying = storeSource.replace("  if (store.version === 2) return store;", "  if (store.version === 2) return structuredClone(store);");
+  if (linearService === scaleService || copying === storeSource) throw new Error("MUTANT_ANCHOR_NOT_FOUND:LINEAR_LOOKUPS");
+  await writeFile(join(linear, "src/service.ts"), linearService, "utf8");
+  await writeFile(join(linear, "src/store.ts"), copying, "utf8");
+  const linearGrade = await privateGrade(linear, "S6", "cycle-1", false);
+  const linearPassed = linearGrade.filter(([id, status]) => id.startsWith("scale.") && status === "pass").map(([id]) => id);
+  if (!["scale.list", "scale.dependencies", "scale.status", "scale.speed-3"].every(id => linearPassed.includes(id)) || linearPassed.includes("scale.speed-0.75")) {
+    throw new Error(`LINEAR_LOOKUPS_UNEXPECTED:${linearPassed}`);
+  }
+  scaleResults["linear-lookups"] = { passed: linearPassed };
+  report.mutants.scale = scaleResults;
 
   const timeoutCandidate = join(scratch, "candidate-timeout");
   await cp(refA, timeoutCandidate, { recursive: true });

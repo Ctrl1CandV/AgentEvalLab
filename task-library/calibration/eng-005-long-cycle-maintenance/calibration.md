@@ -70,3 +70,45 @@ Recalibration under 0.2.1 is recorded in `logs/self-calibration-0.2.1.log`.
 - The grader takes about 10–20 seconds per stage, so plans now give it 300 seconds.
 
 See `logs/acceptance-self-calibration.json`.
+
+## Version 0.4.0 (2026-10-21)
+
+**Why.** Under 0.3.0, qwen3.8-flash passed 41/41 checks, deepseek-flash and gpt-6-luna 40/41: the five stages are well specified, and these models carry out any well-specified brief. PLAN-006 B4 adds a stage that the strong models' first implementations do not survive, and that ranks working ones by speed.
+
+**S6, scale.** The store grows to 100,000 work orders, with:
+
+- a dependency chain 50,000 orders deep;
+- a ladder of 32 paired levels, each order depending on both orders below, so paths number in the billions;
+- an order with 2,001 prerequisites;
+- random prerequisites elsewhere.
+
+`stages/S6/public/make_store.py` writes such a store for the model to test with. The hidden store comes from the same generator under another seed.
+
+The hidden workload (`private/scale.py`) has 15 commands:
+
+- list pages with filters, sorted by createdAt and id (fixed-format strings, so every reasonable comparison agrees);
+- show;
+- dependency additions that close a cycle through the chain and the ladder, and additions past them that must search all of either;
+- a completion blocked by one unfinished prerequisite among 2,001, and one allowed;
+- a create and a rename.
+
+Requirement `SCALE` (critical) has three checks: `scale.list`, `scale.dependencies` and `scale.status`. Each compares outputs (error codes for failures) and the final store with the reference in `private/scale-reference`. Requirement `SCALE_SPEED` (not critical: a ladder, not acceptance) has `scale.speed-3`, `-1.5`, `-1.1` and `-0.75`: the workload's total time against the reference's, best of three interleaved runs on one core, after the three correctness checks pass. The reference takes about 5.3 seconds; its floor is Node start-up and parsing a 23 MB store, about 0.3 seconds per command.
+
+**References.** ref-a and ref-b now look up orders through a map and search dependencies iteratively with a visited set. ref-a searches depth first, ref-b breadth first. Both write a version 2 store in place instead of copying it first. `private/scale-reference` is ref-a's source.
+
+The S1–S5 ref-a, the kind of code these stages invite, fails at scale:
+
+- its recursive search overflows the stack on the 50,000-deep chain, so three dependency commands end in errors;
+- its prerequisite check scans the whole array for each of 2,001 prerequisites;
+- its workload takes 1.65 times as long.
+
+**The untouched project now earns nothing.** On the 2026-10-21 dry run, a null agent scored 8 of 41 checks (19.5%):
+
+- the base and seed checks pass on an untouched project;
+- `dependency.self` and `dependency.unknown` passed because an unimplemented `depends` command is rejected too;
+- `migration.schema` passed because a read keeps a version 1 file.
+
+Grader 2.1.0 makes base and seed checks guards that count only when a check of a stage's own requirement passes. The rejection checks now also need the command to work where it should, and `migration.schema` needs the first write to migrate.
+
+**Score.** A trajectory scores the share of the final stage's 48 checks that pass in its last graded snapshot. Plans give the whole task 8,000,000 tokens and each stage 2,000,000; the grader gets 15 minutes per snapshot.
+

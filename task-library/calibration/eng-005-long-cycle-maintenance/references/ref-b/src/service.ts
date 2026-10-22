@@ -36,8 +36,8 @@ class WorkOrderService {
       if (target !== original.status && progression[original.status] !== target) {
         throw new AppError("INVALID_STATUS_TRANSITION", "Status can only advance OPEN → IN_PROGRESS → DONE.");
       }
-      if (target === "DONE" && (original.dependsOn ?? []).some(prerequisite =>
-        store.workOrders.find(row => row.id === prerequisite)?.status !== "DONE")) {
+      const statusOf = new Map(store.workOrders.map(row => [row.id, row.status]));
+      if (target === "DONE" && (original.dependsOn ?? []).some(prerequisite => statusOf.get(prerequisite) !== "DONE")) {
         throw new AppError("DEPENDENCY_NOT_COMPLETE", "Every prerequisite must be DONE first.");
       }
     }
@@ -73,12 +73,25 @@ class WorkOrderService {
     return updated;
   }
 
-  private hasPath(store: Store, from: string, target: string, visited = new Set<string>()): boolean {
-    if (from === target) return true;
-    if (visited.has(from)) return false;
-    visited.add(from);
-    const order = store.workOrders.find(row => row.id === from);
-    return (order?.dependsOn ?? []).some(next => this.hasPath(store, next, target, visited));
+  /** Breadth-first search over dependsOn edges, each order visited once. */
+  private hasPath(store: Store, from: string, target: string): boolean {
+    const edges = new Map(store.workOrders.map(row => [row.id, row.dependsOn ?? []]));
+    const visited = new Set<string>([from]);
+    let frontier = [from];
+    while (frontier.length) {
+      if (frontier.includes(target)) return true;
+      const next: string[] = [];
+      for (const id of frontier) {
+        for (const prerequisite of edges.get(id) ?? []) {
+          if (!visited.has(prerequisite)) {
+            visited.add(prerequisite);
+            next.push(prerequisite);
+          }
+        }
+      }
+      frontier = next;
+    }
+    return false;
   }
 
   async exportJSON(): Promise<string> {

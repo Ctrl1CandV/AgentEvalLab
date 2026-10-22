@@ -21,7 +21,7 @@ const list = async directory => {
   return results.sort();
 };
 const files = async paths => Promise.all(paths.sort().map(async path => ({ path, sha256: await sha256(path) })));
-const stageIds = ["S1", "S2", "S3", "S4", "S5"];
+const stageIds = ["S1", "S2", "S3", "S4", "S5", "S6"];
 const previousRequirements = [];
 const stageRequirements = {
   S1: ["BASE_CLI", "BASE_DATA", "QUERY"],
@@ -29,6 +29,7 @@ const stageRequirements = {
   S3: ["BASE_CLI", "BASE_DATA", "QUERY", "DEPENDENCY", "NO_MUTATION"],
   S4: ["BASE_CLI", "BASE_DATA", "QUERY", "DEPENDENCY", "NO_MUTATION", "MIGRATION"],
   S5: ["BASE_CLI", "BASE_DATA", "QUERY", "DEPENDENCY", "NO_MUTATION", "MIGRATION", "ERRORS_DOCS"],
+  S6: ["BASE_CLI", "BASE_DATA", "QUERY", "DEPENDENCY", "NO_MUTATION", "MIGRATION", "ERRORS_DOCS", "SCALE", "SCALE_SPEED"],
 };
 const requirementChecks = {
   BASE_CLI: ["base.read", "base.create", "base.update", "base.export"],
@@ -41,9 +42,12 @@ const requirementChecks = {
   MIGRATION: ["migration.schema", "migration.preserve", "migration.events", "migration.idempotent", "migration.read-only",
     "migration.event-details", "migration.failed-no-write", "migration.cli-shape"],
   ERRORS_DOCS: ["errors.protocol", "errors.codes", "docs.usage", "errors.codes-all", "errors.store-invalid", "errors.clean-output"],
+  SCALE: ["scale.list", "scale.dependencies", "scale.status"],
+  SCALE_SPEED: ["scale.speed-3", "scale.speed-1.5", "scale.speed-1.1", "scale.speed-0.75"],
 };
 const allPublic = ["instruction.md", "public/project-brief.md"];
-const allTrusted = ["private/grader.py", "private/base-fixture.json", "private/v1-fixture.json"];
+const allTrusted = ["private/grader.py", "private/base-fixture.json", "private/v1-fixture.json", "private/scale.py",
+  ...(await list("private/scale-reference"))];
 const stages = [];
 for (const id of stageIds) {
   const stageRoot = `stages/${id}`;
@@ -57,7 +61,8 @@ for (const id of stageIds) {
       entryPoint: `${stageRoot}/public/checker.py`,
       executable: "python3",
       args: ["{entryPoint}", "--submission", "{submission}", "--stage", id, "--sandbox-launcher", "{sandbox}"],
-      timeoutMs: 25_000,
+      // S6's checker writes a 100,000-order store and runs four commands of up to 10 seconds each.
+      timeoutMs: id === "S6" ? 120_000 : 25_000,
       maxOutputBytes: 100_000,
       checkIds: [`public-${id.toLowerCase()}`],
     },
@@ -67,7 +72,7 @@ const baselineCommit = execFileSync("git", ["rev-parse", "HEAD"], { cwd: join(ro
 const manifest = {
   schemaVersion: 1,
   id: "eng-005-long-cycle-maintenance",
-  version: "0.3.0",
+  version: "0.4.0",
   familyId: "eng-workflow-evolution",
   capability: "engineering",
   usage: "development",
@@ -75,10 +80,11 @@ const manifest = {
   license: { taskText: "Original task specification and materials authored by this project; free to use and adapt.", thirdPartyContent: [] },
   entryPoint: { instruction: "instruction.md" },
   files: { public: await files(allPublic), trusted: await files(allTrusted) },
-  requirements: Object.entries(requirementChecks).map(([id, checkIds]) => ({ id, critical: true, introducedAt: id, checkIds })),
+  // The speed rungs rank deliveries against the reference; correctness at scale is what S6 accepts.
+  requirements: Object.entries(requirementChecks).map(([id, checkIds]) => ({ id, critical: id !== "SCALE_SPEED", introducedAt: id, checkIds })),
   stages,
   toolProfiles: ["workspace-basic", "workspace-augmented"],
-  grader: { id: "eng005-checkpoint-grader", version: "2.0.0", entryPoint: "private/grader.py", executable: "python3",
+  grader: { id: "eng005-checkpoint-grader", version: "2.1.0", entryPoint: "private/grader.py", executable: "python3",
     args: ["{entryPoint}", "--request", "{request}", "--result", "{result}"] },
   environment: { runtime: "Node.js 22.x + Python 3.x", dependencies: "Node built-ins and Python standard library; no network", network: false,
     runtimeCheck: { executable: "node", args: ["--version"], expectedSubstring: "v22." } },

@@ -88,7 +88,7 @@ test("trajectory releases stages in order, repairs once, and grades only after c
         const stageText = await readFile(join(input.workspacePath, "stages", context.stageId, "instruction.md"), "utf8");
         assert.ok(stageText.startsWith(`# ${context.stageId}`));
         const nextStage = `S${Number(context.stageId.slice(1)) + 1}`;
-        if (Number(context.stageId.slice(1)) < 5) {
+        if (Number(context.stageId.slice(1)) < 6) {
           await assert.rejects(readFile(join(input.workspacePath, "stages", nextStage, "instruction.md")));
         }
         return { ...emptyExecution(), output: "candidate response", modelCalls: 1, turns: 1 };
@@ -107,7 +107,7 @@ test("trajectory releases stages in order, repairs once, and grades only after c
     assert.deepEqual(seen.map(item => item.maxModelCalls), [3, 2, 1]);
     assert.equal(trajectory.status, "stopped");
     assert.equal(trajectory.stopReason, "BUDGET_EXHAUSTED");
-    assert.deepEqual(trajectory.stages.map(stage => stage.status), ["completed", "stopped", "not_reached", "not_reached", "not_reached"]);
+    assert.deepEqual(trajectory.stages.map(stage => stage.status), ["completed", "stopped", "not_reached", "not_reached", "not_reached", "not_reached"]);
     assert.equal(trajectory.budget.used.maxModelCalls, 3);
     assert.equal(trajectory.stages[0]!.cycles[0]!.publicCheck?.status, "failed");
     assert.equal(trajectory.stages[0]!.cycles[1]!.publicCheck?.status, "failed");
@@ -134,7 +134,7 @@ test("trajectory releases stages in order, repairs once, and grades only after c
   }
 });
 
-test("trajectory harness completes five stages with a calibrated reference snapshot and no forced repair", async () => {
+test("trajectory harness completes six stages with a calibrated reference snapshot and no forced repair", async () => {
   const plan = JSON.parse(await readFile("examples/eng-005-long-cycle.eval.json", "utf8")) as EvaluationPlan;
   validatePlan(plan);
   const testRoot = await mkdtemp(join(tmpdir(), "eng005-reference-trajectory-test-"));
@@ -158,22 +158,24 @@ test("trajectory harness completes five stages with a calibrated reference snaps
         const trajectory = result.report.records[0]!;
         assert.equal(disposed, true, `${referenceName}:${repetition}`);
         assert.deepEqual(sent.map(item => [item.stageId, item.cycleId]), [
-          ["S1", "cycle-1"], ["S2", "cycle-1"], ["S3", "cycle-1"], ["S4", "cycle-1"], ["S5", "cycle-1"],
+          ["S1", "cycle-1"], ["S2", "cycle-1"], ["S3", "cycle-1"], ["S4", "cycle-1"], ["S5", "cycle-1"], ["S6", "cycle-1"],
         ], `${referenceName}:${repetition}`);
         assert.equal(new Set(sent.map(item => item.workspacePath)).size, 1, `${referenceName}:${repetition}`);
         assert.equal(trajectory.status, "completed", `${referenceName}:${repetition}`);
-        assert.deepEqual(trajectory.stages.map(stage => stage.status), ["completed", "completed", "completed", "completed", "completed"], `${referenceName}:${repetition}`);
+        assert.deepEqual(trajectory.stages.map(stage => stage.status), ["completed", "completed", "completed", "completed", "completed", "completed"], `${referenceName}:${repetition}`);
         assert.ok(trajectory.stages.every(stage => stage.cycles.length === 1 && stage.cycles[0]!.publicCheck?.status === "passed"), `${referenceName}:${repetition}`);
         assert.ok(trajectory.stages.every(stage => stage.cycles[0]!.privateGrade?.status === "passed"), `${referenceName}:${repetition}`);
         assert.equal(trajectory.metrics?.finalDeliveryAccepted, true, `${referenceName}:${repetition}`);
         assert.equal(trajectory.metrics?.allStageStableDelivery, true, `${referenceName}:${repetition}`);
-        assert.equal(trajectory.metrics?.stageCompletion.completed, 5, `${referenceName}:${repetition}`);
+        assert.equal(trajectory.metrics?.stageCompletion.completed, 6, `${referenceName}:${repetition}`);
         const signature = JSON.stringify({
           status: trajectory.status,
           stages: trajectory.stages.map(stage => ({ stageId: stage.stageId, status: stage.status,
             cycles: stage.cycles.map(cycle => ({ cycleId: cycle.cycleId, publicStatus: cycle.publicCheck?.status,
-              privateStatus: cycle.privateGrade?.status, checks: cycle.privateGrade?.checks })) })),
-          metrics: trajectory.metrics,
+              // The references set S6's speed bar, so their own speed rungs depend on timing noise.
+              privateStatus: cycle.privateGrade?.status, checks: cycle.privateGrade?.checks.filter(check => !check.id.startsWith("scale.speed-")) })) })),
+          metrics: { ...trajectory.metrics, snapshots: undefined,
+            newRequirementCompletion: trajectory.metrics?.newRequirementCompletion.filter(entry => entry.requirementId !== "SCALE_SPEED") },
         });
         if (expectedSignature === undefined) expectedSignature = signature;
         else assert.equal(signature, expectedSignature, `${referenceName}:non-deterministic repetition ${repetition}`);
@@ -288,7 +290,7 @@ test("trajectory classifies public checker timeout, output, protocol, exit and s
       const trajectory = result.report.records[0]!;
       assert.equal(trajectory.status, "stopped", scenario.id);
       assert.equal(trajectory.stopReason, scenario.reason, scenario.id);
-      assert.deepEqual(trajectory.stages.map(stage => stage.status), ["stopped", "not_reached", "not_reached", "not_reached", "not_reached"], scenario.id);
+      assert.deepEqual(trajectory.stages.map(stage => stage.status), ["stopped", "not_reached", "not_reached", "not_reached", "not_reached", "not_reached"], scenario.id);
       assert.notEqual(trajectory.stages[0]!.cycles[0]!.snapshot, null, scenario.id);
       assert.equal(trajectory.stages[0]!.cycles[0]!.publicCheck, null, scenario.id);
       assert.equal(trajectory.stages[0]!.cycles[0]!.privateGrade?.status, "failed", scenario.id);
@@ -313,7 +315,7 @@ test("trajectory snapshot limits stop before public checking without fabricating
     assert.equal(trajectory.stopReason, "ARTIFACT_TRIAL_SIZE_LIMIT");
     assert.equal(trajectory.stages[0]!.cycles[0]!.snapshot, null);
     assert.equal(trajectory.stages[0]!.cycles[0]!.publicCheck, null);
-    assert.deepEqual(trajectory.stages.map(stage => stage.status), ["stopped", "not_reached", "not_reached", "not_reached", "not_reached"]);
+    assert.deepEqual(trajectory.stages.map(stage => stage.status), ["stopped", "not_reached", "not_reached", "not_reached", "not_reached", "not_reached"]);
     assert.equal(await containsScoreRuns(outputRoot), false);
   } finally { await rm(outputRoot, { recursive: true, force: true }); }
 
@@ -342,7 +344,7 @@ test("trajectory provider failure stops before snapshot and does not create late
     assert.equal(trajectory.status, "stopped");
     assert.equal(trajectory.stopReason, "PROVIDER_ERROR");
     assert.equal(trajectory.stages[0]!.cycles[0]!.snapshot, null);
-    assert.deepEqual(trajectory.stages.map(stage => stage.status), ["stopped", "not_reached", "not_reached", "not_reached", "not_reached"]);
+    assert.deepEqual(trajectory.stages.map(stage => stage.status), ["stopped", "not_reached", "not_reached", "not_reached", "not_reached", "not_reached"]);
   } finally { await rm(outputRoot, { recursive: true, force: true }); }
 });
 
@@ -363,7 +365,7 @@ test("a stage stopped by its budget is graded on what it delivered, without a pu
     assert.ok(cycles[0]!.snapshot, "the delivery is preserved");
     assert.equal(cycles[0]!.publicCheck, null);
     assert.ok(cycles[0]!.privateGrade, "and graded");
-    assert.deepEqual(trajectory.stages.map(stage => stage.status), ["stopped", "not_reached", "not_reached", "not_reached", "not_reached"]);
+    assert.deepEqual(trajectory.stages.map(stage => stage.status), ["stopped", "not_reached", "not_reached", "not_reached", "not_reached", "not_reached"]);
   } finally { await rm(outputRoot, { recursive: true, force: true }); }
 });
 
@@ -394,7 +396,7 @@ test("trajectory event persistence failure remains explicit in the saved trial r
     assert.equal(saved.status, "stopped");
     assert.equal(saved.stopReason, "EVENT_SINK_FAILED");
     assert.equal(saved.cleanup, "cleaned");
-    assert.deepEqual(saved.stages.map(stage => stage.status), ["stopped", "not_reached", "not_reached", "not_reached", "not_reached"]);
+    assert.deepEqual(saved.stages.map(stage => stage.status), ["stopped", "not_reached", "not_reached", "not_reached", "not_reached", "not_reached"]);
     assert.ok(await readFile(join(trialDirectory, "result.json"), "utf8"));
   } finally { await rm(outputRoot, { recursive: true, force: true }); }
 });
@@ -413,7 +415,7 @@ test("trajectory disposal failure is reflected in cleanup status", async () => {
     assert.equal(trajectory.status, "stopped");
     assert.equal(trajectory.stopReason, "TIMEOUT");
     assert.equal(trajectory.cleanup, "error");
-    assert.deepEqual(trajectory.stages.map(stage => stage.status), ["stopped", "not_reached", "not_reached", "not_reached", "not_reached"]);
+    assert.deepEqual(trajectory.stages.map(stage => stage.status), ["stopped", "not_reached", "not_reached", "not_reached", "not_reached", "not_reached"]);
   } finally { await rm(outputRoot, { recursive: true, force: true }); }
 });
 
