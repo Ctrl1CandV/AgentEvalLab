@@ -10,6 +10,8 @@ import type { FamilyKind, FamilySpec } from "./spec.js";
 /** Only the task budget may stop a model (PLAN-005): one response may hold this many output tokens and characters. */
 export const RESPONSE_TOKENS = 131_072;
 export const RESPONSE_CHARS = 524_288;
+/** The per-model token ceiling allows each trial this multiple of its budget. */
+export const CEILING_SLACK = 1.25;
 
 export interface GeneratedPlan {
   /** Unique within the suite: the family id, plus the model and repetition for trajectory plans. */
@@ -54,8 +56,8 @@ const slug = (value: string) => value.replace(/[^A-Za-z0-9._-]+/g, "-");
 
 /**
  * The plans one family runs: its template with the suite's models and repetitions, the overrides applied, the
- * standing rules enforced (stated budget, response limits), and a per-model token ceiling equal to the worst case, so
- * that the ceiling never leaves a planned trial unrun. `trialsPerModel` counts one model's trials in a plan.
+ * standing rules enforced (stated budget, response limits), and a per-model token ceiling above the worst case, so that
+ * the ceiling never leaves a planned trial unrun. `trialsPerModel` counts one model's trials in a plan.
  */
 export function generateFamilyPlans(family: FamilySpec, template: EvaluationPlan, models: ModelSelection[], repetitions: number,
   suiteId: string, trialsPerModel: (plan: EvaluationPlan) => number): GeneratedPlan[] {
@@ -72,9 +74,11 @@ export function generateFamilyPlans(family: FamilySpec, template: EvaluationPlan
     base.execution = { ...base.execution, stageBudget: { ...base.execution.stageBudget } };
     adjustments.push(...applyResponseLimits(base.execution.stageBudget, "stageBudget"));
   }
+  // A trial may pass its token budget by its last request, so the ceiling, a spending fuse, leaves a quarter of a
+  // budget per trial on top: with the bare product, one trial's overshoot kept the next from starting.
   const finish = (plan: EvaluationPlan): EvaluationPlan => {
     const perTrial = plan.budget.maxTrialTokens;
-    if (typeof perTrial === "number") plan.batch = { ...plan.batch, maxTotalTokensPerModel: perTrial * trialsPerModel(plan) };
+    if (typeof perTrial === "number") plan.batch = { ...plan.batch, maxTotalTokensPerModel: Math.ceil(perTrial * CEILING_SLACK) * trialsPerModel(plan) };
     return plan;
   };
   if (family.kind === "trajectory") {

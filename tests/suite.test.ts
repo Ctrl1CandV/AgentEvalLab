@@ -14,7 +14,7 @@ import { preflightPlan } from "../src/evaluation/preflight.js";
 import { fileProviderSlots, providerHost } from "../src/evaluation/provider-slots.js";
 import type { EvaluationPlan } from "../src/evaluation/types.js";
 import { checkPolicy, parseModelSpec, validateSuite, type FamilySpec } from "../src/suite/spec.js";
-import { generateFamilyPlans, RESPONSE_CHARS, RESPONSE_TOKENS } from "../src/suite/plans.js";
+import { CEILING_SLACK, generateFamilyPlans, RESPONSE_CHARS, RESPONSE_TOKENS } from "../src/suite/plans.js";
 import { SuiteRunner, type SuiteExecutor } from "../src/suite/run.js";
 import { suiteFlags, type FamilyReport } from "../src/suite/report.js";
 
@@ -202,7 +202,8 @@ test("plans come from templates with the suite's models, repetitions, overrides 
   assert.equal(single!.plan.budgetNotice, true);
   assert.equal(single!.plan.budget.maxOutputTokensPerCall, RESPONSE_TOKENS);
   assert.equal(single!.plan.budget.maxOutputChars, RESPONSE_CHARS);
-  assert.deepEqual(single!.plan.batch, { maxTotalTokensPerModel: 12 * 300_000, concurrency: 3 }, "the per-model ceiling is the worst case; overrides merge");
+  assert.deepEqual(single!.plan.batch, { maxTotalTokensPerModel: 12 * 300_000 * CEILING_SLACK, concurrency: 3 },
+    "the per-model ceiling leaves room for each trial's last request; overrides merge");
   assert.equal(single!.adjustments.length, 3);
   assert.equal(plan.budget.maxOutputTokensPerCall, 32_768, "the template itself is untouched");
 
@@ -214,7 +215,7 @@ test("plans come from templates with the suite's models, repetitions, overrides 
     "E3-deepseek-deepseek-flash-high-r2", "E3-aliplan-qwen3.8-flash-default-r2"]);
   assert.ok(perModel.every(entry => entry.plan.models.length === 1 && entry.plan.repetitions === undefined));
   assert.equal(perModel[0]!.plan.execution!.kind === "trajectory" && perModel[0]!.plan.execution!.stageBudget.maxOutputTokensPerCall, RESPONSE_TOKENS);
-  assert.equal(perModel[0]!.plan.batch!.maxTotalTokensPerModel, 6_000_000);
+  assert.equal(perModel[0]!.plan.batch!.maxTotalTokensPerModel, 6_000_000 * CEILING_SLACK);
   assert.throws(() => generateFamilyPlans({ id: "X", kind: "single", template: "x.eval.json" }, trajectory, chosen, 1, "s1", () => 1), /SUITE_TEMPLATE_KIND/);
 });
 

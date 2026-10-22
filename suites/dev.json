@@ -71,6 +71,17 @@
       "openEnded": true
     },
     {
+      "id": "E4-compress",
+      "kind": "single",
+      "template": "experiments/e4-calibration-2026-10/compress.eval.json",
+      "score": {
+        "items": [
+          "compress"
+        ]
+      },
+      "openEnded": true
+    },
+    {
       "id": "E3",
       "kind": "trajectory",
       "template": "experiments/e3-calibration-2026-10/trajectory.eval.json"
