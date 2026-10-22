@@ -149,3 +149,25 @@ A shift is kept only when each misreading would fail some ticket's checks, judge
 - **Misreadings.** A desk that misreads one rule throughout loses the checks of the tickets the misreading touches, 5–22% of the shift.
 
 L1 tickets `t01`–`t12` and the optimisation tickets `os1`–`ol4` are unchanged.
+
+### Pilot 2026-10-22 (task 0.4.0)
+
+Run `runs/suites/20261022-110927-dev-4749`: sh1 and sh2 on deepseek-flash, qwen3.8-flash and mimo-v2.6-flash. No grader defect was found.
+
+| Model | Score | Median tokens per shift |
+| --- | ---: | ---: |
+| deepseek-flash | 100% | 1.33M |
+| qwen3.8-flash | 100% | 1.70M |
+| mimo-v2.6-flash | 82.5% | 0.88M |
+
+**deepseek and qwen handled every planted trap.**
+
+- The second report of the review customer went to `review`.
+- The goodwill customer's second compensation was declined, and their make-good used no credit.
+- The household's later shipment joined the free consolidation.
+- Covered recall returns were refunded in full, and the uncovered recalled unit was made good by credit or a substitute.
+- Every make-good was at the least cost.
+
+**mimo** made one costlier make-good on sh1 (119.30 against 118.70). On sh2 it was stopped by its budget after T7 and gave no reply.
+
+**Reading.** Coupling the tickets through derived conditions did not trip the strong models. They query the state they need, `show-orders`, `shipments` and `recalls`, and apply each rule as written, in order.
