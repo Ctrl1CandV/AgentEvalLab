@@ -169,5 +169,20 @@ The first run under 0.4.0 is regraded with grader 1.3.1.
 
 The deduction was the model's own, but such a cliff turns small speed differences into the whole score. In 0.5.0 the output checks count once `speed-8` passes, and the original, about 70 times as slow, still earns nothing. A correct program 3.1 times as slow now earns 4 of 8. The `strptime`-everywhere mutant (4–5 times) passes the outputs and `speed-8`.
 
-**Family score.** E4 is now `speedup` and `compress`, each scored as the fraction of its checks (`experiments/e4-calibration-2026-10/terminal.eval.json`).
+**Family score.** E4 is now `speedup` and `compress`, each scored as the fraction of its checks; the family score is their mean. They run from `experiments/e4-calibration-2026-10/speedup-0.5.eval.json` and `compress.eval.json`, because their budgets differ (below).
+
+
+### Calibration 2026-10-21/22 (task 0.5.0)
+
+Runs `runs/suites/20261021-123806-dev-d275` (speedup and compress for deepseek-flash, qwen3.8-flash and mimo-v2.6-flash) and `runs/suites/20261022-040520-dev-7f6a` (deepseek's compress, which the first suite's token ceiling had left unrun):
+
+| Model | speedup | compress | compress ended |
+| --- | --- | --- | --- |
+| deepseek-flash | 7/8 | 0/6 | at the budget, its `packlog.py` mid-edit (a range coder that raises a TypeError) |
+| qwen3.8-flash | 8/8 | 0/6 | its turn ended with `packlog.py` half-written |
+| mimo-v2.6-flash | 7/8 | 0/6 | at the budget; its program round-trips but is larger than LZMA preset 9e |
+
+The check was rerun by hand on each delivered program and agreed. No trial timed out a command.
+
+The compress trials made 30–38 requests within 2,000,000 tokens, about 60,000 tokens each, because every request resends a session full of programs and samples. No model left a working compressor. The budget is meant to let most models finish, so it was too small for this item. compress now has 4,000,000 tokens per trial; speedup keeps 2,000,000.
 

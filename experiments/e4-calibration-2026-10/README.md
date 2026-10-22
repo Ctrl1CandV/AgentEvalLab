@@ -87,4 +87,16 @@ deepseek's program is correct but took 2.5 seconds against the reference's 0.8, 
 
 ## E4 0.5.0: speedup and compress (2026-10-21)
 
-`terminal.eval.json` runs both scored items. `compress.eval.json` runs `compress` alone. The grader has 20 minutes per trial, because the compress check makes up to twelve candidate runs of up to 60 seconds after about a minute of anchors.
+`speedup-0.5.eval.json` (2,000,000 tokens per trial) and `compress.eval.json` (4,000,000 tokens per trial since 2026-10-22, below) run the two scored items. The E4 score is their mean. The grader has 20 minutes per trial, because the compress check makes up to twelve candidate runs of up to 60 seconds after about a minute of anchors. (The first B1 round used `terminal.eval.json`, both items at 2,000,000 tokens, since removed.)
+
+Run `runs/suites/20261021-123806-dev-d275` (dev suite, commit `4c8c616`), speedup and compress once per model:
+
+| Model | speedup (8 checks) | compress (6 checks) | Tokens |
+| --- | --- | --- | ---: |
+| deepseek-flash | 7/8 (all but `speed-0.75`) | not run: the suite's per-model ceiling had no room for the speedup trial's overshoot (fixed in `6ee49fe`); run separately | 2.04M |
+| qwen3.8-flash | 8/8 | 0/6: `packlog.py` left half-written; the trial ended with "Now let me write the complete implementation properly." | 2.75M |
+| mimo-v2.6-flash | 7/8 | 0/6: correct round trips, but larger than LZMA preset 9e (about gzip's size) | 4.10M |
+
+The compress checks were rerun by hand on both delivered programs and gave the same verdicts. Neither model's result comes from the check.
+
+deepseek's compress trial ran on 2026-10-22 (`runs/suites/20261022-040520-dev-7f6a`). It scored 0/6: at the budget its `packlog.py` was mid-edit, a range coder that raises a TypeError. All three models ended without a working compressor after 30–38 requests of about 60,000 tokens each, so compress now has 4,000,000 tokens per trial (see the package's `calibration.md`).

@@ -26,3 +26,19 @@ npm run harness -- --plan experiments/t2-calibration-2026-10/v0.2.eval.json
 `v0.3.eval.json` runs the twelve optimisation tickets (levels S, M and L) once each, with 600,000 tokens, 80 responses and 120 tool calls per trial, stated to the model. Each response may hold 131,072 output tokens and 524,288 characters. The 0.2.0 tickets stay in the package as anchors and are not in the family score.
 
 In the first suite run (`runs/suites/20261021-120039-dev-fe3b`, 0.2.0 with the response limits raised), deepseek-flash scored 100% and qwen3.8-flash 96.7%, two tickets losing only the format deduction.
+
+Run `runs/suites/20261021-124022-dev-1249` (dev suite, commit `2b02ac4`), the twelve optimisation tickets once per model. Scores are under grader 1.1.1 after the regrade:
+
+| Model | Score | Tickets resolved | At the optimum | Median tokens | Budget stops |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| deepseek-flash | 95.2% | 10/12 | 11/12 | 167k | 1 |
+| qwen3.8-flash | 100% | 12/12 | 12/12 | 222k | 0 |
+| mimo-v2.6-flash | 78.6% | 8/12 | 9 of 10 compliant | 340k | 3 |
+
+Every remaining deduction was audited and is the model's own:
+
+- deepseek's `om2` is compliant but 7.3% above the optimum. It gave credit for two cast-iron teapots where sending one from stock was cheaper. An enumeration of every option confirms the optimum of 183.91.
+- deepseek and mimo stopped at the token budget on `ol4` after making every unit good at the optimum, so they gave no reply.
+- mimo planned `os4` without running a command, looped one sentence on `os2` until a response passed 524,288 characters, and stopped at the budget on `om4`, 4.5% above the optimum.
+
+qwen and deepseek wrote small solvers for most tickets. **Optimisation at this size did not harden T2 for them.**

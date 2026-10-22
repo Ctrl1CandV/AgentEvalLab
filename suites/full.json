@@ -48,12 +48,22 @@
       "openEnded": true
     },
     {
-      "id": "E4",
+      "id": "E4-speedup",
       "kind": "single",
-      "template": "experiments/e4-calibration-2026-10/terminal.eval.json",
+      "template": "experiments/e4-calibration-2026-10/speedup-0.5.eval.json",
       "score": {
         "items": [
-          "speedup",
+          "speedup"
+        ]
+      },
+      "openEnded": true
+    },
+    {
+      "id": "E4-compress",
+      "kind": "single",
+      "template": "experiments/e4-calibration-2026-10/compress.eval.json",
+      "score": {
+        "items": [
           "compress"
         ]
       },

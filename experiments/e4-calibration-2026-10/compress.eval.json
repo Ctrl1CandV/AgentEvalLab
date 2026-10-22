@@ -23,14 +23,14 @@
   ],
   "repetitions": 1,
   "budget": {
-    "timeoutMs": 3600000,
-    "maxTurns": 100,
-    "maxModelCalls": 100,
-    "maxToolCalls": 150,
+    "timeoutMs": 7200000,
+    "maxTurns": 200,
+    "maxModelCalls": 200,
+    "maxToolCalls": 300,
     "maxOutputChars": 524288,
     "maxOutputTokensPerCall": 131072,
     "maxToolResultChars": 100000,
-    "maxTrialTokens": 2000000
+    "maxTrialTokens": 4000000
   },
   "artifactLimits": {
     "maxFiles": 2000,
@@ -42,7 +42,7 @@
   "batch": {
     "maxRetries": 2,
     "maxConsecutiveInfrastructureFailures": 3,
-    "maxTotalTokensPerModel": 2000000,
+    "maxTotalTokensPerModel": 5000000,
     "concurrency": 4
   },
   "trustedLocalExecution": true,
@@ -51,7 +51,7 @@
     {
       "id": "e4-terminal-tasks",
       "packagePath": "task-library/calibration/e4-terminal-tasks",
-      "packageManifestSha256": "1b5d5c982e9ff499a991c273f6bdeb3953f437ce1f7cd7dd5fef6f44d9f19e9a",
+      "packageManifestSha256": "e36da7f12efb6f451d97669ddcc979e6830384882da0c27d2c5baef248aa3125",
       "input": {
         "prompt": "Complete the task above in the workspace, check your work, and end with a short summary."
       },

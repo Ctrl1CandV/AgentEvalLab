@@ -87,3 +87,21 @@ Run `91331eb7` (task 0.4.1, L7): 19 of 28 trials; the relay models (glm, step, l
 | mimo-v2.6-flash | 34% | 0/4 | 1.69M | 1 |
 
 Even the heavier questions do not separate the two strong models: deepseek missed one question in one snapshot, and qwen lost only the format deduction (a fenced or prefaced answer). The MiMo models lose whole snapshots: one budget stop without an answer, one empty final message, and an answer written after prose, which the recovery rule does not pick out because the prose holds other objects.
+
+## T1 0.5.0: the depth ladder (2026-10-21)
+
+`depth.eval.json` runs all sixteen D items. The dev plan `depth-dev.eval.json` runs two per level (D2-01/02, D4-01/02, D6-01/02, D8-01/02). Both use 1,000,000 tokens per trial, stated to the model.
+
+Run `runs/suites/20261021-123806-dev-d275` (dev suite, commit `4c8c616`), one trial per item. Scores are under grader 1.6.1 after the regrade:
+
+| Model | Score | Questions right | Format deductions | Median tokens |
+| --- | ---: | ---: | ---: | ---: |
+| deepseek-flash | 95.0% | 38/40 | 0 | 115k |
+| qwen3.8-flash | 82.5% | 40/40 | 7 of 8 trials | 145k |
+| mimo-v2.6-flash | 70.0% | 35/40 | 7 of 8 trials | 115k |
+
+- deepseek missed D6-02 Q3 and Q5. In both it took the value from base.toml, but the final service's prod.toml includes a shared file that sets the key.
+- mimo's D4-02 ended mid-reasoning without an answer (0).
+- The other format deductions are prose or fences around the answer, which the prompt rules out.
+
+**The depth ladder did not separate the models on content.** All three followed chains of eight references with every distractor in place, almost without error. The scores differ mainly through format. Per-step accuracy is close to 1 for these models, so errors do not compound at these depths.
