@@ -1,0 +1,7 @@
+[garnet]
+tier = 2
+upstream = "pylon"
+timeout_ms = 16
+max_retries = 26
+pool_size = 9
+queue_depth = 16

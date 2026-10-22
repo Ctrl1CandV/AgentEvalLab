@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/pool-large.toml"
+tier = 3
+upstream = "spruce"
+max_retries = 21
+pool_size = 55

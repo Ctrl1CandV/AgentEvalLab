@@ -1,0 +1,6 @@
+[nectar]
+include = "shared/limits-floor.toml"
+tier = 3
+upstream = "orchid"
+timeout_ms = 39
+max_retries = 36

@@ -1,0 +1,5 @@
+[juniper]
+include = "shared/limits-burst.toml"
+upstream = "tundra"
+pool_size = 38
+queue_depth = 5

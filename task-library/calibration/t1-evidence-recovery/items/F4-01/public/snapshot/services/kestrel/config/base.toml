@@ -1,0 +1,7 @@
+[kestrel]
+tier = 2
+upstream = "yonder"
+timeout_ms = 14
+max_retries = 10
+pool_size = 21
+queue_depth = 26

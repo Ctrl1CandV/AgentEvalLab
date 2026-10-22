@@ -1,0 +1,4 @@
+[spruce]
+tier = 1
+upstream = "fjord"
+pool_size = 3

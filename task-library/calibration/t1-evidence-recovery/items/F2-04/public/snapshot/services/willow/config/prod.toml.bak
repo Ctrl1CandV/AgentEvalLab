@@ -1,0 +1,5 @@
+[willow]
+include = "shared/limits-standard.toml"
+tier = 1
+upstream = "fjord"
+timeout_ms = 33

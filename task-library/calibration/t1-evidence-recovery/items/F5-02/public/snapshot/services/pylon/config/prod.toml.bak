@@ -1,0 +1,4 @@
+[pylon]
+tier = 3
+upstream = "iris"
+pool_size = 24

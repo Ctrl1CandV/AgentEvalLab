@@ -1,0 +1,5 @@
+[juniper]
+upstream = "delta"
+timeout_ms = 14
+max_retries = 57
+pool_size = 36

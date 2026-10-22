@@ -1,0 +1,5 @@
+[pylon]
+include = "shared/retry-fast.toml"
+tier = 1
+upstream = "fjord"
+pool_size = 34

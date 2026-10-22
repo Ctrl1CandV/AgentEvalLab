@@ -1,0 +1,6 @@
+[quill]
+include = "shared/limits-standard.toml"
+tier = 1
+upstream = "atlas"
+pool_size = 29
+queue_depth = 65

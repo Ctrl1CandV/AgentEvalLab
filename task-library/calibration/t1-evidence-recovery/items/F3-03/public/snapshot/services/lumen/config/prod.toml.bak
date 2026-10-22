@@ -1,0 +1,4 @@
+[lumen]
+tier = 1
+upstream = "vesper"
+pool_size = 28

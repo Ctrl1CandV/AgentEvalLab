@@ -1,0 +1,7 @@
+[kestrel]
+include = "shared/limits-floor.toml"
+tier = 2
+upstream = "beacon"
+timeout_ms = 26
+pool_size = 23
+queue_depth = 45

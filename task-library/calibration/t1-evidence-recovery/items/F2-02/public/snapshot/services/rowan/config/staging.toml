@@ -1,0 +1,5 @@
+[rowan]
+tier = 1
+upstream = "tundra"
+pool_size = 43
+queue_depth = 61

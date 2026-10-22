@@ -1,0 +1,5 @@
+[lumen]
+tier = 1
+upstream = "orchid"
+max_retries = 44
+queue_depth = 31

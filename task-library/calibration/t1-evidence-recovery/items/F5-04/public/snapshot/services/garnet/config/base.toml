@@ -1,0 +1,7 @@
+[garnet]
+tier = 3
+upstream = "juniper"
+timeout_ms = 33
+max_retries = 14
+pool_size = 19
+queue_depth = 25

@@ -1,0 +1,4 @@
+[lumen]
+tier = 2
+upstream = "kestrel"
+queue_depth = 14

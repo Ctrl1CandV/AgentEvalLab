@@ -1,0 +1,4 @@
+[nectar]
+tier = 3
+pool_size = 17
+queue_depth = 18

@@ -1,0 +1,5 @@
+[fjord]
+include = "shared/limits-floor.toml"
+tier = 1
+upstream = "orchid"
+timeout_ms = 37

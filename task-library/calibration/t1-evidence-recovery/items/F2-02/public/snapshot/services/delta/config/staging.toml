@@ -1,0 +1,5 @@
+[delta]
+tier = 3
+upstream = "mesa"
+max_retries = 57
+queue_depth = 21

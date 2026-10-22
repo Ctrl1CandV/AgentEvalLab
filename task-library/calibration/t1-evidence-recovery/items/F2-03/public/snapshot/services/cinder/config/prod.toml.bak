@@ -1,0 +1,4 @@
+[cinder]
+tier = 1
+upstream = "mesa"
+pool_size = 14

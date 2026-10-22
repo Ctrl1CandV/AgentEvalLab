@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/limits-floor.toml"
+tier = 1
+upstream = "ember"
+pool_size = 59
+queue_depth = 30

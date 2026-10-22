@@ -1,0 +1,5 @@
+[pool-large]
+include = "shared/retry-safe.toml"
+tier = 1
+timeout_ms = 94
+max_retries = 133

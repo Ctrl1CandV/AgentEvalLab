@@ -1,0 +1,4 @@
+[quill]
+tier = 1
+upstream = "delta"
+pool_size = 31

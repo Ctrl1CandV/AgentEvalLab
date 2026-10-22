@@ -1,0 +1,4 @@
+[cinder]
+tier = 1
+upstream = "nectar"
+pool_size = 17

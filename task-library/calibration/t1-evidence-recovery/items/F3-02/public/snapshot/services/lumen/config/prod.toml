@@ -1,0 +1,7 @@
+[lumen]
+include = "shared/profile-core.toml"
+upstream = "delta"
+timeout_ms = 29
+max_retries = 18
+pool_size = 40
+queue_depth = 39

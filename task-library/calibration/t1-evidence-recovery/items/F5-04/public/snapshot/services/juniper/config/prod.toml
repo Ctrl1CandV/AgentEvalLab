@@ -1,0 +1,6 @@
+[juniper]
+include = "shared/limits-standard.toml"
+tier = 1
+upstream = "quill"
+timeout_ms = 12
+queue_depth = 20

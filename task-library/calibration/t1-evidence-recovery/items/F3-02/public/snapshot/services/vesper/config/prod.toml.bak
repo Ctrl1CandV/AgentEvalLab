@@ -1,0 +1,5 @@
+[vesper]
+include = "shared/pool-large.toml"
+tier = 2
+upstream = "kestrel"
+pool_size = 5

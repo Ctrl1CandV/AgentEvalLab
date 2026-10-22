@@ -1,0 +1,7 @@
+[rowan]
+tier = 1
+upstream = "mesa"
+timeout_ms = 13
+max_retries = 3
+pool_size = 28
+queue_depth = 9

@@ -1,0 +1,5 @@
+[pylon]
+include = "shared/retry-fast.toml"
+tier = 2
+upstream = "juniper"
+queue_depth = 44

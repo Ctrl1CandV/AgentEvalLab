@@ -1,0 +1,5 @@
+[lumen]
+tier = 2
+upstream = "harbor"
+timeout_ms = 23
+max_retries = 41

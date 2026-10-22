@@ -1,0 +1,5 @@
+[umbra]
+tier = 3
+upstream = "fjord"
+max_retries = 41
+queue_depth = 17

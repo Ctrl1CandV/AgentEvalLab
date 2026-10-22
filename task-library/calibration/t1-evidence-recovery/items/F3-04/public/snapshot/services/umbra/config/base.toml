@@ -1,0 +1,7 @@
+[umbra]
+tier = 2
+upstream = "mesa"
+timeout_ms = 34
+max_retries = 33
+pool_size = 14
+queue_depth = 7

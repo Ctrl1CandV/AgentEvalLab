@@ -1,0 +1,4 @@
+[orchid]
+tier = 2
+upstream = "delta"
+pool_size = 20

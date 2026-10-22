@@ -1,0 +1,6 @@
+[vesper]
+include = "shared/retry-fast.toml"
+tier = 3
+upstream = "spruce"
+pool_size = 31
+queue_depth = 30

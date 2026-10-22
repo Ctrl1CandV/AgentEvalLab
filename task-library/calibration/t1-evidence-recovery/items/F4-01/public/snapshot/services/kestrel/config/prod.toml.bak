@@ -1,0 +1,4 @@
+[kestrel]
+tier = 3
+upstream = "willow"
+max_retries = 38

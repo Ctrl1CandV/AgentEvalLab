@@ -1,0 +1,8 @@
+[quill]
+include = "shared/pool-small.toml"
+tier = 1
+upstream = "pylon"
+timeout_ms = 26
+max_retries = 20
+pool_size = 27
+queue_depth = 56

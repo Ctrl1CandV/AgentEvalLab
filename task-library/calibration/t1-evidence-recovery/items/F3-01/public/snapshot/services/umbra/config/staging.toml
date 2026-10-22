@@ -1,0 +1,6 @@
+[umbra]
+include = "shared/pool-large.toml"
+tier = 1
+upstream = "juniper"
+timeout_ms = 51
+pool_size = 44

@@ -1,0 +1,6 @@
+[willow]
+include = "shared/retry-fast.toml"
+tier = 3
+upstream = "garnet"
+max_retries = 54
+queue_depth = 14

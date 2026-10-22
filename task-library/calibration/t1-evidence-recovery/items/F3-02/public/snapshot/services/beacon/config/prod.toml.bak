@@ -1,0 +1,4 @@
+[beacon]
+tier = 3
+upstream = "fjord"
+max_retries = 19

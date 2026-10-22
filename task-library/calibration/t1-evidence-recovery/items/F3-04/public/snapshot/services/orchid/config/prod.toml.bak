@@ -1,0 +1,5 @@
+[orchid]
+include = "shared/limits-burst.toml"
+tier = 2
+upstream = "mesa"
+timeout_ms = 5

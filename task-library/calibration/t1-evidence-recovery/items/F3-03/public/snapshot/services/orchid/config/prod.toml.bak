@@ -1,0 +1,5 @@
+[orchid]
+include = "shared/limits-floor.toml"
+tier = 2
+upstream = "iris"
+pool_size = 59

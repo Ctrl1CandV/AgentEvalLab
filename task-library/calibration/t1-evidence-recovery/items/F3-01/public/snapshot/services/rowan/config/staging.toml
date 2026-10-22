@@ -1,0 +1,5 @@
+[rowan]
+tier = 1
+upstream = "mesa"
+pool_size = 54
+queue_depth = 35

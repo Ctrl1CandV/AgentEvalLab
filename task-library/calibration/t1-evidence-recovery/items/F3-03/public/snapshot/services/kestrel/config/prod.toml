@@ -1,0 +1,7 @@
+[kestrel]
+include = "shared/pool-small.toml"
+tier = 2
+upstream = "iris"
+timeout_ms = 38
+max_retries = 13
+pool_size = 46

@@ -1,0 +1,7 @@
+[umbra]
+tier = 2
+upstream = "lumen"
+timeout_ms = 8
+max_retries = 13
+pool_size = 38
+queue_depth = 38

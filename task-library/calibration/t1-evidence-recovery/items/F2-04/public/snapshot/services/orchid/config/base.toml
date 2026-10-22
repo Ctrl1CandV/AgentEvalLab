@@ -1,0 +1,7 @@
+[orchid]
+tier = 1
+upstream = "juniper"
+timeout_ms = 28
+max_retries = 35
+pool_size = 11
+queue_depth = 15

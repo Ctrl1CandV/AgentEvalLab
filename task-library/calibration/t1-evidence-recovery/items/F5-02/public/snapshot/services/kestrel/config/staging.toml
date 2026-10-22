@@ -1,0 +1,5 @@
+[kestrel]
+tier = 3
+upstream = "ember"
+timeout_ms = 52
+pool_size = 57

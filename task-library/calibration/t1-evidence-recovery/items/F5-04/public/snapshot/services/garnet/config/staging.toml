@@ -1,0 +1,5 @@
+[garnet]
+tier = 2
+upstream = "beacon"
+timeout_ms = 62
+max_retries = 27

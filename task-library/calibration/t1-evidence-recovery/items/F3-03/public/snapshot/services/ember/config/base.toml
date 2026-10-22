@@ -1,0 +1,7 @@
+[ember]
+tier = 3
+upstream = "harbor"
+timeout_ms = 25
+max_retries = 29
+pool_size = 4
+queue_depth = 12

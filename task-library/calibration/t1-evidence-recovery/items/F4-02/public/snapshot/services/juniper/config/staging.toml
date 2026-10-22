@@ -1,0 +1,6 @@
+[juniper]
+include = "shared/pool-small.toml"
+tier = 2
+upstream = "quill"
+timeout_ms = 41
+max_retries = 43

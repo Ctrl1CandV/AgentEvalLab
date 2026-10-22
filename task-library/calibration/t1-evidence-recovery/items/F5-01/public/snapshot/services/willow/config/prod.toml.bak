@@ -1,0 +1,4 @@
+[willow]
+tier = 1
+upstream = "pylon"
+queue_depth = 34

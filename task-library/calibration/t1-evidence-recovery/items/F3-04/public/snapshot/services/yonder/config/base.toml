@@ -1,0 +1,7 @@
+[yonder]
+tier = 2
+upstream = "garnet"
+timeout_ms = 17
+max_retries = 8
+pool_size = 17
+queue_depth = 6

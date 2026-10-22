@@ -1,0 +1,7 @@
+[cinder]
+tier = 2
+upstream = "tundra"
+timeout_ms = 27
+max_retries = 20
+pool_size = 4
+queue_depth = 6

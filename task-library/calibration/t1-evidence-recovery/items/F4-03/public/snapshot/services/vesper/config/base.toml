@@ -1,0 +1,7 @@
+[vesper]
+tier = 2
+upstream = "pylon"
+timeout_ms = 13
+max_retries = 8
+pool_size = 7
+queue_depth = 15

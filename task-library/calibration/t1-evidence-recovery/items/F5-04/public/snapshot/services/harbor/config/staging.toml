@@ -1,0 +1,5 @@
+[harbor]
+tier = 2
+upstream = "ember"
+pool_size = 33
+queue_depth = 26

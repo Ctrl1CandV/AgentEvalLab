@@ -1,0 +1,6 @@
+[umbra]
+include = "shared/pool-large.toml"
+tier = 3
+upstream = "pylon"
+max_retries = 24
+pool_size = 31

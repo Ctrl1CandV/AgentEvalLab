@@ -1,0 +1,5 @@
+[nectar]
+tier = 3
+upstream = "garnet"
+max_retries = 60
+queue_depth = 54

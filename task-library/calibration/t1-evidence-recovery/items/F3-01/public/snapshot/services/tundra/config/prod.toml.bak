@@ -1,0 +1,4 @@
+[tundra]
+tier = 2
+upstream = "garnet"
+queue_depth = 23

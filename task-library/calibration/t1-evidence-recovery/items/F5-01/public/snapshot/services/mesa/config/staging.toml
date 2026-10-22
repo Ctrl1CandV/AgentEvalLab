@@ -1,0 +1,5 @@
+[mesa]
+tier = 2
+upstream = "pylon"
+max_retries = 28
+queue_depth = 30

@@ -1,0 +1,5 @@
+[mesa]
+include = "shared/retry-fast.toml"
+tier = 3
+upstream = "beacon"
+pool_size = 58

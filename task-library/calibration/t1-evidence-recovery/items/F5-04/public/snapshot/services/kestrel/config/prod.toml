@@ -1,0 +1,5 @@
+[kestrel]
+upstream = "delta"
+timeout_ms = 13
+pool_size = 20
+queue_depth = 41

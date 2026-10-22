@@ -1,0 +1,6 @@
+[retry-safe]
+include = "shared/pool-small.toml"
+tier = 2
+upstream = "beacon"
+pool_size = 119
+queue_depth = 61

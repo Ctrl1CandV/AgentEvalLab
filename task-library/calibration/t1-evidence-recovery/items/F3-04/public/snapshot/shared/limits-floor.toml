@@ -1,0 +1,5 @@
+[limits-floor]
+include = "shared/pool-small.toml"
+tier = 2
+timeout_ms = 87
+queue_depth = 110

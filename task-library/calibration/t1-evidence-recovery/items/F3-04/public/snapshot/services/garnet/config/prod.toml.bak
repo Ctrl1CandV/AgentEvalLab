@@ -1,0 +1,5 @@
+[garnet]
+include = "shared/retry-fast.toml"
+tier = 1
+upstream = "umbra"
+max_retries = 35

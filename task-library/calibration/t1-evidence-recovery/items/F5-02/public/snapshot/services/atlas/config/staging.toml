@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/retry-safe.toml"
+tier = 3
+upstream = "ember"
+max_retries = 41
+queue_depth = 49

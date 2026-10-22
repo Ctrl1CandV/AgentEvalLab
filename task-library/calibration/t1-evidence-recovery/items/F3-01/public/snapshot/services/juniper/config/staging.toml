@@ -1,0 +1,5 @@
+[juniper]
+tier = 2
+upstream = "nectar"
+timeout_ms = 45
+max_retries = 34

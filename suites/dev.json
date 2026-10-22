@@ -37,13 +37,11 @@
     {
       "id": "T1",
       "kind": "single",
-      "template": "experiments/t1-calibration-2026-10/depth-dev.eval.json",
+      "template": "experiments/t1-calibration-2026-10/cases-dev.eval.json",
       "score": {
         "levels": [
-          "D2",
-          "D4",
-          "D6",
-          "D8"
+          "F4",
+          "F5"
         ]
       }
     },

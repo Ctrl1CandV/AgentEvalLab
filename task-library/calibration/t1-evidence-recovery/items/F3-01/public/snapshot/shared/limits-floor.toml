@@ -1,0 +1,4 @@
+[limits-floor]
+tier = 2
+pool_size = 121
+queue_depth = 67

@@ -1,0 +1,5 @@
+[yonder]
+tier = 3
+upstream = "ember"
+timeout_ms = 40
+pool_size = 23

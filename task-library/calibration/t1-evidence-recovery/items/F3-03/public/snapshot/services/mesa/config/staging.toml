@@ -1,0 +1,5 @@
+[mesa]
+tier = 2
+upstream = "delta"
+timeout_ms = 28
+max_retries = 16

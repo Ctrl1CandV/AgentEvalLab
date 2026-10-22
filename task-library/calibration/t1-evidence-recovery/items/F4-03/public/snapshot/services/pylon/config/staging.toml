@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/pool-large.toml"
+tier = 1
+upstream = "yonder"
+timeout_ms = 33
+pool_size = 15

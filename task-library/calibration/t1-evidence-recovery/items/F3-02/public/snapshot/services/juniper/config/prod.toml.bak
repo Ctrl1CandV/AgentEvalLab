@@ -1,0 +1,4 @@
+[juniper]
+tier = 1
+upstream = "iris"
+pool_size = 57

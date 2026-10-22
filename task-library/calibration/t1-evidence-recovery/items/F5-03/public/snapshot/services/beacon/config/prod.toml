@@ -1,0 +1,3 @@
+[beacon]
+upstream = "yonder"
+pool_size = 26

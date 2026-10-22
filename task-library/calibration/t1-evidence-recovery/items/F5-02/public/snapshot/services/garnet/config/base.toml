@@ -1,0 +1,7 @@
+[garnet]
+tier = 3
+upstream = "mesa"
+timeout_ms = 8
+max_retries = 13
+pool_size = 19
+queue_depth = 39

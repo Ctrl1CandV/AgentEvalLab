@@ -1,0 +1,7 @@
+[garnet]
+tier = 1
+upstream = "kestrel"
+timeout_ms = 38
+max_retries = 8
+pool_size = 11
+queue_depth = 2

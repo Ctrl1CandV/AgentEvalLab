@@ -1,0 +1,5 @@
+[garnet]
+tier = 2
+upstream = "vesper"
+max_retries = 28
+pool_size = 17

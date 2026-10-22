@@ -1,0 +1,7 @@
+[tundra]
+include = "shared/pool-small.toml"
+tier = 2
+upstream = "juniper"
+max_retries = 21
+pool_size = 11
+queue_depth = 25

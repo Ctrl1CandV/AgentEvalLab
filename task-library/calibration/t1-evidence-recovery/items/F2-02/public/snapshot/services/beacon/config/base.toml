@@ -1,0 +1,7 @@
+[beacon]
+tier = 2
+upstream = "atlas"
+timeout_ms = 27
+max_retries = 32
+pool_size = 26
+queue_depth = 29

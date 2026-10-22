@@ -1,0 +1,7 @@
+[yonder]
+tier = 3
+upstream = "delta"
+timeout_ms = 15
+max_retries = 19
+pool_size = 6
+queue_depth = 14

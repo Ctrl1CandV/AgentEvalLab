@@ -1,0 +1,4 @@
+[pool-small]
+include = "shared/limits-standard.toml"
+max_retries = 126
+queue_depth = 137

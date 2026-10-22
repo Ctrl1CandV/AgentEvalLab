@@ -1,0 +1,5 @@
+[tundra]
+tier = 2
+upstream = "atlas"
+timeout_ms = 53
+pool_size = 18

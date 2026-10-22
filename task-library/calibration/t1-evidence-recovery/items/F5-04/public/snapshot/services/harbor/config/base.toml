@@ -1,0 +1,7 @@
+[harbor]
+tier = 3
+upstream = "tundra"
+timeout_ms = 28
+max_retries = 29
+pool_size = 8
+queue_depth = 2

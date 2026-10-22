@@ -1,0 +1,5 @@
+[willow]
+include = "shared/limits-burst.toml"
+upstream = "vesper"
+max_retries = 46
+pool_size = 30

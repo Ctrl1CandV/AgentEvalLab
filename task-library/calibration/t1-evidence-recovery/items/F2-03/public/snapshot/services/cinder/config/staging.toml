@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/limits-standard.toml"
+tier = 1
+upstream = "harbor"
+timeout_ms = 35
+max_retries = 39

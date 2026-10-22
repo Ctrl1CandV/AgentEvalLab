@@ -1,0 +1,5 @@
+[orchid]
+tier = 2
+upstream = "nectar"
+timeout_ms = 49
+max_retries = 32

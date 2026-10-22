@@ -1,0 +1,4 @@
+[quill]
+tier = 3
+upstream = "orchid"
+queue_depth = 31

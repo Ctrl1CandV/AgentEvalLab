@@ -1,0 +1,7 @@
+[yonder]
+tier = 1
+upstream = "tundra"
+timeout_ms = 5
+max_retries = 11
+pool_size = 26
+queue_depth = 31

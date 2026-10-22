@@ -1,0 +1,9 @@
+## Snapshot F5-02
+
+The read-only snapshot holds the fictional project north-relay. Answer these questions:
+
+- Q1: Incident INC-729 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back? Also give the procedure and deadline that would apply if CHG-6228 had never been made (cf_procedure, cf_deadline). Answer as {"tier": <1, 2 or 3>, "freeze": <true or false>, "class": "<standard, emergency or rollback>", "reach": <integer>, "procedure": "<R0, P1, P2, P3 or P4>", "approver": "<name>", "deadline": "<YYYY-MM-DDTHH:MMZ>", "cf_procedure": "<R0, P1, P2, P3 or P4>", "cf_deadline": "<YYYY-MM-DDTHH:MMZ>"}.
+- Q2: Incident INC-400 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back? Also give the procedure and deadline that would apply if CHG-4356 had never been made (cf_procedure, cf_deadline). Answer as {"tier": <1, 2 or 3>, "freeze": <true or false>, "class": "<standard, emergency or rollback>", "reach": <integer>, "procedure": "<R0, P1, P2, P3 or P4>", "approver": "<name>", "deadline": "<YYYY-MM-DDTHH:MMZ>", "cf_procedure": "<R0, P1, P2, P3 or P4>", "cf_deadline": "<YYYY-MM-DDTHH:MMZ>"}.
+- Q3: Incident INC-506 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back? Also give the procedure and deadline that would apply if CHG-9927 had never been made (cf_procedure, cf_deadline). Answer as {"tier": <1, 2 or 3>, "freeze": <true or false>, "class": "<standard, emergency or rollback>", "reach": <integer>, "procedure": "<R0, P1, P2, P3 or P4>", "approver": "<name>", "deadline": "<YYYY-MM-DDTHH:MMZ>", "cf_procedure": "<R0, P1, P2, P3 or P4>", "cf_deadline": "<YYYY-MM-DDTHH:MMZ>"}.
+
+Emit one JSON object only, without Markdown fences, with one key per question: {"Q1": {...}, "Q2": {...}, "Q3": {...}}.

@@ -1,0 +1,5 @@
+[pylon]
+include = "shared/pool-small.toml"
+tier = 1
+upstream = "umbra"
+pool_size = 13

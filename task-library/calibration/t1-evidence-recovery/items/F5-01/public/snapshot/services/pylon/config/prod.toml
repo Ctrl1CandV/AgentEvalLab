@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/limits-burst.toml"
+tier = 3
+upstream = "beacon"
+timeout_ms = 15
+pool_size = 24

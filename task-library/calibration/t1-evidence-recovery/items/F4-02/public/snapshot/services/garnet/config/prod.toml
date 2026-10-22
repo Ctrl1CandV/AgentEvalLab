@@ -1,0 +1,4 @@
+[garnet]
+timeout_ms = 43
+max_retries = 9
+pool_size = 13

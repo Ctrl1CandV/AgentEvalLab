@@ -1,0 +1,4 @@
+[retry-safe]
+tier = 3
+pool_size = 76
+queue_depth = 54

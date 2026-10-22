@@ -1,0 +1,5 @@
+[tundra]
+include = "shared/limits-burst.toml"
+tier = 2
+upstream = "pylon"
+queue_depth = 43

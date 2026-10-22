@@ -1,0 +1,7 @@
+[iris]
+tier = 3
+upstream = "delta"
+timeout_ms = 5
+max_retries = 3
+pool_size = 15
+queue_depth = 25

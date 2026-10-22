@@ -1,0 +1,7 @@
+[iris]
+tier = 2
+upstream = "willow"
+timeout_ms = 9
+max_retries = 22
+pool_size = 35
+queue_depth = 34

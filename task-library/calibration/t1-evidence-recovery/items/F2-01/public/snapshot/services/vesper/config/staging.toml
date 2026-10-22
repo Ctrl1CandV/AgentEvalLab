@@ -1,0 +1,6 @@
+[vesper]
+include = "shared/pool-large.toml"
+tier = 1
+upstream = "lumen"
+max_retries = 27
+queue_depth = 59

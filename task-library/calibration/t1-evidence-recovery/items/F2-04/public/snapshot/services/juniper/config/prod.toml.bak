@@ -1,0 +1,4 @@
+[juniper]
+tier = 1
+upstream = "kestrel"
+pool_size = 5

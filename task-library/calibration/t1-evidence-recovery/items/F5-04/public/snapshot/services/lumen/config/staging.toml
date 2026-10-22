@@ -1,0 +1,6 @@
+[lumen]
+include = "shared/limits-burst.toml"
+tier = 2
+upstream = "cinder"
+pool_size = 34
+queue_depth = 22

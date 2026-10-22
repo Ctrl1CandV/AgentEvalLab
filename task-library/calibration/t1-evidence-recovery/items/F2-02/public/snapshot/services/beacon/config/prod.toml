@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/pool-small.toml"
+tier = 3
+timeout_ms = 34
+max_retries = 39
+queue_depth = 34

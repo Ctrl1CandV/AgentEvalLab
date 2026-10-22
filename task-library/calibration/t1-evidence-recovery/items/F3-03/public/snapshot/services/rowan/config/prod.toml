@@ -1,0 +1,5 @@
+[rowan]
+tier = 2
+timeout_ms = 41
+max_retries = 15
+queue_depth = 32

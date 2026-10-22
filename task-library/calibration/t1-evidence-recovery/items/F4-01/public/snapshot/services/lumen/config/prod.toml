@@ -1,0 +1,6 @@
+[lumen]
+include = "shared/profile-batch.toml"
+tier = 1
+upstream = "yonder"
+max_retries = 32
+queue_depth = 34

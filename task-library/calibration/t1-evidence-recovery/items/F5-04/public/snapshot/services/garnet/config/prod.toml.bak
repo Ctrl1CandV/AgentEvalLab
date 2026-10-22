@@ -1,0 +1,5 @@
+[garnet]
+include = "shared/retry-fast.toml"
+tier = 3
+upstream = "ember"
+max_retries = 52

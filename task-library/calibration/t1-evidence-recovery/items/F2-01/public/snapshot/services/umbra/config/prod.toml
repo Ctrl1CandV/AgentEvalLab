@@ -1,0 +1,4 @@
+[umbra]
+tier = 2
+max_retries = 20
+pool_size = 42

@@ -1,0 +1,4 @@
+[mesa]
+tier = 2
+upstream = "nectar"
+queue_depth = 21

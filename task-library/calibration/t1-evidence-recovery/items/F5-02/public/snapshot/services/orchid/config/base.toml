@@ -1,0 +1,7 @@
+[orchid]
+tier = 3
+upstream = "beacon"
+timeout_ms = 36
+max_retries = 24
+pool_size = 26
+queue_depth = 37

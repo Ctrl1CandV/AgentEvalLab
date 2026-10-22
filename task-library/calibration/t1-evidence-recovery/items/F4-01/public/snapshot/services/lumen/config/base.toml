@@ -1,0 +1,7 @@
+[lumen]
+tier = 3
+upstream = "garnet"
+timeout_ms = 25
+max_retries = 22
+pool_size = 14
+queue_depth = 25

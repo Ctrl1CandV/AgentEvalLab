@@ -1,0 +1,6 @@
+[mesa]
+include = "shared/pool-small.toml"
+tier = 2
+timeout_ms = 20
+max_retries = 16
+queue_depth = 26

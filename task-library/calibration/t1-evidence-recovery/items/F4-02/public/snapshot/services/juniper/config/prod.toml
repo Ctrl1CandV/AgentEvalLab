@@ -1,0 +1,5 @@
+[juniper]
+include = "shared/limits-burst.toml"
+tier = 2
+timeout_ms = 20
+queue_depth = 20

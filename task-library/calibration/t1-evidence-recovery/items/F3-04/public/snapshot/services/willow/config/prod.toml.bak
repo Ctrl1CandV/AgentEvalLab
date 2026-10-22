@@ -1,0 +1,4 @@
+[willow]
+tier = 3
+upstream = "spruce"
+timeout_ms = 34

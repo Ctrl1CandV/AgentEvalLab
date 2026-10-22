@@ -1,0 +1,4 @@
+[orchid]
+upstream = "willow"
+max_retries = 15
+queue_depth = 52

@@ -1,0 +1,7 @@
+[quill]
+tier = 1
+upstream = "pylon"
+timeout_ms = 13
+max_retries = 35
+pool_size = 7
+queue_depth = 19

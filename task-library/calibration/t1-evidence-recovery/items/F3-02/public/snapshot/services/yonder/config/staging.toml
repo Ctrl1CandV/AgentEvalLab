@@ -1,0 +1,5 @@
+[yonder]
+tier = 2
+upstream = "cinder"
+timeout_ms = 30
+max_retries = 61

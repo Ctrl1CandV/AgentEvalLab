@@ -1,0 +1,5 @@
+[lumen]
+tier = 3
+upstream = "vesper"
+max_retries = 22
+queue_depth = 26

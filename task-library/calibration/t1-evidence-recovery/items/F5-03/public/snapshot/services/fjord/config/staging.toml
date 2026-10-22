@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/limits-floor.toml"
+tier = 1
+upstream = "yonder"
+max_retries = 54
+pool_size = 45

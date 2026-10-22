@@ -1,0 +1,7 @@
+[mesa]
+tier = 2
+upstream = "harbor"
+timeout_ms = 6
+max_retries = 4
+pool_size = 25
+queue_depth = 23

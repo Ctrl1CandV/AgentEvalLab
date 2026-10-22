@@ -1,0 +1,7 @@
+[mesa]
+tier = 1
+upstream = "orchid"
+timeout_ms = 38
+max_retries = 27
+pool_size = 21
+queue_depth = 8

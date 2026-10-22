@@ -1,0 +1,4 @@
+[lumen]
+tier = 1
+upstream = "beacon"
+max_retries = 9

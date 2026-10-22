@@ -1,0 +1,7 @@
+[kestrel]
+tier = 3
+upstream = "iris"
+timeout_ms = 32
+max_retries = 10
+pool_size = 37
+queue_depth = 29

@@ -1,0 +1,5 @@
+[delta]
+tier = 3
+upstream = "tundra"
+pool_size = 47
+queue_depth = 25

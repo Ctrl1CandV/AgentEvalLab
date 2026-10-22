@@ -1,0 +1,7 @@
+[spruce]
+tier = 1
+upstream = "orchid"
+timeout_ms = 10
+max_retries = 23
+pool_size = 17
+queue_depth = 28

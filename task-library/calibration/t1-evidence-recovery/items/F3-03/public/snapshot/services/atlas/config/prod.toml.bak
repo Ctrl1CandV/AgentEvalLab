@@ -1,0 +1,4 @@
+[atlas]
+tier = 2
+upstream = "willow"
+max_retries = 41

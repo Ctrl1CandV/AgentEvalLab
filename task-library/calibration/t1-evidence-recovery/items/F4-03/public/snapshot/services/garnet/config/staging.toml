@@ -1,0 +1,5 @@
+[garnet]
+tier = 2
+upstream = "yonder"
+max_retries = 54
+queue_depth = 59

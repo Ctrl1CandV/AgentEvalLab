@@ -1,0 +1,6 @@
+[delta]
+include = "shared/retry-safe.toml"
+tier = 2
+upstream = "vesper"
+timeout_ms = 37
+queue_depth = 56

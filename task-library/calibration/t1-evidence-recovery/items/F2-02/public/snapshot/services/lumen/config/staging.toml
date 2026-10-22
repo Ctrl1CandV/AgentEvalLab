@@ -1,0 +1,5 @@
+[lumen]
+tier = 1
+upstream = "vesper"
+max_retries = 18
+pool_size = 39

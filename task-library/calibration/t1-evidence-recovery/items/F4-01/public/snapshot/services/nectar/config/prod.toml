@@ -1,0 +1,5 @@
+[nectar]
+include = "shared/retry-safe.toml"
+tier = 3
+upstream = "quill"
+pool_size = 41

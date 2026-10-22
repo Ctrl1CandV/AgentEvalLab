@@ -1,0 +1,7 @@
+[atlas]
+tier = 3
+upstream = "pylon"
+timeout_ms = 13
+max_retries = 6
+pool_size = 32
+queue_depth = 20

@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/limits-floor.toml"
+tier = 1
+upstream = "orchid"
+timeout_ms = 44
+max_retries = 55

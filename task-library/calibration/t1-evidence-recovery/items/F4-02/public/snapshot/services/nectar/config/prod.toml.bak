@@ -1,0 +1,4 @@
+[nectar]
+tier = 3
+upstream = "beacon"
+queue_depth = 20

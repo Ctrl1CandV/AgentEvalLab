@@ -1,0 +1,7 @@
+[juniper]
+tier = 2
+upstream = "vesper"
+timeout_ms = 35
+max_retries = 21
+pool_size = 13
+queue_depth = 7

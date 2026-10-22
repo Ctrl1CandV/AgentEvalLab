@@ -1,0 +1,5 @@
+[rowan]
+include = "shared/limits-standard.toml"
+tier = 2
+upstream = "pylon"
+timeout_ms = 24

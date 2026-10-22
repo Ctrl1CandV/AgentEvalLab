@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/limits-burst.toml"
+tier = 3
+upstream = "kestrel"
+timeout_ms = 50
+max_retries = 40

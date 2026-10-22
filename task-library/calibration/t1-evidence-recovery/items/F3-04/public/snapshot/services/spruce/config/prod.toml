@@ -1,0 +1,5 @@
+[spruce]
+include = "shared/limits-burst.toml"
+upstream = "fjord"
+max_retries = 42
+pool_size = 33

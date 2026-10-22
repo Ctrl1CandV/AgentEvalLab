@@ -1,0 +1,5 @@
+[rowan]
+include = "shared/retry-fast.toml"
+tier = 1
+upstream = "ember"
+queue_depth = 7

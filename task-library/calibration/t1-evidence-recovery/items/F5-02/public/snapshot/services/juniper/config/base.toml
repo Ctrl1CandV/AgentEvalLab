@@ -1,0 +1,7 @@
+[juniper]
+tier = 1
+upstream = "atlas"
+timeout_ms = 26
+max_retries = 25
+pool_size = 39
+queue_depth = 38

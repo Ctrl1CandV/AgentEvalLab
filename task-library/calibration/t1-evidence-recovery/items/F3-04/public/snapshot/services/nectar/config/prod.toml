@@ -1,0 +1,7 @@
+[nectar]
+include = "shared/retry-safe.toml"
+tier = 3
+upstream = "harbor"
+timeout_ms = 8
+pool_size = 12
+queue_depth = 38

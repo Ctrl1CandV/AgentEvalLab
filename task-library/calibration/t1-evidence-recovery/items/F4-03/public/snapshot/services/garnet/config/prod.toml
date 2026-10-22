@@ -1,0 +1,7 @@
+[garnet]
+include = "shared/limits-burst.toml"
+tier = 3
+upstream = "mesa"
+timeout_ms = 37
+max_retries = 55
+queue_depth = 42

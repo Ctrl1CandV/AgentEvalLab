@@ -1,0 +1,7 @@
+[nectar]
+tier = 3
+upstream = "pylon"
+timeout_ms = 14
+max_retries = 3
+pool_size = 27
+queue_depth = 23

@@ -1,0 +1,5 @@
+[atlas]
+tier = 3
+upstream = "juniper"
+max_retries = 41
+pool_size = 29

@@ -1,0 +1,5 @@
+[yonder]
+tier = 1
+upstream = "iris"
+timeout_ms = 17
+pool_size = 55

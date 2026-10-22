@@ -1,0 +1,5 @@
+[pylon]
+include = "shared/retry-safe.toml"
+tier = 1
+upstream = "atlas"
+max_retries = 17

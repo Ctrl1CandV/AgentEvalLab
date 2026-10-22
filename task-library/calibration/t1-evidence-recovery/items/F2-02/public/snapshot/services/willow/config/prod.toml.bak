@@ -1,0 +1,4 @@
+[willow]
+tier = 3
+upstream = "atlas"
+pool_size = 13

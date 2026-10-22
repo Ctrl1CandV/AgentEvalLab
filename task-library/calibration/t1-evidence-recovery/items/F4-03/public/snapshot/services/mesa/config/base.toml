@@ -1,0 +1,7 @@
+[mesa]
+tier = 3
+upstream = "fjord"
+timeout_ms = 32
+max_retries = 11
+pool_size = 38
+queue_depth = 2

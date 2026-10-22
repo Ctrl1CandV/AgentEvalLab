@@ -1,0 +1,4 @@
+[nectar]
+tier = 1
+upstream = "tundra"
+queue_depth = 11

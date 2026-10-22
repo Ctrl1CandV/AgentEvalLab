@@ -1,0 +1,4 @@
+[retry-fast]
+tier = 3
+timeout_ms = 89
+pool_size = 63

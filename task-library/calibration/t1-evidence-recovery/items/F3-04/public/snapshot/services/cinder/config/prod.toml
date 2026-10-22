@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/retry-fast.toml"
+tier = 3
+upstream = "iris"
+timeout_ms = 24
+max_retries = 8

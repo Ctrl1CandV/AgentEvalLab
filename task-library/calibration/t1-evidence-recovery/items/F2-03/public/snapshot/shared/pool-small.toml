@@ -1,0 +1,5 @@
+[pool-small]
+include = "shared/limits-burst.toml"
+tier = 2
+upstream = "atlas"
+timeout_ms = 100

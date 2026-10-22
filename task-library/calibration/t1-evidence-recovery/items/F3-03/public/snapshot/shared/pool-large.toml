@@ -1,0 +1,4 @@
+[pool-large]
+include = "shared/pool-small.toml"
+max_retries = 110
+pool_size = 92

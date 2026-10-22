@@ -1,0 +1,5 @@
+[quill]
+tier = 2
+upstream = "kestrel"
+timeout_ms = 48
+pool_size = 53

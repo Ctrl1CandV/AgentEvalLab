@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/retry-safe.toml"
+tier = 1
+upstream = "spruce"
+max_retries = 22
+queue_depth = 44

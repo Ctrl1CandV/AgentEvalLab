@@ -1,0 +1,7 @@
+[tundra]
+tier = 3
+upstream = "nectar"
+timeout_ms = 37
+max_retries = 10
+pool_size = 26
+queue_depth = 15

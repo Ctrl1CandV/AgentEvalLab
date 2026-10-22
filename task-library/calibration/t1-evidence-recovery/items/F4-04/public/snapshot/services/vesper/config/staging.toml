@@ -1,0 +1,6 @@
+[vesper]
+include = "shared/limits-floor.toml"
+tier = 1
+upstream = "kestrel"
+max_retries = 20
+queue_depth = 34

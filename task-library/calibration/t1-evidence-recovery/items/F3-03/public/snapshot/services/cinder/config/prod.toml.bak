@@ -1,0 +1,4 @@
+[cinder]
+tier = 1
+upstream = "willow"
+timeout_ms = 2

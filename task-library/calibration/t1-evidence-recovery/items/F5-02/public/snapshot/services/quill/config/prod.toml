@@ -1,0 +1,4 @@
+[quill]
+tier = 2
+timeout_ms = 7
+queue_depth = 21

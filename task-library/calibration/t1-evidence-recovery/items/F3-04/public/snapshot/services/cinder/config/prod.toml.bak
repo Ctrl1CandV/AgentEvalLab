@@ -1,0 +1,4 @@
+[cinder]
+tier = 3
+upstream = "lumen"
+max_retries = 57

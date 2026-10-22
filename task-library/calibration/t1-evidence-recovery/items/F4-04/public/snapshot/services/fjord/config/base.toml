@@ -1,0 +1,7 @@
+[fjord]
+tier = 2
+upstream = "rowan"
+timeout_ms = 35
+max_retries = 17
+pool_size = 37
+queue_depth = 38

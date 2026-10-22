@@ -1,0 +1,7 @@
+[yonder]
+tier = 2
+upstream = "juniper"
+timeout_ms = 35
+max_retries = 35
+pool_size = 4
+queue_depth = 19

@@ -1,0 +1,4 @@
+[orchid]
+tier = 3
+upstream = "juniper"
+timeout_ms = 53

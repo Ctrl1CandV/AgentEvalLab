@@ -1,0 +1,6 @@
+[delta]
+include = "shared/routes-east.toml"
+tier = 2
+max_retries = 24
+pool_size = 37
+queue_depth = 12

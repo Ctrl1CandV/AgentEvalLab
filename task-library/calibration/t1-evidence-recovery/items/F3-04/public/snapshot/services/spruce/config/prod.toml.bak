@@ -1,0 +1,4 @@
+[spruce]
+tier = 2
+upstream = "tundra"
+queue_depth = 23

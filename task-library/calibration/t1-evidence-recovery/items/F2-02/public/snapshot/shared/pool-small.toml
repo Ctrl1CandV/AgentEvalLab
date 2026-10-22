@@ -1,0 +1,5 @@
+[pool-small]
+include = "shared/limits-burst.toml"
+tier = 1
+upstream = "mesa"
+max_retries = 73

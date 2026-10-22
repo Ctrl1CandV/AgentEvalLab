@@ -1,0 +1,7 @@
+[tundra]
+include = "shared/pool-small.toml"
+tier = 3
+upstream = "pylon"
+max_retries = 37
+pool_size = 24
+queue_depth = 28

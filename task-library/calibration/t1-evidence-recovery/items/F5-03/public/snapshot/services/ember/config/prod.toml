@@ -1,0 +1,5 @@
+[ember]
+include = "shared/limits-floor.toml"
+tier = 1
+timeout_ms = 23
+max_retries = 40

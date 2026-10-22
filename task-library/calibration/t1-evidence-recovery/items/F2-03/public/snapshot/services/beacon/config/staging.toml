@@ -1,0 +1,5 @@
+[beacon]
+tier = 3
+upstream = "willow"
+max_retries = 55
+queue_depth = 43

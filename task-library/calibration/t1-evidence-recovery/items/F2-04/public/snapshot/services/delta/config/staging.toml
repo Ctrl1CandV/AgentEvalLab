@@ -1,0 +1,5 @@
+[delta]
+tier = 2
+upstream = "orchid"
+timeout_ms = 49
+max_retries = 42

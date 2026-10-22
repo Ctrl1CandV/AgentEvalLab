@@ -1,0 +1,5 @@
+[willow]
+include = "shared/pool-large.toml"
+upstream = "pylon"
+pool_size = 32
+queue_depth = 28

@@ -1,0 +1,4 @@
+[garnet]
+tier = 1
+max_retries = 33
+pool_size = 21

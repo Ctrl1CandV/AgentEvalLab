@@ -1,0 +1,5 @@
+[delta]
+tier = 1
+upstream = "juniper"
+pool_size = 37
+queue_depth = 35

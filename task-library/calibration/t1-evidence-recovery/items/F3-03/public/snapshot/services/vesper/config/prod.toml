@@ -1,0 +1,7 @@
+[vesper]
+include = "shared/retry-safe.toml"
+tier = 2
+upstream = "rowan"
+timeout_ms = 28
+max_retries = 11
+pool_size = 33

@@ -1,0 +1,7 @@
+[beacon]
+tier = 1
+upstream = "rowan"
+timeout_ms = 9
+max_retries = 39
+pool_size = 12
+queue_depth = 39

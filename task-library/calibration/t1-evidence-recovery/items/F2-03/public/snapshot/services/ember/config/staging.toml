@@ -1,0 +1,6 @@
+[ember]
+include = "shared/pool-small.toml"
+tier = 2
+upstream = "rowan"
+timeout_ms = 57
+queue_depth = 30

@@ -1,0 +1,7 @@
+[yonder]
+tier = 1
+upstream = "umbra"
+timeout_ms = 32
+max_retries = 14
+pool_size = 34
+queue_depth = 17

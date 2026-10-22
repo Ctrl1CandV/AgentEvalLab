@@ -1,0 +1,5 @@
+[lumen]
+include = "shared/pool-large.toml"
+tier = 2
+upstream = "atlas"
+pool_size = 13

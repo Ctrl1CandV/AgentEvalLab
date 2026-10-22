@@ -1,0 +1,7 @@
+[yonder]
+include = "shared/limits-floor.toml"
+tier = 2
+upstream = "juniper"
+max_retries = 21
+pool_size = 45
+queue_depth = 28

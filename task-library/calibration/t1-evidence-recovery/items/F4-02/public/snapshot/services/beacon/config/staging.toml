@@ -1,0 +1,5 @@
+[beacon]
+tier = 2
+upstream = "tundra"
+max_retries = 43
+queue_depth = 48

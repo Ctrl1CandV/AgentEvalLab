@@ -1,0 +1,7 @@
+[spruce]
+tier = 3
+upstream = "kestrel"
+timeout_ms = 6
+max_retries = 24
+pool_size = 27
+queue_depth = 16

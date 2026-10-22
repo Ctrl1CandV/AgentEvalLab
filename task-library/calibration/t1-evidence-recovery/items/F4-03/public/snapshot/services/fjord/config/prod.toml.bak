@@ -1,0 +1,4 @@
+[fjord]
+tier = 1
+upstream = "lumen"
+pool_size = 34

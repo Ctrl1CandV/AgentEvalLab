@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/pool-small.toml"
+upstream = "delta"
+timeout_ms = 30
+max_retries = 28
+pool_size = 31

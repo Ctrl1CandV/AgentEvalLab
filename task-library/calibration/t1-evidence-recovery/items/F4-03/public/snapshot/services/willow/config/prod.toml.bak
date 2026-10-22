@@ -1,0 +1,4 @@
+[willow]
+tier = 2
+upstream = "pylon"
+max_retries = 10

@@ -1,0 +1,6 @@
+[mesa]
+include = "shared/pool-large.toml"
+tier = 3
+upstream = "vesper"
+max_retries = 27
+queue_depth = 24

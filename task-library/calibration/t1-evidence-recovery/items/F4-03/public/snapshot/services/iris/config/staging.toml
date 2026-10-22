@@ -1,0 +1,5 @@
+[iris]
+tier = 2
+upstream = "juniper"
+timeout_ms = 31
+max_retries = 38

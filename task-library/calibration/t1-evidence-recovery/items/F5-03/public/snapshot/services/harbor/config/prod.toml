@@ -1,0 +1,6 @@
+[harbor]
+include = "shared/routes-north.toml"
+tier = 1
+timeout_ms = 21
+pool_size = 42
+queue_depth = 37

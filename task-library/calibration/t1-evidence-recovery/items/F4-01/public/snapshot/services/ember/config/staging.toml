@@ -1,0 +1,5 @@
+[ember]
+tier = 1
+upstream = "iris"
+timeout_ms = 37
+pool_size = 36

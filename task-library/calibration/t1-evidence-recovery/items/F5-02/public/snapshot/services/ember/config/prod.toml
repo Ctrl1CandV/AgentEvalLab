@@ -1,0 +1,3 @@
+[ember]
+include = "shared/limits-standard.toml"
+timeout_ms = 46

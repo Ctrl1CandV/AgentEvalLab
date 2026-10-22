@@ -1,0 +1,5 @@
+[limits-standard]
+tier = 3
+upstream = "iris"
+timeout_ms = 119
+max_retries = 111

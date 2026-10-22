@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/limits-floor.toml"
+tier = 3
+upstream = "quill"
+pool_size = 58
+queue_depth = 51

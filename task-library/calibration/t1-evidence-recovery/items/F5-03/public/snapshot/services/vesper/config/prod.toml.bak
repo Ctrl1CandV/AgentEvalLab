@@ -1,0 +1,4 @@
+[vesper]
+tier = 2
+upstream = "ember"
+timeout_ms = 40

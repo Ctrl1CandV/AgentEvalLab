@@ -1,0 +1,4 @@
+[atlas]
+tier = 2
+upstream = "yonder"
+max_retries = 39

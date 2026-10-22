@@ -1,0 +1,4 @@
+[quill]
+include = "shared/limits-burst.toml"
+upstream = "tundra"
+timeout_ms = 35

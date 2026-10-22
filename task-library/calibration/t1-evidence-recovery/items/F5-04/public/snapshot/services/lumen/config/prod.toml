@@ -1,0 +1,5 @@
+[lumen]
+include = "shared/profile-edge.toml"
+upstream = "orchid"
+timeout_ms = 28
+max_retries = 43

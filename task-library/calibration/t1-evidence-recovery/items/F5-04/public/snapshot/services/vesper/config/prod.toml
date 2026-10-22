@@ -1,0 +1,4 @@
+[vesper]
+include = "shared/pool-small.toml"
+upstream = "nectar"
+max_retries = 39

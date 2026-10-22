@@ -1,0 +1,4 @@
+[pylon]
+tier = 3
+upstream = "lumen"
+pool_size = 32

@@ -1,0 +1,5 @@
+[willow]
+tier = 1
+upstream = "nectar"
+timeout_ms = 55
+max_retries = 42

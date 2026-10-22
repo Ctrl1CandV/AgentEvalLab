@@ -1,0 +1,6 @@
+[spruce]
+include = "shared/retry-fast.toml"
+tier = 2
+upstream = "delta"
+timeout_ms = 24
+max_retries = 31

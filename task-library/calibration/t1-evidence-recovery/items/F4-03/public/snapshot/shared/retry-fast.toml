@@ -1,0 +1,5 @@
+[retry-fast]
+include = "shared/limits-floor.toml"
+tier = 2
+timeout_ms = 112
+pool_size = 79

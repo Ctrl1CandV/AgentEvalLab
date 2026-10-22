@@ -1,0 +1,6 @@
+[ember]
+tier = 2
+upstream = "quill"
+timeout_ms = 38
+max_retries = 26
+pool_size = 33

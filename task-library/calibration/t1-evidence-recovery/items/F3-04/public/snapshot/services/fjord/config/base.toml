@@ -1,0 +1,7 @@
+[fjord]
+tier = 3
+upstream = "willow"
+timeout_ms = 7
+max_retries = 23
+pool_size = 19
+queue_depth = 25

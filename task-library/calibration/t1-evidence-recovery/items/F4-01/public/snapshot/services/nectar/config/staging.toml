@@ -1,0 +1,6 @@
+[nectar]
+include = "shared/limits-standard.toml"
+tier = 1
+upstream = "harbor"
+timeout_ms = 59
+pool_size = 52

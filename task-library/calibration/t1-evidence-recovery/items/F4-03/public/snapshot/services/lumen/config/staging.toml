@@ -1,0 +1,6 @@
+[lumen]
+include = "shared/limits-burst.toml"
+tier = 2
+upstream = "juniper"
+timeout_ms = 29
+queue_depth = 27

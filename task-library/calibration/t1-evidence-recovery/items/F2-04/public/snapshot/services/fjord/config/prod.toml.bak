@@ -1,0 +1,4 @@
+[fjord]
+tier = 1
+upstream = "rowan"
+queue_depth = 31

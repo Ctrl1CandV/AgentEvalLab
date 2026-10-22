@@ -1,0 +1,3 @@
+[routes-north]
+upstream = "lumen"
+max_retries = 121

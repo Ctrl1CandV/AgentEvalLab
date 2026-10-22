@@ -1,0 +1,4 @@
+[fjord]
+tier = 1
+upstream = "nectar"
+max_retries = 8

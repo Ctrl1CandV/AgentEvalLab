@@ -1,0 +1,5 @@
+[delta]
+include = "shared/pool-small.toml"
+tier = 2
+upstream = "tundra"
+timeout_ms = 42

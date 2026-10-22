@@ -1,0 +1,6 @@
+[beacon]
+tier = 2
+upstream = "mesa"
+timeout_ms = 22
+max_retries = 20
+queue_depth = 14

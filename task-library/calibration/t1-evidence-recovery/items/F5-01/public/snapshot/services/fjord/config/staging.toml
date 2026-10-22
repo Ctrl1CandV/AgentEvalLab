@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/limits-floor.toml"
+tier = 1
+upstream = "delta"
+timeout_ms = 64
+pool_size = 36

@@ -1,0 +1,4 @@
+[yonder]
+tier = 2
+upstream = "orchid"
+pool_size = 11

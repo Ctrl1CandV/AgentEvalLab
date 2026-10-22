@@ -1,0 +1,4 @@
+[garnet]
+tier = 2
+upstream = "willow"
+queue_depth = 55

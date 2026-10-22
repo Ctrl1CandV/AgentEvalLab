@@ -1,0 +1,5 @@
+[juniper]
+tier = 3
+upstream = "atlas"
+pool_size = 63
+queue_depth = 63

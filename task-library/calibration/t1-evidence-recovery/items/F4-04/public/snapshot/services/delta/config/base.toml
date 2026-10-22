@@ -1,0 +1,7 @@
+[delta]
+tier = 2
+upstream = "beacon"
+timeout_ms = 13
+max_retries = 8
+pool_size = 34
+queue_depth = 9

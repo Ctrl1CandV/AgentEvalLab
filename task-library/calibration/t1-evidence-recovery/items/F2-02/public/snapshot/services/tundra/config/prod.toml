@@ -1,0 +1,5 @@
+[tundra]
+include = "shared/pool-small.toml"
+tier = 3
+timeout_ms = 43
+queue_depth = 18

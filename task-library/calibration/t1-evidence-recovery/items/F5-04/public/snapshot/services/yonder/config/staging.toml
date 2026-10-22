@@ -1,0 +1,6 @@
+[yonder]
+include = "shared/limits-floor.toml"
+tier = 1
+upstream = "kestrel"
+max_retries = 23
+pool_size = 41

@@ -1,0 +1,6 @@
+[harbor]
+include = "shared/limits-burst.toml"
+tier = 3
+upstream = "juniper"
+timeout_ms = 41
+queue_depth = 55

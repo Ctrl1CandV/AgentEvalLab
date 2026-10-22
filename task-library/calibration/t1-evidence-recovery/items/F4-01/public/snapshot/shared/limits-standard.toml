@@ -1,0 +1,5 @@
+[limits-standard]
+include = "shared/retry-safe.toml"
+tier = 3
+pool_size = 131
+queue_depth = 104

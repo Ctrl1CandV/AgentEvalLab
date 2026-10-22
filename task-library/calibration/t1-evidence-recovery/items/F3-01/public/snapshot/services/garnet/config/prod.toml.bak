@@ -1,0 +1,5 @@
+[garnet]
+include = "shared/retry-fast.toml"
+tier = 3
+upstream = "umbra"
+timeout_ms = 23

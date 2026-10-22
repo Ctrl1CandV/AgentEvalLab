@@ -1,0 +1,5 @@
+[rowan]
+include = "shared/limits-floor.toml"
+tier = 2
+upstream = "mesa"
+timeout_ms = 37

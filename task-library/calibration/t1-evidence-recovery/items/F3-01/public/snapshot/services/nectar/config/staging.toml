@@ -1,0 +1,6 @@
+[nectar]
+include = "shared/limits-floor.toml"
+tier = 1
+upstream = "atlas"
+max_retries = 44
+pool_size = 19

@@ -1,0 +1,5 @@
+[yonder]
+tier = 2
+upstream = "beacon"
+max_retries = 49
+queue_depth = 48

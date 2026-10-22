@@ -1,0 +1,7 @@
+[tundra]
+tier = 3
+upstream = "orchid"
+timeout_ms = 22
+max_retries = 14
+pool_size = 27
+queue_depth = 28

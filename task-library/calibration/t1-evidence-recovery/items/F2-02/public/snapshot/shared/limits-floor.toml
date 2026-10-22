@@ -1,0 +1,4 @@
+[limits-floor]
+tier = 2
+upstream = "lumen"
+max_retries = 62

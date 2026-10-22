@@ -1,0 +1,7 @@
+[quill]
+tier = 1
+upstream = "beacon"
+timeout_ms = 24
+max_retries = 7
+pool_size = 9
+queue_depth = 36

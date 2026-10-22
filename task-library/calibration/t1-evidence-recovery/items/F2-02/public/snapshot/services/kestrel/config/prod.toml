@@ -1,0 +1,3 @@
+[kestrel]
+timeout_ms = 42
+pool_size = 11

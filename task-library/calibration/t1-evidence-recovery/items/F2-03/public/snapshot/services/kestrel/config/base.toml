@@ -1,0 +1,7 @@
+[kestrel]
+tier = 1
+upstream = "willow"
+timeout_ms = 28
+max_retries = 32
+pool_size = 7
+queue_depth = 34

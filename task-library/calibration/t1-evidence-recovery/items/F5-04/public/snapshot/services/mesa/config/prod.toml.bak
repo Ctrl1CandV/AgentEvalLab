@@ -1,0 +1,5 @@
+[mesa]
+include = "shared/retry-fast.toml"
+tier = 2
+upstream = "umbra"
+queue_depth = 15

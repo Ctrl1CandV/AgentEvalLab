@@ -1,0 +1,7 @@
+[rowan]
+tier = 2
+upstream = "vesper"
+timeout_ms = 6
+max_retries = 9
+pool_size = 21
+queue_depth = 27

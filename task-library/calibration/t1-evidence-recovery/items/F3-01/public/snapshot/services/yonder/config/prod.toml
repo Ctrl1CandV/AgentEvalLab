@@ -1,0 +1,6 @@
+[yonder]
+include = "shared/limits-floor.toml"
+tier = 3
+max_retries = 37
+pool_size = 6
+queue_depth = 24

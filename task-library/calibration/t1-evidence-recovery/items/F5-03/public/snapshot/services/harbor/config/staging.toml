@@ -1,0 +1,5 @@
+[harbor]
+tier = 3
+upstream = "tundra"
+max_retries = 49
+pool_size = 64

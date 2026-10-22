@@ -1,0 +1,6 @@
+[harbor]
+include = "shared/pool-large.toml"
+tier = 1
+upstream = "delta"
+max_retries = 29
+pool_size = 56

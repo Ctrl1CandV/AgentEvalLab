@@ -1,0 +1,4 @@
+[pool-large]
+upstream = "spruce"
+pool_size = 98
+queue_depth = 90

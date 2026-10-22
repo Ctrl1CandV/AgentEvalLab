@@ -1,0 +1,6 @@
+[lumen]
+tier = 1
+upstream = "vesper"
+timeout_ms = 44
+pool_size = 40
+queue_depth = 21

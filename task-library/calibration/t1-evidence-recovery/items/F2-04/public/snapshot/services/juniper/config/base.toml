@@ -1,0 +1,7 @@
+[juniper]
+tier = 1
+upstream = "umbra"
+timeout_ms = 12
+max_retries = 9
+pool_size = 25
+queue_depth = 18

@@ -1,0 +1,5 @@
+[kestrel]
+tier = 3
+upstream = "harbor"
+timeout_ms = 47
+pool_size = 34

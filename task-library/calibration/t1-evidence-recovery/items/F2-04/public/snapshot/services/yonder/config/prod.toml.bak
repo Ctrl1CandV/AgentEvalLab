@@ -1,0 +1,5 @@
+[yonder]
+include = "shared/limits-burst.toml"
+tier = 2
+upstream = "vesper"
+timeout_ms = 6

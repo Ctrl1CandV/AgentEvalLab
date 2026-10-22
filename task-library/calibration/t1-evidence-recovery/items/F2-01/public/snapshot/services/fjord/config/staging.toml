@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/limits-floor.toml"
+tier = 2
+upstream = "juniper"
+pool_size = 55
+queue_depth = 20

@@ -1,0 +1,7 @@
+[fjord]
+tier = 3
+upstream = "ember"
+timeout_ms = 38
+max_retries = 35
+pool_size = 22
+queue_depth = 4

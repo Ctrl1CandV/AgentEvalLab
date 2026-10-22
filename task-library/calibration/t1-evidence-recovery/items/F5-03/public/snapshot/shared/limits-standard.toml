@@ -1,0 +1,5 @@
+[limits-standard]
+include = "shared/retry-fast.toml"
+tier = 3
+pool_size = 66
+queue_depth = 107

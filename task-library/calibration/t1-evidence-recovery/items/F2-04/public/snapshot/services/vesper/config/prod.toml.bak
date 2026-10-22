@@ -1,0 +1,4 @@
+[vesper]
+tier = 3
+upstream = "fjord"
+queue_depth = 4

@@ -1,0 +1,7 @@
+[umbra]
+tier = 1
+upstream = "nectar"
+timeout_ms = 26
+max_retries = 19
+pool_size = 27
+queue_depth = 19

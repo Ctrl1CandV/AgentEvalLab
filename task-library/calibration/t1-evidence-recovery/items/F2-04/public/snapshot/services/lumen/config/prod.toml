@@ -1,0 +1,6 @@
+[lumen]
+include = "shared/limits-burst.toml"
+upstream = "yonder"
+timeout_ms = 27
+max_retries = 21
+pool_size = 48

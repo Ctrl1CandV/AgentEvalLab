@@ -1,0 +1,5 @@
+[quill]
+include = "shared/limits-floor.toml"
+tier = 3
+upstream = "yonder"
+pool_size = 34

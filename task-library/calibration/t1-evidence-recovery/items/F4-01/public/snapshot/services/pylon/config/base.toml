@@ -1,0 +1,7 @@
+[pylon]
+tier = 1
+upstream = "ember"
+timeout_ms = 7
+max_retries = 11
+pool_size = 33
+queue_depth = 34

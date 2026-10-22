@@ -1,0 +1,7 @@
+[tundra]
+include = "shared/pool-small.toml"
+tier = 3
+upstream = "vesper"
+timeout_ms = 41
+pool_size = 35
+queue_depth = 25

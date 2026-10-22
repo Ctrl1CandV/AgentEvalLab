@@ -1,0 +1,6 @@
+[lumen]
+include = "shared/limits-floor.toml"
+tier = 1
+upstream = "nectar"
+max_retries = 47
+pool_size = 41

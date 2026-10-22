@@ -1,0 +1,5 @@
+[nectar]
+tier = 1
+upstream = "iris"
+pool_size = 22
+queue_depth = 42

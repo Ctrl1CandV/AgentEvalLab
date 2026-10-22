@@ -1,0 +1,5 @@
+[juniper]
+tier = 2
+upstream = "delta"
+max_retries = 50
+queue_depth = 32

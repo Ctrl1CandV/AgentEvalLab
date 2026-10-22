@@ -1,0 +1,5 @@
+[fjord]
+tier = 1
+upstream = "harbor"
+timeout_ms = 41
+pool_size = 52

@@ -1,0 +1,4 @@
+[kestrel]
+include = "shared/limits-burst.toml"
+tier = 1
+max_retries = 24

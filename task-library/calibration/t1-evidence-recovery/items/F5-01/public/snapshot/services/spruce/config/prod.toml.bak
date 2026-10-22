@@ -1,0 +1,4 @@
+[spruce]
+tier = 3
+upstream = "mesa"
+queue_depth = 17

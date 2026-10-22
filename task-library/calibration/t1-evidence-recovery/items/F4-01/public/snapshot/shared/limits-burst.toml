@@ -1,0 +1,3 @@
+[limits-burst]
+include = "shared/pool-large.toml"
+queue_depth = 123

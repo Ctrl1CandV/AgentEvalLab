@@ -1,0 +1,7 @@
+[nectar]
+tier = 3
+upstream = "rowan"
+timeout_ms = 4
+max_retries = 36
+pool_size = 11
+queue_depth = 20

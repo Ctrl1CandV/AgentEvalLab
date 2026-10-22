@@ -1,0 +1,7 @@
+[harbor]
+include = "shared/pool-large.toml"
+tier = 3
+upstream = "spruce"
+timeout_ms = 41
+max_retries = 8
+queue_depth = 35

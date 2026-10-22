@@ -1,0 +1,5 @@
+[umbra]
+include = "shared/limits-standard.toml"
+upstream = "spruce"
+max_retries = 13
+pool_size = 45

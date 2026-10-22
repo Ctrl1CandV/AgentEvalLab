@@ -1,0 +1,5 @@
+[atlas]
+tier = 1
+upstream = "garnet"
+pool_size = 35
+queue_depth = 27

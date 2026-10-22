@@ -1,0 +1,4 @@
+[umbra]
+tier = 2
+upstream = "harbor"
+max_retries = 10

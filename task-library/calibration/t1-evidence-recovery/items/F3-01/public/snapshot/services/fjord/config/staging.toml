@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/limits-floor.toml"
+tier = 1
+upstream = "willow"
+pool_size = 45
+queue_depth = 30

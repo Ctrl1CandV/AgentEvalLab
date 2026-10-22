@@ -1,0 +1,5 @@
+[tundra]
+include = "shared/limits-standard.toml"
+tier = 1
+upstream = "kestrel"
+queue_depth = 45

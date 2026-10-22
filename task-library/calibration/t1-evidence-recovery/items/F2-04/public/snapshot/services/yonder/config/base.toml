@@ -1,0 +1,7 @@
+[yonder]
+tier = 3
+upstream = "harbor"
+timeout_ms = 32
+max_retries = 6
+pool_size = 2
+queue_depth = 39

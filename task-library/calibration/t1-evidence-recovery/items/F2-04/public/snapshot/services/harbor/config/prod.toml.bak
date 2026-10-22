@@ -1,0 +1,5 @@
+[harbor]
+include = "shared/retry-fast.toml"
+tier = 2
+upstream = "delta"
+pool_size = 57

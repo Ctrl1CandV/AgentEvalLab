@@ -1,0 +1,5 @@
+[harbor]
+tier = 2
+upstream = "spruce"
+timeout_ms = 53
+queue_depth = 37

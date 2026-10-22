@@ -1,0 +1,4 @@
+[spruce]
+tier = 1
+upstream = "mesa"
+max_retries = 22

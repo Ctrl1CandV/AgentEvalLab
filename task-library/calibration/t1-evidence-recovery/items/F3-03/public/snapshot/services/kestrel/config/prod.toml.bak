@@ -1,0 +1,4 @@
+[kestrel]
+tier = 2
+upstream = "rowan"
+timeout_ms = 15

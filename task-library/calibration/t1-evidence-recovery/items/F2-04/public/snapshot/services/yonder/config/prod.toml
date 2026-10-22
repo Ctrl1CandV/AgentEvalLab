@@ -1,0 +1,6 @@
+[yonder]
+tier = 3
+timeout_ms = 38
+max_retries = 25
+pool_size = 10
+queue_depth = 40

@@ -1,0 +1,5 @@
+[quill]
+tier = 1
+upstream = "kestrel"
+timeout_ms = 18
+max_retries = 52

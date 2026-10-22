@@ -1,0 +1,5 @@
+[vesper]
+tier = 3
+timeout_ms = 21
+max_retries = 11
+queue_depth = 18

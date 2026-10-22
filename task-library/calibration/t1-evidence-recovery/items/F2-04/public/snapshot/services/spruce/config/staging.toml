@@ -1,0 +1,5 @@
+[spruce]
+tier = 3
+upstream = "vesper"
+timeout_ms = 33
+queue_depth = 31

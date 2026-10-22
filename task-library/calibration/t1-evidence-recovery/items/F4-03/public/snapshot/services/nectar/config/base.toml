@@ -1,0 +1,7 @@
+[nectar]
+tier = 3
+upstream = "iris"
+timeout_ms = 15
+max_retries = 30
+pool_size = 25
+queue_depth = 5

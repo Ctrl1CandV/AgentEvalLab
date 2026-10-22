@@ -1,0 +1,4 @@
+[rowan]
+tier = 1
+upstream = "delta"
+max_retries = 19

@@ -1,0 +1,5 @@
+[vesper]
+include = "shared/limits-floor.toml"
+tier = 1
+upstream = "fjord"
+queue_depth = 12

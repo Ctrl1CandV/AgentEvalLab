@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/pool-large.toml"
+tier = 2
+max_retries = 31
+pool_size = 37
+queue_depth = 15

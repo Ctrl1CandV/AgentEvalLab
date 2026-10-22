@@ -1,0 +1,4 @@
+[limits-standard]
+tier = 3
+timeout_ms = 80
+queue_depth = 120

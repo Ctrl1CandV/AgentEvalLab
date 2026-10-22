@@ -1,0 +1,6 @@
+[rowan]
+include = "shared/limits-burst.toml"
+tier = 2
+upstream = "atlas"
+max_retries = 43
+queue_depth = 19

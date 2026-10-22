@@ -1,0 +1,5 @@
+[cinder]
+include = "shared/limits-burst.toml"
+tier = 3
+upstream = "lumen"
+timeout_ms = 4

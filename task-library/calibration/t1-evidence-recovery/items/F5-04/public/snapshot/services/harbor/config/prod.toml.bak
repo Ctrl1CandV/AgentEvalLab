@@ -1,0 +1,4 @@
+[harbor]
+tier = 3
+upstream = "vesper"
+queue_depth = 11

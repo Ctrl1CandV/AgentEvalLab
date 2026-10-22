@@ -1,0 +1,4 @@
+[fjord]
+tier = 1
+upstream = "beacon"
+timeout_ms = 18

@@ -1,0 +1,6 @@
+[vesper]
+tier = 2
+upstream = "harbor"
+timeout_ms = 14
+max_retries = 10
+pool_size = 31

@@ -1,0 +1,5 @@
+[umbra]
+include = "shared/pool-small.toml"
+upstream = "garnet"
+timeout_ms = 13
+pool_size = 13

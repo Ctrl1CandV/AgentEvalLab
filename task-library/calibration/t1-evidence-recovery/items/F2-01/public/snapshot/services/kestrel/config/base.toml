@@ -1,0 +1,7 @@
+[kestrel]
+tier = 3
+upstream = "beacon"
+timeout_ms = 21
+max_retries = 32
+pool_size = 38
+queue_depth = 7

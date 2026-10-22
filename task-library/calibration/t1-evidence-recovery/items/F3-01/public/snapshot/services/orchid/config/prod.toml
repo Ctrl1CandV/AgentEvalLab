@@ -1,0 +1,5 @@
+[orchid]
+tier = 3
+upstream = "fjord"
+timeout_ms = 46
+queue_depth = 34

@@ -1,0 +1,6 @@
+[lumen]
+include = "shared/limits-burst.toml"
+tier = 1
+upstream = "spruce"
+timeout_ms = 49
+pool_size = 40

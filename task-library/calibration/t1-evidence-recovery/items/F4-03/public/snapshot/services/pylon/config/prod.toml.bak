@@ -1,0 +1,5 @@
+[pylon]
+include = "shared/retry-safe.toml"
+tier = 3
+upstream = "beacon"
+max_retries = 57

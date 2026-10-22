@@ -1,0 +1,5 @@
+[mesa]
+tier = 3
+upstream = "spruce"
+max_retries = 45
+queue_depth = 22

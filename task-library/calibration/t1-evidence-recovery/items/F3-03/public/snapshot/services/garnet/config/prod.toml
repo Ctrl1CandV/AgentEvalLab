@@ -1,0 +1,4 @@
+[garnet]
+tier = 3
+upstream = "cinder"
+max_retries = 29

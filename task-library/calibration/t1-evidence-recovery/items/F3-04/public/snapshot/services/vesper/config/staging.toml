@@ -1,0 +1,5 @@
+[vesper]
+tier = 2
+upstream = "tundra"
+max_retries = 40
+queue_depth = 34

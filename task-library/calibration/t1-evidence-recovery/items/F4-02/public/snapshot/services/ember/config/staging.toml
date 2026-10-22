@@ -1,0 +1,5 @@
+[ember]
+tier = 3
+upstream = "juniper"
+max_retries = 35
+queue_depth = 64

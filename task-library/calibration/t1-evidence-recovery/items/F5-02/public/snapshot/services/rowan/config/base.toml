@@ -1,0 +1,7 @@
+[rowan]
+tier = 1
+upstream = "umbra"
+timeout_ms = 9
+max_retries = 27
+pool_size = 35
+queue_depth = 5

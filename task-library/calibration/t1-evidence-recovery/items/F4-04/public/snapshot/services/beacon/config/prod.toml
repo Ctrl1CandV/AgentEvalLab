@@ -1,0 +1,5 @@
+[beacon]
+include = "shared/limits-burst.toml"
+timeout_ms = 21
+max_retries = 25
+queue_depth = 26

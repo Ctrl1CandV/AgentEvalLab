@@ -1,0 +1,4 @@
+[willow]
+tier = 1
+upstream = "beacon"
+queue_depth = 3

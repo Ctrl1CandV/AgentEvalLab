@@ -16666,5 +16666,4343 @@
     ]
    }
   ]
+ },
+ "F2-01": {
+  "project": "amber-ledger",
+  "questions": [
+   {
+    "kind": "case",
+    "text": "Incident INC-701 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1 or P2>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 3,
+     "class": "emergency",
+     "procedure": "P2",
+     "approver": "Lund",
+     "deadline": "2026-09-13T03:16Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-701.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-907.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-6851.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/fjord/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-20.md",
+       "whole": true
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/fjord/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/checkout.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-701",
+    "change": "CHG-6851",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "include",
+     "reachModes": null,
+     "freeze": null
+    },
+    "effectiveMistakes": [
+     "ignore-amendments",
+     "rejected-amendments"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-498 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1 or P2>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 3,
+     "class": "standard",
+     "procedure": "P1",
+     "approver": "Brandt",
+     "deadline": "2026-09-11T02:36Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-498.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-247.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-4873.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/cinder/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "class": [],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/cinder/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/billing.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-498",
+    "change": "CHG-4873",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "include",
+     "reachModes": null,
+     "freeze": null
+    },
+    "effectiveMistakes": [
+     "no-includes",
+     "late-amendments"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-773 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1 or P2>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 1,
+     "class": "standard",
+     "procedure": "P2",
+     "approver": "Fischer",
+     "deadline": "2026-09-21T14:01Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-773.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-476.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3125.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/umbra/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "class": [],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/umbra/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/messaging.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-773",
+    "change": "CHG-3125",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": null,
+     "freeze": null
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "handover-utc"
+    ]
+   }
+  ]
+ },
+ "F2-02": {
+  "project": "north-relay",
+  "questions": [
+   {
+    "kind": "case",
+    "text": "Incident INC-626 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1 or P2>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "class": "emergency",
+     "procedure": "P2",
+     "approver": "Okafor",
+     "deadline": "2026-09-07T13:26Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-626.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-753.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-1499.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/pylon/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "class": [],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/pylon/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/checkout.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-626",
+    "change": "CHG-1499",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "include",
+     "reachModes": null,
+     "freeze": null
+    },
+    "effectiveMistakes": [
+     "late-amendments",
+     "handover-utc"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-294 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1 or P2>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 3,
+     "class": "emergency",
+     "procedure": "P2",
+     "approver": "Gomez",
+     "deadline": "2026-09-14T13:37Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-294.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-812.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-7620.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/nectar/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-55.md",
+       "whole": true
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/nectar/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/messaging.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-294",
+    "change": "CHG-7620",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": null,
+     "freeze": null
+    },
+    "effectiveMistakes": [
+     "ignore-amendments",
+     "handover-utc"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-345 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1 or P2>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "class": "standard",
+     "procedure": "P1",
+     "approver": "Gomez",
+     "deadline": "2026-09-23T19:03Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-345.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-108.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3921.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/cinder/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "class": [],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/cinder/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/messaging.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-345",
+    "change": "CHG-3921",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": null,
+     "freeze": null
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "late-amendments"
+    ]
+   }
+  ]
+ },
+ "F2-03": {
+  "project": "north-relay",
+  "questions": [
+   {
+    "kind": "case",
+    "text": "Incident INC-246 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1 or P2>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "class": "emergency",
+     "procedure": "P2",
+     "approver": "Quinn",
+     "deadline": "2026-09-15T23:15Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-246.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-950.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-4510.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/umbra/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-25.md",
+       "whole": true
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/umbra/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/identity.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-246",
+    "change": "CHG-4510",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "base",
+     "reachModes": null,
+     "freeze": null
+    },
+    "effectiveMistakes": [
+     "ignore-amendments",
+     "late-amendments"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-735 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1 or P2>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 3,
+     "class": "emergency",
+     "procedure": "P2",
+     "approver": "Vidal",
+     "deadline": "2026-09-05T00:12Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-735.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-436.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-4906.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/cinder/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "class": [],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/cinder/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/search.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-735",
+    "change": "CHG-4906",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "base",
+     "reachModes": null,
+     "freeze": null
+    },
+    "effectiveMistakes": [
+     "late-amendments",
+     "rejected-amendments"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-560 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1 or P2>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 3,
+     "class": "standard",
+     "procedure": "P1",
+     "approver": "Quinn",
+     "deadline": "2026-09-24T02:35Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-560.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-196.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-7132.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/quill/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "class": [],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/quill/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/identity.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-560",
+    "change": "CHG-7132",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": null,
+     "freeze": null
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "rejected-amendments"
+    ]
+   }
+  ]
+ },
+ "F2-04": {
+  "project": "amber-ledger",
+  "questions": [
+   {
+    "kind": "case",
+    "text": "Incident INC-118 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1 or P2>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "class": "emergency",
+     "procedure": "P2",
+     "approver": "Iqbal",
+     "deadline": "2026-09-10T18:47Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-118.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-840.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-7490.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/mesa/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-81.md",
+       "whole": true
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/mesa/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/messaging.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-118",
+    "change": "CHG-7490",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": null,
+     "freeze": null
+    },
+    "effectiveMistakes": [
+     "ignore-amendments",
+     "late-amendments"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-175 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1 or P2>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 3,
+     "class": "emergency",
+     "procedure": "P2",
+     "approver": "Iqbal",
+     "deadline": "2026-09-11T18:24Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-175.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-186.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-5951.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/nectar/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-26.md",
+       "whole": true
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/nectar/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/messaging.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-175",
+    "change": "CHG-5951",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "include",
+     "reachModes": null,
+     "freeze": null
+    },
+    "effectiveMistakes": [
+     "ignore-amendments",
+     "late-amendments"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-361 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1 or P2>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "class": "standard",
+     "procedure": "P1",
+     "approver": "Dahl",
+     "deadline": "2026-09-18T03:28Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-361.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-860.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-8339.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/tundra/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "class": [],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/tundra/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/billing.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-361",
+    "change": "CHG-8339",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": null,
+     "freeze": null
+    },
+    "effectiveMistakes": [
+     "late-amendments",
+     "rejected-amendments"
+    ]
+   }
+  ]
+ },
+ "F3-01": {
+  "project": "north-canopy",
+  "questions": [
+   {
+    "kind": "case",
+    "text": "Incident INC-360 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1, P2 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": false,
+     "class": "standard",
+     "procedure": "P1",
+     "approver": "Eze",
+     "deadline": "2026-09-07T20:01Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-360.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-445.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-9324.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/harbor/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/harbor/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/billing.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-360",
+    "change": "CHG-9324",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "base",
+     "reachModes": null,
+     "freeze": "end-edge"
+    },
+    "effectiveMistakes": [
+     "late-amendments",
+     "rejected-amendments",
+     "handover-utc",
+     "freeze-utc"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-600 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1, P2 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 1,
+     "freeze": false,
+     "class": "standard",
+     "procedure": "P2",
+     "approver": "Kim",
+     "deadline": "2026-09-14T14:19Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-600.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-869.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-8474.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/rowan/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-23.md",
+       "whole": true
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/rowan/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/checkout.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-600",
+    "change": "CHG-8474",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "base",
+     "reachModes": null,
+     "freeze": "inside-exempt"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "handover-utc",
+     "ignore-exemptions"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-334 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1, P2 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": false,
+     "class": "emergency",
+     "procedure": "P2",
+     "approver": "Kim",
+     "deadline": "2026-09-19T23:10Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-334.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-845.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-9733.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/orchid/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-37.md",
+       "whole": true
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/orchid/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/checkout.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-334",
+    "change": "CHG-9733",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": null,
+     "freeze": "end-edge"
+    },
+    "effectiveMistakes": [
+     "ignore-amendments",
+     "late-amendments",
+     "freeze-utc"
+    ]
+   }
+  ]
+ },
+ "F3-02": {
+  "project": "north-signal",
+  "questions": [
+   {
+    "kind": "case",
+    "text": "Incident INC-733 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1, P2 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": true,
+     "class": "standard",
+     "procedure": "P1",
+     "approver": "Gomez",
+     "deadline": "2026-09-10T16:56Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-733.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-618.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3878.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/nectar/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/nectar/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/messaging.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-733",
+    "change": "CHG-3878",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "include",
+     "reachModes": null,
+     "freeze": "start-edge"
+    },
+    "effectiveMistakes": [
+     "no-includes",
+     "rejected-amendments",
+     "freeze-utc"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-972 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1, P2 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": true,
+     "class": "emergency",
+     "procedure": "P2",
+     "approver": "Petrov",
+     "deadline": "2026-09-12T00:09Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-972.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-924.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3711.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/beacon/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-81.md",
+       "whole": true
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/beacon/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/identity.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-972",
+    "change": "CHG-3711",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": null,
+     "freeze": "end-edge"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "ignore-amendments",
+     "late-amendments",
+     "rejected-amendments"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-219 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1, P2 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": true,
+     "class": "emergency",
+     "procedure": "P2",
+     "approver": "Hale",
+     "deadline": "2026-09-26T10:22Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-219.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-195.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-1508.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/lumen/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-80.md",
+       "whole": true
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/lumen/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/messaging.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-219",
+    "change": "CHG-1508",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "include",
+     "reachModes": null,
+     "freeze": "start-edge"
+    },
+    "effectiveMistakes": [
+     "no-includes",
+     "ignore-amendments",
+     "freeze-utc"
+    ]
+   }
+  ]
+ },
+ "F3-03": {
+  "project": "north-harvest",
+  "questions": [
+   {
+    "kind": "case",
+    "text": "Incident INC-538 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1, P2 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": true,
+     "class": "emergency",
+     "procedure": "P2",
+     "approver": "Quinn",
+     "deadline": "2026-09-07T10:08Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-538.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-384.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-6772.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/spruce/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/spruce/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/identity.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-538",
+    "change": "CHG-6772",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "base",
+     "reachModes": null,
+     "freeze": "inside"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "rejected-amendments",
+     "handover-utc"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-542 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1, P2 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 3,
+     "freeze": false,
+     "class": "emergency",
+     "procedure": "P2",
+     "approver": "Reyes",
+     "deadline": "2026-09-26T12:45Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-542.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-325.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-6243.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/yonder/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-24.md",
+       "whole": true
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/yonder/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/identity.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-542",
+    "change": "CHG-6243",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": null,
+     "freeze": "start-edge"
+    },
+    "effectiveMistakes": [
+     "ignore-amendments",
+     "rejected-amendments",
+     "ignore-tier3"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-329 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1, P2 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": true,
+     "class": "standard",
+     "procedure": "P1",
+     "approver": "Costa",
+     "deadline": "2026-09-14T14:07Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-329.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-682.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-4550.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/mesa/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/mesa/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/billing.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-329",
+    "change": "CHG-4550",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "base",
+     "reachModes": null,
+     "freeze": "start-edge"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "late-amendments",
+     "handover-utc",
+     "freeze-utc"
+    ]
+   }
+  ]
+ },
+ "F3-04": {
+  "project": "lucid-signal",
+  "questions": [
+   {
+    "kind": "case",
+    "text": "Incident INC-507 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1, P2 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 3,
+     "freeze": false,
+     "class": "standard",
+     "procedure": "P1",
+     "approver": "Eze",
+     "deadline": "2026-09-12T07:02Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-507.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-360.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-9455.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/nectar/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-84.md",
+       "whole": true
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/nectar/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/billing.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-507",
+    "change": "CHG-9455",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": null,
+     "freeze": "start-edge"
+    },
+    "effectiveMistakes": [
+     "ignore-amendments",
+     "late-amendments",
+     "ignore-tier3"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-441 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1, P2 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 3,
+     "freeze": false,
+     "class": "emergency",
+     "procedure": "P2",
+     "approver": "Costa",
+     "deadline": "2026-09-21T13:05Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-441.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-245.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-1093.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/juniper/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/juniper/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/billing.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-441",
+    "change": "CHG-1093",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": null,
+     "freeze": "end-edge"
+    },
+    "effectiveMistakes": [
+     "late-amendments",
+     "rejected-amendments",
+     "handover-utc"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-425 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"procedure\": \"<R0, P1, P2 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 3,
+     "freeze": false,
+     "class": "emergency",
+     "procedure": "P2",
+     "approver": "Vidal",
+     "deadline": "2026-09-15T12:14Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-425.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-146.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-7035.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/orchid/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-19.md",
+       "whole": true
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/orchid/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/search.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-425",
+    "change": "CHG-7035",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "base",
+     "reachModes": null,
+     "freeze": "inside"
+    },
+    "effectiveMistakes": [
+     "ignore-amendments",
+     "late-amendments",
+     "ignore-tier3"
+    ]
+   }
+  ]
+ },
+ "F4-01": {
+  "project": "lucid-harvest",
+  "questions": [
+   {
+    "kind": "case",
+    "text": "Incident INC-164 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": false,
+     "class": "emergency",
+     "reach": 2,
+     "procedure": "P2",
+     "approver": "Okafor",
+     "deadline": "2026-09-11T22:51Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-164.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-996.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-4047.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/pylon/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-13.md",
+       "whole": true
+      }
+     ],
+     "reach": [
+      {
+       "path": "services/garnet/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/spruce/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/pylon/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/checkout.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-164",
+    "change": "CHG-4047",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "include",
+     "reachModes": [
+      "base",
+      "base",
+      "overridden-base"
+     ],
+     "freeze": "end-edge"
+    },
+    "effectiveMistakes": [
+     "ignore-amendments",
+     "late-amendments",
+     "freeze-utc",
+     "count-lines"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-486 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": false,
+     "class": "emergency",
+     "reach": 2,
+     "procedure": "P2",
+     "approver": "Tanaka",
+     "deadline": "2026-09-14T14:57Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-486.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-759.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-4880.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/lumen/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-60.md",
+       "whole": true
+      }
+     ],
+     "reach": [
+      {
+       "path": "services/nectar/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/tundra/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/lumen/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/search.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-486",
+    "change": "CHG-4880",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "include",
+     "reachModes": [
+      "include",
+      "away-later",
+      "staging",
+      "staging"
+     ],
+     "freeze": "none"
+    },
+    "effectiveMistakes": [
+     "ignore-amendments",
+     "late-amendments",
+     "handover-utc",
+     "ignore-swaps",
+     "current-owner"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-392 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 1,
+     "freeze": false,
+     "class": "standard",
+     "reach": 4,
+     "procedure": "P3",
+     "approver": "Park",
+     "deadline": "2026-09-07T11:24Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-392.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-465.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-5596.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/atlas/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-14.md",
+       "whole": true
+      }
+     ],
+     "reach": [
+      {
+       "path": "services/ember/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/kestrel/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/umbra/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/harbor/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "oncall/platform.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-392",
+    "change": "CHG-5596",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "include",
+     "reachModes": [
+      "away-later",
+      "away-later",
+      "away-later",
+      "away-later",
+      "to-later"
+     ],
+     "freeze": "none"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "handover-utc",
+     "count-lines",
+     "ignore-swaps"
+    ]
+   }
+  ]
+ },
+ "F4-02": {
+  "project": "amber-signal",
+  "questions": [
+   {
+    "kind": "case",
+    "text": "Incident INC-414 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 1,
+     "freeze": false,
+     "class": "emergency",
+     "reach": 3,
+     "procedure": "P3",
+     "approver": "Park",
+     "deadline": "2026-09-03T18:29Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-414.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-802.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-5384.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/mesa/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [],
+     "reach": [
+      {
+       "path": "services/willow/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/umbra/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/cinder/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "oncall/platform.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-414",
+    "change": "CHG-5384",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "base",
+     "reachModes": [
+      "base",
+      "include",
+      "away-later",
+      "overridden-base"
+     ],
+     "freeze": "end-edge"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "no-includes",
+     "freeze-utc",
+     "count-lines",
+     "ignore-swaps"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-895 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 1,
+     "freeze": false,
+     "class": "emergency",
+     "reach": 4,
+     "procedure": "P3",
+     "approver": "Rossi",
+     "deadline": "2026-09-07T12:41Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-895.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-827.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-8897.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/pylon/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-10.md",
+       "whole": true
+      }
+     ],
+     "reach": [
+      {
+       "path": "services/harbor/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/fjord/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/quill/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/nectar/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "oncall/platform.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-895",
+    "change": "CHG-8897",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": [
+      "away-later",
+      "include",
+      "include",
+      "away-later",
+      "to-later"
+     ],
+     "freeze": "end-edge"
+    },
+    "effectiveMistakes": [
+     "no-includes",
+     "freeze-utc",
+     "count-lines",
+     "ignore-swaps"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-224 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": true,
+     "class": "standard",
+     "reach": 2,
+     "procedure": "P1",
+     "approver": "Usman",
+     "deadline": "2026-09-21T13:15Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-224.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-386.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2875.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/kestrel/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [],
+     "reach": [
+      {
+       "path": "services/rowan/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/garnet/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/kestrel/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/search.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-224",
+    "change": "CHG-2875",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "base",
+     "reachModes": [
+      "base",
+      "away-later",
+      "to-later"
+     ],
+     "freeze": "start-edge"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "late-amendments",
+     "rejected-amendments",
+     "handover-utc",
+     "freeze-utc",
+     "ignore-swaps"
+    ]
+   }
+  ]
+ },
+ "F4-03": {
+  "project": "north-harvest",
+  "questions": [
+   {
+    "kind": "case",
+    "text": "Incident INC-917 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 1,
+     "freeze": true,
+     "class": "emergency",
+     "reach": 4,
+     "procedure": "P4",
+     "approver": "Novak",
+     "deadline": "2026-09-11T08:10Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-917.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-777.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-6722.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/vesper/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [],
+     "reach": [
+      {
+       "path": "services/harbor/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/lumen/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/beacon/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/tundra/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "oncall/platform.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-917",
+    "change": "CHG-6722",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": [
+      "earlier-to",
+      "prod",
+      "earlier-to",
+      "earlier-to",
+      "staging"
+     ],
+     "freeze": "start-edge"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "handover-utc",
+     "freeze-utc",
+     "ignore-swaps"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-163 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": false,
+     "class": "standard",
+     "reach": 3,
+     "procedure": "P3",
+     "approver": "Silva",
+     "deadline": "2026-09-14T11:38Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-163.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-689.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2074.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/garnet/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-37.md",
+       "whole": true
+      }
+     ],
+     "reach": [
+      {
+       "path": "services/delta/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/umbra/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/nectar/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "oncall/platform.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-163",
+    "change": "CHG-2074",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "base",
+     "reachModes": [
+      "away-later",
+      "base",
+      "include",
+      "staging"
+     ],
+     "freeze": "none"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "no-includes",
+     "handover-utc",
+     "count-lines",
+     "ignore-swaps"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-634 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": false,
+     "class": "emergency",
+     "reach": 2,
+     "procedure": "P2",
+     "approver": "Xu",
+     "deadline": "2026-09-03T13:11Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-634.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-103.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-4671.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/rowan/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-40.md",
+       "whole": true
+      }
+     ],
+     "reach": [
+      {
+       "path": "services/pylon/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/fjord/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/rowan/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/storage.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-634",
+    "change": "CHG-4671",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": [
+      "away-later",
+      "prod",
+      "overridden-base",
+      "overridden-base"
+     ],
+     "freeze": "inside-exempt"
+    },
+    "effectiveMistakes": [
+     "ignore-amendments",
+     "ignore-exemptions",
+     "count-lines",
+     "ignore-swaps",
+     "current-owner"
+    ]
+   }
+  ]
+ },
+ "F4-04": {
+  "project": "quiet-canopy",
+  "questions": [
+   {
+    "kind": "case",
+    "text": "Incident INC-577 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": true,
+     "class": "emergency",
+     "reach": 4,
+     "procedure": "P3",
+     "approver": "Moreau",
+     "deadline": "2026-09-03T10:41Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-577.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-155.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3049.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/pylon/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-20.md",
+       "whole": true
+      }
+     ],
+     "reach": [
+      {
+       "path": "services/willow/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/quill/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/vesper/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/tundra/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "oncall/platform.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-577",
+    "change": "CHG-3049",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": [
+      "prod",
+      "include",
+      "away-later",
+      "away-later",
+      "staging"
+     ],
+     "freeze": "start-edge"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "handover-utc",
+     "count-lines",
+     "ignore-swaps"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-979 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": false,
+     "class": "emergency",
+     "reach": 2,
+     "procedure": "P2",
+     "approver": "Zaidi",
+     "deadline": "2026-09-08T13:50Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-979.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-777.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-1096.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/garnet/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [],
+     "reach": [
+      {
+       "path": "services/lumen/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/spruce/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/garnet/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/storage.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-979",
+    "change": "CHG-1096",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": [
+      "base",
+      "earlier-to",
+      "staging"
+     ],
+     "freeze": "inside-exempt"
+    },
+    "effectiveMistakes": [
+     "ignore-exemptions",
+     "count-lines",
+     "ignore-swaps",
+     "current-owner"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-983 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back?",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": false,
+     "class": "standard",
+     "reach": 2,
+     "procedure": "P1",
+     "approver": "Brandt",
+     "deadline": "2026-09-21T01:05Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-983.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-943.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-1604.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/mesa/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-28.md",
+       "whole": true
+      }
+     ],
+     "reach": [
+      {
+       "path": "services/ember/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/fjord/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/mesa/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/billing.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": []
+    },
+    "incident": "INC-983",
+    "change": "CHG-1604",
+    "whatIf": null,
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": [
+      "earlier-to",
+      "earlier-to",
+      "to-later",
+      "to-later"
+     ],
+     "freeze": "inside-exempt"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "ignore-amendments",
+     "ignore-exemptions",
+     "count-lines",
+     "ignore-swaps"
+    ]
+   }
+  ]
+ },
+ "F5-01": {
+  "project": "quiet-signal",
+  "questions": [
+   {
+    "kind": "case",
+    "text": "Incident INC-385 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back? Also give the procedure and deadline that would apply if CHG-4756 had never been made (cf_procedure, cf_deadline).",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\", \"cf_procedure\": \"<R0, P1, P2, P3 or P4>\", \"cf_deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": false,
+     "class": "standard",
+     "reach": 3,
+     "procedure": "P3",
+     "approver": "Silva",
+     "deadline": "2026-09-14T12:07Z",
+     "cf_procedure": "P1",
+     "cf_deadline": "2026-09-14T20:07Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-385.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-888.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-5761.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/spruce/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-81.md",
+       "whole": true
+      }
+     ],
+     "reach": [
+      {
+       "path": "services/fjord/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/iris/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/beacon/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "oncall/platform.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": [],
+     "cf_procedure": [
+      {
+       "path": "changes/CHG-4756.md",
+       "whole": true
+      }
+     ],
+     "cf_deadline": [
+      {
+       "path": "changes/CHG-4756.md",
+       "whole": true
+      }
+     ]
+    },
+    "incident": "INC-385",
+    "change": "CHG-5761",
+    "whatIf": "CHG-4756",
+    "traps": {
+     "tierSource": "base",
+     "reachModes": [
+      "earlier-to",
+      "include",
+      "earlier-to",
+      "overridden-base"
+     ],
+     "freeze": "end-edge"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "no-includes",
+     "ignore-amendments",
+     "freeze-utc",
+     "count-lines",
+     "ignore-swaps"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-480 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back? Also give the procedure and deadline that would apply if CHG-6248 had never been made (cf_procedure, cf_deadline).",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\", \"cf_procedure\": \"<R0, P1, P2, P3 or P4>\", \"cf_deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 3,
+     "freeze": false,
+     "class": "standard",
+     "reach": 2,
+     "procedure": "P1",
+     "approver": "Hale",
+     "deadline": "2026-09-21T20:27Z",
+     "cf_procedure": "P4",
+     "cf_deadline": "2026-09-21T10:27Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-480.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-207.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2215.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/umbra/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-57.md",
+       "whole": true
+      }
+     ],
+     "reach": [
+      {
+       "path": "services/kestrel/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/lumen/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/umbra/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/messaging.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": [],
+     "cf_procedure": [
+      {
+       "path": "changes/CHG-6248.md",
+       "whole": true
+      }
+     ],
+     "cf_deadline": [
+      {
+       "path": "changes/CHG-6248.md",
+       "whole": true
+      }
+     ]
+    },
+    "incident": "INC-480",
+    "change": "CHG-2215",
+    "whatIf": "CHG-6248",
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": [
+      "away-later",
+      "prod",
+      "to-later",
+      "to-later"
+     ],
+     "freeze": "start-edge"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "ignore-amendments",
+     "late-amendments",
+     "handover-utc",
+     "ignore-tier3",
+     "count-lines",
+     "ignore-swaps"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-410 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back? Also give the procedure and deadline that would apply if CHG-8079 had never been made (cf_procedure, cf_deadline).",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\", \"cf_procedure\": \"<R0, P1, P2, P3 or P4>\", \"cf_deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": true,
+     "class": "standard",
+     "reach": 2,
+     "procedure": "P1",
+     "approver": "Costa",
+     "deadline": "2026-09-20T12:17Z",
+     "cf_procedure": "P1",
+     "cf_deadline": "2026-09-20T18:17Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-410.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-859.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-5532.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/cinder/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [],
+     "reach": [
+      {
+       "path": "services/rowan/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/willow/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/cinder/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/billing.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": [],
+     "cf_procedure": [
+      {
+       "path": "changes/CHG-8079.md",
+       "whole": true
+      }
+     ],
+     "cf_deadline": [
+      {
+       "path": "changes/CHG-8079.md",
+       "whole": true
+      }
+     ]
+    },
+    "incident": "INC-410",
+    "change": "CHG-5532",
+    "whatIf": "CHG-8079",
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": [
+      "base",
+      "earlier-to",
+      "overridden-base"
+     ],
+     "freeze": "start-edge"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "late-amendments",
+     "rejected-amendments",
+     "freeze-utc",
+     "ignore-tier3",
+     "count-lines",
+     "ignore-swaps",
+     "current-owner"
+    ]
+   }
+  ]
+ },
+ "F5-02": {
+  "project": "north-relay",
+  "questions": [
+   {
+    "kind": "case",
+    "text": "Incident INC-729 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back? Also give the procedure and deadline that would apply if CHG-6228 had never been made (cf_procedure, cf_deadline).",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\", \"cf_procedure\": \"<R0, P1, P2, P3 or P4>\", \"cf_deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 1,
+     "freeze": false,
+     "class": "standard",
+     "reach": 2,
+     "procedure": "P2",
+     "approver": "Okafor",
+     "deadline": "2026-09-17T03:02Z",
+     "cf_procedure": "P1",
+     "cf_deadline": "2026-09-17T09:02Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-729.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-770.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3869.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/quill/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [],
+     "reach": [
+      {
+       "path": "services/juniper/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/harbor/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/quill/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/checkout.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": [],
+     "cf_procedure": [
+      {
+       "path": "changes/CHG-6228.md",
+       "whole": true
+      }
+     ],
+     "cf_deadline": [
+      {
+       "path": "changes/CHG-6228.md",
+       "whole": true
+      }
+     ]
+    },
+    "incident": "INC-729",
+    "change": "CHG-3869",
+    "whatIf": "CHG-6228",
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": [
+      "include",
+      "earlier-to",
+      "staging"
+     ],
+     "freeze": "inside-exempt"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "rejected-amendments",
+     "ignore-exemptions",
+     "ignore-swaps"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-400 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back? Also give the procedure and deadline that would apply if CHG-4356 had never been made (cf_procedure, cf_deadline).",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\", \"cf_procedure\": \"<R0, P1, P2, P3 or P4>\", \"cf_deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": false,
+     "class": "emergency",
+     "reach": 3,
+     "procedure": "P3",
+     "approver": "Toure",
+     "deadline": "2026-09-21T11:05Z",
+     "cf_procedure": "P2",
+     "cf_deadline": "2026-09-21T13:05Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-400.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-811.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2557.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/mesa/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [],
+     "reach": [
+      {
+       "path": "services/garnet/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/beacon/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/umbra/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "oncall/platform.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": [],
+     "cf_procedure": [
+      {
+       "path": "changes/CHG-4356.md",
+       "whole": true
+      }
+     ],
+     "cf_deadline": [
+      {
+       "path": "changes/CHG-4356.md",
+       "whole": true
+      }
+     ]
+    },
+    "incident": "INC-400",
+    "change": "CHG-2557",
+    "whatIf": "CHG-4356",
+    "traps": {
+     "tierSource": "base",
+     "reachModes": [
+      "prod",
+      "base",
+      "earlier-to",
+      "staging",
+      "staging"
+     ],
+     "freeze": "inside-exempt"
+    },
+    "effectiveMistakes": [
+     "late-amendments",
+     "rejected-amendments",
+     "handover-utc",
+     "ignore-exemptions",
+     "count-lines",
+     "ignore-swaps"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-506 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back? Also give the procedure and deadline that would apply if CHG-9927 had never been made (cf_procedure, cf_deadline).",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\", \"cf_procedure\": \"<R0, P1, P2, P3 or P4>\", \"cf_deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 1,
+     "freeze": true,
+     "class": "emergency",
+     "reach": 3,
+     "procedure": "P4",
+     "approver": "Rossi",
+     "deadline": "2026-09-07T10:14Z",
+     "cf_procedure": "P3",
+     "cf_deadline": "2026-09-07T12:14Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-506.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-548.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-9064.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/pylon/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-62.md",
+       "whole": true
+      }
+     ],
+     "reach": [
+      {
+       "path": "services/rowan/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/cinder/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/delta/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "oncall/platform.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": [],
+     "cf_procedure": [
+      {
+       "path": "changes/CHG-9927.md",
+       "whole": true
+      }
+     ],
+     "cf_deadline": [
+      {
+       "path": "changes/CHG-9927.md",
+       "whole": true
+      }
+     ]
+    },
+    "incident": "INC-506",
+    "change": "CHG-9064",
+    "whatIf": "CHG-9927",
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": [
+      "earlier-to",
+      "include",
+      "include",
+      "to-later"
+     ],
+     "freeze": "start-edge"
+    },
+    "effectiveMistakes": [
+     "no-includes",
+     "freeze-utc",
+     "count-lines",
+     "ignore-swaps"
+    ]
+   }
+  ]
+ },
+ "F5-03": {
+  "project": "lucid-relay",
+  "questions": [
+   {
+    "kind": "case",
+    "text": "Incident INC-746 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back? Also give the procedure and deadline that would apply if CHG-9702 had never been made (cf_procedure, cf_deadline).",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\", \"cf_procedure\": \"<R0, P1, P2, P3 or P4>\", \"cf_deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 3,
+     "freeze": false,
+     "class": "emergency",
+     "reach": 3,
+     "procedure": "P3",
+     "approver": "Novak",
+     "deadline": "2026-09-14T12:35Z",
+     "cf_procedure": "P2",
+     "cf_deadline": "2026-09-14T14:35Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-746.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-537.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-6333.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/yonder/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [],
+     "reach": [
+      {
+       "path": "services/atlas/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/rowan/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/beacon/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "oncall/platform.md",
+       "whole": true
+      }
+     ],
+     "deadline": [],
+     "cf_procedure": [
+      {
+       "path": "changes/CHG-9702.md",
+       "whole": true
+      }
+     ],
+     "cf_deadline": [
+      {
+       "path": "changes/CHG-9702.md",
+       "whole": true
+      }
+     ]
+    },
+    "incident": "INC-746",
+    "change": "CHG-6333",
+    "whatIf": "CHG-9702",
+    "traps": {
+     "tierSource": "include",
+     "reachModes": [
+      "earlier-to",
+      "earlier-to",
+      "prod",
+      "staging",
+      "to-later"
+     ],
+     "freeze": "none"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "late-amendments",
+     "rejected-amendments",
+     "count-lines"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-945 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back? Also give the procedure and deadline that would apply if CHG-7398 had never been made (cf_procedure, cf_deadline).",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\", \"cf_procedure\": \"<R0, P1, P2, P3 or P4>\", \"cf_deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": true,
+     "class": "emergency",
+     "reach": 2,
+     "procedure": "P2",
+     "approver": "Weber",
+     "deadline": "2026-09-12T17:41Z",
+     "cf_procedure": "P2",
+     "cf_deadline": "2026-09-12T20:41Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-945.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-994.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-2371.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/willow/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [],
+     "reach": [
+      {
+       "path": "services/iris/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/juniper/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/willow/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/search.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": [],
+     "cf_procedure": [
+      {
+       "path": "changes/CHG-7398.md",
+       "whole": true
+      }
+     ],
+     "cf_deadline": [
+      {
+       "path": "changes/CHG-7398.md",
+       "whole": true
+      }
+     ]
+    },
+    "incident": "INC-945",
+    "change": "CHG-2371",
+    "whatIf": "CHG-7398",
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": [
+      "base",
+      "base",
+      "staging"
+     ],
+     "freeze": "inside"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "ignore-tier3",
+     "count-lines",
+     "ignore-swaps",
+     "current-owner"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-103 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back? Also give the procedure and deadline that would apply if CHG-4322 had never been made (cf_procedure, cf_deadline).",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\", \"cf_procedure\": \"<R0, P1, P2, P3 or P4>\", \"cf_deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 2,
+     "freeze": true,
+     "class": "standard",
+     "reach": 2,
+     "procedure": "P1",
+     "approver": "Costa",
+     "deadline": "2026-09-21T14:36Z",
+     "cf_procedure": "P4",
+     "cf_deadline": "2026-09-21T10:36Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-103.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-321.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-6083.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/spruce/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-15.md",
+       "whole": true
+      }
+     ],
+     "reach": [
+      {
+       "path": "services/vesper/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/harbor/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/spruce/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/billing.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": [],
+     "cf_procedure": [
+      {
+       "path": "changes/CHG-4322.md",
+       "whole": true
+      }
+     ],
+     "cf_deadline": [
+      {
+       "path": "changes/CHG-4322.md",
+       "whole": true
+      }
+     ]
+    },
+    "incident": "INC-103",
+    "change": "CHG-6083",
+    "whatIf": "CHG-4322",
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": [
+      "include",
+      "earlier-to",
+      "staging"
+     ],
+     "freeze": "inside"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "ignore-amendments",
+     "rejected-amendments",
+     "ignore-swaps",
+     "current-owner"
+    ]
+   }
+  ]
+ },
+ "F5-04": {
+  "project": "north-signal",
+  "questions": [
+   {
+    "kind": "case",
+    "text": "Incident INC-719 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back? Also give the procedure and deadline that would apply if CHG-5003 had never been made (cf_procedure, cf_deadline).",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\", \"cf_procedure\": \"<R0, P1, P2, P3 or P4>\", \"cf_deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 3,
+     "freeze": false,
+     "class": "emergency",
+     "reach": 2,
+     "procedure": "P2",
+     "approver": "Iqbal",
+     "deadline": "2026-09-21T13:28Z",
+     "cf_procedure": "P4",
+     "cf_deadline": "2026-09-21T09:28Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-719.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-723.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-5510.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/mesa/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [
+      {
+       "path": "changes/amendments/AMD-93.md",
+       "whole": true
+      }
+     ],
+     "reach": [
+      {
+       "path": "services/nectar/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/orchid/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "services/mesa/OWNERS",
+       "whole": true
+      },
+      {
+       "path": "oncall/messaging.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": [],
+     "cf_procedure": [
+      {
+       "path": "changes/CHG-5003.md",
+       "whole": true
+      }
+     ],
+     "cf_deadline": [
+      {
+       "path": "changes/CHG-5003.md",
+       "whole": true
+      }
+     ]
+    },
+    "incident": "INC-719",
+    "change": "CHG-5510",
+    "whatIf": "CHG-5003",
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": [
+      "prod",
+      "base",
+      "to-later",
+      "staging"
+     ],
+     "freeze": "start-edge"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "ignore-amendments",
+     "late-amendments",
+     "handover-utc",
+     "ignore-tier3",
+     "count-lines",
+     "ignore-swaps",
+     "current-owner"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-776 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back? Also give the procedure and deadline that would apply if CHG-8231 had never been made (cf_procedure, cf_deadline).",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\", \"cf_procedure\": \"<R0, P1, P2, P3 or P4>\", \"cf_deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 3,
+     "freeze": false,
+     "class": "standard",
+     "reach": 3,
+     "procedure": "P3",
+     "approver": "Novak",
+     "deadline": "2026-09-20T11:39Z",
+     "cf_procedure": "P1",
+     "cf_deadline": "2026-09-20T19:39Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-776.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-473.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-3399.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/lumen/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [],
+     "reach": [
+      {
+       "path": "services/umbra/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/beacon/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/garnet/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "oncall/platform.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": [],
+     "cf_procedure": [
+      {
+       "path": "changes/CHG-8231.md",
+       "whole": true
+      }
+     ],
+     "cf_deadline": [
+      {
+       "path": "changes/CHG-8231.md",
+       "whole": true
+      }
+     ]
+    },
+    "incident": "INC-776",
+    "change": "CHG-3399",
+    "whatIf": "CHG-8231",
+    "traps": {
+     "tierSource": "include",
+     "reachModes": [
+      "base",
+      "earlier-to",
+      "away-later",
+      "staging"
+     ],
+     "freeze": "inside"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "no-includes",
+     "late-amendments",
+     "handover-utc",
+     "ignore-tier3",
+     "count-lines",
+     "ignore-swaps"
+    ]
+   },
+   {
+    "kind": "case",
+    "text": "Incident INC-102 was caused by a production change. Following docs/RESPONSE.md, how must that change be rolled back? Also give the procedure and deadline that would apply if CHG-7472 had never been made (cf_procedure, cf_deadline).",
+    "fields": "{\"tier\": <1, 2 or 3>, \"freeze\": <true or false>, \"class\": \"<standard, emergency or rollback>\", \"reach\": <integer>, \"procedure\": \"<R0, P1, P2, P3 or P4>\", \"approver\": \"<name>\", \"deadline\": \"<YYYY-MM-DDTHH:MMZ>\", \"cf_procedure\": \"<R0, P1, P2, P3 or P4>\", \"cf_deadline\": \"<YYYY-MM-DDTHH:MMZ>\"}",
+    "answer": {
+     "tier": 1,
+     "freeze": false,
+     "class": "emergency",
+     "reach": 3,
+     "procedure": "P3",
+     "approver": "Ortiz",
+     "deadline": "2026-09-23T11:02Z",
+     "cf_procedure": "P2",
+     "cf_deadline": "2026-09-23T13:02Z"
+    },
+    "gate": [
+     {
+      "path": "incidents/INC-102.md",
+      "whole": true
+     },
+     {
+      "path": "reviews/REV-771.md",
+      "whole": true
+     },
+     {
+      "path": "changes/CHG-6219.md",
+      "whole": true
+     },
+     {
+      "path": "docs/RESPONSE.md",
+      "whole": true
+     }
+    ],
+    "proofs": {
+     "tier": [
+      {
+       "path": "services/quill/config/prod.toml",
+       "whole": true,
+       "absentKey": "tier"
+      }
+     ],
+     "freeze": [
+      {
+       "path": "calendar/freezes.md",
+       "whole": true
+      }
+     ],
+     "class": [],
+     "reach": [
+      {
+       "path": "services/juniper/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/delta/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      },
+      {
+       "path": "services/ember/config/prod.toml",
+       "whole": true,
+       "absentKey": "upstream"
+      }
+     ],
+     "procedure": [],
+     "approver": [
+      {
+       "path": "oncall/platform.md",
+       "whole": true
+      },
+      {
+       "path": "oncall/swaps.md",
+       "whole": true
+      }
+     ],
+     "deadline": [],
+     "cf_procedure": [
+      {
+       "path": "changes/CHG-7472.md",
+       "whole": true
+      }
+     ],
+     "cf_deadline": [
+      {
+       "path": "changes/CHG-7472.md",
+       "whole": true
+      }
+     ]
+    },
+    "incident": "INC-102",
+    "change": "CHG-6219",
+    "whatIf": "CHG-7472",
+    "traps": {
+     "tierSource": "prod",
+     "reachModes": [
+      "earlier-to",
+      "prod",
+      "earlier-to",
+      "to-later"
+     ],
+     "freeze": "none"
+    },
+    "effectiveMistakes": [
+     "current-config",
+     "handover-utc",
+     "count-lines",
+     "ignore-swaps"
+    ]
+   }
+  ]
  }
 }

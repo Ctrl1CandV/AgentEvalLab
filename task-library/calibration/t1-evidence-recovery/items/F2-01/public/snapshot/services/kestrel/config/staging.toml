@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/limits-floor.toml"
+tier = 3
+upstream = "beacon"
+max_retries = 52
+pool_size = 58

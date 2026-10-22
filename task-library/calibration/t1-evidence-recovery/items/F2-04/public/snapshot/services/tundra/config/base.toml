@@ -1,0 +1,7 @@
+[tundra]
+tier = 1
+upstream = "fjord"
+timeout_ms = 18
+max_retries = 25
+pool_size = 32
+queue_depth = 28

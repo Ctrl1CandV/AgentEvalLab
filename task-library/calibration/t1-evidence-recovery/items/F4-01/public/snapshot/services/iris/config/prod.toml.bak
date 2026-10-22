@@ -1,0 +1,5 @@
+[iris]
+include = "shared/pool-small.toml"
+tier = 2
+upstream = "spruce"
+queue_depth = 48

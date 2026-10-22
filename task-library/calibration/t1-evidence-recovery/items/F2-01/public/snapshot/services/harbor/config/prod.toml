@@ -1,0 +1,4 @@
+[harbor]
+include = "shared/limits-standard.toml"
+timeout_ms = 29
+max_retries = 41

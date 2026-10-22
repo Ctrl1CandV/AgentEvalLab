@@ -1,0 +1,5 @@
+[nectar]
+tier = 1
+upstream = "umbra"
+pool_size = 31
+queue_depth = 50

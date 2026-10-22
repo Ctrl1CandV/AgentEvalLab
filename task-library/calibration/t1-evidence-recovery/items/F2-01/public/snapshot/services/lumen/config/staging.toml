@@ -1,0 +1,5 @@
+[lumen]
+tier = 3
+upstream = "spruce"
+timeout_ms = 47
+pool_size = 61

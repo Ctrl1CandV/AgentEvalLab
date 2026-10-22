@@ -1,0 +1,4 @@
+[pylon]
+timeout_ms = 26
+pool_size = 25
+queue_depth = 16

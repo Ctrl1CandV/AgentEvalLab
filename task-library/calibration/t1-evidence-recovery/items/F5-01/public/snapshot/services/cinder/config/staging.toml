@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/pool-small.toml"
+tier = 2
+upstream = "nectar"
+max_retries = 33
+pool_size = 23

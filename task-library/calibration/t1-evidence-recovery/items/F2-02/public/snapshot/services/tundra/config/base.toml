@@ -1,0 +1,7 @@
+[tundra]
+tier = 2
+upstream = "rowan"
+timeout_ms = 37
+max_retries = 21
+pool_size = 3
+queue_depth = 13

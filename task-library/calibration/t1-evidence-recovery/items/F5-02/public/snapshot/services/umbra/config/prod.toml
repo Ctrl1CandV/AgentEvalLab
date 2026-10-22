@@ -1,0 +1,5 @@
+[umbra]
+tier = 1
+upstream = "mesa"
+max_retries = 33
+queue_depth = 26

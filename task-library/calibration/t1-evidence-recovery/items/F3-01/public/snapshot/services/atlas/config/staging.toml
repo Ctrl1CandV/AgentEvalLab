@@ -1,0 +1,5 @@
+[atlas]
+tier = 1
+upstream = "kestrel"
+timeout_ms = 54
+queue_depth = 45

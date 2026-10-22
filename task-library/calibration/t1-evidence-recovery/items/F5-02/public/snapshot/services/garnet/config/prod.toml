@@ -1,0 +1,4 @@
+[garnet]
+tier = 1
+pool_size = 38
+queue_depth = 42

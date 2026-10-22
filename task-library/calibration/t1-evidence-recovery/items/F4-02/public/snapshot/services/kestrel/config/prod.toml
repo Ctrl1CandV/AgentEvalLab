@@ -1,0 +1,7 @@
+[kestrel]
+include = "shared/limits-burst.toml"
+tier = 1
+upstream = "tundra"
+max_retries = 20
+pool_size = 22
+queue_depth = 16

@@ -1,0 +1,5 @@
+[orchid]
+tier = 3
+upstream = "atlas"
+max_retries = 52
+pool_size = 18

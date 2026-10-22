@@ -1,0 +1,5 @@
+[ember]
+tier = 3
+upstream = "vesper"
+timeout_ms = 34
+queue_depth = 32

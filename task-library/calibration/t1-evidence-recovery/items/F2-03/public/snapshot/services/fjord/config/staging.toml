@@ -1,0 +1,5 @@
+[fjord]
+tier = 3
+upstream = "juniper"
+max_retries = 56
+queue_depth = 36

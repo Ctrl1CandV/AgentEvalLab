@@ -1,0 +1,4 @@
+[rowan]
+timeout_ms = 50
+max_retries = 25
+pool_size = 18

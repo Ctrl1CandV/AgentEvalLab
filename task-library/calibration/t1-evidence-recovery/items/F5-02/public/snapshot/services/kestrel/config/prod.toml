@@ -1,0 +1,3 @@
+[kestrel]
+max_retries = 43
+pool_size = 38

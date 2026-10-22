@@ -1,0 +1,5 @@
+[lumen]
+include = "shared/limits-floor.toml"
+tier = 3
+upstream = "yonder"
+queue_depth = 47

@@ -1,0 +1,7 @@
+[lumen]
+tier = 3
+upstream = "juniper"
+timeout_ms = 26
+max_retries = 5
+pool_size = 25
+queue_depth = 3

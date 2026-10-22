@@ -1,0 +1,5 @@
+[pylon]
+include = "shared/limits-burst.toml"
+tier = 1
+upstream = "rowan"
+timeout_ms = 25

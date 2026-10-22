@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/pool-small.toml"
+tier = 1
+upstream = "pylon"
+timeout_ms = 37
+pool_size = 37

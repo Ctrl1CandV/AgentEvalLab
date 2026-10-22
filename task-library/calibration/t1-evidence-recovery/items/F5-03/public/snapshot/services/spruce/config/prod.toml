@@ -1,0 +1,5 @@
+[spruce]
+tier = 1
+timeout_ms = 22
+max_retries = 33
+queue_depth = 37

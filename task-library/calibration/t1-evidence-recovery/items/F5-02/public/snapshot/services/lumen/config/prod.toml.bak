@@ -1,0 +1,4 @@
+[lumen]
+tier = 3
+upstream = "iris"
+timeout_ms = 24

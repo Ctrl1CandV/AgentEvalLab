@@ -1,0 +1,7 @@
+[nectar]
+tier = 2
+upstream = "kestrel"
+timeout_ms = 33
+max_retries = 18
+pool_size = 33
+queue_depth = 19

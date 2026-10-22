@@ -1,0 +1,5 @@
+[kestrel]
+tier = 1
+upstream = "fjord"
+pool_size = 24
+queue_depth = 39

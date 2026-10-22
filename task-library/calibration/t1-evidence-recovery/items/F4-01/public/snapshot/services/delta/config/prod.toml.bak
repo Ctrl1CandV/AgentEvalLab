@@ -1,0 +1,4 @@
+[delta]
+tier = 1
+upstream = "lumen"
+timeout_ms = 43

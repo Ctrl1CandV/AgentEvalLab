@@ -1,0 +1,4 @@
+[kestrel]
+tier = 3
+upstream = "spruce"
+max_retries = 13

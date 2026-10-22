@@ -1,0 +1,5 @@
+[yonder]
+tier = 2
+upstream = "kestrel"
+timeout_ms = 29
+queue_depth = 22

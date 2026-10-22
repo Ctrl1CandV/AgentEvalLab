@@ -1,0 +1,4 @@
+[umbra]
+tier = 3
+upstream = "garnet"
+queue_depth = 53

@@ -1,0 +1,5 @@
+[vesper]
+tier = 1
+upstream = "quill"
+timeout_ms = 37
+max_retries = 32

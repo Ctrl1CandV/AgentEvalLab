@@ -1,0 +1,7 @@
+[spruce]
+tier = 3
+upstream = "delta"
+timeout_ms = 10
+max_retries = 36
+pool_size = 4
+queue_depth = 26

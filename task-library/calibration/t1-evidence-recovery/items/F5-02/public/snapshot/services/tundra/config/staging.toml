@@ -1,0 +1,5 @@
+[tundra]
+tier = 1
+upstream = "atlas"
+max_retries = 58
+pool_size = 37

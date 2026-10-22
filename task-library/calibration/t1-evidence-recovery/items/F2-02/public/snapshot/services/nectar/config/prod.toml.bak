@@ -1,0 +1,4 @@
+[nectar]
+tier = 1
+upstream = "atlas"
+queue_depth = 36

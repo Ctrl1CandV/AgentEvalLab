@@ -1,0 +1,6 @@
+[orchid]
+tier = 2
+upstream = "pylon"
+timeout_ms = 20
+max_retries = 33
+queue_depth = 26

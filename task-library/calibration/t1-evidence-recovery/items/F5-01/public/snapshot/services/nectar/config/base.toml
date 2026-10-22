@@ -1,0 +1,7 @@
+[nectar]
+tier = 3
+upstream = "juniper"
+timeout_ms = 4
+max_retries = 20
+pool_size = 31
+queue_depth = 2

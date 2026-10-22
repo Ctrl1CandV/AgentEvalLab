@@ -1,0 +1,5 @@
+[harbor]
+include = "shared/limits-standard.toml"
+tier = 3
+upstream = "willow"
+timeout_ms = 29

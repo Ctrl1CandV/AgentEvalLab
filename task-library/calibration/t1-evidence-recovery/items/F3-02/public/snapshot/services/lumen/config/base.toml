@@ -1,0 +1,7 @@
+[lumen]
+tier = 3
+upstream = "iris"
+timeout_ms = 26
+max_retries = 12
+pool_size = 34
+queue_depth = 33

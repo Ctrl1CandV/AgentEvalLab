@@ -1,0 +1,5 @@
+[ember]
+tier = 1
+upstream = "cinder"
+timeout_ms = 52
+max_retries = 23

@@ -1,0 +1,7 @@
+[rowan]
+tier = 2
+upstream = "harbor"
+timeout_ms = 21
+max_retries = 7
+pool_size = 14
+queue_depth = 27

@@ -1,0 +1,5 @@
+[spruce]
+tier = 1
+upstream = "yonder"
+max_retries = 29
+queue_depth = 45

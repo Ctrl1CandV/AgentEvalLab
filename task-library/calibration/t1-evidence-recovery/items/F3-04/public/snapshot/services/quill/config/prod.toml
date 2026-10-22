@@ -1,0 +1,6 @@
+[quill]
+include = "shared/limits-floor.toml"
+tier = 3
+upstream = "vesper"
+pool_size = 46
+queue_depth = 27

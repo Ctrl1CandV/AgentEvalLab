@@ -1,0 +1,4 @@
+[lumen]
+tier = 2
+upstream = "spruce"
+max_retries = 13

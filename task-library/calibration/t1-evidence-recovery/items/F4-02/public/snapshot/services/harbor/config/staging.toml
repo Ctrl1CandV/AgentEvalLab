@@ -1,0 +1,5 @@
+[harbor]
+tier = 1
+upstream = "rowan"
+max_retries = 25
+pool_size = 43

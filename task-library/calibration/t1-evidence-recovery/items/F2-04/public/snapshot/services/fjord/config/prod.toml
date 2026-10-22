@@ -1,0 +1,5 @@
+[fjord]
+tier = 3
+upstream = "willow"
+pool_size = 24
+queue_depth = 52

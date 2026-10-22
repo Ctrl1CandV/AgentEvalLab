@@ -1,0 +1,5 @@
+[cinder]
+include = "shared/limits-burst.toml"
+tier = 3
+timeout_ms = 8
+pool_size = 32

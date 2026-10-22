@@ -1,0 +1,5 @@
+[yonder]
+tier = 3
+upstream = "umbra"
+max_retries = 25
+queue_depth = 30

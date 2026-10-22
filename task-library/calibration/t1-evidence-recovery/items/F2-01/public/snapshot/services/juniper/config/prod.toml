@@ -1,0 +1,4 @@
+[juniper]
+upstream = "rowan"
+timeout_ms = 14
+pool_size = 20

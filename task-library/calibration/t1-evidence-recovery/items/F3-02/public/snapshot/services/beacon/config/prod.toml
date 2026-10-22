@@ -1,0 +1,5 @@
+[beacon]
+tier = 1
+timeout_ms = 18
+max_retries = 41
+queue_depth = 44

@@ -1,0 +1,6 @@
+[yonder]
+include = "shared/limits-burst.toml"
+tier = 1
+upstream = "rowan"
+max_retries = 39
+pool_size = 57

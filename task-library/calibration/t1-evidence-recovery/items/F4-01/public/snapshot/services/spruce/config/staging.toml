@@ -1,0 +1,5 @@
+[spruce]
+tier = 3
+upstream = "delta"
+pool_size = 35
+queue_depth = 37

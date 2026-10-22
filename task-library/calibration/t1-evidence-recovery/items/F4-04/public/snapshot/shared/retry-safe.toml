@@ -1,0 +1,3 @@
+[retry-safe]
+max_retries = 107
+pool_size = 57

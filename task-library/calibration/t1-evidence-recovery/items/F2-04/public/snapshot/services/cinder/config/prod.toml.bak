@@ -1,0 +1,4 @@
+[cinder]
+tier = 1
+upstream = "harbor"
+pool_size = 58

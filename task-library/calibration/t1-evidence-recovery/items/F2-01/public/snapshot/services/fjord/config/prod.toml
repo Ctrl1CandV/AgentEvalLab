@@ -1,0 +1,7 @@
+[fjord]
+include = "shared/profile-batch.toml"
+tier = 1
+upstream = "juniper"
+timeout_ms = 16
+max_retries = 22
+pool_size = 33

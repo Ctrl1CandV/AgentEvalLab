@@ -1,0 +1,6 @@
+[harbor]
+tier = 3
+upstream = "willow"
+max_retries = 32
+pool_size = 45
+queue_depth = 27

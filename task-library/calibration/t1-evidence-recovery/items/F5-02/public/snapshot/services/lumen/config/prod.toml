@@ -1,0 +1,4 @@
+[lumen]
+upstream = "juniper"
+pool_size = 26
+queue_depth = 4

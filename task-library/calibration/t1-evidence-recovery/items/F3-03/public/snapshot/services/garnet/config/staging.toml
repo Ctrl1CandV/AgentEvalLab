@@ -1,0 +1,5 @@
+[garnet]
+tier = 3
+upstream = "harbor"
+timeout_ms = 40
+queue_depth = 28

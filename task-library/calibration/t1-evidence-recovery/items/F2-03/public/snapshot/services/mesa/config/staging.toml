@@ -1,0 +1,5 @@
+[mesa]
+tier = 1
+upstream = "orchid"
+max_retries = 51
+queue_depth = 35

@@ -1,0 +1,7 @@
+[vesper]
+tier = 3
+upstream = "kestrel"
+timeout_ms = 10
+max_retries = 3
+pool_size = 26
+queue_depth = 36

@@ -1,0 +1,7 @@
+[atlas]
+tier = 3
+upstream = "iris"
+timeout_ms = 26
+max_retries = 34
+pool_size = 29
+queue_depth = 20

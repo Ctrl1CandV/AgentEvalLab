@@ -1,0 +1,3 @@
+[lumen]
+include = "shared/retry-fast.toml"
+max_retries = 10

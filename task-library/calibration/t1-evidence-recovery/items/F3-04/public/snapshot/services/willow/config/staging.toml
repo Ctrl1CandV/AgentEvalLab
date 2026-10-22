@@ -1,0 +1,5 @@
+[willow]
+tier = 2
+upstream = "vesper"
+max_retries = 20
+pool_size = 32

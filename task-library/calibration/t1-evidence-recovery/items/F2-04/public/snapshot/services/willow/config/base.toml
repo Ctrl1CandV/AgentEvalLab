@@ -1,0 +1,7 @@
+[willow]
+tier = 1
+upstream = "garnet"
+timeout_ms = 36
+max_retries = 14
+pool_size = 10
+queue_depth = 14

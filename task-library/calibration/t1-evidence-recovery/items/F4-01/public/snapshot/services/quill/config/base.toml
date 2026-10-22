@@ -1,0 +1,7 @@
+[quill]
+tier = 3
+upstream = "tundra"
+timeout_ms = 27
+max_retries = 18
+pool_size = 30
+queue_depth = 5

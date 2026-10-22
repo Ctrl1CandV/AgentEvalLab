@@ -1,0 +1,6 @@
+[mesa]
+include = "shared/retry-safe.toml"
+tier = 2
+upstream = "delta"
+timeout_ms = 54
+max_retries = 39

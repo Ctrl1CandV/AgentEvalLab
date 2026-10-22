@@ -1,0 +1,5 @@
+[atlas]
+tier = 3
+upstream = "fjord"
+timeout_ms = 54
+queue_depth = 51

@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/limits-floor.toml"
+tier = 2
+upstream = "tundra"
+max_retries = 63
+pool_size = 33

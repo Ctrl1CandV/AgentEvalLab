@@ -1,0 +1,5 @@
+[willow]
+tier = 3
+upstream = "ember"
+max_retries = 60
+pool_size = 35

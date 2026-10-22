@@ -1,0 +1,4 @@
+[nectar]
+tier = 2
+upstream = "yonder"
+pool_size = 56

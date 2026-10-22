@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/pool-small.toml"
+tier = 3
+upstream = "ember"
+timeout_ms = 25
+queue_depth = 48

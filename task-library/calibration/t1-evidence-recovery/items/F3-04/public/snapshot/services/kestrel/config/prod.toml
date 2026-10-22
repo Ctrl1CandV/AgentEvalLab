@@ -1,0 +1,4 @@
+[kestrel]
+tier = 1
+timeout_ms = 19
+max_retries = 45

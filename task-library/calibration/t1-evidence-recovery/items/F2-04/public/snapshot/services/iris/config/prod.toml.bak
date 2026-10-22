@@ -1,0 +1,4 @@
+[iris]
+tier = 1
+upstream = "spruce"
+max_retries = 33

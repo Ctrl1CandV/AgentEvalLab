@@ -1,0 +1,5 @@
+[cinder]
+include = "shared/routes-east.toml"
+tier = 1
+max_retries = 12
+pool_size = 25

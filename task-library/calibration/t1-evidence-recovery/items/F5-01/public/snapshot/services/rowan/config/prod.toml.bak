@@ -1,0 +1,4 @@
+[rowan]
+tier = 3
+upstream = "fjord"
+timeout_ms = 42

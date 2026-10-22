@@ -1,0 +1,5 @@
+[delta]
+tier = 2
+upstream = "atlas"
+pool_size = 53
+queue_depth = 40

@@ -1,0 +1,4 @@
+[retry-safe]
+tier = 3
+timeout_ms = 102
+max_retries = 68

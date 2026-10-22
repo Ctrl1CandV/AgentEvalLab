@@ -1,0 +1,5 @@
+[atlas]
+include = "shared/pool-small.toml"
+tier = 3
+upstream = "cinder"
+pool_size = 24

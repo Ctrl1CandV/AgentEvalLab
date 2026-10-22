@@ -1,0 +1,4 @@
+[umbra]
+tier = 3
+upstream = "beacon"
+timeout_ms = 52

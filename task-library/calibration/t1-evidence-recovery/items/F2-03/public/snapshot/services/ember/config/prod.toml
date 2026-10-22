@@ -1,0 +1,3 @@
+[ember]
+tier = 1
+queue_depth = 10

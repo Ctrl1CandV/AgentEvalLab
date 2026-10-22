@@ -1,0 +1,4 @@
+[tundra]
+tier = 3
+upstream = "quill"
+queue_depth = 38

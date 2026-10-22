@@ -1,0 +1,6 @@
+[tundra]
+include = "shared/routes-north.toml"
+tier = 1
+max_retries = 30
+pool_size = 33
+queue_depth = 44

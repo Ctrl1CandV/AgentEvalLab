@@ -1,0 +1,4 @@
+[kestrel]
+tier = 3
+upstream = "nectar"
+queue_depth = 22

@@ -1,0 +1,5 @@
+[fjord]
+include = "shared/limits-standard.toml"
+tier = 3
+upstream = "vesper"
+queue_depth = 23

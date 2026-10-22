@@ -1,0 +1,6 @@
+[limits-burst]
+include = "shared/limits-standard.toml"
+tier = 3
+upstream = "nectar"
+timeout_ms = 65
+pool_size = 90

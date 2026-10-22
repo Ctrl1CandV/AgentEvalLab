@@ -1,0 +1,4 @@
+[rowan]
+tier = 3
+upstream = "harbor"
+timeout_ms = 18

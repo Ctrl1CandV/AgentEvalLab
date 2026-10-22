@@ -1,0 +1,6 @@
+[delta]
+include = "shared/pool-small.toml"
+tier = 2
+upstream = "pylon"
+max_retries = 25
+queue_depth = 47

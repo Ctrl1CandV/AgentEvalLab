@@ -1,0 +1,6 @@
+[umbra]
+tier = 2
+upstream = "delta"
+timeout_ms = 14
+max_retries = 35
+queue_depth = 21

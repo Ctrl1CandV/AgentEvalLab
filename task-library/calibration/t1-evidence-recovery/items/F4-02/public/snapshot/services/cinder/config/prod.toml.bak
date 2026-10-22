@@ -1,0 +1,5 @@
+[cinder]
+include = "shared/pool-small.toml"
+tier = 3
+upstream = "iris"
+queue_depth = 29

@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/limits-floor.toml"
+tier = 1
+upstream = "cinder"
+timeout_ms = 66
+max_retries = 63

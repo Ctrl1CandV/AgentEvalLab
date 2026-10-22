@@ -1,0 +1,7 @@
+[delta]
+tier = 1
+upstream = "ember"
+timeout_ms = 25
+max_retries = 24
+pool_size = 35
+queue_depth = 35

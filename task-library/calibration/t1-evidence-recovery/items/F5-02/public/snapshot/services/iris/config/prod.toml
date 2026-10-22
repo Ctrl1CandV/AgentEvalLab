@@ -1,0 +1,4 @@
+[iris]
+include = "shared/retry-fast.toml"
+timeout_ms = 12
+pool_size = 43

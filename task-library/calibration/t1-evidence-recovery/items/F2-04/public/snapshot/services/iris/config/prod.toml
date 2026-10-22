@@ -1,0 +1,3 @@
+[iris]
+timeout_ms = 13
+max_retries = 31

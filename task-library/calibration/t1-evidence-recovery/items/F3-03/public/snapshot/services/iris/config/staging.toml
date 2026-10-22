@@ -1,0 +1,5 @@
+[iris]
+tier = 1
+upstream = "harbor"
+timeout_ms = 36
+max_retries = 25

@@ -1,0 +1,5 @@
+[ember]
+include = "shared/pool-small.toml"
+tier = 3
+timeout_ms = 17
+pool_size = 37

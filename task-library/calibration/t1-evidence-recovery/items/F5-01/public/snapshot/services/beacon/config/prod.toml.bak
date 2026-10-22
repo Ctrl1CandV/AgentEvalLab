@@ -1,0 +1,4 @@
+[beacon]
+tier = 3
+upstream = "yonder"
+max_retries = 20

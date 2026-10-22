@@ -1,0 +1,5 @@
+[lumen]
+tier = 2
+upstream = "kestrel"
+timeout_ms = 52
+max_retries = 30

@@ -1,0 +1,7 @@
+[quill]
+tier = 3
+upstream = "harbor"
+timeout_ms = 5
+max_retries = 34
+pool_size = 25
+queue_depth = 21

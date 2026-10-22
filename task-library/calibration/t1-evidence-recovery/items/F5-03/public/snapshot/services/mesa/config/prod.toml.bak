@@ -1,0 +1,5 @@
+[mesa]
+include = "shared/limits-standard.toml"
+tier = 2
+upstream = "pylon"
+max_retries = 40

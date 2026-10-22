@@ -1,0 +1,3 @@
+[willow]
+include = "shared/pool-small.toml"
+max_retries = 15

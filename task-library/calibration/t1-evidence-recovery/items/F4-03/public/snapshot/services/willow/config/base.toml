@@ -1,0 +1,7 @@
+[willow]
+tier = 3
+upstream = "lumen"
+timeout_ms = 31
+max_retries = 18
+pool_size = 38
+queue_depth = 7

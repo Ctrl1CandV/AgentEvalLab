@@ -1,0 +1,4 @@
+[ember]
+include = "shared/retry-fast.toml"
+timeout_ms = 44
+pool_size = 40

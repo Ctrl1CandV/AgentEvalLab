@@ -1,0 +1,7 @@
+[spruce]
+tier = 2
+upstream = "ember"
+timeout_ms = 20
+max_retries = 39
+pool_size = 42
+queue_depth = 20

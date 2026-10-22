@@ -1,0 +1,5 @@
+[beacon]
+include = "shared/pool-small.toml"
+tier = 2
+upstream = "tundra"
+queue_depth = 38

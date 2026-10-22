@@ -1,0 +1,7 @@
+[rowan]
+tier = 1
+upstream = "juniper"
+timeout_ms = 37
+max_retries = 37
+pool_size = 14
+queue_depth = 34

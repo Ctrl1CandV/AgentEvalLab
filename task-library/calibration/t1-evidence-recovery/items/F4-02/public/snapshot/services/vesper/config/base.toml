@@ -1,0 +1,7 @@
+[vesper]
+tier = 3
+upstream = "willow"
+timeout_ms = 18
+max_retries = 13
+pool_size = 29
+queue_depth = 24

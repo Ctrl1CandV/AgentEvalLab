@@ -1,0 +1,7 @@
+[atlas]
+tier = 1
+upstream = "spruce"
+timeout_ms = 20
+max_retries = 14
+pool_size = 3
+queue_depth = 3

@@ -1,0 +1,7 @@
+[beacon]
+include = "shared/limits-burst.toml"
+tier = 1
+upstream = "fjord"
+timeout_ms = 25
+max_retries = 42
+pool_size = 26

@@ -1,0 +1,5 @@
+[yonder]
+include = "shared/pool-small.toml"
+upstream = "mesa"
+pool_size = 43
+queue_depth = 19

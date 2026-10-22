@@ -1,0 +1,7 @@
+[nectar]
+tier = 2
+upstream = "quill"
+timeout_ms = 19
+max_retries = 13
+pool_size = 4
+queue_depth = 6

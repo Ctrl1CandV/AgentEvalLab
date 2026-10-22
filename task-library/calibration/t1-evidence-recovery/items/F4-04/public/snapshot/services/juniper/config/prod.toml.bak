@@ -1,0 +1,4 @@
+[juniper]
+tier = 2
+upstream = "delta"
+pool_size = 59

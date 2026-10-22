@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/limits-burst.toml"
+tier = 3
+timeout_ms = 7
+max_retries = 43
+queue_depth = 12

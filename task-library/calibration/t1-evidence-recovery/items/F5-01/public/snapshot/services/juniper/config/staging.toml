@@ -1,0 +1,6 @@
+[juniper]
+include = "shared/limits-floor.toml"
+tier = 2
+upstream = "tundra"
+max_retries = 39
+queue_depth = 53

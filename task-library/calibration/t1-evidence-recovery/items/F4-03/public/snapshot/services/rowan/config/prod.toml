@@ -1,0 +1,5 @@
+[rowan]
+tier = 3
+upstream = "pylon"
+max_retries = 26
+pool_size = 20

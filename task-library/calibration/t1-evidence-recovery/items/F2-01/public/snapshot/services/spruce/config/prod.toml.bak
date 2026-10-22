@@ -1,0 +1,4 @@
+[spruce]
+tier = 1
+upstream = "vesper"
+max_retries = 23

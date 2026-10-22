@@ -1,0 +1,7 @@
+[kestrel]
+include = "shared/limits-burst.toml"
+tier = 3
+upstream = "delta"
+timeout_ms = 33
+pool_size = 32
+queue_depth = 29

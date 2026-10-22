@@ -1,0 +1,4 @@
+[cinder]
+tier = 1
+upstream = "atlas"
+max_retries = 14

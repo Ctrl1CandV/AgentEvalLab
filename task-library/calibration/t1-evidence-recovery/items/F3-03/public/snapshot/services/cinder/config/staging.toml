@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/limits-standard.toml"
+tier = 3
+upstream = "orchid"
+timeout_ms = 42
+pool_size = 38

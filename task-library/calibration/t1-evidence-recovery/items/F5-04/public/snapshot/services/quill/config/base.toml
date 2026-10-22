@@ -1,0 +1,7 @@
+[quill]
+tier = 2
+upstream = "orchid"
+timeout_ms = 23
+max_retries = 6
+pool_size = 24
+queue_depth = 39

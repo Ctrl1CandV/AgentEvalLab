@@ -1,0 +1,7 @@
+[umbra]
+tier = 2
+upstream = "quill"
+timeout_ms = 3
+max_retries = 6
+pool_size = 25
+queue_depth = 2

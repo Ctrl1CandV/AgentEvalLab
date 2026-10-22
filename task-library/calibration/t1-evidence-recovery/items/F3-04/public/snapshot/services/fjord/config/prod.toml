@@ -1,0 +1,3 @@
+[fjord]
+timeout_ms = 14
+queue_depth = 42

@@ -1,0 +1,7 @@
+[kestrel]
+tier = 3
+upstream = "tundra"
+timeout_ms = 11
+max_retries = 29
+pool_size = 9
+queue_depth = 6

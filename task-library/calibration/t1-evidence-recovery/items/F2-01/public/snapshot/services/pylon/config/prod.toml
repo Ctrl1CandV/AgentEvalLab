@@ -1,0 +1,4 @@
+[pylon]
+include = "shared/pool-large.toml"
+timeout_ms = 48
+queue_depth = 45

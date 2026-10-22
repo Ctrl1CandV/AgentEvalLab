@@ -1,0 +1,5 @@
+[vesper]
+include = "shared/retry-safe.toml"
+upstream = "pylon"
+timeout_ms = 22
+queue_depth = 17

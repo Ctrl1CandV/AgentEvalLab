@@ -1,0 +1,4 @@
+[profile-core]
+include = "shared/limits-burst.toml"
+tier = 1
+queue_depth = 132

@@ -1,0 +1,3 @@
+[ember]
+timeout_ms = 35
+pool_size = 29

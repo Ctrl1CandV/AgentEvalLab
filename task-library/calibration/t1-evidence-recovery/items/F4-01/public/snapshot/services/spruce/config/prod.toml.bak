@@ -1,0 +1,5 @@
+[spruce]
+include = "shared/pool-small.toml"
+tier = 3
+upstream = "nectar"
+pool_size = 27

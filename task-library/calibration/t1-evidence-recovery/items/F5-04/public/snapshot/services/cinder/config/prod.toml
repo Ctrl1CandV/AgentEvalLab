@@ -1,0 +1,5 @@
+[cinder]
+include = "shared/pool-large.toml"
+tier = 3
+upstream = "tundra"
+pool_size = 41

@@ -1,0 +1,4 @@
+[limits-burst]
+tier = 1
+pool_size = 94
+queue_depth = 132

@@ -1,0 +1,5 @@
+[kestrel]
+tier = 3
+upstream = "pylon"
+timeout_ms = 26
+max_retries = 43

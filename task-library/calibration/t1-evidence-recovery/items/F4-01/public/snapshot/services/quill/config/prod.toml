@@ -1,0 +1,5 @@
+[quill]
+tier = 3
+upstream = "rowan"
+pool_size = 37
+queue_depth = 10

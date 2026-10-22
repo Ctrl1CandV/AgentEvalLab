@@ -1,0 +1,7 @@
+[beacon]
+tier = 2
+upstream = "lumen"
+timeout_ms = 16
+max_retries = 11
+pool_size = 10
+queue_depth = 29

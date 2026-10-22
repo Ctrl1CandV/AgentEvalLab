@@ -1,0 +1,7 @@
+[orchid]
+include = "shared/limits-standard.toml"
+tier = 2
+upstream = "mesa"
+timeout_ms = 7
+pool_size = 18
+queue_depth = 35

@@ -1,0 +1,7 @@
+[beacon]
+tier = 2
+upstream = "spruce"
+timeout_ms = 24
+max_retries = 18
+pool_size = 17
+queue_depth = 22

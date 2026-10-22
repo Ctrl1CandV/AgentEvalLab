@@ -1,0 +1,5 @@
+[vesper]
+tier = 1
+upstream = "harbor"
+timeout_ms = 47
+queue_depth = 40

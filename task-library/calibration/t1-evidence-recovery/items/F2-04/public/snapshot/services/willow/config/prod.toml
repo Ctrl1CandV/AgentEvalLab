@@ -1,0 +1,6 @@
+[willow]
+include = "shared/pool-large.toml"
+tier = 2
+max_retries = 32
+pool_size = 18
+queue_depth = 20

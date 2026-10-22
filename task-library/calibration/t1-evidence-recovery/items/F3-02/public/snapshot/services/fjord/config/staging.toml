@@ -1,0 +1,5 @@
+[fjord]
+tier = 1
+upstream = "juniper"
+timeout_ms = 23
+max_retries = 41

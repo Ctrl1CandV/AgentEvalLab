@@ -1,0 +1,5 @@
+[tundra]
+include = "shared/pool-small.toml"
+tier = 1
+upstream = "garnet"
+timeout_ms = 26

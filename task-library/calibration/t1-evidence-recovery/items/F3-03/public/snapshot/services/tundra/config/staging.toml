@@ -1,0 +1,5 @@
+[tundra]
+tier = 2
+upstream = "willow"
+timeout_ms = 31
+pool_size = 50

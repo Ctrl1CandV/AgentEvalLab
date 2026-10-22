@@ -1,0 +1,4 @@
+[ember]
+tier = 2
+upstream = "spruce"
+queue_depth = 30

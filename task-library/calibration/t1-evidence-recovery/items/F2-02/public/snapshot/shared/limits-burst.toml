@@ -1,0 +1,5 @@
+[limits-burst]
+include = "shared/retry-safe.toml"
+upstream = "kestrel"
+timeout_ms = 43
+pool_size = 49

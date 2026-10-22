@@ -1,0 +1,4 @@
+[nectar]
+tier = 1
+upstream = "orchid"
+max_retries = 15

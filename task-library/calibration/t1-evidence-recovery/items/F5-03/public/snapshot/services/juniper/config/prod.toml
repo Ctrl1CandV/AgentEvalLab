@@ -1,0 +1,4 @@
+[juniper]
+tier = 2
+timeout_ms = 7
+pool_size = 50

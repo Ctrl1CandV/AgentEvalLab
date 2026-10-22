@@ -1,0 +1,6 @@
+[lumen]
+include = "shared/retry-safe.toml"
+tier = 1
+upstream = "iris"
+timeout_ms = 38
+max_retries = 57

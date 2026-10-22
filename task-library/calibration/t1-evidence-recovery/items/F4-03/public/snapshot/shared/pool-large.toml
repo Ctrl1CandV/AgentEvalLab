@@ -1,0 +1,3 @@
+[pool-large]
+timeout_ms = 94
+max_retries = 95

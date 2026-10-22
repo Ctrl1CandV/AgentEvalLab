@@ -1,0 +1,5 @@
+[willow]
+tier = 2
+upstream = "orchid"
+timeout_ms = 49
+pool_size = 25

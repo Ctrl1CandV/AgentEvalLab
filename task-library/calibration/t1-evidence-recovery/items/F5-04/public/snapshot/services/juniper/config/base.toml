@@ -1,0 +1,7 @@
+[juniper]
+tier = 1
+upstream = "delta"
+timeout_ms = 8
+max_retries = 36
+pool_size = 10
+queue_depth = 12

@@ -1,0 +1,7 @@
+[mesa]
+tier = 3
+upstream = "lumen"
+timeout_ms = 4
+max_retries = 27
+pool_size = 10
+queue_depth = 10

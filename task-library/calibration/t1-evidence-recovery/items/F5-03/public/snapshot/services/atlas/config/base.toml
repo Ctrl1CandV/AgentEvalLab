@@ -1,0 +1,7 @@
+[atlas]
+tier = 3
+upstream = "rowan"
+timeout_ms = 33
+max_retries = 29
+pool_size = 7
+queue_depth = 31

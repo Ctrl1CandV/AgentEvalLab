@@ -1,0 +1,6 @@
+[tundra]
+include = "shared/limits-floor.toml"
+tier = 2
+upstream = "fjord"
+timeout_ms = 46
+queue_depth = 49

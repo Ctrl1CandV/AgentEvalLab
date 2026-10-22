@@ -1,0 +1,5 @@
+[lumen]
+tier = 2
+upstream = "fjord"
+timeout_ms = 43
+queue_depth = 20

@@ -1,0 +1,4 @@
+[mesa]
+tier = 1
+pool_size = 25
+queue_depth = 23

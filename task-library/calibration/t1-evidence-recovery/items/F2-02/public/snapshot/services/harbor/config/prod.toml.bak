@@ -1,0 +1,5 @@
+[harbor]
+include = "shared/limits-floor.toml"
+tier = 2
+upstream = "willow"
+max_retries = 46

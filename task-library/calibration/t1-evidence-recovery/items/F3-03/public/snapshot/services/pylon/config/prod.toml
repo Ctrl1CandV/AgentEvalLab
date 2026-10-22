@@ -1,0 +1,5 @@
+[pylon]
+include = "shared/limits-standard.toml"
+tier = 3
+timeout_ms = 18
+max_retries = 11

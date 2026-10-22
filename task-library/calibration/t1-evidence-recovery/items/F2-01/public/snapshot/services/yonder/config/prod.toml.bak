@@ -1,0 +1,4 @@
+[yonder]
+tier = 1
+upstream = "quill"
+max_retries = 52

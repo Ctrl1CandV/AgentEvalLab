@@ -1,0 +1,7 @@
+[vesper]
+tier = 3
+upstream = "garnet"
+timeout_ms = 9
+max_retries = 26
+pool_size = 33
+queue_depth = 15

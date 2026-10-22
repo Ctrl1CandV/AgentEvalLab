@@ -1,0 +1,5 @@
+[delta]
+include = "shared/retry-safe.toml"
+tier = 1
+upstream = "nectar"
+pool_size = 34

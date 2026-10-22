@@ -1,0 +1,7 @@
+[juniper]
+tier = 3
+upstream = "kestrel"
+timeout_ms = 25
+max_retries = 35
+pool_size = 15
+queue_depth = 28

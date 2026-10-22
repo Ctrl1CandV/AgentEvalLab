@@ -1,0 +1,5 @@
+[garnet]
+include = "shared/limits-floor.toml"
+tier = 3
+timeout_ms = 10
+queue_depth = 33

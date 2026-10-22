@@ -1,0 +1,5 @@
+[juniper]
+include = "shared/limits-burst.toml"
+timeout_ms = 22
+pool_size = 40
+queue_depth = 46

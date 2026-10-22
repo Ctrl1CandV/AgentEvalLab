@@ -1,0 +1,7 @@
+[harbor]
+tier = 2
+upstream = "juniper"
+timeout_ms = 25
+max_retries = 30
+pool_size = 16
+queue_depth = 38

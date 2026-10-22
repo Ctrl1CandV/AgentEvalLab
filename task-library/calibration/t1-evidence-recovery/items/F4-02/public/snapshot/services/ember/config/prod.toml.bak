@@ -1,0 +1,5 @@
+[ember]
+include = "shared/pool-small.toml"
+tier = 3
+upstream = "tundra"
+pool_size = 57

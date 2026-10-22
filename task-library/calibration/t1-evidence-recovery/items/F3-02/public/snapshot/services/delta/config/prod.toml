@@ -1,0 +1,6 @@
+[delta]
+include = "shared/limits-standard.toml"
+tier = 3
+upstream = "vesper"
+timeout_ms = 18
+queue_depth = 28

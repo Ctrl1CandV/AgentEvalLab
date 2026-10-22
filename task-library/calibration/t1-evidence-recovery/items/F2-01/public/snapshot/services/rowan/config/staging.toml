@@ -1,0 +1,5 @@
+[rowan]
+tier = 2
+upstream = "lumen"
+pool_size = 36
+queue_depth = 38

@@ -1,0 +1,5 @@
+[quill]
+tier = 3
+upstream = "nectar"
+timeout_ms = 54
+queue_depth = 33

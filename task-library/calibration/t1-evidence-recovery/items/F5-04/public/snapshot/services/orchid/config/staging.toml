@@ -1,0 +1,6 @@
+[orchid]
+include = "shared/limits-floor.toml"
+tier = 1
+upstream = "harbor"
+max_retries = 30
+queue_depth = 42

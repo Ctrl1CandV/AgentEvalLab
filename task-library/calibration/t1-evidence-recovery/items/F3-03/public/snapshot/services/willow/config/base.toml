@@ -1,0 +1,7 @@
+[willow]
+tier = 1
+upstream = "rowan"
+timeout_ms = 3
+max_retries = 13
+pool_size = 4
+queue_depth = 25

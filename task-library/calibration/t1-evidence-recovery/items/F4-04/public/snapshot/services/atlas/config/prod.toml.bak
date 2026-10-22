@@ -1,0 +1,4 @@
+[atlas]
+tier = 3
+upstream = "tundra"
+max_retries = 53

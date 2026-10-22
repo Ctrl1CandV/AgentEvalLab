@@ -1,0 +1,5 @@
+[cinder]
+tier = 2
+upstream = "yonder"
+pool_size = 27
+queue_depth = 23

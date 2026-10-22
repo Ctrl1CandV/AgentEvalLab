@@ -1,0 +1,4 @@
+[vesper]
+tier = 3
+upstream = "nectar"
+max_retries = 16

@@ -1,0 +1,5 @@
+[spruce]
+tier = 3
+upstream = "rowan"
+timeout_ms = 22
+queue_depth = 40

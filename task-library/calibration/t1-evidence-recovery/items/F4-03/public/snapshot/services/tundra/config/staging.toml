@@ -1,0 +1,6 @@
+[tundra]
+include = "shared/retry-safe.toml"
+tier = 1
+upstream = "orchid"
+max_retries = 42
+queue_depth = 36

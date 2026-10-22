@@ -1,0 +1,5 @@
+[tundra]
+tier = 1
+upstream = "lumen"
+timeout_ms = 62
+pool_size = 20

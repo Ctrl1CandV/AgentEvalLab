@@ -1,0 +1,5 @@
+[juniper]
+include = "shared/retry-fast.toml"
+tier = 1
+upstream = "quill"
+max_retries = 10

@@ -1,0 +1,5 @@
+[orchid]
+include = "shared/retry-fast.toml"
+tier = 2
+upstream = "beacon"
+timeout_ms = 17

@@ -1,0 +1,5 @@
+[willow]
+include = "shared/limits-standard.toml"
+tier = 2
+upstream = "delta"
+pool_size = 9

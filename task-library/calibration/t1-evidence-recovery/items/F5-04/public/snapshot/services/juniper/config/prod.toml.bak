@@ -1,0 +1,5 @@
+[juniper]
+include = "shared/retry-fast.toml"
+tier = 3
+upstream = "harbor"
+pool_size = 40

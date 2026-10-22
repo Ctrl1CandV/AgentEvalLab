@@ -1,0 +1,7 @@
+[cinder]
+include = "shared/profile-edge.toml"
+tier = 2
+upstream = "tundra"
+timeout_ms = 22
+max_retries = 23
+queue_depth = 31

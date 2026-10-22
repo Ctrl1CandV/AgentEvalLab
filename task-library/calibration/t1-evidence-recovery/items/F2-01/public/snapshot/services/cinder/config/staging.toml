@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/pool-small.toml"
+tier = 3
+upstream = "lumen"
+pool_size = 33
+queue_depth = 39

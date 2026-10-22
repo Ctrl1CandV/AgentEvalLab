@@ -1,0 +1,7 @@
+[pylon]
+tier = 2
+upstream = "yonder"
+timeout_ms = 39
+max_retries = 34
+pool_size = 21
+queue_depth = 32

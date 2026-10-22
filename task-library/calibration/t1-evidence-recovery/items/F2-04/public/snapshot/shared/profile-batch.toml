@@ -1,0 +1,4 @@
+[profile-batch]
+include = "shared/limits-burst.toml"
+tier = 3
+timeout_ms = 95

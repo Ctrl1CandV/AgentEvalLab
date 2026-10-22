@@ -1,0 +1,6 @@
+[iris]
+include = "shared/pool-small.toml"
+tier = 2
+upstream = "tundra"
+timeout_ms = 33
+max_retries = 45

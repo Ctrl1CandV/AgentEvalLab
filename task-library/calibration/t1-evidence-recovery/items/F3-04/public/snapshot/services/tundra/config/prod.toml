@@ -1,0 +1,5 @@
+[tundra]
+tier = 1
+upstream = "cinder"
+max_retries = 29
+pool_size = 10

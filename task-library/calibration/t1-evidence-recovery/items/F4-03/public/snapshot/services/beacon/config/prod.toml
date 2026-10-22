@@ -1,0 +1,5 @@
+[beacon]
+include = "shared/limits-floor.toml"
+upstream = "vesper"
+max_retries = 39
+queue_depth = 43

@@ -1,0 +1,3 @@
+[routes-north]
+upstream = "spruce"
+timeout_ms = 59

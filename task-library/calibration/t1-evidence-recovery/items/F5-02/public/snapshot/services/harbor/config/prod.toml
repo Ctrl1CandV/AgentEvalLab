@@ -1,0 +1,4 @@
+[harbor]
+include = "shared/routes-south.toml"
+tier = 1
+pool_size = 46

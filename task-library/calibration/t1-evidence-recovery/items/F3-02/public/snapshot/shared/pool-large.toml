@@ -1,0 +1,3 @@
+[pool-large]
+include = "shared/retry-fast.toml"
+max_retries = 58

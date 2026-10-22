@@ -1,0 +1,7 @@
+[kestrel]
+tier = 3
+upstream = "quill"
+timeout_ms = 35
+max_retries = 29
+pool_size = 9
+queue_depth = 31

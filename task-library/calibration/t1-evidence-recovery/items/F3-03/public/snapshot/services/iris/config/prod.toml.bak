@@ -1,0 +1,4 @@
+[iris]
+tier = 2
+upstream = "rowan"
+queue_depth = 9

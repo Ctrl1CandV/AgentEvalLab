@@ -1,0 +1,7 @@
+[tundra]
+tier = 3
+upstream = "ember"
+timeout_ms = 4
+max_retries = 7
+pool_size = 38
+queue_depth = 35

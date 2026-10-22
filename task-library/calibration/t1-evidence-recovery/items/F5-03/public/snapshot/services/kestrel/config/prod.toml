@@ -1,0 +1,8 @@
+[kestrel]
+include = "shared/pool-large.toml"
+tier = 3
+upstream = "yonder"
+timeout_ms = 45
+max_retries = 39
+pool_size = 16
+queue_depth = 39

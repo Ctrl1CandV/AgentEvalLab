@@ -1,0 +1,5 @@
+[ember]
+include = "shared/limits-burst.toml"
+tier = 1
+upstream = "lumen"
+max_retries = 34

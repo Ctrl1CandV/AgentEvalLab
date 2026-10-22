@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/limits-standard.toml"
+tier = 1
+upstream = "atlas"
+max_retries = 22
+queue_depth = 35

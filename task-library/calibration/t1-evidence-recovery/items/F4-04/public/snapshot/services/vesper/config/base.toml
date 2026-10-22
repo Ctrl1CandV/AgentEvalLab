@@ -1,0 +1,7 @@
+[vesper]
+tier = 3
+upstream = "atlas"
+timeout_ms = 14
+max_retries = 7
+pool_size = 7
+queue_depth = 12

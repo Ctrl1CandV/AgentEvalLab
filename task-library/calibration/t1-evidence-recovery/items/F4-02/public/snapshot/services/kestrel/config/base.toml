@@ -1,0 +1,7 @@
+[kestrel]
+tier = 2
+upstream = "cinder"
+timeout_ms = 18
+max_retries = 15
+pool_size = 13
+queue_depth = 13

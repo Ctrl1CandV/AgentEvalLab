@@ -1,0 +1,5 @@
+[rowan]
+tier = 3
+upstream = "willow"
+max_retries = 29
+queue_depth = 39

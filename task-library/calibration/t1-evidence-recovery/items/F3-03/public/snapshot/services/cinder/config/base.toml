@@ -1,0 +1,7 @@
+[cinder]
+tier = 2
+upstream = "lumen"
+timeout_ms = 22
+max_retries = 13
+pool_size = 13
+queue_depth = 28

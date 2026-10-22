@@ -1,0 +1,5 @@
+[pylon]
+include = "shared/pool-small.toml"
+tier = 1
+upstream = "yonder"
+queue_depth = 58

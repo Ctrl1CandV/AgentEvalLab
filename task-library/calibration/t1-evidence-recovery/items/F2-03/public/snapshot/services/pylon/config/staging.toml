@@ -1,0 +1,5 @@
+[pylon]
+tier = 1
+upstream = "beacon"
+pool_size = 36
+queue_depth = 43

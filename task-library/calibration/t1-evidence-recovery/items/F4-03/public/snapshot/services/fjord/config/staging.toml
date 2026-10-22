@@ -1,0 +1,5 @@
+[fjord]
+tier = 1
+upstream = "delta"
+max_retries = 40
+queue_depth = 45

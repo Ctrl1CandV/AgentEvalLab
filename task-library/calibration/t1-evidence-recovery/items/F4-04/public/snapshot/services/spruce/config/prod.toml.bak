@@ -1,0 +1,4 @@
+[spruce]
+tier = 3
+upstream = "yonder"
+pool_size = 11

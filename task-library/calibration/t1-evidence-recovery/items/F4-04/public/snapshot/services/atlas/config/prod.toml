@@ -1,0 +1,5 @@
+[atlas]
+include = "shared/limits-floor.toml"
+upstream = "rowan"
+max_retries = 9
+pool_size = 36

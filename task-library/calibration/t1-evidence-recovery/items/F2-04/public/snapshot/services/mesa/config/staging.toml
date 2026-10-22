@@ -1,0 +1,5 @@
+[mesa]
+tier = 2
+upstream = "kestrel"
+max_retries = 29
+queue_depth = 45

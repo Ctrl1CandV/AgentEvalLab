@@ -1,0 +1,7 @@
+[willow]
+tier = 3
+upstream = "mesa"
+timeout_ms = 28
+max_retries = 24
+pool_size = 38
+queue_depth = 21

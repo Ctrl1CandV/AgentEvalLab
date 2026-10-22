@@ -1,0 +1,5 @@
+[beacon]
+tier = 3
+upstream = "fjord"
+max_retries = 64
+pool_size = 24

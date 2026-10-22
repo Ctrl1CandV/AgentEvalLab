@@ -1,0 +1,7 @@
+[willow]
+tier = 1
+upstream = "juniper"
+timeout_ms = 7
+max_retries = 36
+pool_size = 23
+queue_depth = 4

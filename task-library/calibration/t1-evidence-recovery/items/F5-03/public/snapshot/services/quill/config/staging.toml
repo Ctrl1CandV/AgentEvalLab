@@ -1,0 +1,5 @@
+[quill]
+tier = 2
+upstream = "tundra"
+max_retries = 27
+pool_size = 58

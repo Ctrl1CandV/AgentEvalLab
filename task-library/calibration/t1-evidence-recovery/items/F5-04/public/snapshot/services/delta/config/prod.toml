@@ -1,0 +1,4 @@
+[delta]
+upstream = "quill"
+timeout_ms = 30
+queue_depth = 39

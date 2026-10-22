@@ -1,0 +1,5 @@
+[lumen]
+tier = 1
+upstream = "beacon"
+timeout_ms = 38
+queue_depth = 36

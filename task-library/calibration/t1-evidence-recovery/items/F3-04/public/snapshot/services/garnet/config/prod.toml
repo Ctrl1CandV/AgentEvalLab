@@ -1,0 +1,4 @@
+[garnet]
+include = "shared/retry-safe.toml"
+upstream = "fjord"
+pool_size = 17

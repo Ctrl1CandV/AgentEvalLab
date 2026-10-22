@@ -1,0 +1,7 @@
+[rowan]
+tier = 3
+upstream = "yonder"
+timeout_ms = 15
+max_retries = 39
+pool_size = 6
+queue_depth = 2

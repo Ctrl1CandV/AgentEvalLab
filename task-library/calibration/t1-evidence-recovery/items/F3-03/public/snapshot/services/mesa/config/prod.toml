@@ -1,0 +1,4 @@
+[mesa]
+tier = 3
+max_retries = 17
+queue_depth = 31

@@ -1,0 +1,5 @@
+[umbra]
+include = "shared/pool-large.toml"
+tier = 1
+max_retries = 35
+queue_depth = 33

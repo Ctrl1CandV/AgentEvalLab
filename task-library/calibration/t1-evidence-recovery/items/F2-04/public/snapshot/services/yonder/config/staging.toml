@@ -1,0 +1,6 @@
+[yonder]
+include = "shared/retry-fast.toml"
+tier = 3
+upstream = "vesper"
+timeout_ms = 55
+max_retries = 30

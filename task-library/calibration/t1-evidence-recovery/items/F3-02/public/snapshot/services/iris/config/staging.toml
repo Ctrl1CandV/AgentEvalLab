@@ -1,0 +1,6 @@
+[iris]
+include = "shared/retry-fast.toml"
+tier = 1
+upstream = "yonder"
+pool_size = 41
+queue_depth = 30

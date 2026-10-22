@@ -1,0 +1,5 @@
+[lumen]
+tier = 2
+upstream = "nectar"
+timeout_ms = 63
+max_retries = 44

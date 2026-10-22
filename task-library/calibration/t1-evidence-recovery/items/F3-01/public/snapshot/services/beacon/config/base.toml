@@ -1,0 +1,7 @@
+[beacon]
+tier = 2
+upstream = "ember"
+timeout_ms = 13
+max_retries = 28
+pool_size = 20
+queue_depth = 7

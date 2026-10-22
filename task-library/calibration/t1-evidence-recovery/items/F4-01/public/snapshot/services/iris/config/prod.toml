@@ -1,0 +1,3 @@
+[iris]
+pool_size = 25
+queue_depth = 31

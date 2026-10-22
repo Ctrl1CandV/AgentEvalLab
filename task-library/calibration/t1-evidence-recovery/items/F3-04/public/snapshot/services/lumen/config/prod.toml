@@ -1,0 +1,4 @@
+[lumen]
+upstream = "vesper"
+timeout_ms = 28
+pool_size = 43

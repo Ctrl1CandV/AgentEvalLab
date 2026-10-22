@@ -1,0 +1,6 @@
+[limits-floor]
+include = "shared/pool-large.toml"
+tier = 3
+upstream = "yonder"
+timeout_ms = 42
+max_retries = 95

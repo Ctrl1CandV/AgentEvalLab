@@ -1,0 +1,7 @@
+[spruce]
+tier = 2
+upstream = "garnet"
+timeout_ms = 38
+max_retries = 32
+pool_size = 22
+queue_depth = 17

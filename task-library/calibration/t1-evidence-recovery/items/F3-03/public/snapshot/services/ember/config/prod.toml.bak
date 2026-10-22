@@ -1,0 +1,4 @@
+[ember]
+tier = 3
+upstream = "juniper"
+queue_depth = 35

@@ -1,0 +1,4 @@
+[mesa]
+tier = 3
+upstream = "atlas"
+timeout_ms = 17

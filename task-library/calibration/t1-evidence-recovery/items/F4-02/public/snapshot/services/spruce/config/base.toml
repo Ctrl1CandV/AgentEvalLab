@@ -1,0 +1,7 @@
+[spruce]
+tier = 2
+upstream = "mesa"
+timeout_ms = 19
+max_retries = 32
+pool_size = 31
+queue_depth = 2

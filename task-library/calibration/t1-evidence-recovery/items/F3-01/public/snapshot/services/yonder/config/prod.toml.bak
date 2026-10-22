@@ -1,0 +1,4 @@
+[yonder]
+tier = 1
+upstream = "nectar"
+timeout_ms = 8

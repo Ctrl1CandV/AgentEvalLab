@@ -1,0 +1,4 @@
+[beacon]
+include = "shared/retry-safe.toml"
+upstream = "iris"
+timeout_ms = 40

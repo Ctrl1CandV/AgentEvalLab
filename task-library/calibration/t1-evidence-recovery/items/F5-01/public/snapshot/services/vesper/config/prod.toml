@@ -1,0 +1,4 @@
+[vesper]
+upstream = "ember"
+max_retries = 33
+pool_size = 22

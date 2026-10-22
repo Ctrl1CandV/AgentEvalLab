@@ -1,0 +1,4 @@
+[yonder]
+tier = 3
+upstream = "harbor"
+max_retries = 52

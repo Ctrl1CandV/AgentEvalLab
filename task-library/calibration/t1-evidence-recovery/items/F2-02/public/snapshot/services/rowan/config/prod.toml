@@ -1,0 +1,5 @@
+[rowan]
+include = "shared/pool-large.toml"
+tier = 3
+pool_size = 23
+queue_depth = 36

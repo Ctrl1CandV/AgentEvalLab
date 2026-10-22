@@ -1,0 +1,4 @@
+[limits-burst]
+include = "shared/retry-safe.toml"
+upstream = "garnet"
+pool_size = 130

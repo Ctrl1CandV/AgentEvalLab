@@ -1,0 +1,4 @@
+[limits-burst]
+include = "shared/limits-standard.toml"
+upstream = "nectar"
+timeout_ms = 136

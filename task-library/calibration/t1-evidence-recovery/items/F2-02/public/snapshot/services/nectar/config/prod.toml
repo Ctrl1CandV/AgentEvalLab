@@ -1,0 +1,5 @@
+[nectar]
+include = "shared/retry-fast.toml"
+tier = 2
+upstream = "vesper"
+max_retries = 29

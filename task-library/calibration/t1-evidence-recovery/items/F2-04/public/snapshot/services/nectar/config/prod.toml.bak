@@ -1,0 +1,4 @@
+[nectar]
+tier = 2
+upstream = "cinder"
+queue_depth = 26

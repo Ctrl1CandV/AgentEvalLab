@@ -1,0 +1,4 @@
+[nectar]
+tier = 3
+upstream = "atlas"
+pool_size = 43

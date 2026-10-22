@@ -1,0 +1,7 @@
+[atlas]
+tier = 3
+upstream = "tundra"
+timeout_ms = 44
+max_retries = 46
+pool_size = 57
+queue_depth = 32

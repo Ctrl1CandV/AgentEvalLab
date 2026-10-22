@@ -1,0 +1,7 @@
+[atlas]
+tier = 3
+upstream = "lumen"
+timeout_ms = 10
+max_retries = 5
+pool_size = 33
+queue_depth = 25

@@ -1,0 +1,5 @@
+[orchid]
+include = "shared/limits-floor.toml"
+tier = 2
+upstream = "mesa"
+queue_depth = 29

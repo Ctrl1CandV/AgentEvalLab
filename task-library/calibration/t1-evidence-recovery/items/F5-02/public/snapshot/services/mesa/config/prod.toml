@@ -1,0 +1,5 @@
+[mesa]
+timeout_ms = 28
+max_retries = 32
+pool_size = 34
+queue_depth = 11

@@ -1,0 +1,5 @@
+[orchid]
+tier = 2
+upstream = "quill"
+max_retries = 39
+queue_depth = 49

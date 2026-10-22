@@ -1,0 +1,4 @@
+[garnet]
+tier = 2
+upstream = "spruce"
+pool_size = 42

@@ -1,0 +1,5 @@
+[yonder]
+tier = 2
+upstream = "vesper"
+timeout_ms = 18
+max_retries = 41

@@ -13,12 +13,13 @@ import shutil
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import cases  # noqa: E402
 import snapshot  # noqa: E402
 
 TASK_ID = "t1-evidence-recovery"
-TASK_VERSION = "0.5.0"
-GRADER_VERSION = "1.6.1"
-TRUSTED = ["calibration.md", "rubric.md", "private/chains.py", "private/generate.py", "private/grader.py", "private/keys.json", "private/snapshot.py"]
+TASK_VERSION = "0.6.0"
+GRADER_VERSION = "1.7.0"
+TRUSTED = ["calibration.md", "rubric.md", "private/cases.py", "private/chains.py", "private/generate.py", "private/grader.py", "private/keys.json", "private/snapshot.py"]
 
 
 def digest(path):
@@ -53,13 +54,19 @@ def main():
             write_text(prompt_path, snapshot.prompt(item_id, project, questions))
             files.insert(0, {"path": prompt_path, "sha256": digest(prompt_path)})
             keys[item_id] = {"project": project, "questions": questions}
-            items.append({"id": item_id, "level": level, "files": files,
-                          "activeRequirementIds": [f"REQ-Q{number}" for number in range(1, len(questions) + 1)] + ["REQ-FORMAT"]})
+            active = []
+            for number, question in enumerate(questions, 1):
+                # An adjudication question has one check per answer field; every other question has one check.
+                active += [f"REQ-Q{number}-{field.upper()}" for field in question["proofs"]] if question["kind"] == "case" else [f"REQ-Q{number}"]
+            items.append({"id": item_id, "level": level, "files": files, "activeRequirementIds": active + ["REQ-FORMAT"]})
             size = sum(len(snap.text(path)) for path in snap.files)
             print(f"{item_id}: {len(snap.files)} files, {size} characters, questions {[question['kind'] for question in questions]}", file=sys.stderr)
     write_text("private/keys.json", json.dumps(keys, indent=1, ensure_ascii=False) + "\n")
     requirements = [{"id": f"REQ-Q{number}", "critical": True, "introducedAt": f"{TASK_ID} {TASK_VERSION}", "checkIds": [f"q{number}"]}
                     for number in range(1, snapshot.MAX_QUESTIONS + 1)]
+    all_fields = cases.fields(cases.LEVELS["F5"])
+    requirements += [{"id": f"REQ-Q{number}-{field.upper()}", "critical": True, "introducedAt": f"{TASK_ID} 0.6.0", "checkIds": [f"q{number}-{field}"]}
+                     for number in range(1, cases.QUESTIONS + 1) for field in all_fields]
     requirements.append({"id": "REQ-FORMAT", "critical": False, "introducedAt": f"{TASK_ID} {TASK_VERSION}", "checkIds": ["answer-format"]})
     manifest = {
         "schemaVersion": 1, "id": TASK_ID, "version": TASK_VERSION, "familyId": "t1-evidence-recovery", "capability": "tool", "usage": "development",

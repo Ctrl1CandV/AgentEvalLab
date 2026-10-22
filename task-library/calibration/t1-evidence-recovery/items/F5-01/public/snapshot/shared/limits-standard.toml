@@ -1,0 +1,4 @@
+[limits-standard]
+include = "shared/limits-floor.toml"
+tier = 2
+queue_depth = 119

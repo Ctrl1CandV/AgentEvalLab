@@ -1,0 +1,4 @@
+[garnet]
+upstream = "tundra"
+pool_size = 19
+queue_depth = 46

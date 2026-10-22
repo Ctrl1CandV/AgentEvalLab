@@ -1,0 +1,7 @@
+[pylon]
+tier = 3
+upstream = "kestrel"
+timeout_ms = 12
+max_retries = 3
+pool_size = 16
+queue_depth = 15

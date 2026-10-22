@@ -1,0 +1,5 @@
+[rowan]
+tier = 2
+upstream = "juniper"
+pool_size = 45
+queue_depth = 13

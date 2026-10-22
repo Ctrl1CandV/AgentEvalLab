@@ -1,0 +1,7 @@
+[nectar]
+tier = 2
+upstream = "ember"
+timeout_ms = 27
+max_retries = 35
+pool_size = 11
+queue_depth = 23

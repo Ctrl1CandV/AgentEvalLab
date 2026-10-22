@@ -1,0 +1,3 @@
+[vesper]
+include = "shared/pool-small.toml"
+max_retries = 23

@@ -1,0 +1,7 @@
+[umbra]
+tier = 3
+upstream = "cinder"
+timeout_ms = 16
+max_retries = 5
+pool_size = 20
+queue_depth = 23

@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/pool-large.toml"
+tier = 3
+upstream = "rowan"
+max_retries = 10
+pool_size = 11

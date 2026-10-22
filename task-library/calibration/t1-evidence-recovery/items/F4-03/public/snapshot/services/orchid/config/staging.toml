@@ -1,0 +1,6 @@
+[orchid]
+include = "shared/retry-safe.toml"
+tier = 1
+upstream = "fjord"
+max_retries = 34
+pool_size = 34

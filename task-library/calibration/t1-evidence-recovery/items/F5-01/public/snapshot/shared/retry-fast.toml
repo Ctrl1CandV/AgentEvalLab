@@ -1,0 +1,3 @@
+[retry-fast]
+include = "shared/limits-burst.toml"
+queue_depth = 135

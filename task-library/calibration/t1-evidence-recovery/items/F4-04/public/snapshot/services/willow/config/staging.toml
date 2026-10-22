@@ -1,0 +1,5 @@
+[willow]
+tier = 3
+upstream = "ember"
+timeout_ms = 33
+queue_depth = 41

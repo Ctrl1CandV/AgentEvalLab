@@ -1,0 +1,4 @@
+[profile-edge]
+include = "shared/limits-burst.toml"
+tier = 3
+max_retries = 64

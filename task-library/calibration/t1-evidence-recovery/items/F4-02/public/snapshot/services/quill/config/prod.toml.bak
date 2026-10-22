@@ -1,0 +1,4 @@
+[quill]
+tier = 1
+upstream = "garnet"
+max_retries = 52

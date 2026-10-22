@@ -1,0 +1,5 @@
+[umbra]
+tier = 1
+upstream = "juniper"
+max_retries = 46
+queue_depth = 37

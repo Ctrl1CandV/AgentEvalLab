@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/pool-large.toml"
+tier = 2
+upstream = "garnet"
+timeout_ms = 19
+max_retries = 38

@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/limits-burst.toml"
+tier = 3
+upstream = "tundra"
+timeout_ms = 38
+max_retries = 46

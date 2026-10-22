@@ -1,0 +1,5 @@
+[rowan]
+tier = 2
+upstream = "iris"
+timeout_ms = 64
+queue_depth = 44

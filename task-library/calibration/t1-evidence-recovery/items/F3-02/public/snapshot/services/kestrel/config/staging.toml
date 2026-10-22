@@ -1,0 +1,5 @@
+[kestrel]
+tier = 2
+upstream = "orchid"
+timeout_ms = 48
+pool_size = 26

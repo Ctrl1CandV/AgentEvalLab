@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/retry-safe.toml"
+tier = 2
+upstream = "mesa"
+max_retries = 18
+queue_depth = 44

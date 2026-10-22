@@ -1,0 +1,5 @@
+[beacon]
+include = "shared/limits-burst.toml"
+tier = 2
+upstream = "nectar"
+max_retries = 2

@@ -1,0 +1,4 @@
+[quill]
+tier = 3
+upstream = "spruce"
+pool_size = 4

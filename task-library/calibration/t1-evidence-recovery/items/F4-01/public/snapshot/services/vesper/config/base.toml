@@ -1,0 +1,7 @@
+[vesper]
+tier = 3
+upstream = "spruce"
+timeout_ms = 18
+max_retries = 4
+pool_size = 11
+queue_depth = 27

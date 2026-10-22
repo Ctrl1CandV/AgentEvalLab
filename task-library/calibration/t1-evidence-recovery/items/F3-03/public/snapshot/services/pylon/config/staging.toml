@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/limits-standard.toml"
+tier = 2
+upstream = "orchid"
+timeout_ms = 32
+pool_size = 42

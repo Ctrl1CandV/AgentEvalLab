@@ -1,0 +1,4 @@
+[retry-fast]
+upstream = "pylon"
+max_retries = 122
+pool_size = 124

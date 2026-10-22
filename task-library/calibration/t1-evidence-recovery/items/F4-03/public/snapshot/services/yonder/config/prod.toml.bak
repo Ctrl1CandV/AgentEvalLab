@@ -1,0 +1,4 @@
+[yonder]
+tier = 3
+upstream = "harbor"
+queue_depth = 49

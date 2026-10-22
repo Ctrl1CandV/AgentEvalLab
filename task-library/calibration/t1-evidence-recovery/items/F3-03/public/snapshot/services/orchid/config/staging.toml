@@ -1,0 +1,6 @@
+[orchid]
+include = "shared/pool-large.toml"
+tier = 2
+upstream = "vesper"
+timeout_ms = 28
+pool_size = 31

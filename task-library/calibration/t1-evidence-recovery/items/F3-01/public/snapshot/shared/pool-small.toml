@@ -1,0 +1,5 @@
+[pool-small]
+tier = 1
+upstream = "ember"
+max_retries = 112
+queue_depth = 108

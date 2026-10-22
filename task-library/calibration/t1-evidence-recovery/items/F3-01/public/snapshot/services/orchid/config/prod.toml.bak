@@ -1,0 +1,4 @@
+[orchid]
+tier = 3
+upstream = "cinder"
+pool_size = 36

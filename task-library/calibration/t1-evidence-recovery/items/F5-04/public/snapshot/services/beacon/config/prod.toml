@@ -1,0 +1,3 @@
+[beacon]
+tier = 3
+max_retries = 16

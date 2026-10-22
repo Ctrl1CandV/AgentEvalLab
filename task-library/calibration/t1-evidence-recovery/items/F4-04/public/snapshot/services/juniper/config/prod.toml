@@ -1,0 +1,6 @@
+[juniper]
+tier = 2
+upstream = "mesa"
+max_retries = 35
+pool_size = 32
+queue_depth = 41

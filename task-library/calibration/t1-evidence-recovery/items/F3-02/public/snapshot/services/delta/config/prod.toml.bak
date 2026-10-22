@@ -1,0 +1,4 @@
+[delta]
+tier = 2
+upstream = "vesper"
+pool_size = 47

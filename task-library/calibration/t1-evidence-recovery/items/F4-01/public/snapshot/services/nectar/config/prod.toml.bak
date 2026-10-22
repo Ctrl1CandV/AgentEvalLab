@@ -1,0 +1,4 @@
+[nectar]
+tier = 3
+upstream = "delta"
+timeout_ms = 29

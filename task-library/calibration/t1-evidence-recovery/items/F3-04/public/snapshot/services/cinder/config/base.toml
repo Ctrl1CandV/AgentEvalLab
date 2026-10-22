@@ -1,0 +1,7 @@
+[cinder]
+tier = 1
+upstream = "pylon"
+timeout_ms = 18
+max_retries = 6
+pool_size = 24
+queue_depth = 2

@@ -1,0 +1,5 @@
+[willow]
+include = "shared/pool-small.toml"
+tier = 3
+upstream = "beacon"
+timeout_ms = 34

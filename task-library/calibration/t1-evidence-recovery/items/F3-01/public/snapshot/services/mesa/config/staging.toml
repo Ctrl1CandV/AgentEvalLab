@@ -1,0 +1,5 @@
+[mesa]
+tier = 1
+upstream = "cinder"
+timeout_ms = 35
+pool_size = 25

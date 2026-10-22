@@ -1,0 +1,5 @@
+[tundra]
+tier = 3
+upstream = "ember"
+timeout_ms = 52
+queue_depth = 33

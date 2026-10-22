@@ -1,0 +1,5 @@
+[spruce]
+tier = 2
+upstream = "fjord"
+pool_size = 46
+queue_depth = 21

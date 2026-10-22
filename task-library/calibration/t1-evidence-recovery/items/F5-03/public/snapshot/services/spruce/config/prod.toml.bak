@@ -1,0 +1,5 @@
+[spruce]
+include = "shared/pool-small.toml"
+tier = 1
+upstream = "harbor"
+max_retries = 32

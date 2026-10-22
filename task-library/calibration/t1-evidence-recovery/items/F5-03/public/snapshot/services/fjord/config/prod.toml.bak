@@ -1,0 +1,5 @@
+[fjord]
+include = "shared/limits-burst.toml"
+tier = 2
+upstream = "yonder"
+pool_size = 23

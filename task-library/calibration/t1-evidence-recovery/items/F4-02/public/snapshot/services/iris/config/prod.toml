@@ -1,0 +1,4 @@
+[iris]
+include = "shared/limits-burst.toml"
+pool_size = 14
+queue_depth = 31

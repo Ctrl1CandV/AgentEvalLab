@@ -1,0 +1,4 @@
+[rowan]
+tier = 2
+upstream = "lumen"
+queue_depth = 27

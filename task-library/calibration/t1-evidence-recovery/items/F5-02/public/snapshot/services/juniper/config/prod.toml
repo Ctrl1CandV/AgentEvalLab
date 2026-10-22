@@ -1,0 +1,4 @@
+[juniper]
+tier = 2
+upstream = "quill"
+queue_depth = 46

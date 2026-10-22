@@ -1,0 +1,4 @@
+[pool-large]
+include = "shared/limits-floor.toml"
+upstream = "umbra"
+max_retries = 87

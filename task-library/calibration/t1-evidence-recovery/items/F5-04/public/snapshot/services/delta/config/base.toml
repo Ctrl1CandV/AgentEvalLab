@@ -1,0 +1,7 @@
+[delta]
+tier = 1
+upstream = "kestrel"
+timeout_ms = 25
+max_retries = 11
+pool_size = 14
+queue_depth = 33

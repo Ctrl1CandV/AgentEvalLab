@@ -1,0 +1,5 @@
+[orchid]
+include = "shared/pool-small.toml"
+tier = 3
+upstream = "umbra"
+pool_size = 53

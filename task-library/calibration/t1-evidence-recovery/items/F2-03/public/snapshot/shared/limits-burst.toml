@@ -1,0 +1,5 @@
+[limits-burst]
+tier = 2
+upstream = "spruce"
+max_retries = 118
+pool_size = 96

@@ -1,0 +1,7 @@
+[atlas]
+tier = 3
+upstream = "willow"
+timeout_ms = 17
+max_retries = 23
+pool_size = 29
+queue_depth = 12

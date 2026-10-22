@@ -1,0 +1,5 @@
+[beacon]
+tier = 1
+timeout_ms = 38
+max_retries = 31
+pool_size = 34

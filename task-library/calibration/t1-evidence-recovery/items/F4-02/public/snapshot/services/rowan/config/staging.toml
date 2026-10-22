@@ -1,0 +1,5 @@
+[rowan]
+tier = 3
+upstream = "fjord"
+max_retries = 43
+queue_depth = 54

@@ -1,0 +1,6 @@
+[nectar]
+include = "shared/profile-batch.toml"
+timeout_ms = 25
+max_retries = 20
+pool_size = 16
+queue_depth = 49

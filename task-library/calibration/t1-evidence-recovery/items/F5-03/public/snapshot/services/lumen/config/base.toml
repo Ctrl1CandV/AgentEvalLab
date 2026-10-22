@@ -1,0 +1,7 @@
+[lumen]
+tier = 2
+upstream = "rowan"
+timeout_ms = 25
+max_retries = 21
+pool_size = 27
+queue_depth = 18

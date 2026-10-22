@@ -1,0 +1,4 @@
+[limits-burst]
+upstream = "pylon"
+timeout_ms = 64
+pool_size = 67

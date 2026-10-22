@@ -1,0 +1,5 @@
+[delta]
+tier = 1
+upstream = "lumen"
+pool_size = 19
+queue_depth = 25

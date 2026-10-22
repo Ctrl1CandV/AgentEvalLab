@@ -1,0 +1,6 @@
+[quill]
+include = "shared/limits-standard.toml"
+tier = 2
+timeout_ms = 42
+max_retries = 5
+pool_size = 46

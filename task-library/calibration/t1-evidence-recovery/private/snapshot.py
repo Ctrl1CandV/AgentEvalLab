@@ -8,6 +8,7 @@ import hashlib
 import json
 import random
 
+import cases
 import chains
 
 SERVICES = ["atlas", "beacon", "cinder", "delta", "ember", "fjord", "garnet", "harbor", "iris", "juniper", "kestrel", "lumen"]
@@ -52,6 +53,9 @@ LEVELS = {
 # Task 0.5.0 adds a depth ladder (chains.py): every question follows a chain of 2, 4, 6 or 8 references, each step with a
 # plausible distractor, in snapshots of small files, so depth rather than volume decides.
 LEVELS.update({level: {"chain": depth, "questions": ["chain"] * chains.QUESTIONS} for level, depth in chains.LEVELS.items()})
+# Task 0.6.0 adds an adjudication ladder (cases.py): every question combines several facts, each found by its own chain
+# and some depending on others, into a procedure, an approver and a deadline.
+LEVELS.update({level: {"case": True, "questions": ["case"] * cases.QUESTIONS} for level in cases.LEVELS})
 MAX_QUESTIONS = max(len(level["questions"]) for level in LEVELS.values())
 
 
@@ -83,6 +87,12 @@ def build(level_id, rng):
     level = LEVELS[level_id]
     if level.get("chain"):
         return build_chain(level_id, rng)
+    if level.get("case"):
+        files, project, questions = cases.build(level_id, rng)
+        snap = Snapshot()
+        for path in sorted(files):
+            snap.add(path, files[path])
+        return snap, project, questions
     project = f"{rng.choice(['north', 'quiet', 'amber', 'lucid', 'brisk'])}-{rng.choice(['relay', 'ledger', 'harvest', 'signal', 'canopy'])}"
     snap = Snapshot()
     services = rng.sample(SERVICES, level["services"])

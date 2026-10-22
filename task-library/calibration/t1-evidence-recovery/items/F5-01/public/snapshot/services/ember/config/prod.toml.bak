@@ -1,0 +1,5 @@
+[ember]
+include = "shared/limits-standard.toml"
+tier = 3
+upstream = "beacon"
+max_retries = 55

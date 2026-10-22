@@ -1,0 +1,4 @@
+[quill]
+tier = 2
+upstream = "delta"
+queue_depth = 35

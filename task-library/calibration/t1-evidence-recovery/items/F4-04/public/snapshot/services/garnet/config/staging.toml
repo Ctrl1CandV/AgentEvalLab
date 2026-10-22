@@ -1,0 +1,6 @@
+[garnet]
+include = "shared/limits-standard.toml"
+tier = 1
+upstream = "kestrel"
+pool_size = 32
+queue_depth = 42

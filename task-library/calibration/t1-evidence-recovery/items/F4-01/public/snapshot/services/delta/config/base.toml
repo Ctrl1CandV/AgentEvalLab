@@ -1,0 +1,7 @@
+[delta]
+tier = 3
+upstream = "willow"
+timeout_ms = 29
+max_retries = 34
+pool_size = 7
+queue_depth = 8

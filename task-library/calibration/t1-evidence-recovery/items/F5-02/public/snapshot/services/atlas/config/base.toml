@@ -1,0 +1,7 @@
+[atlas]
+tier = 2
+upstream = "cinder"
+timeout_ms = 30
+max_retries = 31
+pool_size = 20
+queue_depth = 21

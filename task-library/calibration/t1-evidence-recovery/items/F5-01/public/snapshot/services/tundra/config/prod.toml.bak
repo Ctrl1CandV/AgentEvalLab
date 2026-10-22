@@ -1,0 +1,5 @@
+[tundra]
+include = "shared/pool-large.toml"
+tier = 2
+upstream = "vesper"
+pool_size = 33

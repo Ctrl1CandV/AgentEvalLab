@@ -1,0 +1,5 @@
+[cinder]
+include = "shared/limits-floor.toml"
+tier = 2
+upstream = "fjord"
+max_retries = 7

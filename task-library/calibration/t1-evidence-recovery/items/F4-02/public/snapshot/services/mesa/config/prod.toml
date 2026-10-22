@@ -1,0 +1,5 @@
+[mesa]
+include = "shared/pool-large.toml"
+upstream = "ember"
+max_retries = 15
+pool_size = 43

@@ -1,0 +1,5 @@
+[spruce]
+include = "shared/retry-fast.toml"
+tier = 1
+upstream = "quill"
+queue_depth = 19

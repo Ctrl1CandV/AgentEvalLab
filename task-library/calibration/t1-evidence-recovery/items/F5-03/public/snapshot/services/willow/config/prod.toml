@@ -1,0 +1,6 @@
+[willow]
+include = "shared/limits-burst.toml"
+tier = 1
+upstream = "pylon"
+pool_size = 58
+queue_depth = 30

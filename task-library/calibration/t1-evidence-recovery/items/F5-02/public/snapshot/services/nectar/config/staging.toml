@@ -1,0 +1,5 @@
+[nectar]
+tier = 1
+upstream = "harbor"
+max_retries = 61
+pool_size = 37

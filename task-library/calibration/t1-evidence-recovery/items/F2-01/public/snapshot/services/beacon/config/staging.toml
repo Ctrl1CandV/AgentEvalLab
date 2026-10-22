@@ -1,0 +1,5 @@
+[beacon]
+tier = 3
+upstream = "kestrel"
+pool_size = 40
+queue_depth = 37

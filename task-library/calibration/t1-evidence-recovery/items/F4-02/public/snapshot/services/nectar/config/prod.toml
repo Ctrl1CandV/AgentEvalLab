@@ -1,0 +1,5 @@
+[nectar]
+tier = 1
+upstream = "fjord"
+timeout_ms = 28
+pool_size = 43

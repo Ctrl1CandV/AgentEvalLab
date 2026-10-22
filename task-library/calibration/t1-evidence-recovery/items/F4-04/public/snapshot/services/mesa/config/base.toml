@@ -1,0 +1,7 @@
+[mesa]
+tier = 3
+upstream = "willow"
+timeout_ms = 3
+max_retries = 7
+pool_size = 11
+queue_depth = 20

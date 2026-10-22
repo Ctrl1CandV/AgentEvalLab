@@ -1,0 +1,6 @@
+[mesa]
+include = "shared/limits-standard.toml"
+tier = 3
+upstream = "juniper"
+timeout_ms = 15
+pool_size = 28

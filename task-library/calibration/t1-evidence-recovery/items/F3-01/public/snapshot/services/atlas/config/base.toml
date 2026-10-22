@@ -1,0 +1,7 @@
+[atlas]
+tier = 3
+upstream = "fjord"
+timeout_ms = 37
+max_retries = 33
+pool_size = 39
+queue_depth = 30

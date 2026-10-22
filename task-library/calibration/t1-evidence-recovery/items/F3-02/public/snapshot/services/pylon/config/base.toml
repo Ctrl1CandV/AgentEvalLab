@@ -1,0 +1,7 @@
+[pylon]
+tier = 3
+upstream = "delta"
+timeout_ms = 33
+max_retries = 26
+pool_size = 30
+queue_depth = 12

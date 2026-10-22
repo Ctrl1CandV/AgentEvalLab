@@ -1,0 +1,4 @@
+[atlas]
+tier = 3
+upstream = "pylon"
+max_retries = 12

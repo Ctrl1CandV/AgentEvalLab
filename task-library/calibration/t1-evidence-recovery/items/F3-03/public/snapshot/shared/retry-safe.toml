@@ -1,0 +1,3 @@
+[retry-safe]
+include = "shared/pool-large.toml"
+pool_size = 111

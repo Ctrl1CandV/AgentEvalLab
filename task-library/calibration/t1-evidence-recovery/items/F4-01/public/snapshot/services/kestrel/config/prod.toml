@@ -1,0 +1,7 @@
+[kestrel]
+include = "shared/pool-small.toml"
+tier = 3
+upstream = "garnet"
+max_retries = 18
+pool_size = 24
+queue_depth = 31

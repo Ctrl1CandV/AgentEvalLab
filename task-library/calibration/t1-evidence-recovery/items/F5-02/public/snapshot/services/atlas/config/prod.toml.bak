@@ -1,0 +1,4 @@
+[atlas]
+tier = 3
+upstream = "beacon"
+max_retries = 58

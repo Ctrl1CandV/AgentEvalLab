@@ -1,0 +1,5 @@
+[limits-burst]
+include = "shared/retry-fast.toml"
+tier = 3
+upstream = "vesper"
+queue_depth = 138

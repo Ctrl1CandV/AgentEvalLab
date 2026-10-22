@@ -1,0 +1,6 @@
+[atlas]
+include = "shared/pool-large.toml"
+tier = 3
+upstream = "mesa"
+timeout_ms = 40
+queue_depth = 15

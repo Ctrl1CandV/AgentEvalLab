@@ -1,0 +1,5 @@
+[yonder]
+tier = 1
+upstream = "harbor"
+timeout_ms = 29
+queue_depth = 23

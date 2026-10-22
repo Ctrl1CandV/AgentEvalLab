@@ -1,0 +1,4 @@
+[pool-large]
+tier = 3
+upstream = "yonder"
+queue_depth = 70

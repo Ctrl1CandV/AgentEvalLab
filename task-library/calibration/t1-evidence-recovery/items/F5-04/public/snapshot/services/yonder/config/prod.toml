@@ -1,0 +1,4 @@
+[yonder]
+tier = 3
+upstream = "orchid"
+timeout_ms = 12

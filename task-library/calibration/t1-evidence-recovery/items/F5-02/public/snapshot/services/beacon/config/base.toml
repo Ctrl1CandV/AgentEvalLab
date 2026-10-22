@@ -1,0 +1,7 @@
+[beacon]
+tier = 3
+upstream = "tundra"
+timeout_ms = 10
+max_retries = 8
+pool_size = 26
+queue_depth = 8

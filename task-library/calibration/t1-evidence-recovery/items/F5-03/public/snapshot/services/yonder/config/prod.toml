@@ -1,0 +1,5 @@
+[yonder]
+include = "shared/profile-edge.toml"
+max_retries = 19
+pool_size = 44
+queue_depth = 21

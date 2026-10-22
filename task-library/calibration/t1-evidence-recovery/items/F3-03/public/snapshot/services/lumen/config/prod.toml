@@ -1,0 +1,3 @@
+[lumen]
+include = "shared/pool-small.toml"
+queue_depth = 13

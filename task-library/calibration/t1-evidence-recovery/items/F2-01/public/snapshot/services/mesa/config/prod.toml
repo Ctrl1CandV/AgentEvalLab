@@ -1,0 +1,3 @@
+[mesa]
+tier = 1
+timeout_ms = 40

@@ -2,6 +2,7 @@
 """Grades T1 answers: each question needs the right answer and, where it cites evidence, the supporting lines must
 appear in the recorded tool trace (a full search match, or read pages covering the line)."""
 import argparse
+import datetime as dt
 import json
 import os
 import re
@@ -13,8 +14,8 @@ sys.path.insert(0, HERE)
 import snapshot  # noqa: E402
 
 TASK_ID = "t1-evidence-recovery"
-TASK_VERSION = "0.5.0"
-GRADER_VERSION = "1.6.1"
+TASK_VERSION = "0.6.0"
+GRADER_VERSION = "1.7.0"
 KEYS_PATH = os.path.join(HERE, "keys.json")
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)
 
@@ -269,11 +270,65 @@ def grade_question(question, given, observations, trace):
     raise ValueError("unknown question kind")
 
 
+def boolean(value):
+    if isinstance(value, bool):
+        return value
+    text = value.strip().lower() if isinstance(value, str) else None
+    return True if text in ("true", "yes") else False if text in ("false", "no") else None
+
+
+DEADLINE = re.compile(r"(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})(?::00(?:\.0+)?)?\s*(Z|UTC|[+-]\d{2}:?\d{2})?", re.I)
+
+
+def deadline(value):
+    """A time as YYYY-MM-DDTHH:MMZ, from the instructed form or a close variant (seconds of :00, a space, "UTC", an
+    offset, which is applied, or no zone, read as UTC as the handbook asks)."""
+    match = DEADLINE.fullmatch(value.strip()) if isinstance(value, str) else None
+    if match is None:
+        return None
+    year, month, day, hour, minute, zone = match.groups()
+    try:
+        moment = dt.datetime(int(year), int(month), int(day), int(hour), int(minute))
+    except ValueError:
+        return None
+    if zone and zone.upper() not in ("Z", "UTC"):
+        digits = zone[1:].replace(":", "")
+        offset = dt.timedelta(hours=int(digits[:2]), minutes=int(digits[2:]))
+        moment = moment - offset if zone[0] == "+" else moment + offset
+    return moment.strftime("%Y-%m-%dT%H:%MZ")
+
+
+def grade_case(question, given, observations):
+    """One result per answer field: the value matches, and the trace shows the question's gate files (the incident, its
+    review, the change and the handbook) and the files the field cannot be found without."""
+    expected = question["answer"]
+    given = given if isinstance(given, dict) else {}
+    gate = observations.saw_all(question["gate"])
+    results = {}
+    for field, proofs in question["proofs"].items():
+        value = given.get(field)
+        if field in ("tier", "reach"):
+            correct = integer(value) == expected[field]
+        elif field == "freeze":
+            correct = boolean(value) is expected[field]
+        elif field in ("deadline", "cf_deadline"):
+            correct = deadline(value) == expected[field]
+        else:
+            correct = isinstance(value, str) and value.strip().lower() == expected[field].lower()
+        results[field] = correct and gate and observations.saw_all(proofs)
+    return results
+
+
 def grade(item_id, mode, answer, trace, keys):
     questions = keys[item_id]["questions"]
     observations = Observations(item_id, trace)
     answer = answer if mode != "unparsed" and isinstance(answer, dict) else {}
-    results = {f"q{index}": grade_question(question, answer.get(f"Q{index}"), observations, trace) for index, question in enumerate(questions, 1)}
+    results = {}
+    for index, question in enumerate(questions, 1):
+        if question["kind"] == "case":
+            results.update({f"q{index}-{field}": passed for field, passed in grade_case(question, answer.get(f"Q{index}"), observations).items()})
+        else:
+            results[f"q{index}"] = grade_question(question, answer.get(f"Q{index}"), observations, trace)
     results["answer-format"] = mode == "strict"
     return results
 
@@ -328,11 +383,17 @@ def read_events(paths, item_id):
     return events
 
 
+def proofs_of(question):
+    if question["kind"] == "case":
+        return question["gate"] + [proof for proofs in question["proofs"].values() for proof in proofs]
+    return question["evidence"]
+
+
 def oracle_trace(item_id, keys):
     """A trace that reads every evidence file completely in 400-character pages, as the doc-evidence tool returns them."""
     events, call = [], 0
     root = os.path.join(PACKAGE, "items", item_id, "public", "snapshot")
-    paths = sorted({proof["path"] for question in keys[item_id]["questions"] for proof in question["evidence"]})
+    paths = sorted({proof["path"] for question in keys[item_id]["questions"] for proof in proofs_of(question)})
     for path in paths:
         with open(os.path.join(root, *path.split("/")), encoding="utf-8") as handle:
             text = handle.read()
@@ -425,6 +486,198 @@ def solve_chain(item_id, text, mistake=None):
     return int(value), path
 
 
+def solve_case(item_id, question):
+    """An independent solver for adjudication questions, reading only the snapshot text, as a model must: it undoes
+    later changes on the current files (the generator replays them forwards), and reads the handbook's rules, the
+    calendar, the owners, the rotations and the swaps as written. Returns the answer fields."""
+    root = os.path.join(PACKAGE, "items", item_id, "public", "snapshot")
+
+    def lines(path):
+        with open(os.path.join(root, *path.split("/")), encoding="utf-8") as handle:
+            return handle.read().splitlines()
+
+    def named(path):
+        return dict(line.split(": ", 1) for line in lines(path) if ": " in line and not line.startswith(("-", "#")))
+
+    def utc(text):
+        return dt.datetime.strptime(text.replace(" UTC", "").strip(), "%Y-%m-%d %H:%M")
+
+    berlin = dt.timedelta(hours=2)
+    handbook = "\n".join(lines("docs/RESPONSE.md"))
+    freeze_rule, reach_rule = "P4: tier 1, and a freeze applies." in handbook, "P3: reach 3 or more." in handbook
+    incident = re.search(r"Incident (INC-\d+)", question["text"]).group(1)
+    report = lines(f"incidents/{incident}.md")
+    start = utc(named(f"incidents/{incident}.md")["Start"])
+    cause_clock = re.search(r"Root cause: the (\d\d:\d\d) change", "\n".join(report)).group(1)
+    review = next(re.search(r"(REV-\d+)", line).group(1) for line in report if line.startswith(f"- {cause_clock} "))
+    change = re.search(r"approved as (CHG-\d+)", "\n".join(lines(f"reviews/{review}.md"))).group(1)
+    service = named(f"changes/{change}.md")["Service"]
+    records = {}
+    for name in os.listdir(os.path.join(root, "changes")):
+        if name.endswith(".md"):
+            record = named(f"changes/{name}")
+            record["time"] = utc(record["Time"])
+            records[name[:-3]] = record
+
+    def settings(path):
+        values, include = {}, None
+        for line in lines(path)[1:]:
+            key, value = line.split(" = ", 1)
+            if key == "include":
+                include = value.strip('"')
+            else:
+                values[key] = value.strip('"')
+        return values, include
+
+    def prod_at(name, moment, skip):
+        values, include = settings(f"services/{name}/config/prod.toml")
+        for record in sorted((record for record in records.values() if record["Service"] == name and record["time"] > moment),
+                             key=lambda record: record["time"], reverse=True):
+            if record["From"] == "(not set)":
+                values.pop(record["Key"], None)
+            else:
+                values[record["Key"]] = record["From"]
+        if skip is not None:
+            missing = records[skip]
+            same = [record for record in records.values() if record["Service"] == name and record["Key"] == missing["Key"] and record["time"] <= moment]
+            if missing["Service"] == name and missing["time"] <= moment and max(same, key=lambda record: record["time"]) is missing:
+                if missing["From"] == "(not set)":
+                    values.pop(missing["Key"], None)
+                else:
+                    values[missing["Key"]] = missing["From"]
+        return values, include
+
+    def effective(name, key, moment, skip):
+        values, include = prod_at(name, moment, skip)
+        if key in values:
+            return values[key]
+        while include:
+            shared, following = settings(include)
+            if key in shared:
+                return shared[key]
+            include = following
+        return settings(f"services/{name}/config/base.toml")[0][key]
+
+    amendments = [named(f"changes/amendments/{name}") for name in sorted(os.listdir(os.path.join(root, "changes", "amendments")))]
+    in_force = [amendment for amendment in amendments if amendment["Amends"] == change and amendment["Status"] == "approved" and utc(amendment["Effective"]) <= start]
+    kind = max(in_force, key=lambda amendment: utc(amendment["Effective"]))["Class"] if in_force else named(f"changes/{change}.md")["Class"]
+    freezes = []
+    if freeze_rule:
+        for line in lines("calendar/freezes.md"):
+            match = re.fullmatch(r"- (\S+ \S+) to (\S+ \S+)\.(?: Exempt: (.*)\.)?", line)
+            if match:
+                freezes.append((utc(match.group(1)) - berlin, utc(match.group(2)) - berlin, (match.group(3) or "").split(", ")))
+    services = sorted(os.listdir(os.path.join(root, "services")))
+    owners = named(f"services/{service}/OWNERS")
+    team = owners["Team"]
+    if "Since" in owners or any(line.startswith("Since ") for line in lines(f"services/{service}/OWNERS")):
+        since = next(line for line in lines(f"services/{service}/OWNERS") if line.startswith("Since "))
+        match = re.fullmatch(r"Since (\S+ \S+) UTC; before then the service belonged to team (\w+)\.", since)
+        if start < utc(match.group(1)):
+            team = match.group(2)
+    swaps = []
+    if os.path.exists(os.path.join(root, "oncall", "swaps.md")):
+        for line in lines("oncall/swaps.md"):
+            match = re.fullmatch(r"- (\S+ \S+) to (\S+ \S+): (\w+) covers the (?:(\w+) (primary|secondary)|incident commander) for (\w+)\.", line)
+            if match:
+                swaps.append((utc(match.group(1)), utc(match.group(2)), match.group(4), match.group(5) or "commander", match.group(3), match.group(6)))
+
+    def table(path):
+        return [[cell.strip() for cell in line.strip("|").split("|")] for line in lines(path) if re.match(r"\| \d{4}-", line)]
+
+    def on_call(rotation_team, role):
+        if rotation_team is None:
+            rows = table("oncall/platform.md")
+            day = max(row for row in rows if utc(row[0] + " 08:00") - berlin <= start)
+            person = day[1]
+        else:
+            rows = table(f"oncall/{rotation_team}.md")
+            week = max(row for row in rows if utc(row[0] + " 09:00") - berlin <= start)
+            person = week[1] if role == "primary" else week[2]
+        for begin, end, swap_team, swap_role, by, covered in swaps:
+            if swap_team == rotation_team and swap_role == role and covered == person and begin <= start < end:
+                person = by
+        return person
+
+    def decide(skip):
+        tier = int(effective(service, "tier", start, skip))
+        freeze = freeze_rule and tier != 3 and any(begin <= start < end and service not in exempt for begin, end, exempt in freezes)
+        reach = sum(1 for other in services if other != service and effective(other, "upstream", start, skip) == service) if reach_rule else None
+        if kind == "rollback":
+            procedure = "R0"
+        elif freeze_rule and tier == 1 and freeze:
+            procedure = "P4"
+        elif reach_rule and reach >= 3:
+            procedure = "P3"
+        elif kind == "emergency" or tier == 1:
+            procedure = "P2"
+        else:
+            procedure = "P1"
+        hours = {"R0": 1, "P1": 12, "P2": 6, "P3": 4, "P4": 2}[procedure]
+        window = dt.timedelta(hours=hours) / (2 if freeze and procedure in ("P1", "P2") else 1)
+        return {"tier": tier, "freeze": freeze, "class": kind, "reach": reach, "procedure": procedure, "deadline": (start + window).strftime("%Y-%m-%dT%H:%MZ")}
+
+    result = decide(None)
+    procedure = result["procedure"]
+    result["approver"] = on_call(None, "commander") if procedure in ("P3", "P4") else on_call(team, "secondary" if procedure == "P2" else "primary")
+    what_if = re.search(r"if (CHG-\d+) had never been made", question["text"])
+    if what_if:
+        changed = decide(what_if.group(1))
+        result["cf_procedure"], result["cf_deadline"] = changed["procedure"], changed["deadline"]
+    return {field: result[field] for field in question["proofs"]}
+
+
+def wrong_value(field, value):
+    """A plausible wrong answer for a field."""
+    if field in ("tier",):
+        return 1 if value != 1 else 2
+    if field == "reach":
+        return value + 1
+    if field == "freeze":
+        return not value
+    if field == "class":
+        return "emergency" if value != "emergency" else "standard"
+    if field in ("procedure", "cf_procedure"):
+        return "P1" if value != "P1" else "P2"
+    if field == "approver":
+        return "Nobody"
+    return (dt.datetime.strptime(value, "%Y-%m-%dT%H:%MZ") + dt.timedelta(hours=1)).strftime("%Y-%m-%dT%H:%MZ")
+
+
+def calibrate_case(item_id, index, question, keys, rows, mistakes):
+    """Self-checks of one adjudication question; `mistakes` counts, per level, how often each misreading changes the
+    conclusion (recorded by the generator)."""
+    reference = {f"Q{number}": dict(other["answer"]) for number, other in enumerate(keys[item_id]["questions"], 1)}
+    solved = solve_case(item_id, question)
+    rows.append((f"{item_id}-q{index}-independent-solution-matches-key", solved == question["answer"]))
+    paths = sorted({proof["path"] for proof in proofs_of(question)})
+    full = read_events(paths, item_id)
+    results = grade(item_id, "strict", reference, full, keys)
+    rows.append((f"{item_id}-q{index}-reference-with-its-files-passes", all(results[f"q{index}-{field}"] for field in question["proofs"])))
+    nothing = grade(item_id, "strict", reference, [], keys)
+    rows.append((f"{item_id}-q{index}-no-trace-fails-every-field", not any(nothing[f"q{index}-{field}"] for field in question["proofs"])))
+    gate = {proof["path"] for proof in question["gate"]}
+    for missing in paths:
+        partial = grade(item_id, "strict", reference, read_events([path for path in paths if path != missing], item_id), keys)
+        needs = [field for field, proofs in question["proofs"].items() if missing in gate or any(proof["path"] == missing for proof in proofs)]
+        rows.append((f"{item_id}-q{index}-without-{missing}-fails-its-fields",
+                     all(partial[f"q{index}-{field}"] is (field not in needs) for field in question["proofs"])))
+    for field in question["proofs"]:
+        wrong = dict(reference)
+        wrong[f"Q{index}"] = dict(reference[f"Q{index}"], **{field: wrong_value(field, question["answer"][field])})
+        rows.append((f"{item_id}-q{index}-wrong-{field}-fails", grade(item_id, "strict", wrong, full, keys)[f"q{index}-{field}"] is False))
+    due = dt.datetime.strptime(question["answer"]["deadline"], "%Y-%m-%dT%H:%MZ")
+    for variant in (due.strftime("%Y-%m-%d %H:%M UTC"), due.strftime("%Y-%m-%dT%H:%M:00Z"), (due + dt.timedelta(hours=2)).strftime("%Y-%m-%dT%H:%M+02:00")):
+        varied = dict(reference)
+        varied[f"Q{index}"] = dict(reference[f"Q{index}"], deadline=variant, freeze=str(question["answer"].get("freeze")).lower())
+        rows.append((f"{item_id}-q{index}-deadline-{variant}-accepted", grade(item_id, "strict", varied, full, keys)[f"q{index}-deadline"]))
+    level = item_id.split("-")[0]
+    counts = mistakes.setdefault(level, {"questions": 0})
+    counts["questions"] += 1
+    for mistake in question["effectiveMistakes"]:
+        counts[mistake] = counts.get(mistake, 0) + 1
+
+
 CHAIN_MISTAKES = ("decoy-review", "superseded-change", "later-change", "staging-upstream", "retired-upstream", "base-upstream", "no-includes")
 
 
@@ -434,15 +687,19 @@ def self_calibrate():
         keys = json.load(handle)
     rows = []
     distractor_counts = {}
+    case_mistakes = {}
     for item_id, key in sorted(keys.items()):
         reference = {f"Q{index}": dict(question["answer"]) for index, question in enumerate(key["questions"], 1)}
         trace = oracle_trace(item_id, keys)
         rows.append((f"{item_id}-reference-with-reads-passes", all(grade(item_id, "strict", reference, trace, keys).values())))
         no_evidence = grade(item_id, "strict", reference, [], keys)
         rows.append((f"{item_id}-no-trace-fails-evidence-questions", all(no_evidence[f"q{index}"] is (not question["evidence"])
-                                                                         for index, question in enumerate(key["questions"], 1))))
+                                                                         for index, question in enumerate(key["questions"], 1) if question["kind"] != "case")))
         observations = Observations(item_id, [])
         for index, question in enumerate(key["questions"], 1):
+            if question["kind"] == "case":
+                calibrate_case(item_id, index, question, keys, rows, case_mistakes)
+                continue
             proofs = [proof for proof in question["evidence"] if not proof.get("whole")]
             if question["kind"] in ("lockfile", "log_lookup", "log_count", "lock_count", "log_total", "log_stat") and proofs:
                 matches = [{"path": proof["path"], "line": proof["line"] + 1, "text": observations.lines(proof["path"])[proof["line"]]} for proof in proofs]
@@ -523,6 +780,10 @@ def self_calibrate():
             rows.append((f"{item_id}-prompt-lists-every-question", handle.read().count("- Q") == len(key["questions"])))
     for depth in sorted({depth for depth, _ in distractor_counts}):
         print(f"chain depth {depth}: {distractor_counts[(depth, 'misled')]} of {distractor_counts[(depth, 'steps')]} distractors change the answer")
+    for level, counts in sorted(case_mistakes.items()):
+        total = counts.pop("questions")
+        print(f"adjudication {level}: of {total} questions, each misreading changes the conclusion of " +
+              ", ".join(f"{name} {count}" for name, count in sorted(counts.items(), key=lambda pair: -pair[1])))
     failed = [name for name, ok in rows if not ok]
     for name in failed:
         print(f"{name}: FAIL")

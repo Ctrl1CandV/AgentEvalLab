@@ -1,0 +1,5 @@
+[nectar]
+tier = 3
+timeout_ms = 40
+pool_size = 20
+queue_depth = 30

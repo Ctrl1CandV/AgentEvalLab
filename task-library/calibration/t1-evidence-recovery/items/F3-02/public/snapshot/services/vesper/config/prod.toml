@@ -1,0 +1,6 @@
+[vesper]
+tier = 3
+upstream = "mesa"
+timeout_ms = 23
+max_retries = 31
+queue_depth = 27

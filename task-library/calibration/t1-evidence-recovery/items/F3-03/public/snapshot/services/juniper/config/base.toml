@@ -1,0 +1,7 @@
+[juniper]
+tier = 2
+upstream = "tundra"
+timeout_ms = 35
+max_retries = 26
+pool_size = 22
+queue_depth = 18

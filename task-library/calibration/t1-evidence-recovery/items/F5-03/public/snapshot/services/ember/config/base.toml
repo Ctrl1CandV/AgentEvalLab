@@ -1,0 +1,7 @@
+[ember]
+tier = 2
+upstream = "mesa"
+timeout_ms = 11
+max_retries = 35
+pool_size = 18
+queue_depth = 9

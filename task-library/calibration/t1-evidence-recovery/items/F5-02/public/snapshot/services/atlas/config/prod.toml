@@ -1,0 +1,4 @@
+[atlas]
+tier = 2
+upstream = "kestrel"
+max_retries = 35

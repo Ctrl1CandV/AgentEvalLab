@@ -1,0 +1,5 @@
+[rowan]
+include = "shared/pool-large.toml"
+upstream = "yonder"
+pool_size = 38
+queue_depth = 14

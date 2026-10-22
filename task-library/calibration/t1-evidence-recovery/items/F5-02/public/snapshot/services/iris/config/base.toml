@@ -1,0 +1,7 @@
+[iris]
+tier = 3
+upstream = "beacon"
+timeout_ms = 6
+max_retries = 17
+pool_size = 39
+queue_depth = 6

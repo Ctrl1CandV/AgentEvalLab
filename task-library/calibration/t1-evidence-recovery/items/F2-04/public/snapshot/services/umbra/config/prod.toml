@@ -1,0 +1,3 @@
+[umbra]
+timeout_ms = 32
+queue_depth = 36

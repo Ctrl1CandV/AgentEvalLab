@@ -1,0 +1,5 @@
+[nectar]
+tier = 2
+upstream = "rowan"
+timeout_ms = 20
+queue_depth = 22

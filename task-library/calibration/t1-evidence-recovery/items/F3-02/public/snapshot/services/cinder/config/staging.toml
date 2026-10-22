@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/pool-large.toml"
+tier = 2
+upstream = "delta"
+timeout_ms = 18
+max_retries = 18

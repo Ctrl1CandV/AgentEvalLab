@@ -1,0 +1,5 @@
+[harbor]
+include = "shared/pool-small.toml"
+upstream = "vesper"
+timeout_ms = 29
+queue_depth = 39

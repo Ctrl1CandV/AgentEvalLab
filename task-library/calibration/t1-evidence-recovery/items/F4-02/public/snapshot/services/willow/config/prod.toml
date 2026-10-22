@@ -1,0 +1,4 @@
+[willow]
+tier = 3
+timeout_ms = 31
+max_retries = 36

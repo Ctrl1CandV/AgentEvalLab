@@ -1,0 +1,7 @@
+[harbor]
+tier = 1
+upstream = "iris"
+timeout_ms = 25
+max_retries = 12
+pool_size = 30
+queue_depth = 26

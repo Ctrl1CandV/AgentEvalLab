@@ -1,0 +1,6 @@
+[ember]
+include = "shared/limits-burst.toml"
+tier = 1
+upstream = "pylon"
+timeout_ms = 51
+pool_size = 50

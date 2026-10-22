@@ -1,0 +1,5 @@
+[umbra]
+tier = 1
+upstream = "harbor"
+timeout_ms = 34
+max_retries = 31

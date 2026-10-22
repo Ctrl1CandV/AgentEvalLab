@@ -1,0 +1,6 @@
+[beacon]
+include = "shared/limits-standard.toml"
+tier = 3
+upstream = "spruce"
+timeout_ms = 18
+max_retries = 9

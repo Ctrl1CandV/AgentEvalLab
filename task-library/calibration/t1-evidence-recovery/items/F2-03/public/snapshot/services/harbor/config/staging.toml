@@ -1,0 +1,6 @@
+[harbor]
+include = "shared/limits-floor.toml"
+tier = 3
+upstream = "fjord"
+timeout_ms = 37
+queue_depth = 61

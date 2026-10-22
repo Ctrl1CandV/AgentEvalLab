@@ -1,0 +1,4 @@
+[limits-burst]
+include = "shared/limits-standard.toml"
+max_retries = 93
+pool_size = 81

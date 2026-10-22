@@ -1,0 +1,5 @@
+[pylon]
+include = "shared/retry-fast.toml"
+tier = 1
+pool_size = 31
+queue_depth = 30

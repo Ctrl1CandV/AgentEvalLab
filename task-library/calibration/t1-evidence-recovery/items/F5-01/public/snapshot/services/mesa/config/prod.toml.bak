@@ -1,0 +1,5 @@
+[mesa]
+include = "shared/limits-floor.toml"
+tier = 3
+upstream = "kestrel"
+queue_depth = 57

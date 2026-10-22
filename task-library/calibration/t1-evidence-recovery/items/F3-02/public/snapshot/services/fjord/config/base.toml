@@ -1,0 +1,7 @@
+[fjord]
+tier = 1
+upstream = "iris"
+timeout_ms = 2
+max_retries = 19
+pool_size = 29
+queue_depth = 14

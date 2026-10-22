@@ -1,0 +1,4 @@
+[spruce]
+timeout_ms = 27
+max_retries = 24
+pool_size = 25

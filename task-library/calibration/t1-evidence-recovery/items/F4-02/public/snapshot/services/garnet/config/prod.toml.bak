@@ -1,0 +1,5 @@
+[garnet]
+include = "shared/limits-standard.toml"
+tier = 2
+upstream = "cinder"
+pool_size = 18

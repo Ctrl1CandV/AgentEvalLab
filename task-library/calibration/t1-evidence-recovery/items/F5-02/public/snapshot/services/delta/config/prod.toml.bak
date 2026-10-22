@@ -1,0 +1,5 @@
+[delta]
+include = "shared/retry-fast.toml"
+tier = 2
+upstream = "umbra"
+timeout_ms = 44

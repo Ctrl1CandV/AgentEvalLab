@@ -1,0 +1,7 @@
+[garnet]
+tier = 1
+upstream = "harbor"
+timeout_ms = 4
+max_retries = 32
+pool_size = 17
+queue_depth = 31

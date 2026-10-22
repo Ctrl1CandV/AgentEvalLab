@@ -1,0 +1,7 @@
+[lumen]
+tier = 3
+upstream = "pylon"
+timeout_ms = 13
+max_retries = 28
+pool_size = 35
+queue_depth = 27

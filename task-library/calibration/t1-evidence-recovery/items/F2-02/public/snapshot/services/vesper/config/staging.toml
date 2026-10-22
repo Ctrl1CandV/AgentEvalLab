@@ -1,0 +1,6 @@
+[vesper]
+include = "shared/pool-small.toml"
+tier = 2
+upstream = "quill"
+max_retries = 42
+queue_depth = 28

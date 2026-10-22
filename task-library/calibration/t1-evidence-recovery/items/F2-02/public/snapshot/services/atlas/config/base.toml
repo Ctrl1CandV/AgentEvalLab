@@ -1,0 +1,7 @@
+[atlas]
+tier = 1
+upstream = "umbra"
+timeout_ms = 19
+max_retries = 14
+pool_size = 29
+queue_depth = 33

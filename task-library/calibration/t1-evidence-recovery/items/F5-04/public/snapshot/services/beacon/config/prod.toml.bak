@@ -1,0 +1,4 @@
+[beacon]
+tier = 3
+upstream = "garnet"
+pool_size = 55

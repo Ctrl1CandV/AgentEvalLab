@@ -1,0 +1,5 @@
+[kestrel]
+tier = 2
+upstream = "harbor"
+timeout_ms = 60
+queue_depth = 42

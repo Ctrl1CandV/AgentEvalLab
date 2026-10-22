@@ -1,0 +1,3 @@
+[retry-safe]
+upstream = "fjord"
+pool_size = 61

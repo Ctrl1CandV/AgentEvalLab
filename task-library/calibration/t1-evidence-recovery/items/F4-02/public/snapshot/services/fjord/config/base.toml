@@ -1,0 +1,7 @@
+[fjord]
+tier = 3
+upstream = "juniper"
+timeout_ms = 13
+max_retries = 5
+pool_size = 35
+queue_depth = 4

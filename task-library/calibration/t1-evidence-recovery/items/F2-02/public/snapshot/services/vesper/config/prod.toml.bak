@@ -1,0 +1,4 @@
+[vesper]
+tier = 2
+upstream = "kestrel"
+pool_size = 8

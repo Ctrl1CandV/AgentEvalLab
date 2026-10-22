@@ -1,0 +1,4 @@
+[vesper]
+include = "shared/limits-standard.toml"
+timeout_ms = 17
+pool_size = 41

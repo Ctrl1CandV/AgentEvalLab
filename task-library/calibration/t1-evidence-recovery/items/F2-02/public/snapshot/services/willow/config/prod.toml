@@ -1,0 +1,4 @@
+[willow]
+tier = 1
+max_retries = 6
+queue_depth = 26

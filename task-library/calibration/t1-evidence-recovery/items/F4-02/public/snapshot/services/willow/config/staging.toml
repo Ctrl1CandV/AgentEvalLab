@@ -1,0 +1,5 @@
+[willow]
+tier = 1
+upstream = "harbor"
+timeout_ms = 46
+pool_size = 50

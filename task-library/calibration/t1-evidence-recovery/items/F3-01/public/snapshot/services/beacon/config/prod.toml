@@ -1,0 +1,7 @@
+[beacon]
+tier = 3
+upstream = "garnet"
+timeout_ms = 19
+max_retries = 35
+pool_size = 25
+queue_depth = 21

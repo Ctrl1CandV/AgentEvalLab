@@ -1,0 +1,7 @@
+[vesper]
+tier = 3
+upstream = "cinder"
+timeout_ms = 28
+max_retries = 24
+pool_size = 17
+queue_depth = 27

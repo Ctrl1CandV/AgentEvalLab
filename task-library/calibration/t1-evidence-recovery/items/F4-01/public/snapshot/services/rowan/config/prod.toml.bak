@@ -1,0 +1,5 @@
+[rowan]
+include = "shared/pool-large.toml"
+tier = 1
+upstream = "iris"
+queue_depth = 52

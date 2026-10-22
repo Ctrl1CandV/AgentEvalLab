@@ -1,0 +1,5 @@
+[beacon]
+include = "shared/retry-fast.toml"
+tier = 2
+upstream = "rowan"
+max_retries = 38

@@ -1,0 +1,4 @@
+[vesper]
+tier = 2
+upstream = "orchid"
+queue_depth = 46

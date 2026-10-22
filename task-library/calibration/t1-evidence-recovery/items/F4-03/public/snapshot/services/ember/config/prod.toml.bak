@@ -1,0 +1,5 @@
+[ember]
+include = "shared/retry-safe.toml"
+tier = 3
+upstream = "harbor"
+max_retries = 6

@@ -1,0 +1,7 @@
+[ember]
+tier = 3
+upstream = "yonder"
+timeout_ms = 39
+max_retries = 23
+pool_size = 37
+queue_depth = 28

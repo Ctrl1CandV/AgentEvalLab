@@ -1,0 +1,5 @@
+[quill]
+tier = 3
+upstream = "vesper"
+timeout_ms = 31
+pool_size = 49

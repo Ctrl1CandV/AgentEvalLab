@@ -1,0 +1,4 @@
+[iris]
+tier = 3
+upstream = "umbra"
+max_retries = 20

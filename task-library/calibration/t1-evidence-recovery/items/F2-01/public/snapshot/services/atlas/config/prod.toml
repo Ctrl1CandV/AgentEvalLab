@@ -1,0 +1,5 @@
+[atlas]
+include = "shared/pool-large.toml"
+tier = 2
+upstream = "rowan"
+queue_depth = 12

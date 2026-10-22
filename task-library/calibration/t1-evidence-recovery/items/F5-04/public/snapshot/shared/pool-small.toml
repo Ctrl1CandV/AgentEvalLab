@@ -1,0 +1,4 @@
+[pool-small]
+upstream = "tundra"
+timeout_ms = 128
+pool_size = 92

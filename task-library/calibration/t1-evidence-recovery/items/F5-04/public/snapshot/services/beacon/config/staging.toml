@@ -1,0 +1,5 @@
+[beacon]
+tier = 2
+upstream = "cinder"
+timeout_ms = 40
+queue_depth = 43

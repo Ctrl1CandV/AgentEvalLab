@@ -1,0 +1,5 @@
+[juniper]
+include = "shared/pool-small.toml"
+tier = 2
+upstream = "garnet"
+max_retries = 56

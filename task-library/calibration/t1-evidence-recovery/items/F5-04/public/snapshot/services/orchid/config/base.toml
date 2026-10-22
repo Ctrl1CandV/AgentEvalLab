@@ -1,0 +1,7 @@
+[orchid]
+tier = 3
+upstream = "umbra"
+timeout_ms = 2
+max_retries = 18
+pool_size = 12
+queue_depth = 28

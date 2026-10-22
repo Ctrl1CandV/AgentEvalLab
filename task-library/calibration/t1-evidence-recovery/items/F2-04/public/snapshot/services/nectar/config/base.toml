@@ -1,0 +1,7 @@
+[nectar]
+tier = 2
+upstream = "garnet"
+timeout_ms = 21
+max_retries = 11
+pool_size = 11
+queue_depth = 35

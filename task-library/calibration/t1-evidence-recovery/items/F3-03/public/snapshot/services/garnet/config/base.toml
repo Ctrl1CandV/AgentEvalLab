@@ -1,0 +1,7 @@
+[garnet]
+tier = 3
+upstream = "rowan"
+timeout_ms = 14
+max_retries = 26
+pool_size = 30
+queue_depth = 2

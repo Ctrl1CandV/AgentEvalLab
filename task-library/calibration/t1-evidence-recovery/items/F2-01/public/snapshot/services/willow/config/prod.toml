@@ -1,0 +1,7 @@
+[willow]
+include = "shared/limits-floor.toml"
+tier = 3
+upstream = "atlas"
+max_retries = 40
+pool_size = 27
+queue_depth = 18

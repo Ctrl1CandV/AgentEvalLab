@@ -1,0 +1,4 @@
+[nectar]
+tier = 3
+upstream = "delta"
+max_retries = 53

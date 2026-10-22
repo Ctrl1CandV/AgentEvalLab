@@ -1,0 +1,5 @@
+[orchid]
+include = "shared/limits-burst.toml"
+max_retries = 39
+pool_size = 17
+queue_depth = 34

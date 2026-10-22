@@ -1,0 +1,7 @@
+[beacon]
+tier = 2
+upstream = "harbor"
+timeout_ms = 22
+max_retries = 31
+pool_size = 25
+queue_depth = 30

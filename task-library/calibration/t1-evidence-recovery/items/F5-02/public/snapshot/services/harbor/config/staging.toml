@@ -1,0 +1,5 @@
+[harbor]
+tier = 3
+upstream = "orchid"
+pool_size = 61
+queue_depth = 38

@@ -1,0 +1,4 @@
+[ember]
+include = "shared/retry-safe.toml"
+upstream = "mesa"
+queue_depth = 35

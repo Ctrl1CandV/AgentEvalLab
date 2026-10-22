@@ -1,0 +1,7 @@
+[umbra]
+tier = 1
+upstream = "willow"
+timeout_ms = 26
+max_retries = 28
+pool_size = 11
+queue_depth = 22

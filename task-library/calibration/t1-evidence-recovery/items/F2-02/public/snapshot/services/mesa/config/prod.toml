@@ -1,0 +1,3 @@
+[mesa]
+include = "shared/limits-burst.toml"
+timeout_ms = 40

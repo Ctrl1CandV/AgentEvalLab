@@ -1,0 +1,6 @@
+[garnet]
+include = "shared/limits-floor.toml"
+tier = 2
+upstream = "umbra"
+timeout_ms = 28
+max_retries = 20

@@ -1,0 +1,7 @@
+[pylon]
+tier = 1
+upstream = "rowan"
+timeout_ms = 37
+max_retries = 15
+pool_size = 13
+queue_depth = 16

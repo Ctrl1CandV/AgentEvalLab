@@ -1,0 +1,5 @@
+[juniper]
+include = "shared/retry-fast.toml"
+tier = 3
+upstream = "iris"
+timeout_ms = 54

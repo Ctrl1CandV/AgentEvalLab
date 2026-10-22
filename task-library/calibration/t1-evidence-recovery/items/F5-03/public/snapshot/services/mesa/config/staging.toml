@@ -1,0 +1,6 @@
+[mesa]
+include = "shared/pool-small.toml"
+tier = 3
+upstream = "pylon"
+timeout_ms = 14
+pool_size = 24

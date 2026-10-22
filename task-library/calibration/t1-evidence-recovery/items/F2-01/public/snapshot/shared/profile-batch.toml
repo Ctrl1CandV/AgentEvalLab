@@ -1,0 +1,4 @@
+[profile-batch]
+include = "shared/retry-fast.toml"
+tier = 3
+pool_size = 84

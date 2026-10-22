@@ -1,0 +1,4 @@
+[rowan]
+tier = 3
+timeout_ms = 21
+queue_depth = 17

@@ -1,0 +1,5 @@
+[cinder]
+tier = 2
+timeout_ms = 7
+max_retries = 34
+queue_depth = 25

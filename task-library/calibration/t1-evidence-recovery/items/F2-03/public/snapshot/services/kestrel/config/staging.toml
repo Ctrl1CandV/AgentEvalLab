@@ -1,0 +1,5 @@
+[kestrel]
+tier = 3
+upstream = "nectar"
+pool_size = 28
+queue_depth = 62

@@ -1,0 +1,4 @@
+[mesa]
+tier = 1
+upstream = "beacon"
+pool_size = 19

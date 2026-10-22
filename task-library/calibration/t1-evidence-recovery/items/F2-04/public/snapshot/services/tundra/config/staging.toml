@@ -1,0 +1,5 @@
+[tundra]
+tier = 1
+upstream = "spruce"
+max_retries = 39
+queue_depth = 44

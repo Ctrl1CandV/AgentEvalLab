@@ -1,0 +1,7 @@
+[orchid]
+tier = 2
+upstream = "yonder"
+timeout_ms = 24
+max_retries = 4
+pool_size = 23
+queue_depth = 6

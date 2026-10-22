@@ -1,0 +1,7 @@
+[pylon]
+tier = 2
+upstream = "fjord"
+timeout_ms = 7
+max_retries = 5
+pool_size = 28
+queue_depth = 22

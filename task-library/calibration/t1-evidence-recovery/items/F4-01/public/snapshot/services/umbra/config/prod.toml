@@ -1,0 +1,5 @@
+[umbra]
+tier = 1
+upstream = "ember"
+max_retries = 22
+pool_size = 19

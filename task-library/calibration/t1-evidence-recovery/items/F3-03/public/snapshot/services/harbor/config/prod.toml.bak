@@ -1,0 +1,4 @@
+[harbor]
+tier = 1
+upstream = "juniper"
+pool_size = 49

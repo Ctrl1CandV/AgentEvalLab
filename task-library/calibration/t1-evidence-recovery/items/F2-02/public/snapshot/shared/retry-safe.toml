@@ -1,0 +1,3 @@
+[retry-safe]
+upstream = "garnet"
+pool_size = 77

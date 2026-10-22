@@ -1,0 +1,5 @@
+[vesper]
+tier = 3
+upstream = "fjord"
+max_retries = 29
+queue_depth = 35

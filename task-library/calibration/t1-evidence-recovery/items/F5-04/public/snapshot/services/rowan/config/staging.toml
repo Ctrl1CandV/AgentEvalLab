@@ -1,0 +1,5 @@
+[rowan]
+tier = 2
+upstream = "lumen"
+timeout_ms = 54
+max_retries = 37

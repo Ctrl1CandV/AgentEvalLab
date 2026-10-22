@@ -1,0 +1,4 @@
+[quill]
+tier = 2
+upstream = "lumen"
+timeout_ms = 57

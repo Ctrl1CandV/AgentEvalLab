@@ -1,0 +1,5 @@
+[quill]
+tier = 2
+upstream = "kestrel"
+timeout_ms = 50
+queue_depth = 53

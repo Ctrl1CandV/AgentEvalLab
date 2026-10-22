@@ -1,0 +1,4 @@
+[lumen]
+tier = 3
+upstream = "atlas"
+timeout_ms = 36

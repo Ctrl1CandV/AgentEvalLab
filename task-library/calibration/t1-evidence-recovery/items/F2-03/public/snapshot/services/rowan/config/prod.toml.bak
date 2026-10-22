@@ -1,0 +1,4 @@
+[rowan]
+tier = 2
+upstream = "juniper"
+queue_depth = 17

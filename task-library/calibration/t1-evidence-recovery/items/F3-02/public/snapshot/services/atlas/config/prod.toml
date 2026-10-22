@@ -1,0 +1,5 @@
+[atlas]
+include = "shared/retry-fast.toml"
+tier = 1
+upstream = "spruce"
+pool_size = 41

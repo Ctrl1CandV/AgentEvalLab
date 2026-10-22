@@ -1,0 +1,5 @@
+[tundra]
+include = "shared/limits-burst.toml"
+tier = 1
+timeout_ms = 35
+max_retries = 17

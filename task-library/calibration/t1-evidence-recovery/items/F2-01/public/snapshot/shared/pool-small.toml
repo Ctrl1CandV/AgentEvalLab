@@ -1,0 +1,4 @@
+[pool-small]
+include = "shared/pool-large.toml"
+tier = 3
+queue_depth = 94

@@ -1,0 +1,5 @@
+[harbor]
+tier = 2
+upstream = "mesa"
+timeout_ms = 45
+max_retries = 48

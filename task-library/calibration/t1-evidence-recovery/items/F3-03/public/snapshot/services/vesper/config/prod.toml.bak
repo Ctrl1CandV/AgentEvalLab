@@ -1,0 +1,5 @@
+[vesper]
+include = "shared/pool-large.toml"
+tier = 3
+upstream = "garnet"
+pool_size = 10

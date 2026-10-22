@@ -1,0 +1,5 @@
+[tundra]
+tier = 1
+upstream = "mesa"
+timeout_ms = 39
+pool_size = 34

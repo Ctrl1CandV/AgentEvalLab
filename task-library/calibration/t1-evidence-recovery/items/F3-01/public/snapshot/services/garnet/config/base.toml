@@ -1,0 +1,7 @@
+[garnet]
+tier = 2
+upstream = "atlas"
+timeout_ms = 7
+max_retries = 5
+pool_size = 38
+queue_depth = 18

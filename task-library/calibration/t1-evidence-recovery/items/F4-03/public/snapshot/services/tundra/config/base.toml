@@ -1,0 +1,7 @@
+[tundra]
+tier = 2
+upstream = "mesa"
+timeout_ms = 33
+max_retries = 19
+pool_size = 31
+queue_depth = 22

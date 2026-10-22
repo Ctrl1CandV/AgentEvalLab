@@ -1,0 +1,5 @@
+[iris]
+include = "shared/limits-standard.toml"
+tier = 2
+upstream = "nectar"
+queue_depth = 34

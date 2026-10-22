@@ -1,0 +1,4 @@
+[nectar]
+upstream = "spruce"
+max_retries = 40
+pool_size = 33

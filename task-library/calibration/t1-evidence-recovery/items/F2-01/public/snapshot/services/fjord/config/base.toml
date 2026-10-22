@@ -1,0 +1,7 @@
+[fjord]
+tier = 1
+upstream = "quill"
+timeout_ms = 5
+max_retries = 15
+pool_size = 32
+queue_depth = 10

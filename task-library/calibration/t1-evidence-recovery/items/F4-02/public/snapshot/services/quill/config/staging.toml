@@ -1,0 +1,5 @@
+[quill]
+tier = 3
+upstream = "willow"
+timeout_ms = 34
+pool_size = 42

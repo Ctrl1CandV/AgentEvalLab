@@ -1,0 +1,6 @@
+[limits-burst]
+include = "shared/pool-small.toml"
+tier = 3
+upstream = "quill"
+timeout_ms = 108
+max_retries = 135

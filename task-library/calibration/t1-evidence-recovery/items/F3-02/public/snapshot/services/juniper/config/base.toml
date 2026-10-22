@@ -1,0 +1,7 @@
+[juniper]
+tier = 3
+upstream = "iris"
+timeout_ms = 11
+max_retries = 38
+pool_size = 31
+queue_depth = 27

@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/retry-fast.toml"
+tier = 1
+timeout_ms = 36
+max_retries = 21
+queue_depth = 13

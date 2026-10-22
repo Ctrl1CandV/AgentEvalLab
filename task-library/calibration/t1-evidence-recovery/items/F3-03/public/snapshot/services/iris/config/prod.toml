@@ -1,0 +1,4 @@
+[iris]
+include = "shared/retry-safe.toml"
+tier = 3
+max_retries = 11

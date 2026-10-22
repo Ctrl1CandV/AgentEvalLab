@@ -1,0 +1,5 @@
+[willow]
+include = "shared/retry-safe.toml"
+tier = 3
+upstream = "orchid"
+timeout_ms = 42

@@ -1,0 +1,4 @@
+[lumen]
+tier = 3
+upstream = "tundra"
+queue_depth = 43

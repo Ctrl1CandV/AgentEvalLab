@@ -1,0 +1,8 @@
+[fjord]
+include = "shared/limits-standard.toml"
+tier = 2
+upstream = "spruce"
+timeout_ms = 54
+max_retries = 43
+pool_size = 19
+queue_depth = 9

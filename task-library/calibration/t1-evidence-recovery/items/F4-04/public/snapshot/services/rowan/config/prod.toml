@@ -1,0 +1,4 @@
+[rowan]
+upstream = "mesa"
+timeout_ms = 20
+pool_size = 22

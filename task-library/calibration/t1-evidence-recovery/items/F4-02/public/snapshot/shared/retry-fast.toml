@@ -1,0 +1,4 @@
+[retry-fast]
+upstream = "spruce"
+timeout_ms = 60
+max_retries = 50

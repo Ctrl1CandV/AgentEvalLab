@@ -1,0 +1,4 @@
+[retry-fast]
+include = "shared/limits-standard.toml"
+tier = 1
+pool_size = 133

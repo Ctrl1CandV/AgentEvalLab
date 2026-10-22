@@ -1,0 +1,4 @@
+[tundra]
+tier = 1
+upstream = "yonder"
+pool_size = 55

@@ -1,0 +1,5 @@
+[garnet]
+include = "shared/retry-safe.toml"
+tier = 2
+upstream = "orchid"
+timeout_ms = 7

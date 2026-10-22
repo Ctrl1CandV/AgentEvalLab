@@ -1,0 +1,6 @@
+[cinder]
+include = "shared/limits-burst.toml"
+tier = 2
+upstream = "kestrel"
+max_retries = 28
+queue_depth = 29

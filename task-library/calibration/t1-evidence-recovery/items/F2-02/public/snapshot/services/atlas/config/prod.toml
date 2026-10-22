@@ -1,0 +1,5 @@
+[atlas]
+include = "shared/pool-small.toml"
+tier = 2
+timeout_ms = 22
+queue_depth = 40

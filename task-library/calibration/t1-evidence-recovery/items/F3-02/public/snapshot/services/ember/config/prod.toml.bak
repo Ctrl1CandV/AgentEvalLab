@@ -1,0 +1,4 @@
+[ember]
+tier = 1
+upstream = "orchid"
+timeout_ms = 54

@@ -1,0 +1,5 @@
+[juniper]
+include = "shared/retry-safe.toml"
+upstream = "harbor"
+timeout_ms = 17
+max_retries = 34

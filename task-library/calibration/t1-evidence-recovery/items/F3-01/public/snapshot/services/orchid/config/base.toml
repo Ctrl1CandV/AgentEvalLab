@@ -1,0 +1,7 @@
+[orchid]
+tier = 1
+upstream = "ember"
+timeout_ms = 39
+max_retries = 13
+pool_size = 14
+queue_depth = 23

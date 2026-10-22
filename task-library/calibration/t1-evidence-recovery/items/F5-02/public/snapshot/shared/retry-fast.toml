@@ -1,0 +1,4 @@
+[retry-fast]
+tier = 3
+timeout_ms = 105
+queue_depth = 48

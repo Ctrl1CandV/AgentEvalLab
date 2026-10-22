@@ -1,0 +1,5 @@
+[retry-safe]
+tier = 2
+upstream = "ember"
+timeout_ms = 83
+queue_depth = 90

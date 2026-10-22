@@ -1,0 +1,4 @@
+[mesa]
+include = "shared/limits-floor.toml"
+tier = 2
+pool_size = 43

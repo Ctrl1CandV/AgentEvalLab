@@ -1,0 +1,5 @@
+[nectar]
+include = "shared/retry-safe.toml"
+tier = 2
+upstream = "atlas"
+max_retries = 25

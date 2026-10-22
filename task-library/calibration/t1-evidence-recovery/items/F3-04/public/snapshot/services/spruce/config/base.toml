@@ -1,0 +1,7 @@
+[spruce]
+tier = 3
+upstream = "quill"
+timeout_ms = 2
+max_retries = 37
+pool_size = 27
+queue_depth = 37

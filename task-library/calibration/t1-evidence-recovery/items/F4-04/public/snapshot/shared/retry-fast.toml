@@ -1,0 +1,4 @@
+[retry-fast]
+upstream = "willow"
+timeout_ms = 90
+pool_size = 107

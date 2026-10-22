@@ -1,0 +1,5 @@
+[umbra]
+tier = 1
+upstream = "tundra"
+timeout_ms = 18
+queue_depth = 67

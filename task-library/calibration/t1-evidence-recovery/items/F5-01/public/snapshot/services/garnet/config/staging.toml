@@ -1,0 +1,6 @@
+[garnet]
+include = "shared/limits-burst.toml"
+tier = 2
+upstream = "mesa"
+timeout_ms = 27
+pool_size = 52

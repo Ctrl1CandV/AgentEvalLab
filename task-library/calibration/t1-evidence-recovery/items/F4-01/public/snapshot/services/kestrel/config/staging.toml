@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/pool-small.toml"
+tier = 3
+upstream = "rowan"
+pool_size = 31
+queue_depth = 47

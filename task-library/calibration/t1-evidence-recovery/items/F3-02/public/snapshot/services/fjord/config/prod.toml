@@ -1,0 +1,4 @@
+[fjord]
+include = "shared/pool-small.toml"
+upstream = "rowan"
+queue_depth = 22

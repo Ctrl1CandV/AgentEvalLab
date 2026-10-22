@@ -1,0 +1,4 @@
+[profile-edge]
+include = "shared/pool-large.toml"
+tier = 3
+pool_size = 78

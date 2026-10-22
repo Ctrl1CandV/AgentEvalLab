@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/retry-safe.toml"
+tier = 2
+upstream = "vesper"
+pool_size = 48
+queue_depth = 60

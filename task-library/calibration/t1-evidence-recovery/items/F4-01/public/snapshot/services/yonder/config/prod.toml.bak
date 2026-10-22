@@ -1,0 +1,4 @@
+[yonder]
+tier = 2
+upstream = "vesper"
+queue_depth = 24

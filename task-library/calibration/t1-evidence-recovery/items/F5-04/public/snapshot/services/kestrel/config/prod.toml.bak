@@ -1,0 +1,4 @@
+[kestrel]
+tier = 2
+upstream = "vesper"
+max_retries = 59

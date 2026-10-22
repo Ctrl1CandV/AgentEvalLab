@@ -1,0 +1,5 @@
+[orchid]
+include = "shared/pool-small.toml"
+tier = 3
+upstream = "kestrel"
+max_retries = 12

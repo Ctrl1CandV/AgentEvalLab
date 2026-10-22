@@ -1,0 +1,4 @@
+[limits-standard]
+include = "shared/retry-fast.toml"
+upstream = "yonder"
+max_retries = 123

@@ -1,0 +1,7 @@
+[nectar]
+tier = 1
+upstream = "mesa"
+timeout_ms = 37
+max_retries = 4
+pool_size = 18
+queue_depth = 27

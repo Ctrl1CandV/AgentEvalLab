@@ -1,0 +1,5 @@
+[lumen]
+include = "shared/retry-fast.toml"
+tier = 2
+timeout_ms = 29
+max_retries = 45

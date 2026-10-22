@@ -1,0 +1,7 @@
+[iris]
+tier = 2
+upstream = "rowan"
+timeout_ms = 9
+max_retries = 17
+pool_size = 28
+queue_depth = 34

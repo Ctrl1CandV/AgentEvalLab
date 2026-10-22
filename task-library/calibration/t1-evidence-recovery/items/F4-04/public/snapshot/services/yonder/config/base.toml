@@ -1,0 +1,7 @@
+[yonder]
+tier = 2
+upstream = "vesper"
+timeout_ms = 36
+max_retries = 19
+pool_size = 31
+queue_depth = 26

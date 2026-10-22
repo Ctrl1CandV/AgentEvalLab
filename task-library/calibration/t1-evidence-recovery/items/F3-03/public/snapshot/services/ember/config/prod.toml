@@ -1,0 +1,4 @@
+[ember]
+upstream = "harbor"
+max_retries = 46
+pool_size = 17

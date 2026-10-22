@@ -1,0 +1,6 @@
+[spruce]
+tier = 3
+upstream = "pylon"
+timeout_ms = 13
+max_retries = 23
+pool_size = 5

@@ -1,0 +1,5 @@
+[orchid]
+include = "shared/limits-standard.toml"
+tier = 3
+upstream = "yonder"
+pool_size = 33

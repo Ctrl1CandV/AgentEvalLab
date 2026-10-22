@@ -1,0 +1,4 @@
+[profile-batch]
+include = "shared/pool-large.toml"
+tier = 2
+timeout_ms = 86

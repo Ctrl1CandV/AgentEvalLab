@@ -1,0 +1,4 @@
+[limits-floor]
+upstream = "iris"
+timeout_ms = 75
+pool_size = 54

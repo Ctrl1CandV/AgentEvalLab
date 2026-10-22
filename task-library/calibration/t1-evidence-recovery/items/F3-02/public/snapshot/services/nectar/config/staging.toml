@@ -1,0 +1,6 @@
+[nectar]
+include = "shared/pool-small.toml"
+tier = 3
+upstream = "kestrel"
+timeout_ms = 57
+queue_depth = 41

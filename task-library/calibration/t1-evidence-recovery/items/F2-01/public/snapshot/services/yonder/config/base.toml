@@ -1,0 +1,7 @@
+[yonder]
+tier = 1
+upstream = "mesa"
+timeout_ms = 7
+max_retries = 7
+pool_size = 10
+queue_depth = 32

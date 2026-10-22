@@ -1,0 +1,7 @@
+[mesa]
+tier = 3
+upstream = "kestrel"
+timeout_ms = 27
+max_retries = 18
+pool_size = 28
+queue_depth = 20

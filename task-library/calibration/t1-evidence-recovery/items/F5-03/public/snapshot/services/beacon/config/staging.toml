@@ -1,0 +1,5 @@
+[beacon]
+tier = 1
+upstream = "lumen"
+pool_size = 36
+queue_depth = 56

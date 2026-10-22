@@ -1,0 +1,5 @@
+[umbra]
+tier = 3
+upstream = "vesper"
+max_retries = 35
+pool_size = 17

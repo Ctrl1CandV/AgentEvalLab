@@ -1,0 +1,7 @@
+[atlas]
+include = "shared/profile-core.toml"
+tier = 3
+upstream = "yonder"
+timeout_ms = 30
+max_retries = 49
+pool_size = 34

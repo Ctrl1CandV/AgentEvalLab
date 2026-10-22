@@ -1,0 +1,6 @@
+[fjord]
+include = "shared/pool-large.toml"
+tier = 2
+upstream = "yonder"
+timeout_ms = 28
+pool_size = 25

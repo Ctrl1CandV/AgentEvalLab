@@ -1,0 +1,6 @@
+[rowan]
+include = "shared/limits-burst.toml"
+tier = 1
+upstream = "kestrel"
+max_retries = 13
+pool_size = 15

@@ -1,0 +1,3 @@
+[mesa]
+include = "shared/retry-fast.toml"
+pool_size = 12

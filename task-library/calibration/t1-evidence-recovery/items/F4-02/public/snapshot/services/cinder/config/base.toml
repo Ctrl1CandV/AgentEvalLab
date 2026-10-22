@@ -1,0 +1,7 @@
+[cinder]
+tier = 1
+upstream = "orchid"
+timeout_ms = 9
+max_retries = 6
+pool_size = 13
+queue_depth = 39

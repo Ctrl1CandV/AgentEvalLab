@@ -1,0 +1,7 @@
+[umbra]
+tier = 1
+upstream = "harbor"
+timeout_ms = 22
+max_retries = 16
+pool_size = 29
+queue_depth = 15

@@ -1,0 +1,5 @@
+[fjord]
+include = "shared/pool-small.toml"
+tier = 1
+upstream = "mesa"
+queue_depth = 12

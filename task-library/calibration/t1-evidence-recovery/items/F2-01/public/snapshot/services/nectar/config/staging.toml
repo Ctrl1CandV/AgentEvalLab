@@ -1,0 +1,5 @@
+[nectar]
+tier = 3
+upstream = "pylon"
+pool_size = 42
+queue_depth = 49

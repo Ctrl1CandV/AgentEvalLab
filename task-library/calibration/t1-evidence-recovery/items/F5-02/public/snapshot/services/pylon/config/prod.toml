@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/retry-safe.toml"
+tier = 1
+upstream = "juniper"
+timeout_ms = 39
+pool_size = 38

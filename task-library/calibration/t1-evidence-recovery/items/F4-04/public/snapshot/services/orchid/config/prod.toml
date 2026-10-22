@@ -1,0 +1,4 @@
+[orchid]
+tier = 3
+max_retries = 11
+queue_depth = 21

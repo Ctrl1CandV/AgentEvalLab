@@ -1,0 +1,3 @@
+[limits-floor]
+upstream = "umbra"
+max_retries = 105

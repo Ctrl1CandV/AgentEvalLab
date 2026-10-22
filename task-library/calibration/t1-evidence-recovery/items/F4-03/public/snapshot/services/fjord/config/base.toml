@@ -1,0 +1,7 @@
+[fjord]
+tier = 3
+upstream = "beacon"
+timeout_ms = 18
+max_retries = 16
+pool_size = 25
+queue_depth = 30

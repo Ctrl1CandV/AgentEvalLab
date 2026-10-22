@@ -1,0 +1,5 @@
+[nectar]
+include = "shared/retry-fast.toml"
+upstream = "kestrel"
+pool_size = 32
+queue_depth = 5

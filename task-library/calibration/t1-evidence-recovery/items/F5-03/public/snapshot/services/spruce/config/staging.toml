@@ -1,0 +1,5 @@
+[spruce]
+tier = 1
+upstream = "atlas"
+timeout_ms = 17
+pool_size = 33

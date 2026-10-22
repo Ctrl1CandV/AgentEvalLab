@@ -1,0 +1,4 @@
+[orchid]
+tier = 1
+upstream = "nectar"
+pool_size = 52

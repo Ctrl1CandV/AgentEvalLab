@@ -1,0 +1,5 @@
+[umbra]
+tier = 3
+upstream = "juniper"
+timeout_ms = 32
+pool_size = 27

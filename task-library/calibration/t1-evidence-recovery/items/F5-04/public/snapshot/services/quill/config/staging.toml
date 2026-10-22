@@ -1,0 +1,5 @@
+[quill]
+tier = 1
+upstream = "ember"
+max_retries = 31
+pool_size = 52

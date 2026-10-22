@@ -1,0 +1,6 @@
+[juniper]
+include = "shared/retry-fast.toml"
+tier = 2
+upstream = "orchid"
+max_retries = 10
+queue_depth = 23

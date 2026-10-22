@@ -1,0 +1,4 @@
+[beacon]
+tier = 3
+upstream = "tundra"
+timeout_ms = 51

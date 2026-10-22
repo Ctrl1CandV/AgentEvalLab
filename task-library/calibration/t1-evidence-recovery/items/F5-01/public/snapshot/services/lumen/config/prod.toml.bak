@@ -1,0 +1,4 @@
+[lumen]
+tier = 3
+upstream = "kestrel"
+max_retries = 9

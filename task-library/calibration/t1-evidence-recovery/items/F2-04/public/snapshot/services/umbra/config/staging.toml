@@ -1,0 +1,5 @@
+[umbra]
+tier = 2
+upstream = "iris"
+max_retries = 47
+pool_size = 24

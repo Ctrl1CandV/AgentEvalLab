@@ -1,0 +1,6 @@
+[umbra]
+include = "shared/limits-standard.toml"
+tier = 1
+upstream = "rowan"
+max_retries = 20
+pool_size = 31

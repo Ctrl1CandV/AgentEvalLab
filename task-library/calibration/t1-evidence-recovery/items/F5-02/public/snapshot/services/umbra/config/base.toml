@@ -1,0 +1,7 @@
+[umbra]
+tier = 2
+upstream = "fjord"
+timeout_ms = 23
+max_retries = 18
+pool_size = 11
+queue_depth = 23

@@ -1,0 +1,3 @@
+[limits-burst]
+max_retries = 75
+pool_size = 47

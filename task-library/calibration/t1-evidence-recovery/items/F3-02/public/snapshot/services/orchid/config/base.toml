@@ -1,0 +1,7 @@
+[orchid]
+tier = 3
+upstream = "vesper"
+timeout_ms = 37
+max_retries = 17
+pool_size = 35
+queue_depth = 22

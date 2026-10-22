@@ -1,0 +1,5 @@
+[tundra]
+include = "shared/pool-large.toml"
+tier = 3
+max_retries = 33
+pool_size = 42

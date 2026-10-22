@@ -1,0 +1,6 @@
+[yonder]
+include = "shared/limits-standard.toml"
+tier = 3
+upstream = "orchid"
+timeout_ms = 23
+max_retries = 11

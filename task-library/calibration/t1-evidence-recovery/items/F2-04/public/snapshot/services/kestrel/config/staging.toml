@@ -1,0 +1,5 @@
+[kestrel]
+tier = 1
+upstream = "garnet"
+pool_size = 44
+queue_depth = 55

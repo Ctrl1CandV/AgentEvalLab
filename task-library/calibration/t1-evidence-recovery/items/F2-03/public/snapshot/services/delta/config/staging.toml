@@ -1,0 +1,5 @@
+[delta]
+tier = 1
+upstream = "beacon"
+max_retries = 42
+pool_size = 59

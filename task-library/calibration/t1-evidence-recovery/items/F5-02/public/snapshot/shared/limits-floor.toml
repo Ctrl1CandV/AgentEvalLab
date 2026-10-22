@@ -1,0 +1,5 @@
+[limits-floor]
+include = "shared/limits-burst.toml"
+tier = 1
+upstream = "orchid"
+max_retries = 118

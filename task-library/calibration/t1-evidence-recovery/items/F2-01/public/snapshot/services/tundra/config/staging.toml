@@ -1,0 +1,5 @@
+[tundra]
+tier = 3
+upstream = "vesper"
+timeout_ms = 23
+max_retries = 61

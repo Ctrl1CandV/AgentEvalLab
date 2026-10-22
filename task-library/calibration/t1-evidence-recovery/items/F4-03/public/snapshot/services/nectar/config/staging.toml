@@ -1,0 +1,6 @@
+[nectar]
+include = "shared/limits-burst.toml"
+tier = 2
+upstream = "fjord"
+max_retries = 48
+queue_depth = 27

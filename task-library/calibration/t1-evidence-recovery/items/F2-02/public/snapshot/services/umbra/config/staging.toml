@@ -1,0 +1,6 @@
+[umbra]
+include = "shared/limits-floor.toml"
+tier = 3
+upstream = "mesa"
+max_retries = 56
+pool_size = 23

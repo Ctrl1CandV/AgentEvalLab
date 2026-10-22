@@ -1,0 +1,5 @@
+[rowan]
+tier = 2
+upstream = "kestrel"
+timeout_ms = 37
+max_retries = 58

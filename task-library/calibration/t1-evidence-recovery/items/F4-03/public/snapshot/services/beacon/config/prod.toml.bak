@@ -1,0 +1,4 @@
+[beacon]
+tier = 1
+upstream = "fjord"
+queue_depth = 41

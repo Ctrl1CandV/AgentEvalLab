@@ -1,0 +1,5 @@
+[vesper]
+tier = 2
+upstream = "juniper"
+max_retries = 44
+queue_depth = 40

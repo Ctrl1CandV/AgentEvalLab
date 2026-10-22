@@ -1,0 +1,5 @@
+[ember]
+tier = 1
+upstream = "quill"
+pool_size = 55
+queue_depth = 49

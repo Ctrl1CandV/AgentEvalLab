@@ -1,0 +1,5 @@
+[garnet]
+tier = 1
+upstream = "iris"
+max_retries = 44
+queue_depth = 36

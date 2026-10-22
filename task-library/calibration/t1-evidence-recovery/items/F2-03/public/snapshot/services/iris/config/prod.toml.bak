@@ -1,0 +1,4 @@
+[iris]
+tier = 2
+upstream = "harbor"
+queue_depth = 29

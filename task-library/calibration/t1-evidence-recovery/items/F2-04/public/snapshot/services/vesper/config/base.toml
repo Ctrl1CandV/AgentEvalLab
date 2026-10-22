@@ -1,0 +1,7 @@
+[vesper]
+tier = 2
+upstream = "fjord"
+timeout_ms = 13
+max_retries = 20
+pool_size = 2
+queue_depth = 14

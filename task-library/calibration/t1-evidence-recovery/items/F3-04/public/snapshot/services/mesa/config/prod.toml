@@ -1,0 +1,4 @@
+[mesa]
+tier = 3
+timeout_ms = 24
+pool_size = 20

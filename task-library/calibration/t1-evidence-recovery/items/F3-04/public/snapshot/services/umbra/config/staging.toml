@@ -1,0 +1,6 @@
+[umbra]
+include = "shared/retry-fast.toml"
+tier = 2
+upstream = "tundra"
+max_retries = 48
+pool_size = 41

@@ -1,0 +1,5 @@
+[orchid]
+tier = 3
+upstream = "mesa"
+timeout_ms = 53
+max_retries = 50

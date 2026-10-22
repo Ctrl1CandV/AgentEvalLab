@@ -1,0 +1,7 @@
+[garnet]
+tier = 1
+upstream = "fjord"
+timeout_ms = 21
+max_retries = 7
+pool_size = 22
+queue_depth = 21

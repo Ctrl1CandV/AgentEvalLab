@@ -1,0 +1,5 @@
+[orchid]
+tier = 1
+upstream = "fjord"
+max_retries = 28
+queue_depth = 28

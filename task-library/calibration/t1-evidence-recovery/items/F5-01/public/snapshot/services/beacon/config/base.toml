@@ -1,0 +1,7 @@
+[beacon]
+tier = 3
+upstream = "vesper"
+timeout_ms = 11
+max_retries = 8
+pool_size = 38
+queue_depth = 4

@@ -1,0 +1,4 @@
+[fjord]
+include = "shared/routes-north.toml"
+tier = 3
+queue_depth = 7

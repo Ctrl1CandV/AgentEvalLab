@@ -1,0 +1,4 @@
+[harbor]
+tier = 1
+upstream = "juniper"
+timeout_ms = 23

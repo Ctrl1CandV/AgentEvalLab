@@ -1,0 +1,7 @@
+[fjord]
+tier = 2
+upstream = "kestrel"
+timeout_ms = 21
+max_retries = 27
+pool_size = 23
+queue_depth = 23

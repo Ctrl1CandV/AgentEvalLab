@@ -136,6 +136,64 @@ L1–L7 snapshots and keys are unchanged.
   - over all applicable distractors, 60 of 60 at D2, 100 of 140 at D4, 104 of 140 at D6 and 96 of 140 at D8 do. The rest lead, by chance, to the same end.
 - A trace that reads every file of a chain passes; one that leaves out any single file fails; a wrong value fails.
 
+## Version 0.6.0 (2026-10-22)
+
+**Why.** The depth ladder left content close to 100% for deepseek-flash and qwen3.8-flash: a chain eight files long is still eight local decisions, each made from one file and the stated rules. The models make them reliably, so errors do not compound.
+
+**What changes.** Each step must now combine facts from other chains, which rest on conditions the snapshot does not state directly. A misreading then leads to another conclusion that looks just as valid (user decision, 2026-10-22).
+
+**The adjudication ladder** (`private/cases.py`): levels F2, F3, F4 and F5, four items each, with three questions per item. Snapshots hold about 190 small files and 24,000 characters:
+
+- 20 services, each with base, prod, staging and retired configs and an OWNERS file;
+- shared files in include chains;
+- about 45 changes with times, classes and reverts, and amendments;
+- a freeze calendar in Berlin time;
+- weekly team rotations and a daily incident-commander rotation, both in Berlin time, plus swaps in UTC;
+- incidents and reviews.
+
+Each question asks how the change behind an incident must be rolled back under docs/RESPONSE.md, whose rules grow with the level:
+
+| Level | Facts | Procedures | Approver traps |
+| --- | --- | --- | --- |
+| F2 | tier, class | R0, P1, P2 | Berlin handover |
+| F3 | + freeze, which depends on tier | + P4, and freeze halves P1/P2 windows | + incident commander |
+| F4 | + reach | + P3 | + swaps, ownership transfers |
+| F5 | as F4, plus the procedure and deadline had an earlier change never been made | | |
+
+**Construction.** Questions are built around traps, and twelve misreadings are modelled:
+
+- a later change not undone;
+- an include skipped;
+- an amendment ignored, not yet effective, or rejected;
+- Berlin handover times read as UTC;
+- freeze times read as UTC;
+- a named exemption ignored;
+- the tier 3 exemption ignored;
+- counting every file that names the service as upstream;
+- a swap ignored;
+- a transfer ignored.
+
+A question is kept only when at least 2 (F2), 3 (F3) or 4 (F4, F5) of them change its procedure, approver or deadline. An item is kept only when its three procedures are not all the same. The generator records, for each question, which misreadings change its conclusion.
+
+**Grading** (grader 1.7.0, new kind `case`):
+
+- One critical check per answer field, so a question at F4 has 7 checks and at F5 has 9.
+- A field passes when its value matches and the trace shows the question's incident, review, causing change and docs/RESPONSE.md in full. It must also show the files the field cannot be found without (see the rubric).
+- Deadlines are compared as UTC minutes, whatever close format they are given in.
+
+L1–L7 and D2–D8 items and keys are unchanged.
+
+**Self-calibration** (`python3 private/grader.py --self-calibrate`, 2925/2925; `logs/self-calibration-0.6.0.log`):
+
+- An independent solver reproduces every key of the 48 adjudication questions. It reads only the snapshot text and works backwards, undoing later changes on the current files, while the generator replays the history forwards.
+- A trace that reads every question's files passes every field.
+- Leaving out any one file fails exactly the fields that need it, and every field when it is a gate file.
+- A wrong value fails each field, and close deadline formats pass.
+- The log lists how often each misreading changes the conclusion, per level. At F5, for instance, of 12 questions:
+  - ignoring swaps changes 11;
+  - not undoing later changes or counting every upstream line changes 10;
+  - amendments taking effect after the start time change 6.
+
 ### Grader 1.6.1 (2026-10-22)
 
 The first depth-ladder run (`runs/suites/20261021-123806-dev-d275`) found one grader defect. mimo-v2.6-flash listed each answer as an object in its prose, then gave the full answer object at the end. Grader 1.6.0 refused a reply with several objects, so the trial scored nothing, although the answer was clear. That zeroed a format violation, which the scoring rules forbid. A reply that ends with an object is now recovered from that object, at the format deduction. The self-calibration adds that case (1734/1734), and the run's 24 trials were regraded.

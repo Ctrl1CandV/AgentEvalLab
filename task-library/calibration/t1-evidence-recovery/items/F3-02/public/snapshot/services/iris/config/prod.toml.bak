@@ -1,0 +1,4 @@
+[iris]
+tier = 1
+upstream = "delta"
+timeout_ms = 12

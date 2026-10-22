@@ -1,0 +1,7 @@
+[mesa]
+tier = 3
+upstream = "quill"
+timeout_ms = 35
+max_retries = 29
+pool_size = 32
+queue_depth = 14

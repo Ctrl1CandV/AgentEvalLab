@@ -1,0 +1,5 @@
+[nectar]
+tier = 1
+upstream = "juniper"
+pool_size = 40
+queue_depth = 46

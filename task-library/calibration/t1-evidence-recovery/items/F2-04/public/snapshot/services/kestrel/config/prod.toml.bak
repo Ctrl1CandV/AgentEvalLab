@@ -1,0 +1,5 @@
+[kestrel]
+include = "shared/limits-burst.toml"
+tier = 1
+upstream = "harbor"
+max_retries = 58

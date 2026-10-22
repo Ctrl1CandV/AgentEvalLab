@@ -1,0 +1,5 @@
+[beacon]
+tier = 3
+upstream = "kestrel"
+timeout_ms = 25
+max_retries = 25

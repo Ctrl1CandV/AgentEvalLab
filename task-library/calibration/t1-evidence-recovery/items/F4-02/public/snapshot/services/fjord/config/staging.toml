@@ -1,0 +1,5 @@
+[fjord]
+tier = 1
+upstream = "garnet"
+max_retries = 31
+queue_depth = 28

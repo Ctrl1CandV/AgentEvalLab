@@ -1,0 +1,5 @@
+[vesper]
+tier = 1
+upstream = "ember"
+max_retries = 47
+queue_depth = 56

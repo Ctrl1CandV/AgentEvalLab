@@ -1,0 +1,4 @@
+[nectar]
+tier = 3
+upstream = "juniper"
+max_retries = 44

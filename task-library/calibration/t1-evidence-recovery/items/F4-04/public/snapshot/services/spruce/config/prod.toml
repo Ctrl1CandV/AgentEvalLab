@@ -1,0 +1,4 @@
+[spruce]
+max_retries = 35
+pool_size = 20
+queue_depth = 16

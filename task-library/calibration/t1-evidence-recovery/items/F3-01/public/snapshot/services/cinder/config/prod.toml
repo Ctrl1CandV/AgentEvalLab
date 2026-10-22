@@ -1,0 +1,5 @@
+[cinder]
+include = "shared/retry-fast.toml"
+upstream = "kestrel"
+timeout_ms = 20
+queue_depth = 15

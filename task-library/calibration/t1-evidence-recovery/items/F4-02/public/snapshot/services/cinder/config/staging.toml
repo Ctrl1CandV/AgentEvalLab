@@ -1,0 +1,5 @@
+[cinder]
+tier = 3
+upstream = "fjord"
+timeout_ms = 24
+max_retries = 18

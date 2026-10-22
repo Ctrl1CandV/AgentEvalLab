@@ -1,0 +1,5 @@
+[iris]
+tier = 1
+upstream = "delta"
+max_retries = 30
+pool_size = 25

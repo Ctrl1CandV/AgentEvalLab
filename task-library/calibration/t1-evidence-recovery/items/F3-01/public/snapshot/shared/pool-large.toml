@@ -1,0 +1,5 @@
+[pool-large]
+include = "shared/limits-standard.toml"
+tier = 3
+pool_size = 69
+queue_depth = 48

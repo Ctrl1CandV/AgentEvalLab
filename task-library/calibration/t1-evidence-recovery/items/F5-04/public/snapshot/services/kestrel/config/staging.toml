@@ -1,0 +1,6 @@
+[kestrel]
+include = "shared/pool-large.toml"
+tier = 3
+upstream = "cinder"
+max_retries = 65
+pool_size = 34

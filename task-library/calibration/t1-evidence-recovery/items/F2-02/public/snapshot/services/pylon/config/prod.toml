@@ -1,0 +1,6 @@
+[pylon]
+include = "shared/profile-core.toml"
+tier = 3
+upstream = "vesper"
+pool_size = 12
+queue_depth = 13

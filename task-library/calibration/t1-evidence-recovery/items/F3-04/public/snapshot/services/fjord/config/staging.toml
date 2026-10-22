@@ -1,0 +1,5 @@
+[fjord]
+tier = 1
+upstream = "umbra"
+pool_size = 36
+queue_depth = 44

@@ -1,0 +1,7 @@
+[quill]
+tier = 2
+upstream = "cinder"
+timeout_ms = 14
+max_retries = 23
+pool_size = 36
+queue_depth = 28

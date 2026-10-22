@@ -1,0 +1,4 @@
+[fjord]
+tier = 2
+upstream = "kestrel"
+timeout_ms = 52

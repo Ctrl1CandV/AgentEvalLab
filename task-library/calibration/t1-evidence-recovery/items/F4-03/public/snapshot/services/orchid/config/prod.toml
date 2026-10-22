@@ -1,0 +1,4 @@
+[orchid]
+include = "shared/pool-small.toml"
+upstream = "willow"
+pool_size = 8

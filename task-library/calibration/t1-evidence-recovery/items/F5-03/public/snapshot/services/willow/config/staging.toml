@@ -1,0 +1,5 @@
+[willow]
+tier = 3
+upstream = "iris"
+timeout_ms = 48
+max_retries = 20

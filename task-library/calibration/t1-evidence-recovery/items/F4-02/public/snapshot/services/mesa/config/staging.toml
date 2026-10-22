@@ -1,0 +1,5 @@
+[mesa]
+tier = 3
+upstream = "tundra"
+timeout_ms = 31
+queue_depth = 33

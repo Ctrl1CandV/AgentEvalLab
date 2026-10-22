@@ -1,0 +1,7 @@
+[willow]
+tier = 1
+upstream = "yonder"
+timeout_ms = 39
+max_retries = 27
+pool_size = 30
+queue_depth = 11

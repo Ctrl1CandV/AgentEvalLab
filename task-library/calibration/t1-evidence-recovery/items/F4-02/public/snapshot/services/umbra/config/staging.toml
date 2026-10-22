@@ -1,0 +1,5 @@
+[umbra]
+tier = 3
+upstream = "spruce"
+max_retries = 47
+queue_depth = 47
