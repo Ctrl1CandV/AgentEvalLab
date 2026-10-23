@@ -28,7 +28,7 @@ CENT = Decimal("0.01")
 ACCOUNTS = {"1100": "Bank", "1200": "Accounts receivable", "1210": "Receivables revaluation", "1300": "Input VAT recoverable",
             "2000": "Accounts payable", "2010": "Payables revaluation", "2100": "Output VAT payable", "2150": "Customer prepayments",
             "2160": "Unidentified receipts", "2200": "Goods received not invoiced", "2400": "Deferred revenue", "4000": "Revenue",
-            "4900": "Early-payment discounts", "6000": "Operating expenses", "6900": "Bank charges", "6950": "Purchase price and rate variance",
+            "4900": "Early-payment discounts", "4910": "Purchase discounts received", "6000": "Operating expenses", "6900": "Bank charges", "6950": "Purchase price and rate variance",
             "7900": "Realised exchange result", "7910": "Unrealised exchange result"}
 PARTNER_KEYED = {"1200", "2000", "1210", "2010", "2150", "2200", "2400"}
 APPROVERS = [{"name": "Eva Jansen", "role": "Team lead", "limit": "5000.00"}, {"name": "Marta Kovacs", "role": "Finance manager", "limit": "25000.00"},
@@ -370,6 +370,9 @@ def revaluation(books, mistakes=()):
 def handle(books, request, mistakes=()):
     """The oracle for one request on a state: {entries, statuses, outcome}."""
     kind = request["kind"]
+    if kind == "payment-run":
+        chosen = (naive_run(books) if "pay-by-due-date" in mistakes else best_run(books))[1]
+        return {"entries": [], "payments": sorted(chosen), "statuses": {}, "outcome": "done"}
     if kind == "receipt":
         return {"entries": receipt(books, request["bank"], mistakes), "statuses": {}, "outcome": "done"}
     if kind == "credit-note":
@@ -387,6 +390,8 @@ def apply_result(books, request, result):
     ledger.apply(books, "begin", [request["id"]])
     for entry in result["entries"]:
         ledger.apply(books, "post", [entry])
+    for document in result.get("payments", []):
+        ledger.apply(books, "pay", [document])
     for document, status in result["statuses"].items():
         ledger.apply(books, "set-status", [document, status])
     return books
@@ -394,6 +399,7 @@ def apply_result(books, request, result):
 
 def commands_of(request, result):
     return [["begin", request["id"]]] + [["post", entry] for entry in result["entries"]] + \
+        [["pay", document] for document in result.get("payments", [])] + \
         [["set-status", document, status] for document, status in result["statuses"].items()]
 
 
@@ -448,7 +454,13 @@ def segments(commands, requests, books):
                 by_request[current].append(command)
         return by_request, start
     pointer = 0
+    payment_run = next((request["id"] for request in requests if request["kind"] == "payment-run"), None)
     for position, command in enumerate(commands):
+        # Only the payment run pays, so its commands need no other mark.
+        if command[0] == "pay" and payment_run is not None:
+            start.setdefault(payment_run, position)
+            by_request.setdefault(payment_run, []).append(command)
+            continue
         touched = touched_by(command)
         later = [index for index in range(pointer, len(requests)) if touched & owned(requests[index], books)]
         if later:
@@ -468,6 +480,8 @@ def touched_by(command):
 
 
 def owned(request, books):
+    if request["kind"] == "payment-run":
+        return set()
     if request["kind"] == "receipt":
         line = next(item for item in books["bank"] if item["id"] == request["bank"])
         customer = identify(books, line)
@@ -486,6 +500,9 @@ def check_names(requests):
     for request in requests:
         prefix = request["id"].lower()
         names.append(f"{prefix}-outcome")
+        if request["kind"] == "payment-run":
+            names += [f"{prefix}-run-{label}" for label, _ in RUN_RUNGS] + [f"{prefix}-clean"]
+            continue
         if request["kind"] in ("receipt", "credit-note"):
             names.append(f"{prefix}-allocation")
         names += [f"{prefix}-amounts", f"{prefix}-clean"]
@@ -511,6 +528,17 @@ def grade(base, requests, commands, reply):
         entries = [command[1] for command in mine if command[0] == "post"]
         statuses = {command[1]: command[2] for command in mine if command[0] == "set-status"}
         given = reply.get(request["id"]) if isinstance(reply, dict) else None
+        if request["kind"] == "payment-run":
+            paid = [command[1] for command in mine if command[0] == "pay"]
+            results[f"{prefix}-outcome"] = begun and isinstance(given, str) and given.strip().lower() == "done"
+            place = run_place(state, paid) if begun else D(0)
+            for label, threshold in RUN_RUNGS:
+                results[f"{prefix}-run-{label}"] = begun and place >= threshold
+            allowed = set(payable_items(state))
+            results[f"{prefix}-clean"] = begun and set(paid) <= allowed and len(paid) == len(set(paid)) and not entries and not statuses
+            for command in mine:
+                ledger.apply(state, command[0], command[1:])
+            continue
         outcome_ok = begun and isinstance(given, str) and given.strip().lower() == expected["outcome"] and \
             (request["kind"] != "vendor" or statuses == expected["statuses"])
         results[f"{prefix}-outcome"] = outcome_ok
@@ -611,8 +639,12 @@ class Builder:
             while name in used:
                 name = self.name(country)
             used.add(name)
+            discounting = self.rng.random() < 0.5
             self.books["partners"][f"V-{201 + index}"] = {"kind": "vendor", "name": name, "country": country, "currency": currency, "supply": supply,
-                                                         "vat_id": f"{country}{self.rng.randrange(10 ** 8, 10 ** 9)}" if country in EU else None}
+                                                         "vat_id": f"{country}{self.rng.randrange(10 ** 8, 10 ** 9)}" if country in EU else None,
+                                                         "terms": "2/10 net 30" if discounting else "net 30",
+                                                         "discount_days": 10 if discounting else None,
+                                                         "discount_rate": "0.02" if discounting else None}
 
     def invoice(self, customer, date, lines=None, subscription=None):
         partner = self.books["partners"][customer]
@@ -714,6 +746,54 @@ class Builder:
             for _ in range(rng.randrange(1, 3)):
                 self.vendor_invoice(key, weekday_between(rng, dt.date(2026, 8, 20), dt.date(2026, 9, 18)), f"VINV-{next(vinv)}", history=True)
         self.vinv = vinv
+        self.open_payables(vendors)
+
+    def open_payables(self, vendors):
+        """Payables for the payment run: some inside their discount window, some overdue by a few days or many, in sizes
+        that differ, so that which ones the cash can cover decides the run's worth."""
+        rng = self.rng
+        services = [key for key, vendor in sorted(vendors.items()) if vendor["supply"] == "services"]
+        # Each currency keeps room for the queue's own invoices, and the exact optimum enumerates each currency's subsets.
+        counts = {}
+        for item in payable_items(self.books).values():
+            counts[item["currency"]] = counts.get(item["currency"], 0) + 1
+        for key, vendor in sorted(vendors.items()):
+            for profile in ("fresh", "fresh", "due-soon", "overdue", "late"):
+                if rng.random() < 0.25 or counts.get(vendor["currency"], 0) >= PAYMENT_MAX_PER_CURRENCY - 3:
+                    continue
+                counts[vendor["currency"]] = counts.get(vendor["currency"], 0) + 1
+                issued = {"fresh": TODAY - dt.timedelta(days=rng.randrange(0, 9)),
+                          "due-soon": TODAY - dt.timedelta(days=rng.randrange(12, 26)),
+                          "overdue": TODAY - dt.timedelta(days=rng.randrange(33, 45)),
+                          "late": TODAY - dt.timedelta(days=rng.randrange(50, 70))}[profile]
+                amount = D(rng.choice([rng.randrange(40000, 120000), rng.randrange(150000, 400000), rng.randrange(450000, 900000)])) / 100
+                identifier = f"VINV-{next(self.vinv)}"
+                if key in services or vendor["supply"] == "services":
+                    self.vendor_invoice(key, issued, identifier, history=True, gross_target=amount, approver="Pieter de Wit")
+                else:
+                    # Goods without a purchase order are recorded as a service accrual, so the run has payables in every
+                    # currency without disturbing the three-way match of the queue's own invoices.
+                    self.service_payable(key, issued, identifier, amount)
+
+    def service_payable(self, vendor_key, issued, identifier, amount):
+        """An open payable posted straight to operating expenses, with the vendor's own terms and a 30-day due date."""
+        books, vendor = self.books, self.books["partners"][vendor_key]
+        vat = cents(amount * D("0.21")) if vendor["country"] == "NL" else D(0)
+        gross = amount + vat
+        record = {"type": "vendor-invoice", "id": identifier, "vendor": vendor_key, "number": f"S{self.rng.randrange(1000, 9999)}",
+                  "date": issued.isoformat(), "due": (issued + dt.timedelta(days=30)).isoformat(), "currency": vendor["currency"],
+                  "category": "services", "po": None, "requested_by": "Marta Kovacs", "status": "posted",
+                  "lines": [{"po_line": None, "description": "Freight handling", "qty": 1, "unit_price": text(amount), "vat_rate": "0.21" if vat else "0.00"}],
+                  "net": text(amount), "vat": text(vat), "gross": text(gross)}
+        books["documents"][identifier] = record
+        invoice_rate = rate(books, vendor["currency"], record["date"])
+        gross_eur, vat_eur = cents(gross * invoice_rate), cents(vat * invoice_rate)
+        entry = Entry(books, record["date"], f"Vendor invoice {identifier}")
+        entry.open_item("2000", vendor_key, identifier, vendor["currency"], gross, gross_eur)
+        entry.line("6000", gross_eur - vat_eur)
+        if vat_eur:
+            entry.line("1300", vat_eur)
+        self.post(entry.done())
 
     def vendor_invoice(self, vendor_key, date, identifier, history=False, number=None, prices=None, quantities=None, po=None, approver=None,
                        requested_by=None, gross_target=None):
@@ -721,7 +801,8 @@ class Builder:
         rng, books = self.rng, self.books
         vendor = books["partners"][vendor_key]
         record = {"type": "vendor-invoice", "id": identifier, "vendor": vendor_key, "number": number or f"{rng.choice(['', 'INV', 'F'])}{rng.randrange(2026, 2027)}-{rng.randrange(10, 9999):04d}",
-                  "date": date.isoformat(), "currency": vendor["currency"], "category": vendor["supply"], "po": None, "lines": [],
+                  "date": date.isoformat(), "due": (date + dt.timedelta(days=30)).isoformat(),
+                  "currency": vendor["currency"], "category": vendor["supply"], "po": None, "lines": [],
                   "requested_by": requested_by or rng.choice(REQUESTERS), "status": "new"}
         if vendor["supply"] == "goods":
             orders = [key for key, item in books["documents"].items() if item.get("type") == "purchase-order" and item["vendor"] == vendor_key]
@@ -753,7 +834,7 @@ class Builder:
                 self.post(entry)
             record["status"] = "posted"
             books["documents"][identifier] = record
-            if rng.random() < 0.35:  # paid in full at the carrying amount
+            if rng.random() < 0.15:  # paid in full at the carrying amount
                 state = items(books)[identifier]
                 payment = {"date": min(date + dt.timedelta(days=rng.randrange(5, 20)), dt.date(2026, 9, 28)).isoformat(), "memo": f"Payment {identifier}",
                            "lines": [{"account": "2000", "debit": text(state["eur"]), "partner": vendor_key, "document": identifier,
@@ -762,8 +843,154 @@ class Builder:
         return identifier
 
 
+PAYMENT_CURRENCIES = ("EUR", "USD", "GBP", "CHF")
+PAYMENT_MAX_PER_CURRENCY = 11  # the exact optimum enumerates the subsets of each currency
+
+
+def record_of(books, key):
+    """A document's record, whether it is in the ledger's documents or still in the inbox."""
+    return books["documents"].get(key) or books["inbox"].get(key)
+
+
+def payable_items(books):
+    """{document: item} of the open payables of today's run, the disputed ones left out."""
+    found = {}
+    for key, item in items(books).items():
+        record = record_of(books, key)
+        if item["account"] == "2000" and item["open"] > 0 and record is not None and not record.get("disputed"):
+            found[key] = item
+    return found
+
+
+def payment_terms(books, document):
+    """(discount in the document's currency if paid today, discount if paid in the next run)."""
+    record = record_of(books, document)
+    vendor = books["partners"][record["vendor"]]
+    if vendor.get("discount_days") is None:
+        return D(0), D(0)
+    window = day(record["date"]) + dt.timedelta(days=vendor["discount_days"])
+    discount = cents(D(record["gross"]) * D(vendor["discount_rate"]))
+    settings = books["payment_run"]
+    later = TODAY + dt.timedelta(days=settings["next_run_days"])
+    return (discount if TODAY <= window else D(0)), (discount if later <= window else D(0))
+
+
+def penalty(books, document, when):
+    """The late penalty of a payable paid on `when`: the rate per day for every day after its due date."""
+    record = record_of(books, document)
+    settings = books["payment_run"]
+    days = (when - day(record["due"])).days
+    return cents(D(record["gross"]) * D(settings["penalty_rate"]) * days) if days > 0 else D(0)
+
+
+def benefit(books, document):
+    """What paying a payable today saves against paying it in the next run, in EUR at today's rate: the penalty avoided
+    plus the discount kept. The transfer fee falls due in either run, so it cancels."""
+    settings = books["payment_run"]
+    later = TODAY + dt.timedelta(days=settings["next_run_days"])
+    today_discount, later_discount = payment_terms(books, document)
+    saved = (penalty(books, document, later) - penalty(books, document, TODAY)) + (today_discount - later_discount)
+    return cents(saved * rate(books, items(books)[document]["currency"], TODAY.isoformat()))
+
+
+def payment_cost(books, document):
+    """The cash a payment uses, in the document's currency: the open amount less today's discount."""
+    return payable_items(books)[document]["open"] - payment_terms(books, document)[0]
+
+
+def payment_options(books):
+    """{currency: [(document, cash used, benefit)]} of the payables the run may pay."""
+    options = {}
+    for key, item in sorted(payable_items(books).items()):
+        if item["currency"] in PAYMENT_CURRENCIES:
+            options.setdefault(item["currency"], []).append((key, payment_cost(books, key), benefit(books, key)))
+    return options
+
+
+def best_run(books):
+    """The most valuable set of payments the run allows. The cash is per currency and only the number of payments is
+    shared, so the exact optimum is the best subset per currency for each number of payments, combined over currencies."""
+    settings = books["payment_run"]
+    options = payment_options(books)
+    limit = settings["max_payments"]
+    per_currency = {}
+    for currency, rows in options.items():
+        assert len(rows) <= PAYMENT_MAX_PER_CURRENCY, (currency, len(rows))
+        cash = D(settings["cash"][currency])
+        best = {}
+        for mask in range(1 << len(rows)):
+            chosen = [rows[index] for index in range(len(rows)) if mask >> index & 1]
+            if len(chosen) > limit or sum((row[1] for row in chosen), D(0)) > cash:
+                continue
+            value = sum((row[2] for row in chosen), D(0))
+            if len(chosen) not in best or value > best[len(chosen)][0]:
+                best[len(chosen)] = (value, [row[0] for row in chosen])
+        per_currency[currency] = best
+    combined = {0: (D(0), [])}
+    for currency, best in sorted(per_currency.items()):
+        following = {}
+        for used, (value, documents) in combined.items():
+            for count, (gain, chosen) in best.items():
+                if used + count > limit:
+                    continue
+                total = value + gain
+                if used + count not in following or total > following[used + count][0]:
+                    following[used + count] = (total, documents + chosen)
+        combined = following
+    return max(combined.values(), key=lambda pair: pair[0])
+
+
+def naive_run(books):
+    """0 on the scale: the payables by due date, earliest first (ties by document), while the cash and the count allow."""
+    settings = books["payment_run"]
+    limit, left = settings["max_payments"], {currency: D(amount) for currency, amount in settings["cash"].items()}
+    chosen = []
+    rows = [(record_of(books, key)["due"], key, item["currency"]) for key, item in payable_items(books).items() if item["currency"] in PAYMENT_CURRENCIES]
+    for _, key, currency in sorted(rows):
+        cost = payment_cost(books, key)
+        if len(chosen) < limit and cost <= left[currency]:
+            left[currency] -= cost
+            chosen.append(key)
+    return sum((benefit(books, key) for key in chosen), D(0)), chosen
+
+
+def greedy_run(books):
+    """0.5 on the scale: the payables by benefit per unit of cash, highest first (ties by document), while the cash and
+    the count allow."""
+    settings = books["payment_run"]
+    limit, left = settings["max_payments"], {currency: D(amount) for currency, amount in settings["cash"].items()}
+    rows = []
+    for currency, options in payment_options(books).items():
+        for key, cost, gain in options:
+            rows.append((-(gain / cost if cost else D(0)), key, currency, cost, gain))
+    chosen = []
+    for _, key, currency, cost, gain in sorted(rows, key=lambda row: (row[0], row[1])):
+        if len(chosen) < limit and cost <= left[currency]:
+            left[currency] -= cost
+            chosen.append(key)
+    return sum((benefit(books, key) for key in chosen), D(0)), chosen
+
+
+RUN_RUNGS = (("50", D("0.5")), ("80", D("0.8")), ("95", D("0.95")), ("100", D("1")))
+
+
+def run_place(books, paid):
+    """A run's place between the naive plan (0), the greedy plan (0.5) and the best known (1)."""
+    value = sum((benefit(books, key) for key in paid), D(0))
+    naive_value = naive_run(books)[0]
+    greedy_value = greedy_run(books)[0]
+    best_value = best_run(books)[0]
+    if value >= greedy_value:
+        if greedy_value >= best_value or value >= best_value:
+            return D(1)
+        return D("0.5") + D("0.5") * (value - greedy_value) / (best_value - greedy_value)
+    if naive_value >= greedy_value:
+        return D(0)
+    return max(D(0), D("0.5") * (value - naive_value) / (greedy_value - naive_value))
+
+
 COLLEAGUES = {"receipt": "Anna de Boer, receivables", "credit-note": "Anna de Boer, receivables", "vendor": "Jonas Smit, payables",
-              "deferred": "Lotte Mulder, controller", "revaluation": "Lotte Mulder, controller"}
+              "deferred": "Lotte Mulder, controller", "revaluation": "Lotte Mulder, controller", "payment-run": "Jonas Smit, payables"}
 
 
 class Unsuitable(Exception):
@@ -954,10 +1181,52 @@ def queue(builder):
     requests[-1]["number"] = re.search(r"CN-\d+", requests[-1]["text"]).group(0)
     add("deferred", "Please run September's deferred revenue recognition.", trap="deferred")
     add("revaluation", "Please run the September revaluation.", trap="revaluation")
+    # The payment run comes last, so the invoices processed earlier in the queue are among its payables, some of them
+    # still inside their discount window. The oracle's state for it is the books as the earlier requests leave them.
+    state = copy.deepcopy(books)
+    for request in requests:
+        result = handle(state, request)
+        apply_result(state, request, result)
+    payables = payable_items(state)
+    counts = {}
+    for key, item in payables.items():
+        counts[item["currency"]] = counts.get(item["currency"], 0) + 1
+    if any(count > PAYMENT_MAX_PER_CURRENCY for count in counts.values()) or len(payables) < 8:
+        raise Unsuitable("payables")
+    # One payable is disputed and must not be paid; it is the largest, so skipping it matters.
+    largest = max(payables, key=lambda key: payables[key]["eur"])
+    record_of(books, largest)["disputed"] = True
+    record_of(state, largest)["disputed"] = True
+    books["payment_run"] = run_settings(rng, state)
+    state["payment_run"] = books["payment_run"]
+    add("payment-run", "Please make today's payment run: pay the payables that are worth paying today, as the manual says.", trap="payment-run")
     return requests
 
 
+def run_settings(rng, state):
+    """Cash and limits under which choosing well pays: the cash of each currency covers part of its payables, the run
+    holds fewer payments than the cash alone would allow, and the three named plans are clearly apart. Raises
+    Unsuitable when no such setting is found for these payables."""
+    payables = payable_items(state)
+    totals = {}
+    for key, item in payables.items():
+        if item["currency"] in PAYMENT_CURRENCIES:
+            totals[item["currency"]] = totals.get(item["currency"], D(0)) + item["open"]
+    for _ in range(80):
+        cash = {currency: text(cents(total * D(rng.randrange(20, 55)) / 100)) for currency, total in sorted(totals.items())}
+        for currency in PAYMENT_CURRENCIES:
+            cash.setdefault(currency, "0.00")
+        settings = {"cash": cash, "max_payments": rng.choice([3, 4, 4, 5]), "penalty_rate": "0.0015", "next_run_days": 7,
+                    "fee_domestic": "1.50", "fee_foreign": "12.00"}
+        state["payment_run"] = settings
+        naive_value, greedy_value, best_value = naive_run(state)[0], greedy_run(state)[0], best_run(state)[0]
+        if best_value > 0 and greedy_value <= best_value * D("0.93") and naive_value <= greedy_value * D("0.9"):
+            return settings
+    raise Unsuitable("payment run settings")
+
+
 MISTAKES = {
+    "pay-by-due-date": "pays the payables by due date instead of by what paying them is worth",
     "oldest-first": "ignores the named invoices and the exact match, and pays the oldest first",
     "no-discount": "grants no early-payment discount",
     "no-writeoff": "leaves short payments within the limit open",
@@ -975,7 +1244,8 @@ def mistake_effects(books, requests):
         effects[mistake] = []
         for request, (state, result) in zip(requests, results):
             wrong = handle(state, request, (mistake,))
-            if footprint(wrong["entries"]) != footprint(result["entries"]) or wrong["outcome"] != result["outcome"]:
+            if footprint(wrong["entries"]) != footprint(result["entries"]) or wrong["outcome"] != result["outcome"] \
+                    or sorted(wrong.get("payments", [])) != sorted(result.get("payments", [])):
                 effects[mistake].append(request["id"])
     return effects
 

@@ -6,7 +6,8 @@ Each item is one close day for Kestrel Freight B.V. The books are about 45 open 
 - three vendor invoices;
 - a credit note;
 - September's deferred revenue;
-- the September revaluation.
+- the September revaluation;
+- today's payment run.
 
 The manual defines every rule exactly, with its rounding. The tool checks only that entries are well formed: balanced, known accounts, and open-item lines that clear no more than is open.
 
@@ -21,7 +22,8 @@ Planted in every day:
 - a price variance within 2% but above 50.00 EUR (or the reverse), reverse-charged services, or an approval that fails on its limit or on segregation of duties;
 - a credit note larger than the invoice's open amount;
 - contracts that start, end, span or miss September;
-- a revaluation that must count the September receipts but not the October ones, nor the vendor invoices posted into October.
+- a revaluation that must count the September receipts but not the October ones, nor the vendor invoices posted into October;
+- a payment run whose cash and count bind: the three named plans are far apart, one payable is disputed, and the payables inside their discount window are among the ones the queue itself posted.
 
 ## Checks
 
@@ -32,6 +34,7 @@ Each request is graded against the oracle (`private/finance.py`) run on the stat
 - **`rN-allocation`** (critical, receipts and credit notes): which documents were cleared and by how much in their currencies, and which prepayment or suspense documents received money.
 - **`rN-amounts`** (critical): every EUR amount the request's entries post, by account, partner and document (where the manual names them) and period. Lines may be split or combined, since only the net per key counts.
 - **`rN-clean`** (critical): nothing posted on keys the request does not touch, and no status set on another invoice. It counts only once the request's own allocation or amounts pass.
+- **`rN-run-50`, `-80`, `-95`, `-100`** (critical, the payment run): the run's worth is placed between the three plans the manual names, paying by due date (0), paying by worth per unit of cash (0.5) and the most valuable set the run allows (1), and reaches that share of the scale. The run's own `rN-clean` passes when every payment is an open, undisputed payable and the request posts nothing else.
 - **`answer-format`** (non-critical): the reply ends with one JSON object. A recovered reply loses 20%; a missing reply already fails every outcome.
 
 A request that was never begun passes nothing. The score is the fraction of critical checks passed, less the format deduction.

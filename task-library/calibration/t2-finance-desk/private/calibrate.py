@@ -122,6 +122,49 @@ def examples():
     ledger.apply(books, "post", [{"date": "2026-09-16", "memo": "x", "lines": [{"account": "1100", "debit": "300.00"},
                                                                              {"account": "2400", "credit": "300.00", "partner": "C-1", "document": "CTR-1"}]}])
     rows.append(("deferred-day-count", lines_of(finance.deferred(books)) == sorted([("2026-09-30", "2400", "150.00", "CTR-1", None), ("2026-09-30", "4000", "-150.00", None, None)])))
+    # 11. The payment run: worth, cash and the count, on three payables worked out by hand.
+    books = mini_books()
+    books["today"] = "2026-09-30"
+    books["partners"]["V-1"].update(terms="2/10 net 30", discount_days=10, discount_rate="0.02")
+    books["partners"]["V-2"].update(terms="net 30", discount_days=None, discount_rate=None)
+    books["payment_run"] = {"cash": {"EUR": "1800.00", "USD": "0.00", "GBP": "0.00", "CHF": "0.00"}, "max_payments": 2,
+                            "penalty_rate": "0.0010", "next_run_days": 7, "fee_domestic": "1.50", "fee_foreign": "12.00"}
+    payables = [("VINV-A", "V-1", "2026-09-25", "2026-10-25", "1000.00"),   # inside its window: a 20.00 discount kept
+                ("VINV-B", "V-2", "2026-08-20", "2026-09-10", "800.00"),    # 20 days late today, 27 in the next run: 5.60 of penalty avoided
+                ("VINV-C", "V-2", "2026-09-01", "2026-09-21", "700.00")]    # 9 days late today, 16 in the next run: 4.90 avoided
+    for identifier, vendor, issued, due, gross in payables:
+        books["documents"][identifier] = {"type": "vendor-invoice", "id": identifier, "vendor": vendor, "number": identifier, "date": issued,
+                                          "due": due, "currency": "EUR", "category": "services", "po": None, "requested_by": "Marta Kovacs",
+                                          "status": "posted", "net": gross, "vat": "0.00", "gross": gross,
+                                          "lines": [{"po_line": None, "description": "Freight", "qty": 1, "unit_price": gross, "vat_rate": "0.00"}]}
+        ledger.apply(books, "post", [{"date": issued, "memo": f"Vendor invoice {identifier}", "lines": [
+            {"account": "2000", "credit": gross, "partner": vendor, "document": identifier, "currency": "EUR", "amount": gross},
+            {"account": "6000", "debit": gross}]}])
+    worth = {key: finance.benefit(books, key) for key, *_ in payables}
+    rows.append(("payment-run-worth", worth == {"VINV-A": D("20.00"), "VINV-B": D("5.60"), "VINV-C": D("4.90")}))
+    # A is worth most and uses 980.00 of the 1,800.00 cash; the rest covers B (800.00) but not both B and C, and the
+    # run holds two payments at most. A with B is worth 25.60, A with C 24.90 and B with C 10.50.
+    best_value, best_set = finance.best_run(books)
+    rows.append(("payment-run-best-set", (best_value, sorted(best_set)) == (D("25.60"), ["VINV-A", "VINV-B"])))
+    rows.append(("payment-run-greedy-is-the-same-here", sorted(finance.greedy_run(books)[1]) == ["VINV-A", "VINV-B"]))
+    # Paying by due date takes B and C, the two oldest, and is worth less: half the scale.
+    rows.append(("payment-run-due-date-order-places-at-zero", sorted(finance.naive_run(books)[1]) == ["VINV-B", "VINV-C"]
+                 and finance.run_place(books, ["VINV-B", "VINV-C"]) == D(0)))
+    rows.append(("payment-run-best-places-at-one", finance.run_place(books, ["VINV-A", "VINV-B"]) == D(1)))
+    # The tool keeps the run inside its cash and its count, and refuses a disputed payable.
+    books["documents"]["VINV-C"]["disputed"] = True
+    try:
+        ledger.apply(books, "pay", ["VINV-C"])
+        refused_disputed = False
+    except ledger.Refused:
+        refused_disputed = True
+    ledger.apply(books, "pay", ["VINV-A"])
+    try:
+        ledger.apply(books, "pay", ["VINV-B"])
+        within_cash = True
+    except ledger.Refused:
+        within_cash = False
+    rows.append(("payment-run-tool-refuses-disputed-and-keeps-the-cash", refused_disputed and within_cash))
     return rows
 
 
@@ -209,7 +252,21 @@ def scenarios():
                 slipped, slipped_reply = own_state_run(books, requests, (request["id"], posted_anyway))
                 rows.append((item_id, f"holds-{request['id']}-only", slipped, None, json.dumps(slipped_reply),
                              lambda passed, others=others, prefix=prefix: others <= passed and f"{prefix}-outcome" not in passed))
-        for mistake in finance.MISTAKES:
+        # A run that pays by due date keeps its outcome but loses its rungs.
+        for request in requests:
+            if request["kind"] == "payment-run":
+                prefix = request["id"].lower()
+                others = {name for name in names if not name.startswith(prefix + "-")}
+
+                def by_due_date(state, request_, result):
+                    return {**result, "payments": sorted(finance.naive_run(state)[1])}
+                slipped, slipped_reply = own_state_run(books, requests, (request["id"], by_due_date))
+                rows.append((item_id, f"pays-by-due-date-in-{request['id']}-only", slipped, None, json.dumps(slipped_reply),
+                             lambda passed, others=others, prefix=prefix: others <= passed and f"{prefix}-run-50" not in passed
+                             and f"{prefix}-outcome" in passed))
+        for mistake, touched in day["effects"].items():
+            if not touched:
+                continue  # this day's requests do not turn on that rule
             wrong_commands, wrong_reply = own_state_run(books, requests, mistakes=(mistake,))
             rows.append((item_id, f"misreads-{mistake}", wrong_commands, None, json.dumps(wrong_reply), None))
     return rows

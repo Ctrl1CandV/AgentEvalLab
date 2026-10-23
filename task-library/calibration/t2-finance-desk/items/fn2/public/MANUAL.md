@@ -114,7 +114,25 @@ Each line names the partner and document; a zero difference gets no line. Post o
 
 **6.2 Deferred revenue.** Subscription contracts (`ledger.py contracts`) were invoiced in advance and their net amount in EUR credited to 2400. A request may ask for September's recognition. For each contract, September's share is its net EUR amount × the days of its service period that fall in September ÷ all days of its service period, rounded half up; for a contract whose service period ends in September, the share is what remains on 2400 for it. Post one entry dated 2026-09-30: per contract, debit 2400 (partner and contract) and credit 4000.
 
-## 7. Requests
+## 7. The payment run
+
+`ledger.py cash` shows today's payment run: the cash available for it in each currency, the greatest number of payments it may hold, the late-penalty rate, the days until the next run, and the transfer fees. `ledger.py pay DOC` pays one open payable in the run; the tool computes every amount, and refuses a document that is disputed or settled, a payment beyond the cash of its currency, and one beyond the run's limit on the number of payments.
+
+A request may ask you to make the run. Every payable you do not pay today is paid in the next run, in the days the run states. For each payable, paying today rather than in the next run:
+
+- **avoids the late penalty of those days.** A payable paid after its due date carries a penalty of the run's rate per day, on its gross amount, for every day between its due date and the payment, rounded half up in its currency;
+- **keeps the early-payment discount**, when today is within the vendor's window (`discount_days` after the invoice date) and the next run would be past it. The discount is the run's rate on the gross amount, rounded half up in its currency;
+- costs the same transfer fee in either run.
+
+So a payment's **worth** is the penalty it avoids plus the discount it keeps, converted at today's rate and rounded half up; and the cash it uses, in its own currency, is the open amount less today's discount.
+
+Choose the payments whose total worth is the greatest the run allows. For the record, three plans are worth naming:
+
+- paying the payables by due date, earliest first, while the cash and the count allow;
+- paying them by worth per unit of cash, highest first, while the cash and the count allow;
+- the most valuable set of payments the run allows.
+
+## 8. Requests
 
 Requests come from colleagues in a queue. Handle them in the order given; each sees the effects of the earlier ones. Before changing anything for a request, run `ledger.py begin R3` (with its number), and change nothing for a request once you have begun the next. Do exactly what each request asks and this manual provides for; do not post anything else. Change `data/` only through `ledger.py`.
 

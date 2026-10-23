@@ -49,3 +49,30 @@ Run `runs/suites/20261022-135908-dev-4b33`: fn1 and fn2 on deepseek-flash, qwen3
 - **mimo on fn1.** It was stopped by the budget after R5 and gave no reply.
 
 **Reading.** The strong models turn the manual into code and compute every rule exactly. Even at corporate-finance complexity, a fully specified procedure separates models only by care with near-identical names and by budget management.
+
+## Version 0.2.0 (2026-10-23): the payment run
+
+**Why.** On the 0.1.0 pilot deepseek-flash scored 97.1% and qwen3.8-flash 100%. Every request was a specified procedure, which these models carry out exactly. The user approved adding one open-ended request, scored on a continuous scale, as E2 `routes` and E4 `compress` are.
+
+**The run** (manual section 7). `ledger.py cash` states the cash available in each currency, the greatest number of payments, the late-penalty rate per day, the days until the next run and the transfer fees. `ledger.py pay DOC` pays one payable, computing the discount, the exchange difference and the fee itself, and refusing a disputed or settled document, a payment beyond its currency's cash, and one beyond the count.
+
+Paying a payable today rather than in the next run avoids the penalty of those days and keeps the discount when today is inside the vendor's window; the fee falls due either way. So each payable has a worth and a cash cost, the cash is per currency and the count is shared: a multi-dimensional knapsack. The exact optimum is the best subset of each currency for each number of payments, combined over currencies.
+
+**The scale**, with all three plans named in the manual:
+
+- **0**: the payables by due date, earliest first;
+- **0.5**: by worth per unit of cash, highest first;
+- **1**: the most valuable set the run allows.
+
+Rungs at 50%, 80%, 95% and 100% of the scale.
+
+**Generation.** Each day draws 23–26 open payables across EUR, USD, GBP and CHF, inside their discount window, due soon, overdue or long overdue, in sizes that differ; the largest is disputed. Cash and the count are searched until the greedy plan is at most 93% of the optimum and the due-date plan at most 90% of the greedy one. The four days give:
+
+| Day | Payables | Due-date plan | Greedy plan | Best known | Payments allowed |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| fn1 | 26 | 130.95 | 157.78 | 277.95 | 4 |
+| fn2 | 23 | 78.93 | 122.23 | 210.45 | 3 |
+| fn3 | 25 | 143.52 | 273.19 | 305.04 | 3 |
+| fn4 | 25 | 141.67 | 308.78 | 401.62 | 5 |
+
+**Self-calibration**: 16 hand-worked examples and 62 scenarios, all as expected. The run adds six examples on three payables worked out by hand (a 20.00 discount kept, 5.60 and 4.90 of penalty avoided, the best set under the cash and the count, the due-date plan at 0, the best at 1, and the tool's refusals), and a scenario where a desk pays by due date in the run alone and loses only that request's rungs.

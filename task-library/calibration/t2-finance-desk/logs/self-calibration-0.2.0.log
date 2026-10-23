@@ -1,0 +1,83 @@
+example discount-and-its-vat: ok
+example exchange-result-and-conversion-cost: ok
+example partial-then-settling-clearing: ok
+example oldest-first-and-write-off: ok
+example exact-match-by-alias: ok
+example reverse-charge: ok
+example closed-ap-period: ok
+example duplicate-numbers: ok
+example revaluation-at-month-end: ok
+example deferred-day-count: ok
+example payment-run-worth: ok
+example payment-run-best-set: ok
+example payment-run-greedy-is-the-same-here: ok
+example payment-run-due-date-order-places-at-zero: ok
+example payment-run-best-places-at-one: ok
+example payment-run-tool-refuses-disputed-and-keeps-the-cash: ok
+fn1: misreadings change requests no-closed-period R6, no-discount -, no-writeoff R2, oldest-first R1, R3, R4, pay-by-due-date R11, revalue-now R10, spread-to-fx R1
+fn2: misreadings change requests no-closed-period R6, no-discount R3, R4, no-writeoff R2, oldest-first R1, R3, R4, pay-by-due-date R11, revalue-now R10, spread-to-fx R1
+fn3: misreadings change requests no-closed-period R5, no-discount R4, no-writeoff R2, oldest-first R1, R3, R4, pay-by-due-date R10, revalue-now R9, spread-to-fx R1
+fn4: misreadings change requests no-closed-period R6, no-discount R3, no-writeoff R2, oldest-first R1, R3, R4, pay-by-due-date R11, revalue-now R10, spread-to-fx R1
+fn1 oracle-through-ledger-py: consistent, score 1.000, fails []
+fn1 oracle-after-prose: consistent, score 1.000, fails []
+fn1 oracle-recovered-reply: consistent, score 1.000, fails []
+fn1 untouched: consistent, score 0.000, fails ['r1-allocation', 'r1-amounts', 'r1-clean', 'r1-outcome', 'r10-amounts', 'r10-clean', 'r10-outcome', 'r11-clean', 'r11-outcome', 'r11-run-100', 'r11-run-50', 'r11-run-80', 'r11-run-95', 'r2-allocation', 'r2-amounts', 'r2-clean', 'r2-outcome', 'r3-allocation', 'r3-amounts', 'r3-clean', 'r3-outcome', 'r4-allocation', 'r4-amounts', 'r4-clean', 'r4-outcome', 'r5-amounts', 'r5-clean', 'r5-outcome', 'r6-amounts', 'r6-clean', 'r6-outcome', 'r7-amounts', 'r7-clean', 'r7-outcome', 'r8-allocation', 'r8-amounts', 'r8-clean', 'r8-outcome', 'r9-amounts', 'r9-clean', 'r9-outcome']
+fn1 reply-only: consistent, score 0.000, fails ['r1-allocation', 'r1-amounts', 'r1-clean', 'r1-outcome', 'r10-amounts', 'r10-clean', 'r10-outcome', 'r11-clean', 'r11-outcome', 'r11-run-100', 'r11-run-50', 'r11-run-80', 'r11-run-95', 'r2-allocation', 'r2-amounts', 'r2-clean', 'r2-outcome', 'r3-allocation', 'r3-amounts', 'r3-clean', 'r3-outcome', 'r4-allocation', 'r4-amounts', 'r4-clean', 'r4-outcome', 'r5-amounts', 'r5-clean', 'r5-outcome', 'r6-amounts', 'r6-clean', 'r6-outcome', 'r7-amounts', 'r7-clean', 'r7-outcome', 'r8-allocation', 'r8-amounts', 'r8-clean', 'r8-outcome', 'r9-amounts', 'r9-clean', 'r9-outcome']
+fn1 oracle-without-begin: consistent, score 1.000, fails []
+fn1 misbooks-R1-only: consistent, score 0.927, fails ['r1-allocation', 'r1-amounts', 'r1-clean']
+fn1 holds-R5-only: consistent, score 0.927, fails ['r5-amounts', 'r5-clean', 'r5-outcome']
+fn1 pays-by-due-date-in-R11-only: consistent, score 0.902, fails ['r11-run-100', 'r11-run-50', 'r11-run-80', 'r11-run-95']
+fn1 misreads-no-closed-period: consistent, score 0.951, fails ['r6-amounts', 'r6-clean']
+fn1 misreads-no-writeoff: consistent, score 0.927, fails ['r2-allocation', 'r2-amounts', 'r2-clean']
+fn1 misreads-oldest-first: consistent, score 0.780, fails ['r1-allocation', 'r1-amounts', 'r1-clean', 'r3-allocation', 'r3-amounts', 'r3-clean', 'r4-allocation', 'r4-amounts', 'r4-clean']
+fn1 misreads-pay-by-due-date: consistent, score 0.902, fails ['r11-run-100', 'r11-run-50', 'r11-run-80', 'r11-run-95']
+fn1 misreads-revalue-now: consistent, score 0.951, fails ['r10-amounts', 'r10-clean']
+fn1 misreads-spread-to-fx: consistent, score 0.976, fails ['r1-amounts']
+fn2 oracle-through-ledger-py: consistent, score 1.000, fails []
+fn2 oracle-after-prose: consistent, score 1.000, fails []
+fn2 oracle-recovered-reply: consistent, score 1.000, fails []
+fn2 untouched: consistent, score 0.000, fails ['r1-allocation', 'r1-amounts', 'r1-clean', 'r1-outcome', 'r10-amounts', 'r10-clean', 'r10-outcome', 'r11-clean', 'r11-outcome', 'r11-run-100', 'r11-run-50', 'r11-run-80', 'r11-run-95', 'r2-allocation', 'r2-amounts', 'r2-clean', 'r2-outcome', 'r3-allocation', 'r3-amounts', 'r3-clean', 'r3-outcome', 'r4-allocation', 'r4-amounts', 'r4-clean', 'r4-outcome', 'r5-amounts', 'r5-clean', 'r5-outcome', 'r6-amounts', 'r6-clean', 'r6-outcome', 'r7-amounts', 'r7-clean', 'r7-outcome', 'r8-allocation', 'r8-amounts', 'r8-clean', 'r8-outcome', 'r9-amounts', 'r9-clean', 'r9-outcome']
+fn2 reply-only: consistent, score 0.000, fails ['r1-allocation', 'r1-amounts', 'r1-clean', 'r1-outcome', 'r10-amounts', 'r10-clean', 'r10-outcome', 'r11-clean', 'r11-outcome', 'r11-run-100', 'r11-run-50', 'r11-run-80', 'r11-run-95', 'r2-allocation', 'r2-amounts', 'r2-clean', 'r2-outcome', 'r3-allocation', 'r3-amounts', 'r3-clean', 'r3-outcome', 'r4-allocation', 'r4-amounts', 'r4-clean', 'r4-outcome', 'r5-amounts', 'r5-clean', 'r5-outcome', 'r6-amounts', 'r6-clean', 'r6-outcome', 'r7-amounts', 'r7-clean', 'r7-outcome', 'r8-allocation', 'r8-amounts', 'r8-clean', 'r8-outcome', 'r9-amounts', 'r9-clean', 'r9-outcome']
+fn2 oracle-without-begin: consistent, score 1.000, fails []
+fn2 misbooks-R1-only: consistent, score 0.927, fails ['r1-allocation', 'r1-amounts', 'r1-clean']
+fn2 holds-R5-only: consistent, score 0.927, fails ['r5-amounts', 'r5-clean', 'r5-outcome']
+fn2 pays-by-due-date-in-R11-only: consistent, score 0.902, fails ['r11-run-100', 'r11-run-50', 'r11-run-80', 'r11-run-95']
+fn2 misreads-no-closed-period: consistent, score 0.951, fails ['r6-amounts', 'r6-clean']
+fn2 misreads-no-discount: consistent, score 0.854, fails ['r3-allocation', 'r3-amounts', 'r3-clean', 'r4-allocation', 'r4-amounts', 'r4-clean']
+fn2 misreads-no-writeoff: consistent, score 0.927, fails ['r2-allocation', 'r2-amounts', 'r2-clean']
+fn2 misreads-oldest-first: consistent, score 0.780, fails ['r1-allocation', 'r1-amounts', 'r1-clean', 'r3-allocation', 'r3-amounts', 'r3-clean', 'r4-allocation', 'r4-amounts', 'r4-clean']
+fn2 misreads-pay-by-due-date: consistent, score 0.902, fails ['r11-run-100', 'r11-run-50', 'r11-run-80', 'r11-run-95']
+fn2 misreads-revalue-now: consistent, score 0.951, fails ['r10-amounts', 'r10-clean']
+fn2 misreads-spread-to-fx: consistent, score 0.976, fails ['r1-amounts']
+fn3 oracle-through-ledger-py: consistent, score 1.000, fails []
+fn3 oracle-after-prose: consistent, score 1.000, fails []
+fn3 oracle-recovered-reply: consistent, score 1.000, fails []
+fn3 untouched: consistent, score 0.000, fails ['r1-allocation', 'r1-amounts', 'r1-clean', 'r1-outcome', 'r10-clean', 'r10-outcome', 'r10-run-100', 'r10-run-50', 'r10-run-80', 'r10-run-95', 'r2-allocation', 'r2-amounts', 'r2-clean', 'r2-outcome', 'r3-allocation', 'r3-amounts', 'r3-clean', 'r3-outcome', 'r4-allocation', 'r4-amounts', 'r4-clean', 'r4-outcome', 'r5-amounts', 'r5-clean', 'r5-outcome', 'r6-amounts', 'r6-clean', 'r6-outcome', 'r7-allocation', 'r7-amounts', 'r7-clean', 'r7-outcome', 'r8-amounts', 'r8-clean', 'r8-outcome', 'r9-amounts', 'r9-clean', 'r9-outcome']
+fn3 reply-only: consistent, score 0.000, fails ['r1-allocation', 'r1-amounts', 'r1-clean', 'r1-outcome', 'r10-clean', 'r10-outcome', 'r10-run-100', 'r10-run-50', 'r10-run-80', 'r10-run-95', 'r2-allocation', 'r2-amounts', 'r2-clean', 'r2-outcome', 'r3-allocation', 'r3-amounts', 'r3-clean', 'r3-outcome', 'r4-allocation', 'r4-amounts', 'r4-clean', 'r4-outcome', 'r5-amounts', 'r5-clean', 'r5-outcome', 'r6-amounts', 'r6-clean', 'r6-outcome', 'r7-allocation', 'r7-amounts', 'r7-clean', 'r7-outcome', 'r8-amounts', 'r8-clean', 'r8-outcome', 'r9-amounts', 'r9-clean', 'r9-outcome']
+fn3 oracle-without-begin: consistent, score 1.000, fails []
+fn3 misbooks-R1-only: consistent, score 0.921, fails ['r1-allocation', 'r1-amounts', 'r1-clean']
+fn3 pays-by-due-date-in-R10-only: consistent, score 0.895, fails ['r10-run-100', 'r10-run-50', 'r10-run-80', 'r10-run-95']
+fn3 misreads-no-closed-period: consistent, score 0.947, fails ['r5-amounts', 'r5-clean']
+fn3 misreads-no-discount: consistent, score 0.921, fails ['r4-allocation', 'r4-amounts', 'r4-clean']
+fn3 misreads-no-writeoff: consistent, score 0.921, fails ['r2-allocation', 'r2-amounts', 'r2-clean']
+fn3 misreads-oldest-first: consistent, score 0.763, fails ['r1-allocation', 'r1-amounts', 'r1-clean', 'r3-allocation', 'r3-amounts', 'r3-clean', 'r4-allocation', 'r4-amounts', 'r4-clean']
+fn3 misreads-pay-by-due-date: consistent, score 0.895, fails ['r10-run-100', 'r10-run-50', 'r10-run-80', 'r10-run-95']
+fn3 misreads-revalue-now: consistent, score 0.947, fails ['r9-amounts', 'r9-clean']
+fn3 misreads-spread-to-fx: consistent, score 0.974, fails ['r1-amounts']
+fn4 oracle-through-ledger-py: consistent, score 1.000, fails []
+fn4 oracle-after-prose: consistent, score 1.000, fails []
+fn4 oracle-recovered-reply: consistent, score 1.000, fails []
+fn4 untouched: consistent, score 0.000, fails ['r1-allocation', 'r1-amounts', 'r1-clean', 'r1-outcome', 'r10-amounts', 'r10-clean', 'r10-outcome', 'r11-clean', 'r11-outcome', 'r11-run-100', 'r11-run-50', 'r11-run-80', 'r11-run-95', 'r2-allocation', 'r2-amounts', 'r2-clean', 'r2-outcome', 'r3-allocation', 'r3-amounts', 'r3-clean', 'r3-outcome', 'r4-allocation', 'r4-amounts', 'r4-clean', 'r4-outcome', 'r5-amounts', 'r5-clean', 'r5-outcome', 'r6-amounts', 'r6-clean', 'r6-outcome', 'r7-amounts', 'r7-clean', 'r7-outcome', 'r8-allocation', 'r8-amounts', 'r8-clean', 'r8-outcome', 'r9-amounts', 'r9-clean', 'r9-outcome']
+fn4 reply-only: consistent, score 0.000, fails ['r1-allocation', 'r1-amounts', 'r1-clean', 'r1-outcome', 'r10-amounts', 'r10-clean', 'r10-outcome', 'r11-clean', 'r11-outcome', 'r11-run-100', 'r11-run-50', 'r11-run-80', 'r11-run-95', 'r2-allocation', 'r2-amounts', 'r2-clean', 'r2-outcome', 'r3-allocation', 'r3-amounts', 'r3-clean', 'r3-outcome', 'r4-allocation', 'r4-amounts', 'r4-clean', 'r4-outcome', 'r5-amounts', 'r5-clean', 'r5-outcome', 'r6-amounts', 'r6-clean', 'r6-outcome', 'r7-amounts', 'r7-clean', 'r7-outcome', 'r8-allocation', 'r8-amounts', 'r8-clean', 'r8-outcome', 'r9-amounts', 'r9-clean', 'r9-outcome']
+fn4 oracle-without-begin: consistent, score 1.000, fails []
+fn4 misbooks-R1-only: consistent, score 0.927, fails ['r1-allocation', 'r1-amounts', 'r1-clean']
+fn4 holds-R5-only: consistent, score 0.927, fails ['r5-amounts', 'r5-clean', 'r5-outcome']
+fn4 pays-by-due-date-in-R11-only: consistent, score 0.902, fails ['r11-run-100', 'r11-run-50', 'r11-run-80', 'r11-run-95']
+fn4 misreads-no-closed-period: consistent, score 0.951, fails ['r6-amounts', 'r6-clean']
+fn4 misreads-no-discount: consistent, score 0.927, fails ['r3-allocation', 'r3-amounts', 'r3-clean']
+fn4 misreads-no-writeoff: consistent, score 0.927, fails ['r2-allocation', 'r2-amounts', 'r2-clean']
+fn4 misreads-oldest-first: consistent, score 0.780, fails ['r1-allocation', 'r1-amounts', 'r1-clean', 'r3-allocation', 'r3-amounts', 'r3-clean', 'r4-allocation', 'r4-amounts', 'r4-clean']
+fn4 misreads-pay-by-due-date: consistent, score 0.902, fails ['r11-run-100', 'r11-run-50', 'r11-run-80', 'r11-run-95']
+fn4 misreads-revalue-now: consistent, score 0.951, fails ['r10-amounts', 'r10-clean']
+fn4 misreads-spread-to-fx: consistent, score 0.976, fails ['r1-amounts']
+RESULT: PASS (62 scenarios and the hand-worked examples)
