@@ -73,6 +73,8 @@ export interface SuiteState {
   worktree: string;
   uncommitted: string[];
   createdAt: string;
+  /** The Node version that froze the suite; a resume must run on the same major version (absent in older suites). */
+  node?: string;
   phases: Record<string, string>;
   plans: PlanEntry[];
   runs: RunEntry[];
@@ -197,7 +199,7 @@ export class SuiteRunner {
     for (const familyId of familyIds) if (!suite.families.some(family => family.id === familyId)) throw new Error(`FAMILY_UNKNOWN:${familyId}`);
     this.state = {
       schemaVersion: 1, id, suitePath, suite, modelSpecs: this.options.models, models, familyIds, repetitions, dryRun: !!this.options.dryRun,
-      commit: frozen.commit, worktree, uncommitted: frozen.uncommitted, createdAt: now(), phases: { freeze: "done" }, plans: [], runs: [],
+      commit: frozen.commit, worktree, uncommitted: frozen.uncommitted, createdAt: now(), node: process.version, phases: { freeze: "done" }, plans: [], runs: [],
     };
     for (const family of suite.families) this.families.set(family.id, family);
     await this.save();
@@ -208,6 +210,13 @@ export class SuiteRunner {
     this.state = await readJson<SuiteState>(join(this.directory, "suite.json"));
     for (const family of this.state.suite.families) this.families.set(family.id, family);
     await this.note(`Resuming suite ${this.state.id} at commit ${this.state.commit}`);
+    // Trials run on the resuming process's Node, and task packages pin their runtime: under another Node (a terminal
+    // without the project's environment on PATH) every trial would be refused at once and the suite would end.
+    const major = (version: string) => version.replace(/^v/, "").split(".")[0];
+    if (this.state.node && major(this.state.node) !== major(process.version)) {
+      throw new Error(`SUITE_RUNTIME_CHANGED: frozen with Node ${this.state.node}, resumed with Node ${process.version} (${process.execPath}); ` +
+        "put the project's environment first on PATH and resume again");
+    }
     if (!(await exists(join(this.state.worktree, ".git")))) {
       await this.note(`Recreating the frozen worktree at ${this.state.commit}`);
       await this.executor.freeze(this.state.worktree, this.state.commit);

@@ -311,6 +311,26 @@ test("a dry run stops after the smoke step and a resume continues an interrupted
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 
+test("a resume under another Node major version stops before any phase and stays resumable", async () => {
+  const root = await mkdtemp(join(tmpdir(), "suite-runtime-"));
+  try {
+    const calls: string[] = [];
+    const fixture = await suiteFixture(root);
+    const options = { repoRoot: root, suitePath: "suites/test.json", models, families: ["A"], suitesRoot: join(root, "suites"), log: () => {} };
+    const dry = await new SuiteRunner({ ...options, dryRun: true }, inProcessExecutor(fixture, () => answer("i +b"), calls, [])).run();
+    const statePath = join(dry.directory, "suite.json");
+    const frozen = JSON.parse(await readFile(statePath, "utf8")) as { node: string; phases: Record<string, string> };
+    assert.equal(frozen.node, process.version);
+    await writeFile(statePath, JSON.stringify({ ...frozen, node: "v1.0.0" }));
+    const refused = await new SuiteRunner({ repoRoot: root, resume: dry.directory, log: () => {} }, inProcessExecutor(fixture, () => answer("i +b"), calls, [])).run();
+    assert.equal(refused.status, 1);
+    assert.ok(!calls.some(call => call.startsWith("run")), "nothing is launched under another runtime");
+    const after = JSON.parse(await readFile(statePath, "utf8")) as { phases: Record<string, string> };
+    assert.equal(after.phases.launch, "skipped (dry run)", "the suite can still be resumed");
+    assert.match(await readFile(join(dry.directory, "suite.log"), "utf8"), /SUITE_RUNTIME_CHANGED/);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});
+
 test("a smoke step that finds credit for doing nothing stops the suite before launch", async () => {
   const root = await mkdtemp(join(tmpdir(), "suite-smoke-"));
   try {
