@@ -47,6 +47,8 @@ export interface EvaluationPlan {
   trustedLocalExecution: boolean;
   /** Candidate-code isolation; omitted means "sandbox". "host" must be chosen explicitly. */
   isolation?: Isolation;
+  /** Limits of one execute_command call (default 10 s and 16,000 bytes of output); the tool's description states them. */
+  commandLimits?: CommandLimits;
   /** Retries, failure containment and spending ceilings for the whole batch (see src/evaluation/batch.ts). */
   batch?: Partial<BatchPolicy>;
   /** Independent trials per model and case (default 1). */
@@ -212,6 +214,11 @@ export interface ArtifactFileRecord {
   path: string;
   sizeBytes: number;
   sha256: string;
+}
+
+export interface CommandLimits {
+  timeoutMs: number;
+  maxOutputBytes: number;
 }
 
 export interface ArtifactManifest {

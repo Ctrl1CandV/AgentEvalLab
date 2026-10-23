@@ -25,6 +25,12 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
   if (typeof plan.name !== "string" || !plan.name.trim()) throw new Error("INVALID_PLAN");
   if (typeof plan.trustedLocalExecution !== "boolean") throw new Error("INVALID_TRUST_SETTING");
   if (plan.isolation !== undefined && plan.isolation !== "sandbox" && plan.isolation !== "host") throw new Error("INVALID_ISOLATION");
+  if (plan.commandLimits !== undefined) {
+    const limits = object(plan.commandLimits);
+    const within = (value: unknown, minimum: number, maximum: number) => Number.isSafeInteger(value) && (value as number) >= minimum && (value as number) <= maximum;
+    if (Object.keys(limits).some(key => key !== "timeoutMs" && key !== "maxOutputBytes") || !within(limits.timeoutMs, 1_000, 3_600_000) ||
+        !within(limits.maxOutputBytes, 1_000, 1_000_000)) throw new Error("INVALID_COMMAND_LIMITS");
+  }
   const notice = plan.budgetNotice as unknown;
   if (notice !== undefined && typeof notice !== "boolean" &&
       !(notice && typeof notice === "object" && !Array.isArray(notice) && Object.keys(notice).every(key => key === "reminders") &&

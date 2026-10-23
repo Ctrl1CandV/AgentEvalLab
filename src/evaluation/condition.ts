@@ -74,7 +74,7 @@ export async function evaluatedCondition(plan: EvaluationPlan, packages: Map<str
     const profile = (item.toolProfile ?? packages.get(item.id)?.manifest?.toolProfiles?.[0] ?? "workspace-basic") as ToolProfile;
     // Creating tools does not touch the file system, so any root yields the same definitions.
     const definitions = plan.trustedLocalExecution
-      ? evaluationTools(tmpdir(), profile, { readOnly: item.readOnly, execute: !item.readOnly, isolation })
+      ? evaluationTools(tmpdir(), profile, { readOnly: item.readOnly, execute: !item.readOnly, isolation, ...(plan.commandLimits ? { commandLimits: plan.commandLimits } : {}) })
         .map(tool => ({ name: tool.name, description: tool.description, parameters: tool.parameters }))
       : [];
     return { caseId: item.id, profile, toolNames: definitions.map(tool => tool.name), definitionsSha256: sha256(definitions) };

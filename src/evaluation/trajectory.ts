@@ -107,7 +107,7 @@ function makeRunner(plan: EvaluationPlan, options: EvaluationOptions, model: Eva
   const createTools = (): AgentTool[] => plan.trustedLocalExecution ? evaluationTools(
     workspacePath,
     toolProfile as Parameters<typeof evaluationTools>[1],
-    { readOnly: item.readOnly, execute: !item.readOnly, isolation: plan.isolation },
+    { readOnly: item.readOnly, execute: !item.readOnly, isolation: plan.isolation, ...(plan.commandLimits ? { commandLimits: plan.commandLimits } : {}) },
   ) : [];
   if (options.sessionFactory) return options.sessionFactory(model, trialId, toolProfile as Parameters<typeof evaluationTools>[1], createTools);
   const piSession: PiAgentSession = createPiSession(model, {

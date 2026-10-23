@@ -12,7 +12,11 @@ export interface WorkspaceToolOptions {
   execute?: boolean;
   /** How execute_command runs candidate commands; defaults to the bubblewrap sandbox. */
   isolation?: Isolation;
+  /** Limits of one execute_command call; defaults to 10 seconds and 16,000 bytes of output. */
+  commandLimits?: { timeoutMs: number; maxOutputBytes: number };
 }
+
+export const defaultCommandLimits = Object.freeze({ timeoutMs: 10_000, maxOutputBytes: 16_000 });
 
 /** File tools are path-contained; execute_command relies on the sandbox for containment. */
 export function workspaceTools(root: string, options: WorkspaceToolOptions = {}): AgentTool[] {
@@ -71,11 +75,14 @@ export function workspaceTools(root: string, options: WorkspaceToolOptions = {})
     },
   };
   const commandParameters = Type.Object({ executable: Type.String(), args: Type.Array(Type.String()) });
+  const limits = options.commandLimits ?? defaultCommandLimits;
   const execute: AgentTool<typeof commandParameters> = {
-    name: "execute_command", label: "Execute command", description: "Run a command in the workspace (no shell, no network).", parameters: commandParameters,
+    name: "execute_command", label: "Execute command", parameters: commandParameters,
+    description: `Run a command in the workspace (no shell, no network). Each call may run for ${limits.timeoutMs / 1000} seconds and return ` +
+      `${limits.maxOutputBytes} bytes of output; a longer command is stopped (status "timeout").`,
     async execute(_id, args) {
       const sandboxed = isolatedCommand(args.executable, args.args, [await realpath(root)], options.isolation);
-      const result = await command(sandboxed.executable, sandboxed.args, root, 10_000, 16_000);
+      const result = await command(sandboxed.executable, sandboxed.args, root, limits.timeoutMs, limits.maxOutputBytes);
       return { content: [{ type: "text", text: JSON.stringify(result) }], details: {} };
     },
   };

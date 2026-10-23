@@ -57,3 +57,32 @@ test("plans accept only sandbox or host isolation", () => {
   validatePlan({ ...plan, isolation: "host" });
   assert.throws(() => validatePlan({ ...plan, isolation: "none" }), /INVALID_ISOLATION/);
 });
+
+test("execute_command states and enforces the plan's command limits", async () => {
+  const workspace = await mkdtemp(join(tmpdir(), "command-limits-"));
+  try {
+    const standard = workspaceTools(workspace, { execute: true, isolation: "host" }).find(candidate => candidate.name === "execute_command")!;
+    assert.match(standard.description, /10 seconds and return 16000 bytes/);
+    const long = workspaceTools(workspace, { execute: true, isolation: "host", commandLimits: { timeoutMs: 1_500, maxOutputBytes: 2_000 } })
+      .find(candidate => candidate.name === "execute_command")!;
+    assert.match(long.description, /1.5 seconds and return 2000 bytes/);
+    const call = async (args: string[]) => JSON.parse(((await long.execute("call", { executable: "sh", args } as never)).content[0] as { text: string }).text) as { status: string };
+    assert.equal((await call(["-c", "sleep 1; echo done"])).status, "completed", "a command within the limit completes");
+    assert.equal((await call(["-c", "sleep 3"])).status, "timeout");
+    assert.equal((await call(["-c", "head -c 5000 /dev/zero"])).status, "output_limit");
+  } finally {
+    await rm(workspace, { recursive: true, force: true });
+  }
+});
+
+test("plans accept command limits within bounds only", () => {
+  const plan = {
+    name: "limits", models: [{ provider: "anthropic", id: "claude-sonnet-4-6" }], budget: { ...defaultBudget },
+    trustedLocalExecution: false, cases: [{ id: "case", input: { prompt: "text" }, evaluator: { kind: "human", dimensions: ["clarity"] } }],
+  };
+  validatePlan({ ...plan, commandLimits: { timeoutMs: 600_000, maxOutputBytes: 64_000 } });
+  for (const commandLimits of [{ timeoutMs: 500, maxOutputBytes: 16_000 }, { timeoutMs: 600_000 }, { timeoutMs: 600_000, maxOutputBytes: 64_000, extra: 1 },
+    { timeoutMs: 7_200_000, maxOutputBytes: 16_000 }]) {
+    assert.throws(() => validatePlan({ ...plan, commandLimits }), /INVALID_COMMAND_LIMITS/);
+  }
+});

@@ -198,7 +198,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
           createTools: () => plan.trustedLocalExecution ? evaluationTools(
             toolProfile === "doc-evidence" ? join(workspace!.path, "public", "snapshot") : workspace!.path,
             toolProfile,
-            { readOnly: item.readOnly, execute: !item.readOnly, isolation: plan.isolation },
+            { readOnly: item.readOnly, execute: !item.readOnly, isolation: plan.isolation, ...(plan.commandLimits ? { commandLimits: plan.commandLimits } : {}) },
           ) : [],
         });
         const prompt = [instruction, itemPrompt, item.input.prompt, notice ? budgetStatement(plan.budget, notice.reminders) : ""].filter(Boolean).join("\n\n");
