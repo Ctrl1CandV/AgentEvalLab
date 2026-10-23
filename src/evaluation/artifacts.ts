@@ -19,7 +19,10 @@ export class ArtifactLimitError extends Error {
   }
 }
 
-/** Hashes a snapshot without following links and enforces the same limits as export. */
+/**
+ * Hashes a snapshot without following links and enforces the same limits as export. Links and special files (a scratch
+ * symlink, a socket) are not part of a deliverable: they are skipped, never followed, and listed in `skipped`.
+ */
 export async function inspectArtifacts(
   source: string,
   limits: ArtifactLimits = { ...defaultArtifactLimits },
@@ -29,18 +32,21 @@ export async function inspectArtifacts(
   if (!rootInfo.isDirectory() || rootInfo.isSymbolicLink()) throw new Error("ARTIFACT_ROOT_INVALID");
 
   const files: ArtifactManifest["files"] = [];
+  const skipped: NonNullable<ArtifactManifest["skipped"]> = [];
   let totalBytes = 0;
   const visit = async (directory: string): Promise<void> => {
     for (const name of await readdir(directory)) {
       if (name === ".git" || name === "__pycache__") continue;
       const path = join(directory, name);
       const info = await lstat(path);
-      if (info.isSymbolicLink()) throw new Error("ARTIFACT_LINK_DENIED");
+      if (info.isSymbolicLink() || (!info.isDirectory() && !info.isFile())) {
+        skipped.push({ path: relative(source, path).split(sep).join("/"), kind: info.isSymbolicLink() ? "link" : "special" });
+        continue;
+      }
       if (info.isDirectory()) {
         await visit(path);
         continue;
       }
-      if (!info.isFile()) throw new Error("ARTIFACT_TYPE_DENIED");
       if (files.length + 1 > limits.maxFiles) throw new ArtifactLimitError("ARTIFACT_FILE_LIMIT");
       if (info.size > limits.maxFileBytes) throw new ArtifactLimitError("ARTIFACT_FILE_SIZE_LIMIT");
       if (totalBytes + info.size > limits.maxTrialBytes) throw new ArtifactLimitError("ARTIFACT_TRIAL_SIZE_LIMIT");
@@ -62,7 +68,8 @@ export async function inspectArtifacts(
 
   await visit(source);
   files.sort((left, right) => left.path.localeCompare(right.path));
-  return { schemaVersion: 1, files, totalBytes, sha256: createHash("sha256").update(JSON.stringify(files)).digest("hex") };
+  skipped.sort((left, right) => left.path.localeCompare(right.path));
+  return { schemaVersion: 1, files, totalBytes, sha256: createHash("sha256").update(JSON.stringify(files)).digest("hex"), ...(skipped.length ? { skipped } : {}) };
 }
 
 function validateLimits(limits: ArtifactLimits): void {
@@ -88,6 +95,6 @@ export async function copyArtifacts(
     await copyFile(sourcePath, destinationPath, constants.COPYFILE_EXCL);
   }
   const copiedManifest = await inspectArtifacts(destination, limits);
-  if (JSON.stringify(copiedManifest) !== JSON.stringify(sourceManifest)) throw new Error("ARTIFACT_CHANGED_DURING_COPY");
-  return copiedManifest;
+  if (copiedManifest.sha256 !== sourceManifest.sha256 || copiedManifest.totalBytes !== sourceManifest.totalBytes) throw new Error("ARTIFACT_CHANGED_DURING_COPY");
+  return sourceManifest.skipped ? { ...copiedManifest, skipped: sourceManifest.skipped } : copiedManifest;
 }

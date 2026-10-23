@@ -41,10 +41,11 @@ test("pending review is not a failed score and experiment completeness is explic
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 
-test("a link the model made is its own artifact failure and does not overwrite a completed execution", async () => {
-  const root = await mkdtemp(join(tmpdir(), "artifact-failure-"));
+test("a link the model made is skipped, never followed, and listed; the delivery is still evaluated", async () => {
+  const root = await mkdtemp(join(tmpdir(), "artifact-link-"));
   try {
     const result = await runEvaluation(plan, { outputRoot: root, runner: async input => {
+      await writeFile(join(input.workspacePath, "kept.txt"), "kept");
       await symlink(root, join(input.workspacePath, "link"), "junction");
       return { ...emptyExecution(), output: "completed" };
     } });
@@ -52,9 +53,13 @@ test("a link the model made is its own artifact failure and does not overwrite a
     assert.equal(record.execution.status, "done");
     assert.equal(record.execution.output, "completed");
     assert.equal(record.execution.failureKind ?? null, null);
-    assert.equal(record.evaluation.status, "resource_limit");
-    assert.equal(record.evaluation.error, "ARTIFACT_LINK_DENIED");
+    assert.notEqual(record.evaluation.status, "resource_limit");
     assert.equal(record.cleanup, "cleaned");
+    const trialDirectory = join(root, (await readdir(root))[0]!, record.id);
+    const manifest = JSON.parse(await readFile(join(trialDirectory, "artifact-manifest.json"), "utf8"));
+    assert.deepEqual(manifest.files.map((file: { path: string }) => file.path), ["kept.txt"]);
+    assert.deepEqual(manifest.skipped, [{ path: "link", kind: "link" }]);
+    assert.deepEqual(await readdir(join(trialDirectory, "artifacts")), ["kept.txt"], "the link is not copied");
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 

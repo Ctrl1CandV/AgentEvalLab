@@ -219,4 +219,6 @@ export interface ArtifactManifest {
   files: ArtifactFileRecord[];
   totalBytes: number;
   sha256: string;
+  /** Links and special files the workspace held: never followed or copied, only listed (absent when there were none). */
+  skipped?: Array<{ path: string; kind: "link" | "special" }>;
 }

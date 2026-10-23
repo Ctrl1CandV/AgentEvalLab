@@ -458,7 +458,10 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
               maxFiles: artifactLimits.maxFiles - snapshotFiles };
             try { snapshotManifest = await copyArtifacts(workspace.path, snapshotPath, snapshotLimits); }
             catch (error) {
-              if (error instanceof ArtifactLimitError) recordValue.stopReason = error.message;
+              // Keep the artifact rule's own code (a limit, or a file that changed while it was copied); anything
+              // else is a bare snapshot failure.
+              const code = error instanceof Error ? error.message : "";
+              if (error instanceof ArtifactLimitError || /^ARTIFACT_[A-Z_]+$/.test(code)) recordValue.stopReason = code;
               else recordValue.stopReason = "SNAPSHOT_FAILED";
               stageRecord.status = "stopped";
               stop = true;

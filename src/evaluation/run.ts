@@ -269,8 +269,8 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
         if (error instanceof EventSinkError) fatal = error;
         if (executionFinished) {
           const message = error instanceof Error ? error.message : "";
-          if (error instanceof ArtifactLimitError || message === "ARTIFACT_LINK_DENIED" || message === "ARTIFACT_TYPE_DENIED") {
-            // The deliverable breaks the artifact rules: too large, or a link or special file the model created.
+          if (error instanceof ArtifactLimitError) {
+            // The deliverable breaks the artifact limits (links and special files are skipped, not refused).
             record.evaluation = { status: "resource_limit", score: null, checks: [], error: message };
           } else if (fatal) {
             if (!evaluationCommitted) record.evaluation = { status: "error", score: null, checks: [], error: "ARTIFACT_OR_EVENT_FAILED" };

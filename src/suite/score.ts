@@ -57,10 +57,13 @@ export interface NotRunUnit extends NotRunEntry { familyId: string; runDirectory
 
 const modelKey = (model: ModelSelection) => `${model.provider}:${model.id}`;
 
+/** The tokens the provider reported for an execution. A request cut off mid-stream (by a budget stop, say) reports no
+ * usage; the others still count, so only an execution without any reported usage has no total. */
 function executionTokens(execution: ExecutionResult): number | null {
   const requests = execution.requestUsage ?? [];
   if (!requests.length) return 0;
-  return requests.every(request => request.totalTokens !== null) ? requests.reduce((sum, request) => sum + request.totalTokens!, 0) : null;
+  const reported = requests.filter(request => request.totalTokens !== null);
+  return reported.length ? reported.reduce((sum, request) => sum + request.totalTokens!, 0) : null;
 }
 
 function providerError(execution: ExecutionResult): string | null {
