@@ -169,3 +169,31 @@ With every other request right, the weighted day score at each point on the scal
 - the tool's refusals and balances.
 
 New scenarios: a plan by due date loses only R1's rungs; the greedy plan stops at rung 50; a plan recorded during the next request loses only `r1-clean`.
+
+### Pilot 2026-10-23 (task 0.3.0)
+
+Run `runs/suites/20261023-050438-dev-9f16` (commit `4a276fb`): fn1 and fn2 on deepseek-flash, qwen3.8-flash and mimo-v2.6-flash, each with 6,000,000 tokens per day.
+
+| Model | Score | fn1 | fn2 | Tokens per day |
+| --- | ---: | ---: | ---: | --- |
+| deepseek-flash | 98.0% | 100% | 96.1%, all but `r1-plan-100` | 5.72M, 4.89M |
+| qwen3.8-flash | 67.6% | 100% | 35.3%, stopped by the budget | 5.48M, 6.00M |
+| mimo-v2.6-flash | 8.8% | 0 | 17.6%, stopped by the budget | 0.19M, 6.17M |
+
+**The plan.**
+
+- deepseek and qwen wrote real searches: random restarts, simulated annealing and hill climbing. They reached the exact optimum, apart from deepseek's fn2 (at least 0.97 of the scale).
+- mimo reasoned with greedy rules and bounds, and reached the 80 rung on fn2.
+- So the multi-day plan separates the strong models from the weak one, which the 0.2.0 run did not. The strong models are not separated by the plan itself.
+
+**Audit of the low scores.**
+
+- **qwen, fn2.** It spent 4.0M tokens on R1 (`begin R2` at 4.15M) and reached the optimum. It then ran out of tokens in R2–R3, leaving nine requests undone.
+- **mimo, fn2.** It used 5.57M tokens before `begin R1`.
+- **mimo, fn1.**
+  - First attempt: the provider refused a request ("The request was rejected because it was considered high risk", stop reason `content_filter`), an infrastructure failure.
+  - The retry was interrupted when the suite died. A suite bug then marked it done without running it (fixed in `ed910f5`).
+  - Run again, mimo ended its session after 9 calls, mid-analysis, without changing anything: a 0 of its own making.
+- **Cache reads.** Every trial spent 92–98% of its counted tokens on cache reads, about 70 calls at 70,000–90,000 tokens of context each.
+
+**Budget, from 2026-10-23 (user decision).** Each day gets 10,000,000 tokens and four hours. A budget that stops a model which solved R1 exactly, before the rest of the queue, scores efficiency, and efficiency is reported, not scored. The next run will show whether 10M is enough.

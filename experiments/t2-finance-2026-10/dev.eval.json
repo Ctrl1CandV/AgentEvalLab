@@ -23,14 +23,14 @@
   ],
   "repetitions": 1,
   "budget": {
-    "timeoutMs": 7200000,
+    "timeoutMs": 14400000,
     "maxTurns": 400,
     "maxModelCalls": 400,
     "maxToolCalls": 700,
     "maxOutputChars": 524288,
     "maxOutputTokensPerCall": 131072,
     "maxToolResultChars": 100000,
-    "maxTrialTokens": 6000000
+    "maxTrialTokens": 10000000
   },
   "artifactLimits": {
     "maxFiles": 500,
@@ -42,7 +42,7 @@
   "batch": {
     "maxRetries": 2,
     "maxConsecutiveInfrastructureFailures": 3,
-    "maxTotalTokensPerModel": 12000000,
+    "maxTotalTokensPerModel": 20000000,
     "concurrency": 6
   },
   "trustedLocalExecution": true,
@@ -51,7 +51,7 @@
     {
       "id": "t2-finance-desk",
       "packagePath": "task-library/calibration/t2-finance-desk",
-      "packageManifestSha256": "f818753e860b29bdb0bb4f9b59c410842dee0701eeee31dd213040fc3c66cd5c",
+      "packageManifestSha256": "b7b33b6636c7ee12eed42353dc5c3bac6ad2efcddcfe631c737ec540678ddb5d",
       "input": {
         "prompt": "Use the tools to handle every request, then give the JSON reply."
       },
