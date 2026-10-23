@@ -51,7 +51,7 @@
     {
       "id": "t2-finance-desk",
       "packagePath": "task-library/calibration/t2-finance-desk",
-      "packageManifestSha256": "e7d7af0344e90f655e88ea757ecb13fb51fe37f137b7a491d9f1a0b7391215c2",
+      "packageManifestSha256": "ac540c2dd7d230501aa4c2f07697b51bb20520e45f2fb8d03b24f519d37a1e3c",
       "input": {
         "prompt": "Use the tools to handle every request, then give the JSON reply."
       },

@@ -76,3 +76,17 @@ Rungs at 50%, 80%, 95% and 100% of the scale.
 | fn4 | 25 | 141.67 | 308.78 | 401.62 | 5 |
 
 **Self-calibration**: 16 hand-worked examples and 62 scenarios, all as expected. The run adds six examples on three payables worked out by hand (a 20.00 discount kept, 5.60 and 4.90 of penalty avoided, the best set under the cash and the count, the due-date plan at 0, the best at 1, and the tool's refusals), and a scenario where a desk pays by due date in the run alone and loses only that request's rungs.
+
+### Pilot 2026-10-23 (task 0.2.0)
+
+Run `runs/suites/20261023-035140-dev-a7e7`: fn1 and fn2 on deepseek-flash, qwen3.8-flash and mimo-v2.6-flash.
+
+| Model | Score | Median tokens per day | Notes |
+| --- | ---: | ---: | --- |
+| deepseek-flash | 100% | 2.64M | the best run on both days |
+| qwen3.8-flash | 100% | 3.49M | the best run on both days |
+| mimo-v2.6-flash | 34.1% (fn1 only) | 2.13M | stopped by the budget on fn1; fn2 unscored |
+
+mimo's fn2 was unscored because it left a symbolic link in the workspace, which artifact collection refuses (ARTIFACT_LINK_DENIED).
+
+**Why the run did not separate them.** Both models enumerated every allowed set of payments with `itertools.combinations` and paid the best. With about 25 payables and at most 3–5 payments, there are only tens of thousands of sets. An optimum that the oracle can compute by enumeration, a model can compute the same way. An open-ended item separates models only when exhaustive search is out of reach, as in E2 `routes`, E4 `compress` and S7's large stores.
