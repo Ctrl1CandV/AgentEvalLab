@@ -372,6 +372,7 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
         const commonInstruction = projection.instruction;
         const notice = resolveBudgetNotice(plan);
         executionStart = performance.now();
+        const perStage = plan.execution!.kind === "trajectory" && plan.execution.contextPolicy === "per-stage";
         session = makeRunner(plan, options, model, id, profile, artifactLimits, workspace.path, item, batchPolicy);
         await events.emit("execution_started");
 
@@ -387,6 +388,12 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
           };
           recordValue.stages.push(stageRecord);
           const stageInstruction = await projectTrajectoryStage(descriptor, workspace.path, stageInfo.id);
+          // Under "per-stage" each stage gets a fresh session: the project carries over, the conversation does not, so
+          // the stage budget means the same at the first stage and the last.
+          if (perStage && index > 0) {
+            try { await session.dispose(); } catch { recordValue.cleanup = "error"; }
+            session = makeRunner(plan, options, model, id, profile, artifactLimits, workspace.path, item, batchPolicy);
+          }
           for (let cycleIndex = 0; cycleIndex < 2; cycleIndex++) {
             if (cycleIndex === 1 && stageRecord.cycles[0]?.publicCheck?.status !== "failed") break;
             const cycleId = cycleIndex === 0 ? "cycle-1" : "cycle-2";
@@ -405,9 +412,12 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
               break;
             }
 
+            const opening = index === 0 ? commonInstruction
+              : perStage ? `${commonInstruction}\n\nThe earlier stages of this task are done and their work is in the project. This is stage ${index + 1} of ${descriptor.manifest.stages.length}; you do not have the earlier conversation.`
+                : "Continue to the next stage in the same project and session.";
             const userPrompt = cycleIndex === 0
-              ? [index === 0 ? commonInstruction : "Continue to the next stage in the same project and session.", item.input.prompt, stageInstruction,
-                index === 0 && notice ? trajectoryBudgetStatement(plan.budget, plan.execution.stageBudget, notice.reminders) : ""].filter(Boolean).join("\n\n")
+              ? [opening, item.input.prompt, stageInstruction,
+                (index === 0 || perStage) && notice ? trajectoryBudgetStatement(plan.budget, plan.execution.stageBudget, notice.reminders) : ""].filter(Boolean).join("\n\n")
               : ["Public check feedback follows. Fix these failing items in the current project, change only what is necessary, and preserve completed requirements.", ...stageRecord.cycles[0].publicCheck!.checks.filter(check => !check.passed).map(check => `- ${check.id} (${check.reasonCode}): ${check.feedback}`)].join("\n");
             const execution = await session.send({ prompt: userPrompt, systemPrompt: item.input.systemPrompt, workspacePath: workspace.path }, budget,
               events.emit, { stageId: stageInfo.id, cycleId });

@@ -40,7 +40,7 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
     if (execution.kind === "single") {
       // Explicit legacy-compatible form.
     } else if (execution.kind === "trajectory") {
-      if (plan.schemaVersion !== 3 || execution.contextPolicy !== "continuous" || execution.publicRepairMax !== 1) {
+      if (plan.schemaVersion !== 3 || !["continuous", "per-stage"].includes(String(execution.contextPolicy)) || execution.publicRepairMax !== 1) {
         throw new Error("INVALID_TRAJECTORY_POLICY");
       }
       validateBudget(object(execution.stageBudget) as unknown as EvaluationPlan["budget"]);

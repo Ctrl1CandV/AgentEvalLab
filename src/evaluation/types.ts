@@ -64,7 +64,12 @@ export type ExecutionPolicy =
   | { kind: "single" }
   | {
       kind: "trajectory";
-      contextPolicy: "continuous";
+      /**
+       * "continuous": one session for every stage, so the conversation grows with the task.
+       * "per-stage": a fresh session per stage, which keeps the project but not the conversation, so that each stage
+       * starts from a comparable context and its budget means the same at the first stage and the last.
+       */
+      contextPolicy: "continuous" | "per-stage";
       stageBudget: Budget;
       publicRepairMax: 1;
     };

@@ -513,3 +513,42 @@ test("a trajectory states its budget once, gives each stage what is left of the 
     assert.equal(trajectory.stopReason, "BUDGET_EXHAUSTED");
   } finally { await rm(outputRoot, { recursive: true, force: true }); }
 });
+
+test("per-stage context gives every stage a fresh session, the project, and its own budget statement", async () => {
+  const plan = JSON.parse(await readFile("examples/eng-005-long-cycle.eval.json", "utf8")) as EvaluationPlan;
+  (plan.execution as { contextPolicy: string }).contextPolicy = "per-stage";
+  plan.budgetNotice = true;
+  validatePlan(plan);
+  const outputRoot = await mkdtemp(join(tmpdir(), "eng005-per-stage-test-"));
+  const sessions: Array<{ id: number; stages: string[] }> = [];
+  let disposed = 0;
+  const sessionFactory: TrajectorySessionFactory = () => {
+    const session = { id: sessions.length + 1, stages: [] as string[] };
+    sessions.push(session);
+    return {
+      async send(input, _budget, _emit, context) {
+        session.stages.push(`${context.stageId}:${context.cycleId}`);
+        // Each stage sees the project as the earlier stages left it.
+        if (context.stageId === "S1") await writeFile(join(input.workspacePath, "carried-over.txt"), "from S1", "utf8");
+        else assert.equal(await readFile(join(input.workspacePath, "carried-over.txt"), "utf8"), "from S1", context.stageId);
+        // A fresh session needs the task brief and the budget again; a repair cycle continues its stage's session.
+        if (context.cycleId === "cycle-1") {
+          assert.match(input.prompt, /Budget for this task/, context.stageId);
+          if (context.stageId !== "S1") assert.match(input.prompt, /you do not have the earlier conversation/, context.stageId);
+        }
+        return { ...emptyExecution(), output: "done", modelCalls: 1, turns: 1 };
+      },
+      async dispose() { disposed++; },
+    };
+  };
+  try {
+    const result = await runTrajectoryEvaluation(plan, { outputRoot, sessionFactory });
+    const trajectory = result.report.records[0]!;
+    assert.equal(sessions.length, 7, "one session per stage");
+    assert.deepEqual(sessions.map(session => [...new Set(session.stages.map(entry => entry.split(":")[0]))]),
+      [["S1"], ["S2"], ["S3"], ["S4"], ["S5"], ["S6"], ["S7"]], "each session serves one stage, repair cycles included");
+    assert.equal(disposed, 7, "every session is disposed");
+    assert.equal(trajectory.stages.length, 7);
+    assert.equal(trajectory.cleanup, "cleaned");
+  } finally { await rm(outputRoot, { recursive: true, force: true }); }
+});
