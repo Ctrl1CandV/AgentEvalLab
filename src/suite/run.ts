@@ -447,7 +447,16 @@ export class SuiteRunner {
     const environment = this.environment("retry");
     const pending: Promise<void>[] = [];
     for (const entry of this.state.plans) {
-      if (this.state.runs.some(run => run.key === entry.key && run.attempt === "retry")) continue;
+      // Each plan has one retry. A retry whose process ended has had it; one interrupted with the suite (no exit code)
+      // continues where it stopped, as an interrupted launch does (a trajectory starts again).
+      const retried = this.state.runs.filter(run => run.key === entry.key && run.attempt === "retry").at(-1);
+      if (retried && retried.exitCode !== null) continue;
+      if (retried) {
+        await this.note(`Continuing the interrupted retry of ${entry.key}`);
+        const resume = entry.kind !== "trajectory" && retried.runDirectory ? retried : undefined;
+        pending.push(this.execute(entry, "retry", environment, resume ? { resume } : {}));
+        continue;
+      }
       const latest = this.latestRun(entry.key);
       const { retry, stopped, reason } = await this.needsRetry(entry, latest);
       if (!retry) continue;

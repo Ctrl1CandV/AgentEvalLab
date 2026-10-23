@@ -311,6 +311,40 @@ test("a dry run stops after the smoke step and a resume continues an interrupted
   } finally { await rm(root, { recursive: true, force: true }); }
 });
 
+test("a retry interrupted with the suite continues on resume", async () => {
+  const root = await mkdtemp(join(tmpdir(), "suite-retry-resume-"));
+  try {
+    const calls: string[] = [];
+    // qwen's i1 fails on infrastructure at launch and succeeds when retried.
+    let launching = true;
+    const behaviour: Behaviour = (item, model) =>
+      launching && model.provider === "aliplan" && item === "i1" ? unavailable() : answer(`${item} +b`);
+    const fixture = await suiteFixture(root);
+    const options = { repoRoot: root, suitePath: "suites/test.json", models, families: ["A"], suitesRoot: join(root, "suites"), log: () => {} };
+    const dry = await new SuiteRunner({ ...options, dryRun: true }, inProcessExecutor(fixture, behaviour, calls, [])).run();
+    // The suite dies as soon as the retry starts, before its process returns.
+    const interrupted = inProcessExecutor(fixture, behaviour, calls, []);
+    const run = interrupted.run.bind(interrupted);
+    interrupted.run = async (...args) => {
+      if (args[3].replace(/^.*\//, "").startsWith("retry-")) throw new Error("SUITE_KILLED");
+      return run(...args);
+    };
+    const first = await new SuiteRunner({ repoRoot: root, resume: dry.directory, log: () => {} }, interrupted).run();
+    launching = false;
+    assert.equal(first.status, 1);
+    const killed = JSON.parse(await readFile(join(dry.directory, "suite.json"), "utf8")) as { runs: Array<{ attempt: string; exitCode: number | null }> };
+    assert.deepEqual(killed.runs.map(entry => [entry.attempt, entry.exitCode === null]), [["launch", false], ["retry", true]]);
+
+    const resumedCalls: string[] = [];
+    const resumed = await new SuiteRunner({ repoRoot: root, resume: dry.directory, log: () => {} }, inProcessExecutor(fixture, behaviour, resumedCalls, [])).run();
+    assert.deepEqual(resumedCalls, ["run A.eval.json resume"], "the interrupted retry continues in the run directory");
+    assert.equal(resumed.status, 0);
+    const row = resumed.report!.families[0]!.results.find(result => result.model === "aliplan:qwen3.8-flash")!;
+    assert.equal(row.infrastructureFailures, 0);
+    assert.equal(row.units, 2);
+  } finally { await rm(root, { recursive: true, force: true }); }
+});
+
 test("a resume under another Node major version stops before any phase and stays resumable", async () => {
   const root = await mkdtemp(join(tmpdir(), "suite-runtime-"));
   try {
