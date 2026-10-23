@@ -122,16 +122,23 @@ def examples():
     ledger.apply(books, "post", [{"date": "2026-09-16", "memo": "x", "lines": [{"account": "1100", "debit": "300.00"},
                                                                              {"account": "2400", "credit": "300.00", "partner": "C-1", "document": "CTR-1"}]}])
     rows.append(("deferred-day-count", lines_of(finance.deferred(books)) == sorted([("2026-09-30", "2400", "150.00", "CTR-1", None), ("2026-09-30", "4000", "-150.00", None, None)])))
-    # 11. The payment run: worth, cash and the count, on three payables worked out by hand.
+    # 11. The payment plan, on three days with one payment a day, worked out by hand. V-1 grants 2% within 10 days and
+    # charges nothing late; V-2 grants nothing and charges 40.00 once late plus 0.1% a day. Payables:
+    #   A (V-1) 1,000.00 of 26 September: 20.00 discount on 5 and 6 October (window to the 6th), using 980.00;
+    #   B (V-2)   800.00 due 25 September: 40.00 + 10.40 on the 8th against 48.00 / 48.80 / 49.60 on the 5th / 6th / 7th,
+    #             so worth 2.40 / 1.60 / 0.80;
+    #   C (V-2)   500.00 due 7 October: 40.50 on the 8th (fee and one day), nothing up to the 7th, so worth 40.50;
+    #   E (V-1)   900.00 due 19 September: no charge grows, so worth nothing;
+    #   F (V-2)   disputed.
+    # The cash is 1,000.00 on the 5th and 1,000.00 more on the 7th.
     books = mini_books()
-    books["today"] = "2026-09-30"
-    books["partners"]["V-1"].update(terms="2/10 net 30", discount_days=10, discount_rate="0.02")
-    books["partners"]["V-2"].update(terms="net 30", discount_days=None, discount_rate=None)
-    books["payment_run"] = {"cash": {"EUR": "1800.00", "USD": "0.00", "GBP": "0.00", "CHF": "0.00"}, "max_payments": 2,
-                            "penalty_rate": "0.0010", "next_run_days": 7, "fee_domestic": "1.50", "fee_foreign": "12.00"}
-    payables = [("VINV-A", "V-1", "2026-09-25", "2026-10-25", "1000.00"),   # inside its window: a 20.00 discount kept
-                ("VINV-B", "V-2", "2026-08-20", "2026-09-10", "800.00"),    # 20 days late today, 27 in the next run: 5.60 of penalty avoided
-                ("VINV-C", "V-2", "2026-09-01", "2026-09-21", "700.00")]    # 9 days late today, 16 in the next run: 4.90 avoided
+    books["partners"]["V-1"].update(terms="2/10 net 30", discount_days=10, discount_rate="0.02", late_rate="0", late_fee="0.00")
+    books["partners"]["V-2"].update(terms="net 30", discount_days=None, discount_rate=None, late_rate="0.001", late_fee="40.00")
+    books["payment_plan"] = {"days": ["2026-10-05", "2026-10-06", "2026-10-07"], "later": "2026-10-08", "opening": {"EUR": "1000.00"},
+                             "inflows": {"EUR": {"2026-10-07": "1000.00"}}, "max_per_day": 1, "schedule": {}}
+    payables = [("VINV-A", "V-1", "2026-09-26", "2026-10-26", "1000.00"), ("VINV-B", "V-2", "2026-08-26", "2026-09-25", "800.00"),
+                ("VINV-C", "V-2", "2026-09-07", "2026-10-07", "500.00"), ("VINV-E", "V-1", "2026-08-20", "2026-09-19", "900.00"),
+                ("VINV-F", "V-2", "2026-08-10", "2026-09-09", "300.00")]
     for identifier, vendor, issued, due, gross in payables:
         books["documents"][identifier] = {"type": "vendor-invoice", "id": identifier, "vendor": vendor, "number": identifier, "date": issued,
                                           "due": due, "currency": "EUR", "category": "services", "po": None, "requested_by": "Marta Kovacs",
@@ -140,31 +147,41 @@ def examples():
         ledger.apply(books, "post", [{"date": issued, "memo": f"Vendor invoice {identifier}", "lines": [
             {"account": "2000", "credit": gross, "partner": vendor, "document": identifier, "currency": "EUR", "amount": gross},
             {"account": "6000", "debit": gross}]}])
-    worth = {key: finance.benefit(books, key) for key, *_ in payables}
-    rows.append(("payment-run-worth", worth == {"VINV-A": D("20.00"), "VINV-B": D("5.60"), "VINV-C": D("4.90")}))
-    # A is worth most and uses 980.00 of the 1,800.00 cash; the rest covers B (800.00) but not both B and C, and the
-    # run holds two payments at most. A with B is worth 25.60, A with C 24.90 and B with C 10.50.
-    best_value, best_set = finance.best_run(books)
-    rows.append(("payment-run-best-set", (best_value, sorted(best_set)) == (D("25.60"), ["VINV-A", "VINV-B"])))
-    rows.append(("payment-run-greedy-is-the-same-here", sorted(finance.greedy_run(books)[1]) == ["VINV-A", "VINV-B"]))
-    # Paying by due date takes B and C, the two oldest, and is worth less: half the scale.
-    rows.append(("payment-run-due-date-order-places-at-zero", sorted(finance.naive_run(books)[1]) == ["VINV-B", "VINV-C"]
-                 and finance.run_place(books, ["VINV-B", "VINV-C"]) == D(0)))
-    rows.append(("payment-run-best-places-at-one", finance.run_place(books, ["VINV-A", "VINV-B"]) == D(1)))
-    # The tool keeps the run inside its cash and its count, and refuses a disputed payable.
-    books["documents"]["VINV-C"]["disputed"] = True
-    try:
-        ledger.apply(books, "pay", ["VINV-C"])
-        refused_disputed = False
-    except ledger.Refused:
-        refused_disputed = True
-    ledger.apply(books, "pay", ["VINV-A"])
-    try:
-        ledger.apply(books, "pay", ["VINV-B"])
-        within_cash = True
-    except ledger.Refused:
-        within_cash = False
-    rows.append(("payment-run-tool-refuses-disputed-and-keeps-the-cash", refused_disputed and within_cash))
+    books["documents"]["VINV-F"]["disputed"] = True
+    table = finance.plan_table(books)
+    worth = {key: [str(options[when][1]) for when in sorted(options)] for key, (_, _, options) in table.items()}
+    rows.append(("plan-worth", worth == {"VINV-A": ["20.00", "20.00", "0.00"], "VINV-B": ["2.40", "1.60", "0.80"],
+                                         "VINV-C": ["40.50", "40.50", "40.50"], "VINV-E": ["0.00", "0.00", "0.00"]}))
+    rows.append(("plan-cash-used", [str(options[when][0]) for when, options in [(when, table["VINV-A"][2]) for when in ("2026-10-05", "2026-10-07")]]
+                 == ["980.00", "1000.00"]))
+    problem = finance.PlanProblem(books)
+    # By due date: E on the 5th (100.00 left), B on the 7th once the inflow is in, and no room for C: worth 0.80.
+    rows.append(("plan-naive", problem.schedule(finance.naive_plan(problem)) == {"VINV-E": "2026-10-05", "VINV-B": "2026-10-07"}))
+    # By worth per unit of cash: C (8.1%) on the earliest of its equal days, the 5th; then A fits only on the 7th,
+    # where it is worth nothing; B on the 7th: worth 41.30.
+    rows.append(("plan-greedy", problem.schedule(finance.greedy_plan(problem)) == {"VINV-C": "2026-10-05", "VINV-B": "2026-10-07"}))
+    # Best: A inside its window, C on its due date once the inflow is in: worth 60.50.
+    best_value, best_slots = finance.best_plan(problem)
+    best_schedule = problem.schedule(best_slots)
+    rows.append(("plan-best", best_value == 6050 and best_schedule.get("VINV-C") == "2026-10-07" and best_schedule.get("VINV-A") in ("2026-10-05", "2026-10-06")))
+    rows.append(("plan-scale", finance.plan_place(books, {"VINV-E": "2026-10-05", "VINV-B": "2026-10-07"}) == 0
+                 and finance.plan_place(books, {"VINV-C": "2026-10-05", "VINV-B": "2026-10-07"}) == D("0.5")
+                 and finance.plan_place(books, {"VINV-A": "2026-10-06", "VINV-C": "2026-10-07"}) == 1
+                 and finance.plan_place(books, {"VINV-A": "2026-10-05"}) == D("0.5") * D(1920) / D(4050)))
+    # The tool refuses a disputed payable, a day outside the plan, a second payment on a day and cash below zero.
+    refused = []
+    for plan in ({"VINV-F": "2026-10-05"}, {"VINV-A": "2026-10-09"}, {"VINV-A": "2026-10-05", "VINV-C": "2026-10-05"},
+                 {"VINV-A": "2026-10-05", "VINV-C": "2026-10-06"}):
+        try:
+            ledger.apply(books, "set-plan", [plan])
+            refused.append(False)
+        except ledger.Refused:
+            refused.append(True)
+    ledger.apply(books, "set-plan", [{"VINV-C": "2026-10-07", "VINV-A": "2026-10-06"}])
+    view = ledger.look(books, "plan", [])
+    rows.append(("plan-tool", all(refused) and view["cash_at_end_of_day"] == {"2026-10-05": {"EUR": "1000.00"}, "2026-10-06": {"EUR": "20.00"},
+                                                                            "2026-10-07": {"EUR": "520.00"}}
+                 and [payment["uses"] for payment in view["payments"]] == ["980.00", "500.00"]))
     return rows
 
 
@@ -179,11 +196,11 @@ def workspace(item_id, commands, cli=False):
     open(os.path.join(public, "data", "audit.log"), "w").close()
     if cli:
         for command in commands:
-            if command[0] == "post":
+            if command[0] in ("post", "set-plan"):
                 path = os.path.join(directory, "entry.json")
                 with open(path, "w", encoding="utf-8") as handle:
                     json.dump(command[1], handle)
-                args = ["post", path]
+                args = [command[0], path]
             else:
                 args = command
             run = subprocess.run([sys.executable, "ledger.py", *args], cwd=public, capture_output=True, text=True)
@@ -252,18 +269,33 @@ def scenarios():
                 slipped, slipped_reply = own_state_run(books, requests, (request["id"], posted_anyway))
                 rows.append((item_id, f"holds-{request['id']}-only", slipped, None, json.dumps(slipped_reply),
                              lambda passed, others=others, prefix=prefix: others <= passed and f"{prefix}-outcome" not in passed))
-        # A run that pays by due date keeps its outcome but loses its rungs.
+        # A plan by due date keeps its outcome but loses its rungs; the greedy plan stops at the middle of the scale; a
+        # plan recorded after the next request began loses only the plan's clean check.
         for request in requests:
-            if request["kind"] == "payment-run":
+            if request["kind"] == "payment-plan":
                 prefix = request["id"].lower()
                 others = {name for name in names if not name.startswith(prefix + "-")}
 
                 def by_due_date(state, request_, result):
-                    return {**result, "payments": sorted(finance.naive_run(state)[1])}
+                    problem = finance.PlanProblem(state)
+                    return {**result, "plan": problem.schedule(finance.naive_plan(problem))}
                 slipped, slipped_reply = own_state_run(books, requests, (request["id"], by_due_date))
-                rows.append((item_id, f"pays-by-due-date-in-{request['id']}-only", slipped, None, json.dumps(slipped_reply),
-                             lambda passed, others=others, prefix=prefix: others <= passed and f"{prefix}-run-50" not in passed
-                             and f"{prefix}-outcome" in passed))
+                rows.append((item_id, f"plans-by-due-date-in-{request['id']}-only", slipped, None, json.dumps(slipped_reply),
+                             lambda passed, others=others, prefix=prefix: others <= passed and f"{prefix}-plan-25" not in passed
+                             and f"{prefix}-outcome" in passed and f"{prefix}-clean" in passed))
+
+                def greedy(state, request_, result):
+                    problem = finance.PlanProblem(state)
+                    return {**result, "plan": problem.schedule(finance.greedy_plan(problem))}
+                slipped, slipped_reply = own_state_run(books, requests, (request["id"], greedy))
+                rows.append((item_id, f"greedy-plan-in-{request['id']}", slipped, None, json.dumps(slipped_reply),
+                             lambda passed, others=others, prefix=prefix: others <= passed and f"{prefix}-plan-50" in passed
+                             and f"{prefix}-plan-65" not in passed))
+                late = [command for command in commands if command[0] != "set-plan"]
+                position = next(index for index, command in enumerate(late) if command[0] == "begin" and command[1] != request["id"])
+                late.insert(position + 1, next(command for command in commands if command[0] == "set-plan"))
+                rows.append((item_id, f"plan-recorded-during-the-next-request", late, None, json.dumps(reply),
+                             names - {f"{prefix}-clean"}))
         for mistake, touched in day["effects"].items():
             if not touched:
                 continue  # this day's requests do not turn on that rule

@@ -39,146 +39,133 @@
  ],
  "bank": [
   {
-   "date": "2026-08-16",
-   "eur": "19945.76",
-   "iban": "NL50BANK8676677149",
-   "id": "BNK-0816-500",
+   "date": "2026-07-27",
+   "eur": "1289.43",
+   "iban": "BE32BANK1455847206",
+   "id": "BNK-0727-806",
    "original": null,
-   "payer": "Meridian Supplies B.V.",
-   "posted": true,
-   "text": "Payment INV-5087"
-  },
-  {
-   "date": "2026-08-18",
-   "eur": "4029.48",
-   "iban": "FR47BANK3376908211",
-   "id": "BNK-0818-302",
-   "original": null,
-   "payer": "Summit Supplies SAS",
+   "payer": "Nimbus Retail BV",
    "posted": true,
    "text": "Payment INV-5539"
   },
   {
    "date": "2026-08-28",
-   "eur": "8713.84",
-   "iban": "DE55BANK3795181175",
-   "id": "BNK-0828-876",
-   "original": null,
-   "payer": "Harbor Parts GmbH",
-   "posted": true,
-   "text": "Payment INV-5435"
-  },
-  {
-   "date": "2026-08-29",
-   "eur": "15653.38",
-   "iban": "GB92BANK1900383156",
-   "id": "BNK-0829-369",
-   "original": {
-    "amount": "13714.76",
-    "currency": "GBP"
-   },
-   "payer": "Meridian Supplies Ltd",
-   "posted": true,
-   "text": "Payment INV-5403"
-  },
-  {
-   "date": "2026-08-31",
-   "eur": "1133.46",
-   "iban": "BE32BANK1455847206",
-   "id": "BNK-0831-236",
-   "original": null,
-   "payer": "Nimbus Retail BV",
-   "posted": true,
-   "text": "Payment INV-5978"
-  },
-  {
-   "date": "2026-08-31",
-   "eur": "12338.97",
+   "eur": "8608.30",
    "iban": "NL58BANK2831748681",
-   "id": "BNK-0831-975",
+   "id": "BNK-0828-369",
    "original": null,
    "payer": "Basalt Foods B.V.",
    "posted": true,
-   "text": "Payment INV-5397"
+   "text": "Payment INV-5608"
   },
   {
-   "date": "2026-09-02",
-   "eur": "11605.19",
-   "iban": "CH58BANK6851246550",
-   "id": "BNK-0902-176",
+   "date": "2026-09-04",
+   "eur": "3131.44",
+   "iban": "DE73BANK3630980987",
+   "id": "BNK-0904-176",
+   "original": null,
+   "payer": "Umber Foods GmbH",
+   "posted": true,
+   "text": "Payment INV-5858"
+  },
+  {
+   "date": "2026-09-06",
+   "eur": "13110.58",
+   "iban": "GB92BANK1900383156",
+   "id": "BNK-0906-302",
    "original": {
     "amount": "11425.79",
-    "currency": "CHF"
+    "currency": "GBP"
    },
-   "payer": "Orchid Logistics AG",
+   "payer": "Meridian Supplies Ltd",
    "posted": true,
    "text": "Payment INV-5692"
   },
   {
-   "date": "2026-09-04",
-   "eur": "7170.21",
-   "iban": "GB92BANK1900383156",
-   "id": "BNK-0904-806",
+   "date": "2026-09-07",
+   "eur": "10525.57",
+   "iban": "US28BANK8860627465",
+   "id": "BNK-0907-500",
    "original": {
-    "amount": "6248.79",
-    "currency": "GBP"
+    "amount": "11158.56",
+    "currency": "USD"
    },
-   "payer": "Meridian Supplies Ltd",
+   "payer": "Quarry Marine Inc.",
    "posted": true,
    "text": "Payment INV-5349"
   },
   {
-   "date": "2026-09-25",
-   "eur": "2902.52",
+   "date": "2026-09-15",
+   "eur": "2068.76",
+   "iban": "NL47BANK2395145402",
+   "id": "BNK-0915-975",
+   "original": null,
+   "payer": "Willow Parts B.V.",
+   "posted": true,
+   "text": "Payment INV-5601"
+  },
+  {
+   "date": "2026-09-18",
+   "eur": "1063.34",
    "iban": "DE73BANK3630980987",
-   "id": "BNK-0925-502",
+   "id": "BNK-0918-876",
    "original": null,
    "payer": "Umber Foods GmbH",
    "posted": true,
-   "text": "Payment INV-5580"
+   "text": "Payment INV-5685"
+  },
+  {
+   "date": "2026-09-22",
+   "eur": "1999.48",
+   "iban": "NL69BANK8001789800",
+   "id": "BNK-0922-502",
+   "original": null,
+   "payer": "Amber Labs B.V.",
+   "posted": true,
+   "text": "Payment INV-5728"
   },
   {
    "date": "2026-09-29",
-   "eur": "17436.16",
-   "iban": "CH58BANK6851246550",
-   "id": "BNK-0929-845",
+   "eur": "21396.66",
+   "iban": "GB92BANK1900383156",
+   "id": "BNK-0929-236",
    "original": {
-    "amount": "17315.81",
-    "currency": "CHF"
+    "amount": "19064.33",
+    "currency": "GBP"
    },
-   "payer": "Orchid Logistics AG",
+   "payer": "Meridian Supplies Ltd",
    "posted": false,
-   "text": "Settlement INV-5390 INV-5043 INV-5147"
-  },
-  {
-   "date": "2026-09-30",
-   "eur": "14891.41",
-   "iban": "FR47BANK3376908211",
-   "id": "BNK-0930-490",
-   "original": null,
-   "payer": "Summit Supplies SAS",
-   "posted": false,
-   "text": "Payment outstanding items"
+   "text": "Settlement INV-5232 INV-5147 INV-5727"
   },
   {
    "date": "2026-09-30",
    "eur": "1725.50",
-   "iban": "NL20BANK8677230617",
-   "id": "BNK-0930-832",
+   "iban": "NL23BANK7647656849",
+   "id": "BNK-0930-490",
    "original": null,
-   "payer": "UMBER FOODS GMBH",
+   "payer": "HARBOR PARTS GMBH",
    "posted": false,
-   "text": "Ref 5716"
+   "text": "Ref 2386"
+  },
+  {
+   "date": "2026-09-30",
+   "eur": "20184.57",
+   "iban": "NL47BANK4277687382",
+   "id": "BNK-0930-969",
+   "original": null,
+   "payer": "Basalt Marine B.V.",
+   "posted": false,
+   "text": "Payment outstanding items"
   },
   {
    "date": "2026-10-01",
-   "eur": "18837.62",
+   "eur": "16105.31",
    "iban": "NL50BANK8676677149",
-   "id": "BNK-1001-969",
+   "id": "BNK-1001-845",
    "original": null,
    "payer": "Meridian Supplies B.V.",
    "posted": false,
-   "text": "INV-5274 less 2% discount"
+   "text": "INV-5746 less 2% discount"
   }
  ],
  "company": {
@@ -191,55 +178,55 @@
   "CTR-7001": {
    "end": "2027-06-30",
    "id": "CTR-7001",
-   "invoice": "INV-5734",
-   "net_eur": "1725.29",
-   "partner": "C-110",
+   "invoice": "INV-5620",
+   "net_eur": "1659.21",
+   "partner": "C-106",
    "start": "2026-07-01"
   },
   "CTR-7002": {
    "end": "2026-09-14",
    "id": "CTR-7002",
-   "invoice": "INV-5346",
-   "net_eur": "5298.57",
-   "partner": "C-111",
+   "invoice": "INV-5727",
+   "net_eur": "5728.21",
+   "partner": "C-112",
    "start": "2026-08-15"
   },
   "CTR-7003": {
    "end": "2027-03-09",
    "id": "CTR-7003",
-   "invoice": "INV-5467",
-   "net_eur": "7982.89",
-   "partner": "C-110",
+   "invoice": "INV-5274",
+   "net_eur": "2298.02",
+   "partner": "C-104",
    "start": "2026-09-10"
   },
   "CTR-7004": {
    "end": "2027-09-30",
    "id": "CTR-7004",
-   "invoice": "INV-5215",
-   "net_eur": "9381.41",
-   "partner": "C-109",
+   "invoice": "INV-5434",
+   "net_eur": "2657.59",
+   "partner": "C-103",
    "start": "2026-10-01"
   },
   "CTR-7005": {
    "end": "2026-08-31",
    "id": "CTR-7005",
-   "invoice": "INV-5620",
-   "net_eur": "2437.29",
-   "partner": "C-105",
+   "invoice": "INV-5230",
+   "net_eur": "4345.58",
+   "partner": "C-101",
    "start": "2026-03-01"
   },
   "CTR-7006": {
    "end": "2026-12-15",
    "id": "CTR-7006",
-   "invoice": "INV-5727",
-   "net_eur": "8589.20",
-   "partner": "C-101",
+   "invoice": "INV-5483",
+   "net_eur": "9023.96",
+   "partner": "C-106",
    "start": "2026-06-16"
   }
  },
  "documents": {
   "INV-5021": {
-   "currency": "USD",
+   "currency": "EUR",
    "date": "2026-08-12",
    "due": "2026-09-11",
    "gross": "19689.59",
@@ -265,12 +252,12 @@
     }
    ],
    "net": "19689.59",
-   "partner": "C-110",
+   "partner": "C-109",
    "type": "invoice",
    "vat": "0.00"
   },
   "INV-5043": {
-   "currency": "CHF",
+   "currency": "GBP",
    "date": "2026-09-23",
    "due": "2026-10-23",
    "gross": "3213.76",
@@ -284,136 +271,130 @@
     }
    ],
    "net": "3213.76",
-   "partner": "C-113",
+   "partner": "C-112",
    "type": "invoice",
    "vat": "0.00"
   },
   "INV-5057": {
    "currency": "EUR",
-   "date": "2026-07-14",
-   "due": "2026-08-13",
-   "gross": "21352.12",
+   "date": "2026-09-24",
+   "due": "2026-10-24",
+   "gross": "16098.96",
    "id": "INV-5057",
    "lines": [
     {
-     "description": "Insurance 1",
-     "qty": 1,
-     "unit_price": "158.81",
+     "description": "Handling 1",
+     "qty": 9,
+     "unit_price": "1294.94",
+     "vat_rate": "0.21"
+    },
+    {
+     "description": "Freight 2",
+     "qty": 2,
+     "unit_price": "155.26",
+     "vat_rate": "0.21"
+    },
+    {
+     "description": "Insurance 3",
+     "qty": 6,
+     "unit_price": "247.91",
      "vat_rate": "0.09"
-    },
-    {
-     "description": "Handling 2",
-     "qty": 12,
-     "unit_price": "1382.50",
-     "vat_rate": "0.21"
-    },
-    {
-     "description": "Handling 3",
-     "qty": 4,
-     "unit_price": "228.33",
-     "vat_rate": "0.21"
     }
    ],
-   "net": "17662.13",
+   "net": "13452.44",
    "partner": "C-104",
    "type": "invoice",
-   "vat": "3689.99"
+   "vat": "2646.52"
   },
   "INV-5072": {
    "currency": "EUR",
-   "date": "2026-09-24",
-   "due": "2026-10-24",
-   "gross": "19094.31",
+   "date": "2026-07-31",
+   "due": "2026-08-30",
+   "gross": "14927.79",
    "id": "INV-5072",
    "lines": [
     {
-     "description": "Storage 1",
-     "qty": 7,
-     "unit_price": "1348.63",
+     "description": "Freight 1",
+     "qty": 2,
+     "unit_price": "1412.13",
      "vat_rate": "0.21"
+    },
+    {
+     "description": "Insurance 2",
+     "qty": 6,
+     "unit_price": "1406.31",
+     "vat_rate": "0.21"
+    },
+    {
+     "description": "Freight 3",
+     "qty": 6,
+     "unit_price": "179.15",
+     "vat_rate": "0.21"
+    }
+   ],
+   "net": "12337.02",
+   "partner": "C-101",
+   "type": "invoice",
+   "vat": "2590.77"
+  },
+  "INV-5087": {
+   "currency": "EUR",
+   "date": "2026-08-31",
+   "due": "2026-09-30",
+   "gross": "21572.90",
+   "id": "INV-5087",
+   "lines": [
+    {
+     "description": "Insurance 1",
+     "qty": 3,
+     "unit_price": "1098.42",
+     "vat_rate": "0.09"
     },
     {
      "description": "Storage 2",
-     "qty": 8,
-     "unit_price": "614.05",
+     "qty": 9,
+     "unit_price": "991.57",
      "vat_rate": "0.21"
     },
     {
-     "description": "Customs filing 3",
-     "qty": 3,
+     "description": "Freight 3",
+     "qty": 11,
+     "unit_price": "539.66",
+     "vat_rate": "0.21"
+    }
+   ],
+   "net": "18155.65",
+   "partner": "C-103",
+   "type": "invoice",
+   "vat": "3417.25"
+  },
+  "INV-5122": {
+   "currency": "EUR",
+   "date": "2026-08-17",
+   "due": "2026-09-16",
+   "gross": "10246.49",
+   "id": "INV-5122",
+   "lines": [
+    {
+     "description": "Handling 1",
+     "qty": 4,
+     "unit_price": "808.40",
+     "vat_rate": "0.21"
+    },
+    {
+     "description": "Customs filing 2",
+     "qty": 11,
      "unit_price": "475.87",
      "vat_rate": "0.21"
     }
    ],
-   "net": "15780.42",
+   "net": "8468.17",
    "partner": "C-101",
    "type": "invoice",
-   "vat": "3313.89"
-  },
-  "INV-5087": {
-   "currency": "EUR",
-   "date": "2026-07-30",
-   "due": "2026-08-29",
-   "gross": "29332.00",
-   "id": "INV-5087",
-   "lines": [
-    {
-     "description": "Handling 1",
-     "qty": 7,
-     "unit_price": "1030.19",
-     "vat_rate": "0.09"
-    },
-    {
-     "description": "Insurance 2",
-     "qty": 7,
-     "unit_price": "1398.88",
-     "vat_rate": "0.09"
-    },
-    {
-     "description": "Storage 3",
-     "qty": 9,
-     "unit_price": "991.57",
-     "vat_rate": "0.21"
-    }
-   ],
-   "net": "25927.62",
-   "partner": "C-104",
-   "type": "invoice",
-   "vat": "3404.38"
-  },
-  "INV-5122": {
-   "currency": "EUR",
-   "date": "2026-09-01",
-   "due": "2026-10-01",
-   "gross": "7369.81",
-   "id": "INV-5122",
-   "lines": [
-    {
-     "description": "Customs filing 1",
-     "qty": 5,
-     "unit_price": "522.02",
-     "vat_rate": "0.21"
-    },
-    {
-     "description": "Insurance 2",
-     "qty": 6,
-     "unit_price": "26.73",
-     "vat_rate": "0.09"
-    },
-    {
-     "description": "Handling 3",
-     "qty": 6,
-     "unit_price": "556.03",
-     "vat_rate": "0.21"
-    }
-   ],
-   "net": "6106.66",
-   "partner": "C-101",
-   "type": "invoice",
-   "vat": "1263.15"
+   "vat": "1778.32"
   },
   "INV-5147": {
-   "currency": "CHF",
+   "currency": "GBP",
    "date": "2026-08-19",
    "due": "2026-09-18",
    "gross": "14115.96",
@@ -427,107 +408,144 @@
     }
    ],
    "net": "14115.96",
-   "partner": "C-113",
+   "partner": "C-112",
    "type": "invoice",
    "vat": "0.00"
   },
   "INV-5206": {
    "currency": "EUR",
-   "date": "2026-09-17",
-   "due": "2026-10-17",
-   "gross": "4467.69",
+   "date": "2026-07-13",
+   "due": "2026-08-12",
+   "gross": "3975.94",
    "id": "INV-5206",
    "lines": [
     {
      "description": "Freight 1",
      "qty": 3,
-     "unit_price": "357.45",
+     "unit_price": "821.62",
+     "vat_rate": "0.21"
+    },
+    {
+     "description": "Insurance 2",
+     "qty": 12,
+     "unit_price": "68.42",
+     "vat_rate": "0.21"
+    }
+   ],
+   "net": "3285.90",
+   "partner": "C-104",
+   "type": "invoice",
+   "vat": "690.04"
+  },
+  "INV-5211": {
+   "currency": "EUR",
+   "date": "2026-09-21",
+   "due": "2026-10-21",
+   "gross": "12185.42",
+   "id": "INV-5211",
+   "lines": [
+    {
+     "description": "Insurance 1",
+     "qty": 8,
+     "unit_price": "335.02",
      "vat_rate": "0.21"
     },
     {
      "description": "Handling 2",
-     "qty": 7,
-     "unit_price": "374.28",
+     "qty": 9,
+     "unit_price": "821.16",
      "vat_rate": "0.21"
     }
    ],
-   "net": "3692.31",
+   "net": "10070.60",
    "partner": "C-104",
    "type": "invoice",
-   "vat": "775.38"
+   "vat": "2114.82"
   },
-  "INV-5211": {
-   "currency": "EUR",
-   "date": "2026-09-24",
-   "due": "2026-10-24",
-   "gross": "28138.04",
-   "id": "INV-5211",
+  "INV-5215": {
+   "currency": "CHF",
+   "date": "2026-07-29",
+   "due": "2026-08-28",
+   "gross": "13325.68",
+   "id": "INV-5215",
    "lines": [
     {
-     "description": "Customs filing 1",
+     "description": "Freight 1",
      "qty": 4,
-     "unit_price": "1298.41",
-     "vat_rate": "0.21"
+     "unit_price": "651.60",
+     "vat_rate": "0.00"
     },
     {
      "description": "Customs filing 2",
-     "qty": 12,
-     "unit_price": "1422.84",
-     "vat_rate": "0.09"
+     "qty": 7,
+     "unit_price": "832.64",
+     "vat_rate": "0.00"
     },
     {
      "description": "Insurance 3",
      "qty": 8,
-     "unit_price": "335.02",
-     "vat_rate": "0.21"
+     "unit_price": "611.35",
+     "vat_rate": "0.00"
     }
    ],
-   "net": "24947.88",
-   "partner": "C-104",
+   "net": "13325.68",
+   "partner": "C-113",
    "type": "invoice",
-   "vat": "3190.16"
+   "vat": "0.00"
   },
-  "INV-5215": {
-   "contract": "CTR-7004",
+  "INV-5230": {
+   "contract": "CTR-7005",
    "currency": "EUR",
-   "date": "2026-09-25",
-   "due": "2026-10-25",
-   "gross": "9381.41",
-   "id": "INV-5215",
+   "date": "2026-07-01",
+   "due": "2026-07-31",
+   "gross": "5258.15",
+   "id": "INV-5230",
    "lines": [
     {
      "description": "Annual subscription",
      "qty": 1,
-     "unit_price": "9381.41",
-     "vat_rate": "0.00"
-    }
-   ],
-   "net": "9381.41",
-   "partner": "C-109",
-   "type": "invoice",
-   "vat": "0.00"
-  },
-  "INV-5232": {
-   "currency": "EUR",
-   "date": "2026-09-18",
-   "due": "2026-10-18",
-   "gross": "9577.10",
-   "id": "INV-5232",
-   "lines": [
-    {
-     "description": "Freight 1",
-     "qty": 12,
-     "unit_price": "659.58",
+     "unit_price": "4345.58",
      "vat_rate": "0.21"
     }
    ],
-   "net": "7914.96",
+   "net": "4345.58",
    "partner": "C-101",
    "type": "invoice",
-   "vat": "1662.14"
+   "vat": "912.57"
+  },
+  "INV-5232": {
+   "currency": "EUR",
+   "date": "2026-08-26",
+   "due": "2026-09-25",
+   "gross": "22673.55",
+   "id": "INV-5232",
+   "lines": [
+    {
+     "description": "Insurance 1",
+     "qty": 10,
+     "unit_price": "1437.05",
+     "vat_rate": "0.09"
+    },
+    {
+     "description": "Storage 2",
+     "qty": 9,
+     "unit_price": "709.25",
+     "vat_rate": "0.09"
+    },
+    {
+     "description": "Handling 3",
+     "qty": 1,
+     "unit_price": "42.94",
+     "vat_rate": "0.21"
+    }
+   ],
+   "net": "20796.69",
+   "partner": "C-101",
+   "type": "invoice",
+   "vat": "1876.86"
   },
   "INV-5259": {
-   "currency": "USD",
+   "currency": "EUR",
    "date": "2026-08-24",
    "due": "2026-09-23",
    "gross": "9231.64",
@@ -547,40 +565,29 @@
     }
    ],
    "net": "9231.64",
-   "partner": "C-110",
+   "partner": "C-109",
    "type": "invoice",
    "vat": "0.00"
   },
   "INV-5274": {
+   "contract": "CTR-7003",
    "currency": "EUR",
-   "date": "2026-09-21",
-   "due": "2026-10-21",
-   "gross": "19222.06",
+   "date": "2026-09-10",
+   "due": "2026-10-10",
+   "gross": "2504.84",
    "id": "INV-5274",
    "lines": [
     {
-     "description": "Storage 1",
-     "qty": 10,
-     "unit_price": "149.85",
+     "description": "Annual subscription",
+     "qty": 1,
+     "unit_price": "2298.02",
      "vat_rate": "0.09"
-    },
-    {
-     "description": "Insurance 2",
-     "qty": 7,
-     "unit_price": "184.89",
-     "vat_rate": "0.21"
-    },
-    {
-     "description": "Freight 3",
-     "qty": 12,
-     "unit_price": "1103.49",
-     "vat_rate": "0.21"
     }
    ],
-   "net": "16034.61",
+   "net": "2298.02",
    "partner": "C-104",
    "type": "invoice",
-   "vat": "3187.45"
+   "vat": "206.82"
   },
   "INV-5278": {
    "currency": "USD",
@@ -609,7 +616,7 @@
     }
    ],
    "net": "36141.12",
-   "partner": "C-111",
+   "partner": "C-110",
    "type": "invoice",
    "vat": "0.00"
   },
@@ -628,32 +635,43 @@
     }
    ],
    "net": "9674.24",
-   "partner": "C-109",
+   "partner": "C-108",
    "type": "invoice",
    "vat": "0.00"
   },
   "INV-5346": {
-   "contract": "CTR-7002",
-   "currency": "USD",
-   "date": "2026-08-15",
-   "due": "2026-09-14",
-   "gross": "5572.37",
+   "currency": "CHF",
+   "date": "2026-07-15",
+   "due": "2026-08-14",
+   "gross": "16339.59",
    "id": "INV-5346",
    "lines": [
     {
-     "description": "Annual subscription",
-     "qty": 1,
-     "unit_price": "5572.37",
+     "description": "Storage 1",
+     "qty": 8,
+     "unit_price": "1350.38",
+     "vat_rate": "0.00"
+    },
+    {
+     "description": "Customs filing 2",
+     "qty": 2,
+     "unit_price": "1127.15",
+     "vat_rate": "0.00"
+    },
+    {
+     "description": "Insurance 3",
+     "qty": 5,
+     "unit_price": "656.45",
      "vat_rate": "0.00"
     }
    ],
-   "net": "5572.37",
-   "partner": "C-111",
+   "net": "16339.59",
+   "partner": "C-113",
    "type": "invoice",
    "vat": "0.00"
   },
   "INV-5349": {
-   "currency": "GBP",
+   "currency": "USD",
    "date": "2026-08-03",
    "due": "2026-09-02",
    "gross": "11158.56",
@@ -667,7 +685,7 @@
     }
    ],
    "net": "11158.56",
-   "partner": "C-112",
+   "partner": "C-111",
    "type": "invoice",
    "vat": "0.00"
   },
@@ -698,87 +716,75 @@
     }
    ],
    "net": "5219.27",
-   "partner": "C-109",
+   "partner": "C-108",
    "type": "invoice",
    "vat": "0.00"
   },
   "INV-5390": {
    "currency": "EUR",
-   "date": "2026-08-26",
-   "due": "2026-09-25",
-   "gross": "22673.55",
+   "date": "2026-08-27",
+   "due": "2026-09-26",
+   "gross": "19312.76",
    "id": "INV-5390",
    "lines": [
     {
-     "description": "Insurance 1",
-     "qty": 10,
-     "unit_price": "1437.05",
-     "vat_rate": "0.09"
-    },
-    {
-     "description": "Storage 2",
-     "qty": 9,
-     "unit_price": "709.25",
-     "vat_rate": "0.09"
-    },
-    {
-     "description": "Handling 3",
-     "qty": 1,
-     "unit_price": "42.94",
+     "description": "Customs filing 1",
+     "qty": 12,
+     "unit_price": "1330.08",
      "vat_rate": "0.21"
     }
    ],
-   "net": "20796.69",
+   "net": "15960.96",
    "partner": "C-101",
    "type": "invoice",
-   "vat": "1876.86"
+   "vat": "3351.80"
   },
   "INV-5391": {
    "currency": "EUR",
    "date": "2026-08-21",
    "due": "2026-09-20",
-   "gross": "13144.45",
+   "gross": "15904.78",
    "id": "INV-5391",
    "lines": [
     {
-     "description": "Storage 1",
+     "description": "Handling 1",
      "qty": 11,
      "unit_price": "1194.95",
-     "vat_rate": "0.00"
-    }
-   ],
-   "net": "13144.45",
-   "partner": "C-106",
-   "type": "invoice",
-   "vat": "0.00"
-  },
-  "INV-5397": {
-   "currency": "EUR",
-   "date": "2026-08-19",
-   "due": "2026-09-18",
-   "gross": "12338.97",
-   "id": "INV-5397",
-   "lines": [
-    {
-     "description": "Insurance 1",
-     "qty": 5,
-     "unit_price": "644.63",
-     "vat_rate": "0.09"
-    },
-    {
-     "description": "Handling 2",
-     "qty": 8,
-     "unit_price": "911.75",
      "vat_rate": "0.21"
     }
    ],
-   "net": "10517.15",
+   "net": "13144.45",
    "partner": "C-105",
    "type": "invoice",
-   "vat": "1821.82"
+   "vat": "2760.33"
+  },
+  "INV-5397": {
+   "currency": "EUR",
+   "date": "2026-08-28",
+   "due": "2026-09-27",
+   "gross": "15415.59",
+   "id": "INV-5397",
+   "lines": [
+    {
+     "description": "Handling 1",
+     "qty": 4,
+     "unit_price": "1202.10",
+     "vat_rate": "0.21"
+    },
+    {
+     "description": "Customs filing 2",
+     "qty": 12,
+     "unit_price": "660.98",
+     "vat_rate": "0.21"
+    }
+   ],
+   "net": "12740.16",
+   "partner": "C-105",
+   "type": "invoice",
+   "vat": "2675.43"
   },
   "INV-5403": {
-   "currency": "GBP",
+   "currency": "USD",
    "date": "2026-08-14",
    "due": "2026-09-13",
    "gross": "13714.76",
@@ -804,20 +810,20 @@
     }
    ],
    "net": "13714.76",
-   "partner": "C-112",
+   "partner": "C-111",
    "type": "invoice",
    "vat": "0.00"
   },
   "INV-5408": {
    "currency": "EUR",
-   "date": "2026-09-17",
-   "due": "2026-10-17",
-   "gross": "3212.03",
+   "date": "2026-07-13",
+   "due": "2026-08-12",
+   "gross": "16301.20",
    "id": "INV-5408",
    "lines": [
     {
      "description": "Freight 1",
-     "qty": 1,
+     "qty": 12,
      "unit_price": "717.79",
      "vat_rate": "0.00"
     },
@@ -826,60 +832,105 @@
      "qty": 7,
      "unit_price": "356.32",
      "vat_rate": "0.00"
-    }
-   ],
-   "net": "3212.03",
-   "partner": "C-106",
-   "type": "invoice",
-   "vat": "0.00"
-  },
-  "INV-5435": {
-   "currency": "EUR",
-   "date": "2026-08-13",
-   "due": "2026-09-12",
-   "gross": "8713.84",
-   "id": "INV-5435",
-   "lines": [
-    {
-     "description": "Insurance 1",
-     "qty": 6,
-     "unit_price": "769.79",
-     "vat_rate": "0.00"
     },
     {
-     "description": "Storage 2",
-     "qty": 10,
-     "unit_price": "409.51",
+     "description": "Insurance 3",
+     "qty": 4,
+     "unit_price": "1298.37",
      "vat_rate": "0.00"
     }
    ],
-   "net": "8713.84",
+   "net": "16301.20",
    "partner": "C-106",
    "type": "invoice",
    "vat": "0.00"
   },
-  "INV-5467": {
-   "contract": "CTR-7003",
-   "currency": "USD",
-   "date": "2026-09-10",
-   "due": "2026-10-10",
-   "gross": "8513.68",
-   "id": "INV-5467",
+  "INV-5434": {
+   "contract": "CTR-7004",
+   "currency": "EUR",
+   "date": "2026-09-25",
+   "due": "2026-10-25",
+   "gross": "3215.68",
+   "id": "INV-5434",
    "lines": [
     {
      "description": "Annual subscription",
      "qty": 1,
-     "unit_price": "8513.68",
+     "unit_price": "2657.59",
+     "vat_rate": "0.21"
+    }
+   ],
+   "net": "2657.59",
+   "partner": "C-103",
+   "type": "invoice",
+   "vat": "558.09"
+  },
+  "INV-5435": {
+   "currency": "EUR",
+   "date": "2026-08-28",
+   "due": "2026-09-27",
+   "gross": "13345.78",
+   "id": "INV-5435",
+   "lines": [
+    {
+     "description": "Insurance 1",
+     "qty": 10,
+     "unit_price": "769.79",
+     "vat_rate": "0.09"
+    },
+    {
+     "description": "Insurance 2",
+     "qty": 10,
+     "unit_price": "409.51",
+     "vat_rate": "0.21"
+    }
+   ],
+   "net": "11793.00",
+   "partner": "C-105",
+   "type": "invoice",
+   "vat": "1552.78"
+  },
+  "INV-5467": {
+   "currency": "CHF",
+   "date": "2026-07-16",
+   "due": "2026-08-15",
+   "gross": "1494.74",
+   "id": "INV-5467",
+   "lines": [
+    {
+     "description": "Customs filing 1",
+     "qty": 2,
+     "unit_price": "747.37",
      "vat_rate": "0.00"
     }
    ],
-   "net": "8513.68",
-   "partner": "C-110",
+   "net": "1494.74",
+   "partner": "C-113",
+   "type": "invoice",
+   "vat": "0.00"
+  },
+  "INV-5483": {
+   "contract": "CTR-7006",
+   "currency": "EUR",
+   "date": "2026-07-01",
+   "due": "2026-07-31",
+   "gross": "9023.96",
+   "id": "INV-5483",
+   "lines": [
+    {
+     "description": "Annual subscription",
+     "qty": 1,
+     "unit_price": "9023.96",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "9023.96",
+   "partner": "C-106",
    "type": "invoice",
    "vat": "0.00"
   },
   "INV-5489": {
-   "currency": "GBP",
+   "currency": "USD",
    "date": "2026-09-11",
    "due": "2026-10-11",
    "gross": "3927.14",
@@ -893,28 +944,28 @@
     }
    ],
    "net": "3927.14",
-   "partner": "C-112",
+   "partner": "C-111",
    "type": "invoice",
    "vat": "0.00"
   },
   "INV-5522": {
    "currency": "EUR",
-   "date": "2026-07-20",
-   "due": "2026-08-19",
-   "gross": "4865.31",
+   "date": "2026-09-15",
+   "due": "2026-10-15",
+   "gross": "2638.38",
    "id": "INV-5522",
    "lines": [
     {
-     "description": "Customs filing 1",
+     "description": "Handling 1",
      "qty": 4,
-     "unit_price": "1005.23",
+     "unit_price": "545.12",
      "vat_rate": "0.21"
     }
    ],
-   "net": "4020.92",
+   "net": "2180.48",
    "partner": "C-103",
    "type": "invoice",
-   "vat": "844.39"
+   "vat": "457.90"
   },
   "INV-5539": {
    "currency": "EUR",
@@ -937,12 +988,12 @@
     }
    ],
    "net": "4029.48",
-   "partner": "C-109",
+   "partner": "C-108",
    "type": "invoice",
    "vat": "0.00"
   },
   "INV-5578": {
-   "currency": "USD",
+   "currency": "EUR",
    "date": "2026-09-04",
    "due": "2026-10-04",
    "gross": "7218.75",
@@ -956,7 +1007,7 @@
     }
    ],
    "net": "7218.75",
-   "partner": "C-110",
+   "partner": "C-109",
    "type": "invoice",
    "vat": "0.00"
   },
@@ -987,7 +1038,7 @@
     }
    ],
    "net": "6309.82",
-   "partner": "C-107",
+   "partner": "C-106",
    "type": "invoice",
    "vat": "0.00"
   },
@@ -1006,40 +1057,28 @@
     }
    ],
    "net": "1725.50",
-   "partner": "C-107",
+   "partner": "C-106",
    "type": "invoice",
    "vat": "0.00"
   },
   "INV-5601": {
    "currency": "EUR",
-   "date": "2026-07-15",
-   "due": "2026-08-14",
-   "gross": "6945.90",
+   "date": "2026-08-21",
+   "due": "2026-09-20",
+   "gross": "3283.75",
    "id": "INV-5601",
    "lines": [
     {
-     "description": "Storage 1",
-     "qty": 5,
-     "unit_price": "879.33",
-     "vat_rate": "0.21"
-    },
-    {
-     "description": "Insurance 2",
-     "qty": 1,
-     "unit_price": "260.51",
-     "vat_rate": "0.09"
-    },
-    {
-     "description": "Insurance 3",
+     "description": "Insurance 1",
      "qty": 2,
-     "unit_price": "615.59",
-     "vat_rate": "0.09"
+     "unit_price": "1356.92",
+     "vat_rate": "0.21"
     }
    ],
-   "net": "5888.34",
-   "partner": "C-103",
+   "net": "2713.84",
+   "partner": "C-102",
    "type": "invoice",
-   "vat": "1057.56"
+   "vat": "569.91"
   },
   "INV-5604": {
    "currency": "USD",
@@ -1068,48 +1107,48 @@
     }
    ],
    "net": "9616.39",
-   "partner": "C-111",
+   "partner": "C-110",
    "type": "invoice",
    "vat": "0.00"
   },
   "INV-5608": {
    "currency": "EUR",
-   "date": "2026-09-07",
-   "due": "2026-10-07",
-   "gross": "3857.78",
+   "date": "2026-07-29",
+   "due": "2026-08-28",
+   "gross": "8608.30",
    "id": "INV-5608",
    "lines": [
     {
-     "description": "Storage 1",
-     "qty": 3,
-     "unit_price": "1179.75",
+     "description": "Handling 1",
+     "qty": 8,
+     "unit_price": "987.19",
      "vat_rate": "0.09"
     }
    ],
-   "net": "3539.25",
+   "net": "7897.52",
    "partner": "C-105",
    "type": "invoice",
-   "vat": "318.53"
+   "vat": "710.78"
   },
   "INV-5620": {
-   "contract": "CTR-7005",
+   "contract": "CTR-7001",
    "currency": "EUR",
    "date": "2026-07-01",
    "due": "2026-07-31",
-   "gross": "2656.65",
+   "gross": "1659.21",
    "id": "INV-5620",
    "lines": [
     {
      "description": "Annual subscription",
      "qty": 1,
-     "unit_price": "2437.29",
-     "vat_rate": "0.09"
+     "unit_price": "1659.21",
+     "vat_rate": "0.00"
     }
    ],
-   "net": "2437.29",
-   "partner": "C-105",
+   "net": "1659.21",
+   "partner": "C-106",
    "type": "invoice",
-   "vat": "219.36"
+   "vat": "0.00"
   },
   "INV-5685": {
    "currency": "EUR",
@@ -1126,12 +1165,12 @@
     }
    ],
    "net": "2416.68",
-   "partner": "C-108",
+   "partner": "C-107",
    "type": "invoice",
    "vat": "0.00"
   },
   "INV-5692": {
-   "currency": "CHF",
+   "currency": "GBP",
    "date": "2026-07-29",
    "due": "2026-08-28",
    "gross": "11425.79",
@@ -1157,7 +1196,7 @@
     }
    ],
    "net": "11425.79",
-   "partner": "C-113",
+   "partner": "C-112",
    "type": "invoice",
    "vat": "0.00"
   },
@@ -1188,143 +1227,167 @@
     }
    ],
    "net": "15875.90",
-   "partner": "C-107",
+   "partner": "C-106",
    "type": "invoice",
    "vat": "0.00"
   },
   "INV-5727": {
-   "contract": "CTR-7006",
-   "currency": "EUR",
-   "date": "2026-07-01",
-   "due": "2026-07-31",
-   "gross": "10392.93",
+   "contract": "CTR-7002",
+   "currency": "GBP",
+   "date": "2026-08-15",
+   "due": "2026-09-14",
+   "gross": "4988.18",
    "id": "INV-5727",
    "lines": [
     {
      "description": "Annual subscription",
      "qty": 1,
-     "unit_price": "8589.20",
-     "vat_rate": "0.21"
+     "unit_price": "4988.18",
+     "vat_rate": "0.00"
     }
    ],
-   "net": "8589.20",
-   "partner": "C-101",
+   "net": "4988.18",
+   "partner": "C-112",
    "type": "invoice",
-   "vat": "1803.73"
+   "vat": "0.00"
   },
   "INV-5728": {
    "currency": "EUR",
-   "date": "2026-08-25",
-   "due": "2026-09-24",
-   "gross": "6580.00",
+   "date": "2026-09-07",
+   "due": "2026-10-07",
+   "gross": "3845.15",
    "id": "INV-5728",
    "lines": [
     {
      "description": "Storage 1",
-     "qty": 10,
+     "qty": 2,
      "unit_price": "603.67",
+     "vat_rate": "0.09"
+    },
+    {
+     "description": "Customs filing 2",
+     "qty": 6,
+     "unit_price": "386.72",
      "vat_rate": "0.09"
     }
    ],
-   "net": "6036.70",
+   "net": "3527.66",
    "partner": "C-103",
    "type": "invoice",
-   "vat": "543.30"
+   "vat": "317.49"
   },
   "INV-5731": {
    "currency": "EUR",
-   "date": "2026-08-31",
-   "due": "2026-09-30",
-   "gross": "2179.16",
+   "date": "2026-07-14",
+   "due": "2026-08-13",
+   "gross": "10142.22",
    "id": "INV-5731",
    "lines": [
     {
-     "description": "Storage 1",
-     "qty": 3,
-     "unit_price": "666.41",
-     "vat_rate": "0.09"
+     "description": "Customs filing 1",
+     "qty": 12,
+     "unit_price": "698.50",
+     "vat_rate": "0.21"
     }
    ],
-   "net": "1999.23",
+   "net": "8382.00",
    "partner": "C-102",
    "type": "invoice",
-   "vat": "179.93"
+   "vat": "1760.22"
   },
   "INV-5734": {
-   "contract": "CTR-7001",
-   "currency": "USD",
-   "date": "2026-07-01",
-   "due": "2026-07-31",
-   "gross": "1856.60",
+   "currency": "CHF",
+   "date": "2026-09-04",
+   "due": "2026-10-04",
+   "gross": "4913.70",
    "id": "INV-5734",
    "lines": [
     {
-     "description": "Annual subscription",
-     "qty": 1,
-     "unit_price": "1856.60",
+     "description": "Insurance 1",
+     "qty": 10,
+     "unit_price": "491.37",
      "vat_rate": "0.00"
     }
    ],
-   "net": "1856.60",
-   "partner": "C-110",
+   "net": "4913.70",
+   "partner": "C-113",
    "type": "invoice",
    "vat": "0.00"
   },
-  "INV-5783": {
+  "INV-5746": {
    "currency": "EUR",
-   "date": "2026-09-14",
-   "due": "2026-10-14",
-   "gross": "11020.78",
-   "id": "INV-5783",
-   "lines": [
-    {
-     "description": "Freight 1",
-     "qty": 7,
-     "unit_price": "1197.93",
-     "vat_rate": "0.21"
-    },
-    {
-     "description": "Insurance 2",
-     "qty": 1,
-     "unit_price": "722.57",
-     "vat_rate": "0.21"
-    }
-   ],
-   "net": "9108.08",
-   "partner": "C-102",
-   "type": "invoice",
-   "vat": "1912.70"
-  },
-  "INV-5789": {
-   "currency": "EUR",
-   "date": "2026-07-23",
-   "due": "2026-08-22",
-   "gross": "12265.27",
-   "id": "INV-5789",
+   "date": "2026-09-21",
+   "due": "2026-10-21",
+   "gross": "16433.99",
+   "id": "INV-5746",
    "lines": [
     {
      "description": "Insurance 1",
-     "qty": 9,
-     "unit_price": "212.77",
-     "vat_rate": "0.21"
+     "qty": 10,
+     "unit_price": "974.25",
+     "vat_rate": "0.09"
     },
     {
-     "description": "Freight 2",
-     "qty": 12,
-     "unit_price": "613.44",
+     "description": "Insurance 2",
+     "qty": 2,
+     "unit_price": "459.10",
      "vat_rate": "0.09"
     },
     {
      "description": "Freight 3",
+     "qty": 9,
+     "unit_price": "442.04",
+     "vat_rate": "0.21"
+    }
+   ],
+   "net": "14639.06",
+   "partner": "C-104",
+   "type": "invoice",
+   "vat": "1794.93"
+  },
+  "INV-5783": {
+   "currency": "EUR",
+   "date": "2026-07-14",
+   "due": "2026-08-13",
+   "gross": "7990.26",
+   "id": "INV-5783",
+   "lines": [
+    {
+     "description": "Storage 1",
+     "qty": 11,
+     "unit_price": "666.41",
+     "vat_rate": "0.09"
+    }
+   ],
+   "net": "7330.51",
+   "partner": "C-102",
+   "type": "invoice",
+   "vat": "659.75"
+  },
+  "INV-5789": {
+   "currency": "EUR",
+   "date": "2026-07-22",
+   "due": "2026-08-21",
+   "gross": "7942.25",
+   "id": "INV-5789",
+   "lines": [
+    {
+     "description": "Freight 1",
+     "qty": 9,
+     "unit_price": "613.44",
+     "vat_rate": "0.09"
+    },
+    {
+     "description": "Freight 2",
      "qty": 5,
      "unit_price": "353.10",
      "vat_rate": "0.09"
     }
    ],
-   "net": "11041.71",
-   "partner": "C-105",
+   "net": "7286.46",
+   "partner": "C-104",
    "type": "invoice",
-   "vat": "1223.56"
+   "vat": "655.79"
   },
   "INV-5810": {
    "currency": "USD",
@@ -1353,12 +1416,12 @@
     }
    ],
    "net": "17890.04",
-   "partner": "C-111",
+   "partner": "C-110",
    "type": "invoice",
    "vat": "0.00"
   },
   "INV-5849": {
-   "currency": "USD",
+   "currency": "EUR",
    "date": "2026-09-16",
    "due": "2026-10-16",
    "gross": "9471.70",
@@ -1372,7 +1435,7 @@
     }
    ],
    "net": "9471.70",
-   "partner": "C-110",
+   "partner": "C-109",
    "type": "invoice",
    "vat": "0.00"
   },
@@ -1403,7 +1466,7 @@
     }
    ],
    "net": "8946.96",
-   "partner": "C-108",
+   "partner": "C-107",
    "type": "invoice",
    "vat": "0.00"
   },
@@ -1422,7 +1485,7 @@
     }
    ],
    "net": "2702.72",
-   "partner": "C-108",
+   "partner": "C-107",
    "type": "invoice",
    "vat": "0.00"
   },
@@ -1441,7 +1504,7 @@
     }
    ],
    "net": "1363.04",
-   "partner": "C-111",
+   "partner": "C-110",
    "type": "invoice",
    "vat": "0.00"
   },
@@ -1472,7 +1535,7 @@
     }
    ],
    "net": "5546.96",
-   "partner": "C-109",
+   "partner": "C-108",
    "type": "invoice",
    "vat": "0.00"
   },
@@ -1503,40 +1566,28 @@
     }
    ],
    "net": "3542.07",
-   "partner": "C-108",
+   "partner": "C-107",
    "type": "invoice",
    "vat": "0.00"
   },
   "INV-5989": {
    "currency": "EUR",
-   "date": "2026-07-24",
-   "due": "2026-08-23",
-   "gross": "15018.81",
+   "date": "2026-07-14",
+   "due": "2026-08-13",
+   "gross": "1819.92",
    "id": "INV-5989",
    "lines": [
     {
-     "description": "Insurance 1",
-     "qty": 2,
-     "unit_price": "347.32",
-     "vat_rate": "0.21"
-    },
-    {
-     "description": "Freight 2",
-     "qty": 8,
-     "unit_price": "1430.56",
-     "vat_rate": "0.21"
-    },
-    {
-     "description": "Freight 3",
-     "qty": 2,
-     "unit_price": "136.56",
-     "vat_rate": "0.21"
+     "description": "Customs filing 1",
+     "qty": 5,
+     "unit_price": "333.93",
+     "vat_rate": "0.09"
     }
    ],
-   "net": "12412.24",
+   "net": "1669.65",
    "partner": "C-102",
    "type": "invoice",
-   "vat": "2606.57"
+   "vat": "150.27"
   },
   "PO-6101": {
    "currency": "EUR",
@@ -1544,19 +1595,19 @@
    "id": "PO-6101",
    "lines": [
     {
-     "item": "Straps 1",
+     "item": "Pallets 1",
      "line": 0,
-     "qty": 33,
-     "unit_price": "311.18"
+     "qty": 25,
+     "unit_price": "336.37"
     },
     {
-     "item": "Pallets 2",
+     "item": "Seals 2",
      "line": 1,
-     "qty": 48,
-     "unit_price": "149.97"
+     "qty": 62,
+     "unit_price": "249.13"
     }
    ],
-   "requested_by": "Eva Jansen",
+   "requested_by": "Joris Bakker",
    "type": "purchase-order",
    "vendor": "V-201"
   },
@@ -1566,22 +1617,16 @@
    "id": "PO-6102",
    "lines": [
     {
-     "item": "Seals 1",
+     "item": "Straps 1",
      "line": 0,
-     "qty": 33,
-     "unit_price": "30.01"
+     "qty": 30,
+     "unit_price": "59.48"
     },
     {
      "item": "Seals 2",
      "line": 1,
-     "qty": 59,
-     "unit_price": "61.02"
-    },
-    {
-     "item": "Liners 3",
-     "line": 2,
-     "qty": 71,
-     "unit_price": "386.26"
+     "qty": 46,
+     "unit_price": "122.86"
     }
    ],
    "requested_by": "Joris Bakker",
@@ -1592,56 +1637,6 @@
    "currency": "EUR",
    "date": "2026-08-03",
    "id": "PO-6103",
-   "lines": [
-    {
-     "item": "Crates 1",
-     "line": 0,
-     "qty": 75,
-     "unit_price": "339.42"
-    },
-    {
-     "item": "Crates 2",
-     "line": 1,
-     "qty": 72,
-     "unit_price": "39.52"
-    }
-   ],
-   "requested_by": "Eva Jansen",
-   "type": "purchase-order",
-   "vendor": "V-203"
-  },
-  "PO-6104": {
-   "currency": "EUR",
-   "date": "2026-08-03",
-   "id": "PO-6104",
-   "lines": [
-    {
-     "item": "Straps 1",
-     "line": 0,
-     "qty": 38,
-     "unit_price": "337.62"
-    },
-    {
-     "item": "Liners 2",
-     "line": 1,
-     "qty": 26,
-     "unit_price": "161.89"
-    },
-    {
-     "item": "Straps 3",
-     "line": 2,
-     "qty": 69,
-     "unit_price": "59.48"
-    }
-   ],
-   "requested_by": "Tomas Novak",
-   "type": "purchase-order",
-   "vendor": "V-203"
-  },
-  "PO-6105": {
-   "currency": "USD",
-   "date": "2026-08-03",
-   "id": "PO-6105",
    "lines": [
     {
      "item": "Liners 1",
@@ -1658,12 +1653,12 @@
    ],
    "requested_by": "Marta Kovacs",
    "type": "purchase-order",
-   "vendor": "V-206"
+   "vendor": "V-203"
   },
-  "PO-6106": {
-   "currency": "USD",
+  "PO-6104": {
+   "currency": "EUR",
    "date": "2026-08-03",
-   "id": "PO-6106",
+   "id": "PO-6104",
    "lines": [
     {
      "item": "Crates 1",
@@ -1686,12 +1681,12 @@
    ],
    "requested_by": "Sanne Visser",
    "type": "purchase-order",
-   "vendor": "V-206"
+   "vendor": "V-203"
   },
-  "PO-6107": {
-   "currency": "CHF",
+  "PO-6105": {
+   "currency": "USD",
    "date": "2026-08-03",
-   "id": "PO-6107",
+   "id": "PO-6105",
    "lines": [
     {
      "item": "Pallets 1",
@@ -1708,46 +1703,60 @@
    ],
    "requested_by": "Sanne Visser",
    "type": "purchase-order",
+   "vendor": "V-206"
+  },
+  "PO-6106": {
+   "currency": "CHF",
+   "date": "2026-08-03",
+   "id": "PO-6106",
+   "lines": [
+    {
+     "item": "Crates 1",
+     "line": 0,
+     "qty": 29,
+     "unit_price": "104.04"
+    },
+    {
+     "item": "Pallets 2",
+     "line": 1,
+     "qty": 50,
+     "unit_price": "92.89"
+    }
+   ],
+   "requested_by": "Joris Bakker",
+   "type": "purchase-order",
    "vendor": "V-207"
   },
   "VINV-101": {
    "category": "goods",
    "currency": "EUR",
-   "date": "2026-08-20",
-   "disputed": true,
-   "due": "2026-09-19",
-   "gross": "11101.52",
+   "date": "2026-08-27",
+   "due": "2026-09-26",
+   "gross": "8983.56",
    "id": "VINV-101",
    "lines": [
     {
-     "description": "Seals 1",
+     "description": "Pallets 1",
      "po_line": 0,
-     "qty": 9,
-     "unit_price": "30.01",
+     "qty": 8,
+     "unit_price": "336.37",
      "vat_rate": "0.21"
     },
     {
      "description": "Seals 2",
      "po_line": 1,
-     "qty": 13,
-     "unit_price": "61.02",
-     "vat_rate": "0.21"
-    },
-    {
-     "description": "Liners 3",
-     "po_line": 2,
-     "qty": 21,
-     "unit_price": "386.26",
+     "qty": 19,
+     "unit_price": "249.13",
      "vat_rate": "0.21"
     }
    ],
-   "net": "9174.81",
-   "number": "INV2026-2486",
-   "po": "PO-6102",
+   "net": "7424.43",
+   "number": "INV2026-5706",
+   "po": "PO-6101",
    "requested_by": "Joris Bakker",
    "status": "posted",
    "type": "vendor-invoice",
-   "vat": "1926.71",
+   "vat": "1559.13",
    "vendor": "V-201"
   },
   "VINV-102": {
@@ -1755,53 +1764,61 @@
    "currency": "EUR",
    "date": "2026-09-04",
    "due": "2026-10-04",
-   "gross": "1718.95",
+   "gross": "3769.97",
    "id": "VINV-102",
    "lines": [
     {
-     "description": "Audit fees",
+     "description": "IT support",
      "po_line": null,
      "qty": 1,
-     "unit_price": "1420.62",
+     "unit_price": "3115.68",
      "vat_rate": "0.21"
     }
    ],
-   "net": "1420.62",
-   "number": "F2026-8204",
+   "net": "3115.68",
+   "number": "2026-6342",
    "po": null,
-   "requested_by": "Tomas Novak",
+   "requested_by": "Joris Bakker",
    "status": "posted",
    "type": "vendor-invoice",
-   "vat": "298.33",
+   "vat": "654.29",
    "vendor": "V-202"
   },
   "VINV-103": {
    "category": "goods",
    "currency": "EUR",
-   "date": "2026-08-27",
-   "due": "2026-09-26",
-   "gross": "4145.08",
+   "date": "2026-09-03",
+   "disputed": true,
+   "due": "2026-10-03",
+   "gross": "14839.20",
    "id": "VINV-103",
    "lines": [
     {
      "description": "Crates 1",
      "po_line": 0,
-     "qty": 10,
-     "unit_price": "339.42",
+     "qty": 24,
+     "unit_price": "255.63",
      "vat_rate": "0.00"
     },
     {
-     "description": "Crates 2",
+     "description": "Labels 2",
      "po_line": 1,
-     "qty": 19,
-     "unit_price": "39.52",
+     "qty": 18,
+     "unit_price": "150.05",
+     "vat_rate": "0.00"
+    },
+    {
+     "description": "Seals 3",
+     "po_line": 2,
+     "qty": 18,
+     "unit_price": "333.51",
      "vat_rate": "0.00"
     }
    ],
-   "net": "4145.08",
-   "number": "INV2026-5706",
-   "po": "PO-6103",
-   "requested_by": "Eva Jansen",
+   "net": "14839.20",
+   "number": "F2026-2893",
+   "po": "PO-6104",
+   "requested_by": "Sanne Visser",
    "status": "posted",
    "type": "vendor-invoice",
    "vat": "0.00",
@@ -1810,37 +1827,37 @@
   "VINV-104": {
    "category": "goods",
    "currency": "EUR",
-   "date": "2026-08-20",
-   "due": "2026-09-19",
-   "gross": "9789.39",
+   "date": "2026-08-27",
+   "due": "2026-09-26",
+   "gross": "9220.20",
    "id": "VINV-104",
    "lines": [
     {
-     "description": "Straps 1",
+     "description": "Crates 1",
      "po_line": 0,
-     "qty": 21,
-     "unit_price": "337.62",
+     "qty": 12,
+     "unit_price": "255.63",
      "vat_rate": "0.00"
     },
     {
-     "description": "Liners 2",
+     "description": "Labels 2",
      "po_line": 1,
-     "qty": 13,
-     "unit_price": "161.89",
+     "qty": 21,
+     "unit_price": "150.05",
      "vat_rate": "0.00"
     },
     {
-     "description": "Straps 3",
+     "description": "Seals 3",
      "po_line": 2,
-     "qty": 10,
-     "unit_price": "59.48",
+     "qty": 9,
+     "unit_price": "333.51",
      "vat_rate": "0.00"
     }
    ],
-   "net": "9789.39",
-   "number": "INV2026-3839",
+   "net": "9220.20",
+   "number": "2026-7326",
    "po": "PO-6104",
-   "requested_by": "Tomas Novak",
+   "requested_by": "Sanne Visser",
    "status": "posted",
    "type": "vendor-invoice",
    "vat": "0.00",
@@ -1849,23 +1866,23 @@
   "VINV-105": {
    "category": "services",
    "currency": "EUR",
-   "date": "2026-09-03",
-   "due": "2026-10-03",
-   "gross": "2084.55",
+   "date": "2026-08-31",
+   "due": "2026-09-30",
+   "gross": "3545.93",
    "id": "VINV-105",
    "lines": [
     {
-     "description": "Software licences",
+     "description": "Consulting",
      "po_line": null,
      "qty": 1,
-     "unit_price": "2084.55",
+     "unit_price": "3545.93",
      "vat_rate": "0.00"
     }
    ],
-   "net": "2084.55",
-   "number": "F2026-2893",
+   "net": "3545.93",
+   "number": "2026-8714",
    "po": null,
-   "requested_by": "Eva Jansen",
+   "requested_by": "Joris Bakker",
    "status": "posted",
    "type": "vendor-invoice",
    "vat": "0.00",
@@ -1873,49 +1890,49 @@
   },
   "VINV-106": {
    "category": "services",
-   "currency": "EUR",
+   "currency": "GBP",
    "date": "2026-08-31",
    "due": "2026-09-30",
-   "gross": "2741.20",
+   "gross": "1998.16",
    "id": "VINV-106",
    "lines": [
     {
-     "description": "Customs brokerage",
+     "description": "Consulting",
      "po_line": null,
      "qty": 1,
-     "unit_price": "2741.20",
+     "unit_price": "1998.16",
      "vat_rate": "0.00"
     }
    ],
-   "net": "2741.20",
-   "number": "F2026-0386",
+   "net": "1998.16",
+   "number": "2026-6347",
    "po": null,
    "requested_by": "Joris Bakker",
    "status": "posted",
    "type": "vendor-invoice",
    "vat": "0.00",
-   "vendor": "V-204"
+   "vendor": "V-205"
   },
   "VINV-107": {
    "category": "services",
    "currency": "GBP",
-   "date": "2026-08-24",
-   "due": "2026-09-23",
-   "gross": "678.99",
+   "date": "2026-09-11",
+   "due": "2026-10-11",
+   "gross": "3411.63",
    "id": "VINV-107",
    "lines": [
     {
-     "description": "Audit fees",
+     "description": "Software licences",
      "po_line": null,
      "qty": 1,
-     "unit_price": "678.99",
+     "unit_price": "3411.63",
      "vat_rate": "0.00"
     }
    ],
-   "net": "678.99",
-   "number": "2026-1005",
+   "net": "3411.63",
+   "number": "INV2026-8921",
    "po": null,
-   "requested_by": "Joris Bakker",
+   "requested_by": "Sanne Visser",
    "status": "posted",
    "type": "vendor-invoice",
    "vat": "0.00",
@@ -1924,36 +1941,29 @@
   "VINV-108": {
    "category": "goods",
    "currency": "USD",
-   "date": "2026-09-08",
-   "due": "2026-10-08",
-   "gross": "10231.79",
+   "date": "2026-08-20",
+   "due": "2026-09-19",
+   "gross": "10167.33",
    "id": "VINV-108",
    "lines": [
     {
-     "description": "Crates 1",
+     "description": "Pallets 1",
      "po_line": 0,
-     "qty": 11,
-     "unit_price": "255.63",
+     "qty": 14,
+     "unit_price": "138.12",
      "vat_rate": "0.00"
     },
     {
-     "description": "Labels 2",
+     "description": "Pallets 2",
      "po_line": 1,
-     "qty": 25,
-     "unit_price": "150.05",
-     "vat_rate": "0.00"
-    },
-    {
-     "description": "Seals 3",
-     "po_line": 2,
-     "qty": 11,
-     "unit_price": "333.51",
+     "qty": 27,
+     "unit_price": "304.95",
      "vat_rate": "0.00"
     }
    ],
-   "net": "10231.79",
-   "number": "INV2026-9034",
-   "po": "PO-6106",
+   "net": "10167.33",
+   "number": "F2026-5902",
+   "po": "PO-6105",
    "requested_by": "Sanne Visser",
    "status": "posted",
    "type": "vendor-invoice",
@@ -1962,189 +1972,200 @@
   },
   "VINV-109": {
    "category": "goods",
-   "currency": "USD",
-   "date": "2026-09-11",
-   "due": "2026-10-11",
-   "gross": "11249.45",
+   "currency": "CHF",
+   "date": "2026-08-28",
+   "due": "2026-09-27",
+   "gross": "1958.15",
    "id": "VINV-109",
    "lines": [
     {
      "description": "Crates 1",
      "po_line": 0,
-     "qty": 5,
-     "unit_price": "255.63",
-     "vat_rate": "0.00"
-    },
-    {
-     "description": "Labels 2",
-     "po_line": 1,
-     "qty": 22,
-     "unit_price": "150.05",
-     "vat_rate": "0.00"
-    },
-    {
-     "description": "Seals 3",
-     "po_line": 2,
-     "qty": 20,
-     "unit_price": "333.51",
-     "vat_rate": "0.00"
-    }
-   ],
-   "net": "11249.45",
-   "number": "INV2026-4851",
-   "po": "PO-6106",
-   "requested_by": "Sanne Visser",
-   "status": "posted",
-   "type": "vendor-invoice",
-   "vat": "0.00",
-   "vendor": "V-206"
-  },
-  "VINV-110": {
-   "category": "goods",
-   "currency": "CHF",
-   "date": "2026-08-28",
-   "due": "2026-09-27",
-   "gross": "6179.70",
-   "id": "VINV-110",
-   "lines": [
-    {
-     "description": "Pallets 1",
-     "po_line": 0,
-     "qty": 5,
-     "unit_price": "138.12",
+     "qty": 9,
+     "unit_price": "104.04",
      "vat_rate": "0.00"
     },
     {
      "description": "Pallets 2",
      "po_line": 1,
-     "qty": 18,
-     "unit_price": "304.95",
+     "qty": 11,
+     "unit_price": "92.89",
      "vat_rate": "0.00"
     }
    ],
-   "net": "6179.70",
-   "number": "F2026-0512",
-   "po": "PO-6107",
-   "requested_by": "Sanne Visser",
+   "net": "1958.15",
+   "number": "F2026-2193",
+   "po": "PO-6106",
+   "requested_by": "Joris Bakker",
    "status": "posted",
    "type": "vendor-invoice",
    "vat": "0.00",
    "vendor": "V-207"
   },
+  "VINV-110": {
+   "category": "services",
+   "currency": "EUR",
+   "date": "2026-09-28",
+   "due": "2026-10-28",
+   "gross": "1068.56",
+   "id": "VINV-110",
+   "lines": [
+    {
+     "description": "Freight handling",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "883.11",
+     "vat_rate": "0.21"
+    }
+   ],
+   "net": "883.11",
+   "number": "S3961",
+   "po": null,
+   "requested_by": "Marta Kovacs",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "185.45",
+   "vendor": "V-201"
+  },
   "VINV-111": {
    "category": "services",
    "currency": "EUR",
-   "date": "2026-09-27",
-   "due": "2026-10-27",
-   "gross": "4618.79",
+   "date": "2026-10-01",
+   "due": "2026-10-31",
+   "gross": "7562.84",
    "id": "VINV-111",
    "lines": [
     {
      "description": "Freight handling",
      "po_line": null,
      "qty": 1,
-     "unit_price": "3817.18",
+     "unit_price": "6250.28",
      "vat_rate": "0.21"
     }
    ],
-   "net": "3817.18",
-   "number": "S2868",
+   "net": "6250.28",
+   "number": "S7952",
    "po": null,
    "requested_by": "Marta Kovacs",
    "status": "posted",
    "type": "vendor-invoice",
-   "vat": "801.61",
+   "vat": "1312.56",
    "vendor": "V-201"
   },
   "VINV-112": {
    "category": "services",
    "currency": "EUR",
-   "date": "2026-09-15",
-   "due": "2026-10-15",
-   "gross": "2518.11",
+   "date": "2026-09-06",
+   "due": "2026-10-06",
+   "gross": "9330.83",
    "id": "VINV-112",
    "lines": [
     {
      "description": "Freight handling",
      "po_line": null,
      "qty": 1,
-     "unit_price": "2081.08",
+     "unit_price": "7711.43",
      "vat_rate": "0.21"
     }
    ],
-   "net": "2081.08",
-   "number": "S3699",
+   "net": "7711.43",
+   "number": "S8623",
    "po": null,
    "requested_by": "Marta Kovacs",
    "status": "posted",
    "type": "vendor-invoice",
-   "vat": "437.03",
+   "vat": "1619.40",
    "vendor": "V-201"
   },
   "VINV-113": {
    "category": "services",
-   "currency": "GBP",
-   "date": "2026-09-27",
-   "due": "2026-10-27",
-   "gross": "2671.83",
+   "currency": "EUR",
+   "date": "2026-08-25",
+   "due": "2026-09-24",
+   "gross": "9608.56",
    "id": "VINV-113",
    "lines": [
     {
-     "description": "Software licences",
+     "description": "Freight handling",
      "po_line": null,
      "qty": 1,
-     "unit_price": "2671.83",
-     "vat_rate": "0.00"
+     "unit_price": "7940.96",
+     "vat_rate": "0.21"
     }
    ],
-   "net": "2671.83",
-   "number": "F2026-5633",
+   "net": "7940.96",
+   "number": "S3765",
    "po": null,
-   "requested_by": "Tomas Novak",
+   "requested_by": "Marta Kovacs",
    "status": "posted",
    "type": "vendor-invoice",
-   "vat": "0.00",
-   "vendor": "V-205"
+   "vat": "1667.60",
+   "vendor": "V-201"
   },
   "VINV-114": {
    "category": "services",
-   "currency": "GBP",
-   "date": "2026-09-28",
-   "due": "2026-10-28",
-   "gross": "934.75",
+   "currency": "EUR",
+   "date": "2026-08-06",
+   "due": "2026-09-05",
+   "gross": "3540.08",
    "id": "VINV-114",
+   "lines": [
+    {
+     "description": "Freight handling",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "2925.69",
+     "vat_rate": "0.21"
+    }
+   ],
+   "net": "2925.69",
+   "number": "S4097",
+   "po": null,
+   "requested_by": "Marta Kovacs",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "614.39",
+   "vendor": "V-201"
+  },
+  "VINV-115": {
+   "category": "services",
+   "currency": "EUR",
+   "date": "2026-10-05",
+   "due": "2026-11-04",
+   "gross": "1135.85",
+   "id": "VINV-115",
    "lines": [
     {
      "description": "Consulting",
      "po_line": null,
      "qty": 1,
-     "unit_price": "934.75",
-     "vat_rate": "0.00"
+     "unit_price": "938.72",
+     "vat_rate": "0.21"
     }
    ],
-   "net": "934.75",
-   "number": "2026-4649",
+   "net": "938.72",
+   "number": "F2026-4649",
    "po": null,
    "requested_by": "Eva Jansen",
    "status": "posted",
    "type": "vendor-invoice",
-   "vat": "0.00",
-   "vendor": "V-205"
+   "vat": "197.13",
+   "vendor": "V-202"
   },
-  "VINV-115": {
+  "VINV-116": {
    "category": "services",
-   "currency": "GBP",
-   "date": "2026-09-22",
-   "due": "2026-10-22",
-   "gross": "1117.92",
-   "id": "VINV-115",
+   "currency": "EUR",
+   "date": "2026-09-27",
+   "due": "2026-10-27",
+   "gross": "1352.68",
+   "id": "VINV-116",
    "lines": [
     {
      "description": "Software licences",
      "po_line": null,
      "qty": 1,
      "unit_price": "1117.92",
-     "vat_rate": "0.00"
+     "vat_rate": "0.21"
     }
    ],
    "net": "1117.92",
@@ -2153,23 +2174,23 @@
    "requested_by": "Sanne Visser",
    "status": "posted",
    "type": "vendor-invoice",
-   "vat": "0.00",
-   "vendor": "V-205"
+   "vat": "234.76",
+   "vendor": "V-202"
   },
-  "VINV-116": {
+  "VINV-117": {
    "category": "services",
-   "currency": "GBP",
-   "date": "2026-08-14",
-   "due": "2026-09-13",
-   "gross": "794.02",
-   "id": "VINV-116",
+   "currency": "EUR",
+   "date": "2026-09-10",
+   "due": "2026-10-10",
+   "gross": "960.76",
+   "id": "VINV-117",
    "lines": [
     {
      "description": "Audit fees",
      "po_line": null,
      "qty": 1,
      "unit_price": "794.02",
-     "vat_rate": "0.00"
+     "vat_rate": "0.21"
     }
    ],
    "net": "794.02",
@@ -2178,102 +2199,377 @@
    "requested_by": "Sanne Visser",
    "status": "posted",
    "type": "vendor-invoice",
-   "vat": "0.00",
-   "vendor": "V-205"
-  },
-  "VINV-117": {
-   "category": "services",
-   "currency": "USD",
-   "date": "2026-10-05",
-   "due": "2026-11-04",
-   "gross": "2326.78",
-   "id": "VINV-117",
-   "lines": [
-    {
-     "description": "Freight handling",
-     "po_line": null,
-     "qty": 1,
-     "unit_price": "2326.78",
-     "vat_rate": "0.00"
-    }
-   ],
-   "net": "2326.78",
-   "number": "S3901",
-   "po": null,
-   "requested_by": "Marta Kovacs",
-   "status": "posted",
-   "type": "vendor-invoice",
-   "vat": "0.00",
-   "vendor": "V-206"
+   "vat": "166.74",
+   "vendor": "V-202"
   },
   "VINV-118": {
    "category": "services",
-   "currency": "USD",
-   "date": "2026-10-03",
-   "due": "2026-11-02",
-   "gross": "7775.25",
+   "currency": "EUR",
+   "date": "2026-08-24",
+   "due": "2026-09-23",
+   "gross": "2815.40",
    "id": "VINV-118",
    "lines": [
     {
-     "description": "Freight handling",
+     "description": "Consulting",
      "po_line": null,
      "qty": 1,
-     "unit_price": "7775.25",
-     "vat_rate": "0.00"
+     "unit_price": "2326.78",
+     "vat_rate": "0.21"
     }
    ],
-   "net": "7775.25",
-   "number": "S9137",
+   "net": "2326.78",
+   "number": "2026-9938",
    "po": null,
    "requested_by": "Marta Kovacs",
    "status": "posted",
    "type": "vendor-invoice",
-   "vat": "0.00",
-   "vendor": "V-206"
+   "vat": "488.62",
+   "vendor": "V-202"
   },
   "VINV-119": {
    "category": "services",
-   "currency": "USD",
-   "date": "2026-08-31",
-   "due": "2026-09-30",
-   "gross": "3863.22",
+   "currency": "EUR",
+   "date": "2026-08-01",
+   "due": "2026-08-31",
+   "gross": "6482.39",
    "id": "VINV-119",
    "lines": [
     {
-     "description": "Freight handling",
+     "description": "Audit fees",
      "po_line": null,
      "qty": 1,
-     "unit_price": "3863.22",
-     "vat_rate": "0.00"
+     "unit_price": "5357.35",
+     "vat_rate": "0.21"
     }
    ],
-   "net": "3863.22",
-   "number": "S2688",
+   "net": "5357.35",
+   "number": "F2026-4688",
    "po": null,
-   "requested_by": "Marta Kovacs",
+   "requested_by": "Eva Jansen",
    "status": "posted",
    "type": "vendor-invoice",
-   "vat": "0.00",
-   "vendor": "V-206"
+   "vat": "1125.04",
+   "vendor": "V-202"
   },
   "VINV-120": {
    "category": "services",
-   "currency": "USD",
-   "date": "2026-07-31",
-   "due": "2026-08-30",
-   "gross": "6397.33",
+   "currency": "EUR",
+   "date": "2026-09-27",
+   "due": "2026-10-27",
+   "gross": "903.86",
    "id": "VINV-120",
    "lines": [
     {
      "description": "Freight handling",
      "po_line": null,
      "qty": 1,
-     "unit_price": "6397.33",
+     "unit_price": "903.86",
      "vat_rate": "0.00"
     }
    ],
-   "net": "6397.33",
-   "number": "S7298",
+   "net": "903.86",
+   "number": "S3351",
+   "po": null,
+   "requested_by": "Marta Kovacs",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "0.00",
+   "vendor": "V-203"
+  },
+  "VINV-121": {
+   "category": "services",
+   "currency": "EUR",
+   "date": "2026-10-01",
+   "due": "2026-10-31",
+   "gross": "760.69",
+   "id": "VINV-121",
+   "lines": [
+    {
+     "description": "Freight handling",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "760.69",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "760.69",
+   "number": "S7934",
+   "po": null,
+   "requested_by": "Marta Kovacs",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "0.00",
+   "vendor": "V-203"
+  },
+  "VINV-122": {
+   "category": "services",
+   "currency": "EUR",
+   "date": "2026-09-12",
+   "due": "2026-10-12",
+   "gross": "2583.72",
+   "id": "VINV-122",
+   "lines": [
+    {
+     "description": "Freight handling",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "2583.72",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "2583.72",
+   "number": "S1656",
+   "po": null,
+   "requested_by": "Marta Kovacs",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "0.00",
+   "vendor": "V-203"
+  },
+  "VINV-123": {
+   "category": "services",
+   "currency": "EUR",
+   "date": "2026-09-14",
+   "due": "2026-10-14",
+   "gross": "796.89",
+   "id": "VINV-123",
+   "lines": [
+    {
+     "description": "Freight handling",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "796.89",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "796.89",
+   "number": "S1372",
+   "po": null,
+   "requested_by": "Marta Kovacs",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "0.00",
+   "vendor": "V-203"
+  },
+  "VINV-124": {
+   "category": "services",
+   "currency": "EUR",
+   "date": "2026-08-01",
+   "due": "2026-08-31",
+   "gross": "1753.42",
+   "id": "VINV-124",
+   "lines": [
+    {
+     "description": "Freight handling",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "1753.42",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "1753.42",
+   "number": "S2551",
+   "po": null,
+   "requested_by": "Marta Kovacs",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "0.00",
+   "vendor": "V-203"
+  },
+  "VINV-125": {
+   "category": "services",
+   "currency": "EUR",
+   "date": "2026-10-01",
+   "due": "2026-10-31",
+   "gross": "1095.91",
+   "id": "VINV-125",
+   "lines": [
+    {
+     "description": "Consulting",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "1095.91",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "1095.91",
+   "number": "2026-9970",
+   "po": null,
+   "requested_by": "Joris Bakker",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "0.00",
+   "vendor": "V-204"
+  },
+  "VINV-126": {
+   "category": "services",
+   "currency": "EUR",
+   "date": "2026-09-29",
+   "due": "2026-10-29",
+   "gross": "4521.60",
+   "id": "VINV-126",
+   "lines": [
+    {
+     "description": "Consulting",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "4521.60",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "4521.60",
+   "number": "F2026-4698",
+   "po": null,
+   "requested_by": "Sanne Visser",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "0.00",
+   "vendor": "V-204"
+  },
+  "VINV-127": {
+   "category": "services",
+   "currency": "EUR",
+   "date": "2026-09-09",
+   "due": "2026-10-09",
+   "gross": "7311.73",
+   "id": "VINV-127",
+   "lines": [
+    {
+     "description": "IT support",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "7311.73",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "7311.73",
+   "number": "INV2026-7104",
+   "po": null,
+   "requested_by": "Sanne Visser",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "0.00",
+   "vendor": "V-204"
+  },
+  "VINV-128": {
+   "category": "services",
+   "currency": "EUR",
+   "date": "2026-08-24",
+   "due": "2026-09-23",
+   "gross": "2934.71",
+   "id": "VINV-128",
+   "lines": [
+    {
+     "description": "Audit fees",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "2934.71",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "2934.71",
+   "number": "2026-4917",
+   "po": null,
+   "requested_by": "Tomas Novak",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "0.00",
+   "vendor": "V-204"
+  },
+  "VINV-129": {
+   "category": "services",
+   "currency": "EUR",
+   "date": "2026-08-01",
+   "due": "2026-08-31",
+   "gross": "1026.12",
+   "id": "VINV-129",
+   "lines": [
+    {
+     "description": "Customs brokerage",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "1026.12",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "1026.12",
+   "number": "2026-5408",
+   "po": null,
+   "requested_by": "Sanne Visser",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "0.00",
+   "vendor": "V-204"
+  },
+  "VINV-130": {
+   "category": "services",
+   "currency": "GBP",
+   "date": "2026-09-29",
+   "due": "2026-10-29",
+   "gross": "5233.21",
+   "id": "VINV-130",
+   "lines": [
+    {
+     "description": "Audit fees",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "5233.21",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "5233.21",
+   "number": "INV2026-7541",
+   "po": null,
+   "requested_by": "Eva Jansen",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "0.00",
+   "vendor": "V-205"
+  },
+  "VINV-131": {
+   "category": "services",
+   "currency": "GBP",
+   "date": "2026-08-15",
+   "due": "2026-09-14",
+   "gross": "1094.24",
+   "id": "VINV-131",
+   "lines": [
+    {
+     "description": "Software licences",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "1094.24",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "1094.24",
+   "number": "F2026-1147",
+   "po": null,
+   "requested_by": "Sanne Visser",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "0.00",
+   "vendor": "V-205"
+  },
+  "VINV-132": {
+   "category": "services",
+   "currency": "USD",
+   "date": "2026-09-30",
+   "due": "2026-10-30",
+   "gross": "6581.10",
+   "id": "VINV-132",
+   "lines": [
+    {
+     "description": "Freight handling",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "6581.10",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "6581.10",
+   "number": "S1579",
    "po": null,
    "requested_by": "Marta Kovacs",
    "status": "posted",
@@ -2281,24 +2577,149 @@
    "vat": "0.00",
    "vendor": "V-206"
   },
-  "VINV-121": {
+  "VINV-133": {
    "category": "services",
-   "currency": "CHF",
-   "date": "2026-10-04",
-   "due": "2026-11-03",
-   "gross": "2762.91",
-   "id": "VINV-121",
+   "currency": "USD",
+   "date": "2026-09-28",
+   "due": "2026-10-28",
+   "gross": "2443.89",
+   "id": "VINV-133",
    "lines": [
     {
      "description": "Freight handling",
      "po_line": null,
      "qty": 1,
-     "unit_price": "2762.91",
+     "unit_price": "2443.89",
      "vat_rate": "0.00"
     }
    ],
-   "net": "2762.91",
-   "number": "S5508",
+   "net": "2443.89",
+   "number": "S6902",
+   "po": null,
+   "requested_by": "Marta Kovacs",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "0.00",
+   "vendor": "V-206"
+  },
+  "VINV-134": {
+   "category": "services",
+   "currency": "USD",
+   "date": "2026-09-10",
+   "due": "2026-10-10",
+   "gross": "974.90",
+   "id": "VINV-134",
+   "lines": [
+    {
+     "description": "Freight handling",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "974.90",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "974.90",
+   "number": "S4963",
+   "po": null,
+   "requested_by": "Marta Kovacs",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "0.00",
+   "vendor": "V-206"
+  },
+  "VINV-135": {
+   "category": "services",
+   "currency": "USD",
+   "date": "2026-09-13",
+   "due": "2026-10-13",
+   "gross": "1117.24",
+   "id": "VINV-135",
+   "lines": [
+    {
+     "description": "Freight handling",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "1117.24",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "1117.24",
+   "number": "S7824",
+   "po": null,
+   "requested_by": "Marta Kovacs",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "0.00",
+   "vendor": "V-206"
+  },
+  "VINV-136": {
+   "category": "services",
+   "currency": "USD",
+   "date": "2026-08-29",
+   "due": "2026-09-28",
+   "gross": "426.88",
+   "id": "VINV-136",
+   "lines": [
+    {
+     "description": "Freight handling",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "426.88",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "426.88",
+   "number": "S4283",
+   "po": null,
+   "requested_by": "Marta Kovacs",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "0.00",
+   "vendor": "V-206"
+  },
+  "VINV-137": {
+   "category": "services",
+   "currency": "USD",
+   "date": "2026-07-31",
+   "due": "2026-08-30",
+   "gross": "7185.84",
+   "id": "VINV-137",
+   "lines": [
+    {
+     "description": "Freight handling",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "7185.84",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "7185.84",
+   "number": "S4035",
+   "po": null,
+   "requested_by": "Marta Kovacs",
+   "status": "posted",
+   "type": "vendor-invoice",
+   "vat": "0.00",
+   "vendor": "V-206"
+  },
+  "VINV-138": {
+   "category": "services",
+   "currency": "CHF",
+   "date": "2026-10-05",
+   "due": "2026-11-04",
+   "gross": "783.81",
+   "id": "VINV-138",
+   "lines": [
+    {
+     "description": "Freight handling",
+     "po_line": null,
+     "qty": 1,
+     "unit_price": "783.81",
+     "vat_rate": "0.00"
+    }
+   ],
+   "net": "783.81",
+   "number": "S8008",
    "po": null,
    "requested_by": "Marta Kovacs",
    "status": "posted",
@@ -2306,24 +2727,24 @@
    "vat": "0.00",
    "vendor": "V-207"
   },
-  "VINV-122": {
+  "VINV-139": {
    "category": "services",
    "currency": "CHF",
-   "date": "2026-10-02",
-   "due": "2026-11-01",
-   "gross": "1084.14",
-   "id": "VINV-122",
+   "date": "2026-09-07",
+   "due": "2026-10-07",
+   "gross": "691.70",
+   "id": "VINV-139",
    "lines": [
     {
      "description": "Freight handling",
      "po_line": null,
      "qty": 1,
-     "unit_price": "1084.14",
+     "unit_price": "691.70",
      "vat_rate": "0.00"
     }
    ],
-   "net": "1084.14",
-   "number": "S6805",
+   "net": "691.70",
+   "number": "S6104",
    "po": null,
    "requested_by": "Marta Kovacs",
    "status": "posted",
@@ -2331,24 +2752,24 @@
    "vat": "0.00",
    "vendor": "V-207"
   },
-  "VINV-123": {
+  "VINV-140": {
    "category": "services",
    "currency": "CHF",
-   "date": "2026-09-02",
-   "due": "2026-10-02",
-   "gross": "1557.16",
-   "id": "VINV-123",
+   "date": "2026-09-01",
+   "due": "2026-10-01",
+   "gross": "1694.53",
+   "id": "VINV-140",
    "lines": [
     {
      "description": "Freight handling",
      "po_line": null,
      "qty": 1,
-     "unit_price": "1557.16",
+     "unit_price": "1694.53",
      "vat_rate": "0.00"
     }
    ],
-   "net": "1557.16",
-   "number": "S2906",
+   "net": "1694.53",
+   "number": "S1474",
    "po": null,
    "requested_by": "Marta Kovacs",
    "status": "posted",
@@ -2356,24 +2777,24 @@
    "vat": "0.00",
    "vendor": "V-207"
   },
-  "VINV-124": {
+  "VINV-141": {
    "category": "services",
    "currency": "CHF",
-   "date": "2026-08-05",
-   "due": "2026-09-04",
-   "gross": "505.56",
-   "id": "VINV-124",
+   "date": "2026-08-08",
+   "due": "2026-09-07",
+   "gross": "925.69",
+   "id": "VINV-141",
    "lines": [
     {
      "description": "Freight handling",
      "po_line": null,
      "qty": 1,
-     "unit_price": "505.56",
+     "unit_price": "925.69",
      "vat_rate": "0.00"
     }
    ],
-   "net": "505.56",
-   "number": "S8809",
+   "net": "925.69",
+   "number": "S3528",
    "po": null,
    "requested_by": "Marta Kovacs",
    "status": "posted",
@@ -2384,87 +2805,39 @@
  },
  "entries": [
   {
-   "date": "2026-09-01",
+   "date": "2026-08-17",
    "id": "JE-00001",
    "lines": [
     {
      "account": "1200",
-     "amount": "7369.81",
+     "amount": "10246.49",
      "currency": "EUR",
-     "debit": "7369.81",
+     "debit": "10246.49",
      "document": "INV-5122",
      "partner": "C-101"
     },
     {
      "account": "4000",
-     "credit": "6106.66"
+     "credit": "8468.17"
     },
     {
      "account": "2100",
-     "credit": "1263.15"
+     "credit": "1778.32"
     }
    ],
    "memo": "Invoice INV-5122",
-   "period": "2026-09"
-  },
-  {
-   "date": "2026-09-18",
-   "id": "JE-00002",
-   "lines": [
-    {
-     "account": "1200",
-     "amount": "9577.10",
-     "currency": "EUR",
-     "debit": "9577.10",
-     "document": "INV-5232",
-     "partner": "C-101"
-    },
-    {
-     "account": "4000",
-     "credit": "7914.96"
-    },
-    {
-     "account": "2100",
-     "credit": "1662.14"
-    }
-   ],
-   "memo": "Invoice INV-5232",
-   "period": "2026-09"
-  },
-  {
-   "date": "2026-09-24",
-   "id": "JE-00003",
-   "lines": [
-    {
-     "account": "1200",
-     "amount": "19094.31",
-     "currency": "EUR",
-     "debit": "19094.31",
-     "document": "INV-5072",
-     "partner": "C-101"
-    },
-    {
-     "account": "4000",
-     "credit": "15780.42"
-    },
-    {
-     "account": "2100",
-     "credit": "3313.89"
-    }
-   ],
-   "memo": "Invoice INV-5072",
-   "period": "2026-09"
+   "period": "2026-08"
   },
   {
    "date": "2026-08-26",
-   "id": "JE-00004",
+   "id": "JE-00002",
    "lines": [
     {
      "account": "1200",
      "amount": "22673.55",
      "currency": "EUR",
      "debit": "22673.55",
-     "document": "INV-5390",
+     "document": "INV-5232",
      "partner": "C-101"
     },
     {
@@ -2476,320 +2849,368 @@
      "credit": "1876.86"
     }
    ],
+   "memo": "Invoice INV-5232",
+   "period": "2026-08"
+  },
+  {
+   "date": "2026-07-31",
+   "id": "JE-00003",
+   "lines": [
+    {
+     "account": "1200",
+     "amount": "14927.79",
+     "currency": "EUR",
+     "debit": "14927.79",
+     "document": "INV-5072",
+     "partner": "C-101"
+    },
+    {
+     "account": "4000",
+     "credit": "12337.02"
+    },
+    {
+     "account": "2100",
+     "credit": "2590.77"
+    }
+   ],
+   "memo": "Invoice INV-5072",
+   "period": "2026-07"
+  },
+  {
+   "date": "2026-08-27",
+   "id": "JE-00004",
+   "lines": [
+    {
+     "account": "1200",
+     "amount": "19312.76",
+     "currency": "EUR",
+     "debit": "19312.76",
+     "document": "INV-5390",
+     "partner": "C-101"
+    },
+    {
+     "account": "4000",
+     "credit": "15960.96"
+    },
+    {
+     "account": "2100",
+     "credit": "3351.80"
+    }
+   ],
    "memo": "Invoice INV-5390",
    "period": "2026-08"
   },
   {
-   "date": "2026-07-24",
+   "date": "2026-07-14",
    "id": "JE-00005",
    "lines": [
     {
      "account": "1200",
-     "amount": "15018.81",
+     "amount": "1819.92",
      "currency": "EUR",
-     "debit": "15018.81",
+     "debit": "1819.92",
      "document": "INV-5989",
      "partner": "C-102"
     },
     {
      "account": "4000",
-     "credit": "12412.24"
+     "credit": "1669.65"
     },
     {
      "account": "2100",
-     "credit": "2606.57"
+     "credit": "150.27"
     }
    ],
    "memo": "Invoice INV-5989",
    "period": "2026-07"
   },
   {
-   "date": "2026-09-14",
+   "date": "2026-07-14",
    "id": "JE-00006",
    "lines": [
     {
      "account": "1200",
-     "amount": "11020.78",
+     "amount": "7990.26",
      "currency": "EUR",
-     "debit": "11020.78",
+     "debit": "7990.26",
      "document": "INV-5783",
      "partner": "C-102"
     },
     {
      "account": "4000",
-     "credit": "9108.08"
+     "credit": "7330.51"
     },
     {
      "account": "2100",
-     "credit": "1912.70"
+     "credit": "659.75"
     }
    ],
    "memo": "Invoice INV-5783",
-   "period": "2026-09"
+   "period": "2026-07"
   },
   {
-   "date": "2026-08-31",
+   "date": "2026-07-14",
    "id": "JE-00007",
    "lines": [
     {
      "account": "1200",
-     "amount": "2179.16",
+     "amount": "10142.22",
      "currency": "EUR",
-     "debit": "2179.16",
+     "debit": "10142.22",
      "document": "INV-5731",
      "partner": "C-102"
     },
     {
      "account": "4000",
-     "credit": "1999.23"
+     "credit": "8382.00"
     },
     {
      "account": "2100",
-     "credit": "179.93"
+     "credit": "1760.22"
     }
    ],
    "memo": "Invoice INV-5731",
-   "period": "2026-08"
+   "period": "2026-07"
   },
   {
-   "date": "2026-07-15",
+   "date": "2026-08-21",
    "id": "JE-00008",
    "lines": [
     {
      "account": "1200",
-     "amount": "6945.90",
+     "amount": "3283.75",
      "currency": "EUR",
-     "debit": "6945.90",
+     "debit": "3283.75",
      "document": "INV-5601",
-     "partner": "C-103"
+     "partner": "C-102"
     },
     {
      "account": "4000",
-     "credit": "5888.34"
+     "credit": "2713.84"
     },
     {
      "account": "2100",
-     "credit": "1057.56"
+     "credit": "569.91"
     }
    ],
    "memo": "Invoice INV-5601",
-   "period": "2026-07"
+   "period": "2026-08"
   },
   {
-   "date": "2026-07-20",
+   "date": "2026-09-15",
    "id": "JE-00009",
    "lines": [
     {
      "account": "1200",
-     "amount": "4865.31",
+     "amount": "2638.38",
      "currency": "EUR",
-     "debit": "4865.31",
+     "debit": "2638.38",
      "document": "INV-5522",
      "partner": "C-103"
     },
     {
      "account": "4000",
-     "credit": "4020.92"
+     "credit": "2180.48"
     },
     {
      "account": "2100",
-     "credit": "844.39"
+     "credit": "457.90"
     }
    ],
    "memo": "Invoice INV-5522",
-   "period": "2026-07"
+   "period": "2026-09"
   },
   {
-   "date": "2026-08-25",
+   "date": "2026-09-07",
    "id": "JE-00010",
    "lines": [
     {
      "account": "1200",
-     "amount": "6580.00",
+     "amount": "3845.15",
      "currency": "EUR",
-     "debit": "6580.00",
+     "debit": "3845.15",
      "document": "INV-5728",
      "partner": "C-103"
     },
     {
      "account": "4000",
-     "credit": "6036.70"
+     "credit": "3527.66"
     },
     {
      "account": "2100",
-     "credit": "543.30"
+     "credit": "317.49"
     }
    ],
    "memo": "Invoice INV-5728",
-   "period": "2026-08"
+   "period": "2026-09"
   },
   {
-   "date": "2026-07-30",
+   "date": "2026-08-31",
    "id": "JE-00011",
    "lines": [
     {
      "account": "1200",
-     "amount": "29332.00",
+     "amount": "21572.90",
      "currency": "EUR",
-     "debit": "29332.00",
+     "debit": "21572.90",
      "document": "INV-5087",
-     "partner": "C-104"
+     "partner": "C-103"
     },
     {
      "account": "4000",
-     "credit": "25927.62"
+     "credit": "18155.65"
     },
     {
      "account": "2100",
-     "credit": "3404.38"
+     "credit": "3417.25"
     }
    ],
    "memo": "Invoice INV-5087",
-   "period": "2026-07"
+   "period": "2026-08"
   },
   {
-   "date": "2026-09-24",
+   "date": "2026-09-21",
    "id": "JE-00012",
    "lines": [
     {
      "account": "1200",
-     "amount": "28138.04",
+     "amount": "12185.42",
      "currency": "EUR",
-     "debit": "28138.04",
+     "debit": "12185.42",
      "document": "INV-5211",
      "partner": "C-104"
     },
     {
      "account": "4000",
-     "credit": "24947.88"
+     "credit": "10070.60"
     },
     {
      "account": "2100",
-     "credit": "3190.16"
+     "credit": "2114.82"
     }
    ],
    "memo": "Invoice INV-5211",
    "period": "2026-09"
   },
   {
-   "date": "2026-09-17",
+   "date": "2026-07-13",
    "id": "JE-00013",
    "lines": [
     {
      "account": "1200",
-     "amount": "4467.69",
+     "amount": "3975.94",
      "currency": "EUR",
-     "debit": "4467.69",
+     "debit": "3975.94",
      "document": "INV-5206",
      "partner": "C-104"
     },
     {
      "account": "4000",
-     "credit": "3692.31"
+     "credit": "3285.90"
     },
     {
      "account": "2100",
-     "credit": "775.38"
+     "credit": "690.04"
     }
    ],
    "memo": "Invoice INV-5206",
-   "period": "2026-09"
+   "period": "2026-07"
   },
   {
-   "date": "2026-07-14",
+   "date": "2026-09-24",
    "id": "JE-00014",
    "lines": [
     {
      "account": "1200",
-     "amount": "21352.12",
+     "amount": "16098.96",
      "currency": "EUR",
-     "debit": "21352.12",
+     "debit": "16098.96",
      "document": "INV-5057",
      "partner": "C-104"
     },
     {
      "account": "4000",
-     "credit": "17662.13"
+     "credit": "13452.44"
     },
     {
      "account": "2100",
-     "credit": "3689.99"
+     "credit": "2646.52"
     }
    ],
    "memo": "Invoice INV-5057",
-   "period": "2026-07"
+   "period": "2026-09"
   },
   {
-   "date": "2026-07-23",
+   "date": "2026-07-22",
    "id": "JE-00015",
    "lines": [
     {
      "account": "1200",
-     "amount": "12265.27",
+     "amount": "7942.25",
      "currency": "EUR",
-     "debit": "12265.27",
+     "debit": "7942.25",
      "document": "INV-5789",
-     "partner": "C-105"
+     "partner": "C-104"
     },
     {
      "account": "4000",
-     "credit": "11041.71"
+     "credit": "7286.46"
     },
     {
      "account": "2100",
-     "credit": "1223.56"
+     "credit": "655.79"
     }
    ],
    "memo": "Invoice INV-5789",
    "period": "2026-07"
   },
   {
-   "date": "2026-08-19",
+   "date": "2026-08-28",
    "id": "JE-00016",
    "lines": [
     {
      "account": "1200",
-     "amount": "12338.97",
+     "amount": "15415.59",
      "currency": "EUR",
-     "debit": "12338.97",
+     "debit": "15415.59",
      "document": "INV-5397",
      "partner": "C-105"
     },
     {
      "account": "4000",
-     "credit": "10517.15"
+     "credit": "12740.16"
     },
     {
      "account": "2100",
-     "credit": "1821.82"
+     "credit": "2675.43"
     }
    ],
    "memo": "Invoice INV-5397",
    "period": "2026-08"
   },
   {
-   "date": "2026-09-07",
+   "date": "2026-07-29",
    "id": "JE-00017",
    "lines": [
     {
      "account": "1200",
-     "amount": "3857.78",
+     "amount": "8608.30",
      "currency": "EUR",
-     "debit": "3857.78",
+     "debit": "8608.30",
      "document": "INV-5608",
      "partner": "C-105"
     },
     {
      "account": "4000",
-     "credit": "3539.25"
+     "credit": "7897.52"
     },
     {
      "account": "2100",
-     "credit": "318.53"
+     "credit": "710.78"
     }
    ],
    "memo": "Invoice INV-5608",
-   "period": "2026-09"
+   "period": "2026-07"
   },
   {
    "date": "2026-08-21",
@@ -2797,59 +3218,67 @@
    "lines": [
     {
      "account": "1200",
-     "amount": "13144.45",
+     "amount": "15904.78",
      "currency": "EUR",
-     "debit": "13144.45",
+     "debit": "15904.78",
      "document": "INV-5391",
-     "partner": "C-106"
+     "partner": "C-105"
     },
     {
      "account": "4000",
      "credit": "13144.45"
+    },
+    {
+     "account": "2100",
+     "credit": "2760.33"
     }
    ],
    "memo": "Invoice INV-5391",
    "period": "2026-08"
   },
   {
-   "date": "2026-08-13",
+   "date": "2026-08-28",
    "id": "JE-00019",
    "lines": [
     {
      "account": "1200",
-     "amount": "8713.84",
+     "amount": "13345.78",
      "currency": "EUR",
-     "debit": "8713.84",
+     "debit": "13345.78",
      "document": "INV-5435",
-     "partner": "C-106"
+     "partner": "C-105"
     },
     {
      "account": "4000",
-     "credit": "8713.84"
+     "credit": "11793.00"
+    },
+    {
+     "account": "2100",
+     "credit": "1552.78"
     }
    ],
    "memo": "Invoice INV-5435",
    "period": "2026-08"
   },
   {
-   "date": "2026-09-17",
+   "date": "2026-07-13",
    "id": "JE-00020",
    "lines": [
     {
      "account": "1200",
-     "amount": "3212.03",
+     "amount": "16301.20",
      "currency": "EUR",
-     "debit": "3212.03",
+     "debit": "16301.20",
      "document": "INV-5408",
      "partner": "C-106"
     },
     {
      "account": "4000",
-     "credit": "3212.03"
+     "credit": "16301.20"
     }
    ],
    "memo": "Invoice INV-5408",
-   "period": "2026-09"
+   "period": "2026-07"
   },
   {
    "date": "2026-08-31",
@@ -2861,7 +3290,7 @@
      "currency": "EUR",
      "debit": "6309.82",
      "document": "INV-5580",
-     "partner": "C-107"
+     "partner": "C-106"
     },
     {
      "account": "4000",
@@ -2881,7 +3310,7 @@
      "currency": "EUR",
      "debit": "1725.50",
      "document": "INV-5590",
-     "partner": "C-107"
+     "partner": "C-106"
     },
     {
      "account": "4000",
@@ -2901,7 +3330,7 @@
      "currency": "EUR",
      "debit": "15875.90",
      "document": "INV-5699",
-     "partner": "C-107"
+     "partner": "C-106"
     },
     {
      "account": "4000",
@@ -2921,7 +3350,7 @@
      "currency": "EUR",
      "debit": "8946.96",
      "document": "INV-5858",
-     "partner": "C-108"
+     "partner": "C-107"
     },
     {
      "account": "4000",
@@ -2941,7 +3370,7 @@
      "currency": "EUR",
      "debit": "2416.68",
      "document": "INV-5685",
-     "partner": "C-108"
+     "partner": "C-107"
     },
     {
      "account": "4000",
@@ -2961,7 +3390,7 @@
      "currency": "EUR",
      "debit": "2702.72",
      "document": "INV-5863",
-     "partner": "C-108"
+     "partner": "C-107"
     },
     {
      "account": "4000",
@@ -2981,7 +3410,7 @@
      "currency": "EUR",
      "debit": "3542.07",
      "document": "INV-5978",
-     "partner": "C-108"
+     "partner": "C-107"
     },
     {
      "account": "4000",
@@ -3001,7 +3430,7 @@
      "currency": "EUR",
      "debit": "4029.48",
      "document": "INV-5539",
-     "partner": "C-109"
+     "partner": "C-108"
     },
     {
      "account": "4000",
@@ -3021,7 +3450,7 @@
      "currency": "EUR",
      "debit": "9674.24",
      "document": "INV-5282",
-     "partner": "C-109"
+     "partner": "C-108"
     },
     {
      "account": "4000",
@@ -3041,7 +3470,7 @@
      "currency": "EUR",
      "debit": "5546.96",
      "document": "INV-5927",
-     "partner": "C-109"
+     "partner": "C-108"
     },
     {
      "account": "4000",
@@ -3061,7 +3490,7 @@
      "currency": "EUR",
      "debit": "5219.27",
      "document": "INV-5366",
-     "partner": "C-109"
+     "partner": "C-108"
     },
     {
      "account": "4000",
@@ -3078,14 +3507,14 @@
     {
      "account": "1200",
      "amount": "19689.59",
-     "currency": "USD",
-     "debit": "18671.24",
+     "currency": "EUR",
+     "debit": "19689.59",
      "document": "INV-5021",
-     "partner": "C-110"
+     "partner": "C-109"
     },
     {
      "account": "4000",
-     "credit": "18671.24"
+     "credit": "19689.59"
     }
    ],
    "memo": "Invoice INV-5021",
@@ -3098,14 +3527,14 @@
     {
      "account": "1200",
      "amount": "9471.70",
-     "currency": "USD",
-     "debit": "8894.95",
+     "currency": "EUR",
+     "debit": "9471.70",
      "document": "INV-5849",
-     "partner": "C-110"
+     "partner": "C-109"
     },
     {
      "account": "4000",
-     "credit": "8894.95"
+     "credit": "9471.70"
     }
    ],
    "memo": "Invoice INV-5849",
@@ -3118,14 +3547,14 @@
     {
      "account": "1200",
      "amount": "7218.75",
-     "currency": "USD",
-     "debit": "6772.64",
+     "currency": "EUR",
+     "debit": "7218.75",
      "document": "INV-5578",
-     "partner": "C-110"
+     "partner": "C-109"
     },
     {
      "account": "4000",
-     "credit": "6772.64"
+     "credit": "7218.75"
     }
    ],
    "memo": "Invoice INV-5578",
@@ -3138,14 +3567,14 @@
     {
      "account": "1200",
      "amount": "9231.64",
-     "currency": "USD",
-     "debit": "8711.94",
+     "currency": "EUR",
+     "debit": "9231.64",
      "document": "INV-5259",
-     "partner": "C-110"
+     "partner": "C-109"
     },
     {
      "account": "4000",
-     "credit": "8711.94"
+     "credit": "9231.64"
     }
    ],
    "memo": "Invoice INV-5259",
@@ -3161,7 +3590,7 @@
      "currency": "USD",
      "debit": "16884.10",
      "document": "INV-5810",
-     "partner": "C-111"
+     "partner": "C-110"
     },
     {
      "account": "4000",
@@ -3181,7 +3610,7 @@
      "currency": "USD",
      "debit": "1296.07",
      "document": "INV-5922",
-     "partner": "C-111"
+     "partner": "C-110"
     },
     {
      "account": "4000",
@@ -3201,7 +3630,7 @@
      "currency": "USD",
      "debit": "9058.82",
      "document": "INV-5604",
-     "partner": "C-111"
+     "partner": "C-110"
     },
     {
      "account": "4000",
@@ -3221,7 +3650,7 @@
      "currency": "USD",
      "debit": "34724.28",
      "document": "INV-5278",
-     "partner": "C-111"
+     "partner": "C-110"
     },
     {
      "account": "4000",
@@ -3238,14 +3667,14 @@
     {
      "account": "1200",
      "amount": "11158.56",
-     "currency": "GBP",
-     "debit": "12781.43",
+     "currency": "USD",
+     "debit": "10596.94",
      "document": "INV-5349",
-     "partner": "C-112"
+     "partner": "C-111"
     },
     {
      "account": "4000",
-     "credit": "12781.43"
+     "credit": "10596.94"
     }
    ],
    "memo": "Invoice INV-5349",
@@ -3258,14 +3687,14 @@
     {
      "account": "1200",
      "amount": "13714.76",
-     "currency": "GBP",
-     "debit": "15749.44",
+     "currency": "USD",
+     "debit": "13040.87",
      "document": "INV-5403",
-     "partner": "C-112"
+     "partner": "C-111"
     },
     {
      "account": "4000",
-     "credit": "15749.44"
+     "credit": "13040.87"
     }
    ],
    "memo": "Invoice INV-5403",
@@ -3278,14 +3707,14 @@
     {
      "account": "1200",
      "amount": "3927.14",
-     "currency": "GBP",
-     "debit": "4474.49",
+     "currency": "USD",
+     "debit": "3700.09",
      "document": "INV-5489",
-     "partner": "C-112"
+     "partner": "C-111"
     },
     {
      "account": "4000",
-     "credit": "4474.49"
+     "credit": "3700.09"
     }
    ],
    "memo": "Invoice INV-5489",
@@ -3298,14 +3727,14 @@
     {
      "account": "1200",
      "amount": "3213.76",
-     "currency": "CHF",
-     "debit": "3204.25",
+     "currency": "GBP",
+     "debit": "3609.89",
      "document": "INV-5043",
-     "partner": "C-113"
+     "partner": "C-112"
     },
     {
      "account": "4000",
-     "credit": "3204.25"
+     "credit": "3609.89"
     }
    ],
    "memo": "Invoice INV-5043",
@@ -3318,14 +3747,14 @@
     {
      "account": "1200",
      "amount": "14115.96",
-     "currency": "CHF",
-     "debit": "14071.89",
+     "currency": "GBP",
+     "debit": "16273.37",
      "document": "INV-5147",
-     "partner": "C-113"
+     "partner": "C-112"
     },
     {
      "account": "4000",
-     "credit": "14071.89"
+     "credit": "16273.37"
     }
    ],
    "memo": "Invoice INV-5147",
@@ -3338,374 +3767,284 @@
     {
      "account": "1200",
      "amount": "11425.79",
-     "currency": "CHF",
-     "debit": "11491.85",
+     "currency": "GBP",
+     "debit": "13037.21",
      "document": "INV-5692",
-     "partner": "C-113"
+     "partner": "C-112"
     },
     {
      "account": "4000",
-     "credit": "11491.85"
+     "credit": "13037.21"
     }
    ],
    "memo": "Invoice INV-5692",
    "period": "2026-07"
   },
   {
-   "date": "2026-09-01",
+   "date": "2026-09-04",
    "id": "JE-00046",
    "lines": [
     {
-     "account": "1100",
-     "debit": "19945.76"
+     "account": "1200",
+     "amount": "4913.70",
+     "currency": "CHF",
+     "debit": "4998.56",
+     "document": "INV-5734",
+     "partner": "C-113"
     },
     {
-     "account": "1200",
-     "amount": "19945.76",
-     "credit": "19945.76",
-     "currency": "EUR",
-     "document": "INV-5087",
-     "partner": "C-104"
+     "account": "4000",
+     "credit": "4998.56"
     }
    ],
-   "memo": "Receipt BNK-0816-500",
+   "memo": "Invoice INV-5734",
    "period": "2026-09"
   },
   {
-   "date": "2026-09-04",
+   "date": "2026-07-15",
    "id": "JE-00047",
    "lines": [
     {
-     "account": "1100",
-     "debit": "7170.21"
-    },
-    {
      "account": "1200",
-     "amount": "6248.79",
-     "credit": "7157.60",
-     "currency": "GBP",
-     "document": "INV-5349",
-     "partner": "C-112"
+     "amount": "16339.59",
+     "currency": "CHF",
+     "debit": "16676.74",
+     "document": "INV-5346",
+     "partner": "C-113"
     },
     {
-     "account": "7900",
-     "credit": "12.61"
+     "account": "4000",
+     "credit": "16676.74"
     }
    ],
-   "memo": "Receipt BNK-0904-806",
-   "period": "2026-09"
+   "memo": "Invoice INV-5346",
+   "period": "2026-07"
   },
   {
-   "date": "2026-09-01",
+   "date": "2026-07-16",
    "id": "JE-00048",
    "lines": [
     {
-     "account": "1100",
-     "debit": "12338.97"
+     "account": "1200",
+     "amount": "1494.74",
+     "currency": "CHF",
+     "debit": "1527.49",
+     "document": "INV-5467",
+     "partner": "C-113"
     },
     {
-     "account": "1200",
-     "amount": "12338.97",
-     "credit": "12338.97",
-     "currency": "EUR",
-     "document": "INV-5397",
-     "partner": "C-105"
+     "account": "4000",
+     "credit": "1527.49"
     }
    ],
-   "memo": "Receipt BNK-0831-975",
-   "period": "2026-09"
+   "memo": "Invoice INV-5467",
+   "period": "2026-07"
   },
   {
-   "date": "2026-09-01",
+   "date": "2026-07-29",
    "id": "JE-00049",
    "lines": [
     {
-     "account": "1100",
-     "debit": "15653.38"
-    },
-    {
      "account": "1200",
-     "amount": "13714.76",
-     "credit": "15749.44",
-     "currency": "GBP",
-     "document": "INV-5403",
-     "partner": "C-112"
+     "amount": "13325.68",
+     "currency": "CHF",
+     "debit": "13402.73",
+     "document": "INV-5215",
+     "partner": "C-113"
     },
     {
-     "account": "7900",
-     "debit": "96.06"
+     "account": "4000",
+     "credit": "13402.73"
     }
    ],
-   "memo": "Receipt BNK-0829-369",
-   "period": "2026-09"
+   "memo": "Invoice INV-5215",
+   "period": "2026-07"
   },
   {
-   "date": "2026-09-01",
+   "date": "2026-09-07",
    "id": "JE-00050",
    "lines": [
     {
      "account": "1100",
-     "debit": "8713.84"
+     "debit": "10525.57"
     },
     {
      "account": "1200",
-     "amount": "8713.84",
-     "credit": "8713.84",
-     "currency": "EUR",
-     "document": "INV-5435",
-     "partner": "C-106"
+     "amount": "11158.56",
+     "credit": "10596.94",
+     "currency": "USD",
+     "document": "INV-5349",
+     "partner": "C-111"
+    },
+    {
+     "account": "7900",
+     "debit": "71.37"
     }
    ],
-   "memo": "Receipt BNK-0828-876",
+   "memo": "Receipt BNK-0907-500",
    "period": "2026-09"
   },
   {
-   "date": "2026-09-01",
+   "date": "2026-07-27",
    "id": "JE-00051",
    "lines": [
     {
      "account": "1100",
-     "debit": "4029.48"
+     "debit": "1289.43"
     },
     {
      "account": "1200",
-     "amount": "4029.48",
-     "credit": "4029.48",
+     "amount": "1289.43",
+     "credit": "1289.43",
      "currency": "EUR",
      "document": "INV-5539",
-     "partner": "C-109"
+     "partner": "C-108"
     }
    ],
-   "memo": "Receipt BNK-0818-302",
-   "period": "2026-09"
+   "memo": "Receipt BNK-0727-806",
+   "period": "2026-07"
   },
   {
-   "date": "2026-09-25",
+   "date": "2026-09-15",
    "id": "JE-00052",
    "lines": [
     {
      "account": "1100",
-     "debit": "2902.52"
+     "debit": "2068.76"
     },
     {
      "account": "1200",
-     "amount": "2902.52",
-     "credit": "2902.52",
+     "amount": "2068.76",
+     "credit": "2068.76",
      "currency": "EUR",
-     "document": "INV-5580",
-     "partner": "C-107"
+     "document": "INV-5601",
+     "partner": "C-102"
     }
    ],
-   "memo": "Receipt BNK-0925-502",
-   "period": "2026-09"
-  },
-  {
-   "date": "2026-09-02",
-   "id": "JE-00053",
-   "lines": [
-    {
-     "account": "1100",
-     "debit": "11605.19"
-    },
-    {
-     "account": "1200",
-     "amount": "11425.79",
-     "credit": "11491.85",
-     "currency": "CHF",
-     "document": "INV-5692",
-     "partner": "C-113"
-    },
-    {
-     "account": "7900",
-     "credit": "113.34"
-    }
-   ],
-   "memo": "Receipt BNK-0902-176",
+   "memo": "Receipt BNK-0915-975",
    "period": "2026-09"
   },
   {
    "date": "2026-09-01",
+   "id": "JE-00053",
+   "lines": [
+    {
+     "account": "1100",
+     "debit": "8608.30"
+    },
+    {
+     "account": "1200",
+     "amount": "8608.30",
+     "credit": "8608.30",
+     "currency": "EUR",
+     "document": "INV-5608",
+     "partner": "C-105"
+    }
+   ],
+   "memo": "Receipt BNK-0828-369",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-09-18",
    "id": "JE-00054",
    "lines": [
     {
      "account": "1100",
-     "debit": "1133.46"
+     "debit": "1063.34"
     },
     {
      "account": "1200",
-     "amount": "1133.46",
-     "credit": "1133.46",
+     "amount": "1063.34",
+     "credit": "1063.34",
      "currency": "EUR",
-     "document": "INV-5978",
-     "partner": "C-108"
+     "document": "INV-5685",
+     "partner": "C-107"
     }
    ],
-   "memo": "Receipt BNK-0831-236",
+   "memo": "Receipt BNK-0918-876",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-09-06",
+   "id": "JE-00055",
+   "lines": [
+    {
+     "account": "1100",
+     "debit": "13110.58"
+    },
+    {
+     "account": "1200",
+     "amount": "11425.79",
+     "credit": "13037.21",
+     "currency": "GBP",
+     "document": "INV-5692",
+     "partner": "C-112"
+    },
+    {
+     "account": "7900",
+     "credit": "73.37"
+    }
+   ],
+   "memo": "Receipt BNK-0906-302",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-09-22",
+   "id": "JE-00056",
+   "lines": [
+    {
+     "account": "1100",
+     "debit": "1999.48"
+    },
+    {
+     "account": "1200",
+     "amount": "1999.48",
+     "credit": "1999.48",
+     "currency": "EUR",
+     "document": "INV-5728",
+     "partner": "C-103"
+    }
+   ],
+   "memo": "Receipt BNK-0922-502",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-09-04",
+   "id": "JE-00057",
+   "lines": [
+    {
+     "account": "1100",
+     "debit": "3131.44"
+    },
+    {
+     "account": "1200",
+     "amount": "3131.44",
+     "credit": "3131.44",
+     "currency": "EUR",
+     "document": "INV-5858",
+     "partner": "C-107"
+    }
+   ],
+   "memo": "Receipt BNK-0904-176",
    "period": "2026-09"
   },
   {
    "date": "2026-07-01",
-   "id": "JE-00055",
-   "lines": [
-    {
-     "account": "1200",
-     "amount": "1856.60",
-     "currency": "USD",
-     "debit": "1725.29",
-     "document": "INV-5734",
-     "partner": "C-110"
-    },
-    {
-     "account": "2400",
-     "credit": "1725.29",
-     "document": "CTR-7001",
-     "partner": "C-110"
-    }
-   ],
-   "memo": "Invoice INV-5734",
-   "period": "2026-07"
-  },
-  {
-   "date": "2026-07-31",
-   "id": "JE-00056",
-   "lines": [
-    {
-     "account": "2400",
-     "debit": "146.53",
-     "document": "CTR-7001",
-     "partner": "C-110"
-    },
-    {
-     "account": "4000",
-     "credit": "146.53"
-    }
-   ],
-   "memo": "Deferred revenue, July",
-   "period": "2026-07"
-  },
-  {
-   "date": "2026-08-31",
-   "id": "JE-00057",
-   "lines": [
-    {
-     "account": "2400",
-     "debit": "146.53",
-     "document": "CTR-7001",
-     "partner": "C-110"
-    },
-    {
-     "account": "4000",
-     "credit": "146.53"
-    }
-   ],
-   "memo": "Deferred revenue, August",
-   "period": "2026-08"
-  },
-  {
-   "date": "2026-08-15",
    "id": "JE-00058",
    "lines": [
     {
      "account": "1200",
-     "amount": "5572.37",
-     "currency": "USD",
-     "debit": "5298.57",
-     "document": "INV-5346",
-     "partner": "C-111"
-    },
-    {
-     "account": "2400",
-     "credit": "5298.57",
-     "document": "CTR-7002",
-     "partner": "C-111"
-    }
-   ],
-   "memo": "Invoice INV-5346",
-   "period": "2026-08"
-  },
-  {
-   "date": "2026-08-31",
-   "id": "JE-00059",
-   "lines": [
-    {
-     "account": "2400",
-     "debit": "2905.67",
-     "document": "CTR-7002",
-     "partner": "C-111"
-    },
-    {
-     "account": "4000",
-     "credit": "2905.67"
-    }
-   ],
-   "memo": "Deferred revenue, August",
-   "period": "2026-08"
-  },
-  {
-   "date": "2026-09-10",
-   "id": "JE-00060",
-   "lines": [
-    {
-     "account": "1200",
-     "amount": "8513.68",
-     "currency": "USD",
-     "debit": "7982.89",
-     "document": "INV-5467",
-     "partner": "C-110"
-    },
-    {
-     "account": "2400",
-     "credit": "7982.89",
-     "document": "CTR-7003",
-     "partner": "C-110"
-    }
-   ],
-   "memo": "Invoice INV-5467",
-   "period": "2026-09"
-  },
-  {
-   "date": "2026-09-25",
-   "id": "JE-00061",
-   "lines": [
-    {
-     "account": "1200",
-     "amount": "9381.41",
+     "amount": "1659.21",
      "currency": "EUR",
-     "debit": "9381.41",
-     "document": "INV-5215",
-     "partner": "C-109"
-    },
-    {
-     "account": "2400",
-     "credit": "9381.41",
-     "document": "CTR-7004",
-     "partner": "C-109"
-    }
-   ],
-   "memo": "Invoice INV-5215",
-   "period": "2026-09"
-  },
-  {
-   "date": "2026-07-01",
-   "id": "JE-00062",
-   "lines": [
-    {
-     "account": "1200",
-     "amount": "2656.65",
-     "currency": "EUR",
-     "debit": "2656.65",
+     "debit": "1659.21",
      "document": "INV-5620",
-     "partner": "C-105"
+     "partner": "C-106"
     },
     {
      "account": "2400",
-     "credit": "2437.29",
-     "document": "CTR-7005",
-     "partner": "C-105"
-    },
-    {
-     "account": "2100",
-     "credit": "219.36"
+     "credit": "1659.21",
+     "document": "CTR-7001",
+     "partner": "C-106"
     }
    ],
    "memo": "Invoice INV-5620",
@@ -3713,17 +4052,17 @@
   },
   {
    "date": "2026-07-31",
-   "id": "JE-00063",
+   "id": "JE-00059",
    "lines": [
     {
      "account": "2400",
-     "debit": "410.63",
-     "document": "CTR-7005",
-     "partner": "C-105"
+     "debit": "140.92",
+     "document": "CTR-7001",
+     "partner": "C-106"
     },
     {
      "account": "4000",
-     "credit": "410.63"
+     "credit": "140.92"
     }
    ],
    "memo": "Deferred revenue, July",
@@ -3731,21 +4070,113 @@
   },
   {
    "date": "2026-08-31",
-   "id": "JE-00064",
+   "id": "JE-00060",
    "lines": [
     {
      "account": "2400",
-     "debit": "2026.66",
-     "document": "CTR-7005",
-     "partner": "C-105"
+     "debit": "140.92",
+     "document": "CTR-7001",
+     "partner": "C-106"
     },
     {
      "account": "4000",
-     "credit": "2026.66"
+     "credit": "140.92"
     }
    ],
    "memo": "Deferred revenue, August",
    "period": "2026-08"
+  },
+  {
+   "date": "2026-08-15",
+   "id": "JE-00061",
+   "lines": [
+    {
+     "account": "1200",
+     "amount": "4988.18",
+     "currency": "GBP",
+     "debit": "5728.21",
+     "document": "INV-5727",
+     "partner": "C-112"
+    },
+    {
+     "account": "2400",
+     "credit": "5728.21",
+     "document": "CTR-7002",
+     "partner": "C-112"
+    }
+   ],
+   "memo": "Invoice INV-5727",
+   "period": "2026-08"
+  },
+  {
+   "date": "2026-08-31",
+   "id": "JE-00062",
+   "lines": [
+    {
+     "account": "2400",
+     "debit": "3141.28",
+     "document": "CTR-7002",
+     "partner": "C-112"
+    },
+    {
+     "account": "4000",
+     "credit": "3141.28"
+    }
+   ],
+   "memo": "Deferred revenue, August",
+   "period": "2026-08"
+  },
+  {
+   "date": "2026-09-10",
+   "id": "JE-00063",
+   "lines": [
+    {
+     "account": "1200",
+     "amount": "2504.84",
+     "currency": "EUR",
+     "debit": "2504.84",
+     "document": "INV-5274",
+     "partner": "C-104"
+    },
+    {
+     "account": "2400",
+     "credit": "2298.02",
+     "document": "CTR-7003",
+     "partner": "C-104"
+    },
+    {
+     "account": "2100",
+     "credit": "206.82"
+    }
+   ],
+   "memo": "Invoice INV-5274",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-09-25",
+   "id": "JE-00064",
+   "lines": [
+    {
+     "account": "1200",
+     "amount": "3215.68",
+     "currency": "EUR",
+     "debit": "3215.68",
+     "document": "INV-5434",
+     "partner": "C-103"
+    },
+    {
+     "account": "2400",
+     "credit": "2657.59",
+     "document": "CTR-7004",
+     "partner": "C-103"
+    },
+    {
+     "account": "2100",
+     "credit": "558.09"
+    }
+   ],
+   "memo": "Invoice INV-5434",
+   "period": "2026-09"
   },
   {
    "date": "2026-07-01",
@@ -3753,24 +4184,24 @@
    "lines": [
     {
      "account": "1200",
-     "amount": "10392.93",
+     "amount": "5258.15",
      "currency": "EUR",
-     "debit": "10392.93",
-     "document": "INV-5727",
+     "debit": "5258.15",
+     "document": "INV-5230",
      "partner": "C-101"
     },
     {
      "account": "2400",
-     "credit": "8589.20",
-     "document": "CTR-7006",
+     "credit": "4345.58",
+     "document": "CTR-7005",
      "partner": "C-101"
     },
     {
      "account": "2100",
-     "credit": "1803.73"
+     "credit": "912.57"
     }
    ],
-   "memo": "Invoice INV-5727",
+   "memo": "Invoice INV-5230",
    "period": "2026-07"
   },
   {
@@ -3779,13 +4210,13 @@
    "lines": [
     {
      "account": "2400",
-     "debit": "1455.00",
-     "document": "CTR-7006",
+     "debit": "732.14",
+     "document": "CTR-7005",
      "partner": "C-101"
     },
     {
      "account": "4000",
-     "credit": "1455.00"
+     "credit": "732.14"
     }
    ],
    "memo": "Deferred revenue, July",
@@ -3797,47 +4228,105 @@
    "lines": [
     {
      "account": "2400",
-     "debit": "1455.00",
-     "document": "CTR-7006",
+     "debit": "3613.44",
+     "document": "CTR-7005",
      "partner": "C-101"
     },
     {
      "account": "4000",
-     "credit": "1455.00"
+     "credit": "3613.44"
     }
    ],
    "memo": "Deferred revenue, August",
    "period": "2026-08"
   },
   {
-   "date": "2026-09-14",
+   "date": "2026-07-01",
    "id": "JE-00068",
    "lines": [
     {
+     "account": "1200",
+     "amount": "9023.96",
+     "currency": "EUR",
+     "debit": "9023.96",
+     "document": "INV-5483",
+     "partner": "C-106"
+    },
+    {
+     "account": "2400",
+     "credit": "9023.96",
+     "document": "CTR-7006",
+     "partner": "C-106"
+    }
+   ],
+   "memo": "Invoice INV-5483",
+   "period": "2026-07"
+  },
+  {
+   "date": "2026-07-31",
+   "id": "JE-00069",
+   "lines": [
+    {
+     "account": "2400",
+     "debit": "1528.65",
+     "document": "CTR-7006",
+     "partner": "C-106"
+    },
+    {
+     "account": "4000",
+     "credit": "1528.65"
+    }
+   ],
+   "memo": "Deferred revenue, July",
+   "period": "2026-07"
+  },
+  {
+   "date": "2026-08-31",
+   "id": "JE-00070",
+   "lines": [
+    {
+     "account": "2400",
+     "debit": "1528.65",
+     "document": "CTR-7006",
+     "partner": "C-106"
+    },
+    {
+     "account": "4000",
+     "credit": "1528.65"
+    }
+   ],
+   "memo": "Deferred revenue, August",
+   "period": "2026-08"
+  },
+  {
+   "date": "2026-08-10",
+   "id": "JE-00071",
+   "lines": [
+    {
      "account": "6000",
-     "debit": "4978.88"
+     "debit": "2690.96"
     },
     {
      "account": "2200",
-     "credit": "4978.88",
+     "credit": "2690.96",
      "document": "PO-6101",
      "partner": "V-201"
     }
    ],
    "memo": "Goods received GR-0001",
-   "period": "2026-09"
+   "period": "2026-08"
   },
   {
-   "date": "2026-08-25",
-   "id": "JE-00069",
+   "date": "2026-08-28",
+   "id": "JE-00072",
    "lines": [
     {
      "account": "6000",
-     "debit": "3599.28"
+     "debit": "7723.03"
     },
     {
      "account": "2200",
-     "credit": "3599.28",
+     "credit": "7723.03",
      "document": "PO-6101",
      "partner": "V-201"
     }
@@ -3846,16 +4335,16 @@
    "period": "2026-08"
   },
   {
-   "date": "2026-09-22",
-   "id": "JE-00070",
+   "date": "2026-09-11",
+   "id": "JE-00073",
    "lines": [
     {
      "account": "6000",
-     "debit": "3599.28"
+     "debit": "7723.03"
     },
     {
      "account": "2200",
-     "credit": "3599.28",
+     "credit": "7723.03",
      "document": "PO-6101",
      "partner": "V-201"
     }
@@ -3864,16 +4353,16 @@
    "period": "2026-09"
   },
   {
-   "date": "2026-08-12",
-   "id": "JE-00071",
+   "date": "2026-08-14",
+   "id": "JE-00074",
    "lines": [
     {
      "account": "6000",
-     "debit": "330.11"
+     "debit": "892.20"
     },
     {
      "account": "2200",
-     "credit": "330.11",
+     "credit": "892.20",
      "document": "PO-6102",
      "partner": "V-201"
     }
@@ -3882,88 +4371,88 @@
    "period": "2026-08"
   },
   {
-   "date": "2026-09-16",
-   "id": "JE-00072",
+   "date": "2026-08-21",
+   "id": "JE-00075",
    "lines": [
     {
      "account": "6000",
-     "debit": "1769.58"
+     "debit": "892.20"
     },
     {
      "account": "2200",
-     "credit": "1769.58",
+     "credit": "892.20",
      "document": "PO-6102",
      "partner": "V-201"
     }
    ],
    "memo": "Goods received GR-0005",
-   "period": "2026-09"
+   "period": "2026-08"
   },
   {
-   "date": "2026-08-20",
-   "id": "JE-00073",
+   "date": "2026-09-02",
+   "id": "JE-00076",
    "lines": [
     {
      "account": "6000",
-     "debit": "1830.60"
+     "debit": "2825.78"
     },
     {
      "account": "2200",
-     "credit": "1830.60",
+     "credit": "2825.78",
      "document": "PO-6102",
      "partner": "V-201"
     }
    ],
    "memo": "Goods received GR-0006",
-   "period": "2026-08"
+   "period": "2026-09"
   },
   {
-   "date": "2026-08-12",
-   "id": "JE-00074",
+   "date": "2026-09-24",
+   "id": "JE-00077",
    "lines": [
     {
      "account": "6000",
-     "debit": "13519.10"
+     "debit": "2825.78"
     },
     {
      "account": "2200",
-     "credit": "13519.10",
+     "credit": "2825.78",
      "document": "PO-6102",
      "partner": "V-201"
     }
    ],
    "memo": "Goods received GR-0007",
-   "period": "2026-08"
+   "period": "2026-09"
   },
   {
-   "date": "2026-09-02",
-   "id": "JE-00075",
+   "date": "2026-08-27",
+   "id": "JE-00078",
    "lines": [
     {
      "account": "6000",
-     "debit": "8485.50"
+     "debit": "356.40"
     },
     {
      "account": "2200",
-     "credit": "8485.50",
+     "credit": "356.40",
      "document": "PO-6103",
      "partner": "V-203"
     }
    ],
    "memo": "Goods received GR-0008",
-   "period": "2026-09"
+   "period": "2026-08"
   },
   {
-   "date": "2026-08-10",
-   "id": "JE-00076",
+   "date": "2026-08-20",
+   "id": "JE-00079",
    "lines": [
     {
      "account": "6000",
-     "debit": "948.48"
+     "debit": "792.00"
     },
     {
      "account": "2200",
-     "credit": "948.48",
+     "credit": "792.00",
      "document": "PO-6103",
      "partner": "V-203"
     }
@@ -3973,16 +4462,16 @@
   },
   {
    "date": "2026-09-11",
-   "id": "JE-00077",
+   "id": "JE-00080",
    "lines": [
     {
      "account": "6000",
-     "debit": "6414.78"
+     "debit": "2092.70"
     },
     {
      "account": "2200",
-     "credit": "6414.78",
-     "document": "PO-6104",
+     "credit": "2092.70",
+     "document": "PO-6103",
      "partner": "V-203"
     }
    ],
@@ -3990,17 +4479,17 @@
    "period": "2026-09"
   },
   {
-   "date": "2026-08-20",
-   "id": "JE-00078",
+   "date": "2026-08-10",
+   "id": "JE-00081",
    "lines": [
     {
      "account": "6000",
-     "debit": "6414.78"
+     "debit": "2301.97"
     },
     {
      "account": "2200",
-     "credit": "6414.78",
-     "document": "PO-6104",
+     "credit": "2301.97",
+     "document": "PO-6103",
      "partner": "V-203"
     }
    ],
@@ -4008,16 +4497,16 @@
    "period": "2026-08"
   },
   {
-   "date": "2026-09-17",
-   "id": "JE-00079",
+   "date": "2026-09-02",
+   "id": "JE-00082",
    "lines": [
     {
      "account": "6000",
-     "debit": "2104.57"
+     "debit": "7668.90"
     },
     {
      "account": "2200",
-     "credit": "2104.57",
+     "credit": "7668.90",
      "document": "PO-6104",
      "partner": "V-203"
     }
@@ -4026,16 +4515,16 @@
    "period": "2026-09"
   },
   {
-   "date": "2026-09-24",
-   "id": "JE-00080",
+   "date": "2026-09-04",
+   "id": "JE-00083",
    "lines": [
     {
      "account": "6000",
-     "debit": "1368.04"
+     "debit": "7668.90"
     },
     {
      "account": "2200",
-     "credit": "1368.04",
+     "credit": "7668.90",
      "document": "PO-6104",
      "partner": "V-203"
     }
@@ -4044,89 +4533,89 @@
    "period": "2026-09"
   },
   {
-   "date": "2026-08-27",
-   "id": "JE-00081",
+   "date": "2026-09-02",
+   "id": "JE-00084",
    "lines": [
     {
      "account": "6000",
-     "debit": "338.13"
+     "debit": "3301.10"
     },
     {
      "account": "2200",
-     "credit": "338.13",
-     "document": "PO-6105",
-     "partner": "V-206"
+     "credit": "3301.10",
+     "document": "PO-6104",
+     "partner": "V-203"
     }
    ],
    "memo": "Goods received GR-0014",
-   "period": "2026-08"
+   "period": "2026-09"
   },
   {
-   "date": "2026-08-20",
-   "id": "JE-00082",
+   "date": "2026-08-21",
+   "id": "JE-00085",
    "lines": [
     {
      "account": "6000",
-     "debit": "748.40"
+     "debit": "6752.25"
     },
     {
      "account": "2200",
-     "credit": "748.40",
-     "document": "PO-6105",
-     "partner": "V-206"
+     "credit": "6752.25",
+     "document": "PO-6104",
+     "partner": "V-203"
     }
    ],
    "memo": "Goods received GR-0015",
    "period": "2026-08"
   },
   {
-   "date": "2026-09-11",
-   "id": "JE-00083",
+   "date": "2026-08-12",
+   "id": "JE-00086",
    "lines": [
     {
      "account": "6000",
-     "debit": "1971.70"
+     "debit": "4669.14"
     },
     {
      "account": "2200",
-     "credit": "1971.70",
-     "document": "PO-6105",
-     "partner": "V-206"
+     "credit": "4669.14",
+     "document": "PO-6104",
+     "partner": "V-203"
     }
    ],
    "memo": "Goods received GR-0016",
-   "period": "2026-09"
-  },
-  {
-   "date": "2026-08-10",
-   "id": "JE-00084",
-   "lines": [
-    {
-     "account": "6000",
-     "debit": "2163.26"
-    },
-    {
-     "account": "2200",
-     "credit": "2163.26",
-     "document": "PO-6105",
-     "partner": "V-206"
-    }
-   ],
-   "memo": "Goods received GR-0017",
    "period": "2026-08"
   },
   {
-   "date": "2026-09-02",
-   "id": "JE-00085",
+   "date": "2026-09-08",
+   "id": "JE-00087",
    "lines": [
     {
      "account": "6000",
-     "debit": "7177.80"
+     "debit": "9338.28"
     },
     {
      "account": "2200",
-     "credit": "7177.80",
-     "document": "PO-6106",
+     "credit": "9338.28",
+     "document": "PO-6104",
+     "partner": "V-203"
+    }
+   ],
+   "memo": "Goods received GR-0017",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-09-01",
+   "id": "JE-00088",
+   "lines": [
+    {
+     "account": "6000",
+     "debit": "3504.60"
+    },
+    {
+     "account": "2200",
+     "credit": "3504.60",
+     "document": "PO-6105",
      "partner": "V-206"
     }
    ],
@@ -4134,17 +4623,17 @@
    "period": "2026-09"
   },
   {
-   "date": "2026-09-04",
-   "id": "JE-00086",
+   "date": "2026-09-03",
+   "id": "JE-00089",
    "lines": [
     {
      "account": "6000",
-     "debit": "7194.90"
+     "debit": "3631.88"
     },
     {
      "account": "2200",
-     "credit": "7194.90",
-     "document": "PO-6106",
+     "credit": "3631.88",
+     "document": "PO-6105",
      "partner": "V-206"
     }
    ],
@@ -4152,35 +4641,35 @@
    "period": "2026-09"
   },
   {
-   "date": "2026-09-02",
-   "id": "JE-00087",
+   "date": "2026-08-31",
+   "id": "JE-00090",
    "lines": [
     {
      "account": "6000",
-     "debit": "3089.68"
+     "debit": "2576.70"
     },
     {
      "account": "2200",
-     "credit": "3089.68",
-     "document": "PO-6106",
+     "credit": "2576.70",
+     "document": "PO-6105",
      "partner": "V-206"
     }
    ],
    "memo": "Goods received GR-0020",
-   "period": "2026-09"
+   "period": "2026-08"
   },
   {
-   "date": "2026-08-21",
-   "id": "JE-00088",
+   "date": "2026-08-17",
+   "id": "JE-00091",
    "lines": [
     {
      "account": "6000",
-     "debit": "6389.55"
+     "debit": "5513.80"
     },
     {
      "account": "2200",
-     "credit": "6389.55",
-     "document": "PO-6106",
+     "credit": "5513.80",
+     "document": "PO-6105",
      "partner": "V-206"
     }
    ],
@@ -4188,134 +4677,80 @@
    "period": "2026-08"
   },
   {
-   "date": "2026-08-12",
-   "id": "JE-00089",
+   "date": "2026-09-10",
+   "id": "JE-00092",
    "lines": [
     {
      "account": "6000",
-     "debit": "4427.64"
+     "debit": "1469.16"
     },
     {
      "account": "2200",
-     "credit": "4427.64",
+     "credit": "1469.16",
      "document": "PO-6106",
-     "partner": "V-206"
+     "partner": "V-207"
     }
    ],
    "memo": "Goods received GR-0022",
-   "period": "2026-08"
+   "period": "2026-09"
   },
   {
-   "date": "2026-09-08",
-   "id": "JE-00090",
+   "date": "2026-09-11",
+   "id": "JE-00093",
    "lines": [
     {
      "account": "6000",
-     "debit": "8840.72"
+     "debit": "1567.80"
     },
     {
      "account": "2200",
-     "credit": "8840.72",
+     "credit": "1567.80",
      "document": "PO-6106",
-     "partner": "V-206"
+     "partner": "V-207"
     }
    ],
    "memo": "Goods received GR-0023",
    "period": "2026-09"
   },
   {
-   "date": "2026-09-01",
-   "id": "JE-00091",
-   "lines": [
-    {
-     "account": "6000",
-     "debit": "3772.44"
-    },
-    {
-     "account": "2200",
-     "credit": "3772.44",
-     "document": "PO-6107",
-     "partner": "V-207"
-    }
-   ],
-   "memo": "Goods received GR-0024",
-   "period": "2026-09"
-  },
-  {
-   "date": "2026-09-03",
-   "id": "JE-00092",
-   "lines": [
-    {
-     "account": "6000",
-     "debit": "3940.72"
-    },
-    {
-     "account": "2200",
-     "credit": "3940.72",
-     "document": "PO-6107",
-     "partner": "V-207"
-    }
-   ],
-   "memo": "Goods received GR-0025",
-   "period": "2026-09"
-  },
-  {
-   "date": "2026-08-31",
-   "id": "JE-00093",
-   "lines": [
-    {
-     "account": "6000",
-     "debit": "2779.11"
-    },
-    {
-     "account": "2200",
-     "credit": "2779.11",
-     "document": "PO-6107",
-     "partner": "V-207"
-    }
-   ],
-   "memo": "Goods received GR-0026",
-   "period": "2026-08"
-  },
-  {
-   "date": "2026-08-17",
+   "date": "2026-08-25",
    "id": "JE-00094",
    "lines": [
     {
      "account": "6000",
-     "debit": "5760.04"
+     "debit": "1503.68"
     },
     {
      "account": "2200",
-     "credit": "5760.04",
-     "document": "PO-6107",
+     "credit": "1503.68",
+     "document": "PO-6106",
      "partner": "V-207"
     }
    ],
-   "memo": "Goods received GR-0027",
+   "memo": "Goods received GR-0024",
    "period": "2026-08"
   },
   {
-   "date": "2026-08-20",
+   "date": "2026-08-27",
    "id": "JE-00095",
    "lines": [
     {
      "account": "2000",
-     "amount": "11101.52",
-     "credit": "11101.52",
+     "amount": "8983.56",
+     "credit": "8983.56",
      "currency": "EUR",
      "document": "VINV-101",
      "partner": "V-201"
     },
     {
      "account": "2200",
-     "debit": "9174.81",
-     "document": "PO-6102",
+     "debit": "7424.43",
+     "document": "PO-6101",
      "partner": "V-201"
     },
     {
      "account": "1300",
-     "debit": "1926.71"
+     "debit": "1559.13"
     }
    ],
    "memo": "Vendor invoice VINV-101",
@@ -4327,111 +4762,111 @@
    "lines": [
     {
      "account": "2000",
-     "amount": "1718.95",
-     "credit": "1718.95",
+     "amount": "3769.97",
+     "credit": "3769.97",
      "currency": "EUR",
      "document": "VINV-102",
      "partner": "V-202"
     },
     {
      "account": "6000",
-     "debit": "1420.62"
+     "debit": "3115.68"
     },
     {
      "account": "1300",
-     "debit": "298.33"
+     "debit": "654.29"
     }
    ],
    "memo": "Vendor invoice VINV-102",
    "period": "2026-09"
   },
   {
-   "date": "2026-08-27",
+   "date": "2026-09-03",
    "id": "JE-00097",
    "lines": [
     {
      "account": "2000",
-     "amount": "4145.08",
-     "credit": "4145.08",
+     "amount": "14839.20",
+     "credit": "14839.20",
      "currency": "EUR",
      "document": "VINV-103",
      "partner": "V-203"
     },
     {
      "account": "2200",
-     "debit": "4145.08",
-     "document": "PO-6103",
+     "debit": "14839.20",
+     "document": "PO-6104",
      "partner": "V-203"
     },
     {
      "account": "1300",
-     "debit": "870.47"
+     "debit": "3116.23"
     },
     {
      "account": "2100",
-     "credit": "870.47"
+     "credit": "3116.23"
     }
    ],
    "memo": "Vendor invoice VINV-103",
-   "period": "2026-08"
+   "period": "2026-09"
   },
   {
-   "date": "2026-08-20",
+   "date": "2026-08-27",
    "id": "JE-00098",
    "lines": [
     {
      "account": "2000",
-     "amount": "9789.39",
-     "credit": "9789.39",
+     "amount": "9220.20",
+     "credit": "9220.20",
      "currency": "EUR",
      "document": "VINV-104",
      "partner": "V-203"
     },
     {
      "account": "2200",
-     "debit": "9789.39",
+     "debit": "9220.20",
      "document": "PO-6104",
      "partner": "V-203"
     },
     {
      "account": "1300",
-     "debit": "2055.77"
+     "debit": "1936.24"
     },
     {
      "account": "2100",
-     "credit": "2055.77"
+     "credit": "1936.24"
     }
    ],
    "memo": "Vendor invoice VINV-104",
    "period": "2026-08"
   },
   {
-   "date": "2026-09-03",
+   "date": "2026-08-31",
    "id": "JE-00099",
    "lines": [
     {
      "account": "2000",
-     "amount": "2084.55",
-     "credit": "2084.55",
+     "amount": "3545.93",
+     "credit": "3545.93",
      "currency": "EUR",
      "document": "VINV-105",
      "partner": "V-204"
     },
     {
      "account": "6000",
-     "debit": "2084.55"
+     "debit": "3545.93"
     },
     {
      "account": "1300",
-     "debit": "437.76"
+     "debit": "744.65"
     },
     {
      "account": "2100",
-     "credit": "437.76"
+     "credit": "744.65"
     }
    ],
    "memo": "Vendor invoice VINV-105",
-   "period": "2026-09"
+   "period": "2026-08"
   },
   {
    "date": "2026-08-31",
@@ -4439,107 +4874,101 @@
    "lines": [
     {
      "account": "2000",
-     "amount": "2741.20",
-     "credit": "2741.20",
-     "currency": "EUR",
+     "amount": "1998.16",
+     "credit": "2292.83",
+     "currency": "GBP",
      "document": "VINV-106",
-     "partner": "V-204"
+     "partner": "V-205"
     },
     {
      "account": "6000",
-     "debit": "2741.20"
+     "debit": "2292.83"
     },
     {
      "account": "1300",
-     "debit": "575.65"
+     "debit": "481.49"
     },
     {
      "account": "2100",
-     "credit": "575.65"
+     "credit": "481.49"
     }
    ],
    "memo": "Vendor invoice VINV-106",
    "period": "2026-08"
   },
   {
-   "date": "2026-08-24",
+   "date": "2026-09-11",
    "id": "JE-00101",
    "lines": [
     {
      "account": "2000",
-     "amount": "678.99",
-     "credit": "773.13",
+     "amount": "3411.63",
+     "credit": "3887.13",
      "currency": "GBP",
      "document": "VINV-107",
      "partner": "V-205"
     },
     {
      "account": "6000",
-     "debit": "773.13"
+     "debit": "3887.13"
     },
     {
      "account": "1300",
-     "debit": "162.36"
+     "debit": "816.30"
     },
     {
      "account": "2100",
-     "credit": "162.36"
+     "credit": "816.30"
     }
    ],
    "memo": "Vendor invoice VINV-107",
-   "period": "2026-08"
+   "period": "2026-09"
   },
   {
-   "date": "2026-09-08",
+   "date": "2026-09-20",
    "id": "JE-00102",
    "lines": [
     {
      "account": "2000",
-     "amount": "10231.79",
-     "credit": "9686.62",
+     "amount": "3411.63",
+     "currency": "GBP",
+     "debit": "3887.13",
+     "document": "VINV-107",
+     "partner": "V-205"
+    },
+    {
+     "account": "1100",
+     "credit": "3887.13"
+    }
+   ],
+   "memo": "Payment VINV-107",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-08-20",
+   "id": "JE-00103",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "10167.33",
+     "credit": "9607.09",
      "currency": "USD",
      "document": "VINV-108",
      "partner": "V-206"
     },
     {
      "account": "2200",
-     "debit": "9660.47",
-     "document": "PO-6106",
+     "debit": "9621.40",
+     "document": "PO-6105",
      "partner": "V-206"
     },
     {
      "account": "6950",
-     "debit": "26.15"
+     "credit": "14.31"
     }
    ],
    "memo": "Vendor invoice VINV-108",
-   "period": "2026-09"
-  },
-  {
-   "date": "2026-09-11",
-   "id": "JE-00103",
-   "lines": [
-    {
-     "account": "2000",
-     "amount": "11249.45",
-     "credit": "10599.05",
-     "currency": "USD",
-     "document": "VINV-109",
-     "partner": "V-206"
-    },
-    {
-     "account": "2200",
-     "debit": "10633.34",
-     "document": "PO-6106",
-     "partner": "V-206"
-    },
-    {
-     "account": "6950",
-     "credit": "34.29"
-    }
-   ],
-   "memo": "Vendor invoice VINV-109",
-   "period": "2026-09"
+   "period": "2026-08"
   },
   {
    "date": "2026-08-28",
@@ -4547,462 +4976,898 @@
    "lines": [
     {
      "account": "2000",
-     "amount": "6179.70",
-     "credit": "6221.98",
+     "amount": "1958.15",
+     "credit": "1971.55",
      "currency": "CHF",
-     "document": "VINV-110",
+     "document": "VINV-109",
      "partner": "V-207"
     },
     {
      "account": "2200",
-     "debit": "6155.48",
-     "document": "PO-6107",
+     "debit": "1978.24",
+     "document": "PO-6106",
      "partner": "V-207"
     },
     {
      "account": "6950",
-     "debit": "66.50"
+     "credit": "6.69"
     }
    ],
-   "memo": "Vendor invoice VINV-110",
+   "memo": "Vendor invoice VINV-109",
    "period": "2026-08"
   },
   {
-   "date": "2026-09-27",
+   "date": "2026-09-28",
    "id": "JE-00105",
    "lines": [
     {
      "account": "2000",
-     "amount": "4618.79",
-     "credit": "4618.79",
+     "amount": "1068.56",
+     "credit": "1068.56",
+     "currency": "EUR",
+     "document": "VINV-110",
+     "partner": "V-201"
+    },
+    {
+     "account": "6000",
+     "debit": "883.11"
+    },
+    {
+     "account": "1300",
+     "debit": "185.45"
+    }
+   ],
+   "memo": "Vendor invoice VINV-110",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-10-01",
+   "id": "JE-00106",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "7562.84",
+     "credit": "7562.84",
      "currency": "EUR",
      "document": "VINV-111",
      "partner": "V-201"
     },
     {
      "account": "6000",
-     "debit": "3817.18"
+     "debit": "6250.28"
     },
     {
      "account": "1300",
-     "debit": "801.61"
+     "debit": "1312.56"
     }
    ],
    "memo": "Vendor invoice VINV-111",
-   "period": "2026-09"
+   "period": "2026-10"
   },
   {
-   "date": "2026-09-15",
-   "id": "JE-00106",
+   "date": "2026-09-06",
+   "id": "JE-00107",
    "lines": [
     {
      "account": "2000",
-     "amount": "2518.11",
-     "credit": "2518.11",
+     "amount": "9330.83",
+     "credit": "9330.83",
      "currency": "EUR",
      "document": "VINV-112",
      "partner": "V-201"
     },
     {
      "account": "6000",
-     "debit": "2081.08"
+     "debit": "7711.43"
     },
     {
      "account": "1300",
-     "debit": "437.03"
+     "debit": "1619.40"
     }
    ],
    "memo": "Vendor invoice VINV-112",
    "period": "2026-09"
   },
   {
-   "date": "2026-09-27",
-   "id": "JE-00107",
-   "lines": [
-    {
-     "account": "2000",
-     "amount": "2671.83",
-     "credit": "3002.90",
-     "currency": "GBP",
-     "document": "VINV-113",
-     "partner": "V-205"
-    },
-    {
-     "account": "6000",
-     "debit": "3002.90"
-    },
-    {
-     "account": "1300",
-     "debit": "630.61"
-    },
-    {
-     "account": "2100",
-     "credit": "630.61"
-    }
-   ],
-   "memo": "Vendor invoice VINV-113",
-   "period": "2026-09"
-  },
-  {
-   "date": "2026-09-28",
+   "date": "2026-08-25",
    "id": "JE-00108",
    "lines": [
     {
      "account": "2000",
-     "amount": "934.75",
-     "credit": "1054.39",
-     "currency": "GBP",
-     "document": "VINV-114",
-     "partner": "V-205"
+     "amount": "9608.56",
+     "credit": "9608.56",
+     "currency": "EUR",
+     "document": "VINV-113",
+     "partner": "V-201"
     },
     {
      "account": "6000",
-     "debit": "1054.39"
+     "debit": "7940.96"
     },
     {
      "account": "1300",
-     "debit": "221.42"
-    },
-    {
-     "account": "2100",
-     "credit": "221.42"
+     "debit": "1667.60"
     }
    ],
-   "memo": "Vendor invoice VINV-114",
-   "period": "2026-09"
+   "memo": "Vendor invoice VINV-113",
+   "period": "2026-08"
   },
   {
-   "date": "2026-09-22",
+   "date": "2026-08-06",
    "id": "JE-00109",
    "lines": [
     {
      "account": "2000",
-     "amount": "1117.92",
-     "credit": "1266.51",
-     "currency": "GBP",
-     "document": "VINV-115",
-     "partner": "V-205"
+     "amount": "3540.08",
+     "credit": "3540.08",
+     "currency": "EUR",
+     "document": "VINV-114",
+     "partner": "V-201"
     },
     {
      "account": "6000",
-     "debit": "1266.51"
+     "debit": "2925.69"
     },
     {
      "account": "1300",
-     "debit": "265.97"
-    },
-    {
-     "account": "2100",
-     "credit": "265.97"
+     "debit": "614.39"
     }
    ],
-   "memo": "Vendor invoice VINV-115",
-   "period": "2026-09"
-  },
-  {
-   "date": "2026-09-28",
-   "id": "JE-00110",
-   "lines": [
-    {
-     "account": "2000",
-     "amount": "1117.92",
-     "currency": "GBP",
-     "debit": "1266.51",
-     "document": "VINV-115",
-     "partner": "V-205"
-    },
-    {
-     "account": "1100",
-     "credit": "1266.51"
-    }
-   ],
-   "memo": "Payment VINV-115",
-   "period": "2026-09"
-  },
-  {
-   "date": "2026-08-14",
-   "id": "JE-00111",
-   "lines": [
-    {
-     "account": "2000",
-     "amount": "794.02",
-     "credit": "911.82",
-     "currency": "GBP",
-     "document": "VINV-116",
-     "partner": "V-205"
-    },
-    {
-     "account": "6000",
-     "debit": "911.82"
-    },
-    {
-     "account": "1300",
-     "debit": "191.48"
-    },
-    {
-     "account": "2100",
-     "credit": "191.48"
-    }
-   ],
-   "memo": "Vendor invoice VINV-116",
+   "memo": "Vendor invoice VINV-114",
    "period": "2026-08"
   },
   {
    "date": "2026-10-05",
+   "id": "JE-00110",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "1135.85",
+     "credit": "1135.85",
+     "currency": "EUR",
+     "document": "VINV-115",
+     "partner": "V-202"
+    },
+    {
+     "account": "6000",
+     "debit": "938.72"
+    },
+    {
+     "account": "1300",
+     "debit": "197.13"
+    }
+   ],
+   "memo": "Vendor invoice VINV-115",
+   "period": "2026-10"
+  },
+  {
+   "date": "2026-09-27",
+   "id": "JE-00111",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "1352.68",
+     "credit": "1352.68",
+     "currency": "EUR",
+     "document": "VINV-116",
+     "partner": "V-202"
+    },
+    {
+     "account": "6000",
+     "debit": "1117.92"
+    },
+    {
+     "account": "1300",
+     "debit": "234.76"
+    }
+   ],
+   "memo": "Vendor invoice VINV-116",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-09-28",
    "id": "JE-00112",
    "lines": [
     {
      "account": "2000",
-     "amount": "2326.78",
-     "credit": "2222.28",
-     "currency": "USD",
-     "document": "VINV-117",
-     "partner": "V-206"
+     "amount": "1352.68",
+     "currency": "EUR",
+     "debit": "1352.68",
+     "document": "VINV-116",
+     "partner": "V-202"
     },
     {
-     "account": "6000",
-     "debit": "2222.28"
+     "account": "1100",
+     "credit": "1352.68"
     }
    ],
-   "memo": "Vendor invoice VINV-117",
-   "period": "2026-10"
+   "memo": "Payment VINV-116",
+   "period": "2026-09"
   },
   {
-   "date": "2026-10-03",
+   "date": "2026-09-10",
    "id": "JE-00113",
    "lines": [
     {
      "account": "2000",
-     "amount": "7775.25",
-     "credit": "7425.73",
-     "currency": "USD",
-     "document": "VINV-118",
-     "partner": "V-206"
+     "amount": "960.76",
+     "credit": "960.76",
+     "currency": "EUR",
+     "document": "VINV-117",
+     "partner": "V-202"
     },
     {
      "account": "6000",
-     "debit": "7425.73"
+     "debit": "794.02"
+    },
+    {
+     "account": "1300",
+     "debit": "166.74"
     }
    ],
-   "memo": "Vendor invoice VINV-118",
-   "period": "2026-10"
+   "memo": "Vendor invoice VINV-117",
+   "period": "2026-09"
   },
   {
-   "date": "2026-08-31",
+   "date": "2026-08-24",
    "id": "JE-00114",
    "lines": [
     {
      "account": "2000",
-     "amount": "3863.22",
-     "credit": "3626.90",
-     "currency": "USD",
-     "document": "VINV-119",
-     "partner": "V-206"
+     "amount": "2815.40",
+     "credit": "2815.40",
+     "currency": "EUR",
+     "document": "VINV-118",
+     "partner": "V-202"
     },
     {
      "account": "6000",
-     "debit": "3626.90"
+     "debit": "2326.78"
+    },
+    {
+     "account": "1300",
+     "debit": "488.62"
+    }
+   ],
+   "memo": "Vendor invoice VINV-118",
+   "period": "2026-08"
+  },
+  {
+   "date": "2026-08-01",
+   "id": "JE-00115",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "6482.39",
+     "credit": "6482.39",
+     "currency": "EUR",
+     "document": "VINV-119",
+     "partner": "V-202"
+    },
+    {
+     "account": "6000",
+     "debit": "5357.35"
+    },
+    {
+     "account": "1300",
+     "debit": "1125.04"
     }
    ],
    "memo": "Vendor invoice VINV-119",
    "period": "2026-08"
   },
   {
-   "date": "2026-07-31",
-   "id": "JE-00115",
-   "lines": [
-    {
-     "account": "2000",
-     "amount": "6397.33",
-     "credit": "6083.51",
-     "currency": "USD",
-     "document": "VINV-120",
-     "partner": "V-206"
-    },
-    {
-     "account": "6000",
-     "debit": "6083.51"
-    }
-   ],
-   "memo": "Vendor invoice VINV-120",
-   "period": "2026-07"
-  },
-  {
-   "date": "2026-10-04",
+   "date": "2026-09-27",
    "id": "JE-00116",
    "lines": [
     {
      "account": "2000",
-     "amount": "2762.91",
-     "credit": "2801.67",
-     "currency": "CHF",
-     "document": "VINV-121",
-     "partner": "V-207"
+     "amount": "903.86",
+     "credit": "903.86",
+     "currency": "EUR",
+     "document": "VINV-120",
+     "partner": "V-203"
     },
     {
      "account": "6000",
-     "debit": "2801.67"
+     "debit": "903.86"
+    }
+   ],
+   "memo": "Vendor invoice VINV-120",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-10-01",
+   "id": "JE-00117",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "760.69",
+     "credit": "760.69",
+     "currency": "EUR",
+     "document": "VINV-121",
+     "partner": "V-203"
+    },
+    {
+     "account": "6000",
+     "debit": "760.69"
     }
    ],
    "memo": "Vendor invoice VINV-121",
    "period": "2026-10"
   },
   {
-   "date": "2026-10-02",
-   "id": "JE-00117",
-   "lines": [
-    {
-     "account": "2000",
-     "amount": "1084.14",
-     "credit": "1099.35",
-     "currency": "CHF",
-     "document": "VINV-122",
-     "partner": "V-207"
-    },
-    {
-     "account": "6000",
-     "debit": "1099.35"
-    }
-   ],
-   "memo": "Vendor invoice VINV-122",
-   "period": "2026-10"
-  },
-  {
-   "date": "2026-09-02",
+   "date": "2026-09-12",
    "id": "JE-00118",
    "lines": [
     {
      "account": "2000",
-     "amount": "1557.16",
-     "credit": "1581.61",
-     "currency": "CHF",
-     "document": "VINV-123",
-     "partner": "V-207"
+     "amount": "2583.72",
+     "credit": "2583.72",
+     "currency": "EUR",
+     "document": "VINV-122",
+     "partner": "V-203"
     },
     {
      "account": "6000",
-     "debit": "1581.61"
+     "debit": "2583.72"
+    }
+   ],
+   "memo": "Vendor invoice VINV-122",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-09-14",
+   "id": "JE-00119",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "796.89",
+     "credit": "796.89",
+     "currency": "EUR",
+     "document": "VINV-123",
+     "partner": "V-203"
+    },
+    {
+     "account": "6000",
+     "debit": "796.89"
     }
    ],
    "memo": "Vendor invoice VINV-123",
    "period": "2026-09"
   },
   {
-   "date": "2026-08-05",
-   "id": "JE-00119",
+   "date": "2026-08-01",
+   "id": "JE-00120",
    "lines": [
     {
      "account": "2000",
-     "amount": "505.56",
-     "credit": "504.63",
-     "currency": "CHF",
+     "amount": "1753.42",
+     "credit": "1753.42",
+     "currency": "EUR",
      "document": "VINV-124",
-     "partner": "V-207"
+     "partner": "V-203"
     },
     {
      "account": "6000",
-     "debit": "504.63"
+     "debit": "1753.42"
     }
    ],
    "memo": "Vendor invoice VINV-124",
    "period": "2026-08"
   },
   {
+   "date": "2026-10-01",
+   "id": "JE-00121",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "1095.91",
+     "credit": "1095.91",
+     "currency": "EUR",
+     "document": "VINV-125",
+     "partner": "V-204"
+    },
+    {
+     "account": "6000",
+     "debit": "1095.91"
+    },
+    {
+     "account": "1300",
+     "debit": "230.14"
+    },
+    {
+     "account": "2100",
+     "credit": "230.14"
+    }
+   ],
+   "memo": "Vendor invoice VINV-125",
+   "period": "2026-10"
+  },
+  {
+   "date": "2026-09-28",
+   "id": "JE-00122",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "1095.91",
+     "currency": "EUR",
+     "debit": "1095.91",
+     "document": "VINV-125",
+     "partner": "V-204"
+    },
+    {
+     "account": "1100",
+     "credit": "1095.91"
+    }
+   ],
+   "memo": "Payment VINV-125",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-09-29",
+   "id": "JE-00123",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "4521.60",
+     "credit": "4521.60",
+     "currency": "EUR",
+     "document": "VINV-126",
+     "partner": "V-204"
+    },
+    {
+     "account": "6000",
+     "debit": "4521.60"
+    },
+    {
+     "account": "1300",
+     "debit": "949.54"
+    },
+    {
+     "account": "2100",
+     "credit": "949.54"
+    }
+   ],
+   "memo": "Vendor invoice VINV-126",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-09-09",
+   "id": "JE-00124",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "7311.73",
+     "credit": "7311.73",
+     "currency": "EUR",
+     "document": "VINV-127",
+     "partner": "V-204"
+    },
+    {
+     "account": "6000",
+     "debit": "7311.73"
+    },
+    {
+     "account": "1300",
+     "debit": "1535.46"
+    },
+    {
+     "account": "2100",
+     "credit": "1535.46"
+    }
+   ],
+   "memo": "Vendor invoice VINV-127",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-08-24",
+   "id": "JE-00125",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "2934.71",
+     "credit": "2934.71",
+     "currency": "EUR",
+     "document": "VINV-128",
+     "partner": "V-204"
+    },
+    {
+     "account": "6000",
+     "debit": "2934.71"
+    },
+    {
+     "account": "1300",
+     "debit": "616.29"
+    },
+    {
+     "account": "2100",
+     "credit": "616.29"
+    }
+   ],
+   "memo": "Vendor invoice VINV-128",
+   "period": "2026-08"
+  },
+  {
+   "date": "2026-08-01",
+   "id": "JE-00126",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "1026.12",
+     "credit": "1026.12",
+     "currency": "EUR",
+     "document": "VINV-129",
+     "partner": "V-204"
+    },
+    {
+     "account": "6000",
+     "debit": "1026.12"
+    },
+    {
+     "account": "1300",
+     "debit": "215.49"
+    },
+    {
+     "account": "2100",
+     "credit": "215.49"
+    }
+   ],
+   "memo": "Vendor invoice VINV-129",
+   "period": "2026-08"
+  },
+  {
+   "date": "2026-09-29",
+   "id": "JE-00127",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "5233.21",
+     "credit": "5901.18",
+     "currency": "GBP",
+     "document": "VINV-130",
+     "partner": "V-205"
+    },
+    {
+     "account": "6000",
+     "debit": "5901.18"
+    },
+    {
+     "account": "1300",
+     "debit": "1239.25"
+    },
+    {
+     "account": "2100",
+     "credit": "1239.25"
+    }
+   ],
+   "memo": "Vendor invoice VINV-130",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-08-15",
+   "id": "JE-00128",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "1094.24",
+     "credit": "1256.58",
+     "currency": "GBP",
+     "document": "VINV-131",
+     "partner": "V-205"
+    },
+    {
+     "account": "6000",
+     "debit": "1256.58"
+    },
+    {
+     "account": "1300",
+     "debit": "263.88"
+    },
+    {
+     "account": "2100",
+     "credit": "263.88"
+    }
+   ],
+   "memo": "Vendor invoice VINV-131",
+   "period": "2026-08"
+  },
+  {
+   "date": "2026-09-30",
+   "id": "JE-00129",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "6581.10",
+     "credit": "6274.37",
+     "currency": "USD",
+     "document": "VINV-132",
+     "partner": "V-206"
+    },
+    {
+     "account": "6000",
+     "debit": "6274.37"
+    }
+   ],
+   "memo": "Vendor invoice VINV-132",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-09-28",
+   "id": "JE-00130",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "2443.89",
+     "credit": "2349.46",
+     "currency": "USD",
+     "document": "VINV-133",
+     "partner": "V-206"
+    },
+    {
+     "account": "6000",
+     "debit": "2349.46"
+    }
+   ],
+   "memo": "Vendor invoice VINV-133",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-09-10",
+   "id": "JE-00131",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "974.90",
+     "credit": "914.12",
+     "currency": "USD",
+     "document": "VINV-134",
+     "partner": "V-206"
+    },
+    {
+     "account": "6000",
+     "debit": "914.12"
+    }
+   ],
+   "memo": "Vendor invoice VINV-134",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-09-13",
+   "id": "JE-00132",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "1117.24",
+     "credit": "1052.65",
+     "currency": "USD",
+     "document": "VINV-135",
+     "partner": "V-206"
+    },
+    {
+     "account": "6000",
+     "debit": "1052.65"
+    }
+   ],
+   "memo": "Vendor invoice VINV-135",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-08-29",
+   "id": "JE-00133",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "426.88",
+     "credit": "404.34",
+     "currency": "USD",
+     "document": "VINV-136",
+     "partner": "V-206"
+    },
+    {
+     "account": "6000",
+     "debit": "404.34"
+    }
+   ],
+   "memo": "Vendor invoice VINV-136",
+   "period": "2026-08"
+  },
+  {
+   "date": "2026-07-31",
+   "id": "JE-00134",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "7185.84",
+     "credit": "6833.34",
+     "currency": "USD",
+     "document": "VINV-137",
+     "partner": "V-206"
+    },
+    {
+     "account": "6000",
+     "debit": "6833.34"
+    }
+   ],
+   "memo": "Vendor invoice VINV-137",
+   "period": "2026-07"
+  },
+  {
+   "date": "2026-10-05",
+   "id": "JE-00135",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "783.81",
+     "credit": "794.68",
+     "currency": "CHF",
+     "document": "VINV-138",
+     "partner": "V-207"
+    },
+    {
+     "account": "6000",
+     "debit": "794.68"
+    }
+   ],
+   "memo": "Vendor invoice VINV-138",
+   "period": "2026-10"
+  },
+  {
+   "date": "2026-09-07",
+   "id": "JE-00136",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "691.70",
+     "credit": "701.54",
+     "currency": "CHF",
+     "document": "VINV-139",
+     "partner": "V-207"
+    },
+    {
+     "account": "6000",
+     "debit": "701.54"
+    }
+   ],
+   "memo": "Vendor invoice VINV-139",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-09-01",
+   "id": "JE-00137",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "1694.53",
+     "credit": "1714.15",
+     "currency": "CHF",
+     "document": "VINV-140",
+     "partner": "V-207"
+    },
+    {
+     "account": "6000",
+     "debit": "1714.15"
+    }
+   ],
+   "memo": "Vendor invoice VINV-140",
+   "period": "2026-09"
+  },
+  {
+   "date": "2026-08-08",
+   "id": "JE-00138",
+   "lines": [
+    {
+     "account": "2000",
+     "amount": "925.69",
+     "credit": "926.16",
+     "currency": "CHF",
+     "document": "VINV-141",
+     "partner": "V-207"
+    },
+    {
+     "account": "6000",
+     "debit": "926.16"
+    }
+   ],
+   "memo": "Vendor invoice VINV-141",
+   "period": "2026-08"
+  },
+  {
    "date": "2026-09-21",
-   "id": "JE-00120",
+   "id": "JE-00139",
    "lines": [
     {
      "account": "1200",
-     "amount": "19222.06",
+     "amount": "16433.99",
      "currency": "EUR",
-     "debit": "19222.06",
-     "document": "INV-5274",
+     "debit": "16433.99",
+     "document": "INV-5746",
      "partner": "C-104"
     },
     {
      "account": "4000",
-     "credit": "16034.61"
+     "credit": "14639.06"
     },
     {
      "account": "2100",
-     "credit": "3187.45"
+     "credit": "1794.93"
     }
    ],
-   "memo": "Invoice INV-5274",
+   "memo": "Invoice INV-5746",
    "period": "2026-09"
   }
  ],
  "inbox": {
-  "VINV-125": {
-   "category": "services",
-   "currency": "GBP",
+  "VINV-142": {
+   "category": "goods",
+   "currency": "EUR",
    "date": "2026-10-01",
    "due": "2026-10-31",
-   "gross": "2666.13",
-   "id": "VINV-125",
+   "gross": "3918.81",
+   "id": "VINV-142",
    "lines": [
     {
-     "description": "Software licences",
-     "po_line": null,
-     "qty": 1,
-     "unit_price": "2666.13",
-     "vat_rate": "0.00"
+     "description": "Seals 2",
+     "po_line": 1,
+     "qty": 13,
+     "unit_price": "249.13",
+     "vat_rate": "0.21"
     }
    ],
-   "net": "2666.13",
-   "number": "02026 / 4649",
-   "po": null,
+   "net": "3238.69",
+   "number": "s03765",
+   "po": "PO-6101",
    "requested_by": "Joris Bakker",
    "status": "new",
    "type": "vendor-invoice",
-   "vat": "0.00",
-   "vendor": "V-205"
+   "vat": "680.12",
+   "vendor": "V-201"
   },
-  "VINV-126": {
+  "VINV-143": {
    "category": "goods",
    "currency": "USD",
    "date": "2026-09-29",
    "due": "2026-10-29",
-   "gross": "1070.28",
-   "id": "VINV-126",
+   "gross": "3318.24",
+   "id": "VINV-143",
    "lines": [
     {
-     "description": "Liners 1",
+     "description": "Pallets 1",
      "po_line": 0,
-     "qty": 27,
-     "unit_price": "39.64",
+     "qty": 24,
+     "unit_price": "138.26",
      "vat_rate": "0.00"
     }
    ],
-   "net": "1070.28",
-   "number": "INV2026-4669",
+   "net": "3318.24",
+   "number": "INV2026-0888",
    "po": "PO-6105",
-   "requested_by": "Marta Kovacs",
+   "requested_by": "Sanne Visser",
    "status": "new",
    "type": "vendor-invoice",
    "vat": "0.00",
    "vendor": "V-206"
   },
-  "VINV-127": {
+  "VINV-144": {
    "category": "goods",
    "currency": "CHF",
    "date": "2026-10-01",
    "due": "2026-10-31",
-   "gross": "3107.40",
-   "id": "VINV-127",
+   "gross": "476.05",
+   "id": "VINV-144",
    "lines": [
     {
      "description": "Pallets 2",
      "po_line": 1,
-     "qty": 10,
-     "unit_price": "310.74",
+     "qty": 5,
+     "unit_price": "95.21",
      "vat_rate": "0.00"
     }
    ],
-   "net": "3107.40",
-   "number": "INV2026-3417",
-   "po": "PO-6107",
-   "requested_by": "Sanne Visser",
+   "net": "476.05",
+   "number": "F2026-3746",
+   "po": "PO-6106",
+   "requested_by": "Joris Bakker",
    "status": "new",
    "type": "vendor-invoice",
    "vat": "0.00",
@@ -5208,35 +6073,41 @@
   "V-201": {
    "country": "NL",
    "currency": "EUR",
-   "discount_days": 10,
-   "discount_rate": "0.02",
+   "discount_days": 14,
+   "discount_rate": "0.01",
    "kind": "vendor",
+   "late_fee": "0.00",
+   "late_rate": "0.0012",
    "name": "Basalt Trading B.V.",
    "supply": "goods",
-   "terms": "2/10 net 30",
-   "vat_id": "NL694433031"
+   "terms": "1/14 net 30",
+   "vat_id": "NL185658569"
   },
   "V-202": {
    "country": "NL",
    "currency": "EUR",
-   "discount_days": null,
-   "discount_rate": null,
+   "discount_days": 7,
+   "discount_rate": "0.03",
    "kind": "vendor",
-   "name": "Cobalt Packaging B.V.",
+   "late_fee": "0.00",
+   "late_rate": "0.0008",
+   "name": "Ridge Logistics B.V.",
    "supply": "services",
-   "terms": "net 30",
-   "vat_id": "NL683367910"
+   "terms": "3/7 net 30",
+   "vat_id": "NL766103413"
   },
   "V-203": {
    "country": "DE",
    "currency": "EUR",
-   "discount_days": 10,
-   "discount_rate": "0.02",
+   "discount_days": null,
+   "discount_rate": null,
    "kind": "vendor",
-   "name": "Amber Retail GmbH",
+   "late_fee": "75.00",
+   "late_rate": "0.0012",
+   "name": "Tundra Supplies GmbH",
    "supply": "goods",
-   "terms": "2/10 net 30",
-   "vat_id": "DE766103413"
+   "terms": "net 30",
+   "vat_id": "DE418019092"
   },
   "V-204": {
    "country": "FR",
@@ -5244,57 +6115,96 @@
    "discount_days": null,
    "discount_rate": null,
    "kind": "vendor",
-   "name": "Indigo Retail SAS",
+   "late_fee": "0.00",
+   "late_rate": "0.0008",
+   "name": "Nimbus Logistics SAS",
    "supply": "services",
    "terms": "net 30",
-   "vat_id": "FR859820032"
+   "vat_id": "FR520594986"
   },
   "V-205": {
    "country": "UK",
    "currency": "GBP",
-   "discount_days": null,
-   "discount_rate": null,
+   "discount_days": 7,
+   "discount_rate": "0.03",
    "kind": "vendor",
-   "name": "Juniper Trading Ltd",
+   "late_fee": "75.00",
+   "late_rate": "0.0008",
+   "name": "Harbor Marine Ltd",
    "supply": "services",
-   "terms": "net 30",
+   "terms": "3/7 net 30",
    "vat_id": null
   },
   "V-206": {
    "country": "US",
    "currency": "USD",
-   "discount_days": 10,
-   "discount_rate": "0.02",
+   "discount_days": 7,
+   "discount_rate": "0.03",
    "kind": "vendor",
-   "name": "Juniper Parts Inc.",
+   "late_fee": "75.00",
+   "late_rate": "0.0005",
+   "name": "Tundra Systems Inc.",
    "supply": "goods",
-   "terms": "2/10 net 30",
+   "terms": "3/7 net 30",
    "vat_id": null
   },
   "V-207": {
    "country": "CH",
    "currency": "CHF",
-   "discount_days": null,
-   "discount_rate": null,
+   "discount_days": 14,
+   "discount_rate": "0.01",
    "kind": "vendor",
-   "name": "Nimbus Logistics AG",
+   "late_fee": "75.00",
+   "late_rate": "0.0012",
+   "name": "Harbor Retail AG",
    "supply": "goods",
-   "terms": "net 30",
+   "terms": "1/14 net 30",
    "vat_id": null
   }
  },
- "payment_run": {
-  "cash": {
-   "CHF": "5682.05",
-   "EUR": "14084.20",
-   "GBP": "1727.06",
-   "USD": "14590.79"
+ "payment_plan": {
+  "days": [
+   "2026-10-05",
+   "2026-10-06",
+   "2026-10-07",
+   "2026-10-08",
+   "2026-10-09",
+   "2026-10-12",
+   "2026-10-13",
+   "2026-10-14",
+   "2026-10-15",
+   "2026-10-16"
+  ],
+  "inflows": {
+   "CHF": {
+    "2026-10-06": "790.51",
+    "2026-10-07": "474.31",
+    "2026-10-08": "421.61"
+   },
+   "EUR": {
+    "2026-10-09": "13489.78",
+    "2026-10-12": "12646.67",
+    "2026-10-13": "16862.22"
+   },
+   "GBP": {
+    "2026-10-06": "1143.61",
+    "2026-10-13": "1061.92",
+    "2026-10-15": "735.17"
+   },
+   "USD": {
+    "2026-10-12": "3435.17",
+    "2026-10-13": "6011.55"
+   }
   },
-  "fee_domestic": "1.50",
-  "fee_foreign": "12.00",
-  "max_payments": 3,
-  "next_run_days": 7,
-  "penalty_rate": "0.0015"
+  "later": "2026-10-19",
+  "max_per_day": 2,
+  "opening": {
+   "CHF": "632.41",
+   "EUR": "15176.00",
+   "GBP": "1306.98",
+   "USD": "5152.76"
+  },
+  "schedule": {}
  },
  "periods": {
   "2026-08": {
@@ -5596,219 +6506,195 @@
  },
  "receipts": [
   {
-   "accrued_per_unit": "39.52",
+   "accrued_per_unit": "336.37",
    "date": "2026-08-10",
-   "id": "GR-0009",
-   "line": 1,
-   "po": "PO-6103",
-   "qty": 24
+   "id": "GR-0001",
+   "line": 0,
+   "po": "PO-6101",
+   "qty": 8
   },
   {
-   "accrued_per_unit": "196.66",
+   "accrued_per_unit": "209.27",
    "date": "2026-08-10",
-   "id": "GR-0017",
+   "id": "GR-0011",
    "line": 1,
-   "po": "PO-6105",
+   "po": "PO-6103",
    "qty": 11
   },
   {
-   "accrued_per_unit": "30.01",
+   "accrued_per_unit": "333.51",
    "date": "2026-08-12",
+   "id": "GR-0016",
+   "line": 2,
+   "po": "PO-6104",
+   "qty": 14
+  },
+  {
+   "accrued_per_unit": "59.48",
+   "date": "2026-08-14",
    "id": "GR-0004",
    "line": 0,
    "po": "PO-6102",
-   "qty": 11
+   "qty": 15
   },
   {
-   "accrued_per_unit": "386.26",
-   "date": "2026-08-12",
-   "id": "GR-0007",
-   "line": 2,
+   "accrued_per_unit": "290.20",
+   "date": "2026-08-17",
+   "id": "GR-0021",
+   "line": 1,
+   "po": "PO-6105",
+   "qty": 19
+  },
+  {
+   "accrued_per_unit": "39.60",
+   "date": "2026-08-20",
+   "id": "GR-0009",
+   "line": 0,
+   "po": "PO-6103",
+   "qty": 20
+  },
+  {
+   "accrued_per_unit": "59.48",
+   "date": "2026-08-21",
+   "id": "GR-0005",
+   "line": 0,
    "po": "PO-6102",
-   "qty": 35
+   "qty": 15
   },
   {
-   "accrued_per_unit": "316.26",
-   "date": "2026-08-12",
-   "id": "GR-0022",
+   "accrued_per_unit": "150.05",
+   "date": "2026-08-21",
+   "id": "GR-0015",
+   "line": 1,
+   "po": "PO-6104",
+   "qty": 45
+  },
+  {
+   "accrued_per_unit": "93.98",
+   "date": "2026-08-25",
+   "id": "GR-0024",
+   "line": 1,
+   "po": "PO-6106",
+   "qty": 16
+  },
+  {
+   "accrued_per_unit": "39.60",
+   "date": "2026-08-27",
+   "id": "GR-0008",
+   "line": 0,
+   "po": "PO-6103",
+   "qty": 9
+  },
+  {
+   "accrued_per_unit": "249.13",
+   "date": "2026-08-28",
+   "id": "GR-0002",
+   "line": 1,
+   "po": "PO-6101",
+   "qty": 31
+  },
+  {
+   "accrued_per_unit": "286.30",
+   "date": "2026-08-31",
+   "id": "GR-0020",
+   "line": 1,
+   "po": "PO-6105",
+   "qty": 9
+  },
+  {
+   "accrued_per_unit": "129.80",
+   "date": "2026-09-01",
+   "id": "GR-0018",
+   "line": 0,
+   "po": "PO-6105",
+   "qty": 27
+  },
+  {
+   "accrued_per_unit": "122.86",
+   "date": "2026-09-02",
+   "id": "GR-0006",
+   "line": 1,
+   "po": "PO-6102",
+   "qty": 23
+  },
+  {
+   "accrued_per_unit": "255.63",
+   "date": "2026-09-02",
+   "id": "GR-0012",
+   "line": 0,
+   "po": "PO-6104",
+   "qty": 30
+  },
+  {
+   "accrued_per_unit": "150.05",
+   "date": "2026-09-02",
+   "id": "GR-0014",
+   "line": 1,
+   "po": "PO-6104",
+   "qty": 22
+  },
+  {
+   "accrued_per_unit": "129.71",
+   "date": "2026-09-03",
+   "id": "GR-0019",
+   "line": 0,
+   "po": "PO-6105",
+   "qty": 28
+  },
+  {
+   "accrued_per_unit": "255.63",
+   "date": "2026-09-04",
+   "id": "GR-0013",
+   "line": 0,
+   "po": "PO-6104",
+   "qty": 30
+  },
+  {
+   "accrued_per_unit": "333.51",
+   "date": "2026-09-08",
+   "id": "GR-0017",
    "line": 2,
+   "po": "PO-6104",
+   "qty": 28
+  },
+  {
+   "accrued_per_unit": "104.94",
+   "date": "2026-09-10",
+   "id": "GR-0022",
+   "line": 0,
    "po": "PO-6106",
    "qty": 14
   },
   {
-   "accrued_per_unit": "303.16",
-   "date": "2026-08-17",
-   "id": "GR-0027",
-   "line": 1,
-   "po": "PO-6107",
-   "qty": 19
-  },
-  {
-   "accrued_per_unit": "61.02",
-   "date": "2026-08-20",
-   "id": "GR-0006",
-   "line": 1,
-   "po": "PO-6102",
-   "qty": 30
-  },
-  {
-   "accrued_per_unit": "337.62",
-   "date": "2026-08-20",
-   "id": "GR-0011",
-   "line": 0,
-   "po": "PO-6104",
-   "qty": 19
-  },
-  {
-   "accrued_per_unit": "37.42",
-   "date": "2026-08-20",
-   "id": "GR-0015",
-   "line": 0,
-   "po": "PO-6105",
-   "qty": 20
-  },
-  {
-   "accrued_per_unit": "141.99",
-   "date": "2026-08-21",
-   "id": "GR-0021",
-   "line": 1,
-   "po": "PO-6106",
-   "qty": 45
-  },
-  {
-   "accrued_per_unit": "149.97",
-   "date": "2026-08-25",
-   "id": "GR-0002",
-   "line": 1,
-   "po": "PO-6101",
-   "qty": 24
-  },
-  {
-   "accrued_per_unit": "37.57",
-   "date": "2026-08-27",
-   "id": "GR-0014",
-   "line": 0,
-   "po": "PO-6105",
-   "qty": 9
-  },
-  {
-   "accrued_per_unit": "308.79",
-   "date": "2026-08-31",
-   "id": "GR-0026",
-   "line": 1,
-   "po": "PO-6107",
-   "qty": 9
-  },
-  {
-   "accrued_per_unit": "139.72",
-   "date": "2026-09-01",
-   "id": "GR-0024",
-   "line": 0,
-   "po": "PO-6107",
-   "qty": 27
-  },
-  {
-   "accrued_per_unit": "339.42",
-   "date": "2026-09-02",
-   "id": "GR-0008",
-   "line": 0,
-   "po": "PO-6103",
-   "qty": 25
-  },
-  {
-   "accrued_per_unit": "239.26",
-   "date": "2026-09-02",
-   "id": "GR-0018",
-   "line": 0,
-   "po": "PO-6106",
-   "qty": 30
-  },
-  {
-   "accrued_per_unit": "140.44",
-   "date": "2026-09-02",
-   "id": "GR-0020",
-   "line": 1,
-   "po": "PO-6106",
-   "qty": 22
-  },
-  {
-   "accrued_per_unit": "140.74",
-   "date": "2026-09-03",
-   "id": "GR-0025",
-   "line": 0,
-   "po": "PO-6107",
-   "qty": 28
-  },
-  {
-   "accrued_per_unit": "239.83",
-   "date": "2026-09-04",
-   "id": "GR-0019",
-   "line": 0,
-   "po": "PO-6106",
-   "qty": 30
-  },
-  {
-   "accrued_per_unit": "315.74",
-   "date": "2026-09-08",
-   "id": "GR-0023",
-   "line": 2,
-   "po": "PO-6106",
-   "qty": 28
-  },
-  {
-   "accrued_per_unit": "337.62",
+   "accrued_per_unit": "249.13",
    "date": "2026-09-11",
-   "id": "GR-0010",
-   "line": 0,
-   "po": "PO-6104",
-   "qty": 19
-  },
-  {
-   "accrued_per_unit": "197.17",
-   "date": "2026-09-11",
-   "id": "GR-0016",
-   "line": 1,
-   "po": "PO-6105",
-   "qty": 10
-  },
-  {
-   "accrued_per_unit": "311.18",
-   "date": "2026-09-14",
-   "id": "GR-0001",
-   "line": 0,
-   "po": "PO-6101",
-   "qty": 16
-  },
-  {
-   "accrued_per_unit": "61.02",
-   "date": "2026-09-16",
-   "id": "GR-0005",
-   "line": 1,
-   "po": "PO-6102",
-   "qty": 29
-  },
-  {
-   "accrued_per_unit": "161.89",
-   "date": "2026-09-17",
-   "id": "GR-0012",
-   "line": 1,
-   "po": "PO-6104",
-   "qty": 13
-  },
-  {
-   "accrued_per_unit": "149.97",
-   "date": "2026-09-22",
    "id": "GR-0003",
    "line": 1,
    "po": "PO-6101",
-   "qty": 24
+   "qty": 31
   },
   {
-   "accrued_per_unit": "59.48",
+   "accrued_per_unit": "209.27",
+   "date": "2026-09-11",
+   "id": "GR-0010",
+   "line": 1,
+   "po": "PO-6103",
+   "qty": 10
+  },
+  {
+   "accrued_per_unit": "104.52",
+   "date": "2026-09-11",
+   "id": "GR-0023",
+   "line": 0,
+   "po": "PO-6106",
+   "qty": 15
+  },
+  {
+   "accrued_per_unit": "122.86",
    "date": "2026-09-24",
-   "id": "GR-0013",
-   "line": 2,
-   "po": "PO-6104",
+   "id": "GR-0007",
+   "line": 1,
+   "po": "PO-6102",
    "qty": 23
   }
  ],

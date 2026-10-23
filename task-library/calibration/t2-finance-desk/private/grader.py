@@ -15,8 +15,8 @@ import finance  # noqa: E402
 import ledger  # noqa: E402
 
 TASK_ID = "t2-finance-desk"
-TASK_VERSION = "0.2.0"
-GRADER_VERSION = "1.0.0"
+TASK_VERSION = "0.3.0"
+GRADER_VERSION = "1.1.0"
 DAYS_PATH = os.path.join(HERE, "days.json")
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)
 CLOSING_FENCE = re.compile(r"```(?:json)?[ \t]*\r?\n((?:(?!```).)*?)\r?\n?```\s*$", re.S | re.I)
@@ -31,6 +31,17 @@ def load_days():
 
 
 DAYS = load_days()
+
+
+def known_plans(days):
+    """The build searched each day's payment plan; its best plan known is the top of the plan's scale."""
+    for day in days.values():
+        best = day.get("plan_best")
+        if best:
+            finance.KNOWN_BEST[best["signature"]] = (best["value"], best["slots"])
+
+
+known_plans(DAYS)
 
 
 def json_object(value):

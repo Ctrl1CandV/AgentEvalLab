@@ -1,9 +1,10 @@
-"""T2 finance desk (task t2-finance-desk 0.1.0): the books of Kestrel Freight B.V. for the September 2026 close, a
+"""T2 finance desk (task t2-finance-desk 0.3.0): the books of Kestrel Freight B.V. for the September 2026 close, a
 queue of requests, and MANUAL.md as code.
 
 An item is one close day: about 45 open receivables and payables in four currencies, purchase orders with accrued
-goods receipts, subscription contracts, bank lines and an inbox of vendor invoices, and a queue of ten requests:
-customer receipts, vendor invoices, a credit note, deferred revenue and the revaluation. The difficulty is in the
+goods receipts, subscription contracts, bank lines and an inbox of vendor invoices, and a queue of eleven requests:
+a two-week payment plan, customer receipts, vendor invoices, a credit note, deferred revenue and the revaluation.
+The payment plan is open-ended: it is placed on a scale between two named plans and the best plan known. The difficulty is in the
 data and the rules together: exchange rates by document date with weekend fallbacks, carrying rates and settlement
 rounding, an allocation order with an exact-match exception, early-payment discounts with their VAT, short-payment
 write-offs, bank conversion costs, duplicate invoice numbers, a three-way match with a percentage and an absolute
@@ -15,7 +16,9 @@ The oracle applies the manual to a state of the books; the grader runs it on the
 """
 import copy
 import datetime as dt
+import hashlib
 import json
+import math
 import random
 import re
 from decimal import ROUND_HALF_UP, Decimal
@@ -370,9 +373,10 @@ def revaluation(books, mistakes=()):
 def handle(books, request, mistakes=()):
     """The oracle for one request on a state: {entries, statuses, outcome}."""
     kind = request["kind"]
-    if kind == "payment-run":
-        chosen = (naive_run(books) if "pay-by-due-date" in mistakes else best_run(books))[1]
-        return {"entries": [], "payments": sorted(chosen), "statuses": {}, "outcome": "done"}
+    if kind == "payment-plan":
+        problem = PlanProblem(books)
+        slots = naive_plan(problem) if "pay-by-due-date" in mistakes else best_plan(problem)[1]
+        return {"entries": [], "plan": problem.schedule(slots), "statuses": {}, "outcome": "done"}
     if kind == "receipt":
         return {"entries": receipt(books, request["bank"], mistakes), "statuses": {}, "outcome": "done"}
     if kind == "credit-note":
@@ -390,8 +394,8 @@ def apply_result(books, request, result):
     ledger.apply(books, "begin", [request["id"]])
     for entry in result["entries"]:
         ledger.apply(books, "post", [entry])
-    for document in result.get("payments", []):
-        ledger.apply(books, "pay", [document])
+    if "plan" in result:
+        ledger.apply(books, "set-plan", [result["plan"]])
     for document, status in result["statuses"].items():
         ledger.apply(books, "set-status", [document, status])
     return books
@@ -399,7 +403,7 @@ def apply_result(books, request, result):
 
 def commands_of(request, result):
     return [["begin", request["id"]]] + [["post", entry] for entry in result["entries"]] + \
-        [["pay", document] for document in result.get("payments", [])] + \
+        ([["set-plan", result["plan"]]] if "plan" in result else []) + \
         [["set-status", document, status] for document, status in result["statuses"].items()]
 
 
@@ -454,12 +458,12 @@ def segments(commands, requests, books):
                 by_request[current].append(command)
         return by_request, start
     pointer = 0
-    payment_run = next((request["id"] for request in requests if request["kind"] == "payment-run"), None)
+    payment_plan = next((request["id"] for request in requests if request["kind"] == "payment-plan"), None)
     for position, command in enumerate(commands):
-        # Only the payment run pays, so its commands need no other mark.
-        if command[0] == "pay" and payment_run is not None:
-            start.setdefault(payment_run, position)
-            by_request.setdefault(payment_run, []).append(command)
+        # Only the payment plan sets a plan, so its commands need no other mark.
+        if command[0] == "set-plan" and payment_plan is not None:
+            start.setdefault(payment_plan, position)
+            by_request.setdefault(payment_plan, []).append(command)
             continue
         touched = touched_by(command)
         later = [index for index in range(pointer, len(requests)) if touched & owned(requests[index], books)]
@@ -480,7 +484,7 @@ def touched_by(command):
 
 
 def owned(request, books):
-    if request["kind"] == "payment-run":
+    if request["kind"] == "payment-plan":
         return set()
     if request["kind"] == "receipt":
         line = next(item for item in books["bank"] if item["id"] == request["bank"])
@@ -500,8 +504,8 @@ def check_names(requests):
     for request in requests:
         prefix = request["id"].lower()
         names.append(f"{prefix}-outcome")
-        if request["kind"] == "payment-run":
-            names += [f"{prefix}-run-{label}" for label, _ in RUN_RUNGS] + [f"{prefix}-clean"]
+        if request["kind"] == "payment-plan":
+            names += [f"{prefix}-plan-{label}" for label, _ in PLAN_RUNGS] + [f"{prefix}-clean"]
             continue
         if request["kind"] in ("receipt", "credit-note"):
             names.append(f"{prefix}-allocation")
@@ -524,21 +528,24 @@ def grade(base, requests, commands, reply):
                 ledger.apply(state, command[0], command[1:])
         mine = by_request.get(request["id"], [])
         begun = request["id"] in start
-        expected = handle(state, request)
         entries = [command[1] for command in mine if command[0] == "post"]
         statuses = {command[1]: command[2] for command in mine if command[0] == "set-status"}
         given = reply.get(request["id"]) if isinstance(reply, dict) else None
-        if request["kind"] == "payment-run":
-            paid = [command[1] for command in mine if command[0] == "pay"]
+        if request["kind"] == "payment-plan":
+            # The plan is the last one recorded, on the books as the request found them; a plan set while another
+            # request was under way breaks the request order and costs the request its clean check.
+            plans = [command for command in commands if command[0] == "set-plan"]
+            own = {id(command) for command in mine}
+            begun = begun or bool(plans)
             results[f"{prefix}-outcome"] = begun and isinstance(given, str) and given.strip().lower() == "done"
-            place = run_place(state, paid) if begun else D(0)
-            for label, threshold in RUN_RUNGS:
-                results[f"{prefix}-run-{label}"] = begun and place >= threshold
-            allowed = set(payable_items(state))
-            results[f"{prefix}-clean"] = begun and set(paid) <= allowed and len(paid) == len(set(paid)) and not entries and not statuses
+            place = plan_place(state, plans[-1][1]) if plans else D(0)
+            for label, threshold in PLAN_RUNGS:
+                results[f"{prefix}-plan-{label}"] = begun and place >= threshold
+            results[f"{prefix}-clean"] = begun and bool(plans) and all(id(command) in own for command in plans) and not entries and not statuses
             for command in mine:
                 ledger.apply(state, command[0], command[1:])
             continue
+        expected = handle(state, request)
         outcome_ok = begun and isinstance(given, str) and given.strip().lower() == expected["outcome"] and \
             (request["kind"] != "vendor" or statuses == expected["statuses"])
         results[f"{prefix}-outcome"] = outcome_ok
@@ -639,12 +646,15 @@ class Builder:
             while name in used:
                 name = self.name(country)
             used.add(name)
-            discounting = self.rng.random() < 0.5
+            discounting = self.rng.random() < 0.6
+            days, share = self.rng.choice([(7, "0.03"), (10, "0.02"), (14, "0.01")])
             self.books["partners"][f"V-{201 + index}"] = {"kind": "vendor", "name": name, "country": country, "currency": currency, "supply": supply,
                                                          "vat_id": f"{country}{self.rng.randrange(10 ** 8, 10 ** 9)}" if country in EU else None,
-                                                         "terms": "2/10 net 30" if discounting else "net 30",
-                                                         "discount_days": 10 if discounting else None,
-                                                         "discount_rate": "0.02" if discounting else None}
+                                                         "terms": f"{int(D(share) * 100)}/{days} net 30" if discounting else "net 30",
+                                                         "discount_days": days if discounting else None,
+                                                         "discount_rate": share if discounting else None,
+                                                         "late_rate": self.rng.choice(["0.0003", "0.0005", "0.0008", "0.0012"]),
+                                                         "late_fee": self.rng.choice(["0.00", "40.00", "75.00"])}
 
     def invoice(self, customer, date, lines=None, subscription=None):
         partner = self.books["partners"][customer]
@@ -749,21 +759,17 @@ class Builder:
         self.open_payables(vendors)
 
     def open_payables(self, vendors):
-        """Payables for the payment run: some inside their discount window, some overdue by a few days or many, in sizes
-        that differ, so that which ones the cash can cover decides the run's worth."""
+        """Payables for the payment plan: fresh ones inside their discount window or with nothing to gain, ones falling
+        due within the plan's two weeks, and overdue ones, in sizes that differ, so that when each is paid decides the
+        plan's worth."""
         rng = self.rng
         services = [key for key, vendor in sorted(vendors.items()) if vendor["supply"] == "services"]
-        # Each currency keeps room for the queue's own invoices, and the exact optimum enumerates each currency's subsets.
-        counts = {}
-        for item in payable_items(self.books).values():
-            counts[item["currency"]] = counts.get(item["currency"], 0) + 1
         for key, vendor in sorted(vendors.items()):
-            for profile in ("fresh", "fresh", "due-soon", "overdue", "late"):
-                if rng.random() < 0.25 or counts.get(vendor["currency"], 0) >= PAYMENT_MAX_PER_CURRENCY - 3:
+            for profile in ("fresh", "fresh", "due-soon", "due-soon", "overdue", "late"):
+                if rng.random() < 0.3:
                     continue
-                counts[vendor["currency"]] = counts.get(vendor["currency"], 0) + 1
                 issued = {"fresh": TODAY - dt.timedelta(days=rng.randrange(0, 9)),
-                          "due-soon": TODAY - dt.timedelta(days=rng.randrange(12, 26)),
+                          "due-soon": TODAY + dt.timedelta(days=rng.randrange(1, 12) - 30),
                           "overdue": TODAY - dt.timedelta(days=rng.randrange(33, 45)),
                           "late": TODAY - dt.timedelta(days=rng.randrange(50, 70))}[profile]
                 amount = D(rng.choice([rng.randrange(40000, 120000), rng.randrange(150000, 400000), rng.randrange(450000, 900000)])) / 100
@@ -771,7 +777,7 @@ class Builder:
                 if key in services or vendor["supply"] == "services":
                     self.vendor_invoice(key, issued, identifier, history=True, gross_target=amount, approver="Pieter de Wit")
                 else:
-                    # Goods without a purchase order are recorded as a service accrual, so the run has payables in every
+                    # Goods without a purchase order are recorded as a service accrual, so the plan has payables in every
                     # currency without disturbing the three-way match of the queue's own invoices.
                     self.service_payable(key, issued, identifier, amount)
 
@@ -843,8 +849,10 @@ class Builder:
         return identifier
 
 
-PAYMENT_CURRENCIES = ("EUR", "USD", "GBP", "CHF")
-PAYMENT_MAX_PER_CURRENCY = 11  # the exact optimum enumerates the subsets of each currency
+PLAN_DAYS = tuple(when.isoformat() for when in (TODAY + dt.timedelta(days=offset) for offset in range(12)) if when.weekday() < 5)
+PLAN_LATER = "2026-10-19"  # the first business day after the plan: every payable it does not schedule is paid then
+PLAN_RUNGS = (("25", D("0.25")), ("50", D("0.5")), ("65", D("0.65")), ("80", D("0.8")), ("90", D("0.9")), ("97", D("0.97")), ("100", D("1")))
+KNOWN_BEST = {}  # problem signature -> (value in cents, slots); the build stores the searched plans in days.json
 
 
 def record_of(books, key):
@@ -852,145 +860,345 @@ def record_of(books, key):
     return books["documents"].get(key) or books["inbox"].get(key)
 
 
-def payable_items(books):
-    """{document: item} of the open payables of today's run, the disputed ones left out."""
-    found = {}
-    for key, item in items(books).items():
-        record = record_of(books, key)
-        if item["account"] == "2000" and item["open"] > 0 and record is not None and not record.get("disputed"):
-            found[key] = item
-    return found
-
-
-def payment_terms(books, document):
-    """(discount in the document's currency if paid today, discount if paid in the next run)."""
-    record = record_of(books, document)
+def late_charge(books, record, when):
+    """The late charge of a payable paid on `when`, in its currency: the vendor's fixed fee once it is past due, plus its
+    daily rate on the gross amount for each calendar day after the due date (rounded half up)."""
     vendor = books["partners"][record["vendor"]]
-    if vendor.get("discount_days") is None:
-        return D(0), D(0)
-    window = day(record["date"]) + dt.timedelta(days=vendor["discount_days"])
-    discount = cents(D(record["gross"]) * D(vendor["discount_rate"]))
-    settings = books["payment_run"]
-    later = TODAY + dt.timedelta(days=settings["next_run_days"])
-    return (discount if TODAY <= window else D(0)), (discount if later <= window else D(0))
+    days = (day(when) - day(record["due"])).days
+    if days <= 0:
+        return D(0)
+    return D(vendor.get("late_fee") or "0") + cents(D(record["gross"]) * D(vendor.get("late_rate") or "0") * days)
 
 
-def penalty(books, document, when):
-    """The late penalty of a payable paid on `when`: the rate per day for every day after its due date."""
-    record = record_of(books, document)
-    settings = books["payment_run"]
-    days = (when - day(record["due"])).days
-    return cents(D(record["gross"]) * D(settings["penalty_rate"]) * days) if days > 0 else D(0)
+def plan_table(books):
+    """{document: (currency, due, {day: (cash used, worth in EUR)})} of the payables a plan may schedule. A payment's
+    worth is what paying on its day saves against paying on the day after the plan: the late charge avoided and the
+    discount gained, at today's rate."""
+    settings = books["payment_plan"]
+    table = {}
+    for key, facts in ledger.payables(books).items():
+        if facts["disputed"]:
+            continue
+        record = record_of(books, key)
+        today_rate = rate(books, facts["currency"], TODAY.isoformat())
+        later = late_charge(books, record, settings["later"]) - ledger.discount_on(books, record, settings["later"])
+        options = {}
+        for when in settings["days"]:
+            discount = ledger.discount_on(books, record, when)
+            options[when] = (D(facts["open"]) - discount, cents((later - late_charge(books, record, when) + discount) * today_rate))
+        table[key] = (facts["currency"], record["due"], options)
+    return table
 
 
-def benefit(books, document):
-    """What paying a payable today saves against paying it in the next run, in EUR at today's rate: the penalty avoided
-    plus the discount kept. The transfer fee falls due in either run, so it cancels."""
-    settings = books["payment_run"]
-    later = TODAY + dt.timedelta(days=settings["next_run_days"])
-    today_discount, later_discount = payment_terms(books, document)
-    saved = (penalty(books, document, later) - penalty(books, document, TODAY)) + (today_discount - later_discount)
-    return cents(saved * rate(books, items(books)[document]["currency"], TODAY.isoformat()))
+class PlanProblem:
+    """A payment plan in whole cents: per payable its currency and, per day of the plan, the cash it uses and its worth;
+    per currency the cash available by the end of each day (the opening cash and the inflows so far)."""
+
+    def __init__(self, books):
+        settings = books["payment_plan"]
+        self.days = list(settings["days"])
+        self.limit = settings["max_per_day"]
+        table = plan_table(books)
+        self.docs = sorted(table)
+        self.currencies = sorted({table[key][0] for key in self.docs})
+        self.currency = [self.currencies.index(table[key][0]) for key in self.docs]
+        self.due = [table[key][1] for key in self.docs]
+        self.cost = [[int(table[key][2][when][0] * 100) for when in self.days] for key in self.docs]
+        self.worth = [[int(table[key][2][when][1] * 100) for when in self.days] for key in self.docs]
+        self.available = []
+        for currency in self.currencies:
+            running, row = D(settings["opening"].get(currency, "0")), []
+            for when in self.days:
+                running += D(settings["inflows"].get(currency, {}).get(when, "0"))
+                row.append(int(running * 100))
+            self.available.append(row)
+
+    def signature(self):
+        rows = [self.days, self.limit, self.currencies, self.available, [list(row) for row in zip(self.docs, self.currency, self.cost, self.worth)]]
+        return hashlib.sha256(json.dumps(rows).encode()).hexdigest()
+
+    def slots_of(self, schedule):
+        """A schedule {document: day} as slots (day index, or -1), or None when it names a payable or day outside the plan."""
+        slots = [-1] * len(self.docs)
+        index = {key: position for position, key in enumerate(self.docs)}
+        for key, when in schedule.items():
+            if key not in index or when not in self.days:
+                return None
+            slots[index[key]] = self.days.index(when)
+        return slots
+
+    def schedule(self, slots):
+        return {self.docs[position]: self.days[slot] for position, slot in enumerate(slots) if slot >= 0}
 
 
-def payment_cost(books, document):
-    """The cash a payment uses, in the document's currency: the open amount less today's discount."""
-    return payable_items(books)[document]["open"] - payment_terms(books, document)[0]
+class PlanState:
+    """Slots with their spending per currency and day, their counts per day and their worth, for the searches."""
+
+    def __init__(self, problem, slots):
+        self.problem = problem
+        self.slot = list(slots)
+        self.spend = [[0] * len(problem.days) for _ in problem.currencies]
+        self.count = [0] * len(problem.days)
+        self.value = 0
+        for position, slot in enumerate(self.slot):
+            if slot >= 0:
+                self.add(position, slot)
+
+    def add(self, position, slot):
+        self.slot[position] = slot
+        self.spend[self.problem.currency[position]][slot] += self.problem.cost[position][slot]
+        self.count[slot] += 1
+        self.value += self.problem.worth[position][slot]
+
+    def remove(self, position):
+        slot = self.slot[position]
+        self.spend[self.problem.currency[position]][slot] -= self.problem.cost[position][slot]
+        self.count[slot] -= 1
+        self.value -= self.problem.worth[position][slot]
+        self.slot[position] = -1
+
+    def cash_holds(self, currency):
+        running, available = 0, self.problem.available[currency]
+        for slot, spent in enumerate(self.spend[currency]):
+            running += spent
+            if running > available[slot]:
+                return False
+        return True
+
+    def valid(self):
+        return all(count <= self.problem.limit for count in self.count) and all(self.cash_holds(currency) for currency in range(len(self.problem.currencies)))
+
+    def fits(self, position, slot):
+        """Whether the payable fits on the day, given the rest of the plan."""
+        if self.count[slot] >= self.problem.limit:
+            return False
+        self.add(position, slot)
+        holds = self.cash_holds(self.problem.currency[position])
+        self.remove(position)
+        return holds
 
 
-def payment_options(books):
-    """{currency: [(document, cash used, benefit)]} of the payables the run may pay."""
-    options = {}
-    for key, item in sorted(payable_items(books).items()):
-        if item["currency"] in PAYMENT_CURRENCIES:
-            options.setdefault(item["currency"], []).append((key, payment_cost(books, key), benefit(books, key)))
-    return options
+def naive_plan(problem):
+    """0 on the scale: the payables by due date, earliest first (ties by document), each on the earliest day the cash
+    and the daily limit allow."""
+    state = PlanState(problem, [-1] * len(problem.docs))
+    for position in sorted(range(len(problem.docs)), key=lambda index: (problem.due[index], problem.docs[index])):
+        for slot in range(len(problem.days)):
+            if state.fits(position, slot):
+                state.add(position, slot)
+                break
+    return state.slot
 
 
-def best_run(books):
-    """The most valuable set of payments the run allows. The cash is per currency and only the number of payments is
-    shared, so the exact optimum is the best subset per currency for each number of payments, combined over currencies."""
-    settings = books["payment_run"]
-    options = payment_options(books)
-    limit = settings["max_payments"]
-    per_currency = {}
-    for currency, rows in options.items():
-        assert len(rows) <= PAYMENT_MAX_PER_CURRENCY, (currency, len(rows))
-        cash = D(settings["cash"][currency])
-        best = {}
-        for mask in range(1 << len(rows)):
-            chosen = [rows[index] for index in range(len(rows)) if mask >> index & 1]
-            if len(chosen) > limit or sum((row[1] for row in chosen), D(0)) > cash:
-                continue
-            value = sum((row[2] for row in chosen), D(0))
-            if len(chosen) not in best or value > best[len(chosen)][0]:
-                best[len(chosen)] = (value, [row[0] for row in chosen])
-        per_currency[currency] = best
-    combined = {0: (D(0), [])}
-    for currency, best in sorted(per_currency.items()):
-        following = {}
-        for used, (value, documents) in combined.items():
-            for count, (gain, chosen) in best.items():
-                if used + count > limit:
+def greedy_plan(problem):
+    """0.5 on the scale: the payables by their best worth per unit of cash on any day, highest first (ties by document),
+    each on the day, of those the cash and the daily limit still allow, on which it is worth the most (ties: the
+    earliest), unless it is worth nothing there."""
+    def ratio(position):
+        return max(D(problem.worth[position][slot]) / problem.cost[position][slot] if problem.cost[position][slot] else D(0)
+                   for slot in range(len(problem.days)))
+    state = PlanState(problem, [-1] * len(problem.docs))
+    for position in sorted(range(len(problem.docs)), key=lambda index: (-ratio(index), problem.docs[index])):
+        open_days = [slot for slot in range(len(problem.days)) if state.fits(position, slot)]
+        if not open_days:
+            continue
+        slot = max(open_days, key=lambda day_index: (problem.worth[position][day_index], -day_index))
+        if problem.worth[position][slot] > 0:
+            state.add(position, slot)
+    return state.slot
+
+
+def improve(problem, slots):
+    """Local search: moves of one payable to another day (or out of the plan) and swaps of two payables' days, taking
+    any that raises the worth, until none does."""
+    state = PlanState(problem, slots)
+    count, improved = len(problem.docs), True
+    while improved:
+        improved = False
+        for position in range(count):
+            for slot in range(len(problem.days)):
+                old = state.slot[position]
+                if problem.worth[position][slot] <= (problem.worth[position][old] if old >= 0 else 0):
                     continue
-                total = value + gain
-                if used + count not in following or total > following[used + count][0]:
-                    following[used + count] = (total, documents + chosen)
-        combined = following
-    return max(combined.values(), key=lambda pair: pair[0])
+                if old >= 0:
+                    state.remove(position)
+                if state.fits(position, slot):
+                    state.add(position, slot)
+                    improved = True
+                    break
+                if old >= 0:
+                    state.add(position, old)
+        for first in range(count):
+            for second in range(first + 1, count):
+                a, b = state.slot[first], state.slot[second]
+                if a == b:
+                    continue
+                gain = (problem.worth[first][b] if b >= 0 else 0) + (problem.worth[second][a] if a >= 0 else 0) - \
+                    (problem.worth[first][a] if a >= 0 else 0) - (problem.worth[second][b] if b >= 0 else 0)
+                if gain <= 0:
+                    continue
+                for position in (first, second):
+                    if state.slot[position] >= 0:
+                        state.remove(position)
+                if b >= 0:
+                    state.add(first, b)
+                if a >= 0:
+                    state.add(second, a)
+                if state.valid():
+                    improved = True
+                    continue
+                for position in (first, second):
+                    if state.slot[position] >= 0:
+                        state.remove(position)
+                if a >= 0:
+                    state.add(first, a)
+                if b >= 0:
+                    state.add(second, b)
+    return state.slot
 
 
-def naive_run(books):
-    """0 on the scale: the payables by due date, earliest first (ties by document), while the cash and the count allow."""
-    settings = books["payment_run"]
-    limit, left = settings["max_payments"], {currency: D(amount) for currency, amount in settings["cash"].items()}
-    chosen = []
-    rows = [(record_of(books, key)["due"], key, item["currency"]) for key, item in payable_items(books).items() if item["currency"] in PAYMENT_CURRENCIES]
-    for _, key, currency in sorted(rows):
-        cost = payment_cost(books, key)
-        if len(chosen) < limit and cost <= left[currency]:
-            left[currency] -= cost
-            chosen.append(key)
-    return sum((benefit(books, key) for key in chosen), D(0)), chosen
+def anneal(problem, slots, rng, steps):
+    """Simulated annealing over the same moves and swaps; returns the best slots it met."""
+    state = PlanState(problem, slots)
+    best_value, best_slots = state.value, list(state.slot)
+    options = [[slot for slot in range(len(problem.days)) if problem.worth[position][slot] > 0] for position in range(len(problem.docs))]
+    movable = [position for position in range(len(problem.docs)) if options[position]]
+    if not movable:
+        return best_value, best_slots
+    scale = max(1, sum(max(problem.worth[position]) for position in movable) // len(movable))
+
+    def worth(position, slot):
+        return problem.worth[position][slot] if slot >= 0 else 0
+
+    for step in range(steps):
+        temperature = scale * 0.5 * (1 - step / steps) + 1
+        if rng.random() < 0.5:
+            position = rng.choice(movable)
+            old, new = state.slot[position], rng.choice(options[position] + [-1])
+            if new == old:
+                continue
+            delta = worth(position, new) - worth(position, old)
+            if delta < 0 and rng.random() >= math.exp(delta / temperature):
+                continue
+            if old >= 0:
+                state.remove(position)
+            if new >= 0:
+                if state.count[new] >= problem.limit:
+                    state.add(position, old) if old >= 0 else None
+                    continue
+                state.add(position, new)
+                if not state.cash_holds(problem.currency[position]):
+                    state.remove(position)
+                    if old >= 0:
+                        state.add(position, old)
+                    continue
+        else:
+            first, second = rng.sample(movable, 2)
+            a, b = state.slot[first], state.slot[second]
+            if a == b or (b >= 0 and b not in options[first]) or (a >= 0 and a not in options[second]):
+                continue
+            delta = worth(first, b) + worth(second, a) - worth(first, a) - worth(second, b)
+            if delta < 0 and rng.random() >= math.exp(delta / temperature):
+                continue
+            for position in (first, second):
+                if state.slot[position] >= 0:
+                    state.remove(position)
+            if b >= 0:
+                state.add(first, b)
+            if a >= 0:
+                state.add(second, a)
+            if not (state.cash_holds(problem.currency[first]) and state.cash_holds(problem.currency[second])):
+                for position in (first, second):
+                    if state.slot[position] >= 0:
+                        state.remove(position)
+                if a >= 0:
+                    state.add(first, a)
+                if b >= 0:
+                    state.add(second, b)
+                continue
+        if state.value > best_value:
+            best_value, best_slots = state.value, list(state.slot)
+    return best_value, best_slots
 
 
-def greedy_run(books):
-    """0.5 on the scale: the payables by benefit per unit of cash, highest first (ties by document), while the cash and
-    the count allow."""
-    settings = books["payment_run"]
-    limit, left = settings["max_payments"], {currency: D(amount) for currency, amount in settings["cash"].items()}
-    rows = []
-    for currency, options in payment_options(books).items():
-        for key, cost, gain in options:
-            rows.append((-(gain / cost if cost else D(0)), key, currency, cost, gain))
-    chosen = []
-    for _, key, currency, cost, gain in sorted(rows, key=lambda row: (row[0], row[1])):
-        if len(chosen) < limit and cost <= left[currency]:
-            left[currency] -= cost
-            chosen.append(key)
-    return sum((benefit(books, key) for key in chosen), D(0)), chosen
+def rebuild(problem, slots, rng, rounds):
+    """Large-neighbourhood search: take a few payables out of the plan, then put every unscheduled payable back, in a
+    random order, on its day of greatest worth that still fits; keep the result when it is worth no less."""
+    state = PlanState(problem, slots)
+    worthwhile = [position for position in range(len(problem.docs)) if max(problem.worth[position]) > 0]
+    best_value, best_slots = state.value, list(state.slot)
+    for _ in range(rounds):
+        before_value, before = state.value, list(state.slot)
+        scheduled = [position for position in worthwhile if state.slot[position] >= 0]
+        for position in rng.sample(scheduled, min(len(scheduled), rng.randrange(1, 6))):
+            state.remove(position)
+        waiting = [position for position in worthwhile if state.slot[position] < 0]
+        rng.shuffle(waiting)
+        for position in waiting:
+            fitting = [slot for slot in range(len(problem.days)) if problem.worth[position][slot] > 0 and state.fits(position, slot)]
+            if fitting:
+                state.add(position, max(fitting, key=lambda slot: (problem.worth[position][slot], rng.random())))
+        if state.value < before_value:
+            state = PlanState(problem, before)
+        elif state.value > best_value:
+            best_value, best_slots = state.value, list(state.slot)
+    return best_value, best_slots
 
 
-RUN_RUNGS = (("50", D("0.5")), ("80", D("0.8")), ("95", D("0.95")), ("100", D("1")))
+def search_best(problem, steps=400000, restarts=8, rounds=6000):
+    """The best plan known: annealing from the greedy plan, the naive plan's worthwhile part and an empty plan, each
+    polished by local search; deterministic for a problem."""
+    rng = random.Random(problem.signature())
+    naive = [slot if slot >= 0 and problem.worth[position][slot] > 0 else -1 for position, slot in enumerate(naive_plan(problem))]
+    starts = [greedy_plan(problem), naive, [-1] * len(problem.docs)]
+    best = (PlanState(problem, starts[0]).value, starts[0])
+    for index in range(restarts):
+        value, slots = anneal(problem, starts[index % len(starts)], rng, steps)
+        if rounds:
+            value, slots = rebuild(problem, slots, rng, rounds)
+        slots = improve(problem, slots)
+        value = PlanState(problem, slots).value
+        if value > best[0]:
+            best = (value, slots)
+    return best
 
 
-def run_place(books, paid):
-    """A run's place between the naive plan (0), the greedy plan (0.5) and the best known (1)."""
-    value = sum((benefit(books, key) for key in paid), D(0))
-    naive_value = naive_run(books)[0]
-    greedy_value = greedy_run(books)[0]
-    best_value = best_run(books)[0]
+def best_plan(problem):
+    """(value in cents, slots) of the best plan known for the problem."""
+    key = problem.signature()
+    if key not in KNOWN_BEST:
+        KNOWN_BEST[key] = search_best(problem)
+    return KNOWN_BEST[key]
+
+
+def plan_value(problem, slots):
+    """A valid plan's worth in cents, or None for a plan the problem does not allow."""
+    if slots is None:
+        return None
+    state = PlanState(problem, slots)
+    return state.value if state.valid() else None
+
+
+def plan_place(books, schedule):
+    """A plan's place between the naive plan (0), the greedy plan (0.5) and the best known (1)."""
+    problem = PlanProblem(books)
+    value = plan_value(problem, problem.slots_of(schedule) if isinstance(schedule, dict) else None)
+    if value is None:
+        return D(0)
+    naive_value = PlanState(problem, naive_plan(problem)).value
+    greedy_value = PlanState(problem, greedy_plan(problem)).value
+    best_value = max(best_plan(problem)[0], greedy_value)
     if value >= greedy_value:
         if greedy_value >= best_value or value >= best_value:
             return D(1)
-        return D("0.5") + D("0.5") * (value - greedy_value) / (best_value - greedy_value)
+        return D("0.5") + D("0.5") * D(value - greedy_value) / D(best_value - greedy_value)
     if naive_value >= greedy_value:
         return D(0)
-    return max(D(0), D("0.5") * (value - naive_value) / (greedy_value - naive_value))
+    return max(D(0), D("0.5") * D(value - naive_value) / D(greedy_value - naive_value))
 
 
 COLLEAGUES = {"receipt": "Anna de Boer, receivables", "credit-note": "Anna de Boer, receivables", "vendor": "Jonas Smit, payables",
-              "deferred": "Lotte Mulder, controller", "revaluation": "Lotte Mulder, controller", "payment-run": "Jonas Smit, payables"}
+              "deferred": "Lotte Mulder, controller", "revaluation": "Lotte Mulder, controller", "payment-plan": "Jonas Smit, payables"}
 
 
 class Unsuitable(Exception):
@@ -1181,52 +1389,57 @@ def queue(builder):
     requests[-1]["number"] = re.search(r"CN-\d+", requests[-1]["text"]).group(0)
     add("deferred", "Please run September's deferred revenue recognition.", trap="deferred")
     add("revaluation", "Please run the September revaluation.", trap="revaluation")
-    # The payment run comes last, so the invoices processed earlier in the queue are among its payables, some of them
-    # still inside their discount window. The oracle's state for it is the books as the earlier requests leave them.
-    state = copy.deepcopy(books)
-    for request in requests:
-        result = handle(state, request)
-        apply_result(state, request, result)
-    payables = payable_items(state)
-    counts = {}
-    for key, item in payables.items():
-        counts[item["currency"]] = counts.get(item["currency"], 0) + 1
-    if any(count > PAYMENT_MAX_PER_CURRENCY for count in counts.values()) or len(payables) < 8:
+    # The payment plan comes first, on the books as they stand: one payable is disputed and must not be paid (the
+    # largest, so that leaving it out matters), and the cash and the daily limit are drawn so that the named plans are
+    # clearly apart.
+    found = ledger.payables(books)
+    if len(found) < 20:
         raise Unsuitable("payables")
-    # One payable is disputed and must not be paid; it is the largest, so skipping it matters.
-    largest = max(payables, key=lambda key: payables[key]["eur"])
+    largest = max(found, key=lambda key: D(found[key]["gross"]) * rate(books, found[key]["currency"], TODAY.isoformat()))
     record_of(books, largest)["disputed"] = True
-    record_of(state, largest)["disputed"] = True
-    books["payment_run"] = run_settings(rng, state)
-    state["payment_run"] = books["payment_run"]
-    add("payment-run", "Please make today's payment run: pay the payables that are worth paying today, as the manual says.", trap="payment-run")
+    books["payment_plan"] = plan_settings(rng, books)
+    requests.insert(0, {"id": "R0", "kind": "payment-plan", "trap": "payment-plan",
+                        "text": f"Please plan the vendor payments for the next two weeks, {PLAN_DAYS[0]} to {PLAN_DAYS[-1]}, as the manual says."})
+    for index, request in enumerate(requests):
+        request["id"] = f"R{index + 1}"
     return requests
 
 
-def run_settings(rng, state):
-    """Cash and limits under which choosing well pays: the cash of each currency covers part of its payables, the run
-    holds fewer payments than the cash alone would allow, and the three named plans are clearly apart. Raises
+def plan_settings(rng, books):
+    """Opening cash, inflows and a daily limit under which planning well pays: the cash of each currency covers part of
+    its worthwhile payments, arriving over the two weeks, and the naive, greedy and best plans are clearly apart. Raises
     Unsuitable when no such setting is found for these payables."""
-    payables = payable_items(state)
-    totals = {}
-    for key, item in payables.items():
-        if item["currency"] in PAYMENT_CURRENCIES:
-            totals[item["currency"]] = totals.get(item["currency"], D(0)) + item["open"]
-    for _ in range(80):
-        cash = {currency: text(cents(total * D(rng.randrange(20, 55)) / 100)) for currency, total in sorted(totals.items())}
-        for currency in PAYMENT_CURRENCIES:
-            cash.setdefault(currency, "0.00")
-        settings = {"cash": cash, "max_payments": rng.choice([3, 4, 4, 5]), "penalty_rate": "0.0015", "next_run_days": 7,
-                    "fee_domestic": "1.50", "fee_foreign": "12.00"}
-        state["payment_run"] = settings
-        naive_value, greedy_value, best_value = naive_run(state)[0], greedy_run(state)[0], best_run(state)[0]
-        if best_value > 0 and greedy_value <= best_value * D("0.93") and naive_value <= greedy_value * D("0.9"):
+    books["payment_plan"] = {"days": list(PLAN_DAYS), "later": PLAN_LATER, "opening": {}, "inflows": {}, "max_per_day": 3, "schedule": {}}
+    needed = {}
+    for key, (currency, _, options) in plan_table(books).items():
+        best_day = max(options, key=lambda when: options[when][1])
+        if options[best_day][1] > 0:
+            needed[currency] = needed.get(currency, D(0)) + options[best_day][0]
+    for _ in range(60):
+        opening, inflows = {}, {}
+        for currency in ("CHF", "EUR", "GBP", "USD"):
+            total = needed.get(currency, D(0))
+            opening[currency] = text(cents(total * D(rng.randrange(10, 26)) / 100))
+            inflows[currency] = {when: text(cents(total * D(rng.randrange(8, 22)) / 100)) for when in sorted(rng.sample(PLAN_DAYS[1:], rng.randrange(2, 4)))}
+        settings = {"days": list(PLAN_DAYS), "later": PLAN_LATER, "opening": opening, "inflows": inflows, "max_per_day": rng.choice([2, 3, 3]), "schedule": {}}
+        books["payment_plan"] = settings
+        problem = PlanProblem(books)
+        naive_value = PlanState(problem, naive_plan(problem)).value
+        greedy_slots = greedy_plan(problem)
+        greedy_value = PlanState(problem, greedy_slots).value
+        if greedy_value <= 0 or naive_value > greedy_value * 0.85:
+            continue
+        # The greedy plan polished by single moves and swaps should still fall short of the best plan known, so that
+        # the top of the scale takes a search over the whole plan.
+        polished = PlanState(problem, improve(problem, greedy_slots)).value
+        best_value = search_best(problem, steps=60000, restarts=3, rounds=0)[0]
+        if greedy_value <= best_value * 0.9 and polished <= best_value * 0.97:
             return settings
-    raise Unsuitable("payment run settings")
+    raise Unsuitable("payment plan settings")
 
 
 MISTAKES = {
-    "pay-by-due-date": "pays the payables by due date instead of by what paying them is worth",
+    "pay-by-due-date": "plans the payments by due date, as early as the cash allows, instead of by what paying them is worth",
     "oldest-first": "ignores the named invoices and the exact match, and pays the oldest first",
     "no-discount": "grants no early-payment discount",
     "no-writeoff": "leaves short payments within the limit open",
@@ -1245,7 +1458,7 @@ def mistake_effects(books, requests):
         for request, (state, result) in zip(requests, results):
             wrong = handle(state, request, (mistake,))
             if footprint(wrong["entries"]) != footprint(result["entries"]) or wrong["outcome"] != result["outcome"] \
-                    or sorted(wrong.get("payments", [])) != sorted(result.get("payments", [])):
+                    or wrong.get("plan") != result.get("plan"):
                 effects[mistake].append(request["id"])
     return effects
 

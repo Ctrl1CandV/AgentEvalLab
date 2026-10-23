@@ -1,13 +1,13 @@
 # Rubric: T2 Finance Desk
 
-Each item is one close day for Kestrel Freight B.V. The books are about 45 open receivables and payables in EUR, USD, GBP and CHF, with purchase orders and accrued goods receipts, subscription contracts, bank lines and an inbox of vendor invoices. The queue holds ten requests from colleagues, handled in order in one workspace with `ledger.py` under `MANUAL.md`:
+Each item is one close day for Kestrel Freight B.V. The books are about 45 open receivables and payables in EUR, USD, GBP and CHF, with purchase orders and accrued goods receipts, subscription contracts, bank lines and an inbox of vendor invoices. The queue holds eleven requests from colleagues, handled in order in one workspace with `ledger.py` under `MANUAL.md`:
 
+- a payment plan for the next two weeks (first);
 - four customer receipts;
 - three vendor invoices;
 - a credit note;
 - September's deferred revenue;
-- the September revaluation;
-- today's payment run.
+- the September revaluation.
 
 The manual defines every rule exactly, with its rounding. The tool checks only that entries are well formed: balanced, known accounts, and open-item lines that clear no more than is open.
 
@@ -23,7 +23,7 @@ Planted in every day:
 - a credit note larger than the invoice's open amount;
 - contracts that start, end, span or miss September;
 - a revaluation that must count the September receipts but not the October ones, nor the vendor invoices posted into October;
-- a payment run whose cash and count bind: the three named plans are far apart, one payable is disputed, and the payables inside their discount window are among the ones the queue itself posted.
+- a payment plan over ten business days for 31–37 payables, with per-vendor discounts, late interest and fixed late fees, opening cash and inflows per currency, and a daily limit across currencies. Overdue payables lose worth every day, while discount and soon-due payables keep it until a deadline. The largest payable is disputed. The named plans are far apart, and single moves and swaps from the greedy plan fall short of the best.
 
 ## Checks
 
@@ -34,7 +34,7 @@ Each request is graded against the oracle (`private/finance.py`) run on the stat
 - **`rN-allocation`** (critical, receipts and credit notes): which documents were cleared and by how much in their currencies, and which prepayment or suspense documents received money.
 - **`rN-amounts`** (critical): every EUR amount the request's entries post, by account, partner and document (where the manual names them) and period. Lines may be split or combined, since only the net per key counts.
 - **`rN-clean`** (critical): nothing posted on keys the request does not touch, and no status set on another invoice. It counts only once the request's own allocation or amounts pass.
-- **`rN-run-50`, `-80`, `-95`, `-100`** (critical, the payment run): the run's worth is placed between the three plans the manual names, paying by due date (0), paying by worth per unit of cash (0.5) and the most valuable set the run allows (1), and reaches that share of the scale. The run's own `rN-clean` passes when every payment is an open, undisputed payable and the request posts nothing else.
+- **`r1-plan-25`, `-50`, `-65`, `-80`, `-90`, `-97`, `-100`** (critical, the payment plan, each weighing 2): the worth of the last plan recorded is placed on a scale. The scale runs from paying by due date on the earliest day that fits (0), through paying by worth per unit of cash on the day of greatest worth (0.5), to the best plan known (1), which equals the exact optimum on all four days. Each check passes when the plan reaches that share of the scale. The plan's `r1-clean` passes when a plan was recorded, every `set-plan` came while R1 was the request under way, and R1 posted nothing.
 - **`answer-format`** (non-critical): the reply ends with one JSON object. A recovered reply loses 20%; a missing reply already fails every outcome.
 
-A request that was never begun passes nothing. The score is the fraction of critical checks passed, less the format deduction.
+A request that was never begun passes nothing. The score is the weighted fraction of critical checks passed (the plan's rungs weigh 2, every other check 1), less the format deduction.

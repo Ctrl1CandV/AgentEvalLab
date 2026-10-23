@@ -90,3 +90,82 @@ Run `runs/suites/20261023-035140-dev-a7e7`: fn1 and fn2 on deepseek-flash, qwen3
 mimo's fn2 was unscored because it left a symbolic link in the workspace, which artifact collection refuses (ARTIFACT_LINK_DENIED).
 
 **Why the run did not separate them.** Both models enumerated every allowed set of payments with `itertools.combinations` and paid the best. With about 25 payables and at most 3–5 payments, there are only tens of thousands of sets. An optimum that the oracle can compute by enumeration, a model can compute the same way. An open-ended item separates models only when exhaustive search is out of reach, as in E2 `routes`, E4 `compress` and S7's large stores.
+
+## Version 0.3.0 (2026-10-23): a two-week payment plan
+
+**Why.** The 0.2.0 run was solved by enumeration (above). The user chose to turn it into a multi-day payment plan, where exhaustive search is out of reach.
+
+**The plan** (manual section 7) is now the first request, R1, so its state is the starting books and does not depend on the rest of the queue.
+
+- It schedules the open payables over the ten business days 2026-10-05 to 2026-10-16. Whatever it leaves out is paid on 2026-10-19.
+- Each currency has opening cash and two or three inflows on later days. Its balance may not fall below zero at the end of any day. The bank makes at most two or three payments a day, across currencies.
+- Each vendor has its own terms:
+  - an early-payment discount: 3% within 7 days, 2% within 10 or 1% within 14, or none;
+  - a daily late interest of 0.03% to 0.12%;
+  - a fixed late fee of 0, 40 or 75 in its currency.
+- A payment's worth is the late charge avoided plus the discount gained against paying on the 19th, at today's rate.
+
+So the payables differ in kind:
+
+- overdue ones lose worth every day;
+- ones falling due inside the two weeks keep full worth up to their due date;
+- discount ones keep it up to the end of their window;
+- fresh ones without a discount are worth nothing.
+
+The cash arrives over time. A good plan therefore pays the decaying payables early and puts deadline payables as late as their deadline allows, and the per-day limit links the currencies. With 31–37 payables and 11 choices each, enumeration is out of reach.
+
+**Tool.**
+
+- `ledger.py payables` lists the open payables.
+- `ledger.py plan` shows the plan's terms, the recorded payments with the cash each uses, and every currency's balance at the end of each day.
+- `ledger.py set-plan FILE` records a plan. It refuses a disputed, settled or unknown payable, a day outside the plan, a day over the limit, and cash below zero.
+
+`pay` and `cash` are gone; the plan posts nothing.
+
+**The scale**, named in the manual:
+
+- **0**: by due date, each on the earliest day the cash and the limit allow;
+- **0.5**: by best worth per unit of cash, each on its day of greatest worth still open (the earliest of equals);
+- **1**: the best plan known.
+
+The best plan known comes from a deterministic search: simulated annealing over moves and swaps, a large-neighbourhood rebuild and a local polish (`finance.search_best`). It is computed at build time and stored in `days.json`, so the grader does not search. On all four days it equals the exact optimum, checked offline with a MILP (scipy/HiGHS, not a dependency of the package).
+
+**Scoring.**
+
+- Rungs at 25, 50, 65, 80, 90, 97 and 100% of the scale. Each weighs 2 in `scoring.weights`, so the plan is about a quarter of a day's score: 14 of 51.
+- The plan graded is the last one recorded. If it was recorded while another request was under way, it still counts, but `r1-clean` fails.
+
+**Generation.** Opening cash is 10–25% of each currency's worthwhile payments, and inflows are 8–22% each. The draw is repeated until three conditions hold:
+
+- the due-date plan is at most 85% of the greedy plan;
+- the greedy plan is at most 90% of a quick search's best;
+- the greedy plan polished by single moves and swaps is at most 97% of it.
+
+So the top of the scale takes a search over the whole plan.
+
+Where plain strategies land, measured offline:
+
+| Day | Payables (worth something) | Limit | Due date | Greedy | Greedy + hill-climb | Greedy on latest day + hill-climb | Short annealing | Best |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| fn1 | 37 (30) | 2 | 502.08 | 676.06 (0.5) | 741.58 (0.77) | 767.98 (0.88) | 750.86 (0.81) | 797.64 |
+| fn2 | 37 (33) | 2 | 535.66 | 911.23 (0.5) | 1009.01 (0.70) | 1130.72 (0.94) | 1155.59 (0.99) | 1158.72 |
+| fn3 | 31 (31) | 3 | 618.13 | 926.51 (0.5) | 1015.22 (0.68) | 1109.64 (0.87) | 1171.53 (1.0) | 1171.53 |
+| fn4 | 36 (32) | 2 | 234.10 | 361.12 (0.5) | 391.28 (0.83) | 391.44 (0.83) | 405.17 (0.98) | 406.59 |
+
+With every other request right, the weighted day score at each point on the scale is:
+
+- the due-date plan: 72.5%;
+- the greedy plan: 80.4%;
+- a hill-climbed plan: about 84–92%;
+- a real search: 96–100%.
+
+**Self-calibration**: PASS, with 17 hand-worked examples and 71 scenarios. The plan's seven examples are on five payables worked out by hand. They check:
+
+- the worth table: a 20.00 discount up to its window, 2.40 / 1.60 / 0.80 of decaying interest, and a 40.50 fee and interest kept up to the due date;
+- the cash used;
+- the due-date and greedy plans;
+- the best plan of 60.50, which pays the deadline payable on its due date once the inflow is in, while greedy pays it on the first day and so blocks the discount;
+- the scale;
+- the tool's refusals and balances.
+
+New scenarios: a plan by due date loses only R1's rungs; the greedy plan stops at rung 50; a plan recorded during the next request loses only `r1-clean`.

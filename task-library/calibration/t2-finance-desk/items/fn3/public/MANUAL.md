@@ -114,23 +114,17 @@ Each line names the partner and document; a zero difference gets no line. Post o
 
 **6.2 Deferred revenue.** Subscription contracts (`ledger.py contracts`) were invoiced in advance and their net amount in EUR credited to 2400. A request may ask for September's recognition. For each contract, September's share is its net EUR amount × the days of its service period that fall in September ÷ all days of its service period, rounded half up; for a contract whose service period ends in September, the share is what remains on 2400 for it. Post one entry dated 2026-09-30: per contract, debit 2400 (partner and contract) and credit 4000.
 
-## 7. The payment run
+## 7. The payment plan
 
-`ledger.py cash` shows today's payment run: the cash available for it in each currency, the greatest number of payments it may hold, the late-penalty rate, the days until the next run, and the transfer fees. `ledger.py pay DOC` pays one open payable in the run; the tool computes every amount, and refuses a document that is disputed or settled, a payment beyond the cash of its currency, and one beyond the run's limit on the number of payments.
+A request may ask you to plan the vendor payments of the next two weeks. The bank pays on the plan's days, the ten business days from today to 2026-10-16; every open payable the plan does not schedule is paid on **2026-10-19**, the first business day after it. `ledger.py plan` shows the plan's days, the cash each currency opens with today, the money the treasury expects in on later days (inflows, available from the start of their day), and the most payments the bank makes in one day, across all currencies. `ledger.py payables` lists the open payables, and `ledger.py show-partner V-...` each vendor's terms.
 
-A request may ask you to make the run. Every payable you do not pay today is paid in the next run, in the days the run states. For each payable, paying today rather than in the next run:
+**7.1 A payment.** A payable paid on a day uses, in its own currency, its open amount less the early-payment discount, which the vendor grants when the day is at most its `discount_days` after the invoice date: its `discount_rate` × the gross amount, rounded half up. A payable paid after its due date costs a late charge, in its currency: the vendor's `late_fee`, once, plus its `late_rate` × the gross amount × the calendar days from the due date to the day of payment, the latter rounded half up.
 
-- **avoids the late penalty of those days.** A payable paid after its due date carries a penalty of the run's rate per day, on its gross amount, for every day between its due date and the payment, rounded half up in its currency;
-- **keeps the early-payment discount**, when today is within the vendor's window (`discount_days` after the invoice date) and the next run would be past it. The discount is the run's rate on the gross amount, rounded half up in its currency;
-- costs the same transfer fee in either run.
+**7.2 A valid plan** schedules open payables that are not disputed, each at most once, each on one of the plan's days; holds no more payments on a day than the bank's limit; and keeps the cash of every currency at or above zero at the end of every day: its opening cash plus its inflows of that day and earlier, less its payments of that day and earlier. Currencies are not exchanged. `ledger.py set-plan FILE` records a plan, such as `{"VINV-123": "2026-10-07", "VINV-140": "2026-10-09"}`, and refuses an invalid one; a later `set-plan` replaces the plan recorded before.
 
-So a payment's **worth** is the penalty it avoids plus the discount it keeps, converted at today's rate and rounded half up; and the cash it uses, in its own currency, is the open amount less today's discount.
+**7.3 Worth.** A payment's worth is what paying the payable on its day saves against paying it on 2026-10-19: the late charge avoided plus the discount gained, in its currency, converted at today's rate and rounded half up. A plan's worth is the sum of its payments' worth. Record the valid plan with the greatest worth you can find.
 
-Choose the payments whose total worth is the greatest the run allows. For the record, three plans are worth naming:
-
-- paying the payables by due date, earliest first, while the cash and the count allow;
-- paying them by worth per unit of cash, highest first, while the cash and the count allow;
-- the most valuable set of payments the run allows.
+Your plan is placed on a scale between two simple plans and the most valuable plan known: paying the payables by due date, earliest first, each on the earliest day the cash and the limit allow (0); paying them by worth per unit of cash, highest first, each on the day of greatest worth that is still open to it (0.5); and the best plan known (1).
 
 ## 8. Requests
 

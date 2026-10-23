@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "t2-finance-desk",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "familyId": "t2-service-desk",
   "capability": "tool",
   "usage": "development",
@@ -29,39 +29,39 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "4e205302e1cf78b3849ed5a5f589a5aff5f8f5b94ed47ae57e9a21f8dc48e03c"
+        "sha256": "a665294b778e21d3eb885a7460f053fc0a92c4e7007d1de8c47d8858e8dc8cbe"
       },
       {
         "path": "rubric.md",
-        "sha256": "9f0a3fcf0d829ef8849addecb4e9cfec3d24ca8d510e38a47d39103bfcfabac6"
+        "sha256": "fe0156d1bf973334473db44ec1e2b85ffd5209503bd600ede22135c589f841c4"
       },
       {
         "path": "private/MANUAL.md",
-        "sha256": "3a82928b3eb95fef9eb4539225b642bc34d085e11da091873fffb70cbf18baf0"
+        "sha256": "317f100800d72738f5ba2d98133dc3de2086457355f94dcac748877a6db0237e"
       },
       {
         "path": "private/build_package.py",
-        "sha256": "7f834a4d5cefa311bbcbc92c105f642b7cfb48a3c8784c9c55becefec3805abc"
+        "sha256": "fac0d3c5f85617a5d3d8fba7d2406fa8a67ba79adfbe22c7a6d725db5eb5164a"
       },
       {
         "path": "private/calibrate.py",
-        "sha256": "b904e218a72057451eccf056514d062f71d280b56b1889699ccd7418848fff72"
+        "sha256": "526c997550506fc646468166ed851fd56b6ca53fb0b20b291785cc38c850c808"
       },
       {
         "path": "private/days.json",
-        "sha256": "17bec4e7b19915a36acb648b52526d30350663133950043e85bab63d10a85a2b"
+        "sha256": "d8f1e1f818cee04df905f46fcec99973d1369834546183a5815d2ccc3c514969"
       },
       {
         "path": "private/finance.py",
-        "sha256": "655105513cf2d5aa19d5f469fc1740dbb2a26a24d9e198472c200a8869e739e9"
+        "sha256": "36db02918f38fb0d36a8c7f604e6b15e36ab316c0e298e06800c40e119d97de8"
       },
       {
         "path": "private/grader.py",
-        "sha256": "087c0effdc15f536e9e60ce61779ffb0ad056d98d9f7ca4787a9876a8f2cae16"
+        "sha256": "919ed398cd85b82bc0d80e099cb0e21dd918a751108c7988fdf30faa08883aff"
       },
       {
         "path": "private/ledger.py",
-        "sha256": "8446fc3cb5650f3e15dc3c9b15f30a9fd2678dcd397ff522c877bda184cd1766"
+        "sha256": "b574bd3df34e75e77ab2933b20287227c8c58e68379806efab971485a5ed3f0c"
       }
     ]
   },
@@ -69,31 +69,71 @@
     {
       "id": "REQ-FN1-R1-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r1-outcome"
       ]
     },
     {
-      "id": "REQ-FN1-R1-ALLOCATION",
+      "id": "REQ-FN1-R1-PLAN-25",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
-        "fn1-r1-allocation"
+        "fn1-r1-plan-25"
       ]
     },
     {
-      "id": "REQ-FN1-R1-AMOUNTS",
+      "id": "REQ-FN1-R1-PLAN-50",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
-        "fn1-r1-amounts"
+        "fn1-r1-plan-50"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R1-PLAN-65",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn1-r1-plan-65"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R1-PLAN-80",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn1-r1-plan-80"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R1-PLAN-90",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn1-r1-plan-90"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R1-PLAN-97",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn1-r1-plan-97"
+      ]
+    },
+    {
+      "id": "REQ-FN1-R1-PLAN-100",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn1-r1-plan-100"
       ]
     },
     {
       "id": "REQ-FN1-R1-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r1-clean"
       ]
@@ -101,7 +141,7 @@
     {
       "id": "REQ-FN1-R2-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r2-outcome"
       ]
@@ -109,7 +149,7 @@
     {
       "id": "REQ-FN1-R2-ALLOCATION",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r2-allocation"
       ]
@@ -117,7 +157,7 @@
     {
       "id": "REQ-FN1-R2-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r2-amounts"
       ]
@@ -125,7 +165,7 @@
     {
       "id": "REQ-FN1-R2-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r2-clean"
       ]
@@ -133,7 +173,7 @@
     {
       "id": "REQ-FN1-R3-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r3-outcome"
       ]
@@ -141,7 +181,7 @@
     {
       "id": "REQ-FN1-R3-ALLOCATION",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r3-allocation"
       ]
@@ -149,7 +189,7 @@
     {
       "id": "REQ-FN1-R3-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r3-amounts"
       ]
@@ -157,7 +197,7 @@
     {
       "id": "REQ-FN1-R3-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r3-clean"
       ]
@@ -165,7 +205,7 @@
     {
       "id": "REQ-FN1-R4-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r4-outcome"
       ]
@@ -173,7 +213,7 @@
     {
       "id": "REQ-FN1-R4-ALLOCATION",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r4-allocation"
       ]
@@ -181,7 +221,7 @@
     {
       "id": "REQ-FN1-R4-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r4-amounts"
       ]
@@ -189,7 +229,7 @@
     {
       "id": "REQ-FN1-R4-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r4-clean"
       ]
@@ -197,15 +237,23 @@
     {
       "id": "REQ-FN1-R5-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r5-outcome"
       ]
     },
     {
+      "id": "REQ-FN1-R5-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn1-r5-allocation"
+      ]
+    },
+    {
       "id": "REQ-FN1-R5-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r5-amounts"
       ]
@@ -213,7 +261,7 @@
     {
       "id": "REQ-FN1-R5-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r5-clean"
       ]
@@ -221,7 +269,7 @@
     {
       "id": "REQ-FN1-R6-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r6-outcome"
       ]
@@ -229,7 +277,7 @@
     {
       "id": "REQ-FN1-R6-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r6-amounts"
       ]
@@ -237,7 +285,7 @@
     {
       "id": "REQ-FN1-R6-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r6-clean"
       ]
@@ -245,7 +293,7 @@
     {
       "id": "REQ-FN1-R7-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r7-outcome"
       ]
@@ -253,7 +301,7 @@
     {
       "id": "REQ-FN1-R7-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r7-amounts"
       ]
@@ -261,7 +309,7 @@
     {
       "id": "REQ-FN1-R7-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r7-clean"
       ]
@@ -269,23 +317,15 @@
     {
       "id": "REQ-FN1-R8-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r8-outcome"
       ]
     },
     {
-      "id": "REQ-FN1-R8-ALLOCATION",
-      "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
-      "checkIds": [
-        "fn1-r8-allocation"
-      ]
-    },
-    {
       "id": "REQ-FN1-R8-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r8-amounts"
       ]
@@ -293,7 +333,7 @@
     {
       "id": "REQ-FN1-R8-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r8-clean"
       ]
@@ -301,15 +341,23 @@
     {
       "id": "REQ-FN1-R9-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r9-outcome"
       ]
     },
     {
+      "id": "REQ-FN1-R9-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn1-r9-allocation"
+      ]
+    },
+    {
       "id": "REQ-FN1-R9-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r9-amounts"
       ]
@@ -317,7 +365,7 @@
     {
       "id": "REQ-FN1-R9-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r9-clean"
       ]
@@ -325,7 +373,7 @@
     {
       "id": "REQ-FN1-R10-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r10-outcome"
       ]
@@ -333,7 +381,7 @@
     {
       "id": "REQ-FN1-R10-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r10-amounts"
       ]
@@ -341,7 +389,7 @@
     {
       "id": "REQ-FN1-R10-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r10-clean"
       ]
@@ -349,47 +397,23 @@
     {
       "id": "REQ-FN1-R11-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r11-outcome"
       ]
     },
     {
-      "id": "REQ-FN1-R11-RUN-50",
+      "id": "REQ-FN1-R11-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
-        "fn1-r11-run-50"
-      ]
-    },
-    {
-      "id": "REQ-FN1-R11-RUN-80",
-      "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
-      "checkIds": [
-        "fn1-r11-run-80"
-      ]
-    },
-    {
-      "id": "REQ-FN1-R11-RUN-95",
-      "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
-      "checkIds": [
-        "fn1-r11-run-95"
-      ]
-    },
-    {
-      "id": "REQ-FN1-R11-RUN-100",
-      "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
-      "checkIds": [
-        "fn1-r11-run-100"
+        "fn1-r11-amounts"
       ]
     },
     {
       "id": "REQ-FN1-R11-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn1-r11-clean"
       ]
@@ -397,31 +421,71 @@
     {
       "id": "REQ-FN2-R1-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r1-outcome"
       ]
     },
     {
-      "id": "REQ-FN2-R1-ALLOCATION",
+      "id": "REQ-FN2-R1-PLAN-25",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
-        "fn2-r1-allocation"
+        "fn2-r1-plan-25"
       ]
     },
     {
-      "id": "REQ-FN2-R1-AMOUNTS",
+      "id": "REQ-FN2-R1-PLAN-50",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
-        "fn2-r1-amounts"
+        "fn2-r1-plan-50"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R1-PLAN-65",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn2-r1-plan-65"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R1-PLAN-80",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn2-r1-plan-80"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R1-PLAN-90",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn2-r1-plan-90"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R1-PLAN-97",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn2-r1-plan-97"
+      ]
+    },
+    {
+      "id": "REQ-FN2-R1-PLAN-100",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn2-r1-plan-100"
       ]
     },
     {
       "id": "REQ-FN2-R1-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r1-clean"
       ]
@@ -429,7 +493,7 @@
     {
       "id": "REQ-FN2-R2-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r2-outcome"
       ]
@@ -437,7 +501,7 @@
     {
       "id": "REQ-FN2-R2-ALLOCATION",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r2-allocation"
       ]
@@ -445,7 +509,7 @@
     {
       "id": "REQ-FN2-R2-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r2-amounts"
       ]
@@ -453,7 +517,7 @@
     {
       "id": "REQ-FN2-R2-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r2-clean"
       ]
@@ -461,7 +525,7 @@
     {
       "id": "REQ-FN2-R3-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r3-outcome"
       ]
@@ -469,7 +533,7 @@
     {
       "id": "REQ-FN2-R3-ALLOCATION",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r3-allocation"
       ]
@@ -477,7 +541,7 @@
     {
       "id": "REQ-FN2-R3-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r3-amounts"
       ]
@@ -485,7 +549,7 @@
     {
       "id": "REQ-FN2-R3-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r3-clean"
       ]
@@ -493,7 +557,7 @@
     {
       "id": "REQ-FN2-R4-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r4-outcome"
       ]
@@ -501,7 +565,7 @@
     {
       "id": "REQ-FN2-R4-ALLOCATION",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r4-allocation"
       ]
@@ -509,7 +573,7 @@
     {
       "id": "REQ-FN2-R4-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r4-amounts"
       ]
@@ -517,7 +581,7 @@
     {
       "id": "REQ-FN2-R4-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r4-clean"
       ]
@@ -525,15 +589,23 @@
     {
       "id": "REQ-FN2-R5-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r5-outcome"
       ]
     },
     {
+      "id": "REQ-FN2-R5-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn2-r5-allocation"
+      ]
+    },
+    {
       "id": "REQ-FN2-R5-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r5-amounts"
       ]
@@ -541,7 +613,7 @@
     {
       "id": "REQ-FN2-R5-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r5-clean"
       ]
@@ -549,7 +621,7 @@
     {
       "id": "REQ-FN2-R6-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r6-outcome"
       ]
@@ -557,7 +629,7 @@
     {
       "id": "REQ-FN2-R6-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r6-amounts"
       ]
@@ -565,7 +637,7 @@
     {
       "id": "REQ-FN2-R6-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r6-clean"
       ]
@@ -573,7 +645,7 @@
     {
       "id": "REQ-FN2-R7-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r7-outcome"
       ]
@@ -581,7 +653,7 @@
     {
       "id": "REQ-FN2-R7-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r7-amounts"
       ]
@@ -589,7 +661,7 @@
     {
       "id": "REQ-FN2-R7-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r7-clean"
       ]
@@ -597,23 +669,15 @@
     {
       "id": "REQ-FN2-R8-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r8-outcome"
       ]
     },
     {
-      "id": "REQ-FN2-R8-ALLOCATION",
-      "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
-      "checkIds": [
-        "fn2-r8-allocation"
-      ]
-    },
-    {
       "id": "REQ-FN2-R8-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r8-amounts"
       ]
@@ -621,7 +685,7 @@
     {
       "id": "REQ-FN2-R8-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r8-clean"
       ]
@@ -629,15 +693,23 @@
     {
       "id": "REQ-FN2-R9-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r9-outcome"
       ]
     },
     {
+      "id": "REQ-FN2-R9-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn2-r9-allocation"
+      ]
+    },
+    {
       "id": "REQ-FN2-R9-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r9-amounts"
       ]
@@ -645,7 +717,7 @@
     {
       "id": "REQ-FN2-R9-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r9-clean"
       ]
@@ -653,7 +725,7 @@
     {
       "id": "REQ-FN2-R10-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r10-outcome"
       ]
@@ -661,7 +733,7 @@
     {
       "id": "REQ-FN2-R10-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r10-amounts"
       ]
@@ -669,7 +741,7 @@
     {
       "id": "REQ-FN2-R10-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r10-clean"
       ]
@@ -677,47 +749,23 @@
     {
       "id": "REQ-FN2-R11-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r11-outcome"
       ]
     },
     {
-      "id": "REQ-FN2-R11-RUN-50",
+      "id": "REQ-FN2-R11-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
-        "fn2-r11-run-50"
-      ]
-    },
-    {
-      "id": "REQ-FN2-R11-RUN-80",
-      "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
-      "checkIds": [
-        "fn2-r11-run-80"
-      ]
-    },
-    {
-      "id": "REQ-FN2-R11-RUN-95",
-      "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
-      "checkIds": [
-        "fn2-r11-run-95"
-      ]
-    },
-    {
-      "id": "REQ-FN2-R11-RUN-100",
-      "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
-      "checkIds": [
-        "fn2-r11-run-100"
+        "fn2-r11-amounts"
       ]
     },
     {
       "id": "REQ-FN2-R11-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn2-r11-clean"
       ]
@@ -725,31 +773,71 @@
     {
       "id": "REQ-FN3-R1-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r1-outcome"
       ]
     },
     {
-      "id": "REQ-FN3-R1-ALLOCATION",
+      "id": "REQ-FN3-R1-PLAN-25",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
-        "fn3-r1-allocation"
+        "fn3-r1-plan-25"
       ]
     },
     {
-      "id": "REQ-FN3-R1-AMOUNTS",
+      "id": "REQ-FN3-R1-PLAN-50",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
-        "fn3-r1-amounts"
+        "fn3-r1-plan-50"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R1-PLAN-65",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn3-r1-plan-65"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R1-PLAN-80",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn3-r1-plan-80"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R1-PLAN-90",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn3-r1-plan-90"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R1-PLAN-97",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn3-r1-plan-97"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R1-PLAN-100",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn3-r1-plan-100"
       ]
     },
     {
       "id": "REQ-FN3-R1-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r1-clean"
       ]
@@ -757,7 +845,7 @@
     {
       "id": "REQ-FN3-R2-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r2-outcome"
       ]
@@ -765,7 +853,7 @@
     {
       "id": "REQ-FN3-R2-ALLOCATION",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r2-allocation"
       ]
@@ -773,7 +861,7 @@
     {
       "id": "REQ-FN3-R2-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r2-amounts"
       ]
@@ -781,7 +869,7 @@
     {
       "id": "REQ-FN3-R2-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r2-clean"
       ]
@@ -789,7 +877,7 @@
     {
       "id": "REQ-FN3-R3-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r3-outcome"
       ]
@@ -797,7 +885,7 @@
     {
       "id": "REQ-FN3-R3-ALLOCATION",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r3-allocation"
       ]
@@ -805,7 +893,7 @@
     {
       "id": "REQ-FN3-R3-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r3-amounts"
       ]
@@ -813,7 +901,7 @@
     {
       "id": "REQ-FN3-R3-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r3-clean"
       ]
@@ -821,7 +909,7 @@
     {
       "id": "REQ-FN3-R4-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r4-outcome"
       ]
@@ -829,7 +917,7 @@
     {
       "id": "REQ-FN3-R4-ALLOCATION",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r4-allocation"
       ]
@@ -837,7 +925,7 @@
     {
       "id": "REQ-FN3-R4-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r4-amounts"
       ]
@@ -845,7 +933,7 @@
     {
       "id": "REQ-FN3-R4-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r4-clean"
       ]
@@ -853,15 +941,23 @@
     {
       "id": "REQ-FN3-R5-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r5-outcome"
       ]
     },
     {
+      "id": "REQ-FN3-R5-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn3-r5-allocation"
+      ]
+    },
+    {
       "id": "REQ-FN3-R5-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r5-amounts"
       ]
@@ -869,7 +965,7 @@
     {
       "id": "REQ-FN3-R5-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r5-clean"
       ]
@@ -877,7 +973,7 @@
     {
       "id": "REQ-FN3-R6-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r6-outcome"
       ]
@@ -885,7 +981,7 @@
     {
       "id": "REQ-FN3-R6-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r6-amounts"
       ]
@@ -893,7 +989,7 @@
     {
       "id": "REQ-FN3-R6-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r6-clean"
       ]
@@ -901,23 +997,15 @@
     {
       "id": "REQ-FN3-R7-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r7-outcome"
       ]
     },
     {
-      "id": "REQ-FN3-R7-ALLOCATION",
-      "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
-      "checkIds": [
-        "fn3-r7-allocation"
-      ]
-    },
-    {
       "id": "REQ-FN3-R7-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r7-amounts"
       ]
@@ -925,7 +1013,7 @@
     {
       "id": "REQ-FN3-R7-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r7-clean"
       ]
@@ -933,7 +1021,7 @@
     {
       "id": "REQ-FN3-R8-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r8-outcome"
       ]
@@ -941,7 +1029,7 @@
     {
       "id": "REQ-FN3-R8-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r8-amounts"
       ]
@@ -949,7 +1037,7 @@
     {
       "id": "REQ-FN3-R8-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r8-clean"
       ]
@@ -957,15 +1045,23 @@
     {
       "id": "REQ-FN3-R9-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r9-outcome"
       ]
     },
     {
+      "id": "REQ-FN3-R9-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn3-r9-allocation"
+      ]
+    },
+    {
       "id": "REQ-FN3-R9-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r9-amounts"
       ]
@@ -973,7 +1069,7 @@
     {
       "id": "REQ-FN3-R9-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r9-clean"
       ]
@@ -981,79 +1077,119 @@
     {
       "id": "REQ-FN3-R10-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r10-outcome"
       ]
     },
     {
-      "id": "REQ-FN3-R10-RUN-50",
+      "id": "REQ-FN3-R10-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
-        "fn3-r10-run-50"
-      ]
-    },
-    {
-      "id": "REQ-FN3-R10-RUN-80",
-      "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
-      "checkIds": [
-        "fn3-r10-run-80"
-      ]
-    },
-    {
-      "id": "REQ-FN3-R10-RUN-95",
-      "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
-      "checkIds": [
-        "fn3-r10-run-95"
-      ]
-    },
-    {
-      "id": "REQ-FN3-R10-RUN-100",
-      "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
-      "checkIds": [
-        "fn3-r10-run-100"
+        "fn3-r10-amounts"
       ]
     },
     {
       "id": "REQ-FN3-R10-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn3-r10-clean"
       ]
     },
     {
+      "id": "REQ-FN3-R11-OUTCOME",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn3-r11-outcome"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R11-AMOUNTS",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn3-r11-amounts"
+      ]
+    },
+    {
+      "id": "REQ-FN3-R11-CLEAN",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn3-r11-clean"
+      ]
+    },
+    {
       "id": "REQ-FN4-R1-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r1-outcome"
       ]
     },
     {
-      "id": "REQ-FN4-R1-ALLOCATION",
+      "id": "REQ-FN4-R1-PLAN-25",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
-        "fn4-r1-allocation"
+        "fn4-r1-plan-25"
       ]
     },
     {
-      "id": "REQ-FN4-R1-AMOUNTS",
+      "id": "REQ-FN4-R1-PLAN-50",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
-        "fn4-r1-amounts"
+        "fn4-r1-plan-50"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R1-PLAN-65",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn4-r1-plan-65"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R1-PLAN-80",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn4-r1-plan-80"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R1-PLAN-90",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn4-r1-plan-90"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R1-PLAN-97",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn4-r1-plan-97"
+      ]
+    },
+    {
+      "id": "REQ-FN4-R1-PLAN-100",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn4-r1-plan-100"
       ]
     },
     {
       "id": "REQ-FN4-R1-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r1-clean"
       ]
@@ -1061,7 +1197,7 @@
     {
       "id": "REQ-FN4-R2-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r2-outcome"
       ]
@@ -1069,7 +1205,7 @@
     {
       "id": "REQ-FN4-R2-ALLOCATION",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r2-allocation"
       ]
@@ -1077,7 +1213,7 @@
     {
       "id": "REQ-FN4-R2-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r2-amounts"
       ]
@@ -1085,7 +1221,7 @@
     {
       "id": "REQ-FN4-R2-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r2-clean"
       ]
@@ -1093,7 +1229,7 @@
     {
       "id": "REQ-FN4-R3-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r3-outcome"
       ]
@@ -1101,7 +1237,7 @@
     {
       "id": "REQ-FN4-R3-ALLOCATION",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r3-allocation"
       ]
@@ -1109,7 +1245,7 @@
     {
       "id": "REQ-FN4-R3-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r3-amounts"
       ]
@@ -1117,7 +1253,7 @@
     {
       "id": "REQ-FN4-R3-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r3-clean"
       ]
@@ -1125,7 +1261,7 @@
     {
       "id": "REQ-FN4-R4-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r4-outcome"
       ]
@@ -1133,7 +1269,7 @@
     {
       "id": "REQ-FN4-R4-ALLOCATION",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r4-allocation"
       ]
@@ -1141,7 +1277,7 @@
     {
       "id": "REQ-FN4-R4-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r4-amounts"
       ]
@@ -1149,7 +1285,7 @@
     {
       "id": "REQ-FN4-R4-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r4-clean"
       ]
@@ -1157,15 +1293,23 @@
     {
       "id": "REQ-FN4-R5-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r5-outcome"
       ]
     },
     {
+      "id": "REQ-FN4-R5-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn4-r5-allocation"
+      ]
+    },
+    {
       "id": "REQ-FN4-R5-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r5-amounts"
       ]
@@ -1173,7 +1317,7 @@
     {
       "id": "REQ-FN4-R5-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r5-clean"
       ]
@@ -1181,7 +1325,7 @@
     {
       "id": "REQ-FN4-R6-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r6-outcome"
       ]
@@ -1189,7 +1333,7 @@
     {
       "id": "REQ-FN4-R6-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r6-amounts"
       ]
@@ -1197,7 +1341,7 @@
     {
       "id": "REQ-FN4-R6-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r6-clean"
       ]
@@ -1205,7 +1349,7 @@
     {
       "id": "REQ-FN4-R7-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r7-outcome"
       ]
@@ -1213,7 +1357,7 @@
     {
       "id": "REQ-FN4-R7-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r7-amounts"
       ]
@@ -1221,7 +1365,7 @@
     {
       "id": "REQ-FN4-R7-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r7-clean"
       ]
@@ -1229,23 +1373,15 @@
     {
       "id": "REQ-FN4-R8-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r8-outcome"
       ]
     },
     {
-      "id": "REQ-FN4-R8-ALLOCATION",
-      "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
-      "checkIds": [
-        "fn4-r8-allocation"
-      ]
-    },
-    {
       "id": "REQ-FN4-R8-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r8-amounts"
       ]
@@ -1253,7 +1389,7 @@
     {
       "id": "REQ-FN4-R8-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r8-clean"
       ]
@@ -1261,15 +1397,23 @@
     {
       "id": "REQ-FN4-R9-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r9-outcome"
       ]
     },
     {
+      "id": "REQ-FN4-R9-ALLOCATION",
+      "critical": true,
+      "introducedAt": "t2-finance-desk 0.3.0",
+      "checkIds": [
+        "fn4-r9-allocation"
+      ]
+    },
+    {
       "id": "REQ-FN4-R9-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r9-amounts"
       ]
@@ -1277,7 +1421,7 @@
     {
       "id": "REQ-FN4-R9-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r9-clean"
       ]
@@ -1285,7 +1429,7 @@
     {
       "id": "REQ-FN4-R10-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r10-outcome"
       ]
@@ -1293,7 +1437,7 @@
     {
       "id": "REQ-FN4-R10-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r10-amounts"
       ]
@@ -1301,7 +1445,7 @@
     {
       "id": "REQ-FN4-R10-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r10-clean"
       ]
@@ -1309,47 +1453,23 @@
     {
       "id": "REQ-FN4-R11-OUTCOME",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r11-outcome"
       ]
     },
     {
-      "id": "REQ-FN4-R11-RUN-50",
+      "id": "REQ-FN4-R11-AMOUNTS",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
-        "fn4-r11-run-50"
-      ]
-    },
-    {
-      "id": "REQ-FN4-R11-RUN-80",
-      "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
-      "checkIds": [
-        "fn4-r11-run-80"
-      ]
-    },
-    {
-      "id": "REQ-FN4-R11-RUN-95",
-      "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
-      "checkIds": [
-        "fn4-r11-run-95"
-      ]
-    },
-    {
-      "id": "REQ-FN4-R11-RUN-100",
-      "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
-      "checkIds": [
-        "fn4-r11-run-100"
+        "fn4-r11-amounts"
       ]
     },
     {
       "id": "REQ-FN4-R11-CLEAN",
       "critical": true,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "fn4-r11-clean"
       ]
@@ -1357,7 +1477,7 @@
     {
       "id": "REQ-FORMAT",
       "critical": false,
-      "introducedAt": "t2-finance-desk 0.2.0",
+      "introducedAt": "t2-finance-desk 0.3.0",
       "checkIds": [
         "answer-format"
       ]
@@ -1365,7 +1485,37 @@
   ],
   "scoring": {
     "formatCheckId": "answer-format",
-    "formatPenalty": 0.2
+    "formatPenalty": 0.2,
+    "weights": {
+      "fn1-r1-plan-25": 2,
+      "fn1-r1-plan-50": 2,
+      "fn1-r1-plan-65": 2,
+      "fn1-r1-plan-80": 2,
+      "fn1-r1-plan-90": 2,
+      "fn1-r1-plan-97": 2,
+      "fn1-r1-plan-100": 2,
+      "fn2-r1-plan-25": 2,
+      "fn2-r1-plan-50": 2,
+      "fn2-r1-plan-65": 2,
+      "fn2-r1-plan-80": 2,
+      "fn2-r1-plan-90": 2,
+      "fn2-r1-plan-97": 2,
+      "fn2-r1-plan-100": 2,
+      "fn3-r1-plan-25": 2,
+      "fn3-r1-plan-50": 2,
+      "fn3-r1-plan-65": 2,
+      "fn3-r1-plan-80": 2,
+      "fn3-r1-plan-90": 2,
+      "fn3-r1-plan-97": 2,
+      "fn3-r1-plan-100": 2,
+      "fn4-r1-plan-25": 2,
+      "fn4-r1-plan-50": 2,
+      "fn4-r1-plan-65": 2,
+      "fn4-r1-plan-80": 2,
+      "fn4-r1-plan-90": 2,
+      "fn4-r1-plan-97": 2,
+      "fn4-r1-plan-100": 2
+    }
   },
   "items": [
     {
@@ -1374,11 +1524,11 @@
       "files": [
         {
           "path": "items/fn1/prompt.md",
-          "sha256": "ac481f0a72185a39c80bc2050370fae03bbd461441cdf06411cf77b3898c699e"
+          "sha256": "45f5f64e3316254be0e4c3070285af20f8844d05a0ae40d95dfeb016188b7d6f"
         },
         {
           "path": "items/fn1/public/MANUAL.md",
-          "sha256": "3a82928b3eb95fef9eb4539225b642bc34d085e11da091873fffb70cbf18baf0"
+          "sha256": "317f100800d72738f5ba2d98133dc3de2086457355f94dcac748877a6db0237e"
         },
         {
           "path": "items/fn1/public/data/audit.log",
@@ -1386,17 +1536,22 @@
         },
         {
           "path": "items/fn1/public/data/books.json",
-          "sha256": "0a6c6d7995e27e162282aec1381197d3bcb971059fc8262a6e2e1f08401158b8"
+          "sha256": "d05f161266d9ae8cb8e4b23a59468817fb778cc0ed25c77b2ccc880eff9e2c0d"
         },
         {
           "path": "items/fn1/public/ledger.py",
-          "sha256": "8446fc3cb5650f3e15dc3c9b15f30a9fd2678dcd397ff522c877bda184cd1766"
+          "sha256": "b574bd3df34e75e77ab2933b20287227c8c58e68379806efab971485a5ed3f0c"
         }
       ],
       "activeRequirementIds": [
         "REQ-FN1-R1-OUTCOME",
-        "REQ-FN1-R1-ALLOCATION",
-        "REQ-FN1-R1-AMOUNTS",
+        "REQ-FN1-R1-PLAN-25",
+        "REQ-FN1-R1-PLAN-50",
+        "REQ-FN1-R1-PLAN-65",
+        "REQ-FN1-R1-PLAN-80",
+        "REQ-FN1-R1-PLAN-90",
+        "REQ-FN1-R1-PLAN-97",
+        "REQ-FN1-R1-PLAN-100",
         "REQ-FN1-R1-CLEAN",
         "REQ-FN1-R2-OUTCOME",
         "REQ-FN1-R2-ALLOCATION",
@@ -1411,6 +1566,7 @@
         "REQ-FN1-R4-AMOUNTS",
         "REQ-FN1-R4-CLEAN",
         "REQ-FN1-R5-OUTCOME",
+        "REQ-FN1-R5-ALLOCATION",
         "REQ-FN1-R5-AMOUNTS",
         "REQ-FN1-R5-CLEAN",
         "REQ-FN1-R6-OUTCOME",
@@ -1420,20 +1576,17 @@
         "REQ-FN1-R7-AMOUNTS",
         "REQ-FN1-R7-CLEAN",
         "REQ-FN1-R8-OUTCOME",
-        "REQ-FN1-R8-ALLOCATION",
         "REQ-FN1-R8-AMOUNTS",
         "REQ-FN1-R8-CLEAN",
         "REQ-FN1-R9-OUTCOME",
+        "REQ-FN1-R9-ALLOCATION",
         "REQ-FN1-R9-AMOUNTS",
         "REQ-FN1-R9-CLEAN",
         "REQ-FN1-R10-OUTCOME",
         "REQ-FN1-R10-AMOUNTS",
         "REQ-FN1-R10-CLEAN",
         "REQ-FN1-R11-OUTCOME",
-        "REQ-FN1-R11-RUN-50",
-        "REQ-FN1-R11-RUN-80",
-        "REQ-FN1-R11-RUN-95",
-        "REQ-FN1-R11-RUN-100",
+        "REQ-FN1-R11-AMOUNTS",
         "REQ-FN1-R11-CLEAN",
         "REQ-FORMAT"
       ]
@@ -1444,11 +1597,11 @@
       "files": [
         {
           "path": "items/fn2/prompt.md",
-          "sha256": "9dd1dc025d28f393713519a7e91bb28132c8a14d685a657cb9431072de551a92"
+          "sha256": "d2dad87e58ddde11e26dae657b6f31be7a4335ab0bfafe6d32f95a9d637d7c5b"
         },
         {
           "path": "items/fn2/public/MANUAL.md",
-          "sha256": "3a82928b3eb95fef9eb4539225b642bc34d085e11da091873fffb70cbf18baf0"
+          "sha256": "317f100800d72738f5ba2d98133dc3de2086457355f94dcac748877a6db0237e"
         },
         {
           "path": "items/fn2/public/data/audit.log",
@@ -1456,17 +1609,22 @@
         },
         {
           "path": "items/fn2/public/data/books.json",
-          "sha256": "ba6492b719bfd2e2737d0b1f96fcbba6dc6457b8613fcb5df3c400ef513a684a"
+          "sha256": "916dc676c39ee6a0059d6a249e2498aecf673428acb3918e534a1509a5357ae7"
         },
         {
           "path": "items/fn2/public/ledger.py",
-          "sha256": "8446fc3cb5650f3e15dc3c9b15f30a9fd2678dcd397ff522c877bda184cd1766"
+          "sha256": "b574bd3df34e75e77ab2933b20287227c8c58e68379806efab971485a5ed3f0c"
         }
       ],
       "activeRequirementIds": [
         "REQ-FN2-R1-OUTCOME",
-        "REQ-FN2-R1-ALLOCATION",
-        "REQ-FN2-R1-AMOUNTS",
+        "REQ-FN2-R1-PLAN-25",
+        "REQ-FN2-R1-PLAN-50",
+        "REQ-FN2-R1-PLAN-65",
+        "REQ-FN2-R1-PLAN-80",
+        "REQ-FN2-R1-PLAN-90",
+        "REQ-FN2-R1-PLAN-97",
+        "REQ-FN2-R1-PLAN-100",
         "REQ-FN2-R1-CLEAN",
         "REQ-FN2-R2-OUTCOME",
         "REQ-FN2-R2-ALLOCATION",
@@ -1481,6 +1639,7 @@
         "REQ-FN2-R4-AMOUNTS",
         "REQ-FN2-R4-CLEAN",
         "REQ-FN2-R5-OUTCOME",
+        "REQ-FN2-R5-ALLOCATION",
         "REQ-FN2-R5-AMOUNTS",
         "REQ-FN2-R5-CLEAN",
         "REQ-FN2-R6-OUTCOME",
@@ -1490,20 +1649,17 @@
         "REQ-FN2-R7-AMOUNTS",
         "REQ-FN2-R7-CLEAN",
         "REQ-FN2-R8-OUTCOME",
-        "REQ-FN2-R8-ALLOCATION",
         "REQ-FN2-R8-AMOUNTS",
         "REQ-FN2-R8-CLEAN",
         "REQ-FN2-R9-OUTCOME",
+        "REQ-FN2-R9-ALLOCATION",
         "REQ-FN2-R9-AMOUNTS",
         "REQ-FN2-R9-CLEAN",
         "REQ-FN2-R10-OUTCOME",
         "REQ-FN2-R10-AMOUNTS",
         "REQ-FN2-R10-CLEAN",
         "REQ-FN2-R11-OUTCOME",
-        "REQ-FN2-R11-RUN-50",
-        "REQ-FN2-R11-RUN-80",
-        "REQ-FN2-R11-RUN-95",
-        "REQ-FN2-R11-RUN-100",
+        "REQ-FN2-R11-AMOUNTS",
         "REQ-FN2-R11-CLEAN",
         "REQ-FORMAT"
       ]
@@ -1514,11 +1670,11 @@
       "files": [
         {
           "path": "items/fn3/prompt.md",
-          "sha256": "f4e6ed3c2c34d2725b80b50f58c672278df160b75cd20ca30e3920022fca9460"
+          "sha256": "7b4f33e2ba5d395cb9386046a89019bc5530eac380d9a014b2b205f661b31c80"
         },
         {
           "path": "items/fn3/public/MANUAL.md",
-          "sha256": "3a82928b3eb95fef9eb4539225b642bc34d085e11da091873fffb70cbf18baf0"
+          "sha256": "317f100800d72738f5ba2d98133dc3de2086457355f94dcac748877a6db0237e"
         },
         {
           "path": "items/fn3/public/data/audit.log",
@@ -1526,17 +1682,22 @@
         },
         {
           "path": "items/fn3/public/data/books.json",
-          "sha256": "bbbd5904892cd8cf21f50a7a0fac26323bb9a170e6f142ff954e59e517fbbe93"
+          "sha256": "af612ceb32edc53682a3fa61dda5a27b01f2a27eab337bce25fa181749d7bd6f"
         },
         {
           "path": "items/fn3/public/ledger.py",
-          "sha256": "8446fc3cb5650f3e15dc3c9b15f30a9fd2678dcd397ff522c877bda184cd1766"
+          "sha256": "b574bd3df34e75e77ab2933b20287227c8c58e68379806efab971485a5ed3f0c"
         }
       ],
       "activeRequirementIds": [
         "REQ-FN3-R1-OUTCOME",
-        "REQ-FN3-R1-ALLOCATION",
-        "REQ-FN3-R1-AMOUNTS",
+        "REQ-FN3-R1-PLAN-25",
+        "REQ-FN3-R1-PLAN-50",
+        "REQ-FN3-R1-PLAN-65",
+        "REQ-FN3-R1-PLAN-80",
+        "REQ-FN3-R1-PLAN-90",
+        "REQ-FN3-R1-PLAN-97",
+        "REQ-FN3-R1-PLAN-100",
         "REQ-FN3-R1-CLEAN",
         "REQ-FN3-R2-OUTCOME",
         "REQ-FN3-R2-ALLOCATION",
@@ -1551,27 +1712,28 @@
         "REQ-FN3-R4-AMOUNTS",
         "REQ-FN3-R4-CLEAN",
         "REQ-FN3-R5-OUTCOME",
+        "REQ-FN3-R5-ALLOCATION",
         "REQ-FN3-R5-AMOUNTS",
         "REQ-FN3-R5-CLEAN",
         "REQ-FN3-R6-OUTCOME",
         "REQ-FN3-R6-AMOUNTS",
         "REQ-FN3-R6-CLEAN",
         "REQ-FN3-R7-OUTCOME",
-        "REQ-FN3-R7-ALLOCATION",
         "REQ-FN3-R7-AMOUNTS",
         "REQ-FN3-R7-CLEAN",
         "REQ-FN3-R8-OUTCOME",
         "REQ-FN3-R8-AMOUNTS",
         "REQ-FN3-R8-CLEAN",
         "REQ-FN3-R9-OUTCOME",
+        "REQ-FN3-R9-ALLOCATION",
         "REQ-FN3-R9-AMOUNTS",
         "REQ-FN3-R9-CLEAN",
         "REQ-FN3-R10-OUTCOME",
-        "REQ-FN3-R10-RUN-50",
-        "REQ-FN3-R10-RUN-80",
-        "REQ-FN3-R10-RUN-95",
-        "REQ-FN3-R10-RUN-100",
+        "REQ-FN3-R10-AMOUNTS",
         "REQ-FN3-R10-CLEAN",
+        "REQ-FN3-R11-OUTCOME",
+        "REQ-FN3-R11-AMOUNTS",
+        "REQ-FN3-R11-CLEAN",
         "REQ-FORMAT"
       ]
     },
@@ -1581,11 +1743,11 @@
       "files": [
         {
           "path": "items/fn4/prompt.md",
-          "sha256": "b807611ea1063ca6e162ae5cce619a2d9d1750ce0ccb67f849632308c75e0cf1"
+          "sha256": "bacbacaeddfb20110f931a6ace704acf229d11ec75834896d14801bf1066baf0"
         },
         {
           "path": "items/fn4/public/MANUAL.md",
-          "sha256": "3a82928b3eb95fef9eb4539225b642bc34d085e11da091873fffb70cbf18baf0"
+          "sha256": "317f100800d72738f5ba2d98133dc3de2086457355f94dcac748877a6db0237e"
         },
         {
           "path": "items/fn4/public/data/audit.log",
@@ -1593,17 +1755,22 @@
         },
         {
           "path": "items/fn4/public/data/books.json",
-          "sha256": "6367f7a4edf8083002f1b8ca417b920c3ac6590a58c7274554811988ce3bc296"
+          "sha256": "48fd7ce5320094eeb7f1378549a7679c2945b2e91eb49df1fddff236b5be0bd2"
         },
         {
           "path": "items/fn4/public/ledger.py",
-          "sha256": "8446fc3cb5650f3e15dc3c9b15f30a9fd2678dcd397ff522c877bda184cd1766"
+          "sha256": "b574bd3df34e75e77ab2933b20287227c8c58e68379806efab971485a5ed3f0c"
         }
       ],
       "activeRequirementIds": [
         "REQ-FN4-R1-OUTCOME",
-        "REQ-FN4-R1-ALLOCATION",
-        "REQ-FN4-R1-AMOUNTS",
+        "REQ-FN4-R1-PLAN-25",
+        "REQ-FN4-R1-PLAN-50",
+        "REQ-FN4-R1-PLAN-65",
+        "REQ-FN4-R1-PLAN-80",
+        "REQ-FN4-R1-PLAN-90",
+        "REQ-FN4-R1-PLAN-97",
+        "REQ-FN4-R1-PLAN-100",
         "REQ-FN4-R1-CLEAN",
         "REQ-FN4-R2-OUTCOME",
         "REQ-FN4-R2-ALLOCATION",
@@ -1618,6 +1785,7 @@
         "REQ-FN4-R4-AMOUNTS",
         "REQ-FN4-R4-CLEAN",
         "REQ-FN4-R5-OUTCOME",
+        "REQ-FN4-R5-ALLOCATION",
         "REQ-FN4-R5-AMOUNTS",
         "REQ-FN4-R5-CLEAN",
         "REQ-FN4-R6-OUTCOME",
@@ -1627,20 +1795,17 @@
         "REQ-FN4-R7-AMOUNTS",
         "REQ-FN4-R7-CLEAN",
         "REQ-FN4-R8-OUTCOME",
-        "REQ-FN4-R8-ALLOCATION",
         "REQ-FN4-R8-AMOUNTS",
         "REQ-FN4-R8-CLEAN",
         "REQ-FN4-R9-OUTCOME",
+        "REQ-FN4-R9-ALLOCATION",
         "REQ-FN4-R9-AMOUNTS",
         "REQ-FN4-R9-CLEAN",
         "REQ-FN4-R10-OUTCOME",
         "REQ-FN4-R10-AMOUNTS",
         "REQ-FN4-R10-CLEAN",
         "REQ-FN4-R11-OUTCOME",
-        "REQ-FN4-R11-RUN-50",
-        "REQ-FN4-R11-RUN-80",
-        "REQ-FN4-R11-RUN-95",
-        "REQ-FN4-R11-RUN-100",
+        "REQ-FN4-R11-AMOUNTS",
         "REQ-FN4-R11-CLEAN",
         "REQ-FORMAT"
       ]
@@ -1651,7 +1816,7 @@
   ],
   "grader": {
     "id": "t2-finance-ledger",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

@@ -15,7 +15,11 @@ Look-ups:
   open-items PARTNER                the partner's open receivables or payables: open amount and EUR balance
   show-document ID                  an invoice, credit note, purchase order, contract or inbox invoice, with its lines
   bank                              the bank lines
-  cash                              today's payment run: the cash available per currency, its limits and its rates
+  payables                          the open payables: vendor, invoice date, due date, currency, gross and open
+                                    amount, and whether the payable is disputed
+  plan                              the payment plan: its days, opening cash, inflows and daily limit, and the
+                                    payments recorded, with what each uses and every currency's cash at the end
+                                    of each day
   inbox                             the vendor invoices received, with their status
   receipts PO                       the goods received on a purchase order, with the EUR accrued per unit
   contracts                         subscription contracts
@@ -37,11 +41,12 @@ Changes:
                                     Lines on 1210, 2010, 2150, 2160, 2200 and 2400 name a partner (except 2160) and a
                                     document. Debits and credits must be equal.
   set-status DOC STATUS             record an inbox invoice's outcome: posted, rejected, blocked or held
-  pay DOC                           pay an open payable in today's payment run. The tool computes the amounts: the
-                                    early-payment discount when today is within the vendor's discount window, the
-                                    exchange difference at today's rate, and the transfer fee. It refuses a document
-                                    that is disputed or settled, and a payment beyond the cash of its currency or
-                                    beyond the run's limit on the number of payments.
+  set-plan FILE                     record the payment plan in a JSON file (or - for standard input), replacing
+                                    the one recorded before: {"VINV-123": "2026-10-07", "VINV-140": "2026-10-09"}.
+                                    The tool computes what each payment uses (the open amount less the discount
+                                    the vendor grants on that day) and refuses a plan that schedules a disputed,
+                                    settled or unknown payable, a day outside the plan, more payments in a day
+                                    than its limit, or a currency's cash below zero at the end of any day.
 """
 import json
 import os
@@ -54,7 +59,6 @@ AUDIT = os.path.join("data", "audit.log")
 MONEY = re.compile(r"^[0-9]+\.[0-9]{2}$")
 DATE = re.compile(r"^2026-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$")
 OPEN_ITEMS = {"1200": "debit", "2000": "credit"}  # the side that opens a document on each account
-PAYMENT_MEMO = "Payment run"
 NAMED = {"1210", "2010", "2150", "2160", "2200", "2400"}
 
 
@@ -88,70 +92,77 @@ def cents(value):
     return value.quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
 
 
-def discount_today(books, record):
-    """The early-payment discount of a payable paid today, in its own currency (zero outside the vendor's window)."""
-    vendor = books["partners"][record["vendor"]]
-    if vendor.get("discount_days") is None:
-        return Decimal(0)
+def discount_on(books, record, when):
+    """The early-payment discount of a payable paid on `when`, in its own currency: the vendor's rate on the gross amount
+    when `when` is at most its discount days after the invoice date, and nothing otherwise."""
     import datetime
+    vendor = books["partners"][record["vendor"]]
+    if not vendor.get("discount_days"):
+        return Decimal(0)
     window = (datetime.date.fromisoformat(record["date"]) + datetime.timedelta(days=vendor["discount_days"])).isoformat()
-    return cents(Decimal(record["gross"]) * Decimal(vendor["discount_rate"])) if books["today"] <= window else Decimal(0)
+    return cents(Decimal(record["gross"]) * Decimal(vendor["discount_rate"])) if when <= window else Decimal(0)
 
 
-def run_payments(books):
-    """The payments already made in today's run: (count, {currency: cash paid}). The cash a payment uses is the amount
-    it clears less the discount it took, so a discount leaves more of the run's cash for other payables."""
-    today = books["today"]
-    count, spent = 0, {}
-    for entry in books["entries"]:
-        if entry["date"] == today and entry["memo"].startswith(PAYMENT_MEMO):
-            for line in entry["lines"]:
-                if line["account"] == "2000":
-                    count += 1
-                    record = books["documents"].get(line["document"]) or books["inbox"].get(line["document"]) or {}
-                    discount = discount_today(books, record) if record else Decimal(0)
-                    spent[line["currency"]] = spent.get(line["currency"], Decimal(0)) + Decimal(line["amount"]) - discount
-    return count, spent
+def payables(books):
+    """{document: facts} of the open payables."""
+    found = {}
+    for key, item in sorted(documents_of(books, "2000").items()):
+        record = books["documents"].get(key) or books["inbox"].get(key)
+        if item["open"] > 0 and record is not None:
+            found[key] = {"vendor": item["partner"], "date": record["date"], "due": record["due"], "currency": item["currency"],
+                          "gross": record["gross"], "open": str(item["open"]), "disputed": bool(record.get("disputed"))}
+    return found
 
 
-def pay(books, document):
-    """Pay an open payable in today's run, as section 7 of the manual describes."""
-    record = books["documents"].get(document) or books["inbox"].get(document)
-    if record is None or record.get("type") != "vendor-invoice" or record.get("status") not in (None, "posted"):
-        raise Refused(f"no posted vendor invoice {document}")
-    if record.get("disputed"):
-        raise Refused(f"{document} is disputed and may not be paid")
-    item = documents_of(books, "2000").get(document)
-    if item is None or item["open"] <= 0:
-        raise Refused(f"{document} is not open")
-    settings = books["payment_run"]
-    count, spent = run_payments(books)
-    if count >= settings["max_payments"]:
-        raise Refused(f"today's run may hold at most {settings['max_payments']} payments")
-    currency = item["currency"]
-    today = books["today"]
-    discount = discount_today(books, record)
-    amount = item["open"] - discount
-    available = Decimal(settings["cash"][currency]) - spent.get(currency, Decimal(0))
-    if amount > available:
-        raise Refused(f"only {available} {currency} is left in today's run")
-    today_rate = rate_on(books, currency, today)
-    paid_eur = cents(amount * today_rate)
-    discount_eur = cents(discount * today_rate)
-    fee = Decimal(settings["fee_domestic"] if currency == "EUR" else settings["fee_foreign"])
-    lines = [{"account": "2000", "debit": str(item["eur"]), "partner": record["vendor"], "document": document,
-              "currency": currency, "amount": str(item["open"])},
-             {"account": "1100", "credit": str(paid_eur + fee)},
-             {"account": "6900", "debit": str(fee)}]
-    if discount_eur > 0:
-        lines.append({"account": "4910", "credit": str(discount_eur)})
-    difference = item["eur"] - paid_eur - discount_eur
-    if difference > 0:
-        lines.append({"account": "7900", "credit": str(difference)})
-    elif difference < 0:
-        lines.append({"account": "7900", "debit": str(-difference)})
-    entry = {"date": today, "memo": f"{PAYMENT_MEMO} {document}", "lines": lines}
-    return post(books, entry)
+def plan_payments(books, schedule):
+    """[(day, document, currency, cash used)] of a schedule, in day order; raises Refused for one the plan may not hold."""
+    settings = books["payment_plan"]
+    if not isinstance(schedule, dict):
+        raise Refused('a plan is an object of payables and days, such as {"VINV-123": "2026-10-07"}')
+    open_now = payables(books)
+    rows = []
+    for document, when in schedule.items():
+        if document not in open_now:
+            raise Refused(f"{document} is not an open payable")
+        if open_now[document]["disputed"]:
+            raise Refused(f"{document} is disputed and may not be paid")
+        if when not in settings["days"]:
+            raise Refused(f"{when} is not a day of the plan ({settings['days'][0]} to {settings['days'][-1]}, business days)")
+        record = books["documents"].get(document) or books["inbox"].get(document)
+        used = Decimal(open_now[document]["open"]) - discount_on(books, record, when)
+        rows.append((when, document, open_now[document]["currency"], used))
+    return sorted(rows)
+
+
+def plan_balances(books, rows):
+    """{day: {currency: cash at the end of the day}} under the plan's payments."""
+    settings = books["payment_plan"]
+    balance = {currency: Decimal(amount) for currency, amount in settings["opening"].items()}
+    result = {}
+    for when in settings["days"]:
+        for currency, flows in settings["inflows"].items():
+            balance[currency] = balance.get(currency, Decimal(0)) + Decimal(flows.get(when, "0"))
+        for paid_on, _, currency, used in rows:
+            if paid_on == when:
+                balance[currency] = balance.get(currency, Decimal(0)) - used
+        result[when] = dict(balance)
+    return result
+
+
+def set_plan(books, schedule):
+    """Record the payment plan, as section 7 of the manual describes."""
+    settings = books["payment_plan"]
+    rows = plan_payments(books, schedule)
+    for when in settings["days"]:
+        count = sum(1 for paid_on, *_ in rows if paid_on == when)
+        if count > settings["max_per_day"]:
+            raise Refused(f"{when} holds {count} payments; the bank makes at most {settings['max_per_day']} a day")
+    for when, balance in plan_balances(books, rows).items():
+        for currency, amount in sorted(balance.items()):
+            if amount < 0:
+                raise Refused(f"{currency} cash falls to {amount} at the end of {when}")
+    settings["schedule"] = {document: when for when, document, _, _ in rows}
+    return f"ok: {len(rows)} payments planned"
 
 
 def documents_of(books, account=None):
@@ -233,10 +244,10 @@ def apply(books, command, args):
         if len(args) != 1 or not isinstance(args[0], dict):
             raise Refused("post takes one entry")
         return post(books, args[0])
-    if command == "pay":
-        if len(args) != 1 or not isinstance(args[0], str):
-            raise Refused("pay takes one document")
-        return pay(books, args[0])
+    if command == "set-plan":
+        if len(args) != 1:
+            raise Refused("set-plan takes one plan")
+        return set_plan(books, args[0])
     if command == "set-status":
         if len(args) != 2 or args[0] not in books["inbox"] or args[1] not in ("posted", "rejected", "blocked", "held"):
             raise Refused("set-status takes an inbox invoice and one of posted, rejected, blocked, held")
@@ -270,10 +281,14 @@ def look(books, command, args):
         return books["documents"].get(args[0]) or books["inbox"].get(args[0]) or books["contracts"].get(args[0])
     if command == "bank":
         return books["bank"]
-    if command == "cash":
-        count, spent = run_payments(books)
-        return {**books["payment_run"], "payments_made": count,
-                "cash_left": {currency: str(Decimal(amount) - spent.get(currency, Decimal(0))) for currency, amount in books["payment_run"]["cash"].items()}}
+    if command == "payables":
+        return payables(books)
+    if command == "plan":
+        rows = plan_payments(books, books["payment_plan"]["schedule"])
+        return {**books["payment_plan"],
+                "payments": [{"day": when, "document": document, "currency": currency, "uses": str(used)} for when, document, currency, used in rows],
+                "cash_at_end_of_day": {when: {currency: str(amount) for currency, amount in sorted(balance.items())}
+                                       for when, balance in plan_balances(books, rows).items()}}
     if command == "inbox":
         return {key: {"vendor": item["vendor"], "number": item["number"], "date": item["date"], "status": item["status"]} for key, item in sorted(books["inbox"].items())}
     if command == "receipts":
@@ -302,15 +317,15 @@ def main(argv):
     with open(BOOKS, encoding="utf-8") as handle:
         books = json.load(handle)
     try:
-        if command in ("begin", "post", "set-status", "pay"):
-            if command == "post":
+        if command in ("begin", "post", "set-status", "set-plan"):
+            if command in ("post", "set-plan"):
                 if len(args) != 1:
-                    raise Refused("post takes one file (or - for standard input)")
+                    raise Refused(f"{command} takes one file (or - for standard input)")
                 try:
                     text = sys.stdin.read() if args[0] == "-" else open(args[0], encoding="utf-8").read()
                     args = [json.loads(text)]
                 except (OSError, json.JSONDecodeError) as error:
-                    raise Refused(f"cannot read the entry: {error}")
+                    raise Refused(f"cannot read the {'entry' if command == 'post' else 'plan'}: {error}")
             output = apply(books, command, args)
             with open(BOOKS, "w", encoding="utf-8") as handle:
                 json.dump(books, handle, indent=1, sort_keys=True)

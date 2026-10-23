@@ -12,6 +12,9 @@ HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import finance  # noqa: E402
 
+# Each rung of the payment plan's scale weighs two checks: the plan is the day's one open-ended request, about a
+# quarter of its score.
+PLAN_RUNG_WEIGHT = 2
 DAYS = {"fn1": "t2-finance-2026-10:fn1", "fn2": "t2-finance-2026-10:fn2", "fn3": "t2-finance-2026-10:fn3", "fn4": "t2-finance-2026-10:fn4"}
 
 
@@ -27,13 +30,17 @@ def main():
     days = {}
     for item_id, seed in DAYS.items():
         books, requests, effects = finance.build(seed)
-        days[item_id] = {"seed": seed, "books": books, "requests": requests, "effects": effects, "prompt": finance.prompt(item_id, requests)}
+        problem = finance.PlanProblem(books)
+        value, slots = finance.best_plan(problem)
+        days[item_id] = {"seed": seed, "books": books, "requests": requests, "effects": effects, "prompt": finance.prompt(item_id, requests),
+                         "plan_best": {"signature": problem.signature(), "value": value, "slots": slots}}
     (HERE / "days.json").write_text(json.dumps(days, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     import grader
     grader.DAYS = grader.load_days()
+    grader.known_plans(grader.DAYS)
     if (ROOT / "items").exists():
         shutil.rmtree(ROOT / "items")
-    requirements, items = {}, []
+    requirements, items, weights = {}, [], {}
     for item_id, day in days.items():
         public = ROOT / "items" / item_id / "public"
         (public / "data").mkdir(parents=True)
@@ -48,6 +55,8 @@ def main():
             requirements[requirement] = {"id": requirement, "critical": True, "introducedAt": f"{grader.TASK_ID} {grader.TASK_VERSION}",
                                          "checkIds": [f"{item_id}-{name}"]}
             ids.append(requirement)
+            if "-plan-" in name:
+                weights[f"{item_id}-{name}"] = PLAN_RUNG_WEIGHT
         files = sorted(str(path.relative_to(ROOT)) for path in (ROOT / "items" / item_id).rglob("*") if visible(path))
         items.append({"id": item_id, "level": "close", "files": [{"path": path, "sha256": digest(path)} for path in files],
                       "activeRequirementIds": ids + ["REQ-FORMAT"]})
@@ -60,7 +69,7 @@ def main():
         "entryPoint": {"instruction": "instruction.md"},
         "files": {"public": [{"path": "instruction.md", "sha256": digest("instruction.md")}], "trusted": [{"path": path, "sha256": digest(path)} for path in trusted]},
         "requirements": list(requirements.values()),
-        "scoring": {"formatCheckId": "answer-format", "formatPenalty": 0.2},
+        "scoring": {"formatCheckId": "answer-format", "formatPenalty": 0.2, "weights": weights},
         "items": items, "toolProfiles": ["workspace-basic"],
         "grader": {"id": "t2-finance-ledger", "version": grader.GRADER_VERSION, "entryPoint": "private/grader.py", "executable": "python3",
                    "args": ["{entryPoint}", "--request", "{request}", "--result", "{result}"], "answerSource": "execution-output"},
