@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 3,
+  "name": "ae-2026-10-dev",
+  "models": [
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "aliplan",
+      "id": "qwen3.8-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    },
+    {
+      "provider": "mimoplan",
+      "id": "mimo-v2.6-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 1,
+  "budget": {
+    "timeoutMs": 16200000,
+    "maxTurns": 1500,
+    "maxModelCalls": 1500,
+    "maxToolCalls": 3000,
+    "maxOutputChars": 524288,
+    "maxOutputTokensPerCall": 131072,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 30000000
+  },
+  "commandLimits": {
+    "timeoutMs": 600000,
+    "maxOutputBytes": 64000
+  },
+  "artifactLimits": {
+    "maxFiles": 20000,
+    "maxFileBytes": 268435456,
+    "maxTrialBytes": 2147483647,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 16777216
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 120000000,
+    "concurrency": 12
+  },
+  "trustedLocalExecution": true,
+  "budgetNotice": true,
+  "cases": [
+    {
+      "id": "ae-heuristic-contests",
+      "packagePath": "task-library/frontier/ae-heuristic-contests",
+      "packageManifestSha256": "1c8a3c6658ae9932372b60f796447f6f61c1d89111586375577444a4f915d048",
+      "input": {
+        "prompt": "Write the best solution you can, then reply with a short summary."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 3600000
+      },
+      "items": [
+        "ahc015",
+        "ahc035",
+        "ahc039",
+        "ahc046"
+      ]
+    }
+  ]
+}

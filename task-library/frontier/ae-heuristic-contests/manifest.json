@@ -1,0 +1,1246 @@
+{
+  "schemaVersion": 1,
+  "id": "ae-heuristic-contests",
+  "version": "0.1.0",
+  "familyId": "ae-algorithm-engineering",
+  "capability": "engineering",
+  "usage": "development",
+  "source": {
+    "kind": "open-source",
+    "references": [
+      "ALE-Bench: problems, official tools, seeds, standings and performance tables (huggingface.co/datasets/SakanaAI/ALE-Bench), from the AtCoder Heuristic Contest",
+      "ALE-Bench code (github.com/SakanaAI/ALE-Bench): judging and ranking rules adapted in private/ale.py",
+      "Imajuku et al., ALE-Bench: A Benchmark for Long-Horizon Objective-Driven Algorithm Engineering, NeurIPS 2025 Datasets and Benchmarks"
+    ]
+  },
+  "license": {
+    "taskText": "instruction.md, prompts, run.py and the grader are project-authored.",
+    "thirdPartyContent": [
+      "Problem statements, images, tool sources (compiled here), seeds, standings and performance tables: ALE-Bench dataset, CC BY-ND 4.0, officially provided by AtCoder Inc.; used unmodified, not redistributed",
+      "Judging and ranking logic adapted from the ALE-Bench code, Apache License 2.0"
+    ]
+  },
+  "entryPoint": {
+    "instruction": "instruction.md"
+  },
+  "files": {
+    "public": [
+      {
+        "path": "instruction.md",
+        "sha256": "7fe1111c75504570f950000fc6020ebb6e00d0a2b0bd9ba6e130a9198ed328d8"
+      }
+    ],
+    "trusted": [
+      {
+        "path": "calibration.md",
+        "sha256": "1b85810362792c4ef5d7160a994946f2f40ef6a98e46dd0676f8f4f50eab2cd1"
+      },
+      {
+        "path": "rubric.md",
+        "sha256": "9b30c9fd8f6ce1ee232c8c9e85416ba3a65779c1f1ef491f836558eaef651c1d"
+      },
+      {
+        "path": "private/ale.py",
+        "sha256": "f0eec8b7f8f47c1c5895d9dc59ac85f0e17f085fcdc1b936937593a358ee9d52"
+      },
+      {
+        "path": "private/build_package.py",
+        "sha256": "b9909f6e53d8b9895f38485ebc850e86fecdc814ed7c6a8fb69576150a3f7535"
+      },
+      {
+        "path": "private/calibrate.py",
+        "sha256": "3c4e6adaedbf664e3c46e7cf0dbaf1330edaaed31a30e5c1c9266dba956324fc"
+      },
+      {
+        "path": "private/grader.py",
+        "sha256": "658caeb5c49c31d8665c93bb69aef5e4fc34b1bbf8100130460d497429e5e8c4"
+      },
+      {
+        "path": "private/problems/ahc015/data.json",
+        "sha256": "efb124eab0106f3e904291836f93cdab21160112e38abbfe417e813f9b036805"
+      },
+      {
+        "path": "private/problems/ahc015/performance.csv",
+        "sha256": "841a76624aaee2dc36369ce17fcbd2e5bbb8f7dd6c0dab0eccb6fd5c9ec1d6f7"
+      },
+      {
+        "path": "private/problems/ahc015/private_seeds.txt",
+        "sha256": "69930b4b59b1ee08ca53a1e7a60e0472fdb7239ec68a11bd033a212ca50c45b2"
+      },
+      {
+        "path": "private/problems/ahc015/standings_scores.csv",
+        "sha256": "0f464d90f54640ef022ae64ec2bea6f35b47a4f517c01a14fcb2e96e4ea0338e"
+      },
+      {
+        "path": "private/problems/ahc015/tools/gen",
+        "sha256": "1ad642f7374661f43d897b2fef135aff696ac2fb1779c797d1936401f217ad31"
+      },
+      {
+        "path": "private/problems/ahc015/tools/tester",
+        "sha256": "3125bea43f72e3e421175f2e2bfa1db67c5e5751671d85d0f093e4da5dfb73be"
+      },
+      {
+        "path": "private/problems/ahc026/data.json",
+        "sha256": "6188bc46980bb7865fec14e9a10ca1b5bf54988fcb78a2626c3fd32d75049f83"
+      },
+      {
+        "path": "private/problems/ahc026/performance.csv",
+        "sha256": "0e1570f906d46a016bafbdc44b0df466c40754b520e4004f09086612335dec67"
+      },
+      {
+        "path": "private/problems/ahc026/private_seeds.txt",
+        "sha256": "1889ef5705f07dc75e83baa1fe216abfbd52c5f8b0edb23462706f6d50dc12c3"
+      },
+      {
+        "path": "private/problems/ahc026/standings_scores.csv",
+        "sha256": "3802015450c103c792bbeb34e1c10c87ab36e20ed946efed56bc1b144a4fb349"
+      },
+      {
+        "path": "private/problems/ahc026/tools/gen",
+        "sha256": "0a887064fc312f8f381364ed10a2a0f3e15bd6a91eaf753748ccc29a861237b2"
+      },
+      {
+        "path": "private/problems/ahc026/tools/tester",
+        "sha256": "43b145b1f1a01f9cc28a351af22b20620eb62c7d503c0173d1fcb4ecb7ac61f9"
+      },
+      {
+        "path": "private/problems/ahc028/data.json",
+        "sha256": "256d2eff3f4c7056fd9b20f73ddb5fc27d679c7c1f044853e05bac581a247e03"
+      },
+      {
+        "path": "private/problems/ahc028/performance.csv",
+        "sha256": "c3e048b8e8c0f96f9a46a8185a03b213ad30c576deb4bcc391da56c571fb33b2"
+      },
+      {
+        "path": "private/problems/ahc028/private_seeds.txt",
+        "sha256": "1a9367b6c0e3834fd4538bb52bd2062d327219014fb8628ab3325528816f4390"
+      },
+      {
+        "path": "private/problems/ahc028/standings_scores.csv",
+        "sha256": "0943118c22cc77ecdbf1923a95f980845899ab3c7f95bb9a64db59798c08ee5c"
+      },
+      {
+        "path": "private/problems/ahc028/tools/gen",
+        "sha256": "dee9527a657b0404d629315d794cb9fbccd2aca86632516027d6a436a649d161"
+      },
+      {
+        "path": "private/problems/ahc028/tools/tester",
+        "sha256": "1ae66ecf727331ed9117ffdd10ff26e49e709037c568d4c45d431f46b4ffcb98"
+      },
+      {
+        "path": "private/problems/ahc032/data.json",
+        "sha256": "9c73e202d9efaaed4cf777e7415011c6c439b04fdb83d16773ea40798ecebc56"
+      },
+      {
+        "path": "private/problems/ahc032/performance.csv",
+        "sha256": "5b83a1bcdfb3f751cddd9db7ed6600ed0eaea42f641ee8247abaef08232adfee"
+      },
+      {
+        "path": "private/problems/ahc032/private_seeds.txt",
+        "sha256": "6de28dc2db8a3512ffcc9a8661adb337c9ee3c814165dafc329fbc101729a2b3"
+      },
+      {
+        "path": "private/problems/ahc032/standings_scores.csv",
+        "sha256": "c49269e801dea807c453b2505cd867d997204d352964ff6dee1bd8053183a25c"
+      },
+      {
+        "path": "private/problems/ahc032/tools/gen",
+        "sha256": "f619e3cfab82ca5d209ca0fab80a12fce18801ff2a1c97660f2d9379081b52c3"
+      },
+      {
+        "path": "private/problems/ahc032/tools/tester",
+        "sha256": "640bcfcf49e10b700b08f4238bcc55be2e02429597a811092c55ac0e75fd4625"
+      },
+      {
+        "path": "private/problems/ahc035/data.json",
+        "sha256": "55680bedb59c1350ea9b8fa7f4968661d81921d7886e43e247bf19b8ce520767"
+      },
+      {
+        "path": "private/problems/ahc035/performance.csv",
+        "sha256": "85644e89c9a45781ece6fb69038e92a38c3e178afb1f626b6a1f35ca8d867ec8"
+      },
+      {
+        "path": "private/problems/ahc035/private_seeds.txt",
+        "sha256": "a69656f0eb85ee0b3d0f3fd56d2b1b506c7d563e04f95ced42db13968217e4da"
+      },
+      {
+        "path": "private/problems/ahc035/standings_scores.csv",
+        "sha256": "a7f858aac4a7d81cd29acc71226f051088ea7948fa56dff2b7aa341f37098400"
+      },
+      {
+        "path": "private/problems/ahc035/tools/gen",
+        "sha256": "ea90ab6c19641a02c80e7bdf7db7824e9b87243cf386fe91f4c618a07f781252"
+      },
+      {
+        "path": "private/problems/ahc035/tools/tester",
+        "sha256": "7f6a0f14ccdf4e15dbf0f2759902d488912227cbd08b218ebb064e66c42af87a"
+      },
+      {
+        "path": "private/problems/ahc039/data.json",
+        "sha256": "28fe1d1dab902e1ddd66da50936477b318b55e407a955f8c997b8e9e89e9e6f0"
+      },
+      {
+        "path": "private/problems/ahc039/performance.csv",
+        "sha256": "eac42859994e95a592e3b815ab5c78b24e4ca7ca25f944d368d63dbbec710c1f"
+      },
+      {
+        "path": "private/problems/ahc039/private_seeds.txt",
+        "sha256": "33b2134e68c6f1251af67c24b6581cb4ec65b5c831f027d732aa7488c5060858"
+      },
+      {
+        "path": "private/problems/ahc039/standings_scores.csv",
+        "sha256": "5f4aed3d0742913867056d294200a9b4b264343906cc2457dcd825015bbd827a"
+      },
+      {
+        "path": "private/problems/ahc039/tools/gen",
+        "sha256": "e94a86b7006fbecc9ca16172b2126f041b058b8c3338e234bf3a56f89bac0bfb"
+      },
+      {
+        "path": "private/problems/ahc039/tools/tester",
+        "sha256": "39736c7d833aa27971824e87af25b03bb1cac167a2ecf893f22316fb73c335e1"
+      },
+      {
+        "path": "private/problems/ahc041/data.json",
+        "sha256": "8c2c8d435c7b7a2e9c5e38b0293cf20eb326e1394c33c5bdef1a2f84ed0f36fb"
+      },
+      {
+        "path": "private/problems/ahc041/performance.csv",
+        "sha256": "0fd48c7762abe911f8cd283b23704d6c3d4af0bdcd44e78398010246f03be6fb"
+      },
+      {
+        "path": "private/problems/ahc041/private_seeds.txt",
+        "sha256": "da76265aba561ab651d76f332d2af2b65bc7ef44f89490ab3cc6eb0073010396"
+      },
+      {
+        "path": "private/problems/ahc041/standings_scores.csv",
+        "sha256": "3d6f11f850b3bd1b35c6b6a5750815b695e78963b9da20bd1f056e801e414e42"
+      },
+      {
+        "path": "private/problems/ahc041/tools/gen",
+        "sha256": "954062284d9b26c9950a1feb581ea87cf2f1b059c90ede5831b686d3e8f28aaf"
+      },
+      {
+        "path": "private/problems/ahc041/tools/tester",
+        "sha256": "7d156c0230ba0b089931bdad4eed2527c526f342916ce45f27600e6b71b0166d"
+      },
+      {
+        "path": "private/problems/ahc042/data.json",
+        "sha256": "6b736236f49af51dfb290e946fb165a84eb548f22b62cb276a9f5e14b97e3ea0"
+      },
+      {
+        "path": "private/problems/ahc042/performance.csv",
+        "sha256": "15d7594eaf28310d9d924aade8e2e4fd893530fa97bfc64b1014caf8ba1615e5"
+      },
+      {
+        "path": "private/problems/ahc042/private_seeds.txt",
+        "sha256": "89d58182df33886cdabde982c8504798b4cdc2d5c4ce63e3367d68f526892aad"
+      },
+      {
+        "path": "private/problems/ahc042/standings_scores.csv",
+        "sha256": "d5eae9f930a4cfa4b692a40d7d00cf679e6a217fb3ecb4959ae43bd0f4e69396"
+      },
+      {
+        "path": "private/problems/ahc042/tools/gen",
+        "sha256": "384a4ebaf37cf907a1e09189672cc10eabd4b54f14a5e85892e962d4c83fc23c"
+      },
+      {
+        "path": "private/problems/ahc042/tools/tester",
+        "sha256": "56e8381bedb146c324ea1e2249195501a8591008ada0fbcf21ebd2398e371f09"
+      },
+      {
+        "path": "private/problems/ahc044/data.json",
+        "sha256": "fb920c9be245edf36020f45b9d341ef9159b543cd683c2c73297757a3bb28afc"
+      },
+      {
+        "path": "private/problems/ahc044/performance.csv",
+        "sha256": "67b9a33455068bddb7ec1ff82da92eb631e75e0a0d10bd0edfee24db74af5fbc"
+      },
+      {
+        "path": "private/problems/ahc044/private_seeds.txt",
+        "sha256": "8fbe3c2f8ef7adfa0b62bfcd657e4838bc3b17cfd3bc81279380f7830e08bc33"
+      },
+      {
+        "path": "private/problems/ahc044/standings_scores.csv",
+        "sha256": "d46e4a9d40d97110283cf47b5debc6178c2cc0127a4ef7ada6ff9933945ff98e"
+      },
+      {
+        "path": "private/problems/ahc044/tools/gen",
+        "sha256": "19272c47a8dca37a5364c3a74939aa005c40ea4bbe5d5251dd742ceb8bdedee3"
+      },
+      {
+        "path": "private/problems/ahc044/tools/tester",
+        "sha256": "650c91f0335920d6efc4f53bfca92844fd194434372bfbb98ca81ae12f38791c"
+      },
+      {
+        "path": "private/problems/ahc046/data.json",
+        "sha256": "8701ef92312bbd15835e4a434895c147d18611e2e2cc1a0c7d8e4eaa7c518340"
+      },
+      {
+        "path": "private/problems/ahc046/performance.csv",
+        "sha256": "6d0136470f81df38e2b8848c65e4f12f6e07c67540c96791a463775147f07e3d"
+      },
+      {
+        "path": "private/problems/ahc046/private_seeds.txt",
+        "sha256": "33cc2a832f052ca6c85cb2f43ddfb6a044e96b5b9ba33576b7a64bce17293caa"
+      },
+      {
+        "path": "private/problems/ahc046/standings_scores.csv",
+        "sha256": "9ecdcf6ee0e7d1bfa49d64c6959ff6c030e130fe76dff95f7de0cd6df7064a15"
+      },
+      {
+        "path": "private/problems/ahc046/tools/gen",
+        "sha256": "aa79a673c25d5f7482c75fa2540778e1320bb859156f84cee74c77bab5ce3a0a"
+      },
+      {
+        "path": "private/problems/ahc046/tools/tester",
+        "sha256": "d071e2587b13d6ebb9f9d7e6bc660bb89c676bf5804e476e320db0961a21ee1d"
+      },
+      {
+        "path": "private/references/ahc015/by-flavour.cpp",
+        "sha256": "152f9662bc235c64c2c514290143878451945e3c6dd9713e6389f892ce8b6215"
+      },
+      {
+        "path": "private/references/ahc015/forward.cpp",
+        "sha256": "8679b6d8be94c3d36701e0067cf8014c6af17bfbc7bad61154c85b7f80d0c72c"
+      },
+      {
+        "path": "private/references/ahc035/top-value.cpp",
+        "sha256": "d94d434c6a10329d2b1f012bbb21c801c1e8a6238e867c618be3ca5907c574da"
+      },
+      {
+        "path": "private/references/ahc039/grid.cpp",
+        "sha256": "630432825f72eb0adae23176ab06552b59050a2ea069d8c8b3f5f1a61390d3f1"
+      },
+      {
+        "path": "private/references/ahc039/timed-search.cpp",
+        "sha256": "0f533f87dfa0a6322574e1627d61376e3e58c3b5aa3b762a2cc82d1936b3e585"
+      },
+      {
+        "path": "private/references/ahc039/tiny.cpp",
+        "sha256": "b9931feceed285861012c2cf03381e35e37538976ff905599b01890a18a7a853"
+      },
+      {
+        "path": "private/references/ahc046/moves.cpp",
+        "sha256": "b0854c7c0f20b4bff4cfc9062099bf9fc73c5536a97116c8ed400727c036bc98"
+      },
+      {
+        "path": "private/run.py",
+        "sha256": "e9982ab5f13f53930bac7fcd5f3565f3678c15dcdc5de3b86d0548bc9e1b6ee0"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "REQ-AHC015-PERFORMANCE",
+      "critical": true,
+      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "checkIds": [
+        "ahc015-perf-0600",
+        "ahc015-perf-0700",
+        "ahc015-perf-0800",
+        "ahc015-perf-0900",
+        "ahc015-perf-1000",
+        "ahc015-perf-1100",
+        "ahc015-perf-1200",
+        "ahc015-perf-1300",
+        "ahc015-perf-1400",
+        "ahc015-perf-1500",
+        "ahc015-perf-1600",
+        "ahc015-perf-1700",
+        "ahc015-perf-1800",
+        "ahc015-perf-1900",
+        "ahc015-perf-2000",
+        "ahc015-perf-2100",
+        "ahc015-perf-2200",
+        "ahc015-perf-2300",
+        "ahc015-perf-2400",
+        "ahc015-perf-2500",
+        "ahc015-perf-2600",
+        "ahc015-perf-2700",
+        "ahc015-perf-2800",
+        "ahc015-perf-2900",
+        "ahc015-perf-3000",
+        "ahc015-perf-3100",
+        "ahc015-perf-3200"
+      ]
+    },
+    {
+      "id": "REQ-AHC026-PERFORMANCE",
+      "critical": true,
+      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "checkIds": [
+        "ahc026-perf-0600",
+        "ahc026-perf-0700",
+        "ahc026-perf-0800",
+        "ahc026-perf-0900",
+        "ahc026-perf-1000",
+        "ahc026-perf-1100",
+        "ahc026-perf-1200",
+        "ahc026-perf-1300",
+        "ahc026-perf-1400",
+        "ahc026-perf-1500",
+        "ahc026-perf-1600",
+        "ahc026-perf-1700",
+        "ahc026-perf-1800",
+        "ahc026-perf-1900",
+        "ahc026-perf-2000",
+        "ahc026-perf-2100",
+        "ahc026-perf-2200",
+        "ahc026-perf-2300",
+        "ahc026-perf-2400",
+        "ahc026-perf-2500",
+        "ahc026-perf-2600",
+        "ahc026-perf-2700",
+        "ahc026-perf-2800",
+        "ahc026-perf-2900",
+        "ahc026-perf-3000",
+        "ahc026-perf-3100",
+        "ahc026-perf-3200"
+      ]
+    },
+    {
+      "id": "REQ-AHC028-PERFORMANCE",
+      "critical": true,
+      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "checkIds": [
+        "ahc028-perf-0600",
+        "ahc028-perf-0700",
+        "ahc028-perf-0800",
+        "ahc028-perf-0900",
+        "ahc028-perf-1000",
+        "ahc028-perf-1100",
+        "ahc028-perf-1200",
+        "ahc028-perf-1300",
+        "ahc028-perf-1400",
+        "ahc028-perf-1500",
+        "ahc028-perf-1600",
+        "ahc028-perf-1700",
+        "ahc028-perf-1800",
+        "ahc028-perf-1900",
+        "ahc028-perf-2000",
+        "ahc028-perf-2100",
+        "ahc028-perf-2200",
+        "ahc028-perf-2300",
+        "ahc028-perf-2400",
+        "ahc028-perf-2500",
+        "ahc028-perf-2600",
+        "ahc028-perf-2700",
+        "ahc028-perf-2800",
+        "ahc028-perf-2900",
+        "ahc028-perf-3000",
+        "ahc028-perf-3100",
+        "ahc028-perf-3200"
+      ]
+    },
+    {
+      "id": "REQ-AHC032-PERFORMANCE",
+      "critical": true,
+      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "checkIds": [
+        "ahc032-perf-0600",
+        "ahc032-perf-0700",
+        "ahc032-perf-0800",
+        "ahc032-perf-0900",
+        "ahc032-perf-1000",
+        "ahc032-perf-1100",
+        "ahc032-perf-1200",
+        "ahc032-perf-1300",
+        "ahc032-perf-1400",
+        "ahc032-perf-1500",
+        "ahc032-perf-1600",
+        "ahc032-perf-1700",
+        "ahc032-perf-1800",
+        "ahc032-perf-1900",
+        "ahc032-perf-2000",
+        "ahc032-perf-2100",
+        "ahc032-perf-2200",
+        "ahc032-perf-2300",
+        "ahc032-perf-2400",
+        "ahc032-perf-2500",
+        "ahc032-perf-2600",
+        "ahc032-perf-2700",
+        "ahc032-perf-2800",
+        "ahc032-perf-2900",
+        "ahc032-perf-3000",
+        "ahc032-perf-3100",
+        "ahc032-perf-3200"
+      ]
+    },
+    {
+      "id": "REQ-AHC035-PERFORMANCE",
+      "critical": true,
+      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "checkIds": [
+        "ahc035-perf-0600",
+        "ahc035-perf-0700",
+        "ahc035-perf-0800",
+        "ahc035-perf-0900",
+        "ahc035-perf-1000",
+        "ahc035-perf-1100",
+        "ahc035-perf-1200",
+        "ahc035-perf-1300",
+        "ahc035-perf-1400",
+        "ahc035-perf-1500",
+        "ahc035-perf-1600",
+        "ahc035-perf-1700",
+        "ahc035-perf-1800",
+        "ahc035-perf-1900",
+        "ahc035-perf-2000",
+        "ahc035-perf-2100",
+        "ahc035-perf-2200",
+        "ahc035-perf-2300",
+        "ahc035-perf-2400",
+        "ahc035-perf-2500",
+        "ahc035-perf-2600",
+        "ahc035-perf-2700",
+        "ahc035-perf-2800",
+        "ahc035-perf-2900",
+        "ahc035-perf-3000",
+        "ahc035-perf-3100",
+        "ahc035-perf-3200"
+      ]
+    },
+    {
+      "id": "REQ-AHC039-PERFORMANCE",
+      "critical": true,
+      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "checkIds": [
+        "ahc039-perf-0600",
+        "ahc039-perf-0700",
+        "ahc039-perf-0800",
+        "ahc039-perf-0900",
+        "ahc039-perf-1000",
+        "ahc039-perf-1100",
+        "ahc039-perf-1200",
+        "ahc039-perf-1300",
+        "ahc039-perf-1400",
+        "ahc039-perf-1500",
+        "ahc039-perf-1600",
+        "ahc039-perf-1700",
+        "ahc039-perf-1800",
+        "ahc039-perf-1900",
+        "ahc039-perf-2000",
+        "ahc039-perf-2100",
+        "ahc039-perf-2200",
+        "ahc039-perf-2300",
+        "ahc039-perf-2400",
+        "ahc039-perf-2500",
+        "ahc039-perf-2600",
+        "ahc039-perf-2700",
+        "ahc039-perf-2800",
+        "ahc039-perf-2900",
+        "ahc039-perf-3000",
+        "ahc039-perf-3100",
+        "ahc039-perf-3200"
+      ]
+    },
+    {
+      "id": "REQ-AHC041-PERFORMANCE",
+      "critical": true,
+      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "checkIds": [
+        "ahc041-perf-0600",
+        "ahc041-perf-0700",
+        "ahc041-perf-0800",
+        "ahc041-perf-0900",
+        "ahc041-perf-1000",
+        "ahc041-perf-1100",
+        "ahc041-perf-1200",
+        "ahc041-perf-1300",
+        "ahc041-perf-1400",
+        "ahc041-perf-1500",
+        "ahc041-perf-1600",
+        "ahc041-perf-1700",
+        "ahc041-perf-1800",
+        "ahc041-perf-1900",
+        "ahc041-perf-2000",
+        "ahc041-perf-2100",
+        "ahc041-perf-2200",
+        "ahc041-perf-2300",
+        "ahc041-perf-2400",
+        "ahc041-perf-2500",
+        "ahc041-perf-2600",
+        "ahc041-perf-2700",
+        "ahc041-perf-2800",
+        "ahc041-perf-2900",
+        "ahc041-perf-3000",
+        "ahc041-perf-3100",
+        "ahc041-perf-3200"
+      ]
+    },
+    {
+      "id": "REQ-AHC042-PERFORMANCE",
+      "critical": true,
+      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "checkIds": [
+        "ahc042-perf-0600",
+        "ahc042-perf-0700",
+        "ahc042-perf-0800",
+        "ahc042-perf-0900",
+        "ahc042-perf-1000",
+        "ahc042-perf-1100",
+        "ahc042-perf-1200",
+        "ahc042-perf-1300",
+        "ahc042-perf-1400",
+        "ahc042-perf-1500",
+        "ahc042-perf-1600",
+        "ahc042-perf-1700",
+        "ahc042-perf-1800",
+        "ahc042-perf-1900",
+        "ahc042-perf-2000",
+        "ahc042-perf-2100",
+        "ahc042-perf-2200",
+        "ahc042-perf-2300",
+        "ahc042-perf-2400",
+        "ahc042-perf-2500",
+        "ahc042-perf-2600",
+        "ahc042-perf-2700",
+        "ahc042-perf-2800",
+        "ahc042-perf-2900",
+        "ahc042-perf-3000",
+        "ahc042-perf-3100",
+        "ahc042-perf-3200"
+      ]
+    },
+    {
+      "id": "REQ-AHC044-PERFORMANCE",
+      "critical": true,
+      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "checkIds": [
+        "ahc044-perf-0600",
+        "ahc044-perf-0700",
+        "ahc044-perf-0800",
+        "ahc044-perf-0900",
+        "ahc044-perf-1000",
+        "ahc044-perf-1100",
+        "ahc044-perf-1200",
+        "ahc044-perf-1300",
+        "ahc044-perf-1400",
+        "ahc044-perf-1500",
+        "ahc044-perf-1600",
+        "ahc044-perf-1700",
+        "ahc044-perf-1800",
+        "ahc044-perf-1900",
+        "ahc044-perf-2000",
+        "ahc044-perf-2100",
+        "ahc044-perf-2200",
+        "ahc044-perf-2300",
+        "ahc044-perf-2400",
+        "ahc044-perf-2500",
+        "ahc044-perf-2600",
+        "ahc044-perf-2700",
+        "ahc044-perf-2800",
+        "ahc044-perf-2900",
+        "ahc044-perf-3000",
+        "ahc044-perf-3100",
+        "ahc044-perf-3200"
+      ]
+    },
+    {
+      "id": "REQ-AHC046-PERFORMANCE",
+      "critical": true,
+      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "checkIds": [
+        "ahc046-perf-0600",
+        "ahc046-perf-0700",
+        "ahc046-perf-0800",
+        "ahc046-perf-0900",
+        "ahc046-perf-1000",
+        "ahc046-perf-1100",
+        "ahc046-perf-1200",
+        "ahc046-perf-1300",
+        "ahc046-perf-1400",
+        "ahc046-perf-1500",
+        "ahc046-perf-1600",
+        "ahc046-perf-1700",
+        "ahc046-perf-1800",
+        "ahc046-perf-1900",
+        "ahc046-perf-2000",
+        "ahc046-perf-2100",
+        "ahc046-perf-2200",
+        "ahc046-perf-2300",
+        "ahc046-perf-2400",
+        "ahc046-perf-2500",
+        "ahc046-perf-2600",
+        "ahc046-perf-2700",
+        "ahc046-perf-2800",
+        "ahc046-perf-2900",
+        "ahc046-perf-3000",
+        "ahc046-perf-3100",
+        "ahc046-perf-3200"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "ahc015",
+      "level": "short-contest",
+      "files": [
+        {
+          "path": "items/ahc015/prompt.md",
+          "sha256": "75e0395c243af805e3d446f0acfb4a42aadc76af4d2f061669da2f8b55f901e5"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1.gif",
+          "sha256": "2c10d7d388e8a3e00fec321370c342d271fa28f497abbcb7c8e0a55043a17e8e"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000000.png",
+          "sha256": "89af96859e9389978d805868cd1ced936005bec9a409d288526e3c81d5ef589c"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000001.png",
+          "sha256": "a2c1a4c180e60c059f5442f774f797855caed138881df24e4d9e1a41e762884c"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000002.png",
+          "sha256": "da71dc754fecc1cfa325f037e86f34814cc9703af83eabb9063a805d394ed54b"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000003.png",
+          "sha256": "0adb66f86a749e55bdc2d4462401efab5ee49cd6f3459012ca6926d6e361b454"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000004.png",
+          "sha256": "c155257ffa9250e25cb7a42987d1d3ebdb341bba9a2a79e650325af255cdafd9"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000005.png",
+          "sha256": "55168f2b24de261a23138e335fcc1c9c96c04915092cbcf764ab5562b211b250"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000006.png",
+          "sha256": "15604ccab4a61d529f284cdd267361ca1ea7db63475aca3fac957481011a925a"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000007.png",
+          "sha256": "80ba54af38aada1671bce10faeb9db2136180742279a46a4edd030f4ad60be27"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000008.png",
+          "sha256": "e1aedacd5f35de868587e4ede504fda882070c730299402da74fd2ae17d23f1c"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000009.png",
+          "sha256": "01ce9ef4f3fe9fd39c59e36601176e65e54627a5099700a560c4b4f9156a469a"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000010.png",
+          "sha256": "e43460306a9e6c897ac61aaa488a5a87a4acee6b234d3fc5c665c23754905711"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000011.png",
+          "sha256": "841224d8284ca598d3b90107459ff7013b604e84054c4ca88fffb6d79f116cd3"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000012.png",
+          "sha256": "126ae0c118651c79e16377379744f2f05be7bb81dd0e312c390bcf4eea317934"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000013.png",
+          "sha256": "14752635f9f9566e31ac49a4e4293c19dec28dc4074ae8eda02b66dc79e3eae8"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000014.png",
+          "sha256": "8cc76b79eb44d85dd0adad84d6556cd32d760037290667971a401bf830de81e7"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000015.png",
+          "sha256": "ca0f3eed7bbf1208dc376a6299eece0c0002bba53b8c8e312d843a49a3d667e4"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000016.png",
+          "sha256": "16e82111d5ec7867d6190cbc96156aba0549272c76c3d3a533ed50c1a4be4fb3"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000017.png",
+          "sha256": "3b7e6f184607ecc0c8cc2c77fc44a42c5bdaefc83a52df0c035a75254d67e0e9"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000018.png",
+          "sha256": "fdad4f5f114e5dd2cd411f4535bea05217bb0d574578641c264ed7e621243e70"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000019.png",
+          "sha256": "f14dd134493dd69a6378c8fc81e37e5b25f1cd0f224c27848e12d088b272e592"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000020.png",
+          "sha256": "62cb0f975ff1bcf8e1a79b8d00b328514e9b07c042dcd9c3166503c4dc09bba2"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000021.png",
+          "sha256": "78b511185b7bb6f815ede5cbff04e1bdf248c9ca6f18f2d883ccda0fdb01e0b5"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000022.png",
+          "sha256": "10683062558e7048f060712d84c095cad871eebd9765c800cb892a94715e665c"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000023.png",
+          "sha256": "7e8f8f153979ad15b4b3da2da591f7c69668efa54c3adbb41ae0364f78e6d077"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000024.png",
+          "sha256": "d5444ed9e3f3a93a7f1e501add9f66f210129b37250182068edccf5de1499d18"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_1_frame000025.png",
+          "sha256": "d5444ed9e3f3a93a7f1e501add9f66f210129b37250182068edccf5de1499d18"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_2.png",
+          "sha256": "2889682f52be509bcee4926864d97f1a343bc235931fa6bd0c1103d64d60c542"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_3.png",
+          "sha256": "581caee1b07f8986a5b8d04e182b89c8ca04d4c47aa2a0ebda2d7ad4e1ba3722"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_4.png",
+          "sha256": "920a315debbb3d25576464931e7aaaa22f83aaf0c7cceeb29f15bb5c918103c9"
+        },
+        {
+          "path": "items/ahc015/public/images/b639c75d_5.png",
+          "sha256": "e6f9ad095ba81f0ed831a699e63eb00bfb3981eaf9f04c5306c8e6517feec79a"
+        },
+        {
+          "path": "items/ahc015/public/run.py",
+          "sha256": "e9982ab5f13f53930bac7fcd5f3565f3678c15dcdc5de3b86d0548bc9e1b6ee0"
+        },
+        {
+          "path": "items/ahc015/public/statement.md",
+          "sha256": "e80ab13806a2158959e38815113120961526eaee2f8fd3edbdabfa1e21432746"
+        },
+        {
+          "path": "items/ahc015/public/tools/README.md",
+          "sha256": "0ede0eb82bbc31d53d0174f6f3ea73fbe40024652499d8c040130ea12d945f02"
+        },
+        {
+          "path": "items/ahc015/public/tools/gen",
+          "sha256": "1ad642f7374661f43d897b2fef135aff696ac2fb1779c797d1936401f217ad31"
+        },
+        {
+          "path": "items/ahc015/public/tools/problem.json",
+          "sha256": "c1b8cc2bad3fb7131c29a1e7eeb8cbd0cba7f2e6dcc0dece264bb75471df8a60"
+        },
+        {
+          "path": "items/ahc015/public/tools/seeds.txt",
+          "sha256": "5f01dd57fd3b4044fac93aaac2589bf49e34cbe1dc0713254c0f339ba2123bce"
+        },
+        {
+          "path": "items/ahc015/public/tools/tester",
+          "sha256": "3125bea43f72e3e421175f2e2bfa1db67c5e5751671d85d0f093e4da5dfb73be"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-AHC015-PERFORMANCE"
+      ]
+    },
+    {
+      "id": "ahc026",
+      "level": "short-contest",
+      "files": [
+        {
+          "path": "items/ahc026/prompt.md",
+          "sha256": "f34de8282ebe73e00ef80d79f3e45d7835ab54bd7401cd4c4b81f2a7c7d154e2"
+        },
+        {
+          "path": "items/ahc026/public/run.py",
+          "sha256": "e9982ab5f13f53930bac7fcd5f3565f3678c15dcdc5de3b86d0548bc9e1b6ee0"
+        },
+        {
+          "path": "items/ahc026/public/statement.md",
+          "sha256": "1c30a4d7d687316c97445d71a39eb6dacb9e4fa746db4384df62cfffab5526cc"
+        },
+        {
+          "path": "items/ahc026/public/tools/README.md",
+          "sha256": "299f6e2814a97be377eaaceec97153e2d68c5ecebd842e31e6bec6c08ab51816"
+        },
+        {
+          "path": "items/ahc026/public/tools/gen",
+          "sha256": "0a887064fc312f8f381364ed10a2a0f3e15bd6a91eaf753748ccc29a861237b2"
+        },
+        {
+          "path": "items/ahc026/public/tools/problem.json",
+          "sha256": "11b21388cdffa5394ef2d0df86292ee68e99287a134de447207ef634aa0aa3d6"
+        },
+        {
+          "path": "items/ahc026/public/tools/seeds.txt",
+          "sha256": "5f01dd57fd3b4044fac93aaac2589bf49e34cbe1dc0713254c0f339ba2123bce"
+        },
+        {
+          "path": "items/ahc026/public/tools/tester",
+          "sha256": "43b145b1f1a01f9cc28a351af22b20620eb62c7d503c0173d1fcb4ecb7ac61f9"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-AHC026-PERFORMANCE"
+      ]
+    },
+    {
+      "id": "ahc028",
+      "level": "short-contest",
+      "files": [
+        {
+          "path": "items/ahc028/prompt.md",
+          "sha256": "fc30e669bcf0b8f1ae376d5228b2776e9ba01a867ac016a2a587c5b476114ab9"
+        },
+        {
+          "path": "items/ahc028/public/run.py",
+          "sha256": "e9982ab5f13f53930bac7fcd5f3565f3678c15dcdc5de3b86d0548bc9e1b6ee0"
+        },
+        {
+          "path": "items/ahc028/public/statement.md",
+          "sha256": "24dfe03f9788b0215ee0f3ffc9b237b84c239c125e4695cec499d6b9046b3281"
+        },
+        {
+          "path": "items/ahc028/public/tools/README.md",
+          "sha256": "a4f6a7365e5ab88d375985acb1e7b5fd3df675ca12d1100d23b14b29c1469a1f"
+        },
+        {
+          "path": "items/ahc028/public/tools/gen",
+          "sha256": "dee9527a657b0404d629315d794cb9fbccd2aca86632516027d6a436a649d161"
+        },
+        {
+          "path": "items/ahc028/public/tools/problem.json",
+          "sha256": "11b21388cdffa5394ef2d0df86292ee68e99287a134de447207ef634aa0aa3d6"
+        },
+        {
+          "path": "items/ahc028/public/tools/seeds.txt",
+          "sha256": "5f01dd57fd3b4044fac93aaac2589bf49e34cbe1dc0713254c0f339ba2123bce"
+        },
+        {
+          "path": "items/ahc028/public/tools/tester",
+          "sha256": "1ae66ecf727331ed9117ffdd10ff26e49e709037c568d4c45d431f46b4ffcb98"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-AHC028-PERFORMANCE"
+      ]
+    },
+    {
+      "id": "ahc032",
+      "level": "short-contest",
+      "files": [
+        {
+          "path": "items/ahc032/prompt.md",
+          "sha256": "d55be4013099fe19be50fd4417b85d955e485e0a5ffb44ba63c5f67d3a6172bb"
+        },
+        {
+          "path": "items/ahc032/public/run.py",
+          "sha256": "e9982ab5f13f53930bac7fcd5f3565f3678c15dcdc5de3b86d0548bc9e1b6ee0"
+        },
+        {
+          "path": "items/ahc032/public/statement.md",
+          "sha256": "1d93bb42073de8b6ecf36f7a35bd4f5322d6b1532866a6b7d822ea49192fe747"
+        },
+        {
+          "path": "items/ahc032/public/tools/README.md",
+          "sha256": "0856585cbe541adfc3ada2e60b476377707a483caca942806ada58697d600319"
+        },
+        {
+          "path": "items/ahc032/public/tools/gen",
+          "sha256": "f619e3cfab82ca5d209ca0fab80a12fce18801ff2a1c97660f2d9379081b52c3"
+        },
+        {
+          "path": "items/ahc032/public/tools/problem.json",
+          "sha256": "11b21388cdffa5394ef2d0df86292ee68e99287a134de447207ef634aa0aa3d6"
+        },
+        {
+          "path": "items/ahc032/public/tools/seeds.txt",
+          "sha256": "5f01dd57fd3b4044fac93aaac2589bf49e34cbe1dc0713254c0f339ba2123bce"
+        },
+        {
+          "path": "items/ahc032/public/tools/tester",
+          "sha256": "640bcfcf49e10b700b08f4238bcc55be2e02429597a811092c55ac0e75fd4625"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-AHC032-PERFORMANCE"
+      ]
+    },
+    {
+      "id": "ahc035",
+      "level": "short-contest",
+      "files": [
+        {
+          "path": "items/ahc035/prompt.md",
+          "sha256": "92689cc72db31096ff65f2874b1e3dbd33f0847ad1518bd41dd34c5c3836d7a2"
+        },
+        {
+          "path": "items/ahc035/public/run.py",
+          "sha256": "e9982ab5f13f53930bac7fcd5f3565f3678c15dcdc5de3b86d0548bc9e1b6ee0"
+        },
+        {
+          "path": "items/ahc035/public/statement.md",
+          "sha256": "cbd939bb22a141dfc0d19db5bdb037798bb6d9b2a2524c42e79ab3f95a9b04e4"
+        },
+        {
+          "path": "items/ahc035/public/tools/README.md",
+          "sha256": "98e5de9dd19f40250243a7d3df6bb39de0be3ccf342b85925f0f5e7bbaed8dbf"
+        },
+        {
+          "path": "items/ahc035/public/tools/gen",
+          "sha256": "ea90ab6c19641a02c80e7bdf7db7824e9b87243cf386fe91f4c618a07f781252"
+        },
+        {
+          "path": "items/ahc035/public/tools/problem.json",
+          "sha256": "c1b8cc2bad3fb7131c29a1e7eeb8cbd0cba7f2e6dcc0dece264bb75471df8a60"
+        },
+        {
+          "path": "items/ahc035/public/tools/seeds.txt",
+          "sha256": "5f01dd57fd3b4044fac93aaac2589bf49e34cbe1dc0713254c0f339ba2123bce"
+        },
+        {
+          "path": "items/ahc035/public/tools/tester",
+          "sha256": "7f6a0f14ccdf4e15dbf0f2759902d488912227cbd08b218ebb064e66c42af87a"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-AHC035-PERFORMANCE"
+      ]
+    },
+    {
+      "id": "ahc039",
+      "level": "short-contest",
+      "files": [
+        {
+          "path": "items/ahc039/prompt.md",
+          "sha256": "eae458f053a08128dc7191ad90409bfc44e9b8169c9c2d2d2aa947ab6da13203"
+        },
+        {
+          "path": "items/ahc039/public/run.py",
+          "sha256": "e9982ab5f13f53930bac7fcd5f3565f3678c15dcdc5de3b86d0548bc9e1b6ee0"
+        },
+        {
+          "path": "items/ahc039/public/statement.md",
+          "sha256": "7efe4993ec1d93d44093f66958d520e98499c8e638e8b2217b7ee488e3754665"
+        },
+        {
+          "path": "items/ahc039/public/tools/README.md",
+          "sha256": "6a2593857ba653da9ed880250d4bb423e030e49b7d6b6e750448e2c095ebaf7f"
+        },
+        {
+          "path": "items/ahc039/public/tools/gen",
+          "sha256": "e94a86b7006fbecc9ca16172b2126f041b058b8c3338e234bf3a56f89bac0bfb"
+        },
+        {
+          "path": "items/ahc039/public/tools/problem.json",
+          "sha256": "11b21388cdffa5394ef2d0df86292ee68e99287a134de447207ef634aa0aa3d6"
+        },
+        {
+          "path": "items/ahc039/public/tools/seeds.txt",
+          "sha256": "5f01dd57fd3b4044fac93aaac2589bf49e34cbe1dc0713254c0f339ba2123bce"
+        },
+        {
+          "path": "items/ahc039/public/tools/tester",
+          "sha256": "39736c7d833aa27971824e87af25b03bb1cac167a2ecf893f22316fb73c335e1"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-AHC039-PERFORMANCE"
+      ]
+    },
+    {
+      "id": "ahc041",
+      "level": "short-contest",
+      "files": [
+        {
+          "path": "items/ahc041/prompt.md",
+          "sha256": "5351f8878dfa4ae896f4329e4e08074cea5db6d1553d3ce42a63cc70c14a5600"
+        },
+        {
+          "path": "items/ahc041/public/run.py",
+          "sha256": "e9982ab5f13f53930bac7fcd5f3565f3678c15dcdc5de3b86d0548bc9e1b6ee0"
+        },
+        {
+          "path": "items/ahc041/public/statement.md",
+          "sha256": "d14ef4f18281c889cefb27527ed6049df65bd65e7e38aef6ac23c485d4819338"
+        },
+        {
+          "path": "items/ahc041/public/tools/README.md",
+          "sha256": "4988f0feff8ab2730890619163445a6029ecb69aa68ac73581e439aa7701a341"
+        },
+        {
+          "path": "items/ahc041/public/tools/gen",
+          "sha256": "954062284d9b26c9950a1feb581ea87cf2f1b059c90ede5831b686d3e8f28aaf"
+        },
+        {
+          "path": "items/ahc041/public/tools/problem.json",
+          "sha256": "11b21388cdffa5394ef2d0df86292ee68e99287a134de447207ef634aa0aa3d6"
+        },
+        {
+          "path": "items/ahc041/public/tools/seeds.txt",
+          "sha256": "5f01dd57fd3b4044fac93aaac2589bf49e34cbe1dc0713254c0f339ba2123bce"
+        },
+        {
+          "path": "items/ahc041/public/tools/tester",
+          "sha256": "7d156c0230ba0b089931bdad4eed2527c526f342916ce45f27600e6b71b0166d"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-AHC041-PERFORMANCE"
+      ]
+    },
+    {
+      "id": "ahc042",
+      "level": "short-contest",
+      "files": [
+        {
+          "path": "items/ahc042/prompt.md",
+          "sha256": "27c9986d7cc2449d7a41ee04bf67d4eb19f8151f6f7dc684c0b3fcb0e402b7e1"
+        },
+        {
+          "path": "items/ahc042/public/images/fuku.png",
+          "sha256": "9f714062e1a9bf3c98f9e5d78e3416c614282a4e9c19ad7a0a9cfaff0a30c36f"
+        },
+        {
+          "path": "items/ahc042/public/images/oni.png",
+          "sha256": "6472a3c288401f9017a8637aae19c30d21b68281bed5c06e1d6f99f05cc61db8"
+        },
+        {
+          "path": "items/ahc042/public/run.py",
+          "sha256": "e9982ab5f13f53930bac7fcd5f3565f3678c15dcdc5de3b86d0548bc9e1b6ee0"
+        },
+        {
+          "path": "items/ahc042/public/statement.md",
+          "sha256": "59cec835ef92201ad9444812961eecf82902122ee9e52ffdfebe5b29c9704bad"
+        },
+        {
+          "path": "items/ahc042/public/tools/README.md",
+          "sha256": "637849f666cf69b52d1ffa2619aef56d2e16f5f7291bf77f69ff8fff015477de"
+        },
+        {
+          "path": "items/ahc042/public/tools/gen",
+          "sha256": "384a4ebaf37cf907a1e09189672cc10eabd4b54f14a5e85892e962d4c83fc23c"
+        },
+        {
+          "path": "items/ahc042/public/tools/problem.json",
+          "sha256": "11b21388cdffa5394ef2d0df86292ee68e99287a134de447207ef634aa0aa3d6"
+        },
+        {
+          "path": "items/ahc042/public/tools/seeds.txt",
+          "sha256": "5f01dd57fd3b4044fac93aaac2589bf49e34cbe1dc0713254c0f339ba2123bce"
+        },
+        {
+          "path": "items/ahc042/public/tools/tester",
+          "sha256": "56e8381bedb146c324ea1e2249195501a8591008ada0fbcf21ebd2398e371f09"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-AHC042-PERFORMANCE"
+      ]
+    },
+    {
+      "id": "ahc044",
+      "level": "short-contest",
+      "files": [
+        {
+          "path": "items/ahc044/prompt.md",
+          "sha256": "2a830bf668d629aa84a6fe2600de6367e2fc9a9d2f86734156926d04f7333000"
+        },
+        {
+          "path": "items/ahc044/public/run.py",
+          "sha256": "e9982ab5f13f53930bac7fcd5f3565f3678c15dcdc5de3b86d0548bc9e1b6ee0"
+        },
+        {
+          "path": "items/ahc044/public/statement.md",
+          "sha256": "5a6a1caffe1e05d3d67ccb2a49760fe417f15779774e7dd3556bebdd3a1f682e"
+        },
+        {
+          "path": "items/ahc044/public/tools/README.md",
+          "sha256": "804b21d644b2796d2e62db0e8193f6ea37d3d7614d8b1166e0fcf37c1e632bbe"
+        },
+        {
+          "path": "items/ahc044/public/tools/gen",
+          "sha256": "19272c47a8dca37a5364c3a74939aa005c40ea4bbe5d5251dd742ceb8bdedee3"
+        },
+        {
+          "path": "items/ahc044/public/tools/problem.json",
+          "sha256": "11b21388cdffa5394ef2d0df86292ee68e99287a134de447207ef634aa0aa3d6"
+        },
+        {
+          "path": "items/ahc044/public/tools/seeds.txt",
+          "sha256": "5f01dd57fd3b4044fac93aaac2589bf49e34cbe1dc0713254c0f339ba2123bce"
+        },
+        {
+          "path": "items/ahc044/public/tools/tester",
+          "sha256": "650c91f0335920d6efc4f53bfca92844fd194434372bfbb98ca81ae12f38791c"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-AHC044-PERFORMANCE"
+      ]
+    },
+    {
+      "id": "ahc046",
+      "level": "short-contest",
+      "files": [
+        {
+          "path": "items/ahc046/prompt.md",
+          "sha256": "98d0e6f9659c4ff3224b8522bfd0ef775f91b29d38e23894cd47eea5ecc84604"
+        },
+        {
+          "path": "items/ahc046/public/run.py",
+          "sha256": "e9982ab5f13f53930bac7fcd5f3565f3678c15dcdc5de3b86d0548bc9e1b6ee0"
+        },
+        {
+          "path": "items/ahc046/public/statement.md",
+          "sha256": "6498c1d0dddb11b5e50b4e2349d3e4d4f890628e46157ac3e7acf8bf2bdedf4d"
+        },
+        {
+          "path": "items/ahc046/public/tools/README.md",
+          "sha256": "82833fc06104560be3a3b539b5ab111d0cb2098206abee2cf452a0f290ce7cf4"
+        },
+        {
+          "path": "items/ahc046/public/tools/gen",
+          "sha256": "aa79a673c25d5f7482c75fa2540778e1320bb859156f84cee74c77bab5ce3a0a"
+        },
+        {
+          "path": "items/ahc046/public/tools/problem.json",
+          "sha256": "11b21388cdffa5394ef2d0df86292ee68e99287a134de447207ef634aa0aa3d6"
+        },
+        {
+          "path": "items/ahc046/public/tools/seeds.txt",
+          "sha256": "5f01dd57fd3b4044fac93aaac2589bf49e34cbe1dc0713254c0f339ba2123bce"
+        },
+        {
+          "path": "items/ahc046/public/tools/tester",
+          "sha256": "d071e2587b13d6ebb9f9d7e6bc660bb89c676bf5804e476e320db0961a21ee1d"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-AHC046-PERFORMANCE"
+      ]
+    }
+  ],
+  "toolProfiles": [
+    "workspace-augmented"
+  ],
+  "grader": {
+    "id": "ae-ale-judge",
+    "version": "1.0.0",
+    "entryPoint": "private/grader.py",
+    "executable": "python3",
+    "args": [
+      "{entryPoint}",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ]
+  },
+  "environment": {
+    "runtime": "Python 3.13 and g++ 11 (C++20)",
+    "dependencies": "Python standard library, g++, prlimit and timeout; no network",
+    "network": false,
+    "runtimeCheck": {
+      "executable": "python3",
+      "args": [
+        "--version"
+      ],
+      "expectedSubstring": "Python 3.13."
+    }
+  }
+}

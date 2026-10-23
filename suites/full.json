@@ -90,6 +90,25 @@
       "kind": "visual",
       "template": "experiments/vis-calibration-2026-10/calibration.eval.json",
       "visualPackage": "task-library/calibration/vis-001-original-landing"
+    },
+    {
+      "id": "AE",
+      "kind": "single",
+      "template": "experiments/ae-2026-10/full.eval.json",
+      "score": {
+        "items": [
+          "ahc015",
+          "ahc026",
+          "ahc028",
+          "ahc032",
+          "ahc035",
+          "ahc039",
+          "ahc041",
+          "ahc042",
+          "ahc044",
+          "ahc046"
+        ]
+      }
     }
   ]
 }
