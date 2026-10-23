@@ -196,3 +196,16 @@ deepseek-flash and qwen3.8-flash, one trajectory each. Every pilot ended with bu
 - **Report.** The suite report showed deepseek's tokens as 0k and its median as n/a. The last S7 request was cut off by the budget stop and reported no usage, which nulled the whole sum. Fixed in `838a90d`.
 
 **Budget, from 2026-10-23 (user decision).** Each stage gets 5,000,000 tokens, 200 responses, 500 tool calls and 90 minutes. The whole trajectory gets 25,000,000 tokens, 1,000 responses, 2,500 tool calls and 10 hours, and tool evidence up to 16 MB. Only the token budget should stop a model; the other limits are set well above the pace observed.
+
+### Pilot with 5M per stage and 25M per trajectory (2026-10-23)
+
+Run `runs/suites/20261023-113824-dev-b319` (commit `d91b39a`), one session per stage. The first launch was lost to a terminal restart and run again from S1.
+
+| Model | Score | Tokens | Stages stopped by their own budget | Failed in the last snapshot |
+| --- | ---: | ---: | --- | --- |
+| deepseek-flash | 90.0% | 16.2M | S7 | `scale.speed-1.1`, `scale.speed-0.75` |
+| qwen3.8-flash | 94.0% | 19.7M | S6, S7 | `scale.speed-0.75`, `plan.fields-preserved` |
+
+Both models completed every correctness requirement of S1–S5. S6 and S7 are open-ended and used their whole stage budget, as designed.
+
+With a sufficient budget, E3 is saturated: the strong models lose only the top speed rungs. This confirmed the user's view (2026-10-23) that hardening our own procedure-based tasks does not raise their ceiling. New work goes to the frontier families (`docs/design/FRONTIER_TASKS.md`). E3 stays in the basic tier.
