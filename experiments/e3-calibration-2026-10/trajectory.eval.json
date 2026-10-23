@@ -49,38 +49,38 @@
     "kind": "trajectory",
     "contextPolicy": "per-stage",
     "stageBudget": {
-      "timeoutMs": 2700000,
-      "maxTurns": 80,
-      "maxModelCalls": 80,
-      "maxToolCalls": 200,
+      "timeoutMs": 5400000,
+      "maxTurns": 200,
+      "maxModelCalls": 200,
+      "maxToolCalls": 500,
       "maxOutputTokensPerCall": 131072,
       "maxOutputChars": 524288,
       "maxToolResultChars": 100000,
-      "maxTrialTokens": 2500000
+      "maxTrialTokens": 5000000
     },
     "publicRepairMax": 1
   },
   "budget": {
-    "timeoutMs": 21600000,
-    "maxTurns": 400,
-    "maxModelCalls": 400,
-    "maxToolCalls": 1000,
+    "timeoutMs": 36000000,
+    "maxTurns": 1000,
+    "maxModelCalls": 1000,
+    "maxToolCalls": 2500,
     "maxOutputTokensPerCall": 131072,
     "maxOutputChars": 524288,
     "maxToolResultChars": 100000,
-    "maxTrialTokens": 12000000
+    "maxTrialTokens": 25000000
   },
   "artifactLimits": {
     "maxFiles": 500,
     "maxFileBytes": 67108864,
     "maxTrialBytes": 1073741824,
     "graderResultMaxBytes": 1048576,
-    "toolEvidenceMaxBytes": 5242880
+    "toolEvidenceMaxBytes": 16777216
   },
   "batch": {
     "maxRetries": 2,
     "maxConsecutiveInfrastructureFailures": 3,
-    "maxTotalTokensPerModel": 12000000
+    "maxTotalTokensPerModel": 25000000
   },
   "trustedLocalExecution": true,
   "cases": [

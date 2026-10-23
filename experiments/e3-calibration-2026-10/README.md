@@ -76,3 +76,7 @@ The twenty hidden checks did not separate the strong models: three of them passe
 | qwen3.8-flash | 47/48 (97.9%) | every check, no repair | stage token limit (2.04M); same checks | 6.83M | 28 min |
 
 **S6 did not harden E3.** Both models made the tool scale within one stage, and both came within 1.1 times the reference's time. Only `speed-0.75` failed. Speed rungs are 4 of 48 checks, so even a slow but correct S6 would leave a trajectory at 92%.
+
+## eng-005 0.5.0: S7, planning, and a fresh session per stage (2026-10-22 to 2026-10-23)
+
+`trajectory.eval.json` pins eng-005 0.5.0 with seven stages, one session per stage (`contextPolicy: "per-stage"`, user decision 2026-10-23). The four pilots of 0.5.0 and their audit are in the package's calibration record (`task-library/calibration/eng-005-long-cycle-maintenance/calibration.md`). From 2026-10-23, by the user's decision, each stage gets 5,000,000 tokens, 200 responses, 500 tool calls and 90 minutes, and the whole task gets 25,000,000 tokens, 1,000 responses, 2,500 tool calls and 10 hours. The earlier 2,500,000 tokens per stage ran out in S5–S7 for both reference models, mostly on cache reads.

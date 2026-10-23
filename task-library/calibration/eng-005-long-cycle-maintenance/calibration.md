@@ -173,3 +173,26 @@ The public files hold the store generator (`make_plan_store.py`) and the validat
 - ranking by id falls below the 0.5 rung.
 
 **Budget.** The plan gives the trajectory 11,000,000 tokens and six hours; each stage keeps 2,000,000.
+
+### Pilots of 0.5.0 (2026-10-22 to 2026-10-23)
+
+deepseek-flash and qwen3.8-flash, one trajectory each. Every pilot ended with budget stops.
+
+| Run | Commit | Context | deepseek | qwen | What ended it |
+| --- | --- | --- | ---: | ---: | --- |
+| `20261022-142620-dev-6a7f` | `142323b` | continuous | 59.0% | 59.0% | a stage's own budget stop ended the whole trajectory, so S7 was never reached (fixed in `aa59747`: the next stage follows) |
+| `20261022-161703-dev-ca69` | `aa59747` | continuous | 44.0% | 41.0% | qwen's snapshot refused the 23 MB scale store that S6 asks for (limits raised in `935e5a7`); in one session the context grew until stage budgets ran out |
+| `20261023-023502-dev-c750` | `ad88c55` | continuous (the per-stage change was not yet committed) | 80.0% | 59.0% | qwen's S7 had 11 calls left and never wired `plan` |
+| `20261023-034838-dev-65e9` | `aaa158c` | per stage | 30.0% | 41.0% | see below |
+
+**The per-stage pilot**, audited by hand:
+
+- **Stage budgets.** Both models used the whole 2,500,000 tokens of S5, S6 and (deepseek) S7, at 46–60 calls each. More than 95% of the counted tokens were cache reads: each call re-reads a context of 50,000–116,000 tokens. S1–S4 used 0.2–2.5M each.
+- **deepseek, S6.** A genuine regression. Its faster write path corrupts the store when two writes follow each other: after `create`, an `update` leaves `data/work-orders.json` invalid JSON. Reproduced on the snapshot inside the grader's sandbox. The S6 snapshot fails 18 checks across BASE_CLI, DEPENDENCY, MIGRATION, ERRORS and SCALE.
+- **deepseek, S7.** A fresh session wrote `src/plan.ts` but ran out of the stage budget before wiring `plan` into the CLI (`UNKNOWN_COMMAND`). It also inherited S6's broken store.
+- **qwen, S6.** It made a scratch benchmark copy with a symbolic link (`.bench/proj/src -> ../../src`). The snapshot refused the link (`ARTIFACT_LINK_DENIED`), recorded only as `SNAPSHOT_FAILED`, and the trajectory ended before S7.
+  - No task states such a rule, so the loss was not attributable to the model.
+  - Fixed in `838a90d`: snapshots and exports skip links and special files, never following them, and list them in the manifest. Other artifact codes are now kept as the stop reason.
+- **Report.** The suite report showed deepseek's tokens as 0k and its median as n/a. The last S7 request was cut off by the budget stop and reported no usage, which nulled the whole sum. Fixed in `838a90d`.
+
+**Budget, from 2026-10-23 (user decision).** Each stage gets 5,000,000 tokens, 200 responses, 500 tool calls and 90 minutes. The whole trajectory gets 25,000,000 tokens, 1,000 responses, 2,500 tool calls and 10 hours, and tool evidence up to 16 MB. Only the token budget should stop a model; the other limits are set well above the pace observed.
