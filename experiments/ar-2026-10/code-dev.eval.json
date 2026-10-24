@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 3,
+  "name": "ar-2026-10-code-dev",
+  "models": [
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "aliplan",
+      "id": "qwen3.8-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    },
+    {
+      "provider": "mimoplan",
+      "id": "mimo-v2.6-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 1,
+  "budget": {
+    "timeoutMs": 7200000,
+    "maxTurns": 100,
+    "maxModelCalls": 100,
+    "maxToolCalls": 200,
+    "maxOutputChars": 524288,
+    "maxOutputTokensPerCall": 131072,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 1000000
+  },
+  "artifactLimits": {
+    "maxFiles": 500,
+    "maxFileBytes": 10485760,
+    "maxTrialBytes": 52428800,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 40000000,
+    "concurrency": 4
+  },
+  "trustedLocalExecution": true,
+  "budgetNotice": true,
+  "protocol": {
+    "track": "fixed",
+    "split": "dev",
+    "label": "provisional-B"
+  },
+  "cases": [
+    {
+      "id": "ar-abstraction",
+      "packagePath": "task-library/core/ar-abstraction",
+      "packageManifestSha256": "b892077d5de3105fabe5e99ec81fe1463069559d44e8b62ff221baad18eb739f",
+      "toolProfile": "workspace-basic",
+      "input": {
+        "prompt": "Solve the task and give the JSON answer described above. The task is also in public/task.json (without the test outputs); you may write and run Python programs on it."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 120000
+      },
+      "items": [
+        "a1-0a1d4ef5",
+        "a1-12997ef3",
+        "a1-12eac192",
+        "a1-1da012fc",
+        "a1-2697da3f",
+        "a1-27a77e38",
+        "a1-27f8ce4f",
+        "a1-2b01abd0",
+        "a1-505fff84",
+        "a1-66e6c45b",
+        "a1-6f473927",
+        "a1-73ccf9c2",
+        "a1-7e02026e",
+        "a1-84db8fc4",
+        "a1-b9630600",
+        "a1-d19f7514",
+        "a1-e1d2900e",
+        "a1-e4075551",
+        "a1-e6de6e8f",
+        "a1-e99362f0",
+        "a2-1ae2feb7",
+        "a2-20a9e565",
+        "a2-269e22fb",
+        "a2-3dc255db",
+        "a2-446ef5d2",
+        "a2-4a21e3da",
+        "a2-65b59efc",
+        "a2-7666fa5d",
+        "a2-7b0280bc",
+        "a2-7b3084d4",
+        "a2-8b9c3697",
+        "a2-9385bd28",
+        "a2-9bbf930d",
+        "a2-a251c730",
+        "a2-a395ee82",
+        "a2-a6f40cea",
+        "a2-d8e07eb2",
+        "a2-e12f9a14",
+        "a2-eee78d87",
+        "a2-f931b4a8"
+      ]
+    }
+  ]
+}

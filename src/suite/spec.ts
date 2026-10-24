@@ -55,6 +55,8 @@ export interface FamilySpec {
   overrides?: Record<string, unknown>;
   /** Open-ended items always use their whole budget (their time limit), so budget stops are not flagged. */
   openEnded?: boolean;
+  /** v2: a core family reported as its own row, never averaged into its capability (a second protocol of a family). */
+  ownRow?: boolean;
   /** The most a null agent may score in the smoke step; default 0. */
   smokeMaxScore?: number;
   /** Visual families: the tournament's judges, in model syntax; omitted means the tournament's defaults. */
@@ -98,14 +100,15 @@ export function validateSuite(value: unknown): SuiteFile {
     if (v2 && (!["basic", "core", "frontier"].includes(String(family.tier)) || !["engineering", "reasoning", "agentic", "visual"].includes(String(family.capability)))) {
       fail(`${family.id}.tier`);
     }
-    if (!v2 && (family.tier !== undefined || family.capability !== undefined)) fail(`${family.id}.v2-fields`);
+    if (!v2 && (family.tier !== undefined || family.capability !== undefined || family.ownRow !== undefined)) fail(`${family.id}.v2-fields`);
+    if (family.ownRow !== undefined && (typeof family.ownRow !== "boolean" || family.tier !== "core")) fail(`${family.id}.ownRow`);
   }
   if (v2 && suite.capabilityWeights !== undefined) {
     if (!suite.capabilityWeights || typeof suite.capabilityWeights !== "object") fail("capabilityWeights");
     for (const [capability, weights] of Object.entries(suite.capabilityWeights)) {
       for (const [familyId, weight] of Object.entries(weights ?? {})) {
         const family = suite.families.find(entry => entry.id === familyId);
-        if (!family || family.tier !== "core" || family.capability !== capability || typeof weight !== "number" || !(weight > 0) || !Number.isFinite(weight)) {
+        if (!family || family.tier !== "core" || family.ownRow || family.capability !== capability || typeof weight !== "number" || !(weight > 0) || !Number.isFinite(weight)) {
           fail(`capabilityWeights.${capability}.${familyId}`);
         }
       }

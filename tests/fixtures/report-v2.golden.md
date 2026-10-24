@@ -24,7 +24,7 @@ Every number below comes from the trials' outcome records (MEASUREMENT §2). A t
 | m:a-high | 0.75 [0.583–0.917], 12 tasks |
 | m:b-default | 0.167 [0–0.333], 12 tasks |
 
-Basic and frontier families, reported as their own rows and never averaged into the core:
+Families reported as their own rows and never averaged into the core (basic, frontier, and core families of a second protocol):
 
 | Model | FRONT (frontier) | BASE (basic) |
 | --- | --- | --- |

@@ -68,3 +68,14 @@ test("report v2: the golden fixture suite", async () => {
   assert.ok(report.comparisons[0]!.meanDifference! > 0);
   assert.deepEqual(Object.keys(report.profile[0]!.rows).sort(), ["BASE", "FRONT"], "basic and frontier rows stay out of the core profile");
 });
+
+test("report v2: a core family of a second protocol is its own row, never averaged into its capability", () => {
+  const [core, front, base] = families();
+  const second = { ...core!, id: "CORE-CODE", ownRow: true };
+  const report = buildReportV2({ suite: "fixture", id: "20261024-000000-fixture-0001", release: null, split: "dev", track: "fixed", commit: "0123456789abcdef0123",
+    startedAt: "2026-10-24T00:00:00.000Z", finishedAt: "2026-10-24T01:00:00.000Z", status: "completed", models, repetitions: 1, capabilityWeights: {},
+    families: [core!, second, front!, base!], audits: { CORE: null, "CORE-CODE": null, FRONT: null, BASE: null } });
+  assert.deepEqual(report.profile[0]!.capabilities.reasoning!.families, ["CORE"]);
+  assert.ok("CORE-CODE" in report.profile[0]!.rows);
+  assert.ok(report.comparisons.every(comparison => comparison.capability === "reasoning"));
+});

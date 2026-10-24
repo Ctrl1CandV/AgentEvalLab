@@ -574,6 +574,7 @@ export class SuiteRunner {
       data: {
         id: family.id, tier: family.tier ?? manifest.tier!, capability: family.capability ?? manifest.capabilities![0]!, openEnded: headline.kind === "metric",
         structureCap: scoreModel.structureCap ?? 0.2, packageId: manifest.id, taskVersion: manifest.version, primaryKind: headline.kind,
+        ...(family.ownRow ? { ownRow: true } : {}),
         outcomes, plannedTasks, notRun, protocol, runDirectories,
       },
     };

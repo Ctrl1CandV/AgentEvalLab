@@ -1,0 +1,5425 @@
+{
+  "schemaVersion": 2,
+  "id": "ar-abstraction",
+  "version": "0.1.0",
+  "familyId": "ar-abstraction",
+  "capability": "reasoning",
+  "usage": "development",
+  "source": {
+    "kind": "open-source",
+    "references": [
+      "https://github.com/fchollet/ARC-AGI",
+      "https://github.com/arcprize/ARC-AGI-2",
+      "https://arxiv.org/abs/1911.01547"
+    ]
+  },
+  "license": {
+    "taskText": "Instruction and rendering project-authored; tasks from ARC-AGI-1 and ARC-AGI-2, unmodified.",
+    "thirdPartyContent": [
+      "ARC-AGI-1 (Apache-2.0, François Chollet)",
+      "ARC-AGI-2 (Apache-2.0, ARC Prize Foundation)"
+    ]
+  },
+  "entryPoint": {
+    "instruction": "instruction.md"
+  },
+  "files": {
+    "public": [
+      {
+        "path": "instruction.md",
+        "sha256": "560906261cc0a42e5143b4b2239395116a639b8451003d02119cdb3538919838"
+      }
+    ],
+    "trusted": [
+      {
+        "path": "calibration.md",
+        "sha256": "5c713ec48342c85419ef3e00bbe426a5e4cf253724295436c2417f9a00362b16"
+      },
+      {
+        "path": "card.md",
+        "sha256": "0cbf143f542b1899be88a6233925cc5265755cd36fe0f58a0f1c33c0983b50d4"
+      },
+      {
+        "path": "rubric.md",
+        "sha256": "fca801c61da28d24e415aabdaf20d29c6a6e2fc1bf80e2cf1dde7dd018ca0d9f"
+      },
+      {
+        "path": "private/build_package.py",
+        "sha256": "0700a9a1766e69913a04bd6c222746ac3482583605be7ac58c36b8b3768c3d0b"
+      },
+      {
+        "path": "private/grader.py",
+        "sha256": "96a059c5269c610fcf4a85fb76953cf7c8392b47ef88cae5471e1c80b3bed98d"
+      },
+      {
+        "path": "private/keys.json",
+        "sha256": "9f8c5fc9eeb174daf149c505b49a3364fff3fe9f7421f75b1c7175e1265a2579"
+      },
+      {
+        "path": "private/licenses/ARC-AGI-1-LICENSE",
+        "sha256": "b3a161754ffc20840ccf92aec0fe464fbbcf42f14c22f78a3ec2e98fca3864ca"
+      },
+      {
+        "path": "private/licenses/ARC-AGI-2-LICENSE",
+        "sha256": "8360699be7ffadd4b460e4287c1f7d0ada282518ee8e375fff603b1b3ecbb43f"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "REQ-TEST-1",
+      "critical": true,
+      "introducedAt": "ar-abstraction 0.1.0",
+      "checkIds": [
+        "test-1"
+      ]
+    },
+    {
+      "id": "REQ-TEST-2",
+      "critical": true,
+      "introducedAt": "ar-abstraction 0.1.0",
+      "checkIds": [
+        "test-2"
+      ]
+    },
+    {
+      "id": "REQ-TEST-3",
+      "critical": true,
+      "introducedAt": "ar-abstraction 0.1.0",
+      "checkIds": [
+        "test-3"
+      ]
+    },
+    {
+      "id": "REQ-FORMAT",
+      "critical": false,
+      "introducedAt": "ar-abstraction 0.1.0",
+      "checkIds": [
+        "answer-format"
+      ]
+    }
+  ],
+  "tier": "core",
+  "capabilities": [
+    "reasoning"
+  ],
+  "card": "card.md",
+  "scoreModel": {
+    "primary": {
+      "kind": "resolved"
+    },
+    "groups": [
+      {
+        "id": "outputs",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "test-1",
+          "test-2",
+          "test-3"
+        ]
+      }
+    ],
+    "metrics": [
+      {
+        "id": "testShare",
+        "unit": "share of test outputs matched",
+        "direction": "higher"
+      },
+      {
+        "id": "wellFormed",
+        "unit": "0 or 1",
+        "direction": "higher"
+      }
+    ],
+    "format": {
+      "checkId": "answer-format",
+      "penalty": 0.2
+    }
+  },
+  "items": [
+    {
+      "id": "a1-05a7bcf2",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-05a7bcf2/prompt.md",
+          "sha256": "60c26f1498b286aaa2299ac59146f67d510b3b2519bb2cc390a50d2f60bdf5a4"
+        },
+        {
+          "path": "items/a1-05a7bcf2/public/task.json",
+          "sha256": "122eda148d1567e4e083d796f4fc35bb40df1d0831575d41e7d0cf416e98b151"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-05a7bcf2",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 05a7bcf2",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-0a1d4ef5",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-0a1d4ef5/prompt.md",
+          "sha256": "2e6652b10beaed855292369b91d143cc45ca4bef61784b3b326676dbf9e9e671"
+        },
+        {
+          "path": "items/a1-0a1d4ef5/public/task.json",
+          "sha256": "4c0b469629a607913181c73d0e9d9df46c6a394e57c0c60458998a51131c3a68"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-0a1d4ef5",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 0a1d4ef5",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-0c9aba6e",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-0c9aba6e/prompt.md",
+          "sha256": "68acd830cc43606eb2e55824a5655b3c90477194376d3bffacaaaedf08a28aee"
+        },
+        {
+          "path": "items/a1-0c9aba6e/public/task.json",
+          "sha256": "d0a3b72b475fe6ca0bfcc1d7339c505c370d6354f401b267fe3d04295390beaf"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-0c9aba6e",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 0c9aba6e",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-0d87d2a6",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-0d87d2a6/prompt.md",
+          "sha256": "1428de521de5ba58823292195afe5b14e73c616effc43d67e461260dd52ba73e"
+        },
+        {
+          "path": "items/a1-0d87d2a6/public/task.json",
+          "sha256": "86d42bc8691558672da5496d9cb4340705ad93979365af660cdf3712f458be06"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-0d87d2a6",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 0d87d2a6",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-0e671a1a",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-0e671a1a/prompt.md",
+          "sha256": "28d523496e5de800660f0b88d84dcabed2c608456c15608f3b0ae2eb0c551322"
+        },
+        {
+          "path": "items/a1-0e671a1a/public/task.json",
+          "sha256": "2509bb847a8a1b552b6902567850f89aa67f3f386310157d12c1870ebbb65b72"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-0e671a1a",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 0e671a1a",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-0f63c0b9",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-0f63c0b9/prompt.md",
+          "sha256": "978aa95a7317bff2ebe488bc45f4f8245b29c8ec1478b9b15097959591d3500d"
+        },
+        {
+          "path": "items/a1-0f63c0b9/public/task.json",
+          "sha256": "a08e53e18d9d30c67272ab46fb999ee58ae9a765959a00e5ebb215d49cf83fd8"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-0f63c0b9",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 0f63c0b9",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-12997ef3",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-12997ef3/prompt.md",
+          "sha256": "e98a71739a68e42ebd3beb9c04090e29a76534f6bcf9df954f735c8ff9c96629"
+        },
+        {
+          "path": "items/a1-12997ef3/public/task.json",
+          "sha256": "b3ad86c74765cda8ad5988a3ad30a931c30148ddba25a4fcc58b110819aa05f6"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-12997ef3",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 12997ef3",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-12eac192",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-12eac192/prompt.md",
+          "sha256": "6480f55e612666bbd0b4a3c369373f63032b7e35dc599af6643fe9904d005a89"
+        },
+        {
+          "path": "items/a1-12eac192/public/task.json",
+          "sha256": "419a189cd2ecd3eb94254e40fb992f32115a01fcfe96a9a49812cfbb724a609f"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-12eac192",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 12eac192",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-1a2e2828",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-1a2e2828/prompt.md",
+          "sha256": "cfda60f858e4fb4688af5ce0b4a99337695c0b71bbe5f3a7496c2332dedb21bd"
+        },
+        {
+          "path": "items/a1-1a2e2828/public/task.json",
+          "sha256": "b5e8057be6e91ef8f2198d563f35cc06695d8ba1c90856d8619ead77c9c19eb7"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-1a2e2828",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 1a2e2828",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-1da012fc",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-1da012fc/prompt.md",
+          "sha256": "ba1ff8a17294304074e908ce21836b9b9e5cc68570fd8575dc857ec4676ef586"
+        },
+        {
+          "path": "items/a1-1da012fc/public/task.json",
+          "sha256": "82410a103bff98fe25ad2dd5f5071946a011d65c121bf9302bac7ba3c08d85b8"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-1da012fc",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 1da012fc",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-1e97544e",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-1e97544e/prompt.md",
+          "sha256": "cbb3fc761e96d06430c3291b98e7d35700e4b13ff18f79af3ee5cc379135406b"
+        },
+        {
+          "path": "items/a1-1e97544e/public/task.json",
+          "sha256": "9b39f52dd2c768d2c0d07dcf44b8e7131ec324114443067e928871cd62a1f3fa"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-1e97544e",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 1e97544e",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-20818e16",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-20818e16/prompt.md",
+          "sha256": "3f596d05605efbf21c6e88cf44aad72913144b617fac54cba4c49108af889dad"
+        },
+        {
+          "path": "items/a1-20818e16/public/task.json",
+          "sha256": "04566ee6bafa4a87b099eed389bed9ec509d7b9095b8b109a649a85439e03d49"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-20818e16",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 20818e16",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-20981f0e",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-20981f0e/prompt.md",
+          "sha256": "540cb95247696b4c389dabb90afcb3af7ffd2f05970f27bfba5b4d7324472d14"
+        },
+        {
+          "path": "items/a1-20981f0e/public/task.json",
+          "sha256": "c2923dce6583838a982614bc4f57daf4f3a5f2604e4bcd116d29998ecb5a0c18"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-20981f0e",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 20981f0e",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-2697da3f",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-2697da3f/prompt.md",
+          "sha256": "d4016034d2006a470813c02fecf65da748dc9ad8b88c026658063cab5e5fff0e"
+        },
+        {
+          "path": "items/a1-2697da3f/public/task.json",
+          "sha256": "9f90e805ae672863f7079890412e68e2b703f6d4530ae290a9962da2d67de116"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-2697da3f",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 2697da3f",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-27a77e38",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-27a77e38/prompt.md",
+          "sha256": "19412f8205bb6a2ade30794f28b587d4ef93fc8acfcdfd10d2e84f80a257cd1d"
+        },
+        {
+          "path": "items/a1-27a77e38/public/task.json",
+          "sha256": "cb11edea2af9c9630e0badccea2237b64854e5fa3b3768ac9d3c8bbb52b4a36c"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-27a77e38",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 27a77e38",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-27f8ce4f",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-27f8ce4f/prompt.md",
+          "sha256": "34d1e3b75085f25aa701beaa68ca4c17c2f8c0caf20a60edec39a4681aac83c4"
+        },
+        {
+          "path": "items/a1-27f8ce4f/public/task.json",
+          "sha256": "cb1fdb235456460edd1f7c5c0bc5405c483cf18223a19ba21901e3a18663eb37"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-27f8ce4f",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 27f8ce4f",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-2a5f8217",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-2a5f8217/prompt.md",
+          "sha256": "ee198cc677f48c076c2a09e28746e3d03bb9e92602084e1002f988d6b210fc4e"
+        },
+        {
+          "path": "items/a1-2a5f8217/public/task.json",
+          "sha256": "7949d847498ccd9f38e86b050e3d36fdfa36bfe173ef336f2bddb89cbe58652a"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-2a5f8217",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 2a5f8217",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-2b01abd0",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-2b01abd0/prompt.md",
+          "sha256": "27d737681dcc56c09e4413d695b240d7b39742f9cec0b7f20d601ac8b0d06c6d"
+        },
+        {
+          "path": "items/a1-2b01abd0/public/task.json",
+          "sha256": "b4a12e12e5bb7ddc8dac04b283f4bfebfb656fbffde21eb910d20de1acc216fa"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-2b01abd0",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 2b01abd0",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-310f3251",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-310f3251/prompt.md",
+          "sha256": "2f6b72f6fb4b4d1b537718315e9c8882380b1377bc78aea9c5bb4ba73e435886"
+        },
+        {
+          "path": "items/a1-310f3251/public/task.json",
+          "sha256": "fff6fb656c9a6e076ae57dcc93337d97a91c41f35e6d6dbae248a12f8c6048ad"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-310f3251",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 310f3251",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-31d5ba1a",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-31d5ba1a/prompt.md",
+          "sha256": "886e479ad5eea23c30d472ff8535cd02af399f589af6b838deee2c666f6482a2"
+        },
+        {
+          "path": "items/a1-31d5ba1a/public/task.json",
+          "sha256": "8cc77c34f7fc4ab24daa185715a4563b87efe1b381e6d8d3b93f107de3d3d10d"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-31d5ba1a",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 31d5ba1a",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-3391f8c0",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-3391f8c0/prompt.md",
+          "sha256": "4c5fcb63b3324ef421117d4fbcd8011d0b6a96d8327577c62176ba50de39ce14"
+        },
+        {
+          "path": "items/a1-3391f8c0/public/task.json",
+          "sha256": "191a5a3646f0067f8e8a7d215ef23a26bfa2d387e895de3e80c999b0fe7f14bc"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-3391f8c0",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 3391f8c0",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-33b52de3",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-33b52de3/prompt.md",
+          "sha256": "7449ef0b4505bc3115c17e267cecd65a4e5526b91c9a8c2eac7c1c6749ecb8b3"
+        },
+        {
+          "path": "items/a1-33b52de3/public/task.json",
+          "sha256": "e9147dc3fd5b220ac831afac6bd368adbae0de3c7a1e9c05a4b3a6c9f474e5eb"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-33b52de3",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 33b52de3",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-34b99a2b",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-34b99a2b/prompt.md",
+          "sha256": "80764fb1f068e7c2ab87edfa3558712c2b21c6ac8550640b110827ac28f612af"
+        },
+        {
+          "path": "items/a1-34b99a2b/public/task.json",
+          "sha256": "60f2a5741bdacf8b79a2ace011f9314763a00f048e1e62d9df07834c941ddb0e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-34b99a2b",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 34b99a2b",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-37d3e8b2",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-37d3e8b2/prompt.md",
+          "sha256": "fdccb4d8bdc50a58cb6dad5cdde7d42c680726f6aaff183b6b8335e1aadc6b45"
+        },
+        {
+          "path": "items/a1-37d3e8b2/public/task.json",
+          "sha256": "74e63f894fb8f60a98e5bef83fe5bf15a85ab81929f2895a08e518ccdbf948f3"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-37d3e8b2",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 37d3e8b2",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-477d2879",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-477d2879/prompt.md",
+          "sha256": "06403842aa151a017fa57d299f9b68397199464e1e56c352fb799c07f0e31b6f"
+        },
+        {
+          "path": "items/a1-477d2879/public/task.json",
+          "sha256": "e1f10f3fd1f6f9cce6e9c40d7926b9b8f34d6f2e098d9b0324e93123fd5c65bf"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-477d2879",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 477d2879",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-4aab4007",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-4aab4007/prompt.md",
+          "sha256": "d34902d3ef87c3d4ce8d190e6c66ae96e379241c0b0dd93fac743529aeebb40e"
+        },
+        {
+          "path": "items/a1-4aab4007/public/task.json",
+          "sha256": "4f0ac0afd2fd58f5d5b2987d8d99370cbedee9702399d0c322a5bc228765dd6d"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-4aab4007",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 4aab4007",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-505fff84",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-505fff84/prompt.md",
+          "sha256": "4c8909a4b17a7191e615b6c1b473af13818093df36c4d990b1acf662d8cb87a7"
+        },
+        {
+          "path": "items/a1-505fff84/public/task.json",
+          "sha256": "3b11b37f4006cbdaa64c18324e1e85c422b403385803f023081e18c7c180e538"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-505fff84",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 505fff84",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-575b1a71",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-575b1a71/prompt.md",
+          "sha256": "3b7dd10b356ae95666b7d7b475e0308d0a931c64e63c3d6f64af08e85e172b08"
+        },
+        {
+          "path": "items/a1-575b1a71/public/task.json",
+          "sha256": "f190c02239a8bfa82d21fc8109238e2b6ddb48d9886934d5c06dd52b15d801c1"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-575b1a71",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 575b1a71",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-5833af48",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-5833af48/prompt.md",
+          "sha256": "c12fc0853d6dbf17a60119084b2963f3fffd9b31eba8ba5a6ad81056f5666236"
+        },
+        {
+          "path": "items/a1-5833af48/public/task.json",
+          "sha256": "29e9b72586e503bfc7c84b4d4c090542dc485887a675bde5e8694d8706bdfc60"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-5833af48",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 5833af48",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-5d2a5c43",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-5d2a5c43/prompt.md",
+          "sha256": "ef380a1a5cc0d01d6fea072e47ef91a7317cd363acdfbf3f07ddcb67fb064e65"
+        },
+        {
+          "path": "items/a1-5d2a5c43/public/task.json",
+          "sha256": "e867f0a9877f6a6a905c58f925acbd85105c8a2fce9ff2aebd7bd84679e09e84"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-5d2a5c43",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 5d2a5c43",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-626c0bcc",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-626c0bcc/prompt.md",
+          "sha256": "ca1f451eb5c8c7297fc5435cb8f9605ea6b48e4804bfbfe86caa27540041f2a5"
+        },
+        {
+          "path": "items/a1-626c0bcc/public/task.json",
+          "sha256": "e9fc94446a58f7bb55fe9104828e1d315caec445d2d61d3b209f994b25c1cf51"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-626c0bcc",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 626c0bcc",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-639f5a19",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-639f5a19/prompt.md",
+          "sha256": "177f5f0dff40104539037d9cdae8ee524ecefb50e6ded193da1acca74d42891d"
+        },
+        {
+          "path": "items/a1-639f5a19/public/task.json",
+          "sha256": "6f946842768f75567cc89987f8803e77294492f40d88b3be76c31e6fdb80f613"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-639f5a19",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 639f5a19",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-66e6c45b",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-66e6c45b/prompt.md",
+          "sha256": "e70df8ef27ac572128715e97dba90c2c88890aedf98bd786ed5acbb9e8d55bf4"
+        },
+        {
+          "path": "items/a1-66e6c45b/public/task.json",
+          "sha256": "da4d2df6e97917f001a53b12c1c399eccea35dc8e322f569a13fc4558d37632b"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-66e6c45b",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 66e6c45b",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-6ad5bdfd",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-6ad5bdfd/prompt.md",
+          "sha256": "e682bb56a028b26a141add13d22e962e56234d29e997b0fc53ff0de279476d16"
+        },
+        {
+          "path": "items/a1-6ad5bdfd/public/task.json",
+          "sha256": "31cc4a772effe22c3d3b2439aa8859693e1e5e14d4d25eb3f31e3553c8182def"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-6ad5bdfd",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 6ad5bdfd",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-6f473927",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-6f473927/prompt.md",
+          "sha256": "84b5bc4d5114d92d7252b81827b56b002ff8c8d566ae768ac2feb319f5e5de28"
+        },
+        {
+          "path": "items/a1-6f473927/public/task.json",
+          "sha256": "636ac95e27a860ee20ac45c1d77fb1317ff2fd9924ae56ab3b9f5dab0aebccb7"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-6f473927",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 6f473927",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-712bf12e",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-712bf12e/prompt.md",
+          "sha256": "2f6e2f4b5056cddb2cfc7a9f471d44ef38a7c1d0f4e9d59525f7909f68fa69b9"
+        },
+        {
+          "path": "items/a1-712bf12e/public/task.json",
+          "sha256": "2222db7445e629c7ce13f2e2bff31ebfc2ae610d1c1fc74743ae343c9407799d"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-712bf12e",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 712bf12e",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-73ccf9c2",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-73ccf9c2/prompt.md",
+          "sha256": "68061a94b0ee72a6173eabc44178f5969c09c719c590d13e6ce34dbfd06bebfb"
+        },
+        {
+          "path": "items/a1-73ccf9c2/public/task.json",
+          "sha256": "ea3c870b69001bcc9779b492bc3339371f52bebb2a8aad7a068eceed5e3439f6"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-73ccf9c2",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 73ccf9c2",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-759f3fd3",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-759f3fd3/prompt.md",
+          "sha256": "fba8aaeb0289962d8b5f2f90bd857dc480a67e7902e94d15b2fbaea75a404497"
+        },
+        {
+          "path": "items/a1-759f3fd3/public/task.json",
+          "sha256": "c51f8f7db23dfa267c706aa3475244d25ec32c06c585fa6893b54ca723f2f94c"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-759f3fd3",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 759f3fd3",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-770cc55f",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-770cc55f/prompt.md",
+          "sha256": "dc3902e928f6c89cc4d48f993894b926673bac3c3e6db24eaef7952708e9bee9"
+        },
+        {
+          "path": "items/a1-770cc55f/public/task.json",
+          "sha256": "05b0af91bdf1f12d3b3c35f78885dd635bedda86f0b9eef321d26d3d90e603fe"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-770cc55f",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 770cc55f",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-782b5218",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-782b5218/prompt.md",
+          "sha256": "0ec971f6b082b4c8f478373ddf76b7234da2e2382f9d6a2822717f5902dc9b6d"
+        },
+        {
+          "path": "items/a1-782b5218/public/task.json",
+          "sha256": "c25d29b710804a5bf3de80d71780978f45d90c184b31f3621fc91185c389cfe4"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-782b5218",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 782b5218",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-7c8af763",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-7c8af763/prompt.md",
+          "sha256": "e5e7931aed2a48baee3f4f3ef86dd2c0f2571465159461a8acd23034ccc5b974"
+        },
+        {
+          "path": "items/a1-7c8af763/public/task.json",
+          "sha256": "85d6cb552242c96b1b5bcf76be7141a403b3368ed87a7e8b5e1ff7ccc52b2ff3"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-7c8af763",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 7c8af763",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-7d419a02",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-7d419a02/prompt.md",
+          "sha256": "532174b35099cad238527cacc1340417355ea58c3cc2ad72e5095260383f443e"
+        },
+        {
+          "path": "items/a1-7d419a02/public/task.json",
+          "sha256": "3bbae1a2736e4ad7be37521c98ff34b3916eb29d5f610e1c1bb0d8dafd3cb1af"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-7d419a02",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 7d419a02",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-7e02026e",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-7e02026e/prompt.md",
+          "sha256": "46c107ea699c2ca1f2bbd9f6969a0aeca69f529833bcea6531041593f1e663da"
+        },
+        {
+          "path": "items/a1-7e02026e/public/task.json",
+          "sha256": "603ee98cc6ada3a89341713f0a753cf00788d279bd8ed4a74438c483a54b1d6e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-7e02026e",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 7e02026e",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-81c0276b",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-81c0276b/prompt.md",
+          "sha256": "138222636607f151f2ca976a7e9ad2e0030cba90bcc4a59aa34b4705bd7a36f1"
+        },
+        {
+          "path": "items/a1-81c0276b/public/task.json",
+          "sha256": "ac34c72d47635d4162b908613ae57703dfdaec602de6811437901457d7a23e79"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-81c0276b",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 81c0276b",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-833dafe3",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-833dafe3/prompt.md",
+          "sha256": "4d287278d2a654cfc1b4f6711bd82bd81886e0b2afa385cf5571e32b1a4e48b0"
+        },
+        {
+          "path": "items/a1-833dafe3/public/task.json",
+          "sha256": "042b00179ceb2bb567f2d7281bfe1e87ccff2e851d9982805dd6e20a0fb43a56"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-833dafe3",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 833dafe3",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-84db8fc4",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-84db8fc4/prompt.md",
+          "sha256": "9a7dd4433e1a3d49dcd924cb3e52933c43b701103aa33de324a143c2184c3639"
+        },
+        {
+          "path": "items/a1-84db8fc4/public/task.json",
+          "sha256": "5e50da7ad90e66a0dcec1a15ec127555db5b5852706090d371bf1ad20de26cc9"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-84db8fc4",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 84db8fc4",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-8597cfd7",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-8597cfd7/prompt.md",
+          "sha256": "e4443c90c579ba3584c75feec086305c9643b44407afa68fb882bd972883b140"
+        },
+        {
+          "path": "items/a1-8597cfd7/public/task.json",
+          "sha256": "80d701dfe7637c17119b789bed33f5715ffabbd79b3b8fb2506be02aa78b717e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-8597cfd7",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 8597cfd7",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-8a371977",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-8a371977/prompt.md",
+          "sha256": "9a42df1495e8707157ed4495502a9b982e5cf8e0d6548137e195ea3a4c00da48"
+        },
+        {
+          "path": "items/a1-8a371977/public/task.json",
+          "sha256": "67f1b45723002fed78b9e9f61dcddc822aa5a2bf5e5607af967534987ef07c82"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-8a371977",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 8a371977",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-93b4f4b3",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-93b4f4b3/prompt.md",
+          "sha256": "b2859e5d2028b2c925fa6a4d10127c01bc590deb0a4d5d346810ac0d4ffe3f2f"
+        },
+        {
+          "path": "items/a1-93b4f4b3/public/task.json",
+          "sha256": "a050183565ffe2997e02db80354d52882bef6b22695451ab13e86a2e7225f853"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-93b4f4b3",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 93b4f4b3",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-95a58926",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-95a58926/prompt.md",
+          "sha256": "8573fe5f3c4f57a30d1561095880acabf179a2169be622878c15aa70b8ef2ee9"
+        },
+        {
+          "path": "items/a1-95a58926/public/task.json",
+          "sha256": "d7113361e79300bd8133e701d12a2e68cdddda286099c635c336526b7f6ac0e6"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-95a58926",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 95a58926",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-9a4bb226",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-9a4bb226/prompt.md",
+          "sha256": "90f171d77f181c019b7c071436e8be795885a227d338497b5949d5e6b48a00c7"
+        },
+        {
+          "path": "items/a1-9a4bb226/public/task.json",
+          "sha256": "23b7d86cc8d529c7876ac3da88b12301cfa7ec8397183fa5a215404cb54df36b"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-9a4bb226",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task 9a4bb226",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-a59b95c0",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-a59b95c0/prompt.md",
+          "sha256": "cbaf7087f66c2dc0a68d3eb89b50835c0946dbed9f9f4905244e3c74fe9a9041"
+        },
+        {
+          "path": "items/a1-a59b95c0/public/task.json",
+          "sha256": "c698dd6d70c8507f7a05b44df4ee9bbf88d4facf2e1a2c7c8449919957abaa7c"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-a59b95c0",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task a59b95c0",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-aab50785",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-aab50785/prompt.md",
+          "sha256": "441734d4b34a0ae24def1e734f1a69632fa96c09b49c95fd14eac0a6b85049d6"
+        },
+        {
+          "path": "items/a1-aab50785/public/task.json",
+          "sha256": "343cd4c9e3371fe0e51e9980e00eb8d350d5636c4dc2462146ed2bba7c5dafdd"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-aab50785",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task aab50785",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-ac3e2b04",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-ac3e2b04/prompt.md",
+          "sha256": "88d9a7b2c96cb7bfb0bce7d80b12998e69f5a3f8a35120bd87c7a8b527e92160"
+        },
+        {
+          "path": "items/a1-ac3e2b04/public/task.json",
+          "sha256": "61dd02b86676116014d59c7331dcb5c4d6c527aea54877cb5b071ab15ddc0aa5"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-ac3e2b04",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task ac3e2b04",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-aee291af",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-aee291af/prompt.md",
+          "sha256": "22a4d3e4b77d911cca77d7015e2ded700a58bf94a6e98b4956ae792d1887aaee"
+        },
+        {
+          "path": "items/a1-aee291af/public/task.json",
+          "sha256": "e43365dc707ac648a8fb7ac80e1589a71a75daa89676648ec3d76642cf220693"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-aee291af",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task aee291af",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-b7cb93ac",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-b7cb93ac/prompt.md",
+          "sha256": "f95a54bd8bca843c51b19211dab7093631ea62972704553d07c9dbc62ace19cc"
+        },
+        {
+          "path": "items/a1-b7cb93ac/public/task.json",
+          "sha256": "699df3bda27074a90426b368ec2b0aa757e197ed111495fd0c71321b77432f93"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-b7cb93ac",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task b7cb93ac",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-b7fb29bc",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-b7fb29bc/prompt.md",
+          "sha256": "3b22384d4985486dfcaed5fcd8badd3c6bd5a61bf0a99d52085f91339328105e"
+        },
+        {
+          "path": "items/a1-b7fb29bc/public/task.json",
+          "sha256": "a201f1f684cce88f43caad8b73e3e7393d042261807af5d0bb7a219c2a97a417"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-b7fb29bc",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task b7fb29bc",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-b9630600",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-b9630600/prompt.md",
+          "sha256": "8996a993a6aab825a092357cb50e6831a8c2d59884811d3499cf162c30e5edc4"
+        },
+        {
+          "path": "items/a1-b9630600/public/task.json",
+          "sha256": "281d2163b979b82b55beff1e363db631997630deaf1967f84ffcab4fe434cc27"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-b9630600",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task b9630600",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-ba9d41b8",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-ba9d41b8/prompt.md",
+          "sha256": "f75b2e049fe33734a103b2233a8a870660f68a0094d8c7b66d8cb11ef63aeb86"
+        },
+        {
+          "path": "items/a1-ba9d41b8/public/task.json",
+          "sha256": "d44c89ae0443adae231325812e379b1ea99c5b5ca60706f5c7a4f0d8c01a3a7d"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-ba9d41b8",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task ba9d41b8",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-c87289bb",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-c87289bb/prompt.md",
+          "sha256": "1d9fb6c9c42af451cefa3c194352c2c98b1a8310efc56620ac8252a9db3502f3"
+        },
+        {
+          "path": "items/a1-c87289bb/public/task.json",
+          "sha256": "db8d676038c5857cb111565ce9b2f4bb6eaa8f9459c9b83793b1ab0ce2ce0b6e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-c87289bb",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task c87289bb",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-ca8de6ea",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-ca8de6ea/prompt.md",
+          "sha256": "49b29f6126aa31f71002ff4e5b51c7c181a791a22612e90c8929016a2c3e8887"
+        },
+        {
+          "path": "items/a1-ca8de6ea/public/task.json",
+          "sha256": "963b99b7b99644facc4d2286482493a0080054c5a3e91058e0565b194091fe54"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-ca8de6ea",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task ca8de6ea",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-d19f7514",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-d19f7514/prompt.md",
+          "sha256": "c5630ded271b34badfab99600a7fc2175413add07f15257e65d18f446812f94e"
+        },
+        {
+          "path": "items/a1-d19f7514/public/task.json",
+          "sha256": "7aa5fcf8433c2397a13bb232ed692011de7e0c1fa6731b37775dc066e4370342"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-d19f7514",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task d19f7514",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-d931c21c",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-d931c21c/prompt.md",
+          "sha256": "0ba0057423894e6be36a7401ee10d5e6e9521e5b3dc59c62968de279ce5a6b14"
+        },
+        {
+          "path": "items/a1-d931c21c/public/task.json",
+          "sha256": "cce2a724ff19c3cfb01aa645d51a1fc7af196751121365842b8e947873f487a5"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-d931c21c",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task d931c21c",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-da2b0fe3",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-da2b0fe3/prompt.md",
+          "sha256": "4e68a51147100bf2cde0f4789451bafd5e1ee10a41eb2ac85352ae456dfcd678"
+        },
+        {
+          "path": "items/a1-da2b0fe3/public/task.json",
+          "sha256": "814691acb0156a74546719ebfe196844219124e7307c7e3a9a0c7dacb2e46659"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-da2b0fe3",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task da2b0fe3",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-dc2aa30b",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-dc2aa30b/prompt.md",
+          "sha256": "466a093b7d3e4fa98b2e1221fbf89656c0704b0483897f73e8d0798f168d5832"
+        },
+        {
+          "path": "items/a1-dc2aa30b/public/task.json",
+          "sha256": "cebebe5c6b101f0fc621ece05db29bad708de6edf3082ffc12518bee113c65bc"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-dc2aa30b",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task dc2aa30b",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-df8cc377",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-df8cc377/prompt.md",
+          "sha256": "3b68e1240805a4d673d70ca8cfe4693d31051ffdb1793501c847195eae5e5f12"
+        },
+        {
+          "path": "items/a1-df8cc377/public/task.json",
+          "sha256": "f11952f17f902688312a427d997391e06e9e27b964bb176c8626c5a5d0419e3e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-df8cc377",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task df8cc377",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-e0fb7511",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-e0fb7511/prompt.md",
+          "sha256": "fa4be5418cc67475ccb9c1160d407b476cae16b3e76d4e5a9324dbcd5cec3f13"
+        },
+        {
+          "path": "items/a1-e0fb7511/public/task.json",
+          "sha256": "2441fa5ca24afe1310936ac93be384e13383f9f9368df6e63c1b4421b1506899"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-e0fb7511",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task e0fb7511",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-e1d2900e",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-e1d2900e/prompt.md",
+          "sha256": "bd53d74e5c8d167e221386a51df8954cfbcd463f4afec0cfd36314d663cb61f7"
+        },
+        {
+          "path": "items/a1-e1d2900e/public/task.json",
+          "sha256": "332a6a487aa3820ae3b4b202473b34fceb436eb9f9ca9378fe6b4c812dc5934e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-e1d2900e",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task e1d2900e",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-e21a174a",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-e21a174a/prompt.md",
+          "sha256": "611f95dd988bdf47b17e96e2e55684ffa7856ea8edf6c161272aeac4e8b07a27"
+        },
+        {
+          "path": "items/a1-e21a174a/public/task.json",
+          "sha256": "e2c6addd17f0a10d945a6d2d6e5fce23c27c86167666642195dfbd8c8e06f3d2"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-e21a174a",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task e21a174a",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-e4075551",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-e4075551/prompt.md",
+          "sha256": "28b72bb7594802aca20d1c1ed42926442fdbf631481483c6ecb1943a18de1253"
+        },
+        {
+          "path": "items/a1-e4075551/public/task.json",
+          "sha256": "1a266b8d8586fd13aa9dc7f5c06f11d5c6276481d98217ce51c740481f72a82b"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-e4075551",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task e4075551",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-e619ca6e",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-e619ca6e/prompt.md",
+          "sha256": "499ec7a107dd558599bc56f5db22d6be6b70fd0869ecee044682b95ef5c4301b"
+        },
+        {
+          "path": "items/a1-e619ca6e/public/task.json",
+          "sha256": "4db1c71b3faf6d6f26ceefad99a6e71ee9e8796dd6856f3cf1f3830b7690164d"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-e619ca6e",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task e619ca6e",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-e6de6e8f",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-e6de6e8f/prompt.md",
+          "sha256": "6e6ab928451d092e73a99a8fecccdeb73fbcad49989fa283ddf8e1dda8d49a0d"
+        },
+        {
+          "path": "items/a1-e6de6e8f/public/task.json",
+          "sha256": "47e68bac3cdb79b094058df6c031e1d663919cd85ced4a7a855a4d727d75c84e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-e6de6e8f",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task e6de6e8f",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-e7a25a18",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-e7a25a18/prompt.md",
+          "sha256": "ab5e9e94d51a604cfdf36df36c466ed82f742924df46ca8a934b5e4f34f47fe7"
+        },
+        {
+          "path": "items/a1-e7a25a18/public/task.json",
+          "sha256": "154caa3cf3f72913c0fe1bb38246c9b90fc414fa5025174a8f01b8a1e87a7112"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-e7a25a18",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task e7a25a18",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-e88171ec",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-e88171ec/prompt.md",
+          "sha256": "04424384dd04a3fb691a9b6c863ffa1b2cd583e357e3b3b4296207c451f831db"
+        },
+        {
+          "path": "items/a1-e88171ec/public/task.json",
+          "sha256": "607b67ec71fe8bd3d246da9a2c6fb61f709102565cefd28235ce72b7084c7070"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-e88171ec",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task e88171ec",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-e99362f0",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-e99362f0/prompt.md",
+          "sha256": "c2187775616f2d7f3c53f6a23b0e877e493c4cd6490a4e8f64233170dcf589be"
+        },
+        {
+          "path": "items/a1-e99362f0/public/task.json",
+          "sha256": "71e3f0386289d0281cde32bde7bd9cbedea47d60efecc5f1e7cb65a1a8bb15ed"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a1-e99362f0",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task e99362f0",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-e9b4f6fc",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-e9b4f6fc/prompt.md",
+          "sha256": "d544fe18a782d5885f7f05b9d7a12264da4bc4a34ae35670bdcac24e06b20d36"
+        },
+        {
+          "path": "items/a1-e9b4f6fc/public/task.json",
+          "sha256": "c4d60d1f2562dbf2c18e99bbb964a96405854c29c207bfff6dca2e4226af03bb"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-e9b4f6fc",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task e9b4f6fc",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-ea959feb",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-ea959feb/prompt.md",
+          "sha256": "509c7d5959b2f2dec5edab949d05400e957ccaa95723edea33a6e9315526539b"
+        },
+        {
+          "path": "items/a1-ea959feb/public/task.json",
+          "sha256": "62b64ddbb86e431affe84f0bf761fbae05a5f351ff6c61873c00c6564b9ead43"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a1-ea959feb",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task ea959feb",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-f823c43c",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-f823c43c/prompt.md",
+          "sha256": "931d8fd64e31c863d358b9e68130950211e867a180a7a7031d96a43dc4183455"
+        },
+        {
+          "path": "items/a1-f823c43c/public/task.json",
+          "sha256": "a04dcb2c6621e17050efbaa750b33ba3b0a05069683f908016fed6a030d50623"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-f823c43c",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task f823c43c",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-fafd9572",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-fafd9572/prompt.md",
+          "sha256": "a31eda1a69df08c2e7856fd9cff7777e421c59ab5450188aeabc462a898ca98f"
+        },
+        {
+          "path": "items/a1-fafd9572/public/task.json",
+          "sha256": "a3ff287ee0947238dfaee5049053088674fc489569e36a325093ac3de1e40bb9"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-fafd9572",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task fafd9572",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a1-fd4b2b02",
+      "level": "arc1",
+      "files": [
+        {
+          "path": "items/a1-fd4b2b02/prompt.md",
+          "sha256": "301a966045ea5c6e70886a4c9cc44c8ed0bf727b5e701b84de8645d80eea3655"
+        },
+        {
+          "path": "items/a1-fd4b2b02/public/task.json",
+          "sha256": "0eb8b550ba349a851c65116507b04de99bca2a468ed3205dcb8a23a59fe0e535"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a1-fd4b2b02",
+      "provenance": {
+        "source": "ARC-AGI-1 public evaluation (fchollet/ARC-AGI) @3990304, task fd4b2b02",
+        "published": "2019-11",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-0934a4d8",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-0934a4d8/prompt.md",
+          "sha256": "0f33023f97be06bb7706bda7f7b9bc49f3e1a108ec89d19fb1d8003b0f46d9f6"
+        },
+        {
+          "path": "items/a2-0934a4d8/public/task.json",
+          "sha256": "e366b47a92a65abd2c181de311c98ad5549a365c7ba7070f5f38d2e786148876"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-0934a4d8",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 0934a4d8",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-135a2760",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-135a2760/prompt.md",
+          "sha256": "360d1f81ddffa7047eaedfae008a1130ea2b41114b52ba703af09145ca65a683"
+        },
+        {
+          "path": "items/a2-135a2760/public/task.json",
+          "sha256": "d30b35c4c1693a91b23017351d5c1351c569475b7f833e6947ad76b039e68f0a"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-135a2760",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 135a2760",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-136b0064",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-136b0064/prompt.md",
+          "sha256": "0d5c46d36a92935a37476a9ca6e9f74921e57212d761370147f96f9eedab8bcd"
+        },
+        {
+          "path": "items/a2-136b0064/public/task.json",
+          "sha256": "6d3f4178227ecd35fdb1247939bb42b4ba7ff5ab1a35df63682be230adfd1731"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-136b0064",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 136b0064",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-13e47133",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-13e47133/prompt.md",
+          "sha256": "84ddf4c501e41962165cd34ea5a3f88db9c28a7eda19d2bb2c31ca6b0fbf9f54"
+        },
+        {
+          "path": "items/a2-13e47133/public/task.json",
+          "sha256": "903bf07384cddca14b45405038b6ebb600d06b9324a6a6d56e7987e222fa7537"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-13e47133",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 13e47133",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-142ca369",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-142ca369/prompt.md",
+          "sha256": "3b920d1db9b687a411a65470793d59f34f768a4f6c49a9a4c7d2c420d1b09c14"
+        },
+        {
+          "path": "items/a2-142ca369/public/task.json",
+          "sha256": "fdb316e7ca1a3cc23b75fdcd74549c60153f7ae9a2a182a6fcfd5ff71349bc73"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-142ca369",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 142ca369",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-16b78196",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-16b78196/prompt.md",
+          "sha256": "5d0b907002b2fc465e8506f6f9c7c7781428315ff7e45f1bacce693ac1a0974f"
+        },
+        {
+          "path": "items/a2-16b78196/public/task.json",
+          "sha256": "9d3144cd1229aefdd5dd7cafb52a2b29e14c9962c6fa750d8f96abc337289b23"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-16b78196",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 16b78196",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-16de56c4",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-16de56c4/prompt.md",
+          "sha256": "ef0ce45f018cf5402770eff5668e8422101187b6318417352c289e010b310151"
+        },
+        {
+          "path": "items/a2-16de56c4/public/task.json",
+          "sha256": "9269fdc93d6d1a83d9a06f9dfe3304452268fbe8a8ac14b980595945f28c5046"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-16de56c4",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 16de56c4",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-1818057f",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-1818057f/prompt.md",
+          "sha256": "f8575692a0df613cf91611aa33bc1db8315fbb09f1851795aab0423e3c80c9a7"
+        },
+        {
+          "path": "items/a2-1818057f/public/task.json",
+          "sha256": "d49842c0ef9d21de64a13d85f8eb38a817575c62ee415b97be2791f679f25e5f"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-1818057f",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 1818057f",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-195c6913",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-195c6913/prompt.md",
+          "sha256": "6642f1d8c17f7fa616c82afd4f87d683b2382da4560ea4cfbb2dda65d47b3db1"
+        },
+        {
+          "path": "items/a2-195c6913/public/task.json",
+          "sha256": "44cf325ded6fdd707525034d467be50fc78c4776b5255274733a225a20386956"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-195c6913",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 195c6913",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-1ae2feb7",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-1ae2feb7/prompt.md",
+          "sha256": "797d9f946f4f443ea1ad5b9ac6a41fda400d35787834cbcc6b327e664af6cdc4"
+        },
+        {
+          "path": "items/a2-1ae2feb7/public/task.json",
+          "sha256": "679ec601b31e4ca0a5af15f2157a3c59a84f6647836372c28414056e5cf7ec7c"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-TEST-3",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-1ae2feb7",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 1ae2feb7",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-20270e3b",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-20270e3b/prompt.md",
+          "sha256": "2c7a4b83e13bac8fa488580653498f03181058d0d8b96e51a91280ff9b0675b6"
+        },
+        {
+          "path": "items/a2-20270e3b/public/task.json",
+          "sha256": "b70a0203ea2afe71613e60b8663e5624fc7e7f5a26bb23a5fa9a79630f6a4872"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-20270e3b",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 20270e3b",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-20a9e565",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-20a9e565/prompt.md",
+          "sha256": "e2670f67bfe430721c6ce0cbce107a62d8b8b371ee4ee570589fb39f862e8436"
+        },
+        {
+          "path": "items/a2-20a9e565/public/task.json",
+          "sha256": "12acb0704fec1a5b19116c9511331ac60ee17843605974a8098e15702b8eaee3"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-20a9e565",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 20a9e565",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-21897d95",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-21897d95/prompt.md",
+          "sha256": "b7cd7769055b2831536fea6489939cead61593858ba38319b705b0bb1fe6fa4e"
+        },
+        {
+          "path": "items/a2-21897d95/public/task.json",
+          "sha256": "528786d7c7bef03276ecd521438a697d556e59d58262c339cb47f6fefe93b2f6"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-21897d95",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 21897d95",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-221dfab4",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-221dfab4/prompt.md",
+          "sha256": "7bd813f9bc1b9a3b48fab3ce7b941973b5c6504ffbe54b84f7decc42bc748806"
+        },
+        {
+          "path": "items/a2-221dfab4/public/task.json",
+          "sha256": "c6bbd6f19fcf2bf3c9654d9a609d5fa84e034dd300082de1174735cba7b4d7a5"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-221dfab4",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 221dfab4",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-247ef758",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-247ef758/prompt.md",
+          "sha256": "03775b25781769477c2bd357e7208ac32deec2d5ac18da74398489b90898ef06"
+        },
+        {
+          "path": "items/a2-247ef758/public/task.json",
+          "sha256": "d95ea6f362a054c7ff22647d1231e5e1ee8717ed9b0c58ae3a348886ea302b64"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-247ef758",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 247ef758",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-269e22fb",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-269e22fb/prompt.md",
+          "sha256": "899dc7c388248d1c297840998bae18dc69f2a48285510bc437b01406d229b877"
+        },
+        {
+          "path": "items/a2-269e22fb/public/task.json",
+          "sha256": "f16cb7a21df706c665cd57d712dd42fd90f62c0fddfbd0ad1a4c2302214be619"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-269e22fb",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 269e22fb",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-271d71e2",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-271d71e2/prompt.md",
+          "sha256": "437c28dcc07a271847d126916e33f67fe8b77f10dcd9012576a90707446bfef4"
+        },
+        {
+          "path": "items/a2-271d71e2/public/task.json",
+          "sha256": "3f66d9e5043361919a6c582e2dd259589049b8f7bfd7e06253ef4a918ee90b3e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-271d71e2",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 271d71e2",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-28a6681f",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-28a6681f/prompt.md",
+          "sha256": "bfba3d0a1f883d9d666f218bfaa89ddcb3da8842932c16d44da660c718b9ff93"
+        },
+        {
+          "path": "items/a2-28a6681f/public/task.json",
+          "sha256": "e7937c6b5a5861388d0424b053228bbca6a6de61bb2b18ebb44b4dc45df6331b"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-28a6681f",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 28a6681f",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-291dc1e1",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-291dc1e1/prompt.md",
+          "sha256": "2661c01eea501d80a4a6ab161ba16143d262792889533b245890d63a2c98cbeb"
+        },
+        {
+          "path": "items/a2-291dc1e1/public/task.json",
+          "sha256": "9ff39d1c2009f0b1d164ab137b361237759d4956e2027379b6e257421f4dd5a4"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-291dc1e1",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 291dc1e1",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-2b83f449",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-2b83f449/prompt.md",
+          "sha256": "1ebe55f2fdbac9aadea74b2927eeab1bd83e1f159492c8fed08fa047e709c020"
+        },
+        {
+          "path": "items/a2-2b83f449/public/task.json",
+          "sha256": "190b3f554fa228c211975a2488b9af08f1eaf75706149232fdca37edc6a40f21"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-2b83f449",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 2b83f449",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-2ba387bc",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-2ba387bc/prompt.md",
+          "sha256": "37d6ce296b0b74786b186cf253fab78507a27ce3ca0aff3f99410e57b71b03b3"
+        },
+        {
+          "path": "items/a2-2ba387bc/public/task.json",
+          "sha256": "4baf144e9cefc116b6d579532b9ec48047d07125981083f9ae3f6c35810166b2"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-2ba387bc",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 2ba387bc",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-2c181942",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-2c181942/prompt.md",
+          "sha256": "7ea81b9c4b7a8b72bdb6cc69521aee632a68290d3f494a4723b83836256bcc5c"
+        },
+        {
+          "path": "items/a2-2c181942/public/task.json",
+          "sha256": "4ab2065e97f2e5c9e478c109bd05106bab9cf96516af18adf7869424cdb2260c"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-2c181942",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 2c181942",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-2d0172a1",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-2d0172a1/prompt.md",
+          "sha256": "a1918513a11a85368d6fc88a22253a263203978b3ef0bdbb05d76bb4d513c0f0"
+        },
+        {
+          "path": "items/a2-2d0172a1/public/task.json",
+          "sha256": "5c953e8e10075ae9e35fd411b8459e3944537019d9768a3382877827854676a4"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-2d0172a1",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 2d0172a1",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-31f7f899",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-31f7f899/prompt.md",
+          "sha256": "76aaf1c151a6529c05ee69b3db87f4a5eb403a1a35e5391fd26524697c457375"
+        },
+        {
+          "path": "items/a2-31f7f899/public/task.json",
+          "sha256": "7d2928644ae3ea0a4ee10ce2f143b428d5284b3298ee3af377de3c531f120628"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-31f7f899",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 31f7f899",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-332f06d7",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-332f06d7/prompt.md",
+          "sha256": "0f449a92b0e447d37d7470396164f968c067ee686d234bb10f1302e3bb68b468"
+        },
+        {
+          "path": "items/a2-332f06d7/public/task.json",
+          "sha256": "5c33fc1d7ed215ea305e98d923fe3834dd250dc161fae5662929236ba50a48f5"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-332f06d7",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 332f06d7",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-35ab12c3",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-35ab12c3/prompt.md",
+          "sha256": "fd6f03fdfd64e063dc95e2f610293041624edcf900a8be649995fec5db8790e6"
+        },
+        {
+          "path": "items/a2-35ab12c3/public/task.json",
+          "sha256": "ad987c6b20d7d2d9c5f2a79909968d1875e0500cc70d4a2e216b304f0f106620"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-35ab12c3",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 35ab12c3",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-36a08778",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-36a08778/prompt.md",
+          "sha256": "709f73ef4af97fa2af90a803e990ce77b226d58630965410f07e815b23c0238b"
+        },
+        {
+          "path": "items/a2-36a08778/public/task.json",
+          "sha256": "bea08a02add76c45b3e5c9f77563cddc392d6df5cd2343acaafae9d2bf0673e1"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-36a08778",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 36a08778",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-38007db0",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-38007db0/prompt.md",
+          "sha256": "ee4f931a0fbfbada9079b5c7862cff51ad4a626c4e22524d5f6153db1a2739a4"
+        },
+        {
+          "path": "items/a2-38007db0/public/task.json",
+          "sha256": "8a8006fd1e7ddb288a53312c3341719f6ffaed82567d052c24bbc912d6f4d39a"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-38007db0",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 38007db0",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-3a25b0d8",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-3a25b0d8/prompt.md",
+          "sha256": "c8bb03f4939902841726e846f413d1afc69be354157009beb88aaa1483fc1101"
+        },
+        {
+          "path": "items/a2-3a25b0d8/public/task.json",
+          "sha256": "b4ab5d79e4a4ad3f4485c28e60a768ed00053ef144207d93ea6b3cd85902d183"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-3a25b0d8",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 3a25b0d8",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-3dc255db",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-3dc255db/prompt.md",
+          "sha256": "4b63a52e1ed47ec6c8ad504d3b1e26f4010c8824d09ac0db91a36c3249a7cdb4"
+        },
+        {
+          "path": "items/a2-3dc255db/public/task.json",
+          "sha256": "08ffd11f07d83080e015f46fbd66192cfc165d4bc0c84b38f6e7c00295c79c4d"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-3dc255db",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 3dc255db",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-3e6067c3",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-3e6067c3/prompt.md",
+          "sha256": "5a5fb4f238d4113d85c16a43a85778ce39b40c41e17192a45c936fe119b8b69e"
+        },
+        {
+          "path": "items/a2-3e6067c3/public/task.json",
+          "sha256": "46d120d94a312e158c4e33e41f49cfd2f72d24d115611732af47d627ef76cb5a"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-3e6067c3",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 3e6067c3",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-409aa875",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-409aa875/prompt.md",
+          "sha256": "c92dfaacfa2d33674e113cd5d9f9030a614c882f093288ad0c994bec7165814f"
+        },
+        {
+          "path": "items/a2-409aa875/public/task.json",
+          "sha256": "f98b1588b69eda49b69c530a5d8923afa0207903e5f6066ee24abf975029d54c"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-409aa875",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 409aa875",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-446ef5d2",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-446ef5d2/prompt.md",
+          "sha256": "8d4030caa6d625b42d3023b50658ce67fa37d60571c537718ffabf8a039fb9a9"
+        },
+        {
+          "path": "items/a2-446ef5d2/public/task.json",
+          "sha256": "55c52b8f18b7f3ca6093b65480ea205a3e0fead5cdd36688d603e0270a1e1f1d"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-446ef5d2",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 446ef5d2",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-45a5af55",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-45a5af55/prompt.md",
+          "sha256": "13eae6ed8df5d73f5939f8976465a7c90688eeafac22d2c606c121cca18ae44b"
+        },
+        {
+          "path": "items/a2-45a5af55/public/task.json",
+          "sha256": "fbfea8b26c71212f142127e71a982670fdea4890811d22cb5b1190771a862ae4"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-45a5af55",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 45a5af55",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-4a21e3da",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-4a21e3da/prompt.md",
+          "sha256": "c7cc0118f125eb63eb7d520d04935669c6f2c4f73f4b7bc52305ff2bf6f88bf9"
+        },
+        {
+          "path": "items/a2-4a21e3da/public/task.json",
+          "sha256": "0c4c473d96ef363f6b2ea6aab0caabd7e262d9ba48ae21b4b1a6ee50187eef77"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-4a21e3da",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 4a21e3da",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-4c3d4a41",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-4c3d4a41/prompt.md",
+          "sha256": "17621c70ef2a9f46f2f76c428a9149fcea5b9cec5f4d2c0b0ad6e9d93b5919c3"
+        },
+        {
+          "path": "items/a2-4c3d4a41/public/task.json",
+          "sha256": "c4e414c9d9166b53367851aed39e09821d617cc734d0ac637ee80ab81c74a722"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-4c3d4a41",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 4c3d4a41",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-4c416de3",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-4c416de3/prompt.md",
+          "sha256": "af1fbd3949bfbf2c441225cb4bd62628d9c7078c2a2f0e4215f4e7027511ac15"
+        },
+        {
+          "path": "items/a2-4c416de3/public/task.json",
+          "sha256": "f41fbca4e3f3335c770a57766667544da56cdece563020dea47b9f7729c313fb"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-4c416de3",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 4c416de3",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-4c7dc4dd",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-4c7dc4dd/prompt.md",
+          "sha256": "65fe1b6c434b1355db2e1c6c982df017d13fb37a4f95042f53952d05113c1019"
+        },
+        {
+          "path": "items/a2-4c7dc4dd/public/task.json",
+          "sha256": "7b167123e9f4cf760a7bb021145121fdd9958de6d534eb3b55b4987435e3c543"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-4c7dc4dd",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 4c7dc4dd",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-4e34c42c",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-4e34c42c/prompt.md",
+          "sha256": "27032a0287242e693e18d9d5d2c479053ffcd368cc73733c422f4e571abdf1ea"
+        },
+        {
+          "path": "items/a2-4e34c42c/public/task.json",
+          "sha256": "057b19e2b95b07c2696a4ce2312708745e646f649621a8db70016e3159ae2581"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-4e34c42c",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 4e34c42c",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-53fb4810",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-53fb4810/prompt.md",
+          "sha256": "2c6eff6843053e9b4a9acf220f531f382282849a7ed9abaa265ac02171ac2ece"
+        },
+        {
+          "path": "items/a2-53fb4810/public/task.json",
+          "sha256": "34a6002be6fba487a3e03e61410844eb551bd1a04819ece3cc754f283bb6b819"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-53fb4810",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 53fb4810",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-5545f144",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-5545f144/prompt.md",
+          "sha256": "3a9097c38afdcff79d84b239546d3f2c34361e3ecb8856a65d860b8675230af4"
+        },
+        {
+          "path": "items/a2-5545f144/public/task.json",
+          "sha256": "b3393ab38faa9a26e8102e048a78756dc36dfb5ffc6b43a8935efe6fef537eec"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-5545f144",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 5545f144",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-581f7754",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-581f7754/prompt.md",
+          "sha256": "e497c5a3b4b637ca6453585f38e288b205920bc1b6f36164e35681b42eedc8ff"
+        },
+        {
+          "path": "items/a2-581f7754/public/task.json",
+          "sha256": "291500fcf9ac33d9b0cdecd8484bac8c0a3e230749936c96bec6858d33d3bbcb"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-581f7754",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 581f7754",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-58490d8a",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-58490d8a/prompt.md",
+          "sha256": "4a23d356ace8b9e34d3d2029734d44a11508b7cbb056966337ef5ec057091f49"
+        },
+        {
+          "path": "items/a2-58490d8a/public/task.json",
+          "sha256": "7f3f4e0073aae06d886f9bdc20f214e0d2f43a0154c73b7003a393b8ef901e8a"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-58490d8a",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 58490d8a",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-58f5dbd5",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-58f5dbd5/prompt.md",
+          "sha256": "46660424ce5c1b674730eda73bb5941c4da6ae670ed3204de873cb9b19189ea9"
+        },
+        {
+          "path": "items/a2-58f5dbd5/public/task.json",
+          "sha256": "02dfe76097571133d14bfd893fea8356dd99e99438ffe3967141d65a45563a3f"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-58f5dbd5",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 58f5dbd5",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-5961cc34",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-5961cc34/prompt.md",
+          "sha256": "16ced1300d6aaa268856e49776c4c0e9761790ece987bd93ec963c02688958a9"
+        },
+        {
+          "path": "items/a2-5961cc34/public/task.json",
+          "sha256": "d37b927e31a672a0c82827f7ce6a3a7d3014c2733176876d9f74dece72bec296"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-5961cc34",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 5961cc34",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-5dbc8537",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-5dbc8537/prompt.md",
+          "sha256": "2aede0deb36b21ffe7048527c8036847c79104c7e080a04227dfbd57918ba4ea"
+        },
+        {
+          "path": "items/a2-5dbc8537/public/task.json",
+          "sha256": "8655ce141974606cf8723cf13d1e2e4bbf6909245d26a4c8bd0ccdcbffe17cb6"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-5dbc8537",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 5dbc8537",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-62593bfd",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-62593bfd/prompt.md",
+          "sha256": "6247227e739ee7e861f6539dba621d82d7b6f0eb86c41dc77d33cad0b075b26d"
+        },
+        {
+          "path": "items/a2-62593bfd/public/task.json",
+          "sha256": "2ee2853ee9b3ea96dbbb0c9aa8885e6fc3fd79b0cac98c0716d3e250732df2cd"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-62593bfd",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 62593bfd",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-64efde09",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-64efde09/prompt.md",
+          "sha256": "a99ea39a8c3dcf48649764504af8e856f7f28bb437b833a759612ef3016cfb83"
+        },
+        {
+          "path": "items/a2-64efde09/public/task.json",
+          "sha256": "2ecb5ba65d13763b7d98b09abe01bf1aa2ae6d09e53b2f89bc54306aee638a56"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-64efde09",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 64efde09",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-65b59efc",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-65b59efc/prompt.md",
+          "sha256": "1236198ad1f15749c0895642b509b748222f24134a77dee1e4abb46f0070da3a"
+        },
+        {
+          "path": "items/a2-65b59efc/public/task.json",
+          "sha256": "3c81bda76f1b8eea540c9e16a771bebe3b60ff5875c19b0ecf13fc9cf6493946"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-65b59efc",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 65b59efc",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-67e490f4",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-67e490f4/prompt.md",
+          "sha256": "fd7cc2903a76a4ce2841af4ed5eb5d88b37fbc6865222e014febd2d66ec66050"
+        },
+        {
+          "path": "items/a2-67e490f4/public/task.json",
+          "sha256": "899b499aaa1057cea90a656ce35f90689288bf20f6e133cfb0838bb0f60bf596"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-67e490f4",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 67e490f4",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-6e453dd6",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-6e453dd6/prompt.md",
+          "sha256": "8b948ee56f5151efc8bd0292554bdb7cfb696f6e0bc1af71f6b3122bb378dd0c"
+        },
+        {
+          "path": "items/a2-6e453dd6/public/task.json",
+          "sha256": "740bac913ed9aecb4d04a751389344784fcb18db7952f7ed5883fe02e4461f7c"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-6e453dd6",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 6e453dd6",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-6e4f6532",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-6e4f6532/prompt.md",
+          "sha256": "2ebe11067ec096a31f935f64b96abaed561d269197dd17de40f37239f49fd378"
+        },
+        {
+          "path": "items/a2-6e4f6532/public/task.json",
+          "sha256": "7b5a51adf514d2ad1b0a7d47ac127500e34d001ee859681cde56a81b0ec3b386"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-6e4f6532",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 6e4f6532",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-6ffbe589",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-6ffbe589/prompt.md",
+          "sha256": "acbec764329757649eb5ac1805a08396c217ee223418763beff9a59d0dd8c821"
+        },
+        {
+          "path": "items/a2-6ffbe589/public/task.json",
+          "sha256": "b08c58860e04365497c0500e8eddd98f55b9791e4b4d2e30dac6a3c00c5da37b"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-6ffbe589",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 6ffbe589",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-71e489b6",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-71e489b6/prompt.md",
+          "sha256": "88fe541f989c6a07dda10469cb3ffe1edfc98c1d252bad48d20abef454ce99e5"
+        },
+        {
+          "path": "items/a2-71e489b6/public/task.json",
+          "sha256": "064146aa73a498545c01fdd9d9b9702aac9ddfa3985002aabacb6a671d593896"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-71e489b6",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 71e489b6",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-7491f3cf",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-7491f3cf/prompt.md",
+          "sha256": "82a3015d120f900e3425c8fc903c4babc4115dfbfbd2420394ab153d329e378a"
+        },
+        {
+          "path": "items/a2-7491f3cf/public/task.json",
+          "sha256": "221a77287f0f8b44c65bcb2e9edbaeb1e1b74093c2ac9cdd7c99715445cb79f5"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-7491f3cf",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 7491f3cf",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-7666fa5d",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-7666fa5d/prompt.md",
+          "sha256": "adce7cafc7bf3341bb0b042c28c4d5c6a471096bf679b63d89b23cf73974394d"
+        },
+        {
+          "path": "items/a2-7666fa5d/public/task.json",
+          "sha256": "3c79b73436f027336b70633ecc7b30e721c1ce5f13e111ed644a2f120ad0d19b"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-7666fa5d",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 7666fa5d",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-78332cb0",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-78332cb0/prompt.md",
+          "sha256": "17d43d137eacfb1daf45c5ec6be585d8ed8a511b0be84dd7be5de08418c95f81"
+        },
+        {
+          "path": "items/a2-78332cb0/public/task.json",
+          "sha256": "f638eed774ce54028c914082699b75a6ee1067d6d88405a0d20f13dd5660f070"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-78332cb0",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 78332cb0",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-7b0280bc",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-7b0280bc/prompt.md",
+          "sha256": "9fb6ec810a780ac8b9d49a418289d7ab8e7fe879cb225338ae809490cee06020"
+        },
+        {
+          "path": "items/a2-7b0280bc/public/task.json",
+          "sha256": "7882e0f4aabe62b3440f1dfeb8a38cd4a5acfa7956d2933698c9309228716445"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-7b0280bc",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 7b0280bc",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-7b3084d4",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-7b3084d4/prompt.md",
+          "sha256": "acbb4897a71208712c1f159bb59061887e400dda7c19e71ac709e9f51de97cfe"
+        },
+        {
+          "path": "items/a2-7b3084d4/public/task.json",
+          "sha256": "8c1c904268d9a8e74d6a2456f12c2cc91a09cb12fad24607f50ad6455cc477fe"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-7b3084d4",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 7b3084d4",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-7b5033c1",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-7b5033c1/prompt.md",
+          "sha256": "99956242d31a1ca43f423d94d125e0e50770e6f144d48de004382be15837d9f1"
+        },
+        {
+          "path": "items/a2-7b5033c1/public/task.json",
+          "sha256": "eeaf865b077505e1a8f4b493a95eda08f85d656ae1db84f190975e990d41fc7e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-7b5033c1",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 7b5033c1",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-7b80bb43",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-7b80bb43/prompt.md",
+          "sha256": "60b959780cd56e7274b027312194e098735d62a51f34a6544a9e7dc50e0e9e7f"
+        },
+        {
+          "path": "items/a2-7b80bb43/public/task.json",
+          "sha256": "8f7c60bae3b601b03bbd19d616aaaf992f6f087db548484b9c6a07c23a53433a"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-7b80bb43",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 7b80bb43",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-7c66cb00",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-7c66cb00/prompt.md",
+          "sha256": "493300b920a81646e385fbcb1a1abc4f4fdbec53769dd57810b6ff19cde1b463"
+        },
+        {
+          "path": "items/a2-7c66cb00/public/task.json",
+          "sha256": "e662ea494a5bf9c57b5a238a38e646c000023a3e01f8cd06f870037eb5c185f1"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-7c66cb00",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 7c66cb00",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-7ed72f31",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-7ed72f31/prompt.md",
+          "sha256": "ffc56934e27685b03392d2c38338a7c5c9c6561838c938ff5b5f7070b9aa9168"
+        },
+        {
+          "path": "items/a2-7ed72f31/public/task.json",
+          "sha256": "cac1f8a069b41563a13d33e80de267b980bc9c917a0cfc661f2959ab27ed0938"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-7ed72f31",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 7ed72f31",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-800d221b",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-800d221b/prompt.md",
+          "sha256": "1861ef94f0421c532789b2fa45b8fcea2bf1faaeff6320d99a174de7453b4191"
+        },
+        {
+          "path": "items/a2-800d221b/public/task.json",
+          "sha256": "9bbcea27f9e7ce243dfba6cb90c10e92b1839f12b677b8f508ac9d7737fe99e6"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-800d221b",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 800d221b",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-80a900e0",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-80a900e0/prompt.md",
+          "sha256": "5402117312d7e6227cf49c76e44a983bce7428c94d48347bf855014023c2974f"
+        },
+        {
+          "path": "items/a2-80a900e0/public/task.json",
+          "sha256": "37b3dac4c20473873a8b53f8382872f7fd0ddba8f90f31781875085e5d6d875d"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-80a900e0",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 80a900e0",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-8698868d",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-8698868d/prompt.md",
+          "sha256": "ab55fc8ffe29f74628cbfbfd156d2eaf60d6462a118b2ae92d868f1b161e9f47"
+        },
+        {
+          "path": "items/a2-8698868d/public/task.json",
+          "sha256": "be5b6df288e832e5ada085642c9347a9be9928d1d6e708869de1f8de369cb31e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-8698868d",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 8698868d",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-88bcf3b4",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-88bcf3b4/prompt.md",
+          "sha256": "e1e17e7590f38660c984989bc5566101cb4e45f375ca685d25365a7a80a8b873"
+        },
+        {
+          "path": "items/a2-88bcf3b4/public/task.json",
+          "sha256": "2972e581a585933240a7d116df0a3d728766e0c4db59f4de04ca78f3d6df80a5"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-88bcf3b4",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 88bcf3b4",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-88e364bc",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-88e364bc/prompt.md",
+          "sha256": "65dbdf8bae1968ab925306e52513c68ff8b228d8ec82c1552b1252f8fbd199ad"
+        },
+        {
+          "path": "items/a2-88e364bc/public/task.json",
+          "sha256": "8d3db7c5a2372950beb6f60fe7e37617cab33ce7eff52390e20a780d646259d1"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-88e364bc",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 88e364bc",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-89565ca0",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-89565ca0/prompt.md",
+          "sha256": "65b7eb5b2d5c5fa0a685eb516784b06a1eddd8a022f44be38b91200ffdc690af"
+        },
+        {
+          "path": "items/a2-89565ca0/public/task.json",
+          "sha256": "067a5f3ffc2006673a19bdc8ed09cd7d5bc5e107cc0a29c65ac686c06e21cabb"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-89565ca0",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 89565ca0",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-898e7135",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-898e7135/prompt.md",
+          "sha256": "bd262472c652f62b4e024f95b357816fbacb950252b7b2d610ee490ca0c8b3f5"
+        },
+        {
+          "path": "items/a2-898e7135/public/task.json",
+          "sha256": "43ebe00ce420497262c623e9e56a45a39238feba02b335877f1d877ae0981ccc"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-898e7135",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 898e7135",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-8b7bacbf",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-8b7bacbf/prompt.md",
+          "sha256": "d5c6f455cef034c54778980a3d4c18e08d39feff53a50764d51d6df824fd1f50"
+        },
+        {
+          "path": "items/a2-8b7bacbf/public/task.json",
+          "sha256": "11d5cae6b7f882b84c7c1f9b134a30a9f6495a111abf4a6b507558a9c1eeb9ae"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-8b7bacbf",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 8b7bacbf",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-8b9c3697",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-8b9c3697/prompt.md",
+          "sha256": "8b3b39a8b2f9860a5d9f44afeb2c7ab1bac4f6c832736e164c61a8874429df99"
+        },
+        {
+          "path": "items/a2-8b9c3697/public/task.json",
+          "sha256": "b161334d2459370a704bd7d4361f559908940ac3559eebf54904e7183f059c62"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-8b9c3697",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 8b9c3697",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-8e5c0c38",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-8e5c0c38/prompt.md",
+          "sha256": "afc10daaec31160bc9d840953f56b1ff78f9c5fb1f793f78c52c16b664deb925"
+        },
+        {
+          "path": "items/a2-8e5c0c38/public/task.json",
+          "sha256": "067c3c0b420ce8664743d189d49f8ddce8e2a728d67004baf2e209389f5f8099"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-8e5c0c38",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 8e5c0c38",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-8f215267",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-8f215267/prompt.md",
+          "sha256": "e44bd5e96c18c17f8fee3adee3fcd1f6f09efc23c2b5fc81eb1c32e35b97b3bf"
+        },
+        {
+          "path": "items/a2-8f215267/public/task.json",
+          "sha256": "656570b116805258ad60b0a47ff03789bfe990b056e30d61188446cce2e3c28f"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-8f215267",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 8f215267",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-8f3a5a89",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-8f3a5a89/prompt.md",
+          "sha256": "cdad8fb2ba8473be68abe626ddc53c4202d47b0da02ccb847ea1c97ced840565"
+        },
+        {
+          "path": "items/a2-8f3a5a89/public/task.json",
+          "sha256": "7b51adb467ecc973df7e31f3894576fa9acd972f4386ef9561fb6f61b965738b"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-8f3a5a89",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 8f3a5a89",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-9385bd28",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-9385bd28/prompt.md",
+          "sha256": "8db614363c057165f6c5d9e54b4263d426532f52bdfdbaf0f55362bf46970ba7"
+        },
+        {
+          "path": "items/a2-9385bd28/public/task.json",
+          "sha256": "dc0d5531ace1a2231e700d853c65262cf934385355a9567c7d5163798fd683a4"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-9385bd28",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 9385bd28",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-97d7923e",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-97d7923e/prompt.md",
+          "sha256": "7ed8580ffdd3b03eabba5165389b08f7476e32d1ea0bd069d4c1892e9cb3d20f"
+        },
+        {
+          "path": "items/a2-97d7923e/public/task.json",
+          "sha256": "047a9dc3f938fba055a8ef5335754d567e14d747fc5ab08e11420e9d025f77ef"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-97d7923e",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 97d7923e",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-981571dc",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-981571dc/prompt.md",
+          "sha256": "4162dfa65143bd3fca2b546ddef9e2696364717e680e2ec42b52a22d5bd4c88f"
+        },
+        {
+          "path": "items/a2-981571dc/public/task.json",
+          "sha256": "3c6d72e6bb5c7b338a9a852f141fded0432d88b9be4370b2fd29732216be6fea"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-981571dc",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 981571dc",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-9aaea919",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-9aaea919/prompt.md",
+          "sha256": "21da5cfcbc4a3ac11e23daeb1636e2f39c00cb5a47a94b5a26afd492b29f7e15"
+        },
+        {
+          "path": "items/a2-9aaea919/public/task.json",
+          "sha256": "d7ed3eaf0c4c4fd98436481e71ba206e56d3c06fa2bf5506b62bc9aaab0e7c2b"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-9aaea919",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 9aaea919",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-9bbf930d",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-9bbf930d/prompt.md",
+          "sha256": "d32c8baa52ca03dcdf2c80248f4788d50072b71d07411960ddc29c156e56fe23"
+        },
+        {
+          "path": "items/a2-9bbf930d/public/task.json",
+          "sha256": "85da7d7450ad30f84753d04da1089ff9628db94b04872a7eddefe1c7810761ad"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-9bbf930d",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task 9bbf930d",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-a251c730",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-a251c730/prompt.md",
+          "sha256": "cc7e18ce85602b988bd9c8291606675ff9cf332118e99707d44a9eca2974a8d7"
+        },
+        {
+          "path": "items/a2-a251c730/public/task.json",
+          "sha256": "d95dbb384d9847439503f518082012dc3b02b29b9dd4379b258409a18a1914ed"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-a251c730",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task a251c730",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-a25697e4",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-a25697e4/prompt.md",
+          "sha256": "c2dacd0e51962c462938e5f1fe0ac86ec01303aab00d7fc7f42dbe90aa380f0e"
+        },
+        {
+          "path": "items/a2-a25697e4/public/task.json",
+          "sha256": "9a9675bd2dbd56b9ab4d5d9365ff20c1a88fd107378436ffc5b3f9f7cfed32e7"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-a25697e4",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task a25697e4",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-a32d8b75",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-a32d8b75/prompt.md",
+          "sha256": "7476cce2366577634d83f01c1ca736100c041280118ab5995505ff032f696d95"
+        },
+        {
+          "path": "items/a2-a32d8b75/public/task.json",
+          "sha256": "1fc9a3aab5c1d2fd8b5d32af83432dd76d4acb2bfaef1ddb6395f073af2faeb8"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-a32d8b75",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task a32d8b75",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-a395ee82",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-a395ee82/prompt.md",
+          "sha256": "8017e26b4fdade49ba1b8ac183a13ad1be9b32333282df301c8f7fb349a7dd7e"
+        },
+        {
+          "path": "items/a2-a395ee82/public/task.json",
+          "sha256": "e239e7798b24675297d7c959b262b8f73ad1ae3c4bc498d378220f4c2d7e4fbd"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-a395ee82",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task a395ee82",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-a47bf94d",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-a47bf94d/prompt.md",
+          "sha256": "57c3a3220f310af3edb9a0a1c715d30b0d385b5fe947733ce8a49d832d866fd1"
+        },
+        {
+          "path": "items/a2-a47bf94d/public/task.json",
+          "sha256": "716ffc9759b34f95e44c2c84ea2103b194a997514fac9f5a7104e8c872c8a15e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-a47bf94d",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task a47bf94d",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-a6f40cea",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-a6f40cea/prompt.md",
+          "sha256": "f7f2b64387473fed72108cb9308328f199e903a678c52cc534af631da536918e"
+        },
+        {
+          "path": "items/a2-a6f40cea/public/task.json",
+          "sha256": "b6748ec0163bc4c2dcf99c10607d361646b3071b5b13bc18121a20b265ef585f"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-a6f40cea",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task a6f40cea",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-aa4ec2a5",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-aa4ec2a5/prompt.md",
+          "sha256": "28f1923442fad74237b2aaab6dae105608556c8d90ee9c8ea0695e431a2b11e5"
+        },
+        {
+          "path": "items/a2-aa4ec2a5/public/task.json",
+          "sha256": "67516ad7a88e52f24301139074f4ecab0b08ebbaa3a60cd86a511fe6609b7c13"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-aa4ec2a5",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task aa4ec2a5",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-abc82100",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-abc82100/prompt.md",
+          "sha256": "676488ff240e44ef5ba2d0c958a9470bafb83664e8bb9be7b788f65f570f273c"
+        },
+        {
+          "path": "items/a2-abc82100/public/task.json",
+          "sha256": "e0f390a43a5b4aa6fb24c0ea5455a6b25f8aa6ac87323f0307246d41820dc800"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-abc82100",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task abc82100",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-b0039139",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-b0039139/prompt.md",
+          "sha256": "b78abae7cc29185debaa7bba010cb6ae6872de9241e341983ee146f6fad4f64c"
+        },
+        {
+          "path": "items/a2-b0039139/public/task.json",
+          "sha256": "f20ee6b893f551dc3e76dfbc539ded5d76814c5248f20737ac94e85d5a3496e8"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-b0039139",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task b0039139",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-b10624e5",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-b10624e5/prompt.md",
+          "sha256": "94687aca09abbf5a1b69ef83948cccf9dcf00ed02513f35efe1e27766b270c8d"
+        },
+        {
+          "path": "items/a2-b10624e5/public/task.json",
+          "sha256": "b16f01aebd9986cc3656ddee818882c2a58f795ff7f58a1f6b2792eaa0dbccfd"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-b10624e5",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task b10624e5",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-b5ca7ac4",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-b5ca7ac4/prompt.md",
+          "sha256": "94fc6a418fac3a8c47aca90f69131f8da8de05ddce3e286a47baf36cc85e538d"
+        },
+        {
+          "path": "items/a2-b5ca7ac4/public/task.json",
+          "sha256": "65f3463bcd1aa59c404e9b109fb052d0480fd1c2421368223b0796fb9a6a5ba2"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-b5ca7ac4",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task b5ca7ac4",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-b6f77b65",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-b6f77b65/prompt.md",
+          "sha256": "f596d2044410f20461535d011bcdac4b8faae91dce2f2489a40187883f4b2bfb"
+        },
+        {
+          "path": "items/a2-b6f77b65/public/task.json",
+          "sha256": "cac642f218ed3e6afe41883d51d1ca92b65b7f977c8e285af0cf4109abb169d2"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-b6f77b65",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task b6f77b65",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-b99e7126",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-b99e7126/prompt.md",
+          "sha256": "34006612897f0f9695df3449ad557d034d44512b8dc50e04ed312d487ba3731d"
+        },
+        {
+          "path": "items/a2-b99e7126/public/task.json",
+          "sha256": "fc817d5659674d2c5baa8f20b3ecf15eb1bfcc384dce681f5738cef709766aab"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-b99e7126",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task b99e7126",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-b9e38dc0",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-b9e38dc0/prompt.md",
+          "sha256": "bfee21508aadbe9bddeb91a8a0b8ce78b0f0a31a2701df07a9c5576b1d12dd22"
+        },
+        {
+          "path": "items/a2-b9e38dc0/public/task.json",
+          "sha256": "d8be91bbff5a6138e8397569691b67c91ac437a6877981959de7e865ed5319a2"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-b9e38dc0",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task b9e38dc0",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-bf45cf4b",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-bf45cf4b/prompt.md",
+          "sha256": "42fbda313d584aebef03fde9a02fb30911e491b3128ba615a1d9875570cedcd1"
+        },
+        {
+          "path": "items/a2-bf45cf4b/public/task.json",
+          "sha256": "e1798a9d7a3e458e8d1c0f5e28a33cfa25ac3cb88fa18e1551511ccd392a34a9"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-bf45cf4b",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task bf45cf4b",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-c4d067a0",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-c4d067a0/prompt.md",
+          "sha256": "73e8f2264bc124940b083f7497ae38a0270c89a9a9c2b591638dc67b32f0e334"
+        },
+        {
+          "path": "items/a2-c4d067a0/public/task.json",
+          "sha256": "bfea40eb2e4534d723955a8ce32b40f80227a2e003eef12ff16c93d143167b8a"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-c4d067a0",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task c4d067a0",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-c7f57c3e",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-c7f57c3e/prompt.md",
+          "sha256": "c3016041c3e4da9edf033d0bad06c38abbf929bc5d96a754e32bf15423dc2659"
+        },
+        {
+          "path": "items/a2-c7f57c3e/public/task.json",
+          "sha256": "4144333990bd3bb9286df65ae39a2796f6bafd6d886eea789f110b4249722318"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-c7f57c3e",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task c7f57c3e",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-cb2d8a2c",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-cb2d8a2c/prompt.md",
+          "sha256": "0b5c9e3ecdc2883195e179cc11cb3a7f92634a7b82a9923e98e5ed69dc928564"
+        },
+        {
+          "path": "items/a2-cb2d8a2c/public/task.json",
+          "sha256": "0182489c40f1c169869ab691f8741a1a4f0a501a107c6bb39c79c34ddb3edfcb"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-cb2d8a2c",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task cb2d8a2c",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-cbebaa4b",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-cbebaa4b/prompt.md",
+          "sha256": "61eeb32f7e7b2f29f9104f8db2b4ab1edee48f73ad835490185d9a096e087998"
+        },
+        {
+          "path": "items/a2-cbebaa4b/public/task.json",
+          "sha256": "bae80ded6688fa9c1acc7fa3ab81e799ca59ac1e34908e7629688dbb4e092e3e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-cbebaa4b",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task cbebaa4b",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-d35bdbdc",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-d35bdbdc/prompt.md",
+          "sha256": "3f3ecca84fa35ff02837da8c46e4b88a1de18fdcdc6e2f9d72c4e6341ee229c5"
+        },
+        {
+          "path": "items/a2-d35bdbdc/public/task.json",
+          "sha256": "7422e14af28c6cd1c351a883996e4f00e7fe3bb49755fc8c27779db17f2932fa"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-TEST-3",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-d35bdbdc",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task d35bdbdc",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-d59b0160",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-d59b0160/prompt.md",
+          "sha256": "e820d5a6ced220a34b3f300e521d2a3c97a822a54b4d58ca1f1daf25018d7f79"
+        },
+        {
+          "path": "items/a2-d59b0160/public/task.json",
+          "sha256": "e95084036b07fb3bc74e6359e7c6970f9c2459e7653c32045b0325e3b91c8813"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-d59b0160",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task d59b0160",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-d8e07eb2",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-d8e07eb2/prompt.md",
+          "sha256": "82de32aed666d639d0538182754d9796b97feeffde7829aef1411b0eb9fe7754"
+        },
+        {
+          "path": "items/a2-d8e07eb2/public/task.json",
+          "sha256": "f8d6525e0f0cdcf5d8360f91cf84ceaf5026f508b7c85e13986fae3b7979b1eb"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-d8e07eb2",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task d8e07eb2",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-da515329",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-da515329/prompt.md",
+          "sha256": "fc8b9f933e593c78a26822f05a7ab316a294d64f2b5fb047a7e820d96b96cf96"
+        },
+        {
+          "path": "items/a2-da515329/public/task.json",
+          "sha256": "ee07b23c3461dbf1da22c861735096f8de22a449be8d9dc374bdee43b50e3cb7"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-da515329",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task da515329",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-db0c5428",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-db0c5428/prompt.md",
+          "sha256": "70decce2367696bf632c16e9c166f32d69f8168188f647178c096075f6fabe4c"
+        },
+        {
+          "path": "items/a2-db0c5428/public/task.json",
+          "sha256": "cfbab6ce600ccf27bbdffa4e3e69b551f9a25c40f297ba83f0f5360f513609a1"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-db0c5428",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task db0c5428",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-db695cfb",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-db695cfb/prompt.md",
+          "sha256": "52c1b0f789c6d4150e686a5f81495ca8eae8bcba5e790e48f1395ede0d11e52e"
+        },
+        {
+          "path": "items/a2-db695cfb/public/task.json",
+          "sha256": "7dfd6bdf54a60d4d22dcfc040db684bc92b4b9477d0bf7d0b49a810b5c1ac4a8"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-db695cfb",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task db695cfb",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-dbff022c",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-dbff022c/prompt.md",
+          "sha256": "d65f89f39a4071ebc9253c8a7be802d28259b499fad37f3bed8dd9c284a49981"
+        },
+        {
+          "path": "items/a2-dbff022c/public/task.json",
+          "sha256": "25b92f8d97af3b4155d6777140b18fcb66e840619f612e0625f4d9ca622f02fa"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-dbff022c",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task dbff022c",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-dd6b8c4b",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-dd6b8c4b/prompt.md",
+          "sha256": "453d8e2de4916e3b3441db40cbe49c40b97079b2d85a8399a2fbea3658c7aa56"
+        },
+        {
+          "path": "items/a2-dd6b8c4b/public/task.json",
+          "sha256": "3939083cedad805858bd1659bed697d08ddbd8fad2a04d4a4c5bec46d38851db"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-dd6b8c4b",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task dd6b8c4b",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-de809cff",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-de809cff/prompt.md",
+          "sha256": "6cd03c4829584542e8d9f5295856af87c7620e9821301efa97b0d6cfa286a850"
+        },
+        {
+          "path": "items/a2-de809cff/public/task.json",
+          "sha256": "79c790ad5e27e33e3fedda97d62513976c6c3a05991d83b448090092c03d34e1"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-de809cff",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task de809cff",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-dfadab01",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-dfadab01/prompt.md",
+          "sha256": "940b346c59aadc84877c3327b18e5b27416ea17537dc95107acda79a76fdc243"
+        },
+        {
+          "path": "items/a2-dfadab01/public/task.json",
+          "sha256": "cad90e510088611478715bea2803126e0895e7d6f93f9e7e7c457738d9d18fec"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-dfadab01",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task dfadab01",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-e12f9a14",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-e12f9a14/prompt.md",
+          "sha256": "c4f2e6f0b10fa56d7029dedd506a032f258840f56f3a98788961ec9065f20b07"
+        },
+        {
+          "path": "items/a2-e12f9a14/public/task.json",
+          "sha256": "ce7f1f47395fe83d5b2ac3eb629707866e1ca3eaf862b748bbc69350a151d2ab"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-e12f9a14",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task e12f9a14",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-e3721c99",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-e3721c99/prompt.md",
+          "sha256": "37e7f94b202d9cc46aa360a98a8d114773a5d99434e1de57a8272b1d7f610e6d"
+        },
+        {
+          "path": "items/a2-e3721c99/public/task.json",
+          "sha256": "62f077c93b30004c8229f2d3604de7ec4f3bbf15e4032d2f430daa0c0149e7d2"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-e3721c99",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task e3721c99",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-e376de54",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-e376de54/prompt.md",
+          "sha256": "0832829f65caedb5bc17be92a1b63dc77fdff2c59a76212255d25813154d44cc"
+        },
+        {
+          "path": "items/a2-e376de54/public/task.json",
+          "sha256": "a3a3563248c6bb6e9747bd86634dca60ac5d0a2e341617dce0b6887f2fb97768"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-e376de54",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task e376de54",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-e8686506",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-e8686506/prompt.md",
+          "sha256": "0ec7ba0561b0fbe9833c08c70a956f4a393ed44c554fd23d7ca91f32b39a769b"
+        },
+        {
+          "path": "items/a2-e8686506/public/task.json",
+          "sha256": "060742d63a8a8c95f36edca7a54e2a7636613d7a636b5ae871eb61983a564dee"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-e8686506",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task e8686506",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-e87109e9",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-e87109e9/prompt.md",
+          "sha256": "1920e0ec934dc38d5bcf035eded03b6b51a0342fb1043ac8d58ab7fab50f6633"
+        },
+        {
+          "path": "items/a2-e87109e9/public/task.json",
+          "sha256": "7ec7f518af84fe498ae812845b835dc3a9ad7312de31b003f6209b34a966f806"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-e87109e9",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task e87109e9",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-edb79dae",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-edb79dae/prompt.md",
+          "sha256": "fff4574795e8819dcdb77c93fc716bc5857a4455de8af03ee67771318da4edb0"
+        },
+        {
+          "path": "items/a2-edb79dae/public/task.json",
+          "sha256": "ba48a10bffde4c264e8bae04e8144381a314fac768e7f36b610c293807f3734b"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-edb79dae",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task edb79dae",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-eee78d87",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-eee78d87/prompt.md",
+          "sha256": "7eb8dac00b66727410cb2abc00fee1af47a907f7f31080b1f535036201ba784e"
+        },
+        {
+          "path": "items/a2-eee78d87/public/task.json",
+          "sha256": "7ece356b7f5353e17a7bc3a3166b0e0913f4d7e2fc649cabcf965286c62cf478"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-eee78d87",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task eee78d87",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-f560132c",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-f560132c/prompt.md",
+          "sha256": "56feb1900e061f001fdb982d1aa6f75fb499eecaa24d73b5287dbde52d54d7df"
+        },
+        {
+          "path": "items/a2-f560132c/public/task.json",
+          "sha256": "393cd624a84a3dfec85e8dfddecfeb1b6fef37859165b3a4bcc706d73c6858c7"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-f560132c",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task f560132c",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-f931b4a8",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-f931b4a8/prompt.md",
+          "sha256": "c9325ec9d91085f71b835c440862e8c28a5d92fc0b098662d5fb2a837ab8abc5"
+        },
+        {
+          "path": "items/a2-f931b4a8/public/task.json",
+          "sha256": "8e152bbbe17dbbc9d702164f646005a56e3ba7ac793faff133a46e51736d02f1"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-TEST-2",
+        "REQ-FORMAT"
+      ],
+      "split": "dev",
+      "structure": "task:a2-f931b4a8",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task f931b4a8",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-faa9f03d",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-faa9f03d/prompt.md",
+          "sha256": "fd10b894ae1f293a61626990b43ddba0f37501c7c607f8813cced087bd96c0ef"
+        },
+        {
+          "path": "items/a2-faa9f03d/public/task.json",
+          "sha256": "8102496af1f17299a2cbbea1af5574cbe56d4d09e83f44125eba676f78405899"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "validation",
+      "structure": "task:a2-faa9f03d",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task faa9f03d",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    },
+    {
+      "id": "a2-fc7cae8d",
+      "level": "arc2",
+      "files": [
+        {
+          "path": "items/a2-fc7cae8d/prompt.md",
+          "sha256": "5b9d2d5ba52be69ce70a9b6b3292ea059f3196cfdfff00233e842a1eba1f6fef"
+        },
+        {
+          "path": "items/a2-fc7cae8d/public/task.json",
+          "sha256": "736cf5d6cbb9c669d57dbb6b5cb61f38a32c422ebde6e2aab37efaf365e13057"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-TEST-1",
+        "REQ-FORMAT"
+      ],
+      "split": "holdout",
+      "structure": "task:a2-fc7cae8d",
+      "provenance": {
+        "source": "ARC-AGI-2 public evaluation (arcprize/ARC-AGI-2) @f3283f7, task fc7cae8d",
+        "published": "2025-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      }
+    }
+  ],
+  "toolProfiles": [
+    "none",
+    "workspace-basic"
+  ],
+  "grader": {
+    "id": "ar-pass-at-2",
+    "version": "1.0.0",
+    "entryPoint": "private/grader.py",
+    "executable": "python3",
+    "args": [
+      "{entryPoint}",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ],
+    "answerSource": "execution-output"
+  },
+  "environment": {
+    "runtime": "Python 3.13",
+    "dependencies": "Python standard library; no network",
+    "network": false,
+    "runtimeCheck": {
+      "executable": "python3",
+      "args": [
+        "--version"
+      ],
+      "expectedSubstring": "Python 3.13."
+    }
+  }
+}

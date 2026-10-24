@@ -18,6 +18,8 @@ export interface V2FamilyData {
   packageId: string;
   taskVersion: string;
   primaryKind: "resolved" | "metric" | "rating";
+  /** A core family reported as its own row and never averaged into its capability (AR with code beside AR answer-only). */
+  ownRow?: boolean;
   outcomes: OutcomeRecord[];
   /** Tasks the plan gives each model, by model label. */
   plannedTasks: Record<string, number>;
@@ -145,7 +147,7 @@ export function buildReportV2(input: ReportV2Input): ReportV2 {
     saturation: saturation(scores.get(family.id)!, labels.filter(label => family.outcomes.some(outcome => outcome.model === label)), family.openEnded, family.structureCap),
     audit: input.audits[family.id] ?? null,
   }));
-  const core = input.families.filter(family => family.tier === "core");
+  const core = input.families.filter(family => family.tier === "core" && !family.ownRow);
   const capabilities = [...new Set(core.map(family => family.capability))].sort();
   const weightsOf = (capability: string) => {
     const declared = input.capabilityWeights[capability] ?? {};
@@ -164,7 +166,7 @@ export function buildReportV2(input: ReportV2Input): ReportV2 {
         tasks: members.reduce((sum, family) => sum + scores.get(family.id)!.filter(task => task.model === label && task.primary !== null).length, 0) };
     }
     const rows: ReportV2["profile"][number]["rows"] = {};
-    for (const family of input.families.filter(entry => entry.tier !== "core")) {
+    for (const family of input.families.filter(entry => entry.tier !== "core" || entry.ownRow)) {
       const row = families.find(entry => entry.id === family.id)!.rows.find(entry => entry.label === label);
       if (row) rows[family.id] = { tier: family.tier, primary: row.primary, interval: row.interval, tasks: row.tasks };
     }
@@ -234,7 +236,7 @@ export function markdownReportV2(report: ReportV2): string {
   } else lines.push("No core family in this suite.", "");
   const others = [...new Set(report.profile.flatMap(entry => Object.keys(entry.rows)))];
   if (others.length) {
-    lines.push("Basic and frontier families, reported as their own rows and never averaged into the core:", "",
+    lines.push("Families reported as their own rows and never averaged into the core (basic, frontier, and core families of a second protocol):", "",
       `| Model | ${others.map(id => `${id} (${report.families.find(family => family.id === id)!.tier})`).join(" | ")} |`, `| --- |${others.map(() => " --- |").join("")}`,
       ...report.profile.map(entry => `| ${entry.label} | ${others.map(id => {
         const row = entry.rows[id];
