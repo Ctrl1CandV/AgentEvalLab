@@ -73,3 +73,26 @@ The grid solution already beats about 60% of the contestants. Short contests ran
 - The instruction states the new scale.
 
 **Self-calibration** (`logs/self-calibration-0.2.0.log`): every naive reference reproduces its anchor; the 0.1.0 scenarios (bands of the grid, flavour and seed references, Python, tampering, peeking, spinning, compile errors, illegal output, no solution, a busy machine) still hold; the performance rises above the winner and is flagged.
+
+## Grader 2.1.0 (2026-10-24, task 0.2.0 unchanged, PLAN-007 WP3.5)
+
+**References for every problem** (TASK_LIBRARY §3.6): a greedy reference for each of the ten problems, beside the naive one (`private/references/<item>/`). New: AHC026 (move the blocking boxes onto the stack whose smallest box is largest), AHC028 (greedy maximal-overlap text, typed by a dynamic programme over the keys), AHC032 (the best single press while one helps), AHC041 (trees grown depth-first from the least beautiful roots), AHC042 (the cheapest safe removal, shifting back only when needed), AHC044 (hand-offs of half the turns to the least covered employees), AHC046 (shortest moves and slides on the empty rink). The 0.1.0 references keep their roles (AHC015 tilt by flavour, AHC035 highest-value seeds, AHC039 best grid rectangle).
+
+**Fresh seeds.** Each delivery is also judged on 50 seeds of our own (`private/problems/<item>/fresh_seeds.txt`, drawn from `ae-fresh:<item>`), with the official generator and tester and the same rules. `freshTotal` is reported separately, normalised through the naive (0) and greedy (1) references' totals on those seeds, and is never ranked against the humans: it separates generalisation from recall of the public seeds.
+
+| Item | Naive perf. | Greedy perf. | Median | Winner | Fresh naive | Fresh greedy |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| ahc015 | 472 | 937 | 1243 | 3506 | 7,301,859 | 12,154,287 |
+| ahc026 | 611 | 1213 | 1354 | 3451 | 405,762 | 452,297 |
+| ahc028 | 805 | 1557 | 1325 | 3512 | 284,490 | 348,769 |
+| ahc032 | 495 | 918 | 1302 | 3529 | 2,037,320,860,481 | 3,138,263,567,782 |
+| ahc035 | 439 | 909 | 1286 | 3471 | 23,195,510 | 34,513,193 |
+| ahc039 | 723 | 1547 | 1336 | 3390 | 100 | 94,982 |
+| ahc041 | 444 | 1698 | 1341 | 3467 | 2,531,717 | 23,617,371 |
+| ahc042 | 987 | 1429 | 1300 | 3475 | 136,972 | 152,222 |
+| ahc044 | 713 | 1774 | 1288 | 3478 | 37,537,324 | 48,789,028 |
+| ahc046 | 638 | 1119 | 1333 | 3523 | 56,076 | 68,193 |
+
+Greedy references reach 909–1,774, below the median on six problems and above it on four (AHC028, 039, 041, 044), and far below every winner (3,390–3,529): the scale keeps its headroom. Writing the six validation problems' greedy references meant reading their statements, as their naive references already had (card §9); nothing about the tasks or the grading was tuned on them.
+
+**Self-calibration** (`logs/self-calibration-0.2.0-grader-2.1.0.log`): every naive and greedy reference reproduces its performance and fresh total, the greedy above the naive on both seed sets; the 0.2.0 scenarios still hold.

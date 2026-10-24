@@ -1,6 +1,6 @@
 # Capability Card: AE algorithm engineering 0.2.0
 
-Template: `docs/templates/CAPABILITY_CARD.md`. Written 2026-10-24 (PLAN-007 WP1.6); the references for every problem and the fresh-seed variant follow in WP3.5.
+Template: `docs/templates/CAPABILITY_CARD.md`. Written 2026-10-24 (PLAN-007 WP1.6); updated for grader 2.1.0 (WP3.5: a greedy reference for every problem, fresh seeds).
 
 ## 1. Identity
 
@@ -25,7 +25,7 @@ The scale is set by people, not by us: a naive valid program for each problem re
 
 ## 5. Cheapest shortcut
 
-- **Recall** of a published solution: these contests are public (2022–2025) and top solutions are often published, so a model may have seen them. Every task is marked `exposure: public`; the fresh-seed variant (WP3.5) separates generalisation from recall, and per-model release dates are recorded in the evidence table.
+- **Recall** of a published solution: these contests are public (2022–2025) and top solutions are often published, so a model may have seen them. Every task is marked `exposure: public`; every delivery is also judged on 50 fresh seeds of our own (`freshTotal`, grader 2.1.0), which separates generalisation from recall of the public seeds; per-model release dates go in the evidence table.
 - **A trivial program**: scores at the naive anchor, which maps to 0.
 - **Tampering or peeking**: the solution runs in the sandbox, out of reach of the tester, the inputs and the outputs; the self-calibration's tampering and peeking programs change nothing.
 - **Spinning or failing cases**: any case not accepted makes the total 0, as in the contest, which puts the delivery at the bottom of the scale.
@@ -38,7 +38,8 @@ The scale is set by people, not by us: a naive valid program for each problem re
 | median-contestant | 0.5 | the performance at the contest's median rank (ALE-Bench standings and performance table) |
 | winner | 1 | the performance of the contest's winner |
 
-- Offline greedy references so far: AHC039 best grid rectangle 1,547; AHC015 tilt by flavour 850–1,050; AHC035 highest-value seeds 850–1,000 (`calibration.md`). Greedy references for every problem follow in WP3.5.
+- A naive and a greedy reference for every problem (`private/references/`, `private/anchors.json`): greedy performances 909–1,774, far below every winner (`calibration.md`, grader 2.1.0).
+- **Fresh seeds** (grader 2.1.0): `freshTotal`, the total on 50 seeds of our own, normalised through the naive (0) and greedy (1) references' totals on them; reported apart, never ranked against the humans.
 - **Uncapped.** Above the winner's total the performance extends the winner's by the slope between the two best scores of the standings, and the value is marked `performanceExtrapolated`. The normalised value then passes 1.
 
 ## 7. Source, licence and provenance
@@ -50,7 +51,7 @@ The scale is set by people, not by us: a naive valid program for each problem re
 
 - The model receives the official statement, the compiled official tools, 50 public seeds and `run.py`, and delivers `public/main.cpp` (or `main.py`).
 - One check per task, `<item>-accepted` (critical): every private case accepted. The group `performance` (rule metric) weighs the normalised performance in the diagnostic, within [0, 1].
-- Raw metrics (grader 2.0.0): `performance`, `total`, `performanceRank`, and the diagnostic flag `performanceExtrapolated`.
+- Raw metrics (grader 2.1.0): `performance`, `total`, `performanceRank`, the diagnostic flag `performanceExtrapolated`, and `freshTotal`.
 - Resolved = a valid delivery (every case accepted); the primary is the normalised performance of a valid delivery, 0 otherwise.
 - Equivalent solutions: any program in the allowed languages; only its outputs count.
 
@@ -64,7 +65,7 @@ The scale is set by people, not by us: a naive valid program for each problem re
 
 | Gate (VALIDATION §1) | Result | Evidence |
 | --- | --- | --- |
-| References | pass: every naive reference lands on its anchor; the grid, flavour and seed references land in their bands | `python3 private/grader.py --self-calibrate`, `logs/self-calibration-0.2.0.log` |
+| References | pass: every naive and greedy reference reproduces its performance and fresh total, the greedy above the naive on both seed sets | `python3 private/grader.py --self-calibrate`, `logs/self-calibration-0.2.0-grader-2.1.0.log` |
 | Null agent | pass: no solution gives a total of 0, not accepted | self-calibration |
 | Mutants | pass: an illegal output, a compile error and a spinning program score 0 | self-calibration |
 | Alternative valid solutions | pass: C++ and Python solutions are both judged; C++ is preferred when both exist | self-calibration |
@@ -82,3 +83,4 @@ Not yet calibrated. The prepared dev plan (0.1.0) gives 30,000,000 tokens and fo
 
 - 0.1.0 (2026-10-23): ten short contests; the score was the share of 27 performance rungs (600–3,200).
 - 0.2.0 (2026-10-24): manifest v2; the raw performance is the headline, normalised through per-item anchors and uncapped; rungs dropped; naive references for every problem; splits; the instruction states the new scale.
+- Grader 2.1.0 (2026-10-24): greedy references for every problem; fresh-seed judging (`freshTotal`). No model has run AE, so nothing to re-grade.

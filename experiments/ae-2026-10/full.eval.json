@@ -55,7 +55,7 @@
     {
       "id": "ae-heuristic-contests",
       "packagePath": "task-library/frontier/ae-heuristic-contests",
-      "packageManifestSha256": "739aa45ac72d53996de7b4559b1c33548adae2987ff18d751b715e2e35b2671a",
+      "packageManifestSha256": "eb12aa61bbf2fbabfd71bf76f0924ab90a9f645984c48e5cebd42191bdc356d7",
       "input": {
         "prompt": "Write the best solution you can, then reply with a short summary."
       },

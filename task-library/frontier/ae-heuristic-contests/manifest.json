@@ -33,11 +33,11 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "49fd1ae89c2b0fa278713bb0e1f57a5a72ba0953b589d9c00b02af0ca1f09c8e"
+        "sha256": "5ff34f3751006ae3f03dfa6280b2b1aa8b57710e450ae7d52d3368e9de84d4b3"
       },
       {
         "path": "card.md",
-        "sha256": "f2afacf0921dc3440ca0f72f1fc095160e9b5442636e6d745c1f74fd6107df46"
+        "sha256": "1b2757cf160447a35cf12a655344cb04a51f42ad29f8bc5889d453436600dd71"
       },
       {
         "path": "rubric.md",
@@ -49,27 +49,31 @@
       },
       {
         "path": "private/anchors.json",
-        "sha256": "d35da622917cbc289f24fd980c63da20dcf757ff2a4d8ae064cef485a69c61d5"
+        "sha256": "3fdfcd02066d82c885f4f75664ab6716b455d844aa0d18d46d80190e91a35a8a"
       },
       {
         "path": "private/anchors.py",
-        "sha256": "eb27f173e5b95729214213e00f5cf4bdc6ac237f7cef9e1570e19b7426759473"
+        "sha256": "fc786684266619d2f5019d6a6458f095a386c17b31b2afda3058e5ca85ea878f"
       },
       {
         "path": "private/build_package.py",
-        "sha256": "1126ae74608154f0753c09d86e3a4d3c986b76059ec01edc215ad1ebad535925"
+        "sha256": "1c56af4ca5432cd7d9532c97a471cf94e8f95a5d5dbfa1d1b3d0db41412e6d63"
       },
       {
         "path": "private/calibrate.py",
-        "sha256": "63d0962e04d74b6a26cc5d82b9afb5e6980843b47d369aae5d4ad25af01d8717"
+        "sha256": "4f8b44064afb73d550ddfcd8b6bb6b6f31345d1cb2916b35e00106cec68b9c51"
       },
       {
         "path": "private/grader.py",
-        "sha256": "5ced4a8479a3bbbfeece10328f32a68c8ecf9b92a1fea637ff0a3ae60d29e742"
+        "sha256": "cd9109732bf6d4273a12be393fe99e2b1b35eea44173f2a5df82f91b51e13385"
       },
       {
         "path": "private/problems/ahc015/data.json",
         "sha256": "efb124eab0106f3e904291836f93cdab21160112e38abbfe417e813f9b036805"
+      },
+      {
+        "path": "private/problems/ahc015/fresh_seeds.txt",
+        "sha256": "be6062c469ed3c9c2be6eccc9e74daa8c146e4c3f21342e785686d9b587bff56"
       },
       {
         "path": "private/problems/ahc015/performance.csv",
@@ -96,6 +100,10 @@
         "sha256": "6188bc46980bb7865fec14e9a10ca1b5bf54988fcb78a2626c3fd32d75049f83"
       },
       {
+        "path": "private/problems/ahc026/fresh_seeds.txt",
+        "sha256": "5cdb96ed576df5c49eadc052ef4a987d5568b72c5d3f4b494f1f83bca00c2aac"
+      },
+      {
         "path": "private/problems/ahc026/performance.csv",
         "sha256": "0e1570f906d46a016bafbdc44b0df466c40754b520e4004f09086612335dec67"
       },
@@ -118,6 +126,10 @@
       {
         "path": "private/problems/ahc028/data.json",
         "sha256": "256d2eff3f4c7056fd9b20f73ddb5fc27d679c7c1f044853e05bac581a247e03"
+      },
+      {
+        "path": "private/problems/ahc028/fresh_seeds.txt",
+        "sha256": "354fad07788a52309fe0681fb66405cade7378d0c15ccd24c08ecf371637c6e7"
       },
       {
         "path": "private/problems/ahc028/performance.csv",
@@ -144,6 +156,10 @@
         "sha256": "9c73e202d9efaaed4cf777e7415011c6c439b04fdb83d16773ea40798ecebc56"
       },
       {
+        "path": "private/problems/ahc032/fresh_seeds.txt",
+        "sha256": "91ecee655835632ec0cf0e7c47f7b6b57d965491df16216e89b5dc136262bb8a"
+      },
+      {
         "path": "private/problems/ahc032/performance.csv",
         "sha256": "5b83a1bcdfb3f751cddd9db7ed6600ed0eaea42f641ee8247abaef08232adfee"
       },
@@ -166,6 +182,10 @@
       {
         "path": "private/problems/ahc035/data.json",
         "sha256": "55680bedb59c1350ea9b8fa7f4968661d81921d7886e43e247bf19b8ce520767"
+      },
+      {
+        "path": "private/problems/ahc035/fresh_seeds.txt",
+        "sha256": "6e2469dc1c5170fa4f8947ba33af4faf18e1357bd75ea3b6371c78c775c8b79e"
       },
       {
         "path": "private/problems/ahc035/performance.csv",
@@ -192,6 +212,10 @@
         "sha256": "28fe1d1dab902e1ddd66da50936477b318b55e407a955f8c997b8e9e89e9e6f0"
       },
       {
+        "path": "private/problems/ahc039/fresh_seeds.txt",
+        "sha256": "d5493cb69bd74d75c1b015a75986b2598b4b7897bb2b98bb3bb72258f89fb75d"
+      },
+      {
         "path": "private/problems/ahc039/performance.csv",
         "sha256": "eac42859994e95a592e3b815ab5c78b24e4ca7ca25f944d368d63dbbec710c1f"
       },
@@ -214,6 +238,10 @@
       {
         "path": "private/problems/ahc041/data.json",
         "sha256": "8c2c8d435c7b7a2e9c5e38b0293cf20eb326e1394c33c5bdef1a2f84ed0f36fb"
+      },
+      {
+        "path": "private/problems/ahc041/fresh_seeds.txt",
+        "sha256": "add65301ea1d000c69a9a6599197400614d3f9bd75bf629c88cdbc61f501a03e"
       },
       {
         "path": "private/problems/ahc041/performance.csv",
@@ -240,6 +268,10 @@
         "sha256": "6b736236f49af51dfb290e946fb165a84eb548f22b62cb276a9f5e14b97e3ea0"
       },
       {
+        "path": "private/problems/ahc042/fresh_seeds.txt",
+        "sha256": "9acd89a6e31fe5f8fd68a0674bf0458b461bc6d71167ec2ce863e9e5f50df45f"
+      },
+      {
         "path": "private/problems/ahc042/performance.csv",
         "sha256": "15d7594eaf28310d9d924aade8e2e4fd893530fa97bfc64b1014caf8ba1615e5"
       },
@@ -264,6 +296,10 @@
         "sha256": "fb920c9be245edf36020f45b9d341ef9159b543cd683c2c73297757a3bb28afc"
       },
       {
+        "path": "private/problems/ahc044/fresh_seeds.txt",
+        "sha256": "a6b20fceeaa14bcf077e8f81948677621dbef7453a97d80b89da4b89237a6572"
+      },
+      {
         "path": "private/problems/ahc044/performance.csv",
         "sha256": "67b9a33455068bddb7ec1ff82da92eb631e75e0a0d10bd0edfee24db74af5fbc"
       },
@@ -286,6 +322,10 @@
       {
         "path": "private/problems/ahc046/data.json",
         "sha256": "8701ef92312bbd15835e4a434895c147d18611e2e2cc1a0c7d8e4eaa7c518340"
+      },
+      {
+        "path": "private/problems/ahc046/fresh_seeds.txt",
+        "sha256": "f28282abf793a2a32c44ce318d8aa15c727a64c09898514bab2da7897faf0629"
       },
       {
         "path": "private/problems/ahc046/performance.csv",
@@ -316,12 +356,24 @@
         "sha256": "8679b6d8be94c3d36701e0067cf8014c6af17bfbc7bad61154c85b7f80d0c72c"
       },
       {
+        "path": "private/references/ahc026/greedy.cpp",
+        "sha256": "2f246abe6ba6ec12bdfc9efc4b9cd8a40026b4b2246f385dbf0dc659400d13ca"
+      },
+      {
         "path": "private/references/ahc026/naive.cpp",
         "sha256": "99d279e206f323009e1eb5bb58f9496ede215ea46a63498e675e7b1821195fcc"
       },
       {
+        "path": "private/references/ahc028/greedy.cpp",
+        "sha256": "fb8b32eb1f8a8f81f1baf6495ce2d34871d2daf7a1b29cba976430c094a6caed"
+      },
+      {
         "path": "private/references/ahc028/naive.cpp",
         "sha256": "38d8b56fa8fec9478bf32e04164977de4894b9e7608d2ebf6a32440e07bfdad2"
+      },
+      {
+        "path": "private/references/ahc032/greedy.cpp",
+        "sha256": "922c2551a8add3435e8b21ab0148cf09910a5fa7f68f6628da26c9816e9ce19b"
       },
       {
         "path": "private/references/ahc032/naive.cpp",
@@ -348,16 +400,32 @@
         "sha256": "b9931feceed285861012c2cf03381e35e37538976ff905599b01890a18a7a853"
       },
       {
+        "path": "private/references/ahc041/greedy.cpp",
+        "sha256": "a1bcd53118ef107481e3d5af33be620a307b7b973e1670a327ca14619a38af76"
+      },
+      {
         "path": "private/references/ahc041/naive.cpp",
         "sha256": "aa22c4fb5db4c963010a934f54df11b71dd1baba9b45ea804bfe14cac6f9803d"
+      },
+      {
+        "path": "private/references/ahc042/greedy.cpp",
+        "sha256": "c8fcfb277fb5111f61119068cf0ebffa33eb132b21abb44de408c8cf9051ea1a"
       },
       {
         "path": "private/references/ahc042/hint.cpp",
         "sha256": "006a858f71ec53101b0289c5af5170a97fcdc506a5fac7b394c1a6f66dc814a0"
       },
       {
+        "path": "private/references/ahc044/greedy.cpp",
+        "sha256": "a2bed6730d18a57340f71750263d2d04adcfe7cf502c920bebd000ed91bf7dab"
+      },
+      {
         "path": "private/references/ahc044/naive.cpp",
         "sha256": "64ca5d1d9c765d5757aa9b8ee025667f08a0dd29fdd1b382bf6156ae2448e0c5"
+      },
+      {
+        "path": "private/references/ahc046/greedy.cpp",
+        "sha256": "56951dd005731c7b07f6d33db216430bc6194f6adad8c53bb2361397eb616c7b"
       },
       {
         "path": "private/references/ahc046/moves.cpp",
@@ -629,6 +697,10 @@
           "naive": 472,
           "median-contestant": 1243,
           "winner": 3506
+        },
+        "freshTotal": {
+          "naive": 7301859,
+          "greedy": 12154287
         }
       }
     },
@@ -685,6 +757,10 @@
           "naive": 611,
           "median-contestant": 1354,
           "winner": 3451
+        },
+        "freshTotal": {
+          "naive": 405762,
+          "greedy": 452297
         }
       }
     },
@@ -741,6 +817,10 @@
           "naive": 805,
           "median-contestant": 1325,
           "winner": 3512
+        },
+        "freshTotal": {
+          "naive": 284490,
+          "greedy": 348769
         }
       }
     },
@@ -797,6 +877,10 @@
           "naive": 495,
           "median-contestant": 1302,
           "winner": 3529
+        },
+        "freshTotal": {
+          "naive": 2037320860481,
+          "greedy": 3138263567782
         }
       }
     },
@@ -853,6 +937,10 @@
           "naive": 439,
           "median-contestant": 1286,
           "winner": 3471
+        },
+        "freshTotal": {
+          "naive": 23195510,
+          "greedy": 34513193
         }
       }
     },
@@ -909,6 +997,10 @@
           "naive": 723,
           "median-contestant": 1336,
           "winner": 3390
+        },
+        "freshTotal": {
+          "naive": 100,
+          "greedy": 94982
         }
       }
     },
@@ -965,6 +1057,10 @@
           "naive": 444,
           "median-contestant": 1341,
           "winner": 3467
+        },
+        "freshTotal": {
+          "naive": 2531717,
+          "greedy": 23617371
         }
       }
     },
@@ -1029,6 +1125,10 @@
           "naive": 987,
           "median-contestant": 1300,
           "winner": 3475
+        },
+        "freshTotal": {
+          "naive": 136972,
+          "greedy": 152222
         }
       }
     },
@@ -1085,6 +1185,10 @@
           "naive": 713,
           "median-contestant": 1288,
           "winner": 3478
+        },
+        "freshTotal": {
+          "naive": 37537324,
+          "greedy": 48789028
         }
       }
     },
@@ -1141,6 +1245,10 @@
           "naive": 638,
           "median-contestant": 1333,
           "winner": 3523
+        },
+        "freshTotal": {
+          "naive": 56076,
+          "greedy": 68193
         }
       }
     }
@@ -1218,12 +1326,30 @@
         "id": "performanceRank",
         "unit": "rank among contestants",
         "direction": "lower"
+      },
+      {
+        "id": "freshTotal",
+        "unit": "contest score on 50 fresh seeds",
+        "direction": "higher",
+        "anchors": {
+          "version": "1",
+          "points": [
+            {
+              "name": "naive",
+              "maps": 0
+            },
+            {
+              "name": "greedy",
+              "maps": 1
+            }
+          ]
+        }
       }
     ]
   },
   "grader": {
     "id": "ae-ale-judge",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

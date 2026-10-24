@@ -95,8 +95,14 @@ def self_calibrate():
         anchors = json.load(handle)
     for item, anchor in sorted(anchors.items()):
         name = os.path.basename(anchor["naiveReference"])
-        expect(f"{item} naive reference ({name}) at its anchor {anchor['naive']}", item, reference(item, name),
-               lambda e, anchor=anchor: all_accepted(e) and e["performance"] == anchor["naive"] and not e["performanceExtrapolated"])
+        expect(f"{item} naive reference ({name}) at its anchor {anchor['naive']}, fresh total {anchor['freshNaive']}", item, reference(item, name),
+               lambda e, anchor=anchor: all_accepted(e) and e["performance"] == anchor["naive"] and not e["performanceExtrapolated"]
+               and e["freshTotal"] == anchor["freshNaive"])
+        # Grader 2.1.0: a greedy reference for every problem, above its naive one on the official and the fresh seeds.
+        greedy = os.path.basename(anchor["greedyReference"])
+        expect(f"{item} greedy reference ({greedy}) at {anchor['greedy']}, fresh total {anchor['freshGreedy']}", item, reference(item, greedy),
+               lambda e, anchor=anchor: all_accepted(e) and e["performance"] == anchor["greedy"] > anchor["naive"]
+               and e["freshTotal"] == anchor["freshGreedy"] > anchor["freshNaive"])
     # Above the winner the performance keeps rising along the top of the table, marked as an extrapolation.
     problems = os.path.join(HERE, "problems", "ahc039")
     standings = ale.load_table(os.path.join(problems, "standings_scores.csv"), "score")

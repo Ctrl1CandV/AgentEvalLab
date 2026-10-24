@@ -6,7 +6,11 @@ the rank is converted into AtCoder performance.
 Grader 2.0.0 (task 0.2.0, manifest v2) reports the raw values (grader result v2): the performance, uncapped and
 extrapolated above the winner; the contest total; the performance rank. The one check per item is whether every case
 was accepted (a valid delivery). The performance is normalised through the item's anchors (its naive reference, the
-median contestant, the winner) by the harness, not here; rungs of performance are labels only."""
+median contestant, the winner) by the harness, not here; rungs of performance are labels only.
+
+Grader 2.1.0 (TASK_LIBRARY §3.6, PLAN-007 WP3.5) also judges the delivery on 50 fresh seeds of our own, drawn once
+(`problems/<item>/fresh_seeds.txt`), with the same tools and rules: `freshTotal` is reported separately, normalised
+through the item's naive and greedy references on the same seeds, and never ranked against the humans."""
 import argparse
 import fcntl
 import json
@@ -23,7 +27,7 @@ import ale  # noqa: E402
 
 TASK_ID = "ae-heuristic-contests"
 TASK_VERSION = "0.2.0"
-GRADER_VERSION = "2.0.0"
+GRADER_VERSION = "2.1.0"
 LOCK_PATH = os.path.expanduser("~/.cache/agenteval/ae-grading.lock")
 
 
@@ -37,6 +41,16 @@ def requirement(item_id):
 
 def problem_directory(item_id):
     return os.path.join(HERE, "problems", item_id)
+
+
+def judge_seeds(launcher, run_directory, judge_directory, spec, seeds_path):
+    """(cases, compile error, inputs) of a delivery on the inputs the official generator makes from a seed file."""
+    generated = subprocess.run(["./gen", seeds_path], cwd=judge_directory, capture_output=True, text=True)
+    if generated.returncode != 0:
+        raise RuntimeError(f"GENERATOR_FAILED: {generated.stderr[-500:]}")
+    inputs = sorted(os.path.join(judge_directory, "in", name) for name in os.listdir(os.path.join(judge_directory, "in")))
+    cases, error = ale.judge(launcher, run_directory, judge_directory, spec, inputs)
+    return cases, error, inputs
 
 
 def grade(item_id, public_directory, launcher):
@@ -58,12 +72,14 @@ def grade(item_id, public_directory, launcher):
             shutil.copy(os.path.join(public_directory, name), os.path.join(run_directory, name))
         evidence["language"] = "C++" if submitted[:1] == ["main.cpp"] else "Python" if submitted else None
         ale.copy_tools(os.path.join(directory, "tools"), judge_directory)
-        generated = subprocess.run(["./gen", os.path.join(directory, "private_seeds.txt")], cwd=judge_directory, capture_output=True, text=True)
-        if generated.returncode != 0:
-            raise RuntimeError(f"GENERATOR_FAILED: {generated.stderr[-500:]}")
-        inputs = sorted(os.path.join(judge_directory, "in", name) for name in os.listdir(os.path.join(judge_directory, "in")))
-        cases, error = ale.judge(launcher, run_directory, judge_directory, spec, inputs)
+        cases, error, inputs = judge_seeds(launcher, run_directory, judge_directory, spec, os.path.join(directory, "private_seeds.txt"))
+        # The same delivery on our fresh seeds, in a judge directory of its own (TASK_LIBRARY §3.6).
+        fresh_directory = os.path.join(work, "fresh")
+        os.makedirs(fresh_directory)
+        ale.copy_tools(os.path.join(directory, "tools"), fresh_directory)
+        fresh_cases, _, _ = judge_seeds(launcher, run_directory, fresh_directory, spec, os.path.join(directory, "fresh_seeds.txt"))
     total = ale.overall_score(spec["id"], cases)
+    fresh_total = ale.overall_score(spec["id"], fresh_cases)
     rank, performance_rank = ale.rank_of(standings, total)
     perf, extrapolated = ale.performance_uncapped(standings, performance, total)
     verdicts = {}
@@ -77,6 +93,8 @@ def grade(item_id, public_directory, launcher):
         "failedCases": [{"case": case[0], "verdict": case[1], "seconds": round(case[3], 3), "message": case[4]}
                         for case in (cases or []) if case[1] != "AC"][:20],
         "caseScores": {case[0]: case[2] for case in cases or []},
+        "freshTotal": fresh_total, "freshCases": len(fresh_cases or []),
+        "freshVerdicts": {verdict: sum(1 for case in fresh_cases or [] if case[1] == verdict) for verdict in {case[1] for case in fresh_cases or []}},
     })
     accepted = bool(cases) and all(case[1] == "AC" for case in cases)
     return {"accepted": accepted}, evidence
@@ -87,7 +105,8 @@ def metrics_of(evidence):
     return [{"id": "performance", "value": evidence["performance"], "unit": "AtCoder performance"},
             {"id": "total", "value": evidence["total"], "unit": "contest score"},
             {"id": "performanceRank", "value": evidence["performanceRank"], "unit": "rank among contestants"},
-            {"id": "performanceExtrapolated", "value": 1 if evidence["performanceExtrapolated"] else 0, "unit": "0 or 1"}]
+            {"id": "performanceExtrapolated", "value": 1 if evidence["performanceExtrapolated"] else 0, "unit": "0 or 1"},
+            {"id": "freshTotal", "value": evidence["freshTotal"], "unit": "contest score on 50 fresh seeds"}]
 
 
 def write_json(path, value):

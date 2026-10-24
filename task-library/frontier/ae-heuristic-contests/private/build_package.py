@@ -15,6 +15,7 @@ import hashlib
 import json
 import os
 import pathlib
+import random
 import shutil
 import subprocess
 import sys
@@ -36,6 +37,7 @@ CARGO_ENV = {"RUSTUP_HOME": str(pathlib.Path.home() / ".local" / "share" / "rust
 # Short (four-hour) contests scored by absolute score: the length of one agent session, ranked without relative scores.
 PROBLEMS = ["ahc015", "ahc026", "ahc028", "ahc032", "ahc035", "ahc039", "ahc041", "ahc042", "ahc044", "ahc046"]
 PUBLIC_SEEDS = range(50)
+FRESH_SEEDS = 50
 # Splits (VALIDATION §3): a contest is its own structure group. The four contests calibrated by hand for 0.1.0 and named in
 # its dev plan are dev; the six others are validation. Holdout comes from contests added later (TASK_LIBRARY §5).
 DEV = {"ahc015", "ahc035", "ahc039", "ahc046"}
@@ -105,6 +107,9 @@ def main():
             data = json.loads((extracted / "data.json").read_text(encoding="utf-8"))
             seeds = ast.literal_eval(data["seeds"]) if isinstance(data["seeds"], str) else data["seeds"]
             (private / "private_seeds.txt").write_text("".join(f"{seed}\n" for seed in seeds["private"]), encoding="utf-8")
+            # Fresh seeds of our own (grader 2.1.0): generalisation, reported apart and never ranked against the humans.
+            fresh = random.Random(f"ae-fresh:{problem}")
+            (private / "fresh_seeds.txt").write_text("".join(f"{fresh.getrandbits(63)}\n" for _ in range(FRESH_SEEDS)), encoding="utf-8")
             for name in ("gen", "tester"):
                 shutil.copy2(built / name, private / "tools" / name)
             spec = ale.load_problem(private)
@@ -130,7 +135,8 @@ def main():
                       "activeRequirementIds": [requirement], "split": "dev" if problem in DEV else "validation", "structure": f"contest:{problem}",
                       "provenance": {"source": f"ALE-Bench, AtCoder Heuristic Contest {problem[3:]} ({spec['title']}), official private seeds",
                                      "published": spec["start_at"][:10], "license": "CC BY-ND 4.0 (ALE-Bench data, AtCoder Inc.)", "exposure": "public"},
-                      "anchors": {"performance": {name: anchors[problem][name] for name in ("naive", "median-contestant", "winner")}}})
+                      "anchors": {"performance": {name: anchors[problem][name] for name in ("naive", "median-contestant", "winner")},
+                                  "freshTotal": {"naive": anchors[problem]["freshNaive"], "greedy": anchors[problem]["freshGreedy"]}}})
     trusted = ["calibration.md", "card.md", "rubric.md"] + sorted(str(path.relative_to(ROOT)) for path in (ROOT / "private").rglob("*") if visible(path))
     manifest = {
         "schemaVersion": 2, "id": grader.TASK_ID, "version": grader.TASK_VERSION, "familyId": "ae-algorithm-engineering",
@@ -154,7 +160,9 @@ def main():
             "metrics": [{"id": "performance", "unit": "AtCoder performance", "direction": "higher",
                          "anchors": {"version": "1", "points": [{"name": "naive", "maps": 0}, {"name": "median-contestant", "maps": 0.5}, {"name": "winner", "maps": 1}]}},
                         {"id": "total", "unit": "contest score", "direction": "higher"},
-                        {"id": "performanceRank", "unit": "rank among contestants", "direction": "lower"}],
+                        {"id": "performanceRank", "unit": "rank among contestants", "direction": "lower"},
+                        {"id": "freshTotal", "unit": "contest score on 50 fresh seeds", "direction": "higher",
+                         "anchors": {"version": "1", "points": [{"name": "naive", "maps": 0}, {"name": "greedy", "maps": 1}]}}],
         },
         "grader": {"id": "ae-ale-judge", "version": grader.GRADER_VERSION, "entryPoint": "private/grader.py", "executable": "python3",
                    "args": ["{entryPoint}", "--request", "{request}", "--result", "{result}"]},
