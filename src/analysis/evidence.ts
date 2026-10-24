@@ -142,6 +142,23 @@ async function scoreRuns(trialDirectory: string): Promise<ScoreRun[]> {
   return runs.sort((left, right) => left.createdAt.localeCompare(right.createdAt));
 }
 
+/**
+ * The headline kind of each item of a package's current v2 manifest (MEASUREMENT §2), for splitting a run's v2 rows when
+ * its items are reported under different headlines (E4's speedup and compress). Null for a v1 package.
+ */
+async function headlineKinds(repoRoot: string, packageId: string): Promise<((itemId: string | null) => string) | null> {
+  for (const tier of await directories(join(repoRoot, "task-library"))) {
+    for (const directory of await directories(tier)) {
+      const manifest = await readJson<{ id?: string; schemaVersion?: number; scoreModel?: { primary: { kind: string }; primaryByItem?: Record<string, { kind: string }> } }>(
+        join(directory, "manifest.json")).catch(() => null);
+      if (manifest?.id !== packageId || manifest.schemaVersion !== 2 || !manifest.scoreModel) continue;
+      const model = manifest.scoreModel;
+      return itemId => (itemId ? model.primaryByItem?.[itemId]?.kind : undefined) ?? model.primary.kind;
+    }
+  }
+  return null;
+}
+
 /** Grader versions of a trajectory's snapshot grades (their score runs carry the grader's own result). */
 async function trajectoryGraderVersions(trialDirectory: string): Promise<string[]> {
   const versions = new Set<string>();
@@ -229,6 +246,18 @@ function protocolOf(experiment: Experiment, plan: EvaluationPlan | undefined) {
   };
 }
 
+interface TrajectoryOutcome { primary: number | null; resolved: boolean | null; coverage: string }
+
+/** The latest outcome a grader version left in a trajectory's snapshot score runs, if any. */
+async function trajectoryOutcome(trialDirectory: string, version: string): Promise<TrajectoryOutcome | null> {
+  const own = (await snapshotScores(trialDirectory)).filter(score => score.graderVersion === version);
+  for (const score of own.reverse()) {
+    const outcome = await readJson<TrajectoryOutcome>(join(score.directory, "outcome.json")).catch(() => null);
+    if (outcome) return outcome;
+  }
+  return null;
+}
+
 /** Rows of one run directory: per package, model and grader version. */
 export async function runRows(runDirectory: string, context: RunContext): Promise<{ rows: EvidenceRow[]; excluded: ExcludedRun[] }> {
   const display = relative(context.repoRoot, runDirectory);
@@ -272,13 +301,21 @@ export async function runRows(runDirectory: string, context: RunContext): Promis
         const recordVersions = new Set<string>(version ? [version] : []);
         if (!version) for (const record of records) for (const found of await trajectoryGraderVersions(join(runDirectory, record.id))) recordVersions.add(found);
         const [result] = familyResults(family, [model], units, notRun.filter(entry => entry.model === modelKey(model)));
+        // A re-grade on manifest v2 leaves an outcome in the score run of the last snapshot it graded: the trajectory is
+        // one task, read by its primary and resolved, never as v1 partial credit (MEASUREMENT §8).
+        const outcomes = version ? (await Promise.all(records.map(record => trajectoryOutcome(join(runDirectory, record.id), version))))
+          .filter((outcome): outcome is TrajectoryOutcome => outcome !== null && outcome.coverage === "scored") : [];
+        const v2 = outcomes.length > 0;
         rows.push({
           ...common, family, packageId: fingerprint.id, taskVersion: fingerprint.version, graderVersion: [...recordVersions].sort().join(", ") || null, kind: "trajectory",
           model: modelKey(model), label: modelLabel(model), thinking: model.thinkingLevel ?? "provider-default", temperature: model.temperature ?? null,
-          scope: ["final-stage checks"], breakdown: breakdown(units, unit => unit.level ? `last graded ${unit.level}` : null),
+          // A v2 trajectory is one task: no per-stage breakdown of v1 partial credit beside its primary.
+          scope: ["final-stage checks"], breakdown: v2 ? [] : breakdown(units, unit => unit.level ? `last graded ${unit.level}` : null),
           trials: result!.units, scored: result!.scored, infrastructure: result!.infrastructureFailures, notRun: result!.notRun, unscored: result!.unscored,
-          ungraded: 0, budgetStops: result!.budgetStops, meanScore: result!.meanScore, resolved: result!.resolved, decided: result!.decided,
-          medianTokens: result!.medianTokens, tournament: null, status, scoreKind: "v1 partial credit",
+          ungraded: 0, budgetStops: result!.budgetStops,
+          meanScore: v2 ? outcomes.reduce((sum, outcome) => sum + (outcome.primary ?? 0), 0) / outcomes.length : result!.meanScore,
+          resolved: v2 ? outcomes.filter(outcome => outcome.resolved).length : result!.resolved, decided: v2 ? outcomes.length : result!.decided,
+          medianTokens: result!.medianTokens, tournament: null, status, scoreKind: v2 ? "v2 primary" : "v1 partial credit",
         });
       }
     }
@@ -312,31 +349,36 @@ export async function runRows(runDirectory: string, context: RunContext): Promis
     const levelOf = new Map(records.map(record => [record.itemId ?? "", record.itemLevel ?? null]));
     for (const fingerprint of fingerprints) {
       const caseRecords = graded.filter(record => record.caseId === fingerprint.caseId);
-      const family = familyFor(fingerprint.id);
-      for (const model of experiment.models ?? []) {
-        const own = caseRecords.filter(record => modelKey(record.model) === modelKey(model));
-        const ownNotRun = notRun.filter(entry => entry.model === modelKey(model) && entry.caseId === fingerprint.caseId &&
-          (!context.family || inScore(context.family, entry.itemId ?? null, levelOf.get(entry.itemId ?? "") ?? null)));
-        const ownUngraded = ungraded.filter(record => record.caseId === fingerprint.caseId && modelKey(record.model) === modelKey(model)).length;
-        if (!own.length && !ownNotRun.length && !ownUngraded) continue;
-        const units = own.map(record => trialUnit(family, runDirectory, record));
-        const [result] = familyResults(family, [model], units, ownNotRun);
-        const levels = [...new Set(own.map(record => record.itemLevel).filter((level): level is string => !!level))];
-        const items = [...new Set(own.map(record => record.itemId).filter((item): item is string => !!item))];
-        const byLevel = levels.length > 1;
-        const byItem = !byLevel && items.length <= 12 && (items.length > 1 || (context.family?.score?.items?.length ?? 0) > 1);
-        const winRate = tournament?.byModel.find(entry => entry.model === modelLabel(model))?.winRate ?? null;
-        rows.push({
-          ...common, family, packageId: fingerprint.id, taskVersion: fingerprint.version, graderVersion: version === "none" ? null : version,
-          kind: tournament ? "visual" : "single", model: modelKey(model), label: modelLabel(model), thinking: model.thinkingLevel ?? "provider-default",
-          temperature: model.temperature ?? null,
-          scope: context.family?.score?.items ?? context.family?.score?.levels ?? (levels.length ? levels : items),
-          breakdown: breakdown(units, unit => byLevel ? unit.level : byItem ? unit.itemId : null),
-          trials: result!.units, scored: result!.scored, infrastructure: result!.infrastructureFailures, notRun: result!.notRun, unscored: result!.unscored,
-          ungraded: ownUngraded, budgetStops: result!.budgetStops, meanScore: result!.meanScore,
-          resolved: result!.resolved, decided: result!.decided, medianTokens: result!.medianTokens,
-          tournament: tournament ? { path: tournament.path, winRate } : null, status, scoreKind: v2 ? "v2 primary" : "v1 partial credit",
-        });
+      // v2 numbers under different headlines (a resolved rate and a normalised value) are never averaged into one row.
+      const kindOf = v2 ? await headlineKinds(context.repoRoot, fingerprint.id) : null;
+      const kinds = kindOf ? [...new Set(caseRecords.map(record => kindOf(record.itemId ?? null)))] : [];
+      for (const kind of kinds.length > 1 ? kinds : [null]) {
+        const family = familyFor(fingerprint.id);
+        for (const model of experiment.models ?? []) {
+          const own = caseRecords.filter(record => modelKey(record.model) === modelKey(model) && (kind === null || kindOf!(record.itemId ?? null) === kind));
+          const ownNotRun = notRun.filter(entry => entry.model === modelKey(model) && entry.caseId === fingerprint.caseId &&
+            (!context.family || inScore(context.family, entry.itemId ?? null, levelOf.get(entry.itemId ?? "") ?? null)));
+          const ownUngraded = ungraded.filter(record => record.caseId === fingerprint.caseId && modelKey(record.model) === modelKey(model)).length;
+          if (!own.length && !ownNotRun.length && !ownUngraded) continue;
+          const units = own.map(record => trialUnit(family, runDirectory, record));
+          const [result] = familyResults(family, [model], units, ownNotRun);
+          const levels = [...new Set(own.map(record => record.itemLevel).filter((level): level is string => !!level))];
+          const items = [...new Set(own.map(record => record.itemId).filter((item): item is string => !!item))];
+          const byLevel = levels.length > 1;
+          const byItem = !byLevel && items.length <= 12 && (items.length > 1 || (context.family?.score?.items?.length ?? 0) > 1);
+          const winRate = tournament?.byModel.find(entry => entry.model === modelLabel(model))?.winRate ?? null;
+          rows.push({
+            ...common, family, packageId: fingerprint.id, taskVersion: fingerprint.version, graderVersion: version === "none" ? null : version,
+            kind: tournament ? "visual" : "single", model: modelKey(model), label: modelLabel(model), thinking: model.thinkingLevel ?? "provider-default",
+            temperature: model.temperature ?? null,
+            scope: context.family?.score?.items ?? context.family?.score?.levels ?? (levels.length ? levels : items),
+            breakdown: breakdown(units, unit => byLevel ? unit.level : byItem ? unit.itemId : null),
+            trials: result!.units, scored: result!.scored, infrastructure: result!.infrastructureFailures, notRun: result!.notRun, unscored: result!.unscored,
+            ungraded: ownUngraded, budgetStops: result!.budgetStops, meanScore: result!.meanScore,
+            resolved: result!.resolved, decided: result!.decided, medianTokens: result!.medianTokens,
+            tournament: tournament ? { path: tournament.path, winRate } : null, status, scoreKind: v2 ? "v2 primary" : "v1 partial credit",
+          });
+        }
       }
     }
   }
@@ -480,7 +522,7 @@ function referenceRows(evidence: Evidence, reference: ReviewReference): Evidence
 
 const shortLabel = (label: string) => label.replace(/^[a-z]+:/, "");
 const breakdownText = (row: EvidenceRow) => row.breakdown.length > 1 || (row.breakdown[0] && row.breakdown[0].key !== row.scope.join(", "))
-  ? row.breakdown.map(entry => `${entry.key} ${percent(entry.score)}${entry.trials > 1 ? ` (${entry.trials})` : ""}`).join("; ") : "";
+  ? row.breakdown.map(entry => `${entry.key} ${row.scoreKind === "v2 primary" ? (entry.score === null ? "n/a" : String(+entry.score.toFixed(3))) : percent(entry.score)}${entry.trials > 1 ? ` (${entry.trials})` : ""}`).join("; ") : "";
 
 export function markdownEvidence(evidence: Evidence): string {
   const lines: string[] = [
@@ -508,7 +550,9 @@ export function markdownEvidence(evidence: Evidence): string {
     const versions = [...new Set(found.map(row => row.graderVersion))];
     const values = versions.map(version => {
       const shown = found.filter(row => row.graderVersion === version);
-      const text = shown.map(row => `${shortLabel(row.label)} ${row.tournament ? `win rate ${percent(row.tournament.winRate)}` : percent(row.meanScore)}${breakdownText(row) ? ` [${breakdownText(row)}]` : ""}`).join("; ");
+      // v2 primaries are shown as values (a resolved rate or a normalised value, which may pass 1), as in the rows.
+      const value = (row: EvidenceRow) => row.scoreKind === "v2 primary" ? (row.meanScore === null ? "n/a" : String(+row.meanScore.toFixed(3))) : percent(row.meanScore);
+      const text = shown.map(row => `${shortLabel(row.label)} ${row.tournament ? `win rate ${percent(row.tournament.winRate)}` : value(row)}${breakdownText(row) ? ` [${breakdownText(row)}]` : ""}`).join("; ");
       const kind = shown[0]?.scoreKind === "v2 primary" ? " (v2 primary)" : "";
       return versions.length > 1 ? `grader ${version}${kind}: ${text}` : text;
     }).reverse().join(" — ");

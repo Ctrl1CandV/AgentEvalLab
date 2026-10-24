@@ -72,7 +72,7 @@ All v1 fields stay, plus:
 ```
 
 - A package without items (eng-001, a trajectory such as E3) is one task: its `split`, `structure`, `provenance` and `anchors` sit in a top-level `"task"` object instead (added in PLAN-007 WP1.1).
-- Per-item headlines (added in PLAN-007 WP2.2): `scoreModel.primaryByItem` maps an item id to its own primary, and a metric group may name the `items` it applies to (every item when omitted). A package that holds contract items and an open-ended one (E4: the terminal tasks and compress) keeps one grader, and the suite splits it into families by items. A suite family whose items have different headlines is refused (`SUITE_FAMILY_MIXED_PRIMARY`). Anchors are required only for the metrics a task is scored on: its headline metric and the metric groups that apply to it.
+- Per-item headlines (added in PLAN-007 WP2.2): `scoreModel.primaryByItem` maps an item id to its own primary, and a metric group may name the `items` it applies to (every item when omitted). A package that holds contract items and an open-ended one (E4: the terminal tasks and compress) keeps one grader, and the suite splits it into families by items. A suite family whose items have different headlines is refused (`SUITE_FAMILY_MIXED_PRIMARY`). Anchors are required only for the metrics a task is scored on: its headline metric and the metric groups that apply to it. A metric may name the `items` whose grading reports it (every item when omitted); a grader must report it for those items, and a task may be scored only on metrics its grading reports (`INVALID_SCORE_ITEMS`).
 - Repository items (PLAN-007 WP2.4, §5): `"repository": { "archive": "private/repos/<name>.tar", "directory": "repo" }` on an item; the archive is a hashed trusted file. `"mounts": ["runtime/<name>"]` on an item selects the runtime mounts it binds (all of them when omitted).
 - Every file under `runtime/` is hashed as a trusted file (no cache exception), and a mount is one directory `runtime/<name>`.
 - A v1 manifest (`schemaVersion: 1`) still loads, and its family is reported by the v1 rules. A v1 manifest carrying any v2 field is refused.
@@ -93,7 +93,7 @@ The v1 fields stay, plus:
 ```
 
 - Metric values are finite numbers.
-- Each metric the manifest's `scoreModel` names is required.
+- Each metric the manifest's `scoreModel` names is required (for the items it names, when it names some).
 - Other metrics are recorded as diagnostic.
 
 ### 3.3 Plan (`schemaVersion: 3`, extended, backward compatible)
