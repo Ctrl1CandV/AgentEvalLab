@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-24T03:15:44.108Z",
+ "generatedAt": "2026-10-24T03:23:18.378Z",
  "rows": [
   {
    "contextPolicy": "single",
@@ -14262,6 +14262,58 @@
    "family": "T2",
    "packageId": "t2-finance-desk",
    "taskVersion": "0.3.0",
+   "graderVersion": "1.2.0",
+   "kind": "single",
+   "model": "aliplan:qwen3.8-flash",
+   "label": "aliplan:qwen3.8-flash-default",
+   "thinking": "provider-default",
+   "temperature": 0,
+   "scope": [
+    "fn1",
+    "fn2"
+   ],
+   "breakdown": [
+    {
+     "key": "fn1",
+     "score": 1,
+     "trials": 1
+    },
+    {
+     "key": "fn2",
+     "score": 0.3584905660377358,
+     "trials": 1
+    }
+   ],
+   "trials": 2,
+   "scored": 2,
+   "infrastructure": 0,
+   "notRun": 0,
+   "unscored": 0,
+   "ungraded": 0,
+   "budgetStops": 1,
+   "meanScore": 0.6792452830188679,
+   "resolved": 1,
+   "decided": 2,
+   "medianTokens": 5741051.5,
+   "tournament": null,
+   "status": "completed"
+  },
+  {
+   "contextPolicy": "single",
+   "budget": {
+    "trial": 6000000,
+    "stage": null
+   },
+   "budgetNotice": true,
+   "repetitions": 1,
+   "source": "suite",
+   "suite": "20261023-050438-dev-9f16",
+   "runDirectory": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa",
+   "startedAt": "2026-10-23T05:04:53.731Z",
+   "commit": "4a276fb5788b02ac588ed3df662f674cb35483c7",
+   "family": "T2",
+   "packageId": "t2-finance-desk",
+   "taskVersion": "0.3.0",
    "graderVersion": "1.1.0",
    "kind": "single",
    "model": "deepseek:deepseek-flash",
@@ -14314,6 +14366,58 @@
    "family": "T2",
    "packageId": "t2-finance-desk",
    "taskVersion": "0.3.0",
+   "graderVersion": "1.2.0",
+   "kind": "single",
+   "model": "deepseek:deepseek-flash",
+   "label": "deepseek:deepseek-flash-high",
+   "thinking": "high",
+   "temperature": 0,
+   "scope": [
+    "fn1",
+    "fn2"
+   ],
+   "breakdown": [
+    {
+     "key": "fn1",
+     "score": 1,
+     "trials": 1
+    },
+    {
+     "key": "fn2",
+     "score": 0.9622641509433962,
+     "trials": 1
+    }
+   ],
+   "trials": 2,
+   "scored": 2,
+   "infrastructure": 0,
+   "notRun": 0,
+   "unscored": 0,
+   "ungraded": 0,
+   "budgetStops": 0,
+   "meanScore": 0.9811320754716981,
+   "resolved": 1,
+   "decided": 2,
+   "medianTokens": 5308008,
+   "tournament": null,
+   "status": "completed"
+  },
+  {
+   "contextPolicy": "single",
+   "budget": {
+    "trial": 6000000,
+    "stage": null
+   },
+   "budgetNotice": true,
+   "repetitions": 1,
+   "source": "suite",
+   "suite": "20261023-050438-dev-9f16",
+   "runDirectory": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa",
+   "startedAt": "2026-10-23T05:04:53.731Z",
+   "commit": "4a276fb5788b02ac588ed3df662f674cb35483c7",
+   "family": "T2",
+   "packageId": "t2-finance-desk",
+   "taskVersion": "0.3.0",
    "graderVersion": "1.1.0",
    "kind": "single",
    "model": "mimoplan:mimo-v2.6-flash",
@@ -14344,6 +14448,58 @@
    "ungraded": 0,
    "budgetStops": 1,
    "meanScore": 0.08823529411764706,
+   "resolved": 0,
+   "decided": 2,
+   "medianTokens": 3179072.5,
+   "tournament": null,
+   "status": "completed"
+  },
+  {
+   "contextPolicy": "single",
+   "budget": {
+    "trial": 6000000,
+    "stage": null
+   },
+   "budgetNotice": true,
+   "repetitions": 1,
+   "source": "suite",
+   "suite": "20261023-050438-dev-9f16",
+   "runDirectory": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa",
+   "startedAt": "2026-10-23T05:04:53.731Z",
+   "commit": "4a276fb5788b02ac588ed3df662f674cb35483c7",
+   "family": "T2",
+   "packageId": "t2-finance-desk",
+   "taskVersion": "0.3.0",
+   "graderVersion": "1.2.0",
+   "kind": "single",
+   "model": "mimoplan:mimo-v2.6-flash",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "thinking": "provider-default",
+   "temperature": 0,
+   "scope": [
+    "fn1",
+    "fn2"
+   ],
+   "breakdown": [
+    {
+     "key": "fn1",
+     "score": 0,
+     "trials": 1
+    },
+    {
+     "key": "fn2",
+     "score": 0.18867924528301888,
+     "trials": 1
+    }
+   ],
+   "trials": 2,
+   "scored": 2,
+   "infrastructure": 0,
+   "notRun": 0,
+   "unscored": 0,
+   "ungraded": 0,
+   "budgetStops": 1,
+   "meanScore": 0.09433962264150944,
    "resolved": 0,
    "decided": 2,
    "medianTokens": 3179072.5,
