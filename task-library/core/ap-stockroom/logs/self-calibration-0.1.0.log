@@ -1,0 +1,11 @@
+store-01: myopic 30467.68, strong 45165.55, bound 54379.35, gap 0.61, strong overflow 0 units, lost 93
+store-02: myopic 31212.39, strong 58675.28, bound 71390.75, gap 0.68, strong overflow 0 units, lost 107
+store-03: myopic 23791.25, strong 53028.75, bound 66797.71, gap 0.68, strong overflow 7 units, lost 240
+store-04: myopic 42863.51, strong 63254.59, bound 77856.95, gap 0.58, strong overflow 71 units, lost 143
+store-05: myopic 23373.4, strong 39942.32, bound 48481.87, gap 0.66, strong overflow 0 units, lost 84
+store-06: myopic 35212.76, strong 57765.48, bound 70906.9, gap 0.63, strong overflow 2 units, lost 267
+store-07: myopic 59662.49, strong 91751.57, bound 99998.17, gap 0.80, strong overflow 12 units, lost 19
+store-08: myopic 49135.88, strong 70396.67, bound 80343.53, gap 0.68, strong overflow 8 units, lost 65
+store-09: myopic 38024.02, strong 62639.74, bound 76586.11, gap 0.64, strong overflow 0 units, lost 92
+store-10: myopic 21940.37, strong 35840.68, bound 55189.91, gap 0.42, strong overflow 134 units, lost 142
+RESULT: PASS (71/71)

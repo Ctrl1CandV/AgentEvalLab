@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 3,
+  "name": "ap-2026-10-dev",
+  "models": [
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "aliplan",
+      "id": "qwen3.8-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    },
+    {
+      "provider": "mimoplan",
+      "id": "mimo-v2.6-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 1,
+  "budget": {
+    "timeoutMs": 10800000,
+    "maxTurns": 600,
+    "maxModelCalls": 600,
+    "maxToolCalls": 1200,
+    "maxOutputChars": 524288,
+    "maxOutputTokensPerCall": 131072,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 5000000
+  },
+  "artifactLimits": {
+    "maxFiles": 500,
+    "maxFileBytes": 10485760,
+    "maxTrialBytes": 52428800,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 16777216
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 50000000,
+    "concurrency": 4
+  },
+  "trustedLocalExecution": true,
+  "budgetNotice": true,
+  "protocol": {
+    "track": "fixed",
+    "split": "dev",
+    "label": "provisional-B"
+  },
+  "cases": [
+    {
+      "id": "ap-stockroom",
+      "packagePath": "task-library/core/ap-stockroom",
+      "packageManifestSha256": "e69db299dfc429a29ac8426e14e287d950d42ec45d550d1505666510b3a700f3",
+      "toolProfile": "workspace-simulator",
+      "input": {
+        "prompt": "Run the stockroom as the instruction says, and end with a short summary."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 120000
+      },
+      "items": [
+        "store-01",
+        "store-02",
+        "store-03",
+        "store-04",
+        "store-05",
+        "store-06",
+        "store-07",
+        "store-08",
+        "store-09",
+        "store-10"
+      ]
+    }
+  ]
+}

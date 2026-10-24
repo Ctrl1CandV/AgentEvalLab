@@ -1,0 +1,508 @@
+{
+  "schemaVersion": 2,
+  "id": "ap-stockroom",
+  "version": "0.1.0",
+  "familyId": "ap-stockroom",
+  "capability": "tool",
+  "usage": "development",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "docs/design/v2/TASK_LIBRARY.md"
+    ]
+  },
+  "license": {
+    "taskText": "Original project-authored simulator, rules and policies.",
+    "thirdPartyContent": []
+  },
+  "entryPoint": {
+    "instruction": "instruction.md"
+  },
+  "files": {
+    "public": [
+      {
+        "path": "instruction.md",
+        "sha256": "77a6cd092f65d3343aaaf246dca76abaa5cf94b87241ffdfa4a32d08eabfee36"
+      },
+      {
+        "path": "public/RULES.md",
+        "sha256": "6c2da1e267d70487dd87ad3dce0452dcf9fc2a7f10e967052f2f63c875d46e5f"
+      }
+    ],
+    "trusted": [
+      {
+        "path": "calibration.md",
+        "sha256": "4d52209537d2cca5d362481d873cf570bb869c15d046b5a26ec36d7c468d7660"
+      },
+      {
+        "path": "card.md",
+        "sha256": "a2f5fa9d91b4e3254977104b47df92c9eabb33ec6f6b2008ea0b111fa6334411"
+      },
+      {
+        "path": "rubric.md",
+        "sha256": "cba7596564b8a7df0371b0f99e5b4310efb90d68a29096f6656427c5a84a0f61"
+      },
+      {
+        "path": "private/build_package.py",
+        "sha256": "1f10c29f33ec6a971759a1f1950882efba1d2fb76e5a07e09ca4cc1542026cea"
+      },
+      {
+        "path": "private/grader.py",
+        "sha256": "1eb644e093187cb682cd65d7b39365a5bf950e594143e3f9cb500be99d8b5bc7"
+      },
+      {
+        "path": "private/items.json",
+        "sha256": "13557cf948d57471f65a000913fbc7c061fc93a602fde41fee336b14e2b9872b"
+      },
+      {
+        "path": "private/policies.py",
+        "sha256": "74118b3f6cd486cfa11be2037462653fe559f11088cb213d0abba669224bc6f1"
+      },
+      {
+        "path": "private/stockroom.py",
+        "sha256": "911066ac2e12e35218528ee185c059b18855d7458a84c687596b872e63adfdb6"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "REQ-COMPLETED",
+      "critical": true,
+      "introducedAt": "ap-stockroom 0.1.0",
+      "checkIds": [
+        "completed"
+      ]
+    },
+    {
+      "id": "REQ-NO-INVALID",
+      "critical": false,
+      "introducedAt": "ap-stockroom 0.1.0",
+      "checkIds": [
+        "no-invalid-actions"
+      ]
+    },
+    {
+      "id": "REQ-NO-DUPLICATES",
+      "critical": false,
+      "introducedAt": "ap-stockroom 0.1.0",
+      "checkIds": [
+        "no-duplicate-orders"
+      ]
+    },
+    {
+      "id": "REQ-NO-OVERFLOW",
+      "critical": false,
+      "introducedAt": "ap-stockroom 0.1.0",
+      "checkIds": [
+        "no-overflow"
+      ]
+    }
+  ],
+  "tier": "core",
+  "capabilities": [
+    "agentic"
+  ],
+  "card": "card.md",
+  "scoreModel": {
+    "primary": {
+      "kind": "metric",
+      "metric": "profit"
+    },
+    "groups": [
+      {
+        "id": "run",
+        "weight": 1,
+        "critical": true,
+        "rule": "all",
+        "checkIds": [
+          "completed"
+        ]
+      },
+      {
+        "id": "discipline",
+        "weight": 0.5,
+        "critical": false,
+        "rule": "fraction",
+        "checkIds": [
+          "no-invalid-actions",
+          "no-duplicate-orders",
+          "no-overflow"
+        ]
+      },
+      {
+        "id": "profit",
+        "weight": 1,
+        "critical": false,
+        "rule": "metric",
+        "checkIds": [],
+        "metric": "profit"
+      }
+    ],
+    "metrics": [
+      {
+        "id": "profit",
+        "unit": "money",
+        "direction": "higher",
+        "anchors": {
+          "version": "1",
+          "points": [
+            {
+              "name": "myopic",
+              "maps": 0
+            },
+            {
+              "name": "strong",
+              "maps": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "bound",
+        "unit": "money",
+        "direction": "higher"
+      },
+      {
+        "id": "regret",
+        "unit": "money",
+        "direction": "lower"
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "store-01",
+      "level": "stockroom",
+      "files": [
+        {
+          "path": "items/store-01/prompt.md",
+          "sha256": "85d1ff5f4cba3cef5647ca8d7433fb925cc295e8c3b741ade1aba446f5f7314a"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COMPLETED",
+        "REQ-NO-INVALID",
+        "REQ-NO-DUPLICATES",
+        "REQ-NO-OVERFLOW"
+      ],
+      "split": "dev",
+      "structure": "env:stockroom",
+      "provenance": {
+        "source": "project simulator private/stockroom.py, seed ap-2026-10:1",
+        "published": "2026-10-24",
+        "license": "project-authored",
+        "exposure": "generated"
+      },
+      "anchors": {
+        "profit": {
+          "myopic": 30467.68,
+          "strong": 45165.55
+        }
+      }
+    },
+    {
+      "id": "store-02",
+      "level": "stockroom",
+      "files": [
+        {
+          "path": "items/store-02/prompt.md",
+          "sha256": "b6a2334c047056fc41bc7d4c022a22fa044bad818d02ce8fd4a2b1867e644403"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COMPLETED",
+        "REQ-NO-INVALID",
+        "REQ-NO-DUPLICATES",
+        "REQ-NO-OVERFLOW"
+      ],
+      "split": "dev",
+      "structure": "env:stockroom",
+      "provenance": {
+        "source": "project simulator private/stockroom.py, seed ap-2026-10:2",
+        "published": "2026-10-24",
+        "license": "project-authored",
+        "exposure": "generated"
+      },
+      "anchors": {
+        "profit": {
+          "myopic": 31212.39,
+          "strong": 58675.28
+        }
+      }
+    },
+    {
+      "id": "store-03",
+      "level": "stockroom",
+      "files": [
+        {
+          "path": "items/store-03/prompt.md",
+          "sha256": "be8675c12042ab87bda8c60a3ad3802d63ffc3a9d51eb9f2abd2abba2d7e9b66"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COMPLETED",
+        "REQ-NO-INVALID",
+        "REQ-NO-DUPLICATES",
+        "REQ-NO-OVERFLOW"
+      ],
+      "split": "dev",
+      "structure": "env:stockroom",
+      "provenance": {
+        "source": "project simulator private/stockroom.py, seed ap-2026-10:3",
+        "published": "2026-10-24",
+        "license": "project-authored",
+        "exposure": "generated"
+      },
+      "anchors": {
+        "profit": {
+          "myopic": 23791.25,
+          "strong": 53028.75
+        }
+      }
+    },
+    {
+      "id": "store-04",
+      "level": "stockroom",
+      "files": [
+        {
+          "path": "items/store-04/prompt.md",
+          "sha256": "d0dee46904530ae3b3963e0315a6867ba9bc3c5bd997f6ad0ef311586ce08c9e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COMPLETED",
+        "REQ-NO-INVALID",
+        "REQ-NO-DUPLICATES",
+        "REQ-NO-OVERFLOW"
+      ],
+      "split": "dev",
+      "structure": "env:stockroom",
+      "provenance": {
+        "source": "project simulator private/stockroom.py, seed ap-2026-10:4",
+        "published": "2026-10-24",
+        "license": "project-authored",
+        "exposure": "generated"
+      },
+      "anchors": {
+        "profit": {
+          "myopic": 42863.51,
+          "strong": 63254.59
+        }
+      }
+    },
+    {
+      "id": "store-05",
+      "level": "stockroom",
+      "files": [
+        {
+          "path": "items/store-05/prompt.md",
+          "sha256": "ca4d806a91d0be3831f2b8634a8067e83e728c32c4623a5db4c6b892548c060d"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COMPLETED",
+        "REQ-NO-INVALID",
+        "REQ-NO-DUPLICATES",
+        "REQ-NO-OVERFLOW"
+      ],
+      "split": "dev",
+      "structure": "env:stockroom",
+      "provenance": {
+        "source": "project simulator private/stockroom.py, seed ap-2026-10:5",
+        "published": "2026-10-24",
+        "license": "project-authored",
+        "exposure": "generated"
+      },
+      "anchors": {
+        "profit": {
+          "myopic": 23373.4,
+          "strong": 39942.32
+        }
+      }
+    },
+    {
+      "id": "store-06",
+      "level": "stockroom",
+      "files": [
+        {
+          "path": "items/store-06/prompt.md",
+          "sha256": "54b5e0a51c9e65106aa99710528f9c783f2a8cff1ecc500cea7fa5bf0e5274c3"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COMPLETED",
+        "REQ-NO-INVALID",
+        "REQ-NO-DUPLICATES",
+        "REQ-NO-OVERFLOW"
+      ],
+      "split": "dev",
+      "structure": "env:stockroom",
+      "provenance": {
+        "source": "project simulator private/stockroom.py, seed ap-2026-10:6",
+        "published": "2026-10-24",
+        "license": "project-authored",
+        "exposure": "generated"
+      },
+      "anchors": {
+        "profit": {
+          "myopic": 35212.76,
+          "strong": 57765.48
+        }
+      }
+    },
+    {
+      "id": "store-07",
+      "level": "stockroom",
+      "files": [
+        {
+          "path": "items/store-07/prompt.md",
+          "sha256": "8868cfb3fa5702eaa0eafac778175bb57c2c8a11eeca930767b701c514bf354d"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COMPLETED",
+        "REQ-NO-INVALID",
+        "REQ-NO-DUPLICATES",
+        "REQ-NO-OVERFLOW"
+      ],
+      "split": "dev",
+      "structure": "env:stockroom",
+      "provenance": {
+        "source": "project simulator private/stockroom.py, seed ap-2026-10:7",
+        "published": "2026-10-24",
+        "license": "project-authored",
+        "exposure": "generated"
+      },
+      "anchors": {
+        "profit": {
+          "myopic": 59662.49,
+          "strong": 91751.57
+        }
+      }
+    },
+    {
+      "id": "store-08",
+      "level": "stockroom",
+      "files": [
+        {
+          "path": "items/store-08/prompt.md",
+          "sha256": "238241ee4ba226fb9417d719a1d04155cf0bd41a91c44ba765260b92f473239a"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COMPLETED",
+        "REQ-NO-INVALID",
+        "REQ-NO-DUPLICATES",
+        "REQ-NO-OVERFLOW"
+      ],
+      "split": "dev",
+      "structure": "env:stockroom",
+      "provenance": {
+        "source": "project simulator private/stockroom.py, seed ap-2026-10:8",
+        "published": "2026-10-24",
+        "license": "project-authored",
+        "exposure": "generated"
+      },
+      "anchors": {
+        "profit": {
+          "myopic": 49135.88,
+          "strong": 70396.67
+        }
+      }
+    },
+    {
+      "id": "store-09",
+      "level": "stockroom",
+      "files": [
+        {
+          "path": "items/store-09/prompt.md",
+          "sha256": "6cc43cb982e793b35d6959c22b356678c83631a2233e1890c641237f149f70ba"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COMPLETED",
+        "REQ-NO-INVALID",
+        "REQ-NO-DUPLICATES",
+        "REQ-NO-OVERFLOW"
+      ],
+      "split": "dev",
+      "structure": "env:stockroom",
+      "provenance": {
+        "source": "project simulator private/stockroom.py, seed ap-2026-10:9",
+        "published": "2026-10-24",
+        "license": "project-authored",
+        "exposure": "generated"
+      },
+      "anchors": {
+        "profit": {
+          "myopic": 38024.02,
+          "strong": 62639.74
+        }
+      }
+    },
+    {
+      "id": "store-10",
+      "level": "stockroom",
+      "files": [
+        {
+          "path": "items/store-10/prompt.md",
+          "sha256": "069faa65e87cf292c1adc0330d0e90054672fb51c1f75f8fecfc33f5e4a78a75"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-COMPLETED",
+        "REQ-NO-INVALID",
+        "REQ-NO-DUPLICATES",
+        "REQ-NO-OVERFLOW"
+      ],
+      "split": "dev",
+      "structure": "env:stockroom",
+      "provenance": {
+        "source": "project simulator private/stockroom.py, seed ap-2026-10:10",
+        "published": "2026-10-24",
+        "license": "project-authored",
+        "exposure": "generated"
+      },
+      "anchors": {
+        "profit": {
+          "myopic": 21940.37,
+          "strong": 35840.68
+        }
+      }
+    }
+  ],
+  "toolProfiles": [
+    "workspace-simulator"
+  ],
+  "simulator": {
+    "entryPoint": "private/stockroom.py",
+    "executable": "python3",
+    "description": "The stockroom simulator (see public/RULES.md). command: \"observe\" | \"order\" | \"advance\" | \"result\"; for \"order\", arguments {\"product\": name, \"supplier\": \"local\" | \"import\", \"quantity\": integer, \"ref\": unique string}. Returns a JSON reply. \"advance\" ends the current day.",
+    "timeoutMs": 30000
+  },
+  "grader": {
+    "id": "ap-stockroom-replay",
+    "version": "1.0.0",
+    "entryPoint": "private/grader.py",
+    "executable": "python3",
+    "args": [
+      "{entryPoint}",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ]
+  },
+  "environment": {
+    "runtime": "Python 3.13",
+    "dependencies": "Python standard library; no network",
+    "network": false,
+    "runtimeCheck": {
+      "executable": "python3",
+      "args": [
+        "--version"
+      ],
+      "expectedSubstring": "Python 3.13."
+    }
+  }
+}
