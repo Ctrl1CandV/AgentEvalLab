@@ -7,18 +7,20 @@ import pathlib
 
 ROOT = pathlib.Path(".")
 ITEMS = {"sheet": "sheet", "ledger": "ledger", "recur": "recur", "query": "query", "routes": "routes"}
-VERSION, GRADER_VERSION = "0.5.0", "1.6.0"
+VERSION, GRADER_VERSION = "0.5.0", "1.7.0"
 # Manifest v2 (PLAN-007 WP2.2). Each item is its own task and structure group, all dev. sheet, ledger, recur and query
 # are contract items (basic): one critical group each. routes is the open-ended bridge: headlined by routeShare, the
 # mean share of the way from the baseline's cost to the best known cost over its eight hidden instances (anchors at 0
-# and 1 of that scale, uncapped); its rungs are labels in a non-critical group. The README is critical for every item.
+# and 1 of that scale, uncapped); valid when it solves at least one instance (`routes-feasible`, critical); its rungs
+# are labels in a non-critical group. The README is a diagnostic for every item (grader 1.7.0), never critical.
 PUBLISHED = "2026-10-20"
 
 
 def score_model(checks):
-    groups = [{"id": item, "weight": 1, "critical": item != "routes", "rule": "fraction", "checkIds": [f"{item}-{check}" for check in checks[item]]}
-              for item in ITEMS]
-    groups.append({"id": "readme", "weight": 1, "critical": True, "rule": "all", "checkIds": ["readme"]})
+    groups = [{"id": item, "weight": 1, "critical": item != "routes", "rule": "fraction",
+               "checkIds": [f"{item}-{check}" for check in checks[item] if check != "feasible"]} for item in ITEMS]
+    groups.append({"id": "routes-valid", "weight": 1, "critical": True, "rule": "all", "checkIds": ["routes-feasible"]})
+    groups.append({"id": "readme", "weight": 0.1, "critical": False, "rule": "all", "checkIds": ["readme"]})
     groups.append({"id": "routes-share", "weight": 1, "critical": False, "rule": "metric", "checkIds": [], "metric": "routeShare", "items": ["routes"]})
     return {
         "primary": {"kind": "resolved"},

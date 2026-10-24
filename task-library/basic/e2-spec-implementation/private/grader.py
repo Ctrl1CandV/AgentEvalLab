@@ -11,6 +11,11 @@ over the eight hidden instances of how far each plan's cost gets from the baseli
 item's headline. `routeCost` (the total cost, an instance without a feasible plan at its baseline's cost, a plan worse
 than the baseline at the baseline's) and `feasibleInstances` are diagnostics. Routes gradings run one at a time under a
 lock, since the contract's limit is wall time (PROTOCOL §9).
+
+Grader 1.7.0 adds the routes check `feasible`: routes.py printed a feasible plan for at least one hidden instance, the
+least a delivery must do to be a valid one (a delivery that solves no instance at all is not), which makes it the routes
+item's critical check in the v2 score model; the README stops being critical (a documentation file decides nothing
+about whether a program meets its specification).
 """
 import argparse
 import fcntl
@@ -25,7 +30,7 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 TASK_ID = "e2-spec-implementation"
 TASK_VERSION = "0.5.0"
-GRADER_VERSION = "1.6.0"
+GRADER_VERSION = "1.7.0"
 # Per item: the file the candidate delivers, the module holding its hidden fixtures, and how a fixture becomes the
 # program's input. Sheet output is compared cell by cell with numeric tolerance; the others must match exactly.
 ITEMS = {
@@ -161,6 +166,7 @@ def grade_routes(submission, launcher, raw=None):
             cost_total += counted
             for threshold in instances.THRESHOLDS:
                 results[f"{name}-{threshold}"] = {"passed": share * 100 >= threshold, "fixtures": {name: reason}}
+    results["feasible"] = {"passed": feasible > 0, "fixtures": {"instances": f"{feasible} of {len(shares)} with a feasible plan"}}
     results["readme"] = {"passed": os.path.isfile(os.path.join(submission, "README.md")), "fixtures": {}}
     if raw is not None:
         raw.update({"routeShare": sum(shares) / len(shares), "routeCost": cost_total, "feasibleInstances": feasible})
@@ -250,11 +256,14 @@ def routes_calibration():
             return grade("routes", submission, None)
 
     results = {name: run(name) for name in ("lns", "savings", "nn", "infeasible", "slow", None)}
+    rungs = lambda result: {check: entry for check, entry in result.items() if check not in ("readme", "feasible")}
     for name, result in results.items():
-        passed = sum(entry["passed"] for check, entry in result.items() if check != "readme")
-        reasons = {check.split("-")[0]: next(iter(entry["fixtures"].values()), "") for check, entry in result.items() if check != "readme"}
-        print(f"routes {name or 'missing'}: {passed}/32 checks; " + "; ".join(f"{instance} {reason}" for instance, reason in reasons.items()))
-    earned = {name: sum(entry["passed"] for check, entry in result.items() if check != "readme") for name, result in results.items()}
+        passed = sum(entry["passed"] for entry in rungs(result).values())
+        reasons = {check.split("-")[0]: next(iter(entry["fixtures"].values()), "") for check, entry in rungs(result).items()}
+        print(f"routes {name or 'missing'}: {passed}/32 rungs, feasible {result['feasible']['passed']}; " +
+              "; ".join(f"{instance} {reason}" for instance, reason in reasons.items()))
+    earned = {name: sum(entry["passed"] for entry in rungs(result).values()) for name, result in results.items()}
+    feasible = {name: result["feasible"]["passed"] for name, result in results.items()}
     lns = results["lns"]
     return [("routes-lns-passes-every-50", all(entry["passed"] for check, entry in lns.items() if check.endswith("-50"))),
             ("routes-savings-passes-every-50", all(entry["passed"] for check, entry in results["savings"].items() if check.endswith("-50"))),
@@ -262,7 +271,9 @@ def routes_calibration():
             ("routes-baseline-earns-nothing", earned["nn"] == 0),
             ("routes-infeasible-earns-nothing", earned["infeasible"] == 0),
             ("routes-timeout-earns-nothing", earned["slow"] == 0),
-            ("routes-missing-earns-nothing", earned[None] == 0)]
+            ("routes-missing-earns-nothing", earned[None] == 0),
+            ("routes-feasible-for-lns-savings-baseline", feasible["lns"] and feasible["savings"] and feasible["nn"]),
+            ("routes-not-feasible-for-infeasible-slow-missing", not (feasible["infeasible"] or feasible["slow"] or feasible[None]))]
 
 
 def self_calibrate():

@@ -28,11 +28,11 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "8b9428aa035d8276f4420650547879455104fdc3e8652bee05ebc2eb8b082bbb"
+        "sha256": "c2963437c8a967c5ef7873e0e3c3a2da3aca3f7e2af499d922184bee8e4984ca"
       },
       {
         "path": "card.md",
-        "sha256": "a35d53ad7604b0b6489e688321fe23c6f85cfb8e01f7752483fa5f6a9731bbc2"
+        "sha256": "24d5c48b922b3da5dd1a9a14e594bef79770b0ca33b1804f53002a153c05980d"
       },
       {
         "path": "rubric.md",
@@ -40,11 +40,11 @@
       },
       {
         "path": "private/build_manifest.py",
-        "sha256": "87dbf819c06f48ee5f99e6f6b6875fddcd133d2a090116d05eff383260d72e7c"
+        "sha256": "69fc735921127d957bfae96facd8a345bd78f6a2ab885354624f0ef06fbc7912"
       },
       {
         "path": "private/grader.py",
-        "sha256": "5c975a2742f10cdd45d95736059df44c2a4266ae32e07fb895ed42f6de5208e7"
+        "sha256": "435a8ccc7900f4556dd077cc8bee1efa2557f103a3fcc0d736ccbec344d9fa5d"
       },
       {
         "path": "private/ledger/fixtures.py",
@@ -84,7 +84,7 @@
       },
       {
         "path": "private/routes/fixtures.py",
-        "sha256": "527ee6d8e7088c8f24f8863df7afeed3556f7159c7e4f5e606a705be666dd9ea"
+        "sha256": "de69e705be312631ee70344c27b99d26df1e850d3085cea9bd39b3cbbb436756"
       },
       {
         "path": "private/routes/instances.py",
@@ -538,6 +538,14 @@
       ]
     },
     {
+      "id": "REQ-ROUTES-FEASIBLE",
+      "critical": true,
+      "introducedAt": "e2-spec-implementation 0.5.0",
+      "checkIds": [
+        "routes-feasible"
+      ]
+    },
+    {
       "id": "REQ-ROUTES-H1-50",
       "critical": true,
       "introducedAt": "e2-spec-implementation 0.5.0",
@@ -942,9 +950,18 @@
         ]
       },
       {
-        "id": "readme",
+        "id": "routes-valid",
         "weight": 1,
         "critical": true,
+        "rule": "all",
+        "checkIds": [
+          "routes-feasible"
+        ]
+      },
+      {
+        "id": "readme",
+        "weight": 0.1,
+        "critical": false,
         "rule": "all",
         "checkIds": [
           "readme"
@@ -1164,6 +1181,7 @@
         }
       ],
       "activeRequirementIds": [
+        "REQ-ROUTES-FEASIBLE",
         "REQ-ROUTES-H1-50",
         "REQ-ROUTES-H1-80",
         "REQ-ROUTES-H1-90",
@@ -1219,7 +1237,7 @@
   ],
   "grader": {
     "id": "e2-fixtures",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

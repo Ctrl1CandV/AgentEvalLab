@@ -106,3 +106,13 @@ deepseek-flash passed every check of all three items. On `sheet`, glm scored 97%
 **Re-grade.** Every graded 0.5.0 routes trial (`runs/4e0b6c30-…`, `runs/a69d9886-…`) was re-graded under 1.6.0; trials stopped by infrastructure stay unscored.
 
 **Noise test** (`python3 private/grader.py --noise [--load N]`, `logs/noise-0.5.0-grader-1.6.0-routes.log`, PROTOCOL §9), declared tolerance 0.03 on `routeShare`. Savings, which finishes at once, is identical under any load. The 7-second LNS, which stops by the wall clock: with 5 busy processes on 20 cores, 0.909 → 0.900 (0.009), no label changed (pass); with all 20 cores busy, 0.908 → 0.856 (0.052), three rung labels lost (fail). Two quiet runs agree to 0.001. The contract's limit is wall time, so a time-bounded search does less work when its core is shared; the lock removes contention between routes gradings but not other load. Moving the limit to CPU time would change the contract, and so the task version, which a bridge should not; this stays open for the user (PLAN-007 Phase 2 review).
+
+## Grader 1.7.0 (2026-10-24, task 0.5.0 unchanged, PLAN-007 WP2.2)
+
+**Why.** Re-grading the 0.5.0 routes trials under 1.6.0 showed what the v2 score model made of a critical README: 8 of the 15 graded deliveries wrote no `README.md`, and their primary was 0, deepseek-flash's at 0.904 and mimo-v2.6-flash's at 0.886 of the way included. A documentation file decides nothing about the routes the program plans, and the same holds for the contract items' implementations. The routes item also needs a validity criterion of its own, which the README was standing in for: a null delivery must not count as valid.
+
+**Change.** A new routes check, `feasible` (`REQ-ROUTES-FEASIBLE`): routes.py printed a feasible plan for at least one of the eight hidden instances. It is the routes item's critical group (`routes-valid`); a delivery that solves no instance is not valid. The README check stays, in a non-critical group of weight 0.1, for every item. The rung checks and the raw values are unchanged.
+
+**Self-calibration** (`logs/self-calibration-0.5.0-grader-1.7.0.log`): as under 1.6.0, plus `feasible` passing for LNS, savings and the baseline and failing for the infeasible, slow and missing programs.
+
+**Re-grade.** Every graded 0.5.0 routes trial re-graded under 1.7.0.

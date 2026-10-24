@@ -1,6 +1,6 @@
 # Capability Card: E2 specification implementation 0.5.0
 
-Template: `docs/templates/CAPABILITY_CARD.md`. Written 2026-10-24 (PLAN-007 WP2.2), for grader 1.6.0 on the unchanged task 0.5.0.
+Template: `docs/templates/CAPABILITY_CARD.md`. Written 2026-10-24 (PLAN-007 WP2.2), for grader 1.7.0 on the unchanged task 0.5.0.
 
 ## 1. Identity
 
@@ -39,7 +39,7 @@ Implementing a program from a written specification, from an empty workspace: a 
 
 - `routeShare` is the mean over the eight hidden instances of `(baseline − cost) / (baseline − best)`, each at least 0 and never capped: the contract's own scale, now reported as a value rather than four rungs. A plan better than the best known goes above 1 (flagged as extrapolated). The rungs 50/80/90/97% stay as labels in a non-critical group.
 - Diagnostics: `routeCost` (the total length, an instance without a feasible plan at its baseline's cost) and `feasibleInstances`.
-- Validity: the README the contract asks for (the critical group `readme`). Per-instance validity is inside the value: an infeasible, late or missing plan counts 0 for its instance.
+- Validity (grader 1.7.0): `routes-feasible`, a feasible plan for at least one hidden instance; a delivery that solves no instance is not a valid one. Per-instance validity is inside the value: an infeasible, late or missing plan counts 0 for its instance. The README is a diagnostic, not a gate: under grader 1.6.0, where it was critical, 8 of the 15 graded routes deliveries, some at 0.85–0.90 of the way, would have been zeroed for a missing README.
 
 ## 7. Source, licence and provenance
 
@@ -48,7 +48,7 @@ Project-authored specifications, references, fixtures and instance generator; no
 ## 8. Task contract and grading
 
 - Each item's `prompt.md` is its specification; the program runs in the sandbox on hidden fixtures (10 s each) or instances (stopped at 10 s, 8 s stated).
-- Score model: one critical group per contract item (rule fraction); `readme` (critical); for routes, its 32 rung checks in a non-critical group and the metric group `routes-share`. `primaryByItem` makes routes metric-primary.
+- Score model: one critical group per contract item (rule fraction); `readme` (not critical, weight 0.1); for routes, `routes-valid` (critical: `routes-feasible`), its 32 rung checks in a non-critical group and the metric group `routes-share`. `primaryByItem` makes routes metric-primary.
 - Timing: routes' limit is wall time, as the contract states; from grader 1.6.0 routes gradings run one at a time under a lock, each on one core. Under heavy machine load a time-bounded search loses value (noise test below), so routes should be graded on a lightly loaded machine.
 - Equivalent solutions: any implementation; only outputs (and, for routes, plan costs) count. Sheet compares numbers with a tolerance; the others exactly.
 
@@ -60,8 +60,8 @@ Each item is its own task and structure group (`item:<id>`), all dev. Routes, a 
 
 | Gate (VALIDATION §1) | Result | Evidence |
 | --- | --- | --- |
-| References | pass: each contract item's reference passes every check; routes: LNS and savings each pass every 50% rung, LNS above savings | `python3 private/grader.py --self-calibrate`, `logs/self-calibration-0.5.0-grader-1.6.0.log` |
-| Null agent | pass: a missing program fails every check; routes' baseline earns nothing | self-calibration; the suite smokes |
+| References | pass: each contract item's reference passes every check; routes: LNS and savings each pass every 50% rung, LNS above savings, and are feasible | `python3 private/grader.py --self-calibrate`, `logs/self-calibration-0.5.0-grader-1.7.0.log` |
+| Null agent | pass: a missing program fails every check and is not valid; routes' baseline earns no rung | self-calibration; the suite smokes |
 | Mutants | pass: every mutant fails the check it targets | self-calibration |
 | Alternative valid solutions | pass for routes (LNS, savings); the contract items accept any output that matches | self-calibration |
 | Adversarial | n/a beyond the sandbox: outputs are recomputed | — |
@@ -76,3 +76,4 @@ Routes 3,000,000 tokens (v1); every routes trial in v1 stopped on its budget, wh
 
 - 0.1.0–0.5.0: see `calibration.md`.
 - Grader 1.6.0 (2026-10-24): manifest v2; routes reports `routeShare`, `routeCost` and `feasibleInstances`, is headlined by `routeShare`, and is judged one grading at a time; every 0.5.0 trial re-graded.
+- Grader 1.7.0 (2026-10-24): `routes-feasible` is the routes validity check; the README is not critical. Every graded 0.5.0 routes trial re-graded again.
