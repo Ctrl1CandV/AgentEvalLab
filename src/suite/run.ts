@@ -395,19 +395,20 @@ export class SuiteRunner {
     const manifest = packagePath ? await readJson<TaskPackageManifest>(resolve(this.state.worktree, packagePath, "manifest.json")).catch(() => null) : null;
     const formatCheckId = manifest?.scoring?.formatCheckId ?? manifest?.scoreModel?.format?.checkId;
     if (manifest?.schemaVersion === 2) {
-      // A v2 null agent must be unresolved with a primary of 0 in every outcome (VALIDATION §1).
+      // A v2 null agent must be unresolved with a primary of 0 in every outcome (VALIDATION §1). Its evaluation score is
+      // the v1 check share, which counts a format check that a missing reply passes (T2), so it is not read.
       const outcomes = await loadOutcomes(directory);
       if (!outcomes.length) return { ok: false, detail: "no outcome recorded" };
       const earning = outcomes.filter(outcome => outcome.coverage !== "scored" || outcome.resolved || (outcome.primary ?? 0) > maxScore);
       if (earning.length) return { ok: false, detail: `the null agent is unscored or earns: ${earning.map(outcome => `${outcome.task.itemId ?? outcome.task.id} ${outcome.coverage} primary ${outcome.primary}`).join(", ")}` };
+      const ungraded = records.find(record => record.evaluation.status !== "passed" && record.evaluation.status !== "failed");
+      if (ungraded) return { ok: false, detail: `trial ${ungraded.id} was not graded (${ungraded.evaluation.status}${ungraded.evaluation.error ? `: ${ungraded.evaluation.error}` : ""})` };
+      return { ok: true, detail: `${outcomes.length} outcome(s), unresolved with primary 0` };
     }
     for (const record of records) {
       if (record.evaluation.status !== "passed" && record.evaluation.status !== "failed") {
         return { ok: false, detail: `trial ${record.id} was not graded (${record.evaluation.status}${record.evaluation.error ? `: ${record.evaluation.error}` : ""})` };
       }
-      // A v2 package is judged by its outcomes above; its evaluation score is the v1 check share, which counts a format
-      // check that a missing reply passes (T2), so it is not read here.
-      if (manifest?.schemaVersion === 2) continue;
       const passing = record.evaluation.checks.filter(check => check.passed === true && check.id !== formatCheckId).map(check => check.id);
       if ((record.evaluation.score ?? 0) > maxScore || (maxScore === 0 && passing.length)) {
         return { ok: false, detail: `the null agent earns ${record.evaluation.score}; passing checks: ${passing.join(", ") || "none"}` };
