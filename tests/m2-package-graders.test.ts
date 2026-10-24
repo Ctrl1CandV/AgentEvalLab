@@ -11,6 +11,7 @@ import { evaluationTools } from "../src/harness/profiles.js";
 import { createPiRunner } from "../src/harness/pi.js";
 import { scriptedToolStream, tool001Answer, tool001Calls } from "./support/tool001.js";
 import type { EvaluationPlan, WorkspaceInput } from "../src/evaluation/types.js";
+import { libraryPackage } from "./library.js";
 
 const artifactLimits = {
   maxFiles: 1_000, maxFileBytes: 10_000_000, maxTrialBytes: 50_000_000,
@@ -23,7 +24,7 @@ async function packagePlan(taskId: string, caseId: string, prompt: string, root:
   repository?: { path: string; commit: string };
   readOnly?: boolean;
 } = {}): Promise<EvaluationPlan> {
-  const packagePath = resolve("task-library/calibration", taskId);
+  const packagePath = libraryPackage(taskId);
   const manifestBytes = await readFile(join(packagePath, "manifest.json"));
   const manifest = JSON.parse(manifestBytes.toString("utf8")) as { baseline?: { commit: string } };
   const item: EvaluationPlan["cases"][number] = {
@@ -123,7 +124,7 @@ test("rsn-002 passes on critical certificates and records human review as an app
 test("eng-004 runs a pinned candidate clone through the hidden CLI grader", async () => {
   const root = await mkdtemp(join(tmpdir(), "m2-eng004-grader-"));
   try {
-    const packageRoot = resolve("task-library/calibration/eng-004-resource-index");
+    const packageRoot = resolve("task-library/basic/eng-004-resource-index");
     const baseline = join(packageRoot, "baseline");
     const commit = (await import("../src/command.js")).git(baseline, ["rev-parse", "HEAD"]).then(value => value.trim());
     const plan = await packagePlan("eng-004-resource-index", "eng004", "Implement the task contract.", root, {
@@ -148,7 +149,7 @@ test("eng-004 runs a pinned candidate clone through the hidden CLI grader", asyn
 test("tool-001 runs production tools through evidence trace, task grader and trial report", async () => {
   const root = await mkdtemp(join(tmpdir(), "m2-tool001-grader-"));
   try {
-    const packageRoot = resolve("task-library/calibration/tool-001-doc-evidence-recovery");
+    const packageRoot = resolve("task-library/retired/tool-001-doc-evidence-recovery");
     const plan = await packagePlan("tool-001-doc-evidence-recovery", "tool001", "Answer all questions using tool evidence.", root,
       { profile: "doc-evidence", readOnly: true });
     // The Pi runner records the trace, so the grader sees the harness's real event shape.

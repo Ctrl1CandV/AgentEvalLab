@@ -74,7 +74,7 @@
   "cases": [
     {
       "id": "e2-spec-implementation",
-      "packagePath": "task-library/calibration/e2-spec-implementation",
+      "packagePath": "task-library/basic/e2-spec-implementation",
       "packageManifestSha256": "c68b4bc08bbf1ac2ddfaa56e2094e5814097638a001638b7ee6602681f396850",
       "input": {
         "prompt": "Implement the specification above, test it, and end with a short summary."

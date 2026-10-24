@@ -56,7 +56,7 @@
   "cases": [
     {
       "id": "vis-001",
-      "packagePath": "task-library/calibration/vis-001-original-landing",
+      "packagePath": "task-library/retired/vis-001-original-landing",
       "packageManifestSha256": "c8fd465869582fb4f1148ecfd26282899477cc1b367cffc259fb677edefa1c82",
       "input": {
         "prompt": "Build the page as described above. Write index.html, style.css, app.js and README.md at the workspace root, check them, and end with a short summary."

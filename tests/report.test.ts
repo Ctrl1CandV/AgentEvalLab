@@ -13,6 +13,7 @@ import { meanInterval, pairedDifference, passAtK, passHatK, wilsonInterval } fro
 import { trialScore } from "../src/evaluation/grader.js";
 import { validateTaskPackageManifest } from "../src/evaluation/manifest.js";
 import type { EvaluationPlan } from "../src/evaluation/types.js";
+import { libraryPackage } from "./library.js";
 
 const near = (actual: number | null | undefined, expected: number, message?: string) => {
   assert.ok(actual !== null && actual !== undefined && Math.abs(actual - expected) < 1e-3, `${message ?? ""} expected ${expected}, got ${actual}`);
@@ -44,7 +45,7 @@ test("trial scores give partial credit, apply the format penalty, and manifests 
   near(interval.mean, 0.9333); near(interval.interval![0], wilsonInterval(2.8, 3)![0]);
   assert.ok(meanInterval([1, 1, 1]).interval![0] < 0.6, "three agreeing trials do not give a zero-width interval");
 
-  const manifest = JSON.parse(await readFile(resolve("task-library/calibration/rsn-001-shift-scheduling/manifest.json"), "utf8"));
+  const manifest = JSON.parse(await readFile(resolve("task-library/retired/rsn-001-shift-scheduling/manifest.json"), "utf8"));
   validateTaskPackageManifest(manifest);
   assert.throws(() => validateTaskPackageManifest({ ...manifest, scoring: { formatCheckId: "instance-A", formatPenalty: 0.2 } }), /INVALID_PACKAGE_SCORING/,
     "the format check must belong to a non-critical requirement");
@@ -53,7 +54,7 @@ test("trial scores give partial credit, apply the format penalty, and manifests 
 
 async function reasoningPlan(models: EvaluationPlan["models"], repetitions: number, seed?: number): Promise<EvaluationPlan> {
   const cases = await Promise.all(["rsn-001-shift-scheduling", "rsn-002-derivation-check"].map(async (task, index) => {
-    const packagePath = resolve("task-library/calibration", task);
+    const packagePath = libraryPackage(task);
     const bytes = await readFile(join(packagePath, "manifest.json"));
     return { id: `rsn00${index + 1}`, packagePath, packageManifestSha256: createHash("sha256").update(bytes).digest("hex"),
       input: { prompt: "Answer." }, evaluator: { kind: "task-package" as const, timeoutMs: 60_000 } };

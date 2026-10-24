@@ -33,7 +33,7 @@ A third-party review ([`reviews/2026-10-24-third-party-evaluation-review.md`](re
   - success audits of T1, T2, E3, E4 speedup and VIS (`npm run audit`, `docs/audits/`): E3 grader 2.3.0 and E4 grader 1.5.0 fixed what they found, with every affected model re-graded; `regradeTrajectory` re-grades trajectory snapshots append-only;
   - documents synced.
 - Open from Phase 0, for Phase 2: the wall-time speed rungs of E3 (S6) and E4 speedup fail the noise gate; vis-001's two false passes become VIS v2 negative tests; the AE calibration table's "634.5 of 583" is corrected with AE 0.2.0 (WP3.5).
-- The AE family (`task-library/frontier/ae-heuristic-contests` 0.1.0) is built and self-calibrated, with no model runs; its dev pilot was prepared and deliberately not launched.
+- The AE family (`task-library/frontier/ae-heuristic-contests`, 0.1.0 at the time) is built and self-calibrated, with no model runs; its dev pilot was prepared and deliberately not launched.
 
 ## Key files
 

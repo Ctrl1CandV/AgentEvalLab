@@ -58,8 +58,8 @@ The suite freezes HEAD into a worktree under `runs/suites/<id>/worktree`, genera
 
 - `src/harness/`: Pi Agent runner and tool profiles
 - `src/evaluation/`: validation, grading, trajectories, recovery, and reports
-- `task-library/candidates/`: task cards and candidate packages
-- `task-library/calibration/`: versioned task packages and offline calibration
+- `task-library/basic/`, `core/`, `frontier/`: versioned task packages by tier (TASK_LIBRARY §1), each with its task card, calibration record and logs
+- `task-library/retired/`: packages kept for their history; no v2 suite uses them
 - `examples/`: sample evaluation plans
 - `experiments/`: plans for live runs, each with its protocol README
 - `suites/`, `src/suite/`: suite files and the one-command suite runner

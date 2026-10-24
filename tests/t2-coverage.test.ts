@@ -6,7 +6,7 @@ import { spawnSync } from "node:child_process";
 // of the day, in order, and the day's books end as a correctly handled day. The negative tests and the alternative
 // flows run on every close day; the whole calibration takes about 15 seconds.
 test("T2 coverage invariant: unknown, early, reopened and out-of-order changes fail; alternative flows pass", () => {
-  const run = spawnSync("python3", ["-B", "task-library/calibration/t2-finance-desk/private/grader.py", "--self-calibrate"],
+  const run = spawnSync("python3", ["-B", "task-library/basic/t2-finance-desk/private/grader.py", "--self-calibrate"],
     { encoding: "utf8", timeout: 300_000, env: { ...process.env, PYTHONDONTWRITEBYTECODE: "1" } });
   assert.equal(run.status, 0, run.stdout.slice(-2000) + run.stderr);
   const fails = (item: string, scenario: string) => {

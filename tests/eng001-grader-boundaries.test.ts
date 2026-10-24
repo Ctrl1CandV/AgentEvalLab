@@ -8,7 +8,7 @@ import { inspectPackage } from "../src/evaluation/manifest.js";
 import type { PackageDescriptor } from "../src/evaluation/manifest.js";
 
 test("eng-001 classifies missing, malformed, timed out and oversized candidates safely", async t => {
-  const packagePath = join(process.cwd(), "task-library", "calibration", "eng-001-import-validator");
+  const packagePath = join(process.cwd(), "task-library", "basic", "eng-001-import-validator");
   try { await access(join(packagePath, "manifest.json")); }
   catch {
     t.skip("eng-001 task package is not available in this checkout");

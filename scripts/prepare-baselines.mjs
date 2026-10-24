@@ -6,9 +6,9 @@ import { fileURLToPath } from "node:url";
 // Task baselines kept as Git bundles in the repository and restored as pinned clones before checks and runs.
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const baselines = [
-  { name: "ENG-005", packageRoot: join(repoRoot, "task-library", "candidates", "eng-005-long-cycle-maintenance"),
+  { name: "ENG-005", packageRoot: join(repoRoot, "task-library", "basic", "eng-005-long-cycle-maintenance"),
     commit: "679119874c31d2cff12cc48f57c86a1fcec6bcbc" },
-  { name: "ENG-004", packageRoot: join(repoRoot, "task-library", "calibration", "eng-004-resource-index"),
+  { name: "ENG-004", packageRoot: join(repoRoot, "task-library", "basic", "eng-004-resource-index"),
     commit: "0bd1eda866f64c4cdd990e7636cead1ebd2a6cd2" },
 ];
 

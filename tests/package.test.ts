@@ -200,7 +200,7 @@ test("task grader receives only a frozen submission and must return a verified r
 test("eng-001 runs read, failed public check, repair, and grading through Pi offline", async t => {
   const root = await mkdtemp(join(tmpdir(), "eng001-pi-calibration-"));
   try {
-    const packagePath = join(process.cwd(), "task-library", "calibration", "eng-001-import-validator");
+    const packagePath = join(process.cwd(), "task-library", "basic", "eng-001-import-validator");
     const manifestBytes = await readFile(join(packagePath, "manifest.json"), "utf8");
     const manifest = JSON.parse(manifestBytes) as { environment: { runtimeCheck?: { executable: string; args: string[]; expectedSubstring: string } } };
     const reference = await readFile(join(packagePath, "private", "ref_impl_a.py"), "utf8");

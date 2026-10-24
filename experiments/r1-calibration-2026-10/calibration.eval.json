@@ -56,7 +56,7 @@
   "cases": [
     {
       "id": "r1-rostering",
-      "packagePath": "task-library/calibration/r1-rostering",
+      "packagePath": "task-library/retired/r1-rostering",
       "packageManifestSha256": "bef509314736006c15af21dec68d31e6c03404e790fb1bf7a427176caafc3cd4",
       "readOnly": true,
       "input": {

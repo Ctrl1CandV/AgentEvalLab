@@ -117,7 +117,7 @@ test("doc-evidence profile preserves zero-based Unicode paging, hard limits and 
 });
 
 test("doc-evidence adapter resolves tool-001 answers from the fixture and returns actual evidence", async () => {
-  const snapshot = resolve("task-library/calibration/tool-001-doc-evidence-recovery/public/snapshot");
+  const snapshot = resolve("task-library/retired/tool-001-doc-evidence-recovery/public/snapshot");
   const tools = evaluationTools(snapshot, "doc-evidence");
   const byName = (name: string) => {
     const found = tools.find(tool => tool.name === name);
@@ -147,7 +147,7 @@ test("doc-evidence adapter resolves tool-001 answers from the fixture and return
 test("the tool-001 grader accepts the trace the Pi runner actually records", async () => {
   // Drive the production doc-evidence tools through the Pi runner and grade the trace it emits. A hand-built
   // trace once hid that execution_returned events carry no args (args are recorded on execution_started).
-  const packageRoot = resolve("task-library/calibration/tool-001-doc-evidence-recovery");
+  const packageRoot = resolve("task-library/retired/tool-001-doc-evidence-recovery");
   const snapshot = join(packageRoot, "public", "snapshot");
   const root = await mkdtemp(join(tmpdir(), "tool-001-grader-bridge-"));
   try {

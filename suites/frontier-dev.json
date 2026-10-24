@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "name": "frontier-dev",
+  "split": "dev",
+  "description": "Frontier tier, dev split (PLAN-007 WP2.1): AE on its four dev contests. Raw performance through human anchors, uncapped; never averaged into the core.",
+  "providerConcurrency": {
+    "*": 6,
+    "api.airy.work": 3
+  },
+  "policy": {
+    "maxModels": 4,
+    "maxRepetitions": 1,
+    "maxModelsPerHost": {
+      "api.airy.work": 1
+    },
+    "forbiddenModels": [
+      "-pro$",
+      "-max$"
+    ]
+  },
+  "composite": null,
+  "families": [
+    {
+      "id": "AE",
+      "kind": "single",
+      "tier": "frontier",
+      "capability": "engineering",
+      "template": "experiments/ae-2026-10/dev.eval.json",
+      "openEnded": true
+    }
+  ]
+}

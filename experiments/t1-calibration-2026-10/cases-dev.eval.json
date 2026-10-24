@@ -50,7 +50,7 @@
   "cases": [
     {
       "id": "t1-evidence-recovery",
-      "packagePath": "task-library/calibration/t1-evidence-recovery",
+      "packagePath": "task-library/basic/t1-evidence-recovery",
       "packageManifestSha256": "214e918c66db062e0c199304127a4ae8ea5865c7f831a7451f4d966478f77644",
       "readOnly": true,
       "toolProfile": "doc-evidence",

@@ -74,7 +74,7 @@
   "cases": [
     {
       "id": "r3-logic-grid",
-      "packagePath": "task-library/calibration/r3-logic-grid",
+      "packagePath": "task-library/core/r3-logic-grid",
       "packageManifestSha256": "58589d8a78f8ef8d4f061aaa9704ed29e0ff199aace1c55db1b2dd3614a707f4",
       "readOnly": true,
       "input": {

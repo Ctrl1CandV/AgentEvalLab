@@ -50,7 +50,7 @@
   "cases": [
     {
       "id": "t2-finance-desk",
-      "packagePath": "task-library/calibration/t2-finance-desk",
+      "packagePath": "task-library/basic/t2-finance-desk",
       "packageManifestSha256": "f8653c2a6e66c91423e63c5de7c130920ed78b7f201339094e21469e7454d093",
       "input": {
         "prompt": "Use the tools to handle every request, then give the JSON reply."

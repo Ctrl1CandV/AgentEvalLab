@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 2,
+  "name": "basic",
+  "split": "dev",
+  "description": "Basic tier (PLAN-007 WP2.1, TASK_LIBRARY \u00a71-2): reliability families whose tasks have all been opened; high scores are expected. Every family keeps its last v1 configuration (template, budget, session policy). Not yet here: E2's contract items and eng-004, which have no run at their current version and so no stated budget.",
+  "providerConcurrency": {
+    "*": 6,
+    "api.airy.work": 3
+  },
+  "policy": {
+    "maxModels": 4,
+    "maxRepetitions": 1,
+    "maxModelsPerHost": {
+      "api.airy.work": 1
+    },
+    "forbiddenModels": [
+      "-pro$",
+      "-max$"
+    ]
+  },
+  "composite": null,
+  "families": [
+    {
+      "id": "T1",
+      "kind": "single",
+      "tier": "basic",
+      "capability": "agentic",
+      "template": "experiments/t1-calibration-2026-10/cases-dev.eval.json",
+      "score": {
+        "levels": [
+          "F4",
+          "F5"
+        ]
+      }
+    },
+    {
+      "id": "T2",
+      "kind": "single",
+      "tier": "basic",
+      "capability": "agentic",
+      "template": "experiments/t2-finance-2026-10/dev.eval.json",
+      "score": {
+        "items": [
+          "fn1",
+          "fn2"
+        ]
+      }
+    },
+    {
+      "id": "E3",
+      "kind": "trajectory",
+      "tier": "basic",
+      "capability": "engineering",
+      "template": "experiments/e3-calibration-2026-10/trajectory.eval.json"
+    },
+    {
+      "id": "E4-speedup",
+      "kind": "single",
+      "tier": "basic",
+      "capability": "engineering",
+      "template": "experiments/e4-calibration-2026-10/speedup-0.5.eval.json",
+      "score": {
+        "items": [
+          "speedup"
+        ]
+      },
+      "openEnded": true
+    },
+    {
+      "id": "eng-001",
+      "kind": "single",
+      "tier": "basic",
+      "capability": "engineering",
+      "template": "experiments/budget-pilot-2026-10/engineering.eval.json"
+    }
+  ]
+}

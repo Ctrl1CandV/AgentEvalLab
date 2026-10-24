@@ -140,7 +140,7 @@ test("trajectory harness completes seven stages with a calibrated reference snap
   const testRoot = await mkdtemp(join(tmpdir(), "eng005-reference-trajectory-test-"));
   try {
     for (const referenceName of ["ref-a", "ref-b"]) {
-      const referencePath = resolve(`task-library/calibration/eng-005-long-cycle-maintenance/references/${referenceName}`);
+      const referencePath = resolve(`task-library/basic/eng-005-long-cycle-maintenance/references/${referenceName}`);
       let expectedSignature: string | undefined;
       for (let repetition = 1; repetition <= 3; repetition++) {
         const outputRoot = join(testRoot, `runs-${referenceName}-${repetition}`);
@@ -189,7 +189,7 @@ test("public stage checkers expose only their own stage logic", async () => {
   for (let number = 1; number <= 5; number++) {
     const stageId = `S${number}`;
     checkers.set(stageId, await readFile(
-      `task-library/candidates/eng-005-long-cycle-maintenance/stages/${stageId}/public/checker.py`, "utf8"));
+      `task-library/basic/eng-005-long-cycle-maintenance/stages/${stageId}/public/checker.py`, "utf8"));
   }
   for (let number = 1; number <= 5; number++) {
     const stageId = `S${number}`;
@@ -209,9 +209,9 @@ test("public checker mutations stay outside the archived trajectory snapshot", a
   const plan = JSON.parse(await readFile("examples/eng-005-long-cycle.eval.json", "utf8")) as EvaluationPlan;
   const fixtureRoot = await mkdtemp(join(tmpdir(), "eng005-checker-isolation-test-"));
   const packagePath = join(fixtureRoot, "package");
-  const referencePath = resolve("task-library/calibration/eng-005-long-cycle-maintenance/references/ref-a");
+  const referencePath = resolve("task-library/basic/eng-005-long-cycle-maintenance/references/ref-a");
   const restoreRoot = join(fixtureRoot, "restored");
-  await cp(resolve("task-library/candidates/eng-005-long-cycle-maintenance"), packagePath, { recursive: true });
+  await cp(resolve("task-library/basic/eng-005-long-cycle-maintenance"), packagePath, { recursive: true });
   const manifestPath = join(packagePath, "manifest.json");
   const manifest = JSON.parse(await readFile(manifestPath, "utf8")) as {
     stages: Array<{ id: string; publicChecker: { executable: string; args: string[]; timeoutMs: number; maxOutputBytes: number } }>;
@@ -254,7 +254,7 @@ test("trajectory classifies public checker timeout, output, protocol, exit and s
   const plan = JSON.parse(await readFile("examples/eng-005-long-cycle.eval.json", "utf8")) as EvaluationPlan;
   const fixtureRoot = await mkdtemp(join(tmpdir(), "eng005-checker-failure-test-"));
   const packagePath = join(fixtureRoot, "package");
-  const sourcePackage = resolve("task-library/candidates/eng-005-long-cycle-maintenance");
+  const sourcePackage = resolve("task-library/basic/eng-005-long-cycle-maintenance");
   await cp(sourcePackage, packagePath, { recursive: true });
   const manifestPath = join(packagePath, "manifest.json");
   const manifest = JSON.parse(await readFile(manifestPath, "utf8")) as {
@@ -302,7 +302,7 @@ test("trajectory snapshot limits stop before public checking without fabricating
   const plan = JSON.parse(await readFile("examples/eng-005-long-cycle.eval.json", "utf8")) as EvaluationPlan;
   validatePlan(plan);
   // Large enough for the public brief, which preflight checks, and too small for the baseline checkout in the snapshot.
-  plan.artifactLimits!.maxTrialBytes = (await stat("task-library/candidates/eng-005-long-cycle-maintenance/public/project-brief.md")).size;
+  plan.artifactLimits!.maxTrialBytes = (await stat("task-library/basic/eng-005-long-cycle-maintenance/public/project-brief.md")).size;
   const outputRoot = await mkdtemp(join(tmpdir(), "eng005-snapshot-limit-test-"));
   const sessionFactory: TrajectorySessionFactory = () => ({
     async send() { return { ...emptyExecution(), output: "candidate answer", modelCalls: 1, turns: 1 }; },

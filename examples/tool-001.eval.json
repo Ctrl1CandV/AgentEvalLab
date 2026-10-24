@@ -34,7 +34,7 @@
   "cases": [
     {
       "id": "tool001-evidence",
-      "packagePath": "task-library/calibration/tool-001-doc-evidence-recovery",
+      "packagePath": "task-library/retired/tool-001-doc-evidence-recovery",
       "packageManifestSha256": "005959821612f40a72137fe21c6be369b397d74d9f9b46f9dbb18ca0c8d9f51e",
       "input": {
         "prompt": "Answer all questions using the specified JSON format and only the evidence returned by the read-only tools."

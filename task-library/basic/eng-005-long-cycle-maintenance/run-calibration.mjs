@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 
 const calibrationDirectory = dirname(fileURLToPath(import.meta.url));
 const repositoryRoot = resolve(calibrationDirectory, "../../..");
-const packageRoot = join(repositoryRoot, "task-library/candidates/eng-005-long-cycle-maintenance");
+const packageRoot = calibrationDirectory;
 const manifestBytes = await readFile(join(packageRoot, "manifest.json"));
 const manifest = JSON.parse(manifestBytes.toString("utf8"));
 const manifestSha256 = createHash("sha256").update(manifestBytes).digest("hex");

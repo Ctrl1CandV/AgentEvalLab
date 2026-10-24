@@ -34,7 +34,7 @@
   "cases": [
     {
       "id": "eng004-augmented",
-      "packagePath": "task-library/calibration/eng-004-resource-index",
+      "packagePath": "task-library/basic/eng-004-resource-index",
       "packageManifestSha256": "c7561872fcd236963017313f16300044e435a71ee7057941bdb9a83d497dc052",
       "input": {
         "prompt": "Implement the request in public/task-contract.md. Use the supplied workspace tools and run relevant checks before reporting."
@@ -46,7 +46,7 @@
         "maxOutputBytes": 100000
       },
       "repository": {
-        "path": "task-library/calibration/eng-004-resource-index/baseline",
+        "path": "task-library/basic/eng-004-resource-index/baseline",
         "commit": "3b43f3c6c2db454f90765de2ca614b783c624c8e"
       }
     }

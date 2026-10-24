@@ -8,4 +8,4 @@ task-library/** -text
 
 
 # Test data whose padded fields are deliberate.
-task-library/calibration/e4-terminal-tasks/items/perf/public/events.csv -text -whitespace
+task-library/basic/e4-terminal-tasks/items/perf/public/events.csv -text -whitespace

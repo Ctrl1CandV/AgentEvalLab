@@ -3,7 +3,7 @@ import os
 import shutil
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-CAL = os.path.abspath(os.path.join(HERE, "..", "..", "..", "calibration", "vis-001-original-landing", "private", "frontend"))
+CAL = os.path.abspath(os.path.join(HERE, "..", "..", "..", "retired", "vis-001-original-landing", "private", "frontend"))
 VAR = os.path.join(HERE, "variants")
 
 

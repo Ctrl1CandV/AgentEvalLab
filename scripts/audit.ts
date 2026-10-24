@@ -27,15 +27,15 @@ interface FamilyAudit {
 }
 
 const FAMILIES: Record<string, FamilyAudit> = {
-  T1: { command: ["python3", "-I", "scripts/audits/t1_cases.py"], package: "task-library/calibration/t1-evidence-recovery", kind: "single",
+  T1: { command: ["python3", "-I", "scripts/audits/t1_cases.py"], package: "task-library/basic/t1-evidence-recovery", kind: "single",
     description: "An independent solver of the adjudication questions, written from the snapshot's docs/CONFIG.md and docs/RESPONSE.md, derives every answer field; the package's answer key and each trial's answer are compared with it." },
-  T2: { command: ["python3", "-I", "scripts/audits/t2_books.py"], package: "task-library/calibration/t2-finance-desk", kind: "single",
+  T2: { command: ["python3", "-I", "scripts/audits/t2_books.py"], package: "task-library/basic/t2-finance-desk", kind: "single",
     description: "Independent checks of the delivered books from MANUAL.md: double entry, open items, bank lines, deferred revenue and revaluation recomputed, invoice statuses against the manual's rules, and the payment plan re-validated and re-valued by an independent evaluator." },
-  E3: { command: ["python3", "-I", "scripts/audits/e3_cli.py"], package: "task-library/candidates/eng-005-long-cycle-maintenance", kind: "trajectory",
+  E3: { command: ["python3", "-I", "scripts/audits/e3_cli.py"], package: "task-library/basic/eng-005-long-cycle-maintenance", kind: "trajectory",
     description: "Property and state-sequence tests of the final project, written from the stage briefs, on random stores the hidden checks never used: list filtering, sorting and pagination against an independent model; dependency and transition rules; atomicity of rejected commands; and plan validity and cost on random stores." },
-  "E4-speedup": { command: ["python3", "-I", "scripts/audits/e4_speedup.py"], package: "task-library/calibration/e4-terminal-tasks", kind: "single",
+  "E4-speedup": { command: ["python3", "-I", "scripts/audits/e4_speedup.py"], package: "task-library/basic/e4-terminal-tasks", kind: "single",
     description: "The delivered analyze.py against the original on fresh generated days, normal and full of malformed rows, byte for byte, and its time on a fresh large day." },
-  VIS: { command: ["node", "scripts/audits/vis_interactions.mjs"], package: "task-library/calibration/vis-001-original-landing", kind: "single",
+  VIS: { command: ["node", "scripts/audits/vis_interactions.mjs"], package: "task-library/retired/vis-001-original-landing", kind: "single",
     description: "The page rendered in headless Chromium and its form exercised: empty, invalid and valid submissions, the label of every field at run time, and horizontal overflow at 375 and 1280 pixels." },
 };
 

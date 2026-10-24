@@ -6,9 +6,9 @@ The calibration of vis-001 with model judging (PLAN-005 WP6). The four calibrati
 
 ```bash
 npm run harness -- --plan experiments/vis-calibration-2026-10/calibration.eval.json
-node --import tsx scripts/judge-visual.ts --run runs/<id> --package task-library/calibration/vis-001-original-landing --dry-run
-node --import tsx scripts/judge-visual.ts --run runs/<id> --package task-library/calibration/vis-001-original-landing
-node --import tsx scripts/judge-tournament.ts --run runs/<id> --package task-library/calibration/vis-001-original-landing
+node --import tsx scripts/judge-visual.ts --run runs/<id> --package task-library/retired/vis-001-original-landing --dry-run
+node --import tsx scripts/judge-visual.ts --run runs/<id> --package task-library/retired/vis-001-original-landing
+node --import tsx scripts/judge-tournament.ts --run runs/<id> --package task-library/retired/vis-001-original-landing
 ```
 
 ## Judging

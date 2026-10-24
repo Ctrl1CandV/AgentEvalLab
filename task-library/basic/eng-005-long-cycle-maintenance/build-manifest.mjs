@@ -3,7 +3,7 @@ import { execFileSync } from "node:child_process";
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join, relative } from "node:path";
 
-const root = new URL("../../candidates/eng-005-long-cycle-maintenance/", import.meta.url).pathname.replace(/^\/(\w:)/, "$1");
+const root = new URL("./", import.meta.url).pathname.replace(/^\/(\w:)/, "$1");
 const sha256 = async path => createHash("sha256").update(await readFile(join(root, ...path.split("/")))).digest("hex");
 const list = async directory => {
   const results = [];

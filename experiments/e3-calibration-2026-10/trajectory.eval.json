@@ -87,10 +87,10 @@
     {
       "id": "eng005-long-cycle",
       "repository": {
-        "path": "task-library/candidates/eng-005-long-cycle-maintenance/baseline",
+        "path": "task-library/basic/eng-005-long-cycle-maintenance/baseline",
         "commit": "679119874c31d2cff12cc48f57c86a1fcec6bcbc"
       },
-      "packagePath": "task-library/candidates/eng-005-long-cycle-maintenance",
+      "packagePath": "task-library/basic/eng-005-long-cycle-maintenance",
       "packageManifestSha256": "e341644abd146a2818816102056f9af9f74872042316b6334292eee5ba5bfd7f",
       "toolProfile": "workspace-augmented",
       "input": {

@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 2,
+  "name": "core-dev",
+  "split": "dev",
+  "description": "Core tier, dev split (PLAN-007 WP2.1): R3 and the two open-ended bridges of core engineering (E4 compress, E2 routes). Phase 3 adds AR, ER, AP and VIS v2. No capability weights until the release freeze.",
+  "providerConcurrency": {
+    "*": 6,
+    "api.airy.work": 3
+  },
+  "policy": {
+    "maxModels": 4,
+    "maxRepetitions": 1,
+    "maxModelsPerHost": {
+      "api.airy.work": 1
+    },
+    "forbiddenModels": [
+      "-pro$",
+      "-max$"
+    ]
+  },
+  "composite": null,
+  "families": [
+    {
+      "id": "R3",
+      "kind": "single",
+      "tier": "core",
+      "capability": "reasoning",
+      "template": "experiments/r3-calibration-2026-10/l5-l7.eval.json",
+      "score": {
+        "levels": [
+          "L5",
+          "L6",
+          "L7"
+        ]
+      }
+    },
+    {
+      "id": "E4-compress",
+      "kind": "single",
+      "tier": "core",
+      "capability": "engineering",
+      "template": "experiments/e4-calibration-2026-10/compress.eval.json",
+      "score": {
+        "items": [
+          "compress"
+        ]
+      },
+      "openEnded": true
+    },
+    {
+      "id": "E2-routes",
+      "kind": "single",
+      "tier": "core",
+      "capability": "engineering",
+      "template": "experiments/e2-calibration-2026-10/routes.eval.json",
+      "score": {
+        "items": [
+          "routes"
+        ]
+      },
+      "openEnded": true
+    }
+  ]
+}

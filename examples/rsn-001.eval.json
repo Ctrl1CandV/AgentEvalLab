@@ -34,7 +34,7 @@
   "cases": [
     {
       "id": "rsn001-schedule",
-      "packagePath": "task-library/calibration/rsn-001-shift-scheduling",
+      "packagePath": "task-library/retired/rsn-001-shift-scheduling",
       "packageManifestSha256": "90cf89bfdce39f91c17b71104b1e2db8ce309d493a60586793e7ce2dc38f9bbc",
       "input": {
         "prompt": "Answer A, B, and C using the required JSON response only."

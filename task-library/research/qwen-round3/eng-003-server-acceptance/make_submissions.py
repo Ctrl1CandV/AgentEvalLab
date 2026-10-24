@@ -3,7 +3,7 @@ import os
 import shutil
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-CAL = os.path.abspath(os.path.join(HERE, "..", "..", "..", "calibration", "eng-003-resource-manager", "private"))
+CAL = os.path.abspath(os.path.join(HERE, "..", "..", "..", "retired", "eng-003-resource-manager", "private"))
 SUBS = os.path.join(HERE, "submissions")
 
 BAD_ROUTE_SERVER = '''#!/usr/bin/env python3

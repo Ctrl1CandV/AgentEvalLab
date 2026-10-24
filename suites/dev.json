@@ -98,7 +98,7 @@
       "id": "VIS",
       "kind": "visual",
       "template": "experiments/vis-calibration-2026-10/calibration.eval.json",
-      "visualPackage": "task-library/calibration/vis-001-original-landing"
+      "visualPackage": "task-library/retired/vis-001-original-landing"
     },
     {
       "id": "AE",
