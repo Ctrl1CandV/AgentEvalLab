@@ -51,7 +51,7 @@
     {
       "id": "e4-terminal-tasks",
       "packagePath": "task-library/basic/e4-terminal-tasks",
-      "packageManifestSha256": "71da633bdd353c1e938e81977c38b0c5e86eb4758b32b1069cc12824b9d5bd05",
+      "packageManifestSha256": "ba6617634de4fbfe7aba49b83a72dda19e8bf8571efd3ccefea1d130ba4aed49",
       "input": {
         "prompt": "Complete the task above in the workspace, check your work, and end with a short summary."
       },

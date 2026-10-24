@@ -10,6 +10,8 @@ public/ directory, with logdata.py and packref.py beside this script. Prints {ch
   preset 9 with PRESET_EXTREME (0) to the reference compressor written for the format (1), reaches that share of the way.
   They need `roundtrip`.
 - Guards: `roundtrip` and `roundtrip-quirks` count only when `ratio-50` passes, so gzip or LZMA alone earns nothing.
+- Raw values (grader 1.6.0): `compressedBytes`, the total compressed size of days a and b when both come back byte for
+  byte (null otherwise); `lzmaBytes` and `referenceBytes`, the two ends of the scale; `rawBytes`, the two days uncompressed.
 
 Trust boundary: the generator and the reference are imported, then their files are deleted before any candidate runs.
 Compression and decompression run in separate fresh copies of the delivered workspace, made from a copy taken before any
@@ -143,10 +145,12 @@ def roundtrip(raw, pristine):
 
 
 def main():
-    if not os.path.isfile(os.path.join(ROOT, "packlog.py")):
-        print(json.dumps({check: False for check in ("roundtrip", "roundtrip-quirks", *(f"ratio-{label}" for label, _ in THRESHOLDS))}))
-        return
     days = [logdata.events(*logdata.HIDDEN[name]) for name in ("day-a", "day-b")]
+    raw_bytes = sum(len(day) for day in days)
+    if not os.path.isfile(os.path.join(ROOT, "packlog.py")):
+        print(json.dumps({**{check: False for check in ("roundtrip", "roundtrip-quirks", *(f"ratio-{label}" for label, _ in THRESHOLDS))},
+                          "rawBytes": raw_bytes}))
+        return
     rng = random.Random("compress-hidden-bytes")
     odd = [logdata.events(*logdata.HIDDEN["quirks"]), b"", days[1][: len(days[1]) // 7].rstrip(b"\n"),
            bytes(rng.randrange(256) for _ in range(65_536))]
@@ -169,7 +173,9 @@ def main():
     verdicts = {f"ratio-{label}": progress is not None and progress >= share for label, share in THRESHOLDS}
     verdicts["roundtrip"] = normal and verdicts["ratio-50"]
     verdicts["roundtrip-quirks"] = quirks and verdicts["ratio-50"]
-    print(json.dumps({**verdicts, "progress": None if progress is None else round(progress, 4)}, sort_keys=True))
+    print(json.dumps({**verdicts, "progress": None if progress is None else round(progress, 4),
+                      "compressedBytes": sum(size for _, size in results) if normal else None, "lzmaBytes": lower, "referenceBytes": upper,
+                      "rawBytes": raw_bytes}, sort_keys=True))
 
 
 if __name__ == "__main__":

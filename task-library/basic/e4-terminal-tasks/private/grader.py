@@ -2,6 +2,10 @@
 """Grades E4 submissions. Each item's checks run the candidate's deliverables on hidden inputs, inside the sandbox
 launcher when the request provides one, in a fresh copy of the submission. Expected results come from the item's
 oracle. The score is the fraction of checks passed.
+
+Grader 1.6.0 (manifest v2) also reports raw values: the speedup item's CPU-time ratio to the reference
+(`speedupRatio`, when measured) and the compress item's total compressed size (`compressedBytes`, the primary of the
+open-ended compress item, through its anchors LZMA and the reference compressor), with the ends of its scale.
 """
 import argparse
 import importlib
@@ -19,7 +23,7 @@ PACKAGE = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 TASK_ID = "e4-terminal-tasks"
 TASK_VERSION = "0.5.0"
-GRADER_VERSION = "1.5.0"
+GRADER_VERSION = "1.6.0"
 CHECKS = {
     "perf": ["workspace-output", "quirks", "empty", "speed"],
     "migrate": ["schema", "names", "emails", "dates", "totals", "statuses", "orphans", "idempotent", "atomic", "workspace-db"],
@@ -272,9 +276,9 @@ def grade_build(submission, runner):
 
 # stockroom ---------------------------------------------------------------------------------------------------------
 
-def hidden_checks(item_id, submission, runner, required, timeout=600):
-    """Runs an item's hidden check script on a copy of the delivered workspace; it prints {check: true/false}. The item's
-    other modules (the codec's encoder and cases) go beside it."""
+def hidden_checks(item_id, submission, runner, required, timeout=600, raw=None):
+    """Runs an item's hidden check script on a copy of the delivered workspace; it prints {check: true/false} and any raw
+    values, which go into `raw` when given. The item's other modules (the codec's encoder and cases) go beside it."""
     if not os.path.exists(os.path.join(submission, required)):
         return {check: False for check in CHECKS[item_id]}
     directory = workdir(submission)
@@ -289,6 +293,8 @@ def hidden_checks(item_id, submission, runner, required, timeout=600):
             verdicts = json.loads(run.stdout.decode("utf-8").strip().splitlines()[-1]) if run is not None and run.returncode == 0 else {}
         except (UnicodeDecodeError, json.JSONDecodeError, IndexError):
             verdicts = {}
+        if raw is not None and isinstance(verdicts, dict):
+            raw.update({key: value for key, value in verdicts.items() if key not in CHECKS[item_id]})
         return {check: verdicts.get(check) is True for check in CHECKS[item_id]}
     finally:
         shutil.rmtree(directory, ignore_errors=True)
@@ -306,13 +312,35 @@ def grade_codec(submission, runner):
     return hidden_checks("codec", submission, runner, ".")
 
 
-def grade_speedup(submission, runner):
-    return hidden_checks("speedup", submission, runner, "analyze.py")
+def grade_speedup(submission, runner, raw=None):
+    return hidden_checks("speedup", submission, runner, "analyze.py", raw=raw)
 
 
-def grade_compress(submission, runner):
+def grade_compress(submission, runner, raw=None):
     # Twelve candidate runs of up to 60 seconds each, after about a minute of anchors.
-    return hidden_checks("compress", submission, runner, "packlog.py", timeout=850)
+    return hidden_checks("compress", submission, runner, "packlog.py", timeout=850, raw=raw)
+
+
+def compress_raw_bytes():
+    """The two hidden days uncompressed: the size an invalid delivery is reported at."""
+    from compress_item import logdata
+    return sum(len(logdata.events(*logdata.HIDDEN[name])) for name in ("day-a", "day-b"))
+
+
+def item_metrics(item_id, raw):
+    """Raw values of grader result v2. compressedBytes is always reported for compress, the primary of a valid delivery:
+    a delivery that does not restore both days stores nothing usable, so it is reported at the logs' uncompressed size
+    (its primary is 0 in any case, since its critical group fails)."""
+    def number(value):
+        return isinstance(value, (int, float)) and not isinstance(value, bool) and value == value and abs(value) != float("inf")
+    if item_id == "speedup":
+        return [{"id": "speedupRatio", "value": raw["ratio"], "unit": "x reference CPU time"}] if number(raw.get("ratio")) else []
+    if item_id == "compress":
+        size = raw["compressedBytes"] if number(raw.get("compressedBytes")) else raw["rawBytes"] if number(raw.get("rawBytes")) else compress_raw_bytes()
+        metrics = [{"id": "compressedBytes", "value": size, "unit": "bytes"}]
+        metrics += [{"id": name, "value": raw[name], "unit": "bytes"} for name in ("lzmaBytes", "referenceBytes") if number(raw.get(name))]
+        return metrics
+    return []
 
 
 # recover -----------------------------------------------------------------------------------------------------------
@@ -344,10 +372,18 @@ GRADERS = {"perf": grade_perf, "migrate": grade_migrate, "bisect": grade_bisect,
            "pipeline": grade_pipeline, "recover": grade_recover, "codec": grade_codec, "speedup": grade_speedup, "compress": grade_compress}
 
 
+def grade_with_metrics(item_id, submission, launcher):
+    """(checks, metrics). submission: the delivered workspace; the task's files and deliverables are in its public/."""
+    raw = {}
+    if item_id in ("speedup", "compress"):
+        results = GRADERS[item_id](os.path.join(submission, "public"), Runner(launcher), raw=raw)
+    else:
+        results = GRADERS[item_id](os.path.join(submission, "public"), Runner(launcher))
+    return {check: bool(results.get(check)) for check in CHECKS[item_id]}, item_metrics(item_id, raw)
+
+
 def grade(item_id, submission, launcher):
-    """submission: the delivered workspace; the task's files and deliverables are in its public/ directory."""
-    results = GRADERS[item_id](os.path.join(submission, "public"), Runner(launcher))
-    return {check: bool(results.get(check)) for check in CHECKS[item_id]}
+    return grade_with_metrics(item_id, submission, launcher)[0]
 
 
 def write_json(path, value):
@@ -363,14 +399,14 @@ def grade_request(request_path, result_path):
     if item_id not in GRADERS:
         raise ValueError("unknown item")
     launcher = (request.get("sandbox") or {}).get("launcher")
-    results = grade(item_id, request["submission"]["directory"], launcher)
-    write_json(os.path.join(request["evidenceRoot"], "checks.json"), results)
+    results, metrics = grade_with_metrics(item_id, request["submission"]["directory"], launcher)
+    write_json(os.path.join(request["evidenceRoot"], "checks.json"), {**results, "metrics": metrics})
     active = set(request["context"]["activeRequirementIds"])
     checks = [{"id": f"{item_id}-{check}", "requirementId": f"REQ-{item_id.upper()}-{check.upper()}", "status": "pass" if passed else "fail",
                "evidenceRefs": ["checks.json"]} for check, passed in results.items() if f"REQ-{item_id.upper()}-{check.upper()}" in active]
-    write_json(result_path, {"schemaVersion": 1, "requestId": request["requestId"], "taskId": TASK_ID, "taskVersion": TASK_VERSION,
+    write_json(result_path, {"schemaVersion": 2, "requestId": request["requestId"], "taskId": TASK_ID, "taskVersion": TASK_VERSION,
                              "graderVersion": GRADER_VERSION, "gradingStatus": "completed", "checks": checks, "dimensions": [],
-                             "unscoredCheckIds": [], "reason": None, "error": None})
+                             "unscoredCheckIds": [], "reason": None, "error": None, "metrics": metrics})
 
 
 def main():
@@ -380,7 +416,10 @@ def main():
     parser.add_argument("--self-calibrate", action="store_true")
     parser.add_argument("--launcher", help="sandbox launcher for self-calibration")
     parser.add_argument("--items", help="self-calibrate only these items (comma-separated)")
+    parser.add_argument("--noise", action="store_true", help="the speedup noise test (quiet against loaded machine)")
     args = parser.parse_args()
+    if args.noise:
+        raise SystemExit(importlib.import_module("calibrate").speedup_noise(args.launcher))
     if args.self_calibrate:
         raise SystemExit(importlib.import_module("calibrate").self_calibrate(args.launcher, args.items.split(",") if args.items else None))
     if not args.request or not args.result:

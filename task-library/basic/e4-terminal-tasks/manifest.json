@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "e4-terminal-tasks",
   "version": "0.5.0",
   "familyId": "e4-terminal-tasks",
@@ -28,7 +28,11 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "075e844e8410574ff6c7e9f6c76e0837cd8e71726dc824d8a8e9c810bc8db346"
+        "sha256": "025c6735e971b938f3ec690f1f3313c0ac7e19725f655d28587356bb466c723f"
+      },
+      {
+        "path": "card.md",
+        "sha256": "eab0d73a6c7335b9952b9190da338e524d185bd7c61cf3e3a76595d86633b2ba"
       },
       {
         "path": "rubric.md",
@@ -72,11 +76,11 @@
       },
       {
         "path": "private/build_package.py",
-        "sha256": "98b473683c5dc613be1abca185812dff8d069c7452cf131f0f71c6ea80063c86"
+        "sha256": "0078c0752a3b7e5bed92746cfc4150e4db26dd92bd2a3ed26ee0b4bd92109d8b"
       },
       {
         "path": "private/calibrate.py",
-        "sha256": "5b4ff138951444a523f162524fabb1b4d61df074d007ebe25f3b5e808c70dac9"
+        "sha256": "611c24658a9045a8a9171180cde734accb94a0f9d5424f7dfd606ebbb3c79642"
       },
       {
         "path": "private/codec_item/cases.py",
@@ -100,7 +104,7 @@
       },
       {
         "path": "private/compress_item/checks.py",
-        "sha256": "9556c6faa78ddf95f7d97daea8b4c529593df4e805ea76169853b09c36b4de86"
+        "sha256": "1362bf5e116a56170bbfb3e02a216755271a910ceec83a8d7ed6d147bd4bc5ab"
       },
       {
         "path": "private/compress_item/logdata.py",
@@ -112,7 +116,7 @@
       },
       {
         "path": "private/grader.py",
-        "sha256": "a0dc5869c792258ab7b6de1ff21037d530959b2631c9d568b2d9de1ced3bdd3b"
+        "sha256": "15983d95ae7d21ffe1035313f16184ba42f4aa1cedeb404168f4864f4214f072"
       },
       {
         "path": "private/migrate/data.py",
@@ -160,7 +164,7 @@
       },
       {
         "path": "private/speedup_item/checks.py",
-        "sha256": "7d9017844b0e852bb2e057b9ef992edfd45a6a14de7ea15efde89ea773efd2d2"
+        "sha256": "72428df675a77bafa7fd74f6914fc57e7af17daa1d214624206069140ca6be19"
       },
       {
         "path": "private/speedup_item/data.py",
@@ -762,6 +766,222 @@
       ]
     }
   ],
+  "tier": "basic",
+  "capabilities": [
+    "engineering"
+  ],
+  "card": "card.md",
+  "scoreModel": {
+    "primary": {
+      "kind": "resolved"
+    },
+    "primaryByItem": {
+      "compress": {
+        "kind": "metric",
+        "metric": "compressedBytes"
+      }
+    },
+    "groups": [
+      {
+        "id": "perf",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "perf-workspace-output",
+          "perf-quirks",
+          "perf-empty",
+          "perf-speed"
+        ]
+      },
+      {
+        "id": "migrate",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "migrate-schema",
+          "migrate-names",
+          "migrate-emails",
+          "migrate-dates",
+          "migrate-totals",
+          "migrate-statuses",
+          "migrate-orphans",
+          "migrate-idempotent",
+          "migrate-atomic",
+          "migrate-workspace-db"
+        ]
+      },
+      {
+        "id": "bisect",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "bisect-culprit",
+          "bisect-regression-fixed",
+          "bisect-rounding-kept",
+          "bisect-later-features",
+          "bisect-coupons"
+        ]
+      },
+      {
+        "id": "build",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "build-flags",
+          "build-build",
+          "build-tests",
+          "build-eof-word",
+          "build-ties",
+          "build-options",
+          "build-clean"
+        ]
+      },
+      {
+        "id": "stockroom",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "stockroom-strict-env",
+          "stockroom-timezone",
+          "stockroom-stock-cache",
+          "stockroom-duplicates",
+          "stockroom-money",
+          "stockroom-export-speed",
+          "stockroom-regression"
+        ]
+      },
+      {
+        "id": "pipeline",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "pipeline-line-ends",
+          "pipeline-store-ids",
+          "pipeline-eu-format",
+          "pipeline-rebuild",
+          "pipeline-combined",
+          "pipeline-regression"
+        ]
+      },
+      {
+        "id": "recover",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "recover-search-commit",
+          "recover-search-tree",
+          "recover-stash-commit",
+          "recover-stash-file"
+        ]
+      },
+      {
+        "id": "speedup",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "speedup-small",
+          "speedup-large",
+          "speedup-quirks",
+          "speedup-speed-8"
+        ]
+      },
+      {
+        "id": "speedup-rungs",
+        "weight": 1,
+        "critical": false,
+        "rule": "fraction",
+        "checkIds": [
+          "speedup-speed-3",
+          "speedup-speed-1.5",
+          "speedup-speed-1.1",
+          "speedup-speed-0.75"
+        ]
+      },
+      {
+        "id": "codec",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "codec-words",
+          "codec-short-tokens",
+          "codec-numbers",
+          "codec-timestamps",
+          "codec-spaces",
+          "codec-long-literals",
+          "codec-eviction",
+          "codec-multi-day",
+          "codec-bytes",
+          "codec-edges",
+          "codec-restore"
+        ]
+      },
+      {
+        "id": "compress",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "compress-roundtrip",
+          "compress-roundtrip-quirks"
+        ]
+      },
+      {
+        "id": "compress-rungs",
+        "weight": 1,
+        "critical": false,
+        "rule": "fraction",
+        "checkIds": [
+          "compress-ratio-50",
+          "compress-ratio-80",
+          "compress-ratio-90",
+          "compress-ratio-97"
+        ]
+      },
+      {
+        "id": "compress-size",
+        "weight": 1,
+        "critical": false,
+        "rule": "metric",
+        "checkIds": [],
+        "metric": "compressedBytes",
+        "items": [
+          "compress"
+        ]
+      }
+    ],
+    "metrics": [
+      {
+        "id": "compressedBytes",
+        "unit": "bytes",
+        "direction": "lower",
+        "items": [
+          "compress"
+        ],
+        "anchors": {
+          "version": "1",
+          "points": [
+            {
+              "name": "lzma",
+              "maps": 0
+            },
+            {
+              "name": "reference",
+              "maps": 1
+            }
+          ]
+        }
+      }
+    ]
+  },
   "items": [
     {
       "id": "perf",
@@ -785,7 +1005,15 @@
         "REQ-PERF-QUIRKS",
         "REQ-PERF-EMPTY",
         "REQ-PERF-SPEED"
-      ]
+      ],
+      "split": "dev",
+      "structure": "item:perf",
+      "provenance": {
+        "source": "project-authored task, data and checks (private/build_package.py)",
+        "published": "2026-10-21",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
     },
     {
       "id": "migrate",
@@ -811,7 +1039,15 @@
         "REQ-MIGRATE-IDEMPOTENT",
         "REQ-MIGRATE-ATOMIC",
         "REQ-MIGRATE-WORKSPACE-DB"
-      ]
+      ],
+      "split": "dev",
+      "structure": "item:migrate",
+      "provenance": {
+        "source": "project-authored task, data and checks (private/build_package.py)",
+        "published": "2026-10-21",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
     },
     {
       "id": "bisect",
@@ -832,7 +1068,15 @@
         "REQ-BISECT-ROUNDING-KEPT",
         "REQ-BISECT-LATER-FEATURES",
         "REQ-BISECT-COUPONS"
-      ]
+      ],
+      "split": "dev",
+      "structure": "item:bisect",
+      "provenance": {
+        "source": "project-authored task, data and checks (private/build_package.py)",
+        "published": "2026-10-21",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
     },
     {
       "id": "build",
@@ -911,7 +1155,15 @@
         "REQ-BUILD-TIES",
         "REQ-BUILD-OPTIONS",
         "REQ-BUILD-CLEAN"
-      ]
+      ],
+      "split": "dev",
+      "structure": "item:build",
+      "provenance": {
+        "source": "project-authored task, data and checks (private/build_package.py)",
+        "published": "2026-10-21",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
     },
     {
       "id": "stockroom",
@@ -986,7 +1238,15 @@
         "REQ-STOCKROOM-MONEY",
         "REQ-STOCKROOM-EXPORT-SPEED",
         "REQ-STOCKROOM-REGRESSION"
-      ]
+      ],
+      "split": "dev",
+      "structure": "item:stockroom",
+      "provenance": {
+        "source": "project-authored task, data and checks (private/build_package.py)",
+        "published": "2026-10-21",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
     },
     {
       "id": "pipeline",
@@ -1040,7 +1300,15 @@
         "REQ-PIPELINE-REBUILD",
         "REQ-PIPELINE-COMBINED",
         "REQ-PIPELINE-REGRESSION"
-      ]
+      ],
+      "split": "dev",
+      "structure": "item:pipeline",
+      "provenance": {
+        "source": "project-authored task, data and checks (private/build_package.py)",
+        "published": "2026-10-21",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
     },
     {
       "id": "recover",
@@ -1060,7 +1328,15 @@
         "REQ-RECOVER-SEARCH-TREE",
         "REQ-RECOVER-STASH-COMMIT",
         "REQ-RECOVER-STASH-FILE"
-      ]
+      ],
+      "split": "dev",
+      "structure": "item:recover",
+      "provenance": {
+        "source": "project-authored task, data and checks (private/build_package.py)",
+        "published": "2026-10-21",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
     },
     {
       "id": "speedup",
@@ -1088,7 +1364,15 @@
         "REQ-SPEEDUP-SPEED-1.5",
         "REQ-SPEEDUP-SPEED-1.1",
         "REQ-SPEEDUP-SPEED-0.75"
-      ]
+      ],
+      "split": "dev",
+      "structure": "item:speedup",
+      "provenance": {
+        "source": "project-authored task, data and checks (private/build_package.py)",
+        "published": "2026-10-21",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
     },
     {
       "id": "codec",
@@ -1151,7 +1435,15 @@
         "REQ-CODEC-BYTES",
         "REQ-CODEC-EDGES",
         "REQ-CODEC-RESTORE"
-      ]
+      ],
+      "split": "dev",
+      "structure": "item:codec",
+      "provenance": {
+        "source": "project-authored task, data and checks (private/build_package.py)",
+        "published": "2026-10-21",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
     },
     {
       "id": "compress",
@@ -1177,7 +1469,21 @@
         "REQ-COMPRESS-RATIO-80",
         "REQ-COMPRESS-RATIO-90",
         "REQ-COMPRESS-RATIO-97"
-      ]
+      ],
+      "split": "dev",
+      "structure": "item:compress",
+      "provenance": {
+        "source": "project-authored task, data and checks (private/build_package.py)",
+        "published": "2026-10-21",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      },
+      "anchors": {
+        "compressedBytes": {
+          "lzma": 1187944,
+          "reference": 461068
+        }
+      }
     }
   ],
   "toolProfiles": [
@@ -1185,7 +1491,7 @@
   ],
   "grader": {
     "id": "e4-terminal-checks",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

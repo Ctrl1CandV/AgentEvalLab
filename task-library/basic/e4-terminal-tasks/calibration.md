@@ -200,3 +200,19 @@ At 4,000,000 tokens (`runs/suites/20261022-050033-dev-0cdf`), deepseek-flash rea
 None of these appeared on the hidden quirks day.
 
 **Change.** The hidden quirks day (`private/speedup_item/data.py`, drawn with `audited=True`) now holds those rows, and some unusual user names. The small and large days and the public sample are drawn as before and are byte for byte unchanged; so are all item files. Three new self-calibration mutants of the reference, one per slip, fail `quirks` only (`logs/self-calibration-0.5.0-grader-1.5.0-speedup.log`). Every 0.5.0 speedup trial was re-graded under 1.5.0; the 0.4.x trials belong to superseded task versions and keep their graders' numbers, with the audit's finding recorded.
+
+## Grader 1.6.0 and manifest v2 (2026-10-24, task 0.5.0 unchanged, PLAN-007 WP2.2)
+
+**Why.** Two things, both in the measurement, none in the task. The Phase 0 audit found the speedup rungs noisy: four repeated runs of qwen3.8-flash's delivery gave wall-time ratios 0.753, 0.740, 0.781 and 0.770 against the 0.75 rung, and a re-grade flipped `speed-0.75` with no change to the code. And v2 reports the open-ended compress item by its raw size through anchors instead of four rungs (MEASUREMENT §3), and the speedup ratio as a raw value.
+
+**Change.**
+
+- **Speedup** times each run by the CPU time (user and system) of the process it starts (`resource.getrusage`), not the wall time; best of three, interleaved, on one core, as before. The contract's "one process with one thread, on one CPU core" makes the two the same on a quiet machine; on a busy one only CPU time stays put. The ratio is reported as `speedupRatio`.
+- **Compress** reports `compressedBytes` (the total of hidden days a and b, when both come back byte for byte; otherwise the logs' uncompressed size, 17,434,253 bytes), and the two ends of its scale, `lzmaBytes` (1,187,944) and `referenceBytes` (461,068). These are the anchors `lzma` (0) and `reference` (1) in the manifest, so the normalised value equals the old `progress` and is uncapped above the reference.
+- **Manifest v2**: the card; per item one critical group; the rungs of speedup and compress in non-critical groups; compress headlined by `compressedBytes` (`primaryByItem`), its metric declared for compress only; every item dev, its own structure group.
+
+**Self-calibration** (`logs/self-calibration-0.5.0-grader-1.6.0.log`, 66/66). One expectation changed: the `ascii-digits-only` mutant's per-row check costs about 12% more CPU time than the reference (ratio 1.12), so it stops at `speed-1.5`; under wall time it had passed `speed-1.1` by the machine's noise.
+
+**Noise test** (`python3 private/grader.py --noise`, `logs/noise-0.5.0-grader-1.6.0-speedup.log`, PROTOCOL §9): the oracle, the DictReader variant and the strptime variant, each judged on a quiet machine and with all 20 cores busy: identical verdicts, ratios changing by 1.0%, 2.8% and 4.3% (declared tolerance 15%).
+
+**Re-grade.** Every 0.5.0 trial of speedup and compress was re-graded under 1.6.0 (`runs/suites/20261021-123806-dev-d275/runs/E4/…`, `20261022-040520-dev-7f6a`, `20261022-050033-dev-0cdf`); v1 numbers stay under their graders.

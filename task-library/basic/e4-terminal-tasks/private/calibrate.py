@@ -107,7 +107,9 @@ def speedup_scenarios():
         ("speedup", "session-gap-inclusive", {"analyze.py": wrong_gap}, None, checks - {"quirks", "speed-0.75"}),
         ("speedup", "dash-referrer-counted", {"analyze.py": dash_counted}, None, checks - {"quirks", "speed-0.75"}),
         ("speedup", "short-rows-skipped", {"analyze.py": short_rows_skipped}, None, checks - {"quirks", "speed-0.75"}),
-        ("speedup", "ascii-digits-only", {"analyze.py": ascii_digits}, None, checks - {"quirks", "speed-0.75"}),
+        # Its per-row check costs about 12% more CPU time than the reference (1.12 under grader 1.6.0), so it stops at
+        # speed-1.5; under wall time (grader 1.5.0) it passed speed-1.1 by the machine's noise.
+        ("speedup", "ascii-digits-only", {"analyze.py": ascii_digits}, None, checks - {"quirks", "speed-1.1", "speed-0.75"}),
     ]
 
 
@@ -256,4 +258,33 @@ def self_calibrate(launcher, only=None):
         print(f"{item_id} {name}: passes {sorted(passed)}" + ("" if ok else f"  EXPECTED {sorted(expected)}"))
         rows.append(ok)
     print(f"RESULT: {'PASS' if all(rows) else 'FAIL'} ({sum(rows)}/{len(rows)})")
+    return 0 if all(rows) else 1
+
+
+def speedup_noise(launcher, tolerance=0.15):
+    """PROTOCOL §9 noise test of the speedup item (grader 1.6.0): the same deliveries judged on a quiet machine and with
+    every core busy must get identical verdicts, and their CPU-time ratio must change by at most `tolerance`."""
+    chosen = {name: files for item_id, name, files, _, _ in speedup_scenarios() if name in ("oracle", "dict-reader", "strptime-everywhere")}
+    rows = []
+    for name, files in chosen.items():
+        judged = []
+        for loaded in (False, True):
+            load = [subprocess.Popen([sys.executable, "-c", "while True: pass"]) for _ in range(os.cpu_count() or 1)] if loaded else []
+            directory = submission("speedup", files)
+            try:
+                checks, metrics = grader.grade_with_metrics("speedup", directory, launcher)
+            finally:
+                shutil.rmtree(directory, ignore_errors=True)
+                for process in load:
+                    process.kill()
+                    process.wait()
+            ratio = next((metric["value"] for metric in metrics if metric["id"] == "speedupRatio"), None)
+            judged.append(({check for check, ok in checks.items() if ok}, ratio))
+        (quiet, quiet_ratio), (busy, busy_ratio) = judged
+        change = abs(busy_ratio / quiet_ratio - 1) if quiet_ratio and busy_ratio else None
+        ok = quiet == busy and change is not None and change <= tolerance
+        print(f"speedup {name}: quiet {quiet_ratio} {sorted(quiet)}; busy ({os.cpu_count()} cores loaded) {busy_ratio} {sorted(busy)}; "
+              f"ratio change {None if change is None else round(change, 3)}" + ("" if ok else "  NOT STABLE"))
+        rows.append(ok)
+    print(f"RESULT: {'PASS' if all(rows) else 'FAIL'} ({sum(rows)}/{len(rows)}), tolerance {tolerance}")
     return 0 if all(rows) else 1

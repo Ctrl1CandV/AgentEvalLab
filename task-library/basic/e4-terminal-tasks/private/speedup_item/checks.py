@@ -7,15 +7,17 @@ public/ directory, with data.py, naive.py and reference.py beside this script. P
 - `quirks`: the same on a day full of malformed and unusual rows.
 - `speed-8`, `speed-3`, `speed-1.5`, `speed-1.1`, `speed-0.75`: on the large day, analyze.py takes at most that many times
   as long as the reference (best of three runs each, interleaved, on one CPU core). They need `small` and `large` right.
+  The time of a run is the CPU time (user and system) of the process it starts, not the wall time (grader 1.6.0), so a
+  busy machine does not change a verdict (PROTOCOL §9); the ratio is printed as `ratio`, the rungs are its labels.
 - Guards: `small`, `large` and `quirks` count only when `speed-8` passes, so the untouched original (about 70 times the
   reference's time) earns nothing.
 """
 import json
 import os
+import resource
 import subprocess
 import sys
 import tempfile
-import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -34,7 +36,7 @@ CANDIDATE_TIMEOUT = 60
 
 
 def run(program, dataset, source=None):
-    """(stdout or None, seconds). A program given as source is written just for the run and removed after it."""
+    """(stdout or None, CPU seconds). A program given as source is written just for the run and removed after it."""
     scratch = None
     if source is not None:
         scratch = tempfile.mkdtemp(dir=ROOT)
@@ -42,9 +44,10 @@ def run(program, dataset, source=None):
         with open(program, "w", encoding="utf-8") as handle:
             handle.write(source)
     try:
-        started = time.perf_counter()
+        before = resource.getrusage(resource.RUSAGE_CHILDREN)
         result = subprocess.run([sys.executable, program, dataset], cwd=ROOT, capture_output=True, timeout=CANDIDATE_TIMEOUT)
-        seconds = time.perf_counter() - started
+        after = resource.getrusage(resource.RUSAGE_CHILDREN)
+        seconds = (after.ru_utime - before.ru_utime) + (after.ru_stime - before.ru_stime)
         return (result.stdout if result.returncode == 0 else None), seconds
     except subprocess.TimeoutExpired:
         return None, float("inf")

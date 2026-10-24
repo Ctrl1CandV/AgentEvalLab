@@ -1,0 +1,4 @@
+speedup oracle: quiet 0.992 ['large', 'quirks', 'small', 'speed-1.1', 'speed-1.5', 'speed-3', 'speed-8']; busy (20 cores loaded) 0.982 ['large', 'quirks', 'small', 'speed-1.1', 'speed-1.5', 'speed-3', 'speed-8']; ratio change 0.01
+speedup strptime-everywhere: quiet 4.314 ['large', 'quirks', 'small', 'speed-8']; busy (20 cores loaded) 4.498 ['large', 'quirks', 'small', 'speed-8']; ratio change 0.043
+speedup dict-reader: quiet 1.333 ['large', 'quirks', 'small', 'speed-1.5', 'speed-3', 'speed-8']; busy (20 cores loaded) 1.296 ['large', 'quirks', 'small', 'speed-1.5', 'speed-3', 'speed-8']; ratio change 0.028
+RESULT: PASS (3/3), tolerance 0.15

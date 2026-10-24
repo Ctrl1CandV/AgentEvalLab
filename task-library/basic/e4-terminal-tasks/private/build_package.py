@@ -30,6 +30,31 @@ from compress_item import logdata as compress_data  # noqa: E402
 
 VERSION = grader.TASK_VERSION
 GRADER_VERSION = grader.GRADER_VERSION
+# Manifest v2 (PLAN-007 WP2.2). Every item is its own task and structure group, all dev (each has been run or
+# inspected). The contract items are resolved-primary; compress, the open-ended bridge, is headlined by its compressed
+# size through two anchors: LZMA at its strongest setting (0) and the reference compressor written for the format (1),
+# measured on the hidden days a and b (the scale its rungs already used; anchors 1). The rungs stay as labels in
+# non-critical groups. Speedup's raw CPU-time ratio is reported, not scored.
+PUBLISHED = "2026-10-21"
+COMPRESS_ANCHORS = {"lzma": 1187944, "reference": 461068}
+RUNGS = {"speedup": ["speed-3", "speed-1.5", "speed-1.1", "speed-0.75"], "compress": ["ratio-50", "ratio-80", "ratio-90", "ratio-97"]}
+
+
+def score_model():
+    groups = []
+    for item, checks in grader.CHECKS.items():
+        rungs = RUNGS.get(item, [])
+        groups.append({"id": item, "weight": 1, "critical": True, "rule": "fraction", "checkIds": [f"{item}-{check}" for check in checks if check not in rungs]})
+        if rungs:
+            groups.append({"id": f"{item}-rungs", "weight": 1, "critical": False, "rule": "fraction", "checkIds": [f"{item}-{check}" for check in rungs]})
+    groups.append({"id": "compress-size", "weight": 1, "critical": False, "rule": "metric", "checkIds": [], "metric": "compressedBytes", "items": ["compress"]})
+    return {
+        "primary": {"kind": "resolved"},
+        "primaryByItem": {"compress": {"kind": "metric", "metric": "compressedBytes"}},
+        "groups": groups,
+        "metrics": [{"id": "compressedBytes", "unit": "bytes", "direction": "lower", "items": ["compress"],
+                     "anchors": {"version": "1", "points": [{"name": "lzma", "maps": 0}, {"name": "reference", "maps": 1}]}}],
+    }
 
 
 def digest(path):
@@ -112,7 +137,7 @@ def generate_codec():
 
 def main():
     generate()
-    trusted = ["calibration.md", "rubric.md"] + sorted(str(path.relative_to(ROOT)) for path in (ROOT / "private").rglob("*")
+    trusted = ["calibration.md", "card.md", "rubric.md"] + sorted(str(path.relative_to(ROOT)) for path in (ROOT / "private").rglob("*")
                                                      if path.is_file() and "__pycache__" not in path.parts and not path.name.endswith(".pyc")
                                                      and not any(part.startswith(".") for part in path.parts))
     requirements, items = [], []
@@ -121,14 +146,20 @@ def main():
         requirements += [{"id": requirement, "critical": True, "introducedAt": f"e4-terminal-tasks {VERSION}", "checkIds": [f"{item}-{check}"]}
                          for requirement, check in zip(ids, checks)]
         files = sorted(str(path.relative_to(ROOT)) for path in (ROOT / "items" / item).rglob("*") if path.is_file() and not any(part.startswith(".") or part == "__pycache__" for part in path.parts))
-        items.append({"id": item, "level": item, "files": [{"path": path, "sha256": digest(path)} for path in files], "activeRequirementIds": ids})
+        items.append({"id": item, "level": item, "files": [{"path": path, "sha256": digest(path)} for path in files], "activeRequirementIds": ids,
+                      "split": "dev", "structure": f"item:{item}",
+                      "provenance": {"source": "project-authored task, data and checks (private/build_package.py)", "published": PUBLISHED,
+                                     "license": "project-authored", "exposure": "private-to-runs"},
+                      **({"anchors": {"compressedBytes": COMPRESS_ANCHORS}} if item == "compress" else {})})
     manifest = {
-        "schemaVersion": 1, "id": "e4-terminal-tasks", "version": VERSION, "familyId": "e4-terminal-tasks", "capability": "engineering", "usage": "development",
+        "schemaVersion": 2, "id": "e4-terminal-tasks", "version": VERSION, "familyId": "e4-terminal-tasks", "capability": "engineering", "usage": "development",
         "source": {"kind": "original-design", "references": ["docs/design/TASK_SET_V2.md"]},
         "license": {"taskText": "Original project-authored tasks, data, programs and checks.", "thirdPartyContent": []},
         "entryPoint": {"instruction": "instruction.md"},
         "files": {"public": [{"path": "instruction.md", "sha256": digest("instruction.md")}], "trusted": [{"path": path, "sha256": digest(path)} for path in trusted]},
-        "requirements": requirements, "items": items, "toolProfiles": ["workspace-basic"],
+        "requirements": requirements,
+        "tier": "basic", "capabilities": ["engineering"], "card": "card.md", "scoreModel": score_model(),
+        "items": items, "toolProfiles": ["workspace-basic"],
         "grader": {"id": "e4-terminal-checks", "version": GRADER_VERSION, "entryPoint": "private/grader.py", "executable": "python3",
                    "args": ["{entryPoint}", "--request", "{request}", "--result", "{result}"]},
         "environment": {"runtime": "Python 3.13", "dependencies": "Python standard library; git, make, cc and coreutils from the host; no network", "network": False,
