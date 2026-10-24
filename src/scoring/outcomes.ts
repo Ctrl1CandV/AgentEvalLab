@@ -29,11 +29,14 @@ export async function writeOutcome(scoreRunDirectory: string, context: OutcomeCo
   if (!manifest?.scoreModel) return null;
   const item = context.itemId ? manifest.items?.find(candidate => candidate.id === context.itemId) : undefined;
   const placement = item ?? manifest.task;
+  // The checks the task is graded on: the item's active requirements, a trajectory's final stage, or every requirement.
+  const active = new Set(item?.activeRequirementIds ?? manifest.stages?.at(-1)?.activeRequirementIds ?? manifest.requirements.map(requirement => requirement.id));
+  const expectedCheckIds = manifest.requirements.filter(requirement => active.has(requirement.id)).flatMap(requirement => requirement.checkIds);
   const outcome = buildOutcome({
     trialId: context.trialId, model: modelLabel(context.model), taskId: manifest.id, taskVersion: manifest.version, graderVersion: manifest.grader.version,
     itemId: context.itemId, split: placement?.split ?? null, structure: placement?.structure ?? null, repetition: context.repetition ?? 1,
     evaluation: context.evaluation, ...(context.evaluation.metrics ? { metrics: context.evaluation.metrics } : {}), execution: context.execution,
-    scoreModel: manifest.scoreModel, ...(placement?.anchors ? { anchors: placement.anchors } : {}), scoreRunId: context.scoreRunId,
+    scoreModel: manifest.scoreModel, ...(placement?.anchors ? { anchors: placement.anchors } : {}), scoreRunId: context.scoreRunId, expectedCheckIds,
   });
   await writeFile(join(scoreRunDirectory, "outcome.json"), JSON.stringify(outcome, null, 2), { encoding: "utf8", flag: "wx" });
   return outcome;

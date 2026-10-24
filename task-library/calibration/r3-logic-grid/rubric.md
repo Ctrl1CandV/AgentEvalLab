@@ -6,6 +6,7 @@ Each item is one generated puzzle with a unique solution and a minimal clue set:
 
 - One critical check per cell (house, attribute). Attribute names match case-insensitively; values match exactly after trimming and ignoring case.
 - The trial score is the fraction of cells correct (cell accuracy). The item is resolved only when every cell is correct (puzzle accuracy).
+- **Since grader 2.0.0 (manifest v2)** the headline is the resolved rate: a task counts 1 when every cell is right, else 0. Cell accuracy is the diagnostic. The grader also reports raw metrics, all diagnostic: `cellAccuracy`; `constraintValidity`, the share of clues the submitted assignment satisfies (a clue fails when a value it names is not placed in exactly one house); and `wellFormed`, 1 when every attribute is a permutation of its values. The format deduction is reported as a separate penalised value beside the headline (decision D2).
 - `answer-format` (non-critical) passes when the answer is one JSON object, as instructed. If the answer is not one JSON object, it is recovered when exactly one JSON object can be found in it: the only fenced code block that holds one, or else the only top-level object in surrounding prose. With no candidate, or with several, nothing is recovered. A recovered answer is graded on its content and loses 20% of its score. An answer that cannot be parsed fails every cell.
 
 ## Not scored

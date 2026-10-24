@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "r3-logic-grid",
   "version": "0.3.0",
   "familyId": "r3-logic-grid",
@@ -29,19 +29,23 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "fa44a85260867ef722d88f9ad552f4c4c3b212cf0270b764a9620138a448f34f"
+        "sha256": "7f124ca54db0f598d900d66c9cde5166234149e589bf76e704f149ec0a2de49a"
+      },
+      {
+        "path": "card.md",
+        "sha256": "f61df0ad0efeade21636081646cb7a21ad138c5a8df2a904717d161ce8e49da5"
       },
       {
         "path": "rubric.md",
-        "sha256": "eda9fb6addf5a8dbd98db020b6db3d1d02acb6c37f27f57865a666953d8636c8"
+        "sha256": "8ac776607d4ba05ddaa16ebe3adb63d45e264954b20ec1eb89edaca9537b769f"
       },
       {
         "path": "private/generate.py",
-        "sha256": "2f1cd5cf2cd87824e64f91a8d35f8c673e9e41f33abe99d18410fc3e259a4ac3"
+        "sha256": "345acfac1979a69df45d322ccd52b4bac4adc653d90863d2a58989943f41b04e"
       },
       {
         "path": "private/grader.py",
-        "sha256": "df897e8af4de5963016a9a1396309041b06be809db4c2d35122105dedbc67745"
+        "sha256": "c47a3f7760dc3515e4d41751e1e61fc1d2de8d575a71c24092579ccd3210f9d3"
       },
       {
         "path": "private/keys.json",
@@ -863,9 +867,146 @@
       ]
     }
   ],
-  "scoring": {
-    "formatCheckId": "answer-format",
-    "formatPenalty": 0.2
+  "tier": "core",
+  "capabilities": [
+    "reasoning"
+  ],
+  "card": "card.md",
+  "scoreModel": {
+    "primary": {
+      "kind": "resolved"
+    },
+    "groups": [
+      {
+        "id": "cells",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "cell-h1-a1",
+          "cell-h1-a2",
+          "cell-h1-a3",
+          "cell-h1-a4",
+          "cell-h1-a5",
+          "cell-h1-a6",
+          "cell-h1-a7",
+          "cell-h1-a8",
+          "cell-h1-a9",
+          "cell-h1-a10",
+          "cell-h2-a1",
+          "cell-h2-a2",
+          "cell-h2-a3",
+          "cell-h2-a4",
+          "cell-h2-a5",
+          "cell-h2-a6",
+          "cell-h2-a7",
+          "cell-h2-a8",
+          "cell-h2-a9",
+          "cell-h2-a10",
+          "cell-h3-a1",
+          "cell-h3-a2",
+          "cell-h3-a3",
+          "cell-h3-a4",
+          "cell-h3-a5",
+          "cell-h3-a6",
+          "cell-h3-a7",
+          "cell-h3-a8",
+          "cell-h3-a9",
+          "cell-h3-a10",
+          "cell-h4-a1",
+          "cell-h4-a2",
+          "cell-h4-a3",
+          "cell-h4-a4",
+          "cell-h4-a5",
+          "cell-h4-a6",
+          "cell-h4-a7",
+          "cell-h4-a8",
+          "cell-h4-a9",
+          "cell-h4-a10",
+          "cell-h5-a1",
+          "cell-h5-a2",
+          "cell-h5-a3",
+          "cell-h5-a4",
+          "cell-h5-a5",
+          "cell-h5-a6",
+          "cell-h5-a7",
+          "cell-h5-a8",
+          "cell-h5-a9",
+          "cell-h5-a10",
+          "cell-h6-a1",
+          "cell-h6-a2",
+          "cell-h6-a3",
+          "cell-h6-a4",
+          "cell-h6-a5",
+          "cell-h6-a6",
+          "cell-h6-a7",
+          "cell-h6-a8",
+          "cell-h6-a9",
+          "cell-h6-a10",
+          "cell-h7-a1",
+          "cell-h7-a2",
+          "cell-h7-a3",
+          "cell-h7-a4",
+          "cell-h7-a5",
+          "cell-h7-a6",
+          "cell-h7-a7",
+          "cell-h7-a8",
+          "cell-h7-a9",
+          "cell-h7-a10",
+          "cell-h8-a1",
+          "cell-h8-a2",
+          "cell-h8-a3",
+          "cell-h8-a4",
+          "cell-h8-a5",
+          "cell-h8-a6",
+          "cell-h8-a7",
+          "cell-h8-a8",
+          "cell-h8-a9",
+          "cell-h8-a10",
+          "cell-h9-a1",
+          "cell-h9-a2",
+          "cell-h9-a3",
+          "cell-h9-a4",
+          "cell-h9-a5",
+          "cell-h9-a6",
+          "cell-h9-a7",
+          "cell-h9-a8",
+          "cell-h9-a9",
+          "cell-h9-a10",
+          "cell-h10-a1",
+          "cell-h10-a2",
+          "cell-h10-a3",
+          "cell-h10-a4",
+          "cell-h10-a5",
+          "cell-h10-a6",
+          "cell-h10-a7",
+          "cell-h10-a8",
+          "cell-h10-a9",
+          "cell-h10-a10"
+        ]
+      }
+    ],
+    "metrics": [
+      {
+        "id": "cellAccuracy",
+        "unit": "share of cells",
+        "direction": "higher"
+      },
+      {
+        "id": "constraintValidity",
+        "unit": "share of clues",
+        "direction": "higher"
+      },
+      {
+        "id": "wellFormed",
+        "unit": "0 or 1",
+        "direction": "higher"
+      }
+    ],
+    "format": {
+      "checkId": "answer-format",
+      "penalty": 0.2
+    }
   },
   "items": [
     {
@@ -895,7 +1036,15 @@
         "REQ-H4-A3",
         "REQ-H4-A4",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:4x4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L1-02",
@@ -924,7 +1073,15 @@
         "REQ-H4-A3",
         "REQ-H4-A4",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:4x4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L1-03",
@@ -953,7 +1110,15 @@
         "REQ-H4-A3",
         "REQ-H4-A4",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:4x4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L1-04",
@@ -982,7 +1147,15 @@
         "REQ-H4-A3",
         "REQ-H4-A4",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:4x4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L1-05",
@@ -1011,7 +1184,15 @@
         "REQ-H4-A3",
         "REQ-H4-A4",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:4x4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L1-06",
@@ -1040,7 +1221,15 @@
         "REQ-H4-A3",
         "REQ-H4-A4",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:4x4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L1-07",
@@ -1069,7 +1258,15 @@
         "REQ-H4-A3",
         "REQ-H4-A4",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:4x4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L1-08",
@@ -1098,7 +1295,15 @@
         "REQ-H4-A3",
         "REQ-H4-A4",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:4x4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L2-01",
@@ -1136,7 +1341,15 @@
         "REQ-H5-A4",
         "REQ-H5-A5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:5x5",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L2-02",
@@ -1174,7 +1387,15 @@
         "REQ-H5-A4",
         "REQ-H5-A5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:5x5",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L2-03",
@@ -1212,7 +1433,15 @@
         "REQ-H5-A4",
         "REQ-H5-A5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:5x5",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L2-04",
@@ -1250,7 +1479,15 @@
         "REQ-H5-A4",
         "REQ-H5-A5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:5x5",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L2-05",
@@ -1288,7 +1525,15 @@
         "REQ-H5-A4",
         "REQ-H5-A5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:5x5",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L2-06",
@@ -1326,7 +1571,15 @@
         "REQ-H5-A4",
         "REQ-H5-A5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:5x5",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L2-07",
@@ -1364,7 +1617,15 @@
         "REQ-H5-A4",
         "REQ-H5-A5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:5x5",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L2-08",
@@ -1402,7 +1663,15 @@
         "REQ-H5-A4",
         "REQ-H5-A5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:5x5",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L3-01",
@@ -1451,7 +1720,15 @@
         "REQ-H6-A5",
         "REQ-H6-A6",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:6x6",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L3-02",
@@ -1500,7 +1777,15 @@
         "REQ-H6-A5",
         "REQ-H6-A6",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:6x6",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L3-03",
@@ -1549,7 +1834,15 @@
         "REQ-H6-A5",
         "REQ-H6-A6",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:6x6",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L3-04",
@@ -1598,7 +1891,15 @@
         "REQ-H6-A5",
         "REQ-H6-A6",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:6x6",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L3-05",
@@ -1647,7 +1948,15 @@
         "REQ-H6-A5",
         "REQ-H6-A6",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:6x6",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L3-06",
@@ -1696,7 +2005,15 @@
         "REQ-H6-A5",
         "REQ-H6-A6",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:6x6",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L3-07",
@@ -1745,7 +2062,15 @@
         "REQ-H6-A5",
         "REQ-H6-A6",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:6x6",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L3-08",
@@ -1794,7 +2119,15 @@
         "REQ-H6-A5",
         "REQ-H6-A6",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:6x6",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L4-01",
@@ -1856,7 +2189,15 @@
         "REQ-H7-A6",
         "REQ-H7-A7",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:7x7",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L4-02",
@@ -1918,7 +2259,15 @@
         "REQ-H7-A6",
         "REQ-H7-A7",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:7x7",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L4-03",
@@ -1980,7 +2329,15 @@
         "REQ-H7-A6",
         "REQ-H7-A7",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:7x7",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L4-04",
@@ -2042,7 +2399,15 @@
         "REQ-H7-A6",
         "REQ-H7-A7",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:7x7",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L4-05",
@@ -2104,7 +2469,15 @@
         "REQ-H7-A6",
         "REQ-H7-A7",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:7x7",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L4-06",
@@ -2166,7 +2539,15 @@
         "REQ-H7-A6",
         "REQ-H7-A7",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:7x7",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L4-07",
@@ -2228,7 +2609,15 @@
         "REQ-H7-A6",
         "REQ-H7-A7",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:7x7",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L4-08",
@@ -2290,7 +2679,15 @@
         "REQ-H7-A6",
         "REQ-H7-A7",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:7x7",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L5-01",
@@ -2367,7 +2764,15 @@
         "REQ-H8-A7",
         "REQ-H8-A8",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:8x8",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L5-02",
@@ -2444,7 +2849,15 @@
         "REQ-H8-A7",
         "REQ-H8-A8",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:8x8",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L5-03",
@@ -2521,7 +2934,15 @@
         "REQ-H8-A7",
         "REQ-H8-A8",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:8x8",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L5-04",
@@ -2598,7 +3019,15 @@
         "REQ-H8-A7",
         "REQ-H8-A8",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:8x8",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L5-05",
@@ -2675,7 +3104,15 @@
         "REQ-H8-A7",
         "REQ-H8-A8",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:8x8",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L5-06",
@@ -2752,7 +3189,15 @@
         "REQ-H8-A7",
         "REQ-H8-A8",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:8x8",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L5-07",
@@ -2829,7 +3274,15 @@
         "REQ-H8-A7",
         "REQ-H8-A8",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:8x8",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L5-08",
@@ -2906,7 +3359,15 @@
         "REQ-H8-A7",
         "REQ-H8-A8",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:8x8",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L6-01",
@@ -3000,7 +3461,15 @@
         "REQ-H9-A8",
         "REQ-H9-A9",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:9x9",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L6-02",
@@ -3094,7 +3563,15 @@
         "REQ-H9-A8",
         "REQ-H9-A9",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:9x9",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L6-03",
@@ -3188,7 +3665,15 @@
         "REQ-H9-A8",
         "REQ-H9-A9",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:9x9",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L6-04",
@@ -3282,7 +3767,15 @@
         "REQ-H9-A8",
         "REQ-H9-A9",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:9x9",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L6-05",
@@ -3376,7 +3869,15 @@
         "REQ-H9-A8",
         "REQ-H9-A9",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:9x9",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L6-06",
@@ -3470,7 +3971,15 @@
         "REQ-H9-A8",
         "REQ-H9-A9",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:9x9",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L6-07",
@@ -3564,7 +4073,15 @@
         "REQ-H9-A8",
         "REQ-H9-A9",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:9x9",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L6-08",
@@ -3658,7 +4175,15 @@
         "REQ-H9-A8",
         "REQ-H9-A9",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:9x9",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L7-01",
@@ -3771,7 +4296,15 @@
         "REQ-H10-A9",
         "REQ-H10-A10",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:10x10",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L7-02",
@@ -3884,7 +4417,15 @@
         "REQ-H10-A9",
         "REQ-H10-A10",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:10x10",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L7-03",
@@ -3997,7 +4538,15 @@
         "REQ-H10-A9",
         "REQ-H10-A10",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:10x10",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L7-04",
@@ -4110,7 +4659,15 @@
         "REQ-H10-A9",
         "REQ-H10-A10",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:10x10",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L7-05",
@@ -4223,7 +4780,15 @@
         "REQ-H10-A9",
         "REQ-H10-A10",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:10x10",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L7-06",
@@ -4336,7 +4901,15 @@
         "REQ-H10-A9",
         "REQ-H10-A10",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:10x10",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L7-07",
@@ -4449,7 +5022,15 @@
         "REQ-H10-A9",
         "REQ-H10-A10",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:10x10",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L7-08",
@@ -4562,7 +5143,15 @@
         "REQ-H10-A9",
         "REQ-H10-A10",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "size:10x10",
+      "provenance": {
+        "source": "project generator private/generate.py, seed r3-2026-10",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     }
   ],
   "generator": {
@@ -4575,7 +5164,7 @@
   ],
   "grader": {
     "id": "r3-logic-grid-cells",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

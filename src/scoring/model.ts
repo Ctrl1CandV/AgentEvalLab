@@ -83,6 +83,11 @@ export interface OutcomeInput {
   /** The item's raw anchor values per metric and anchor name. */
   anchors?: Record<string, Record<string, number>>;
   scoreRunId?: string | null;
+  /**
+   * The checks this task is graded on (its active requirements; a trajectory's final stage). A group counts only these;
+   * an expected check the grading does not show counts as failed. Omitted, the evaluation's own checks are expected.
+   */
+  expectedCheckIds?: string[];
 }
 
 /** Sum of one usage field over requests, or null when any request did not report it ("not reported", never 0). */
@@ -134,24 +139,26 @@ export function buildOutcome(input: OutcomeInput): OutcomeRecord {
     const points = itemAnchors(metric, input.anchors?.[metric.id]);
     if (raw && points) normalised[metric.id] = { ...normalise(raw.value, points, metric.direction), anchorVersion: metric.anchors!.version };
   }
+  const expected = new Set(input.expectedCheckIds ?? evaluation.checks.map(check => check.id));
   const groups: OutcomeRecord["groups"] = {};
-  for (const group of scoreModel.groups) {
+  // A group with none of the task's checks does not apply to it (an item of another size, say).
+  const applying = scoreModel.groups.filter(group => group.rule === "metric" || group.checkIds.some(id => expected.has(id)));
+  for (const group of applying) {
     let score: number;
     if (group.rule === "metric") {
       // The diagnostic weighs a metric group within [0, 1]; the uncapped value is the primary, not the diagnostic.
       score = coverage === "scored" ? Math.min(1, normalised[group.metric!]?.value ?? 0) : 0;
     } else {
-      const verdicts = group.checkIds.map(id => passed.get(id));
-      const judged = verdicts.filter(value => value === true || value === false);
-      const share = judged.length ? judged.filter(value => value === true).length / group.checkIds.length : 0;
+      const own = group.checkIds.filter(id => expected.has(id));
+      const share = own.filter(id => passed.get(id) === true).length / own.length;
       score = group.rule === "all" ? (share === 1 ? 1 : 0) : share;
     }
     groups[group.id] = { score, weight: group.weight, critical: group.critical };
   }
-  const totalWeight = scoreModel.groups.reduce((total, group) => total + group.weight, 0);
+  const totalWeight = applying.reduce((total, group) => total + group.weight, 0);
   const diagnostic = coverage === "scored" && totalWeight > 0
-    ? scoreModel.groups.reduce((total, group) => total + group.weight * groups[group.id]!.score, 0) / totalWeight : null;
-  const criticalPass = scoreModel.groups.filter(group => group.critical).every(group => groups[group.id]!.score === 1);
+    ? applying.reduce((total, group) => total + group.weight * groups[group.id]!.score, 0) / totalWeight : null;
+  const criticalPass = applying.filter(group => group.critical).every(group => groups[group.id]!.score === 1);
   const resolved = coverage === "scored" ? criticalPass : null;
   let primary: number | null = null;
   if (coverage === "scored") {

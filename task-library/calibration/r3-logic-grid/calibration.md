@@ -41,3 +41,13 @@ L4–L6 on five models (`experiments/r3-calibration-2026-10/README.md`): deepsee
 - **L7**: eight 10-by-10 puzzles of 73–79 clues, every attribute category the generator has. Generating one takes 5–7 seconds.
 - L1–L6 items and keys are unchanged.
 - Self-calibration: 504/504; see `logs/self-calibration-0.3.0.log`.
+
+## Grader 2.0.0 (2026-10-24, task 0.3.0 unchanged)
+
+PLAN-007 WP1.6: R3 is the first contract family on manifest v2.
+
+- **Manifest v2:** tier core, capability reasoning, the capability card `card.md`, a score model with a resolved primary and one critical group of cells (rule fraction), the format check apart, and three diagnostic metrics. Every item is in the dev split (all have been seen in pilots); a structure group is a grid size.
+- **Grader result v2:** `cellAccuracy`, `constraintValidity` and `wellFormed` beside the cell checks.
+- **Self-calibration** (`logs/self-calibration-0.3.0-grader-2.0.0.log`, 672/672): besides the earlier rows, every key scores 1 on all three metrics; a swap of two values stays well formed but breaks some clue (the clue set is minimal and the solution unique); a duplicated value is not well formed; an unparsable reply scores 0 on all three.
+- Items and keys were regenerated from the same seed and are byte for byte the same.
+- The trials of the 0.3.0 pilot (`runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb`) were re-graded under 2.0.0 into new score runs with v2 outcomes.

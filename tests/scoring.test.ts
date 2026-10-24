@@ -122,3 +122,15 @@ test("cluster bootstrap: seeded and repeatable, no interval below five groups, p
   assert.notEqual(comparison.interval, "n too small");
   assert.ok(comparison.tInterval, "the t interval of pairedDifference is the cross-check");
 });
+
+test("groups count only the task's own checks; an expected check the grading lacks counts as failed", () => {
+  const cells: ScoreModel = { primary: { kind: "resolved" }, groups: [{ id: "cells", weight: 1, critical: true, rule: "fraction", checkIds: ["c1", "c2", "c3", "c4"] }] };
+  const small = buildOutcome({ ...base, evaluation: { status: "passed", score: null, error: null, checks: [{ id: "c1", passed: true }, { id: "c2", passed: true }] },
+    execution: emptyExecution(), scoreModel: cells, expectedCheckIds: ["c1", "c2"] });
+  assert.equal(small.groups.cells!.score, 1, "a smaller item is judged on its own cells");
+  assert.equal(small.resolved, true);
+  const stopped = buildOutcome({ ...base, evaluation: { status: "passed", score: null, error: null, checks: [{ id: "c1", passed: true }, { id: "c2", passed: true }] },
+    execution: emptyExecution(), scoreModel: cells, expectedCheckIds: ["c1", "c2", "c3", "c4"] });
+  assert.equal(stopped.groups.cells!.score, 0.5, "a trajectory that never reached the later checks fails them");
+  assert.equal(stopped.resolved, false);
+});

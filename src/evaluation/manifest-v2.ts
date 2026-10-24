@@ -53,8 +53,9 @@ export class ManifestV2Error extends Error {
 }
 
 const IDENTIFIER = /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/;
+// "generator" records how a generated package was built (R3, T1); v1 manifests carry it without validation.
 const V1_KEYS = ["schemaVersion", "id", "version", "familyId", "capability", "usage", "source", "license", "entryPoint", "files", "requirements", "stages",
-  "items", "dimensions", "scoring", "toolProfiles", "baseline", "grader", "environment"];
+  "items", "dimensions", "scoring", "toolProfiles", "baseline", "grader", "environment", "generator"];
 const V2_KEYS = ["tier", "capabilities", "card", "scoreModel", "task", "runtime"];
 const ITEM_KEYS = ["id", "level", "files", "activeRequirementIds", "split", "structure", "provenance", "anchors"];
 

@@ -19,8 +19,12 @@ LEVELS = [("L1", 4), ("L2", 5), ("L3", 6), ("L4", 7), ("L5", 8), ("L6", 9), ("L7
 MAX_SIZE = max(size for _, size in LEVELS)
 TASK_ID = "r3-logic-grid"
 TASK_VERSION = "0.3.0"
-GRADER_VERSION = "1.0.0"
-TRUSTED = ["calibration.md", "rubric.md", "private/generate.py", "private/grader.py", "private/keys.json", "private/logic_grid.py"]
+GRADER_VERSION = "2.0.0"
+TRUSTED = ["calibration.md", "card.md", "rubric.md", "private/generate.py", "private/grader.py", "private/keys.json", "private/logic_grid.py"]
+# Manifest v2 (grader 2.0.0): every generated item so far has been seen in pilots, so all of them are dev; a structure
+# group is a grid size, since a level's items share the generator template (VALIDATION §3).
+SPLIT = "dev"
+PUBLISHED = "2026-10-20"
 
 
 def digest(path):
@@ -51,21 +55,32 @@ def main():
             write_text(path, logic_grid.prompt(item_id, puzzle))
             cells = [f"REQ-H{h}-A{a}" for h in range(1, size + 1) for a in range(1, size + 1)]
             items.append({"id": item_id, "level": level, "files": [{"path": path, "sha256": digest(path)}],
-                          "activeRequirementIds": cells + ["REQ-FORMAT"]})
+                          "activeRequirementIds": cells + ["REQ-FORMAT"], "split": SPLIT, "structure": f"size:{size}x{size}",
+                          "provenance": {"source": f"project generator private/generate.py, seed {args.seed}", "published": PUBLISHED,
+                                         "license": "project-authored", "exposure": "generated"}})
             print(f"{item_id}: {size}x{size}, {len(puzzle['clues'])} clues", file=sys.stderr)
     write_text("private/keys.json", json.dumps(keys, indent=1, ensure_ascii=False) + "\n")
     requirements = [{"id": f"REQ-H{h}-A{a}", "critical": True, "introducedAt": f"{TASK_ID} {TASK_VERSION}", "checkIds": [f"cell-h{h}-a{a}"]}
                     for h in range(1, MAX_SIZE + 1) for a in range(1, MAX_SIZE + 1)]
     requirements.append({"id": "REQ-FORMAT", "critical": False, "introducedAt": f"{TASK_ID} {TASK_VERSION}", "checkIds": ["answer-format"]})
+    cell_checks = [f"cell-h{h}-a{a}" for h in range(1, MAX_SIZE + 1) for a in range(1, MAX_SIZE + 1)]
     manifest = {
-        "schemaVersion": 1, "id": TASK_ID, "version": TASK_VERSION, "familyId": "r3-logic-grid", "capability": "reasoning", "usage": "development",
+        "schemaVersion": 2, "id": TASK_ID, "version": TASK_VERSION, "familyId": "r3-logic-grid", "capability": "reasoning", "usage": "development",
         "source": {"kind": "original-design", "references": ["docs/design/TASK_SET_V2.md", "https://arxiv.org/pdf/2502.01100"]},
         "license": {"taskText": "Original project-authored generator and puzzles; ZebraLogic inspired the form, and no text is copied.", "thirdPartyContent": []},
         "entryPoint": {"instruction": "instruction.md"},
         "files": {"public": [{"path": "instruction.md", "sha256": digest("instruction.md")}],
                   "trusted": [{"path": path, "sha256": digest(path)} for path in TRUSTED]},
         "requirements": requirements,
-        "scoring": {"formatCheckId": "answer-format", "formatPenalty": 0.2},
+        "tier": "core", "capabilities": ["reasoning"], "card": "card.md",
+        "scoreModel": {
+            "primary": {"kind": "resolved"},
+            "groups": [{"id": "cells", "weight": 1, "critical": True, "rule": "fraction", "checkIds": cell_checks}],
+            "metrics": [{"id": "cellAccuracy", "unit": "share of cells", "direction": "higher"},
+                        {"id": "constraintValidity", "unit": "share of clues", "direction": "higher"},
+                        {"id": "wellFormed", "unit": "0 or 1", "direction": "higher"}],
+            "format": {"checkId": "answer-format", "penalty": 0.2},
+        },
         "items": items,
         "generator": {"entryPoint": "private/generate.py", "seed": args.seed, "perLevel": args.per_level},
         "toolProfiles": ["workspace-basic"],
