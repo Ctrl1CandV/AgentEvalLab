@@ -1,0 +1,438 @@
+{
+ "family": "E3",
+ "date": "2026-10-24",
+ "package": "task-library/candidates/eng-005-long-cycle-maintenance",
+ "runs": [
+  "runs/suites/20261022-142620-dev-6a7f/runs/E3-deepseek-deepseek-flash-high/4b9b7367-3f7f-4bdf-9c1c-f259b7c099de",
+  "runs/suites/20261022-142620-dev-6a7f/runs/E3-aliplan-qwen3.8-flash-default/c3ba21dd-f263-448b-8784-6c16280c410b",
+  "runs/suites/20261022-161703-dev-ca69/runs/E3-deepseek-deepseek-flash-high/436296c6-e4a1-4805-b532-dc0a75feab77",
+  "runs/suites/20261022-161703-dev-ca69/runs/E3-aliplan-qwen3.8-flash-default/642275a5-c34f-4ce4-81d3-d7e01e585759",
+  "runs/suites/20261023-023502-dev-c750/runs/E3-deepseek-deepseek-flash-high/fb36fb89-8f24-4cf9-9eea-69628167561e",
+  "runs/suites/20261023-023502-dev-c750/runs/E3-aliplan-qwen3.8-flash-default/86a5f4b7-fce3-43e4-be09-e5aaf059da91",
+  "runs/suites/20261023-034838-dev-65e9/runs/E3-deepseek-deepseek-flash-high/4190f343-67a7-469a-8d9b-fbba98c610ae",
+  "runs/suites/20261023-034838-dev-65e9/runs/E3-aliplan-qwen3.8-flash-default/2cf1940f-b6ca-4e4e-9752-4cefcf668792",
+  "runs/suites/20261023-113824-dev-b319/runs/E3-deepseek-deepseek-flash-high/e3706c6f-67fa-442b-af83-3a25c0fc0035",
+  "runs/suites/20261023-113824-dev-b319/runs/E3-aliplan-qwen3.8-flash-default/f39e318e-934a-4895-ba98-26053edabb51"
+ ],
+ "selection": "all",
+ "trials": [
+  {
+   "directory": "runs/suites/20261022-142620-dev-6a7f/runs/E3-deepseek-deepseek-flash-high/4b9b7367-3f7f-4bdf-9c1c-f259b7c099de/00975b63-8efe-4d30-be19-a9ed8bb46060",
+   "itemId": null,
+   "label": "deepseek:deepseek-flash-high",
+   "score": null,
+   "status": "stopped",
+   "runDirectory": "runs/suites/20261022-142620-dev-6a7f/runs/E3-deepseek-deepseek-flash-high/4b9b7367-3f7f-4bdf-9c1c-f259b7c099de"
+  },
+  {
+   "directory": "runs/suites/20261022-142620-dev-6a7f/runs/E3-aliplan-qwen3.8-flash-default/c3ba21dd-f263-448b-8784-6c16280c410b/fb1d7dda-194e-4650-b44d-c18df0e3bfbb",
+   "itemId": null,
+   "label": "aliplan:qwen3.8-flash-default",
+   "score": null,
+   "status": "stopped",
+   "runDirectory": "runs/suites/20261022-142620-dev-6a7f/runs/E3-aliplan-qwen3.8-flash-default/c3ba21dd-f263-448b-8784-6c16280c410b"
+  },
+  {
+   "directory": "runs/suites/20261022-161703-dev-ca69/runs/E3-deepseek-deepseek-flash-high/436296c6-e4a1-4805-b532-dc0a75feab77/1a12d8d5-8c3f-4552-bd13-cd465dae0ca5",
+   "itemId": null,
+   "label": "deepseek:deepseek-flash-high",
+   "score": null,
+   "status": "completed",
+   "runDirectory": "runs/suites/20261022-161703-dev-ca69/runs/E3-deepseek-deepseek-flash-high/436296c6-e4a1-4805-b532-dc0a75feab77"
+  },
+  {
+   "directory": "runs/suites/20261022-161703-dev-ca69/runs/E3-aliplan-qwen3.8-flash-default/642275a5-c34f-4ce4-81d3-d7e01e585759/dff96cc7-dfbe-4223-9218-70c70f448843",
+   "itemId": null,
+   "label": "aliplan:qwen3.8-flash-default",
+   "score": null,
+   "status": "stopped",
+   "runDirectory": "runs/suites/20261022-161703-dev-ca69/runs/E3-aliplan-qwen3.8-flash-default/642275a5-c34f-4ce4-81d3-d7e01e585759"
+  },
+  {
+   "directory": "runs/suites/20261023-023502-dev-c750/runs/E3-deepseek-deepseek-flash-high/fb36fb89-8f24-4cf9-9eea-69628167561e/fe9426b7-3d07-42e2-ac24-02b2c063e03f",
+   "itemId": null,
+   "label": "deepseek:deepseek-flash-high",
+   "score": null,
+   "status": "completed",
+   "runDirectory": "runs/suites/20261023-023502-dev-c750/runs/E3-deepseek-deepseek-flash-high/fb36fb89-8f24-4cf9-9eea-69628167561e"
+  },
+  {
+   "directory": "runs/suites/20261023-023502-dev-c750/runs/E3-aliplan-qwen3.8-flash-default/86a5f4b7-fce3-43e4-be09-e5aaf059da91/606fc8e0-a7b3-48cf-891a-32e555b9c97e",
+   "itemId": null,
+   "label": "aliplan:qwen3.8-flash-default",
+   "score": null,
+   "status": "completed",
+   "runDirectory": "runs/suites/20261023-023502-dev-c750/runs/E3-aliplan-qwen3.8-flash-default/86a5f4b7-fce3-43e4-be09-e5aaf059da91"
+  },
+  {
+   "directory": "runs/suites/20261023-034838-dev-65e9/runs/E3-deepseek-deepseek-flash-high/4190f343-67a7-469a-8d9b-fbba98c610ae/2aed8933-7212-4c97-a658-229e039ea7e7",
+   "itemId": null,
+   "label": "deepseek:deepseek-flash-high",
+   "score": null,
+   "status": "completed",
+   "runDirectory": "runs/suites/20261023-034838-dev-65e9/runs/E3-deepseek-deepseek-flash-high/4190f343-67a7-469a-8d9b-fbba98c610ae"
+  },
+  {
+   "directory": "runs/suites/20261023-034838-dev-65e9/runs/E3-aliplan-qwen3.8-flash-default/2cf1940f-b6ca-4e4e-9752-4cefcf668792/8d77e7ab-6fc2-4364-914d-a1081538254e",
+   "itemId": null,
+   "label": "aliplan:qwen3.8-flash-default",
+   "score": null,
+   "status": "stopped",
+   "runDirectory": "runs/suites/20261023-034838-dev-65e9/runs/E3-aliplan-qwen3.8-flash-default/2cf1940f-b6ca-4e4e-9752-4cefcf668792"
+  },
+  {
+   "directory": "runs/suites/20261023-113824-dev-b319/runs/E3-deepseek-deepseek-flash-high/e3706c6f-67fa-442b-af83-3a25c0fc0035/b4055792-be99-4438-a562-27287aded085",
+   "itemId": null,
+   "label": "deepseek:deepseek-flash-high",
+   "score": null,
+   "status": "completed",
+   "runDirectory": "runs/suites/20261023-113824-dev-b319/runs/E3-deepseek-deepseek-flash-high/e3706c6f-67fa-442b-af83-3a25c0fc0035"
+  },
+  {
+   "directory": "runs/suites/20261023-113824-dev-b319/runs/E3-aliplan-qwen3.8-flash-default/f39e318e-934a-4895-ba98-26053edabb51/b20e5619-eba9-4074-987a-e962f72bf374",
+   "itemId": null,
+   "label": "aliplan:qwen3.8-flash-default",
+   "score": null,
+   "status": "completed",
+   "runDirectory": "runs/suites/20261023-113824-dev-b319/runs/E3-aliplan-qwen3.8-flash-default/f39e318e-934a-4895-ba98-26053edabb51"
+  }
+ ],
+ "summary": {
+  "true pass": 27,
+  "true fail": 7,
+  "note": 2
+ },
+ "notes": [
+  "Each unit runs on a fresh copy of the trajectory's final snapshot, in the sandbox, with stores generated for the audit (seeded per trial).",
+  "Where a brief leaves something open (the code of a duplicate dependency, the pages of an empty result, the code when a skipped transition also lacks finished prerequisites), the audit accepts any of the readings.",
+  "A unit whose grader checks failed but where the audit found no defect is a note, not a false fail: the audit uses other inputs than the hidden checks."
+ ],
+ "oracle": null,
+ "references": null,
+ "findings": [
+  {
+   "trial": "runs/suites/20261022-142620-dev-6a7f/runs/E3-deepseek-deepseek-flash-high/4b9b7367-3f7f-4bdf-9c1c-f259b7c099de/00975b63-8efe-4d30-be19-a9ed8bb46060",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S6",
+   "unit": "S1 queries on random stores",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261022-142620-dev-6a7f/runs/E3-deepseek-deepseek-flash-high/4b9b7367-3f7f-4bdf-9c1c-f259b7c099de/00975b63-8efe-4d30-be19-a9ed8bb46060",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S6",
+   "unit": "S2/S3/S5 dependency and status sequences",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261022-142620-dev-6a7f/runs/E3-deepseek-deepseek-flash-high/4b9b7367-3f7f-4bdf-9c1c-f259b7c099de/00975b63-8efe-4d30-be19-a9ed8bb46060",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S6",
+   "unit": "S4 migration and events",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261022-142620-dev-6a7f/runs/E3-aliplan-qwen3.8-flash-default/c3ba21dd-f263-448b-8784-6c16280c410b/fb1d7dda-194e-4650-b44d-c18df0e3bfbb",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "S6",
+   "unit": "S1 queries on random stores",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261022-142620-dev-6a7f/runs/E3-aliplan-qwen3.8-flash-default/c3ba21dd-f263-448b-8784-6c16280c410b/fb1d7dda-194e-4650-b44d-c18df0e3bfbb",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "S6",
+   "unit": "S2/S3/S5 dependency and status sequences",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261022-142620-dev-6a7f/runs/E3-aliplan-qwen3.8-flash-default/c3ba21dd-f263-448b-8784-6c16280c410b/fb1d7dda-194e-4650-b44d-c18df0e3bfbb",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "S6",
+   "unit": "S4 migration and events",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261022-161703-dev-ca69/runs/E3-deepseek-deepseek-flash-high/436296c6-e4a1-4805-b532-dc0a75feab77/1a12d8d5-8c3f-4552-bd13-cd465dae0ca5",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S7",
+   "unit": "S1 queries on random stores",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "list list --sort id --order asc --page 1 --page-size 5 --status DONE: got None expected {'total': 7, 'page': 1, 'pageSize': 5, 'pages': 2, 'items': ['AU-003', 'AU-005', 'AU-008', 'AU-015', 'AU-016']}; list list --sort createdAt --order asc --page 6 --page-size 1 --status DONE: got None expected {'total': 7, 'page': 6, 'pageSize': 1, 'pages': 7, 'items': ['AU-016']}; list list --sort createdAt --order asc --page 1 --page-size 7 --status IN_PROGRESS: got None expected {'total': 10, 'page': 1, 'pageSize': 7, 'pages': 2, 'items': ['AU-019', 'AU-004', 'AU-020', 'AU-022', 'AU-006', 'AU-018', 'AU-021']}; list list --sort title --order asc --page 2 --page-size 2 --status DONE: got None expected {'total': 7, 'page': 2, 'pageSize': 2, 'pages': 4, 'items': ['AU-015', 'AU-008']} (+25 more)"
+  },
+  {
+   "trial": "runs/suites/20261022-161703-dev-ca69/runs/E3-deepseek-deepseek-flash-high/436296c6-e4a1-4805-b532-dc0a75feab77/1a12d8d5-8c3f-4552-bd13-cd465dae0ca5",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S7",
+   "unit": "S2/S3/S5 dependency and status sequences",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "depends add AU-011 AU-999: code INTERNAL_ERROR, expected ['NOT_FOUND']; depends add AU-012 AU-999: code INTERNAL_ERROR, expected ['NOT_FOUND']; depends add AU-014 AU-007 refused: {\"ok\":false,\"error\":{\"code\":\"INTERNAL_ERROR\",\"message\":\"addDependency is not defined\"}}; depends add AU-010 AU-004 refused: {\"ok\":false,\"error\":{\"code\":\"INTERNAL_ERROR\",\"message\":\"addDependency is not defined\"}} (+20 more)"
+  },
+  {
+   "trial": "runs/suites/20261022-161703-dev-ca69/runs/E3-deepseek-deepseek-flash-high/436296c6-e4a1-4805-b532-dc0a75feab77/1a12d8d5-8c3f-4552-bd13-cd465dae0ca5",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S7",
+   "unit": "S4 migration and events",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "the first successful write did not migrate to version 2"
+  },
+  {
+   "trial": "runs/suites/20261022-161703-dev-ca69/runs/E3-deepseek-deepseek-flash-high/436296c6-e4a1-4805-b532-dc0a75feab77/1a12d8d5-8c3f-4552-bd13-cd465dae0ca5",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S7",
+   "unit": "S7 plans on random stores",
+   "grader": "fail",
+   "verdict": "note",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261022-161703-dev-ca69/runs/E3-aliplan-qwen3.8-flash-default/642275a5-c34f-4ce4-81d3-d7e01e585759/dff96cc7-dfbe-4223-9218-70c70f448843",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "S5",
+   "unit": "S1 queries on random stores",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261022-161703-dev-ca69/runs/E3-aliplan-qwen3.8-flash-default/642275a5-c34f-4ce4-81d3-d7e01e585759/dff96cc7-dfbe-4223-9218-70c70f448843",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "S5",
+   "unit": "S2/S3/S5 dependency and status sequences",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261022-161703-dev-ca69/runs/E3-aliplan-qwen3.8-flash-default/642275a5-c34f-4ce4-81d3-d7e01e585759/dff96cc7-dfbe-4223-9218-70c70f448843",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "S5",
+   "unit": "S4 migration and events",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-023502-dev-c750/runs/E3-deepseek-deepseek-flash-high/fb36fb89-8f24-4cf9-9eea-69628167561e/fe9426b7-3d07-42e2-ac24-02b2c063e03f",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S7",
+   "unit": "S1 queries on random stores",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-023502-dev-c750/runs/E3-deepseek-deepseek-flash-high/fb36fb89-8f24-4cf9-9eea-69628167561e/fe9426b7-3d07-42e2-ac24-02b2c063e03f",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S7",
+   "unit": "S2/S3/S5 dependency and status sequences",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-023502-dev-c750/runs/E3-deepseek-deepseek-flash-high/fb36fb89-8f24-4cf9-9eea-69628167561e/fe9426b7-3d07-42e2-ac24-02b2c063e03f",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S7",
+   "unit": "S4 migration and events",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-023502-dev-c750/runs/E3-deepseek-deepseek-flash-high/fb36fb89-8f24-4cf9-9eea-69628167561e/fe9426b7-3d07-42e2-ac24-02b2c063e03f",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S7",
+   "unit": "S7 plans on random stores",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-023502-dev-c750/runs/E3-aliplan-qwen3.8-flash-default/86a5f4b7-fce3-43e4-be09-e5aaf059da91/606fc8e0-a7b3-48cf-891a-32e555b9c97e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "S7",
+   "unit": "S1 queries on random stores",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-023502-dev-c750/runs/E3-aliplan-qwen3.8-flash-default/86a5f4b7-fce3-43e4-be09-e5aaf059da91/606fc8e0-a7b3-48cf-891a-32e555b9c97e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "S7",
+   "unit": "S2/S3/S5 dependency and status sequences",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-023502-dev-c750/runs/E3-aliplan-qwen3.8-flash-default/86a5f4b7-fce3-43e4-be09-e5aaf059da91/606fc8e0-a7b3-48cf-891a-32e555b9c97e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "S7",
+   "unit": "S4 migration and events",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-023502-dev-c750/runs/E3-aliplan-qwen3.8-flash-default/86a5f4b7-fce3-43e4-be09-e5aaf059da91/606fc8e0-a7b3-48cf-891a-32e555b9c97e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "S7",
+   "unit": "S7 plans on random stores",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "store 0 on 1 crews: malformed plan; store 1 on 1 crews: malformed plan; store 2 on 1 crews: malformed plan; store 3 on 3 crews: malformed plan (+16 more)"
+  },
+  {
+   "trial": "runs/suites/20261023-034838-dev-65e9/runs/E3-deepseek-deepseek-flash-high/4190f343-67a7-469a-8d9b-fbba98c610ae/2aed8933-7212-4c97-a658-229e039ea7e7",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S7",
+   "unit": "S1 queries on random stores",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-034838-dev-65e9/runs/E3-deepseek-deepseek-flash-high/4190f343-67a7-469a-8d9b-fbba98c610ae/2aed8933-7212-4c97-a658-229e039ea7e7",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S7",
+   "unit": "S2/S3/S5 dependency and status sequences",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "the store or an output became unreadable: JSONDecodeError: Expecting property name enclosed in double quotes: line 121 column 5 (char 2850)"
+  },
+  {
+   "trial": "runs/suites/20261023-034838-dev-65e9/runs/E3-deepseek-deepseek-flash-high/4190f343-67a7-469a-8d9b-fbba98c610ae/2aed8933-7212-4c97-a658-229e039ea7e7",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S7",
+   "unit": "S4 migration and events",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "the store or an output became unreadable: JSONDecodeError: Expecting property name enclosed in double quotes: line 15 column 5 (char 1114)"
+  },
+  {
+   "trial": "runs/suites/20261023-034838-dev-65e9/runs/E3-deepseek-deepseek-flash-high/4190f343-67a7-469a-8d9b-fbba98c610ae/2aed8933-7212-4c97-a658-229e039ea7e7",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S7",
+   "unit": "S7 plans on random stores",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "the store or an output became unreadable: JSONDecodeError: Expecting property name enclosed in double quotes: line 27 column 5 (char 697)"
+  },
+  {
+   "trial": "runs/suites/20261023-034838-dev-65e9/runs/E3-aliplan-qwen3.8-flash-default/2cf1940f-b6ca-4e4e-9752-4cefcf668792/8d77e7ab-6fc2-4364-914d-a1081538254e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "S5",
+   "unit": "S1 queries on random stores",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-034838-dev-65e9/runs/E3-aliplan-qwen3.8-flash-default/2cf1940f-b6ca-4e4e-9752-4cefcf668792/8d77e7ab-6fc2-4364-914d-a1081538254e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "S5",
+   "unit": "S2/S3/S5 dependency and status sequences",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-034838-dev-65e9/runs/E3-aliplan-qwen3.8-flash-default/2cf1940f-b6ca-4e4e-9752-4cefcf668792/8d77e7ab-6fc2-4364-914d-a1081538254e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "S5",
+   "unit": "S4 migration and events",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-113824-dev-b319/runs/E3-deepseek-deepseek-flash-high/e3706c6f-67fa-442b-af83-3a25c0fc0035/b4055792-be99-4438-a562-27287aded085",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S7",
+   "unit": "S1 queries on random stores",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-113824-dev-b319/runs/E3-deepseek-deepseek-flash-high/e3706c6f-67fa-442b-af83-3a25c0fc0035/b4055792-be99-4438-a562-27287aded085",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S7",
+   "unit": "S2/S3/S5 dependency and status sequences",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-113824-dev-b319/runs/E3-deepseek-deepseek-flash-high/e3706c6f-67fa-442b-af83-3a25c0fc0035/b4055792-be99-4438-a562-27287aded085",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S7",
+   "unit": "S4 migration and events",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-113824-dev-b319/runs/E3-deepseek-deepseek-flash-high/e3706c6f-67fa-442b-af83-3a25c0fc0035/b4055792-be99-4438-a562-27287aded085",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "S7",
+   "unit": "S7 plans on random stores",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-113824-dev-b319/runs/E3-aliplan-qwen3.8-flash-default/f39e318e-934a-4895-ba98-26053edabb51/b20e5619-eba9-4074-987a-e962f72bf374",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "S7",
+   "unit": "S1 queries on random stores",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-113824-dev-b319/runs/E3-aliplan-qwen3.8-flash-default/f39e318e-934a-4895-ba98-26053edabb51/b20e5619-eba9-4074-987a-e962f72bf374",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "S7",
+   "unit": "S2/S3/S5 dependency and status sequences",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-113824-dev-b319/runs/E3-aliplan-qwen3.8-flash-default/f39e318e-934a-4895-ba98-26053edabb51/b20e5619-eba9-4074-987a-e962f72bf374",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "S7",
+   "unit": "S4 migration and events",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-113824-dev-b319/runs/E3-aliplan-qwen3.8-flash-default/f39e318e-934a-4895-ba98-26053edabb51/b20e5619-eba9-4074-987a-e962f72bf374",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "S7",
+   "unit": "S7 plans on random stores",
+   "grader": "fail",
+   "verdict": "note",
+   "detail": ""
+  }
+ ]
+}

@@ -1,0 +1,777 @@
+{
+ "family": "VIS",
+ "date": "2026-10-24",
+ "package": "task-library/calibration/vis-001-original-landing",
+ "runs": [
+  "runs/eb491788-9108-41f1-9a32-e671f00873dd",
+  "runs/54429f1e-9094-43d6-8adc-ee27c3ecf2f4",
+  "runs/ec261ceb-8816-4085-9d69-c575efed7364"
+ ],
+ "selection": "all",
+ "trials": [
+  {
+   "directory": "runs/eb491788-9108-41f1-9a32-e671f00873dd/18228b9b-5066-4a26-9aef-4f600ad2d4e2",
+   "itemId": null,
+   "label": "deepseek:deepseek-flash-high",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/eb491788-9108-41f1-9a32-e671f00873dd"
+  },
+  {
+   "directory": "runs/eb491788-9108-41f1-9a32-e671f00873dd/4a6eacc6-3df9-4199-bc7b-f37993bb84f1",
+   "itemId": null,
+   "label": "deepseek:deepseek-flash-high",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/eb491788-9108-41f1-9a32-e671f00873dd"
+  },
+  {
+   "directory": "runs/eb491788-9108-41f1-9a32-e671f00873dd/4e03b3bb-047f-4f39-8eb2-e9d122dc97f3",
+   "itemId": null,
+   "label": "supercn:step-5-preview-medium",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/eb491788-9108-41f1-9a32-e671f00873dd"
+  },
+  {
+   "directory": "runs/eb491788-9108-41f1-9a32-e671f00873dd/c2a589bd-4779-452b-a244-5f0bcf20269f",
+   "itemId": null,
+   "label": "supercn:glm-5.3-high",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/eb491788-9108-41f1-9a32-e671f00873dd"
+  },
+  {
+   "directory": "runs/eb491788-9108-41f1-9a32-e671f00873dd/c3506dc2-d960-4566-9c72-0866889f667c",
+   "itemId": null,
+   "label": "supergpt:gpt-6-luna-medium",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/eb491788-9108-41f1-9a32-e671f00873dd"
+  },
+  {
+   "directory": "runs/eb491788-9108-41f1-9a32-e671f00873dd/e6ef1a02-2fd7-466c-a8cc-6a193897a848",
+   "itemId": null,
+   "label": "supergpt:gpt-6-luna-medium",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/eb491788-9108-41f1-9a32-e671f00873dd"
+  },
+  {
+   "directory": "runs/eb491788-9108-41f1-9a32-e671f00873dd/ec29e858-b85f-406f-9f2c-6c40a51a5a3e",
+   "itemId": null,
+   "label": "supercn:step-5-preview-medium",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/eb491788-9108-41f1-9a32-e671f00873dd"
+  },
+  {
+   "directory": "runs/eb491788-9108-41f1-9a32-e671f00873dd/f8308912-5460-447e-84da-ea08d6a413d5",
+   "itemId": null,
+   "label": "supercn:glm-5.3-high",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/eb491788-9108-41f1-9a32-e671f00873dd"
+  },
+  {
+   "directory": "runs/54429f1e-9094-43d6-8adc-ee27c3ecf2f4/9a6effe7-18b7-4f93-a1f8-ef3a18e9a717",
+   "itemId": null,
+   "label": "aliplan:qwen3.8-flash-default",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/54429f1e-9094-43d6-8adc-ee27c3ecf2f4"
+  },
+  {
+   "directory": "runs/54429f1e-9094-43d6-8adc-ee27c3ecf2f4/ff02ab6f-5971-48bf-8563-145fc07be8c4",
+   "itemId": null,
+   "label": "aliplan:qwen3.8-flash-default",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/54429f1e-9094-43d6-8adc-ee27c3ecf2f4"
+  },
+  {
+   "directory": "runs/ec261ceb-8816-4085-9d69-c575efed7364/071e967f-05cc-4479-b4b3-881a12ce933f",
+   "itemId": null,
+   "label": "supercn:glm-5.3-high",
+   "score": 0.6666666666666666,
+   "status": "failed",
+   "runDirectory": "runs/ec261ceb-8816-4085-9d69-c575efed7364"
+  },
+  {
+   "directory": "runs/ec261ceb-8816-4085-9d69-c575efed7364/0e98afcd-2b84-4262-a283-dc5e8a8377cb",
+   "itemId": null,
+   "label": "supergpt:gpt-6-luna-medium",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/ec261ceb-8816-4085-9d69-c575efed7364"
+  },
+  {
+   "directory": "runs/ec261ceb-8816-4085-9d69-c575efed7364/a29d735e-9a69-4912-9d21-4f1ef84ff8d6",
+   "itemId": null,
+   "label": "deepseek:deepseek-flash-high",
+   "score": 0.8333333333333334,
+   "status": "failed",
+   "runDirectory": "runs/ec261ceb-8816-4085-9d69-c575efed7364"
+  },
+  {
+   "directory": "runs/ec261ceb-8816-4085-9d69-c575efed7364/ab4e6e98-dccc-4e80-b749-8d41ca467b00",
+   "itemId": null,
+   "label": "supercn:step-5-preview-medium",
+   "score": 0.8333333333333334,
+   "status": "failed",
+   "runDirectory": "runs/ec261ceb-8816-4085-9d69-c575efed7364"
+  },
+  {
+   "directory": "runs/ec261ceb-8816-4085-9d69-c575efed7364/b885d6b4-836d-4bb2-bb1e-6d129ce9bcf0",
+   "itemId": null,
+   "label": "deepseek:deepseek-flash-high",
+   "score": 0,
+   "status": "failed",
+   "runDirectory": "runs/ec261ceb-8816-4085-9d69-c575efed7364"
+  },
+  {
+   "directory": "runs/ec261ceb-8816-4085-9d69-c575efed7364/c0d7ac7b-4cec-4966-88ea-db228d92b4c5",
+   "itemId": null,
+   "label": "supergpt:gpt-6-luna-medium",
+   "score": 0.8333333333333334,
+   "status": "failed",
+   "runDirectory": "runs/ec261ceb-8816-4085-9d69-c575efed7364"
+  },
+  {
+   "directory": "runs/ec261ceb-8816-4085-9d69-c575efed7364/c5c66122-521f-42a3-807b-bba63e3d3f34",
+   "itemId": null,
+   "label": "supercn:glm-5.3-high",
+   "score": 0.8333333333333334,
+   "status": "failed",
+   "runDirectory": "runs/ec261ceb-8816-4085-9d69-c575efed7364"
+  }
+ ],
+ "summary": {
+  "true pass": 53,
+  "false pass": 3,
+  "note": 9,
+  "true fail": 3
+ },
+ "notes": [
+  "Every page is opened directly from its files, as the task asks, in headless Chromium inside the sandbox.",
+  "No horizontal scrolling and the skip link are contract requirements the functional grader does not check (the judging step sees the overflow); a miss there is a note, not a false pass.",
+  "An invalid email is a defect only when the page then shows the success state; a page that leaves it to the browser's own validation shows no error copy of its own, which the brief does not forbid.",
+  "The HTML required attribute is not demanded: the brief asks for required fields, and the states unit checks that an empty submission is refused."
+ ],
+ "oracle": null,
+ "references": null,
+ "findings": [
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/18228b9b-5066-4a26-9aef-4f600ad2d4e2",
+   "label": "deepseek:deepseek-flash-high",
+   "item": null,
+   "unit": "form states by interaction",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/18228b9b-5066-4a26-9aef-4f600ad2d4e2",
+   "label": "deepseek:deepseek-flash-high",
+   "item": null,
+   "unit": "fields labelled at run time, with the required options",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/18228b9b-5066-4a26-9aef-4f600ad2d4e2",
+   "label": "deepseek:deepseek-flash-high",
+   "item": null,
+   "unit": "fixed copy visible",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/18228b9b-5066-4a26-9aef-4f600ad2d4e2",
+   "label": "deepseek:deepseek-flash-high",
+   "item": null,
+   "unit": "no horizontal scrolling at 1440 and 390 pixels; skip link",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/4a6eacc6-3df9-4199-bc7b-f37993bb84f1",
+   "label": "deepseek:deepseek-flash-high",
+   "item": null,
+   "unit": "form states by interaction",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/4a6eacc6-3df9-4199-bc7b-f37993bb84f1",
+   "label": "deepseek:deepseek-flash-high",
+   "item": null,
+   "unit": "fields labelled at run time, with the required options",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/4a6eacc6-3df9-4199-bc7b-f37993bb84f1",
+   "label": "deepseek:deepseek-flash-high",
+   "item": null,
+   "unit": "fixed copy visible",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/4a6eacc6-3df9-4199-bc7b-f37993bb84f1",
+   "label": "deepseek:deepseek-flash-high",
+   "item": null,
+   "unit": "no horizontal scrolling at 1440 and 390 pixels; skip link",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/4e03b3bb-047f-4f39-8eb2-e9d122dc97f3",
+   "label": "supercn:step-5-preview-medium",
+   "item": null,
+   "unit": "form states by interaction",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/4e03b3bb-047f-4f39-8eb2-e9d122dc97f3",
+   "label": "supercn:step-5-preview-medium",
+   "item": null,
+   "unit": "fields labelled at run time, with the required options",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/4e03b3bb-047f-4f39-8eb2-e9d122dc97f3",
+   "label": "supercn:step-5-preview-medium",
+   "item": null,
+   "unit": "fixed copy visible",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/4e03b3bb-047f-4f39-8eb2-e9d122dc97f3",
+   "label": "supercn:step-5-preview-medium",
+   "item": null,
+   "unit": "no horizontal scrolling at 1440 and 390 pixels; skip link",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/c2a589bd-4779-452b-a244-5f0bcf20269f",
+   "label": "supercn:glm-5.3-high",
+   "item": null,
+   "unit": "form states by interaction",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/c2a589bd-4779-452b-a244-5f0bcf20269f",
+   "label": "supercn:glm-5.3-high",
+   "item": null,
+   "unit": "fields labelled at run time, with the required options",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/c2a589bd-4779-452b-a244-5f0bcf20269f",
+   "label": "supercn:glm-5.3-high",
+   "item": null,
+   "unit": "fixed copy visible",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/c2a589bd-4779-452b-a244-5f0bcf20269f",
+   "label": "supercn:glm-5.3-high",
+   "item": null,
+   "unit": "no horizontal scrolling at 1440 and 390 pixels; skip link",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/c3506dc2-d960-4566-9c72-0866889f667c",
+   "label": "supergpt:gpt-6-luna-medium",
+   "item": null,
+   "unit": "form states by interaction",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/c3506dc2-d960-4566-9c72-0866889f667c",
+   "label": "supergpt:gpt-6-luna-medium",
+   "item": null,
+   "unit": "fields labelled at run time, with the required options",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/c3506dc2-d960-4566-9c72-0866889f667c",
+   "label": "supergpt:gpt-6-luna-medium",
+   "item": null,
+   "unit": "fixed copy visible",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/c3506dc2-d960-4566-9c72-0866889f667c",
+   "label": "supergpt:gpt-6-luna-medium",
+   "item": null,
+   "unit": "no horizontal scrolling at 1440 and 390 pixels; skip link",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/e6ef1a02-2fd7-466c-a8cc-6a193897a848",
+   "label": "supergpt:gpt-6-luna-medium",
+   "item": null,
+   "unit": "form states by interaction",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/e6ef1a02-2fd7-466c-a8cc-6a193897a848",
+   "label": "supergpt:gpt-6-luna-medium",
+   "item": null,
+   "unit": "fields labelled at run time, with the required options",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/e6ef1a02-2fd7-466c-a8cc-6a193897a848",
+   "label": "supergpt:gpt-6-luna-medium",
+   "item": null,
+   "unit": "fixed copy visible",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/e6ef1a02-2fd7-466c-a8cc-6a193897a848",
+   "label": "supergpt:gpt-6-luna-medium",
+   "item": null,
+   "unit": "no horizontal scrolling at 1440 and 390 pixels; skip link",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/ec29e858-b85f-406f-9f2c-6c40a51a5a3e",
+   "label": "supercn:step-5-preview-medium",
+   "item": null,
+   "unit": "form states by interaction",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/ec29e858-b85f-406f-9f2c-6c40a51a5a3e",
+   "label": "supercn:step-5-preview-medium",
+   "item": null,
+   "unit": "fields labelled at run time, with the required options",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/ec29e858-b85f-406f-9f2c-6c40a51a5a3e",
+   "label": "supercn:step-5-preview-medium",
+   "item": null,
+   "unit": "fixed copy visible",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/ec29e858-b85f-406f-9f2c-6c40a51a5a3e",
+   "label": "supercn:step-5-preview-medium",
+   "item": null,
+   "unit": "no horizontal scrolling at 1440 and 390 pixels; skip link",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/f8308912-5460-447e-84da-ea08d6a413d5",
+   "label": "supercn:glm-5.3-high",
+   "item": null,
+   "unit": "form states by interaction",
+   "grader": "pass",
+   "verdict": "false pass",
+   "detail": "the success state after an invalid email"
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/f8308912-5460-447e-84da-ea08d6a413d5",
+   "label": "supercn:glm-5.3-high",
+   "item": null,
+   "unit": "fields labelled at run time, with the required options",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/f8308912-5460-447e-84da-ea08d6a413d5",
+   "label": "supercn:glm-5.3-high",
+   "item": null,
+   "unit": "fixed copy visible",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/eb491788-9108-41f1-9a32-e671f00873dd/f8308912-5460-447e-84da-ea08d6a413d5",
+   "label": "supercn:glm-5.3-high",
+   "item": null,
+   "unit": "no horizontal scrolling at 1440 and 390 pixels; skip link",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/54429f1e-9094-43d6-8adc-ee27c3ecf2f4/9a6effe7-18b7-4f93-a1f8-ef3a18e9a717",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": null,
+   "unit": "form states by interaction",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/54429f1e-9094-43d6-8adc-ee27c3ecf2f4/9a6effe7-18b7-4f93-a1f8-ef3a18e9a717",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": null,
+   "unit": "fields labelled at run time, with the required options",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/54429f1e-9094-43d6-8adc-ee27c3ecf2f4/9a6effe7-18b7-4f93-a1f8-ef3a18e9a717",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": null,
+   "unit": "fixed copy visible",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/54429f1e-9094-43d6-8adc-ee27c3ecf2f4/9a6effe7-18b7-4f93-a1f8-ef3a18e9a717",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": null,
+   "unit": "no horizontal scrolling at 1440 and 390 pixels; skip link",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/54429f1e-9094-43d6-8adc-ee27c3ecf2f4/ff02ab6f-5971-48bf-8563-145fc07be8c4",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": null,
+   "unit": "form states by interaction",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/54429f1e-9094-43d6-8adc-ee27c3ecf2f4/ff02ab6f-5971-48bf-8563-145fc07be8c4",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": null,
+   "unit": "fields labelled at run time, with the required options",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/54429f1e-9094-43d6-8adc-ee27c3ecf2f4/ff02ab6f-5971-48bf-8563-145fc07be8c4",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": null,
+   "unit": "fixed copy visible",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/54429f1e-9094-43d6-8adc-ee27c3ecf2f4/ff02ab6f-5971-48bf-8563-145fc07be8c4",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": null,
+   "unit": "no horizontal scrolling at 1440 and 390 pixels; skip link",
+   "grader": "n/a",
+   "verdict": "note",
+   "detail": "scrolls horizontally at 390"
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/071e967f-05cc-4479-b4b3-881a12ce933f",
+   "label": "supercn:glm-5.3-high",
+   "item": null,
+   "unit": "form states by interaction",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/071e967f-05cc-4479-b4b3-881a12ce933f",
+   "label": "supercn:glm-5.3-high",
+   "item": null,
+   "unit": "fields labelled at run time, with the required options",
+   "grader": "fail",
+   "verdict": "note",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/071e967f-05cc-4479-b4b3-881a12ce933f",
+   "label": "supercn:glm-5.3-high",
+   "item": null,
+   "unit": "fixed copy visible",
+   "grader": "fail",
+   "verdict": "note",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/071e967f-05cc-4479-b4b3-881a12ce933f",
+   "label": "supercn:glm-5.3-high",
+   "item": null,
+   "unit": "no horizontal scrolling at 1440 and 390 pixels; skip link",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/0e98afcd-2b84-4262-a283-dc5e8a8377cb",
+   "label": "supergpt:gpt-6-luna-medium",
+   "item": null,
+   "unit": "form states by interaction",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/0e98afcd-2b84-4262-a283-dc5e8a8377cb",
+   "label": "supergpt:gpt-6-luna-medium",
+   "item": null,
+   "unit": "fields labelled at run time, with the required options",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/0e98afcd-2b84-4262-a283-dc5e8a8377cb",
+   "label": "supergpt:gpt-6-luna-medium",
+   "item": null,
+   "unit": "fixed copy visible",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/0e98afcd-2b84-4262-a283-dc5e8a8377cb",
+   "label": "supergpt:gpt-6-luna-medium",
+   "item": null,
+   "unit": "no horizontal scrolling at 1440 and 390 pixels; skip link",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/a29d735e-9a69-4912-9d21-4f1ef84ff8d6",
+   "label": "deepseek:deepseek-flash-high",
+   "item": null,
+   "unit": "form states by interaction",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/a29d735e-9a69-4912-9d21-4f1ef84ff8d6",
+   "label": "deepseek:deepseek-flash-high",
+   "item": null,
+   "unit": "fields labelled at run time, with the required options",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/a29d735e-9a69-4912-9d21-4f1ef84ff8d6",
+   "label": "deepseek:deepseek-flash-high",
+   "item": null,
+   "unit": "fixed copy visible",
+   "grader": "fail",
+   "verdict": "note",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/a29d735e-9a69-4912-9d21-4f1ef84ff8d6",
+   "label": "deepseek:deepseek-flash-high",
+   "item": null,
+   "unit": "no horizontal scrolling at 1440 and 390 pixels; skip link",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/ab4e6e98-dccc-4e80-b749-8d41ca467b00",
+   "label": "supercn:step-5-preview-medium",
+   "item": null,
+   "unit": "form states by interaction",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/ab4e6e98-dccc-4e80-b749-8d41ca467b00",
+   "label": "supercn:step-5-preview-medium",
+   "item": null,
+   "unit": "fields labelled at run time, with the required options",
+   "grader": "pass",
+   "verdict": "false pass",
+   "detail": "area options [\"Choose an area\",\"Downtown\",\"Jiangbei\",\"Shapingba\",\"Nan’an\"]"
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/ab4e6e98-dccc-4e80-b749-8d41ca467b00",
+   "label": "supercn:step-5-preview-medium",
+   "item": null,
+   "unit": "fixed copy visible",
+   "grader": "fail",
+   "verdict": "note",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/ab4e6e98-dccc-4e80-b749-8d41ca467b00",
+   "label": "supercn:step-5-preview-medium",
+   "item": null,
+   "unit": "no horizontal scrolling at 1440 and 390 pixels; skip link",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/b885d6b4-836d-4bb2-bb1e-6d129ce9bcf0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": null,
+   "unit": "form states by interaction",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "the empty-state text is not shown on load; no error-state text after submitting the empty form; no success-state text after a valid submission; page.goto: net::ERR_FILE_NOT_FOUND at file:///home/claude-dev/projects/AgentEvalLab/runs/ec261ceb-8816-4085-9d69-c575efed7364/b885d6b4-836d-4bb2-bb1e-6d129ce9bcf0/artifacts/index.html"
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/b885d6b4-836d-4bb2-bb1e-6d129ce9bcf0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": null,
+   "unit": "fields labelled at run time, with the required options",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "title without an associated label; district without an associated label; email without an associated label; condition choices without an associated label; area options undefined; condition labels undefined; page.goto: net::ERR_FILE_NOT_FOUND at file:///home/claude-dev/projects/AgentEvalLab/runs/ec261ceb-8816-4085-9d69-c575efed7364/b885d6b4-836d-4bb2-bb1e-6d129ce9bcf0/artifacts/index.html"
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/b885d6b4-836d-4bb2-bb1e-6d129ce9bcf0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": null,
+   "unit": "fixed copy visible",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "missing: page did not load; footer copy; page.goto: net::ERR_FILE_NOT_FOUND at file:///home/claude-dev/projects/AgentEvalLab/runs/ec261ceb-8816-4085-9d69-c575efed7364/b885d6b4-836d-4bb2-bb1e-6d129ce9bcf0/artifacts/index.html"
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/b885d6b4-836d-4bb2-bb1e-6d129ce9bcf0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": null,
+   "unit": "no horizontal scrolling at 1440 and 390 pixels; skip link",
+   "grader": "n/a",
+   "verdict": "note",
+   "detail": "no skip link to an existing target; page.goto: net::ERR_FILE_NOT_FOUND at file:///home/claude-dev/projects/AgentEvalLab/runs/ec261ceb-8816-4085-9d69-c575efed7364/b885d6b4-836d-4bb2-bb1e-6d129ce9bcf0/artifacts/index.html"
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/c0d7ac7b-4cec-4966-88ea-db228d92b4c5",
+   "label": "supergpt:gpt-6-luna-medium",
+   "item": null,
+   "unit": "form states by interaction",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/c0d7ac7b-4cec-4966-88ea-db228d92b4c5",
+   "label": "supergpt:gpt-6-luna-medium",
+   "item": null,
+   "unit": "fields labelled at run time, with the required options",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/c0d7ac7b-4cec-4966-88ea-db228d92b4c5",
+   "label": "supergpt:gpt-6-luna-medium",
+   "item": null,
+   "unit": "fixed copy visible",
+   "grader": "fail",
+   "verdict": "note",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/c0d7ac7b-4cec-4966-88ea-db228d92b4c5",
+   "label": "supergpt:gpt-6-luna-medium",
+   "item": null,
+   "unit": "no horizontal scrolling at 1440 and 390 pixels; skip link",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/c5c66122-521f-42a3-807b-bba63e3d3f34",
+   "label": "supercn:glm-5.3-high",
+   "item": null,
+   "unit": "form states by interaction",
+   "grader": "pass",
+   "verdict": "false pass",
+   "detail": "the success state after an invalid email"
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/c5c66122-521f-42a3-807b-bba63e3d3f34",
+   "label": "supercn:glm-5.3-high",
+   "item": null,
+   "unit": "fields labelled at run time, with the required options",
+   "grader": "fail",
+   "verdict": "note",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/c5c66122-521f-42a3-807b-bba63e3d3f34",
+   "label": "supercn:glm-5.3-high",
+   "item": null,
+   "unit": "fixed copy visible",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/ec261ceb-8816-4085-9d69-c575efed7364/c5c66122-521f-42a3-807b-bba63e3d3f34",
+   "label": "supercn:glm-5.3-high",
+   "item": null,
+   "unit": "no horizontal scrolling at 1440 and 390 pixels; skip link",
+   "grader": "n/a",
+   "verdict": "note",
+   "detail": "scrolls horizontally at 390"
+  }
+ ]
+}

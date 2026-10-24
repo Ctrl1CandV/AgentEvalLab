@@ -1,0 +1,723 @@
+{
+ "family": "T2",
+ "date": "2026-10-24",
+ "package": "task-library/calibration/t2-finance-desk",
+ "runs": [
+  "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa"
+ ],
+ "selection": "all",
+ "trials": [
+  {
+   "directory": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/27acfe9e-1f1c-4345-8cbf-821f514ca457",
+   "itemId": "fn2",
+   "label": "deepseek:deepseek-flash-high",
+   "score": 0.9622641509433962,
+   "status": "failed",
+   "runDirectory": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa"
+  },
+  {
+   "directory": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/40e97fb4-9e86-4c8b-9e27-1248d90c31b1",
+   "itemId": "fn2",
+   "label": "aliplan:qwen3.8-flash-default",
+   "score": 0.3584905660377358,
+   "status": "failed",
+   "runDirectory": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa"
+  },
+  {
+   "directory": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/4c294e85-62ca-4bf9-9954-fc345ff39e94",
+   "itemId": "fn2",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "score": 0.18867924528301888,
+   "status": "failed",
+   "runDirectory": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa"
+  },
+  {
+   "directory": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/a15d7197-03d2-49e8-a508-d54fc418c412",
+   "itemId": "fn1",
+   "label": "aliplan:qwen3.8-flash-default",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa"
+  },
+  {
+   "directory": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/c9572fdc-5c7b-4330-992b-38954844b503",
+   "itemId": "fn1",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "score": 0,
+   "status": "failed",
+   "runDirectory": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa"
+  },
+  {
+   "directory": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/f9f893c0-a5fd-4cd8-ac97-c533ce2fa9a8",
+   "itemId": "fn1",
+   "label": "deepseek:deepseek-flash-high",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa"
+  }
+ ],
+ "summary": {
+  "true pass": 38,
+  "true fail": 34
+ },
+ "notes": [
+  "fn1: 37 payables; naive 502.08 EUR, greedy 676.06 EUR, best known recorded 797.64 EUR",
+  "fn2: 37 payables; naive 535.66 EUR, greedy 911.23 EUR, best known recorded 1158.72 EUR",
+  "fn3: 31 payables; naive 618.13 EUR, greedy 926.51 EUR, best known recorded 1171.53 EUR",
+  "fn4: 36 payables; naive 234.10 EUR, greedy 361.12 EUR, best known recorded 406.59 EUR",
+  "Each request is recomputed on the trial's own books as the request found them (its begin marker), as the per-request grading does, so a slip is judged once.",
+  "Rungs of the payment plan are re-derived with an independent naive, greedy and plan evaluator; the top of the scale is the package's best plan known (its value only)."
+ ],
+ "oracle": null,
+ "references": null,
+ "findings": [
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/27acfe9e-1f1c-4345-8cbf-821f514ca457",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn2",
+   "unit": "books: double entry, open items, settled documents, bank lines once",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/27acfe9e-1f1c-4345-8cbf-821f514ca457",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn2",
+   "unit": "R1 payment plan",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "valid True, worth 1158.22 EUR, naive 535.66, greedy 911.23, best known 1158.72; place 0.9990; rungs audit 1111110 grader 1111110"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/27acfe9e-1f1c-4345-8cbf-821f514ca457",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn2",
+   "unit": "R2 receipt",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/27acfe9e-1f1c-4345-8cbf-821f514ca457",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn2",
+   "unit": "R3 receipt",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/27acfe9e-1f1c-4345-8cbf-821f514ca457",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn2",
+   "unit": "R4 receipt",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/27acfe9e-1f1c-4345-8cbf-821f514ca457",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn2",
+   "unit": "R5 receipt",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/27acfe9e-1f1c-4345-8cbf-821f514ca457",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn2",
+   "unit": "R6 vendor",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/27acfe9e-1f1c-4345-8cbf-821f514ca457",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn2",
+   "unit": "R7 vendor",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/27acfe9e-1f1c-4345-8cbf-821f514ca457",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn2",
+   "unit": "R8 vendor",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/27acfe9e-1f1c-4345-8cbf-821f514ca457",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn2",
+   "unit": "R9 credit-note",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/27acfe9e-1f1c-4345-8cbf-821f514ca457",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn2",
+   "unit": "R10 deferred",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/27acfe9e-1f1c-4345-8cbf-821f514ca457",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn2",
+   "unit": "R11 revaluation",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/40e97fb4-9e86-4c8b-9e27-1248d90c31b1",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn2",
+   "unit": "books: double entry, open items, settled documents, bank lines once",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/40e97fb4-9e86-4c8b-9e27-1248d90c31b1",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn2",
+   "unit": "R1 payment plan",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "valid True, worth 1158.72 EUR, naive 535.66, greedy 911.23, best known 1158.72; place 1.0000; rungs audit 1111111 grader 1111111"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/40e97fb4-9e86-4c8b-9e27-1248d90c31b1",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn2",
+   "unit": "R2 receipt",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "{\"outcome\": [null, \"done\"], \"statuses\": [{}, {}], \"eur\": []}"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/40e97fb4-9e86-4c8b-9e27-1248d90c31b1",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn2",
+   "unit": "R3 receipt",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "{\"outcome\": [null, \"done\"], \"statuses\": [{}, {}], \"eur\": [[\"('1100', None, None, '2026-09')\", \"20184.57\"], [\"('1200', 'C-101', 'INV-5072', '2026-09')\", \"-14927.79\"], [\"('1200', 'C-101', 'INV-5230', '2026-09')\", \"-5258.15\"], [\"('6900', None, None, '2026-09')\", \"1.37\"]]}"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/40e97fb4-9e86-4c8b-9e27-1248d90c31b1",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn2",
+   "unit": "R4 receipt",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "{\"outcome\": [null, \"done\"], \"statuses\": [{}, {}], \"eur\": [[\"('1100', None, None, '2026-09')\", \"1725.50\"], [\"('1200', 'C-106', 'INV-5590', '2026-09')\", \"-1725.50\"]]}"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/40e97fb4-9e86-4c8b-9e27-1248d90c31b1",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn2",
+   "unit": "R5 receipt",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "{\"outcome\": [null, \"done\"], \"statuses\": [{}, {}], \"eur\": [[\"('1100', None, None, '2026-09')\", \"21910.07\"], [\"('1200', 'C-101', 'INV-5072', '2026-09')\", \"-14927.79\"], [\"('1200', 'C-101', 'INV-5230', '2026-09')\", \"-5258.15\"], [\"('1200', 'C-106', 'INV-5590', '2026-09')\", \"-1725.50\"], [\"('6900', None, None, '2026-09')\", \"1.37\"]]}"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/40e97fb4-9e86-4c8b-9e27-1248d90c31b1",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn2",
+   "unit": "R6 vendor",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "{\"outcome\": [null, \"rejected\"], \"statuses\": [{}, {\"VINV-142\": \"rejected\"}], \"eur\": []}"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/40e97fb4-9e86-4c8b-9e27-1248d90c31b1",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn2",
+   "unit": "R7 vendor",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/40e97fb4-9e86-4c8b-9e27-1248d90c31b1",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn2",
+   "unit": "R8 vendor",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/40e97fb4-9e86-4c8b-9e27-1248d90c31b1",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn2",
+   "unit": "R9 credit-note",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/40e97fb4-9e86-4c8b-9e27-1248d90c31b1",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn2",
+   "unit": "R10 deferred",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/40e97fb4-9e86-4c8b-9e27-1248d90c31b1",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn2",
+   "unit": "R11 revaluation",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/4c294e85-62ca-4bf9-9954-fc345ff39e94",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn2",
+   "unit": "books: double entry, open items, settled documents, bank lines once",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/4c294e85-62ca-4bf9-9954-fc345ff39e94",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn2",
+   "unit": "R1 payment plan",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "valid True, worth 1073.15 EUR, naive 535.66, greedy 911.23, best known 1158.72; place 0.8271; rungs audit 1111000 grader 1111000"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/4c294e85-62ca-4bf9-9954-fc345ff39e94",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn2",
+   "unit": "R2 receipt",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/4c294e85-62ca-4bf9-9954-fc345ff39e94",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn2",
+   "unit": "R3 receipt",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/4c294e85-62ca-4bf9-9954-fc345ff39e94",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn2",
+   "unit": "R4 receipt",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/4c294e85-62ca-4bf9-9954-fc345ff39e94",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn2",
+   "unit": "R5 receipt",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/4c294e85-62ca-4bf9-9954-fc345ff39e94",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn2",
+   "unit": "R6 vendor",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/4c294e85-62ca-4bf9-9954-fc345ff39e94",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn2",
+   "unit": "R7 vendor",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/4c294e85-62ca-4bf9-9954-fc345ff39e94",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn2",
+   "unit": "R8 vendor",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/4c294e85-62ca-4bf9-9954-fc345ff39e94",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn2",
+   "unit": "R9 credit-note",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/4c294e85-62ca-4bf9-9954-fc345ff39e94",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn2",
+   "unit": "R10 deferred",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/4c294e85-62ca-4bf9-9954-fc345ff39e94",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn2",
+   "unit": "R11 revaluation",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/a15d7197-03d2-49e8-a508-d54fc418c412",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn1",
+   "unit": "books: double entry, open items, settled documents, bank lines once",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/a15d7197-03d2-49e8-a508-d54fc418c412",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn1",
+   "unit": "R1 payment plan",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "valid True, worth 797.64 EUR, naive 502.08, greedy 676.06, best known 797.64; place 1.0000; rungs audit 1111111 grader 1111111"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/a15d7197-03d2-49e8-a508-d54fc418c412",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn1",
+   "unit": "R2 receipt",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/a15d7197-03d2-49e8-a508-d54fc418c412",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn1",
+   "unit": "R3 receipt",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/a15d7197-03d2-49e8-a508-d54fc418c412",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn1",
+   "unit": "R4 receipt",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/a15d7197-03d2-49e8-a508-d54fc418c412",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn1",
+   "unit": "R5 receipt",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/a15d7197-03d2-49e8-a508-d54fc418c412",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn1",
+   "unit": "R6 vendor",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/a15d7197-03d2-49e8-a508-d54fc418c412",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn1",
+   "unit": "R7 vendor",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/a15d7197-03d2-49e8-a508-d54fc418c412",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn1",
+   "unit": "R8 vendor",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/a15d7197-03d2-49e8-a508-d54fc418c412",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn1",
+   "unit": "R9 credit-note",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/a15d7197-03d2-49e8-a508-d54fc418c412",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn1",
+   "unit": "R10 deferred",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/a15d7197-03d2-49e8-a508-d54fc418c412",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "fn1",
+   "unit": "R11 revaluation",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/c9572fdc-5c7b-4330-992b-38954844b503",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn1",
+   "unit": "books: double entry, open items, settled documents, bank lines once",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/c9572fdc-5c7b-4330-992b-38954844b503",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn1",
+   "unit": "R1 payment plan",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "valid True, worth 0 EUR, naive 502.08, greedy 676.06, best known 797.64; place 0.0000; rungs audit 0000000 grader 0000000"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/c9572fdc-5c7b-4330-992b-38954844b503",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn1",
+   "unit": "R2 receipt",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/c9572fdc-5c7b-4330-992b-38954844b503",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn1",
+   "unit": "R3 receipt",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/c9572fdc-5c7b-4330-992b-38954844b503",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn1",
+   "unit": "R4 receipt",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/c9572fdc-5c7b-4330-992b-38954844b503",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn1",
+   "unit": "R5 receipt",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/c9572fdc-5c7b-4330-992b-38954844b503",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn1",
+   "unit": "R6 vendor",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/c9572fdc-5c7b-4330-992b-38954844b503",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn1",
+   "unit": "R7 vendor",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/c9572fdc-5c7b-4330-992b-38954844b503",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn1",
+   "unit": "R8 vendor",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/c9572fdc-5c7b-4330-992b-38954844b503",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn1",
+   "unit": "R9 credit-note",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/c9572fdc-5c7b-4330-992b-38954844b503",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn1",
+   "unit": "R10 deferred",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/c9572fdc-5c7b-4330-992b-38954844b503",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "fn1",
+   "unit": "R11 revaluation",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "never begun"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/f9f893c0-a5fd-4cd8-ac97-c533ce2fa9a8",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn1",
+   "unit": "books: double entry, open items, settled documents, bank lines once",
+   "grader": "n/a",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/f9f893c0-a5fd-4cd8-ac97-c533ce2fa9a8",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn1",
+   "unit": "R1 payment plan",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "valid True, worth 797.64 EUR, naive 502.08, greedy 676.06, best known 797.64; place 1.0000; rungs audit 1111111 grader 1111111"
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/f9f893c0-a5fd-4cd8-ac97-c533ce2fa9a8",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn1",
+   "unit": "R2 receipt",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/f9f893c0-a5fd-4cd8-ac97-c533ce2fa9a8",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn1",
+   "unit": "R3 receipt",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/f9f893c0-a5fd-4cd8-ac97-c533ce2fa9a8",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn1",
+   "unit": "R4 receipt",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/f9f893c0-a5fd-4cd8-ac97-c533ce2fa9a8",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn1",
+   "unit": "R5 receipt",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/f9f893c0-a5fd-4cd8-ac97-c533ce2fa9a8",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn1",
+   "unit": "R6 vendor",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/f9f893c0-a5fd-4cd8-ac97-c533ce2fa9a8",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn1",
+   "unit": "R7 vendor",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/f9f893c0-a5fd-4cd8-ac97-c533ce2fa9a8",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn1",
+   "unit": "R8 vendor",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/f9f893c0-a5fd-4cd8-ac97-c533ce2fa9a8",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn1",
+   "unit": "R9 credit-note",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/f9f893c0-a5fd-4cd8-ac97-c533ce2fa9a8",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn1",
+   "unit": "R10 deferred",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa/f9f893c0-a5fd-4cd8-ac97-c533ce2fa9a8",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "fn1",
+   "unit": "R11 revaluation",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  }
+ ]
+}

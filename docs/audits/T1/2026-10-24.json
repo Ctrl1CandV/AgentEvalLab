@@ -1,0 +1,3096 @@
+{
+ "family": "T1",
+ "date": "2026-10-24",
+ "package": "task-library/calibration/t1-evidence-recovery",
+ "runs": [
+  "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b"
+ ],
+ "selection": "all",
+ "trials": [
+  {
+   "directory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "itemId": "F4-01",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "score": 0,
+   "status": "failed",
+   "runDirectory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b"
+  },
+  {
+   "directory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "itemId": "F4-02",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "score": 0.8,
+   "status": "passed",
+   "runDirectory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b"
+  },
+  {
+   "directory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "itemId": "F5-02",
+   "label": "aliplan:qwen3.8-flash-default",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b"
+  },
+  {
+   "directory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "itemId": "F4-01",
+   "label": "aliplan:qwen3.8-flash-default",
+   "score": 0.8,
+   "status": "passed",
+   "runDirectory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b"
+  },
+  {
+   "directory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "itemId": "F5-02",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "score": 0,
+   "status": "failed",
+   "runDirectory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b"
+  },
+  {
+   "directory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "itemId": "F5-01",
+   "label": "deepseek:deepseek-flash-high",
+   "score": 0.9629629629629629,
+   "status": "failed",
+   "runDirectory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b"
+  },
+  {
+   "directory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "itemId": "F5-01",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "score": 0,
+   "status": "failed",
+   "runDirectory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b"
+  },
+  {
+   "directory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "itemId": "F4-02",
+   "label": "aliplan:qwen3.8-flash-default",
+   "score": 0.8,
+   "status": "passed",
+   "runDirectory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b"
+  },
+  {
+   "directory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "itemId": "F4-01",
+   "label": "deepseek:deepseek-flash-high",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b"
+  },
+  {
+   "directory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "itemId": "F5-01",
+   "label": "aliplan:qwen3.8-flash-default",
+   "score": 0.8,
+   "status": "passed",
+   "runDirectory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b"
+  },
+  {
+   "directory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "itemId": "F4-02",
+   "label": "deepseek:deepseek-flash-high",
+   "score": 0.8095238095238095,
+   "status": "failed",
+   "runDirectory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b"
+  },
+  {
+   "directory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "itemId": "F5-02",
+   "label": "deepseek:deepseek-flash-high",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b"
+  }
+ ],
+ "summary": {
+  "true fail": 80,
+  "true pass": 208
+ },
+ "notes": [
+  "Answer key: the independent solver derives every field of all 48 adjudication questions of the package (levels F2 to F5, 16 items) and agrees with the key on 48 of them.",
+  "The evidence rule (the trace must show the files a field needs) is the grader's own check and is not re-derived here; a field with the right value that the grader failed is reported as failing by the evidence rule."
+ ],
+ "oracle": [
+  {
+   "item": "F2-01",
+   "question": "Q1",
+   "incident": "INC-701",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F2-01",
+   "question": "Q2",
+   "incident": "INC-498",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F2-01",
+   "question": "Q3",
+   "incident": "INC-773",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F2-02",
+   "question": "Q1",
+   "incident": "INC-626",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F2-02",
+   "question": "Q2",
+   "incident": "INC-294",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F2-02",
+   "question": "Q3",
+   "incident": "INC-345",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F2-03",
+   "question": "Q1",
+   "incident": "INC-246",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F2-03",
+   "question": "Q2",
+   "incident": "INC-735",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F2-03",
+   "question": "Q3",
+   "incident": "INC-560",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F2-04",
+   "question": "Q1",
+   "incident": "INC-118",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F2-04",
+   "question": "Q2",
+   "incident": "INC-175",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F2-04",
+   "question": "Q3",
+   "incident": "INC-361",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F3-01",
+   "question": "Q1",
+   "incident": "INC-360",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F3-01",
+   "question": "Q2",
+   "incident": "INC-600",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F3-01",
+   "question": "Q3",
+   "incident": "INC-334",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F3-02",
+   "question": "Q1",
+   "incident": "INC-733",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F3-02",
+   "question": "Q2",
+   "incident": "INC-972",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F3-02",
+   "question": "Q3",
+   "incident": "INC-219",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F3-03",
+   "question": "Q1",
+   "incident": "INC-538",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F3-03",
+   "question": "Q2",
+   "incident": "INC-542",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F3-03",
+   "question": "Q3",
+   "incident": "INC-329",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F3-04",
+   "question": "Q1",
+   "incident": "INC-507",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F3-04",
+   "question": "Q2",
+   "incident": "INC-441",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F3-04",
+   "question": "Q3",
+   "incident": "INC-425",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F4-01",
+   "question": "Q1",
+   "incident": "INC-164",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F4-01",
+   "question": "Q2",
+   "incident": "INC-486",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F4-01",
+   "question": "Q3",
+   "incident": "INC-392",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F4-02",
+   "question": "Q1",
+   "incident": "INC-414",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F4-02",
+   "question": "Q2",
+   "incident": "INC-895",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F4-02",
+   "question": "Q3",
+   "incident": "INC-224",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F4-03",
+   "question": "Q1",
+   "incident": "INC-917",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F4-03",
+   "question": "Q2",
+   "incident": "INC-163",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F4-03",
+   "question": "Q3",
+   "incident": "INC-634",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F4-04",
+   "question": "Q1",
+   "incident": "INC-577",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F4-04",
+   "question": "Q2",
+   "incident": "INC-979",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F4-04",
+   "question": "Q3",
+   "incident": "INC-983",
+   "whatIf": null,
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F5-01",
+   "question": "Q1",
+   "incident": "INC-385",
+   "whatIf": "CHG-4756",
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F5-01",
+   "question": "Q2",
+   "incident": "INC-480",
+   "whatIf": "CHG-6248",
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F5-01",
+   "question": "Q3",
+   "incident": "INC-410",
+   "whatIf": "CHG-8079",
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F5-02",
+   "question": "Q1",
+   "incident": "INC-729",
+   "whatIf": "CHG-6228",
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F5-02",
+   "question": "Q2",
+   "incident": "INC-400",
+   "whatIf": "CHG-4356",
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F5-02",
+   "question": "Q3",
+   "incident": "INC-506",
+   "whatIf": "CHG-9927",
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F5-03",
+   "question": "Q1",
+   "incident": "INC-746",
+   "whatIf": "CHG-9702",
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F5-03",
+   "question": "Q2",
+   "incident": "INC-945",
+   "whatIf": "CHG-7398",
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F5-03",
+   "question": "Q3",
+   "incident": "INC-103",
+   "whatIf": "CHG-4322",
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F5-04",
+   "question": "Q1",
+   "incident": "INC-719",
+   "whatIf": "CHG-5003",
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F5-04",
+   "question": "Q2",
+   "incident": "INC-776",
+   "whatIf": "CHG-8231",
+   "agrees": true,
+   "differences": {}
+  },
+  {
+   "item": "F5-04",
+   "question": "Q3",
+   "incident": "INC-102",
+   "whatIf": "CHG-7472",
+   "agrees": true,
+   "differences": {}
+  }
+ ],
+ "references": null,
+ "findings": [
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q1.tier",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q1.freeze",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q1.class",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q1.reach",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q1.procedure",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"P2\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q1.approver",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"Okafor\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q1.deadline",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"2026-09-11T22:51Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q2.tier",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q2.freeze",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q2.class",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q2.reach",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q2.procedure",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"P2\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q2.approver",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"Tanaka\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q2.deadline",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"2026-09-14T14:57Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q3.tier",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 1"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q3.freeze",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q3.class",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q3.reach",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 4"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q3.procedure",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q3.approver",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"Park\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/08357af8-44a1-42f4-8f71-e05f284c74ba",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-01",
+   "unit": "Q3.deadline",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"2026-09-07T11:24Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q1.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 1, derived 1"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q1.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q1.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"emergency\", derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q1.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 3, derived 3"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q1.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P3\", derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q1.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Park\", derived \"Park\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q1.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-03T18:29Z\", derived \"2026-09-03T18:29Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q2.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 1, derived 1"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q2.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q2.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"emergency\", derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q2.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 4, derived 4"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q2.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P3\", derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q2.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Rossi\", derived \"Rossi\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q2.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-07T12:41Z\", derived \"2026-09-07T12:41Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q3.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q3.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given true, derived true"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q3.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"standard\", derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q3.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q3.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P1\", derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q3.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Usman\", derived \"Usman\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/14d7c01c-90e5-47bf-a3ee-e84e264e494a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F4-02",
+   "unit": "Q3.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-21T13:15Z\", derived \"2026-09-21T13:15Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 1, derived 1"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"standard\", derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P2\", derived \"P2\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Okafor\", derived \"Okafor\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-17T03:02Z\", derived \"2026-09-17T03:02Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.cf_procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P1\", derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.cf_deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-17T09:02Z\", derived \"2026-09-17T09:02Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"emergency\", derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 3, derived 3"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P3\", derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Toure\", derived \"Toure\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-21T11:05Z\", derived \"2026-09-21T11:05Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.cf_procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P2\", derived \"P2\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.cf_deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-21T13:05Z\", derived \"2026-09-21T13:05Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 1, derived 1"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given true, derived true"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"emergency\", derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 3, derived 3"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P4\", derived \"P4\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Rossi\", derived \"Rossi\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-07T10:14Z\", derived \"2026-09-07T10:14Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.cf_procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P3\", derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ab4635f-6868-45c9-b51c-58f7e7ea97b6",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.cf_deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-07T12:14Z\", derived \"2026-09-07T12:14Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q1.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q1.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q1.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"emergency\", derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q1.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q1.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P2\", derived \"P2\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q1.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Okafor\", derived \"Okafor\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q1.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-11T22:51Z\", derived \"2026-09-11T22:51Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q2.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q2.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q2.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"emergency\", derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q2.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q2.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P2\", derived \"P2\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q2.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Tanaka\", derived \"Tanaka\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q2.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-14T14:57Z\", derived \"2026-09-14T14:57Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q3.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 1, derived 1"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q3.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q3.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"standard\", derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q3.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 4, derived 4"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q3.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P3\", derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q3.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Park\", derived \"Park\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/2ebea599-88b5-474b-8c28-57eee054643c",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-01",
+   "unit": "Q3.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-07T11:24Z\", derived \"2026-09-07T11:24Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.tier",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 1"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.freeze",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.class",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.reach",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.procedure",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"P2\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.approver",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"Okafor\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.deadline",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"2026-09-17T03:02Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.cf_procedure",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q1.cf_deadline",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"2026-09-17T09:02Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.tier",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.freeze",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.class",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.reach",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 3"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.procedure",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.approver",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"Toure\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.deadline",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"2026-09-21T11:05Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.cf_procedure",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"P2\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q2.cf_deadline",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"2026-09-21T13:05Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.tier",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 1"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.freeze",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived true"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.class",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.reach",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 3"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.procedure",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"P4\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.approver",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"Rossi\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.deadline",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"2026-09-07T10:14Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.cf_procedure",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/5faa4a4c-2cad-444b-94e7-5ba38080976a",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-02",
+   "unit": "Q3.cf_deadline",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"2026-09-07T12:14Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q1.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q1.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q1.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"standard\", derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q1.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 3, derived 3"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q1.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P3\", derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q1.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Silva\", derived \"Silva\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q1.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-14T12:07Z\", derived \"2026-09-14T12:07Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q1.cf_procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P1\", derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q1.cf_deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-14T20:07Z\", derived \"2026-09-14T20:07Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q2.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 3, derived 3"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q2.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q2.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"standard\", derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q2.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q2.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P1\", derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q2.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Hale\", derived \"Hale\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q2.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-21T20:27Z\", derived \"2026-09-21T20:27Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q2.cf_procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P4\", derived \"P4\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q2.cf_deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-21T10:27Z\", derived \"2026-09-21T10:27Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q3.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q3.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given true, derived true"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q3.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"standard\", derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q3.reach",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given 1, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q3.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P1\", derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q3.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Costa\", derived \"Costa\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q3.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-20T12:17Z\", derived \"2026-09-20T12:17Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q3.cf_procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P1\", derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6530fd8f-d706-4b6c-812b-2191a9d86d28",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-01",
+   "unit": "Q3.cf_deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-20T18:17Z\", derived \"2026-09-20T18:17Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.tier",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.freeze",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.class",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.reach",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 3"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.procedure",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.approver",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"Silva\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.deadline",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"2026-09-14T12:07Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.cf_procedure",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.cf_deadline",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"2026-09-14T20:07Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.tier",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 3"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.freeze",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.class",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.reach",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.procedure",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.approver",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"Hale\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.deadline",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"2026-09-21T20:27Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.cf_procedure",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"P4\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.cf_deadline",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"2026-09-21T10:27Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.tier",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.freeze",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived true"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.class",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.reach",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.procedure",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.approver",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"Costa\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.deadline",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"2026-09-20T12:17Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.cf_procedure",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/68b72e37-dba9-44b1-8271-ecbc0919c467",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.cf_deadline",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given null, derived \"2026-09-20T18:17Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q1.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 1, derived 1"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q1.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q1.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"emergency\", derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q1.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 3, derived 3"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q1.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P3\", derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q1.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Park\", derived \"Park\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q1.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-03T18:29Z\", derived \"2026-09-03T18:29Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q2.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 1, derived 1"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q2.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q2.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"emergency\", derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q2.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 4, derived 4"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q2.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P3\", derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q2.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Rossi\", derived \"Rossi\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q2.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-07T12:41Z\", derived \"2026-09-07T12:41Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q3.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q3.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given true, derived true"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q3.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"standard\", derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q3.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q3.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P1\", derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q3.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Usman\", derived \"Usman\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/6b339e96-5819-44cf-9eba-817c408377ea",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F4-02",
+   "unit": "Q3.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-21T13:15Z\", derived \"2026-09-21T13:15Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q1.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q1.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q1.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"emergency\", derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q1.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q1.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P2\", derived \"P2\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q1.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Okafor\", derived \"Okafor\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q1.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-11T22:51Z\", derived \"2026-09-11T22:51Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q2.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q2.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q2.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"emergency\", derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q2.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q2.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P2\", derived \"P2\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q2.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Tanaka\", derived \"Tanaka\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q2.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-14T14:57Z\", derived \"2026-09-14T14:57Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q3.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 1, derived 1"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q3.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q3.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"standard\", derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q3.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 4, derived 4"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q3.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P3\", derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q3.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Park\", derived \"Park\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/72557555-1bf3-4375-903f-de76a47364b0",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-01",
+   "unit": "Q3.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-07T11:24Z\", derived \"2026-09-07T11:24Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"standard\", derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 3, derived 3"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P3\", derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Silva\", derived \"Silva\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-14T12:07Z\", derived \"2026-09-14T12:07Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.cf_procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P1\", derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q1.cf_deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-14T20:07Z\", derived \"2026-09-14T20:07Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 3, derived 3"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"standard\", derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P1\", derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Hale\", derived \"Hale\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-21T20:27Z\", derived \"2026-09-21T20:27Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.cf_procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P4\", derived \"P4\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q2.cf_deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-21T10:27Z\", derived \"2026-09-21T10:27Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given true, derived true"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"standard\", derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P1\", derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Costa\", derived \"Costa\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-20T12:17Z\", derived \"2026-09-20T12:17Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.cf_procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P1\", derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/79b1e6be-bb15-4e66-9d82-82ecfde9998e",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "F5-01",
+   "unit": "Q3.cf_deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-20T18:17Z\", derived \"2026-09-20T18:17Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q1.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 1, derived 1"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q1.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q1.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"emergency\", derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q1.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 3, derived 3"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q1.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P3\", derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q1.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Park\", derived \"Park\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q1.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-03T18:29Z\", derived \"2026-09-03T18:29Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q2.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 1, derived 1"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q2.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q2.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"emergency\", derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q2.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 4, derived 4"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q2.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P3\", derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q2.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Rossi\", derived \"Rossi\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q2.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-07T12:41Z\", derived \"2026-09-07T12:41Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q3.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q3.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given true, derived true"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q3.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"standard\", derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q3.reach",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given 3, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q3.procedure",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given \"P3\", derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q3.approver",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given \"Toure\", derived \"Usman\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/b5828fae-4707-4d6e-8340-05a69ca7fcbd",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F4-02",
+   "unit": "Q3.deadline",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "given \"2026-09-21T11:15Z\", derived \"2026-09-21T13:15Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q1.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 1, derived 1"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q1.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q1.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"standard\", derived \"standard\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q1.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q1.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P2\", derived \"P2\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q1.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Okafor\", derived \"Okafor\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q1.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-17T03:02Z\", derived \"2026-09-17T03:02Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q1.cf_procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P1\", derived \"P1\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q1.cf_deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-17T09:02Z\", derived \"2026-09-17T09:02Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q2.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 2, derived 2"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q2.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given false, derived false"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q2.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"emergency\", derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q2.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 3, derived 3"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q2.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P3\", derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q2.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Toure\", derived \"Toure\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q2.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-21T11:05Z\", derived \"2026-09-21T11:05Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q2.cf_procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P2\", derived \"P2\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q2.cf_deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-21T13:05Z\", derived \"2026-09-21T13:05Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q3.tier",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 1, derived 1"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q3.freeze",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given true, derived true"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q3.class",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"emergency\", derived \"emergency\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q3.reach",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given 3, derived 3"
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q3.procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P4\", derived \"P4\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q3.approver",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"Rossi\", derived \"Rossi\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q3.deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-07T10:14Z\", derived \"2026-09-07T10:14Z\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q3.cf_procedure",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"P3\", derived \"P3\""
+  },
+  {
+   "trial": "runs/suites/20261022-102932-dev-87d3/runs/T1/26d7f8c2-885d-4aa7-be92-60df0487b52b/dfcdef66-0aa5-44ed-9b36-54f3f51fe826",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "F5-02",
+   "unit": "Q3.cf_deadline",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "given \"2026-09-07T12:14Z\", derived \"2026-09-07T12:14Z\""
+  }
+ ]
+}

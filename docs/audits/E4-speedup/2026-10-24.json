@@ -1,0 +1,365 @@
+{
+ "family": "E4-speedup",
+ "date": "2026-10-24",
+ "package": "task-library/calibration/e4-terminal-tasks",
+ "runs": [
+  "runs/suites/20261021-123806-dev-d275/runs/E4/93f420d7-8c69-4f97-b46f-43ac3020d750",
+  "runs/suites/20261021-120039-dev-fe3b/runs/E4/a78328b5-f6c8-4386-9432-c80991c3b8c5",
+  "runs/57d7a769-cdbc-4957-a916-6205826dd56c",
+  "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24"
+ ],
+ "selection": "all",
+ "trials": [
+  {
+   "directory": "runs/suites/20261021-123806-dev-d275/runs/E4/93f420d7-8c69-4f97-b46f-43ac3020d750/597f62f7-681f-4b54-8799-2d1c25840dff",
+   "itemId": "speedup",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "score": 0.875,
+   "status": "failed",
+   "runDirectory": "runs/suites/20261021-123806-dev-d275/runs/E4/93f420d7-8c69-4f97-b46f-43ac3020d750"
+  },
+  {
+   "directory": "runs/suites/20261021-123806-dev-d275/runs/E4/93f420d7-8c69-4f97-b46f-43ac3020d750/d36a3fab-201a-494f-890b-6d6d740d04ce",
+   "itemId": "speedup",
+   "label": "deepseek:deepseek-flash-high",
+   "score": 0.875,
+   "status": "failed",
+   "runDirectory": "runs/suites/20261021-123806-dev-d275/runs/E4/93f420d7-8c69-4f97-b46f-43ac3020d750"
+  },
+  {
+   "directory": "runs/suites/20261021-123806-dev-d275/runs/E4/93f420d7-8c69-4f97-b46f-43ac3020d750/f5517516-3ac3-48c4-81b3-71a62b1f98a7",
+   "itemId": "speedup",
+   "label": "aliplan:qwen3.8-flash-default",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/suites/20261021-123806-dev-d275/runs/E4/93f420d7-8c69-4f97-b46f-43ac3020d750"
+  },
+  {
+   "directory": "runs/suites/20261021-120039-dev-fe3b/runs/E4/a78328b5-f6c8-4386-9432-c80991c3b8c5/746da4f1-79ae-403d-b993-9ee7519dab02",
+   "itemId": "speedup",
+   "label": "aliplan:qwen3.8-flash-default",
+   "score": 0.5714285714285714,
+   "status": "failed",
+   "runDirectory": "runs/suites/20261021-120039-dev-fe3b/runs/E4/a78328b5-f6c8-4386-9432-c80991c3b8c5"
+  },
+  {
+   "directory": "runs/suites/20261021-120039-dev-fe3b/runs/E4/a78328b5-f6c8-4386-9432-c80991c3b8c5/b5081079-563e-46f1-b108-3641242a44fe",
+   "itemId": "speedup",
+   "label": "deepseek:deepseek-flash-high",
+   "score": 0,
+   "status": "failed",
+   "runDirectory": "runs/suites/20261021-120039-dev-fe3b/runs/E4/a78328b5-f6c8-4386-9432-c80991c3b8c5"
+  },
+  {
+   "directory": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/25006d80-0289-42d6-a9bf-1dd4bf896233",
+   "itemId": "speedup",
+   "label": "deepseek:deepseek-flash-high",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24"
+  },
+  {
+   "directory": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/34517ddc-6e7c-410e-9e28-84f3044ed550",
+   "itemId": "speedup",
+   "label": "deepseek:deepseek-flash-high",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24"
+  },
+  {
+   "directory": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/8e559383-f228-4063-8e12-89035a270877",
+   "itemId": "speedup",
+   "label": "aliplan:qwen3.8-flash-default",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24"
+  },
+  {
+   "directory": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/8ef3b975-2376-4289-a4ea-628303aee41a",
+   "itemId": "speedup",
+   "label": "mimoplan:mimo-v2.6-pro-default",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24"
+  },
+  {
+   "directory": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/aacf1dbb-9d70-4d6a-8740-0db14902fd27",
+   "itemId": "speedup",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24"
+  },
+  {
+   "directory": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/c8b32265-c46c-4ac4-a793-5370f96cde81",
+   "itemId": "speedup",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "score": 0,
+   "status": "failed",
+   "runDirectory": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24"
+  },
+  {
+   "directory": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/d47446f2-a3ea-41ce-896e-f6a6bb30c336",
+   "itemId": "speedup",
+   "label": "aliplan:qwen3.8-flash-default",
+   "score": 0,
+   "status": "failed",
+   "runDirectory": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24"
+  },
+  {
+   "directory": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/da8f5e74-7bff-4047-b8bb-eb1f5d325af8",
+   "itemId": "speedup",
+   "label": "mimoplan:mimo-v2.6-pro-default",
+   "score": 1,
+   "status": "passed",
+   "runDirectory": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24"
+  }
+ ],
+ "summary": {
+  "true pass": 16,
+  "false pass": 4,
+  "note": 2,
+  "true fail": 4
+ },
+ "notes": [
+  "15 audit inputs; the original exits non-zero on none (such inputs are compared too: same status, same output)."
+ ],
+ "oracle": null,
+ "references": null,
+ "findings": [
+  {
+   "trial": "runs/suites/20261021-123806-dev-d275/runs/E4/93f420d7-8c69-4f97-b46f-43ac3020d750/597f62f7-681f-4b54-8799-2d1c25840dff",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "speedup",
+   "unit": "output identical to the original on audit inputs",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261021-123806-dev-d275/runs/E4/93f420d7-8c69-4f97-b46f-43ac3020d750/597f62f7-681f-4b54-8799-2d1c25840dff",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "speedup",
+   "unit": "fresh 200,000-event day",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "output identical to the reference; best time 0.75 s vs reference 1.60 s (ratio 0.47, wall time on a shared machine, a note only)"
+  },
+  {
+   "trial": "runs/suites/20261021-123806-dev-d275/runs/E4/93f420d7-8c69-4f97-b46f-43ac3020d750/d36a3fab-201a-494f-890b-6d6d740d04ce",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "speedup",
+   "unit": "output identical to the original on audit inputs",
+   "grader": "pass",
+   "verdict": "false pass",
+   "detail": "quirks-0 (exit 0 vs 0, 6857 vs 6857 bytes); quirks-1 (exit 0 vs 0, 6961 vs 6963 bytes); quirks-2 (exit 0 vs 0, 6844 vs 6843 bytes); quirks-3 (exit 0 vs 0, 6917 vs 6922 bytes); quirks-4 (exit 0 vs 0, 6882 vs 6887 bytes)"
+  },
+  {
+   "trial": "runs/suites/20261021-123806-dev-d275/runs/E4/93f420d7-8c69-4f97-b46f-43ac3020d750/d36a3fab-201a-494f-890b-6d6d740d04ce",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "speedup",
+   "unit": "fresh 200,000-event day",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "output identical to the reference; best time 1.55 s vs reference 1.62 s (ratio 0.96, wall time on a shared machine, a note only)"
+  },
+  {
+   "trial": "runs/suites/20261021-123806-dev-d275/runs/E4/93f420d7-8c69-4f97-b46f-43ac3020d750/f5517516-3ac3-48c4-81b3-71a62b1f98a7",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "speedup",
+   "unit": "output identical to the original on audit inputs",
+   "grader": "pass",
+   "verdict": "false pass",
+   "detail": "normal-0 (exit 0 vs 0, 8924 vs 8955 bytes); normal-1 (exit 0 vs 0, 8946 vs 8944 bytes); normal-2 (exit 0 vs 0, 8966 vs 8990 bytes); quirks-0 (exit 0 vs 0, 6836 vs 6857 bytes); quirks-1 (exit 0 vs 0, 6946 vs 6963 bytes)"
+  },
+  {
+   "trial": "runs/suites/20261021-123806-dev-d275/runs/E4/93f420d7-8c69-4f97-b46f-43ac3020d750/f5517516-3ac3-48c4-81b3-71a62b1f98a7",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "speedup",
+   "unit": "fresh 200,000-event day",
+   "grader": "pass",
+   "verdict": "false pass",
+   "detail": "output different from the reference; best time 0.62 s vs reference 1.64 s (ratio 0.38, wall time on a shared machine, a note only)"
+  },
+  {
+   "trial": "runs/suites/20261021-120039-dev-fe3b/runs/E4/a78328b5-f6c8-4386-9432-c80991c3b8c5/746da4f1-79ae-403d-b993-9ee7519dab02",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "speedup",
+   "unit": "output identical to the original on audit inputs",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261021-120039-dev-fe3b/runs/E4/a78328b5-f6c8-4386-9432-c80991c3b8c5/746da4f1-79ae-403d-b993-9ee7519dab02",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "speedup",
+   "unit": "fresh 200,000-event day",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "output identical to the reference; best time 1.87 s vs reference 1.61 s (ratio 1.16, wall time on a shared machine, a note only)"
+  },
+  {
+   "trial": "runs/suites/20261021-120039-dev-fe3b/runs/E4/a78328b5-f6c8-4386-9432-c80991c3b8c5/b5081079-563e-46f1-b108-3641242a44fe",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "speedup",
+   "unit": "output identical to the original on audit inputs",
+   "grader": "fail",
+   "verdict": "note",
+   "detail": ""
+  },
+  {
+   "trial": "runs/suites/20261021-120039-dev-fe3b/runs/E4/a78328b5-f6c8-4386-9432-c80991c3b8c5/b5081079-563e-46f1-b108-3641242a44fe",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "speedup",
+   "unit": "fresh 200,000-event day",
+   "grader": "fail",
+   "verdict": "note",
+   "detail": "output identical to the reference; best time 0.64 s vs reference 1.58 s (ratio 0.40, wall time on a shared machine, a note only)"
+  },
+  {
+   "trial": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/25006d80-0289-42d6-a9bf-1dd4bf896233",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "speedup",
+   "unit": "output identical to the original on audit inputs",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/25006d80-0289-42d6-a9bf-1dd4bf896233",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "speedup",
+   "unit": "fresh 200,000-event day",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "output identical to the reference; best time 1.56 s vs reference 1.61 s (ratio 0.97, wall time on a shared machine, a note only)"
+  },
+  {
+   "trial": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/34517ddc-6e7c-410e-9e28-84f3044ed550",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "speedup",
+   "unit": "output identical to the original on audit inputs",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/34517ddc-6e7c-410e-9e28-84f3044ed550",
+   "label": "deepseek:deepseek-flash-high",
+   "item": "speedup",
+   "unit": "fresh 200,000-event day",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "output identical to the reference; best time 0.57 s vs reference 1.66 s (ratio 0.34, wall time on a shared machine, a note only)"
+  },
+  {
+   "trial": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/8e559383-f228-4063-8e12-89035a270877",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "speedup",
+   "unit": "output identical to the original on audit inputs",
+   "grader": "pass",
+   "verdict": "false pass",
+   "detail": "quirks-0 (exit 0 vs 0, 6857 vs 6857 bytes); quirks-1 (exit 0 vs 0, 6959 vs 6963 bytes); quirks-2 (exit 0 vs 0, 6842 vs 6843 bytes); quirks-3 (exit 0 vs 0, 6925 vs 6922 bytes); quirks-4 (exit 0 vs 0, 6886 vs 6887 bytes)"
+  },
+  {
+   "trial": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/8e559383-f228-4063-8e12-89035a270877",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "speedup",
+   "unit": "fresh 200,000-event day",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "output identical to the reference; best time 1.02 s vs reference 1.64 s (ratio 0.62, wall time on a shared machine, a note only)"
+  },
+  {
+   "trial": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/8ef3b975-2376-4289-a4ea-628303aee41a",
+   "label": "mimoplan:mimo-v2.6-pro-default",
+   "item": "speedup",
+   "unit": "output identical to the original on audit inputs",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/8ef3b975-2376-4289-a4ea-628303aee41a",
+   "label": "mimoplan:mimo-v2.6-pro-default",
+   "item": "speedup",
+   "unit": "fresh 200,000-event day",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "output identical to the reference; best time 0.98 s vs reference 1.89 s (ratio 0.52, wall time on a shared machine, a note only)"
+  },
+  {
+   "trial": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/aacf1dbb-9d70-4d6a-8740-0db14902fd27",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "speedup",
+   "unit": "output identical to the original on audit inputs",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/aacf1dbb-9d70-4d6a-8740-0db14902fd27",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "speedup",
+   "unit": "fresh 200,000-event day",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "output identical to the reference; best time 0.85 s vs reference 1.79 s (ratio 0.47, wall time on a shared machine, a note only)"
+  },
+  {
+   "trial": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/c8b32265-c46c-4ac4-a793-5370f96cde81",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "speedup",
+   "unit": "output identical to the original on audit inputs",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "normal-0 (exit 0 vs 0, 9247 vs 8955 bytes); normal-1 (exit 0 vs 0, 9238 vs 8944 bytes); normal-2 (exit 0 vs 0, 9279 vs 8990 bytes); normal-3 (exit 0 vs 0, 9272 vs 8982 bytes); quirks-0 (exit 0 vs 0, 6935 vs 6857 bytes)"
+  },
+  {
+   "trial": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/c8b32265-c46c-4ac4-a793-5370f96cde81",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "item": "speedup",
+   "unit": "fresh 200,000-event day",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "output different from the reference; best time 1.07 s vs reference 1.68 s (ratio 0.64, wall time on a shared machine, a note only)"
+  },
+  {
+   "trial": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/d47446f2-a3ea-41ce-896e-f6a6bb30c336",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "speedup",
+   "unit": "output identical to the original on audit inputs",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "normal-0 (exit 1 vs 0, 0 vs 8955 bytes); normal-1 (exit 1 vs 0, 0 vs 8944 bytes); normal-2 (exit 1 vs 0, 0 vs 8990 bytes); normal-3 (exit 1 vs 0, 0 vs 8982 bytes); quirks-0 (exit 1 vs 0, 0 vs 6857 bytes)"
+  },
+  {
+   "trial": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/d47446f2-a3ea-41ce-896e-f6a6bb30c336",
+   "label": "aliplan:qwen3.8-flash-default",
+   "item": "speedup",
+   "unit": "fresh 200,000-event day",
+   "grader": "fail",
+   "verdict": "true fail",
+   "detail": "output different from the reference; best time 0.72 s vs reference 1.70 s (ratio 0.43, wall time on a shared machine, a note only)"
+  },
+  {
+   "trial": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/da8f5e74-7bff-4047-b8bb-eb1f5d325af8",
+   "label": "mimoplan:mimo-v2.6-pro-default",
+   "item": "speedup",
+   "unit": "output identical to the original on audit inputs",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": ""
+  },
+  {
+   "trial": "runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24/da8f5e74-7bff-4047-b8bb-eb1f5d325af8",
+   "label": "mimoplan:mimo-v2.6-pro-default",
+   "item": "speedup",
+   "unit": "fresh 200,000-event day",
+   "grader": "pass",
+   "verdict": "true pass",
+   "detail": "output identical to the reference; best time 0.91 s vs reference 1.67 s (ratio 0.54, wall time on a shared machine, a note only)"
+  }
+ ]
+}
