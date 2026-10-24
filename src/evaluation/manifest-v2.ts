@@ -53,6 +53,15 @@ export interface ItemV2Fields {
   mounts?: string[];
 }
 
+/** A package's trusted simulator (PLAN-007 WP3.3): the `simulator` tool of the workspace-simulator profile relays to it. */
+export interface SimulatorSpec {
+  entryPoint: string;
+  executable: string;
+  /** The tool description the model sees: the commands and what they do. */
+  description: string;
+  timeoutMs: number;
+}
+
 export interface ManifestV2Fields {
   tier: Tier;
   capabilities: V2Capability[];
@@ -61,6 +70,7 @@ export interface ManifestV2Fields {
   /** A package without items is one task; its placement is here. */
   task?: TaskPlacement;
   runtime?: { mounts: RuntimeMount[] };
+  simulator?: SimulatorSpec;
 }
 
 export class ManifestV2Error extends Error {
@@ -74,7 +84,7 @@ const IDENTIFIER = /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/;
 // "generator" records how a generated package was built (R3, T1); v1 manifests carry it without validation.
 const V1_KEYS = ["schemaVersion", "id", "version", "familyId", "capability", "usage", "source", "license", "entryPoint", "files", "requirements", "stages",
   "items", "dimensions", "scoring", "toolProfiles", "baseline", "grader", "environment", "generator"];
-const V2_KEYS = ["tier", "capabilities", "card", "scoreModel", "task", "runtime"];
+const V2_KEYS = ["tier", "capabilities", "card", "scoreModel", "task", "runtime", "simulator"];
 const ITEM_KEYS = ["id", "level", "files", "activeRequirementIds", "split", "structure", "provenance", "anchors", "repository", "mounts"];
 
 function fail(code: string): never {
@@ -221,6 +231,14 @@ export function validateManifestV2(manifest: Record<string, unknown>): void {
       if (active.has(requirement.id) && requirement.checkIds.some(checkId => !grouped.has(checkId))) fail(code);
     }
   };
+  if (manifest.simulator !== undefined) {
+    const simulator = object(manifest.simulator, "INVALID_PACKAGE_SIMULATOR");
+    onlyKeys(simulator, ["entryPoint", "executable", "description", "timeoutMs"], "INVALID_PACKAGE_SIMULATOR");
+    if (!safeRelative(simulator.entryPoint) || !simulator.entryPoint.startsWith("private/") || !files.trusted.some(file => file.path === simulator.entryPoint) ||
+        !text(simulator.executable, 100) || !text(simulator.description, 8000) || !Number.isSafeInteger(simulator.timeoutMs) ||
+        Number(simulator.timeoutMs) < 1 || Number(simulator.timeoutMs) > 600_000) fail("INVALID_PACKAGE_SIMULATOR");
+  }
+  if ((manifest.toolProfiles as string[] | undefined)?.includes("workspace-simulator") && manifest.simulator === undefined) fail("INVALID_PACKAGE_SIMULATOR");
   const mountPaths = new Set<string>();
   if (manifest.runtime !== undefined) {
     const runtime = object(manifest.runtime, "INVALID_PACKAGE_RUNTIME");

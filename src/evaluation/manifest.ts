@@ -159,7 +159,7 @@ export class PackageManifestError extends Error {
   }
 }
 
-const V2_ONLY_KEYS = ["tier", "capabilities", "card", "scoreModel", "task", "runtime"];
+const V2_ONLY_KEYS = ["tier", "capabilities", "card", "scoreModel", "task", "runtime", "simulator"];
 
 function record(value: unknown): Record<string, unknown> {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
@@ -259,7 +259,7 @@ export function validateTaskPackageManifest(value: unknown): asserts value is Ta
     throw new PackageManifestError("INVALID_PACKAGE_GRADER_TRACE_POLICY");
   }
   if (manifest.toolProfiles !== undefined && (!Array.isArray(manifest.toolProfiles) || manifest.toolProfiles.length === 0 ||
-      !manifest.toolProfiles.every(profile => ["workspace-basic", "workspace-augmented", "doc-evidence", "none"].includes(String(profile))) ||
+      !manifest.toolProfiles.every(profile => ["workspace-basic", "workspace-augmented", "doc-evidence", "none", "workspace-simulator"].includes(String(profile))) ||
       new Set(manifest.toolProfiles).size !== manifest.toolProfiles.length)) {
     throw new PackageManifestError("INVALID_PACKAGE_TOOL_PROFILES");
   }

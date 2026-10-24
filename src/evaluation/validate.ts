@@ -100,7 +100,8 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
     if (item.readOnly !== undefined && typeof item.readOnly !== "boolean") throw new Error("INVALID_READ_ONLY");
     if (item.items !== undefined && (!validCaseItems(item.items) || typeof item.packagePath !== "string" ||
         object(item.evaluator).kind !== "task-package" || (plan.execution as { kind?: unknown } | undefined)?.kind === "trajectory")) throw new Error("INVALID_CASE_ITEMS");
-    if (item.toolProfile !== undefined && !["workspace-basic", "workspace-augmented", "doc-evidence", "none"].includes(String(item.toolProfile))) throw new Error("INVALID_TOOL_PROFILE");
+    if (item.toolProfile !== undefined && !["workspace-basic", "workspace-augmented", "doc-evidence", "none", "workspace-simulator"].includes(String(item.toolProfile))) throw new Error("INVALID_TOOL_PROFILE");
+    if (item.toolProfile === "workspace-simulator" && ((plan.execution as { kind?: unknown } | undefined)?.kind === "trajectory" || typeof item.packagePath !== "string")) throw new Error("INVALID_TOOL_PROFILE");
     if (item.toolProfile !== undefined && item.toolProfile !== "none" && !plan.trustedLocalExecution) throw new Error("TRUST_REQUIRED");
     if (item.toolProfile === "none" && (plan.execution as { kind?: unknown } | undefined)?.kind === "trajectory") throw new Error("INVALID_TOOL_PROFILE");
     if (item.toolProfile === "doc-evidence" && typeof item.packagePath !== "string") throw new Error("DOC_EVIDENCE_PACKAGE_REQUIRED");

@@ -139,13 +139,19 @@ New optional fields:
 - **Mounts.** A package may ship `runtime/<name>/`: a Python site directory built by its builder from vendored wheels, with `pip install --target` and no network at run time.
 - **Inside the sandbox.**
   - `execute_command` and the graders bind every declared mount read-only, at `/runtime/<name>` inside the sandbox.
-  - They set the declared environment, with `{mount}` replaced by that path.
+  - They set the declared environment, with `{mount}` replaced by that path, and `{workspace}` by the workspace root in `execute_command` (graders replace it with the directory they run the candidate's code in), so that a repository item can put `{workspace}/repo` on `PYTHONPATH`.
   - `scripts/sandbox_exec.py --mount SOURCE:/runtime/<name> --env NAME=VALUE`; the harness passes both through `isolatedCommand(..., runtime)`. Graders get the same in the request's `runtime` field (`mounts` with `source` and `target`, and `env`) and pass them to the launcher.
   - Without the sandbox (`isolation: "host"`, an explicit opt-out), nothing is bound and the environment names the source directories.
   - Mounts are bound in single-session trials; a trajectory package with mounts is refused at preflight.
 - **Size and hashing.** Runtime mounts can be large. A small one is a directory `runtime/<name>` whose every file is hashed as a trusted file. A large one (PLAN-007 WP3.2) is one tar archive declared as `{"path": "runtime/<name>", "archive": "assets/<file>.tar", "env": {...}}`: the archive is a hashed trusted file, and the harness unpacks it once into a cache keyed by its hash (`~/.cache/agenteval/runtime/<sha256>/`, or `AGENTEVAL_RUNTIME_CACHE`) and binds that directory at `/runtime/<name>`.
 - **External assets.** Trusted files under `assets/` (runtime archives, repository archives) are kept out of Git (`.gitignore`): builders store them in a content-addressed cache (`~/.cache/agenteval/assets/<sha256>`), and `scripts/prepare-assets.mjs` restores them into their packages by hard link, verifying each hash. `npm ci` runs it, and the suite runs it in its frozen worktree (`FREEZE_ASSETS_FAILED` when one is missing). The harness and `task_packages.py` check that `assets/` holds exactly the declared files.
 - **Disk.** Keep each runtime under about 200 MB. Share one runtime between tasks of the same repository and version, as a directory referenced by several items.
+
+## 4a. Simulators (AP, PLAN-007 WP3.3)
+
+- A package may declare a trusted `simulator` (`{"entryPoint": "private/...", "executable": "python3", "description": "...", "timeoutMs": N}`) and the tool profile `workspace-simulator`: the workspace-basic tools plus one tool, `simulator`, with parameters `command` and `arguments`, whose description is the manifest's.
+- Each tool call runs the simulator once, outside the sandbox, as `executable entryPoint --item <id> --state <dir>`, with the JSON request on standard input and its JSON reply returned to the model. The state directory is private to the harness for that trial, out of the model's reach, so the hidden future (the scenario's random events) stays hidden even though the model can run code.
+- The simulator appends every accepted command to `log.jsonl` in its state; after the session the harness hands the log to the grader as `simulatorRef` (10 MB at most), and the grader replays it.
 
 ## 5. Repository workspaces (ER)
 

@@ -22,6 +22,8 @@ interface GraderRequest {
   sandbox: { launcher: string } | null;
   /** Present only for a repository item: the delivered change, under the evidence root. */
   patchRef?: string;
+  /** Present only for a simulator trial: the simulator's command log, under the evidence root. */
+  simulatorRef?: string;
   /**
    * Present only when the package declares runtime mounts: what graders bind into candidate commands (`--mount
    * source:target`) and the environment to set (`--env`), as execute_command does.
@@ -55,6 +57,8 @@ export interface TaskGraderInput {
   isolation?: Isolation;
   /** A repository item's delivered change (CODE §5), handed to the grader as `patchRef`. */
   patchText?: string;
+  /** A simulator trial's command log (PLAN-007 WP3.3), handed to the grader as `simulatorRef`. */
+  simulatorLog?: string;
 }
 
 function object(value: unknown): Record<string, unknown> {
@@ -279,6 +283,11 @@ export async function runTaskGrader(input: TaskGraderInput): Promise<EvaluationR
         patchRef = "submission.patch";
         await writeFile(join(evidenceRoot, patchRef), input.patchText, { encoding: "utf8", flag: "wx" });
       }
+      let simulatorRef: string | null = null;
+      if (input.simulatorLog !== undefined) {
+        simulatorRef = "simulator-log.jsonl";
+        await writeFile(join(evidenceRoot, simulatorRef), input.simulatorLog, { encoding: "utf8", flag: "wx" });
+      }
       const requestId = `${input.trialId}.grader`;
     const context = input.context ?? { stageId: null, cycleId: null, activeRequirementIds: manifest.requirements.map(requirement => requirement.id) };
     const knownRequirements = new Set(manifest.requirements.map(requirement => requirement.id));
@@ -301,6 +310,7 @@ export async function runTaskGrader(input: TaskGraderInput): Promise<EvaluationR
       sandbox: (input.isolation ?? "sandbox") === "sandbox" ? { launcher: sandboxLauncher } : null,
     };
     if (patchRef) request.patchRef = patchRef;
+    if (simulatorRef) request.simulatorRef = simulatorRef;
     const runtime = await runtimeMounts(descriptor, manifest.items?.find(item => item.id === context.itemId) ?? null);
     // Without the sandbox nothing is bound: the environment names the mounts' source directories.
     if (runtime) request.runtime = request.sandbox ? runtime : { mounts: runtime.mounts, env: hostEnvironment(runtime) };

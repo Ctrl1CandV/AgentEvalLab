@@ -15,6 +15,7 @@ import { prepareWorkspace } from "./workspace.js";
 import { projectPackage } from "./package.js";
 import { projectPackageItem, runtimeMounts, type ManifestItem, type PackageDescriptor } from "./manifest.js";
 import { collectRepositoryPatch, PatchLimitError, projectRepository, type RepositoryWorkspace } from "./repository.js";
+import { simulatorSession, type SimulatorSession } from "./simulator.js";
 import { resolveCaseItems } from "./items.js";
 import { ArtifactLimitError, copyArtifacts, defaultArtifactLimits } from "./artifacts.js";
 import { validatePlan } from "./validate.js";
@@ -178,6 +179,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
         supersedes: previous?.id ?? null };
       let workspace: Awaited<ReturnType<typeof prepareWorkspace>> | undefined;
       let repository: RepositoryWorkspace | undefined;
+      let simulator: SimulatorSession | undefined;
       let fatal: unknown;
       let executionFinished = false;
       let evaluationCommitted = false;
@@ -192,6 +194,8 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
         // A repository item: its archive becomes a fresh single-commit repository in the workspace (CODE §5).
         if (packageItem?.repository && projection) repository = await projectRepository(projection, packageItem, workspace.path);
         const runtime = projection ? await runtimeMounts(projection, packageItem) : undefined;
+        // A simulator trial: the package's simulator, its state private to the harness (PLAN-007 WP3.3).
+        if (toolProfile === "workspace-simulator" && projection) simulator = await simulatorSession(projection, packageItem);
         await events.emit("execution_started");
         const runner = options.runner ?? createPiRunner({
           ...(notice ? { budgetReminders: notice.reminders } : {}),
@@ -205,7 +209,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
             toolProfile === "doc-evidence" ? join(workspace!.path, "public", "snapshot") : workspace!.path,
             toolProfile,
             { readOnly: item.readOnly, execute: !item.readOnly, isolation: plan.isolation, ...(plan.commandLimits ? { commandLimits: plan.commandLimits } : {}),
-              ...(runtime ? { runtime } : {}) },
+              ...(runtime ? { runtime } : {}), ...(simulator ? { simulator: simulator.tool } : {}) },
           ) : [],
         });
         const prompt = [instruction, itemPrompt, item.input.prompt, notice ? budgetStatement(plan.budget, notice.reminders) : ""].filter(Boolean).join("\n\n");
@@ -253,6 +257,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
             isolation: plan.isolation,
             ...(packageItem ? { item: { id: packageItem.id, activeRequirementIds: packageItem.activeRequirementIds } } : {}),
             ...(repository ? { patchText: patch } : {}),
+            ...(simulator ? { simulatorLog: await simulator.log() } : {}),
           });
         } catch (error) {
           if (error instanceof EvaluatorCleanupError) record.cleanup = "error";
@@ -307,6 +312,9 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
         }
         if (repository) {
           try { await repository.cleanup(); } catch { record.cleanup = "error"; }
+        }
+        if (simulator) {
+          try { await simulator.cleanup(); } catch { record.cleanup = "error"; }
         }
         record.durationMs = performance.now() - start;
         record.execution = persistedExecution(record.execution, plan.budget.maxOutputChars);

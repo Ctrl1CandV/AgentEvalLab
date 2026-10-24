@@ -5,8 +5,20 @@ import { dirname, isAbsolute, relative, resolve } from "node:path";
 import { Type } from "typebox";
 import type { AgentTool } from "@earendil-works/pi-agent-core";
 
-/** "none" is answer-only: the model gets no tools and answers in its reply (PLAN-007 WP2.4). */
-export type ToolProfile = "workspace-basic" | "workspace-augmented" | "doc-evidence" | "none";
+/**
+ * "none" is answer-only: the model gets no tools and answers in its reply (PLAN-007 WP2.4). "workspace-simulator" is
+ * workspace-basic plus the `simulator` tool of a package's trusted simulator (PLAN-007 WP3.3).
+ */
+export type ToolProfile = "workspace-basic" | "workspace-augmented" | "doc-evidence" | "none" | "workspace-simulator";
+
+/** How the `simulator` tool reaches a package's simulator: one process per command, its state in a private directory. */
+export interface SimulatorToolOptions {
+  executable: string;
+  args: string[];
+  stateDirectory: string;
+  description: string;
+  timeoutMs: number;
+}
 
 export interface WorkspaceToolOptions {
   readOnly?: boolean;
@@ -17,6 +29,8 @@ export interface WorkspaceToolOptions {
   commandLimits?: { timeoutMs: number; maxOutputBytes: number };
   /** The task's runtime mounts, bound read-only into every command with their environment. */
   runtime?: RuntimeMounts;
+  /** The package's simulator, for the workspace-simulator profile. */
+  simulator?: SimulatorToolOptions;
 }
 
 export const defaultCommandLimits = Object.freeze({ timeoutMs: 10_000, maxOutputBytes: 16_000 });
@@ -84,10 +98,33 @@ export function workspaceTools(root: string, options: WorkspaceToolOptions = {})
     description: `Run a command in the workspace (no shell, no network). Each call may run for ${limits.timeoutMs / 1000} seconds and return ` +
       `${limits.maxOutputBytes} bytes of output; a longer command is stopped (status "timeout").`,
     async execute(_id, args) {
-      const sandboxed = isolatedCommand(args.executable, args.args, [await realpath(root)], options.isolation, options.runtime);
+      const workspace = await realpath(root);
+      // "{workspace}" in a runtime's environment is the workspace root (a repository item's code at {workspace}/repo).
+      const runtime = options.runtime && { ...options.runtime, env: Object.fromEntries(Object.entries(options.runtime.env).map(([name, value]) => [name, value.split("{workspace}").join(workspace)])) };
+      const sandboxed = isolatedCommand(args.executable, args.args, [workspace], options.isolation, runtime);
       const result = await command(sandboxed.executable, sandboxed.args, root, limits.timeoutMs, limits.maxOutputBytes, undefined, sandboxed.env);
       return { content: [{ type: "text", text: JSON.stringify(result) }], details: {} };
     },
   };
   return [read, list, ...(!options.readOnly ? [write] : []), ...(options.execute ? [execute] : [])];
+}
+
+const MAX_SIMULATOR_OUTPUT = 100_000;
+
+/**
+ * The `simulator` tool: sends one command to the package's simulator (trusted, run outside the sandbox, its state out of
+ * the model's reach) and returns its JSON reply. The simulator decides what a command does; the harness only relays.
+ */
+export function simulatorTool(options: SimulatorToolOptions): AgentTool {
+  const parameters = Type.Object({ command: Type.String({ minLength: 1, maxLength: 64 }), arguments: Type.Optional(Type.Record(Type.String(), Type.Unknown())) });
+  const tool: AgentTool<typeof parameters> = {
+    name: "simulator", label: "Simulator", description: options.description, parameters,
+    async execute(_id, args) {
+      const request = JSON.stringify({ command: args.command, arguments: args.arguments ?? {} });
+      const result = await command(options.executable, options.args, options.stateDirectory, options.timeoutMs, MAX_SIMULATOR_OUTPUT, request + "\n");
+      if (result.status !== "completed" || result.exitCode !== 0) throw new Error(`SIMULATOR_FAILED:${result.status}`);
+      return { content: [{ type: "text", text: result.stdout.trim() || "{}" }], details: {} };
+    },
+  };
+  return tool;
 }

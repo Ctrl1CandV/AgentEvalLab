@@ -15,6 +15,9 @@ import { createPiRunner } from "../src/harness/pi.js";
 import { evaluatedCondition } from "../src/evaluation/condition.js";
 import { validatePlan } from "../src/evaluation/validate.js";
 import { runEvaluation } from "../src/evaluation/run.js";
+import { inspectPackage } from "../src/evaluation/manifest.js";
+import { runTaskGrader } from "../src/evaluation/grader.js";
+import { simulatorSession } from "../src/evaluation/simulator.js";
 import { emptyExecution } from "../src/types.js";
 import type { EvaluationPlan } from "../src/evaluation/types.js";
 
@@ -284,4 +287,69 @@ test("external assets: a repository and a runtime archived under assets/, the ru
     if (previous === undefined) delete process.env.AGENTEVAL_RUNTIME_CACHE; else process.env.AGENTEVAL_RUNTIME_CACHE = previous;
     await rm(root, { recursive: true, force: true });
   }
+});
+
+test("simulator: commands go through the tool to the package's simulator, its state outside the workspace, its log to the grader", async () => {
+  const root = await mkdtemp(join(tmpdir(), "simulator-test-"));
+  try {
+    const pkg = join(root, "package");
+    await mkdir(join(pkg, "private"), { recursive: true });
+    const simulator = [
+      "import json, os, sys",
+      "state = sys.argv[sys.argv.index('--state') + 1]",
+      "path = os.path.join(state, 'state.json')",
+      "total = json.load(open(path))['total'] if os.path.exists(path) else 0",
+      "request = json.loads(sys.stdin.readline())",
+      "if request['command'] == 'add':",
+      "    total += int(request['arguments'].get('n', 0))",
+      "    json.dump({'total': total}, open(path, 'w'))",
+      "    open(os.path.join(state, 'log.jsonl'), 'a').write(json.dumps(request) + '\\n')",
+      "print(json.dumps({'ok': True, 'total': total, 'item': sys.argv[sys.argv.index('--item') + 1]}))",
+    ].join("\n") + "\n";
+    const grader = [
+      "import json, sys",
+      "arg = lambda name: sys.argv[sys.argv.index(name) + 1]",
+      "request = json.load(open(arg('--request')))",
+      "lines = open(request['evidenceRoot'] + '/' + request['simulatorRef']).read().splitlines()",
+      "json.dump({'schemaVersion': 1, 'requestId': request['requestId'], 'taskId': request['task']['id'], 'taskVersion': request['task']['version'], 'graderVersion': '1.0.0',",
+      "  'gradingStatus': 'completed', 'checks': [{'id': 'two-adds', 'requirementId': 'REQ-A', 'status': 'pass' if len(lines) == 2 else 'fail', 'evidenceRefs': []}],",
+      "  'dimensions': [], 'unscoredCheckIds': [], 'reason': None, 'error': None}, open(arg('--result'), 'w'))",
+    ].join("\n") + "\n";
+    const files: Record<string, string> = { "instruction.md": "Add twice.", "card.md": "# Card\n", "private/simulator.py": simulator, "private/grader.py": grader };
+    for (const [name, content] of Object.entries(files)) await writeFile(join(pkg, name), content);
+    const manifest = {
+      schemaVersion: 2, id: "simulator-fixture", version: "0.1.0", familyId: "sim", capability: "tool", usage: "development",
+      source: { kind: "original-design", references: [] }, license: { taskText: "test", thirdPartyContent: [] }, entryPoint: { instruction: "instruction.md" },
+      files: { public: [{ path: "instruction.md", sha256: sha256(files["instruction.md"]!) }],
+        trusted: ["card.md", "private/simulator.py", "private/grader.py"].map(path => ({ path, sha256: sha256(files[path]!) })) },
+      requirements: [{ id: "REQ-A", critical: true, introducedAt: "0.1.0", checkIds: ["two-adds"] }],
+      toolProfiles: ["workspace-simulator"],
+      grader: { id: "g", version: "1.0.0", entryPoint: "private/grader.py", executable: python, args: ["{entryPoint}", "--request", "{request}", "--result", "{result}"] },
+      environment: { runtime: "Python 3", dependencies: "none", network: false },
+      tier: "core", capabilities: ["agentic"], card: "card.md",
+      scoreModel: { primary: { kind: "resolved" }, groups: [{ id: "adds", weight: 1, critical: true, rule: "all", checkIds: ["two-adds"] }] },
+      task: { split: "dev", structure: "env:sim", provenance: { source: "test", published: "2026-10-24", license: "test", exposure: "generated" } },
+      simulator: { entryPoint: "private/simulator.py", executable: python, description: "Commands: add {n}; get.", timeoutMs: 10_000 },
+    };
+    await writeFile(join(pkg, "manifest.json"), JSON.stringify(manifest));
+    const descriptor = await inspectPackage(pkg);
+    const session = await simulatorSession(descriptor, null);
+    const workspace = join(root, "workspace");
+    await mkdir(workspace);
+    const tools = evaluationTools(workspace, "workspace-simulator", { execute: true, simulator: session.tool });
+    assert.deepEqual(tools.map(tool => tool.name), ["read_file", "list_directory", "write_file", "execute_command", "simulator"]);
+    const call = async (args: Record<string, unknown>) => JSON.parse(((await tools.at(-1)!.execute("call", args as never)).content[0] as { text: string }).text);
+    assert.equal((await call({ command: "add", arguments: { n: 2 } })).total, 2);
+    assert.equal((await call({ command: "add", arguments: { n: 3 } })).total, 5);
+    assert.equal((await call({ command: "get" })).total, 5);
+    assert.ok(!session.tool.stateDirectory.startsWith(workspace), "the state is outside the workspace");
+    const log = await session.log();
+    assert.equal(log.trim().split("\n").length, 2);
+    await mkdir(join(root, "score-run"));
+    const evaluation = await runTaskGrader({ trialId: "t", scoreRunDirectory: join(root, "score-run"), submissionDirectory: workspace, packageDescriptor: descriptor,
+      submissionManifest: { schemaVersion: 1, files: [], totalBytes: 0, sha256: "0".repeat(64) }, maxOutputBytes: 100_000, resultMaxBytes: 100_000, timeoutMs: 30_000,
+      isolation: "host", simulatorLog: log });
+    assert.equal(evaluation.status, "passed", JSON.stringify(evaluation));
+    await session.cleanup();
+  } finally { await rm(root, { recursive: true, force: true }); }
 });
