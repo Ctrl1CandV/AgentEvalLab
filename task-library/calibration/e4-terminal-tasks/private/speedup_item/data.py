@@ -1,7 +1,11 @@
 """Event logs for the speedup item, deterministic from a seed. Most rows are canonical; a share are quirks that the
 original program treats in its own way, among them gaps of exactly 30 minutes and bursts of exactly ten seconds: timestamps in forms that strptime accepts leniently or rejects, offsets with
 and without a colon, users with spaces and capitals, paths with queries and trailing slashes, empty referrers,
-non-integer statuses, and rows with a single field."""
+non-integer statuses, and rows with a single field. Since grader 1.5.0 the quirks also hold rows the PLAN-007 success
+audit found deliveries mishandling: a literal "-" referrer (the original drops it from the transitions, as it drops an
+empty one), rows without the referrer column (the original reads it as "-"), numbers in other scripts' digits or with
+underscores (int() reads them), and users whose lower case is unusual. They are drawn only with audited=True, which the
+hidden quirks day uses, so the public sample stays as it was."""
 import csv
 import datetime
 import io
@@ -42,7 +46,17 @@ def stamp(moment, rng, quirky):
     return " " + text  # leading space: rejected
 
 
-def events(seed, rows, quirk_share):
+def wide(number):
+    """Full-width digits, which int() reads as the ASCII ones."""
+    return "".join(chr(ord(digit) - ord("0") + 0xFF10) for digit in str(number))
+
+
+def arabic(number):
+    """Arabic-Indic digits, which int() reads too."""
+    return "".join(chr(ord(digit) - ord("0") + 0x0660) for digit in str(number))
+
+
+def events(seed, rows, quirk_share, audited=False):
     rng = random.Random(seed)
     users = [f"user{index:04d}" for index in range(max(20, rows // 80))]
     bursty = set(rng.sample(users, len(users) // 15))
@@ -67,9 +81,21 @@ def events(seed, rows, quirk_share):
         if quirky and rng.random() < 0.08:
             writer.writerow([f"garbage-{rng.randrange(10**6)}"])
             continue
-        name = user if not quirky or rng.random() < 0.5 else rng.choice([f"  {user}", user.upper(), f"{user} "])
+        if not audited:
+            # As generated up to grader 1.4.0; the public sample is written this way, so it stays byte for byte the same.
+            name = user if not quirky or rng.random() < 0.5 else rng.choice([f"  {user}", user.upper(), f"{user} "])
+            status = rng.choices([200, 201, 204, 301, 304, 400, 404, 429, 500, 502, 503], weights=[50, 6, 4, 3, 5, 4, 6, 2, 3, 2, 2])[0]
+            status_text = str(status) if not quirky or rng.random() < 0.85 else rng.choice([f"{status}.0", f" {status}", "n/a"])
+            writer.writerow([stamp(clock[user], rng, quirky), name, rng.choice(PATHS), status_text, rng.randrange(0, 200_000), rng.randrange(1, 4_000),
+                             rng.choice(REFERRERS)])
+            continue
+        name = user if not quirky or rng.random() < 0.5 else rng.choice([f"  {user}", user.upper(), f"{user} ", f"ẞ{user}", f"İ{user}"])
         status = rng.choices([200, 201, 204, 301, 304, 400, 404, 429, 500, 502, 503], weights=[50, 6, 4, 3, 5, 4, 6, 2, 3, 2, 2])[0]
-        status_text = str(status) if not quirky or rng.random() < 0.85 else rng.choice([f"{status}.0", f" {status}", "n/a"])
-        writer.writerow([stamp(clock[user], rng, quirky), name, rng.choice(PATHS), status_text, rng.randrange(0, 200_000), rng.randrange(1, 4_000),
-                         rng.choice(REFERRERS)])
+        status_text = str(status) if not quirky or rng.random() < 0.8 else rng.choice([f"{status}.0", f" {status}", "n/a", wide(status), arabic(status)])
+        size, latency = rng.randrange(0, 200_000), rng.randrange(1, 4_000)
+        size_text = str(size) if not quirky or rng.random() < 0.85 else rng.choice([wide(size), f"{size:_}", arabic(size)])
+        latency_text = str(latency) if not quirky or rng.random() < 0.85 else rng.choice([wide(latency), arabic(latency), f" {latency} "])
+        referrer = rng.choice(REFERRERS) if not quirky or rng.random() < 0.8 else "-"
+        row = [stamp(clock[user], rng, quirky), name, rng.choice(PATHS), status_text, size_text, latency_text, referrer]
+        writer.writerow(row[:6] if quirky and rng.random() < 0.08 else row)
     return out.getvalue()

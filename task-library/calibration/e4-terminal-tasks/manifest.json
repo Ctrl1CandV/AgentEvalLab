@@ -28,11 +28,11 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "27953f50b4b1ae7f4eb4a3aeadf37231fd43e5861e2ae4abc6eb05b5bdc328ca"
+        "sha256": "075e844e8410574ff6c7e9f6c76e0837cd8e71726dc824d8a8e9c810bc8db346"
       },
       {
         "path": "rubric.md",
-        "sha256": "8fa98f73e6abec190c3106af6c9d0da1083344d5d4fff65d4f95da7a6114c989"
+        "sha256": "e5220af40a4b8846e6a3a5b3b99b33347328f023eb5b28bf3da64daaf89303cb"
       },
       {
         "path": "private/bisect_item/checks.py",
@@ -76,7 +76,7 @@
       },
       {
         "path": "private/calibrate.py",
-        "sha256": "792e0fb16636c7c1ec8a2265194f45ba315d59966d67d91de0a73679c0d8ff03"
+        "sha256": "5b4ff138951444a523f162524fabb1b4d61df074d007ebe25f3b5e808c70dac9"
       },
       {
         "path": "private/codec_item/cases.py",
@@ -112,7 +112,7 @@
       },
       {
         "path": "private/grader.py",
-        "sha256": "9b23e8b212160b02846b5a8d81f4c2a21a8557e8253a037fc03ce97f25a1b497"
+        "sha256": "a0dc5869c792258ab7b6de1ff21037d530959b2631c9d568b2d9de1ced3bdd3b"
       },
       {
         "path": "private/migrate/data.py",
@@ -160,11 +160,11 @@
       },
       {
         "path": "private/speedup_item/checks.py",
-        "sha256": "f372e83979d0cf7302ef526ffb73ab32a9e8fdd5290072dd19d9cfe454bf822c"
+        "sha256": "7d9017844b0e852bb2e057b9ef992edfd45a6a14de7ea15efde89ea773efd2d2"
       },
       {
         "path": "private/speedup_item/data.py",
-        "sha256": "8ce1e6e0d581d695fc47b1c13afe0e76cce50afa1e2a9725dbf084e0a86075c4"
+        "sha256": "08170b4d7e35e4f4719bf4f948c71928b0b9ab9263c8b723fd3b420047f348bc"
       },
       {
         "path": "private/speedup_item/naive.py",
@@ -1185,7 +1185,7 @@
   ],
   "grader": {
     "id": "e4-terminal-checks",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

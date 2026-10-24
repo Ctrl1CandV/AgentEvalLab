@@ -11,6 +11,7 @@ import { runTrajectoryEvaluation } from "./evaluation/trajectory.js";
 import { validatePlan } from "./evaluation/validate.js";
 import { preflightPlan } from "./evaluation/preflight.js";
 import { importHumanReview, mergeRunReports, regradeTrial, restoreTrialSnapshot } from "./evaluation/regrade.js";
+import { regradeTrajectory } from "./evaluation/trajectory-regrade.js";
 import { restoreTrajectorySnapshot } from "./evaluation/trajectory-snapshot.js";
 import type { EvaluationPlan } from "./evaluation/types.js";
 import { fileURLToPath } from "node:url";
@@ -35,6 +36,8 @@ async function main(): Promise<void> {
       out: { type: "string", default: "runs" },
       "validate-only": { type: "boolean" },
       regrade: { type: "string" },
+      "regrade-trajectory": { type: "string" },
+      scope: { type: "string" },
       restore: { type: "string" },
       "restore-trajectory": { type: "string" },
       stage: { type: "string" },
@@ -57,6 +60,7 @@ async function main(): Promise<void> {
       "npm run harness -- --plan plan.eval.json [--out runs] [--validate-only] [--resume runs/<run> [--stopped-providers deepseek=PROVIDER_BALANCE,...]] [--allow-dirty]",
       "npm run harness -- --merge runs/<run-a> --merge runs/<run-b> [--out runs]",
       "npm run harness -- --plan plan.eval.json --regrade runs/<run>/<trial> --reason \"reason\"",
+      "npm run harness -- --plan plan.eval.json --regrade-trajectory runs/<run>/<trial> --reason \"reason\" [--scope all|final]",
       "npm run harness -- --plan plan.eval.json --import-review runs/<run>/<trial> --review review.json --reason \"reason\"",
       "npm run harness -- --restore runs/<run>/<trial> --destination path/to/new-snapshot",
       "npm run harness -- --restore-trajectory runs/<run>/<trial> --stage S1 --cycle cycle-1 --destination path/to/new-snapshot",
@@ -65,11 +69,25 @@ async function main(): Promise<void> {
   }
 
   if (values.merge) {
-    if (values.plan || values.model || values.prompt || values.regrade || values.restore || values["restore-trajectory"] || values["import-review"] || values.resume) {
+    if (values.plan || values.model || values.prompt || values.regrade || values["regrade-trajectory"] || values.restore || values["restore-trajectory"] || values["import-review"] || values.resume) {
       throw new Error("MERGE_ARGUMENTS_INVALID");
     }
     const result = await mergeRunReports(values.merge, values.out);
     console.log(JSON.stringify({ directory: result.directory, recordedRuns: result.report.recordedRuns, plannedRuns: result.report.plannedRuns }, null, 2));
+    return;
+  }
+
+  if (values["regrade-trajectory"]) {
+    if (!values.plan || !values.reason || values.regrade || values.restore || values["restore-trajectory"] || values["import-review"] || values.model ||
+        values.prompt || values.resume || (values.scope !== undefined && values.scope !== "all" && values.scope !== "final")) {
+      throw new Error("REGRADE_TRAJECTORY_ARGUMENTS_INVALID");
+    }
+    const path = resolve(values.plan);
+    if (!basename(path).endsWith(".eval.json")) throw new Error("PLAN_EXTENSION_REQUIRED");
+    const plan = JSON.parse(await readFile(path, "utf8")) as EvaluationPlan;
+    const result = await regradeTrajectory(values["regrade-trajectory"], plan, values.reason, (values.scope as "all" | "final" | undefined) ?? "all");
+    console.log(JSON.stringify(result.map(entry => ({ stageId: entry.stageId, cycleId: entry.cycleId, scoreRunId: entry.scoreRunId, status: entry.evaluation.status,
+      failed: entry.evaluation.checks.filter(check => check.passed === false).map(check => check.id) })), null, 2));
     return;
   }
 

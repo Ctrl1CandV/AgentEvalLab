@@ -188,3 +188,15 @@ The compress trials made 30–38 requests within 2,000,000 tokens, about 60,000 
 
 At 4,000,000 tokens (`runs/suites/20261022-050033-dev-0cdf`), deepseek-flash reached 92.7% of the way to the reference (5/6) and qwen3.8-flash 81.8% (4/6). Both programs round-trip every hidden input within the time limit.
 
+
+## Grader 1.5.0 (2026-10-24, task 0.5.0 unchanged)
+
+**Why.** The PLAN-007 success audit (`docs/audits/E4-speedup/2026-10-24.md`) ran every recorded speedup delivery against the original on days of its own and found three deliveries that the hidden checks passed but that print something else than the original for some inputs, which the task forbids ("byte for byte the same for every input"):
+
+- deepseek-flash, task 0.5.0 (`runs/suites/20261021-123806-dev-d275`): rows without the referrer column, which the original reads with the referrer "-";
+- qwen3.8-flash, task 0.5.0 (same suite, 8/8): a literal "-" referrer, which the original leaves out of the transitions as it does an empty one;
+- qwen3.8-flash, task 0.4.0 (`runs/9b2dbac7-7ae8-4546-ac77-8abff5fe1f24`): numbers in full-width or Arabic-Indic digits, which `int()` reads.
+
+None of these appeared on the hidden quirks day.
+
+**Change.** The hidden quirks day (`private/speedup_item/data.py`, drawn with `audited=True`) now holds those rows, and some unusual user names. The small and large days and the public sample are drawn as before and are byte for byte unchanged; so are all item files. Three new self-calibration mutants of the reference, one per slip, fail `quirks` only (`logs/self-calibration-0.5.0-grader-1.5.0-speedup.log`). Every 0.5.0 speedup trial was re-graded under 1.5.0; the 0.4.x trials belong to superseded task versions and keep their graders' numbers, with the audit's finding recorded.

@@ -19,7 +19,7 @@ PACKAGE = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 TASK_ID = "e4-terminal-tasks"
 TASK_VERSION = "0.5.0"
-GRADER_VERSION = "1.4.0"
+GRADER_VERSION = "1.5.0"
 CHECKS = {
     "perf": ["workspace-output", "quirks", "empty", "speed"],
     "migrate": ["schema", "names", "emails", "dates", "totals", "statuses", "orphans", "idempotent", "atomic", "workspace-db"],

@@ -82,6 +82,20 @@ def speedup_scenarios():
     no_fallback = reference.replace(fast_path, "    match = CANONICAL.match(text)\n    if match is None:\n        raise ValueError(text)\n")
     # Sessions split at exactly 30 minutes too: wrong only where a gap is exactly 30 minutes, on the quirks day.
     wrong_gap = reference.replace("later - earlier > GAP", "later - earlier >= GAP")
+    # The three slips the PLAN-007 success audit found in recorded deliveries (grader 1.5.0): a literal "-" referrer
+    # counted, rows without the referrer column skipped, and numbers read only in ASCII digits.
+    def mutated(*pieces):
+        text = reference
+        for old, new in pieces:
+            assert old in text, old
+            text = text.replace(old, new)
+        return text
+    dash_counted = mutated(('referrer = referrer or "-"', 'literal = referrer\n            referrer = referrer or "-"'), ('if referrer != "-":', "if literal:"))
+    short_rows_skipped = mutated(("            stamp, user, path, status, size, latency, referrer = ",
+                                  "            if len(record) < len(columns) and len(record) > 1:\n                skipped += 1\n                continue\n"
+                                  "            stamp, user, path, status, size, latency, referrer = "))
+    ascii_digits = mutated(("status, size, latency = int(status), int(size), int(latency)",
+                            "status, size, latency = (int(value) if value.strip().lstrip('+-').replace('_', '').isascii() else int('x') for value in (status, size, latency))"))
     return [
         ("speedup", "oracle", {"analyze.py": reference}, None, checks - {"speed-0.75"}),
         ("speedup", "untouched", {}, None, set()),
@@ -91,6 +105,9 @@ def speedup_scenarios():
         ("speedup", "dict-reader", {"analyze.py": dict_reader}, None, checks - {"speed-1.1", "speed-0.75"}),
         ("speedup", "no-strptime-fallback", {"analyze.py": no_fallback}, None, checks - {"quirks", "speed-0.75"}),
         ("speedup", "session-gap-inclusive", {"analyze.py": wrong_gap}, None, checks - {"quirks", "speed-0.75"}),
+        ("speedup", "dash-referrer-counted", {"analyze.py": dash_counted}, None, checks - {"quirks", "speed-0.75"}),
+        ("speedup", "short-rows-skipped", {"analyze.py": short_rows_skipped}, None, checks - {"quirks", "speed-0.75"}),
+        ("speedup", "ascii-digits-only", {"analyze.py": ascii_digits}, None, checks - {"quirks", "speed-0.75"}),
     ]
 
 

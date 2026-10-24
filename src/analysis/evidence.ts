@@ -4,6 +4,7 @@ import { lstat, readFile, readdir } from "node:fs/promises";
 import { join, relative, resolve } from "node:path";
 import { promisify } from "node:util";
 import { loadRecordedTrials } from "../evaluation/regrade.js";
+import { loadTrajectoryRecords, snapshotScores } from "../evaluation/trajectory-regrade.js";
 import { modelLabel } from "../evaluation/report.js";
 import type { NotRunEntry } from "../evaluation/batch.js";
 import type { EvaluationPlan, EvaluationResult, TrajectoryRecord, TrialRecord } from "../evaluation/types.js";
@@ -245,20 +246,30 @@ export async function runRows(runDirectory: string, context: RunContext): Promis
     if (!found) return { rows: [], excluded: [{ runDirectory: display, reason: `manifest ${fingerprint.id}@${fingerprint.version} not found at ${commit}` }] };
     const { checkIds, weights } = trajectoryChecksOf(found.manifest);
     const family = familyFor(fingerprint.id);
-    for (const model of experiment.models ?? []) {
-      const records = report.records.filter(record => modelKey(record.model) === modelKey(model));
-      const units = records.map(record => trajectoryUnit(family, runDirectory, record, checkIds, weights));
-      const versions = new Set<string>();
-      for (const record of records) for (const version of await trajectoryGraderVersions(join(runDirectory, record.id))) versions.add(version);
-      const [result] = familyResults(family, [model], units, notRun.filter(entry => entry.model === modelKey(model)));
-      rows.push({
-        ...common, family, packageId: fingerprint.id, taskVersion: fingerprint.version, graderVersion: [...versions].sort().join(", ") || null, kind: "trajectory",
-        model: modelKey(model), label: modelLabel(model), thinking: model.thinkingLevel ?? "provider-default", temperature: model.temperature ?? null,
-        scope: ["final-stage checks"], breakdown: breakdown(units, unit => unit.level ? `last graded ${unit.level}` : null),
-        trials: result!.units, scored: result!.scored, infrastructure: result!.infrastructureFailures, notRun: result!.notRun, unscored: result!.unscored,
-        ungraded: 0, budgetStops: result!.budgetStops, meanScore: result!.meanScore, resolved: result!.resolved, decided: result!.decided,
-        medianTokens: result!.medianTokens, tournament: null, status,
-      });
+    // One row per grader version: the original grading, then each append-only re-grade, which overlays the snapshots
+    // it graded again (a re-grade of the final snapshot changes the score, which reads that snapshot).
+    const scores = await Promise.all(report.records.map(record => snapshotScores(join(runDirectory, record.id))));
+    const firstSeen = new Map<string, string>();
+    for (const score of scores.flat()) if (score.graderVersion && !firstSeen.has(score.graderVersion)) firstSeen.set(score.graderVersion, score.createdAt);
+    const ordered = [...firstSeen.entries()].sort((left, right) => left[1].localeCompare(right[1])).map(([version]) => version);
+    const versions: Array<string | undefined> = ordered.length > 1 ? ordered : [undefined];
+    for (const version of versions) {
+      const overlaid = await loadTrajectoryRecords(runDirectory, version);
+      for (const model of experiment.models ?? []) {
+        const records = overlaid.filter(record => modelKey(record.model) === modelKey(model));
+        const units = records.map(record => trajectoryUnit(family, runDirectory, record, checkIds, weights));
+        const recordVersions = new Set<string>(version ? [version] : []);
+        if (!version) for (const record of records) for (const found of await trajectoryGraderVersions(join(runDirectory, record.id))) recordVersions.add(found);
+        const [result] = familyResults(family, [model], units, notRun.filter(entry => entry.model === modelKey(model)));
+        rows.push({
+          ...common, family, packageId: fingerprint.id, taskVersion: fingerprint.version, graderVersion: [...recordVersions].sort().join(", ") || null, kind: "trajectory",
+          model: modelKey(model), label: modelLabel(model), thinking: model.thinkingLevel ?? "provider-default", temperature: model.temperature ?? null,
+          scope: ["final-stage checks"], breakdown: breakdown(units, unit => unit.level ? `last graded ${unit.level}` : null),
+          trials: result!.units, scored: result!.scored, infrastructure: result!.infrastructureFailures, notRun: result!.notRun, unscored: result!.unscored,
+          ungraded: 0, budgetStops: result!.budgetStops, meanScore: result!.meanScore, resolved: result!.resolved, decided: result!.decided,
+          medianTokens: result!.medianTokens, tournament: null, status,
+        });
+      }
     }
     return { rows, excluded: [] };
   }

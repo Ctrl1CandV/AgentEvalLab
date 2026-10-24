@@ -1,0 +1,11 @@
+speedup oracle: passes ['large', 'quirks', 'small', 'speed-1.1', 'speed-1.5', 'speed-3', 'speed-8']
+speedup untouched: passes []
+speedup original-as-shipped: passes []
+speedup strptime-everywhere: passes ['large', 'quirks', 'small', 'speed-8']
+speedup dict-reader: passes ['large', 'quirks', 'small', 'speed-1.5', 'speed-3', 'speed-8']
+speedup no-strptime-fallback: passes ['large', 'small', 'speed-1.1', 'speed-1.5', 'speed-3', 'speed-8']
+speedup session-gap-inclusive: passes ['large', 'small', 'speed-1.1', 'speed-1.5', 'speed-3', 'speed-8']
+speedup dash-referrer-counted: passes ['large', 'small', 'speed-1.1', 'speed-1.5', 'speed-3', 'speed-8']
+speedup short-rows-skipped: passes ['large', 'small', 'speed-1.1', 'speed-1.5', 'speed-3', 'speed-8']
+speedup ascii-digits-only: passes ['large', 'small', 'speed-1.1', 'speed-1.5', 'speed-3', 'speed-8']
+RESULT: PASS (10/10)

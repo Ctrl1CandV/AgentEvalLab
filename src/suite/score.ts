@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { loadRecordedTrials } from "../evaluation/regrade.js";
+import { loadTrajectoryRecords } from "../evaluation/trajectory-regrade.js";
 import { modelLabel } from "../evaluation/report.js";
 import { meanInterval } from "../evaluation/statistics.js";
 import type { NotRunEntry } from "../evaluation/batch.js";
@@ -148,12 +149,14 @@ export async function loadSingleRun(family: FamilySpec, runDirectory: string, sc
   };
 }
 
+/** Units of a trajectory run, each snapshot graded by its latest score run (an append-only re-grade included). */
 export async function loadTrajectoryRun(family: FamilySpec, runDirectory: string, checkIds: string[], weights: Record<string, number> = {}): Promise<RunContents> {
   const report = JSON.parse(await readFile(join(runDirectory, "report.json"), "utf8")) as {
-    records: TrajectoryRecord[]; batch?: { notRun?: NotRunEntry[]; providerStops?: Record<string, string> };
+    batch?: { notRun?: NotRunEntry[]; providerStops?: Record<string, string> };
   };
+  const records: TrajectoryRecord[] = await loadTrajectoryRecords(runDirectory);
   return {
-    units: report.records.map(record => trajectoryUnit(family.id, runDirectory, record, checkIds, weights)),
+    units: records.map(record => trajectoryUnit(family.id, runDirectory, record, checkIds, weights)),
     notRun: (report.batch?.notRun ?? []).map(entry => ({ ...entry, familyId: family.id, runDirectory })),
     providerStops: report.batch?.providerStops ?? {},
   };

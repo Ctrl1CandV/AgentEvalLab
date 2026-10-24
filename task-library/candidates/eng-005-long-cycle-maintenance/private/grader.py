@@ -13,8 +13,15 @@ and the checks that a command is rejected also need the command to work where it
 Version 2.2.0 (task 0.5.0) adds S7, planning (private/plan.py): valid plans on five hidden stores and the S6 scale
 store, read-only planning, error codes, the new fields kept by earlier commands, and a quality ladder on the mean
 place of the plans between the naive plan (0), the greedy plan (0.5) and the best plan known (1).
+
+Version 2.3.0 (task 0.5.0 unchanged) stops wall-clock limits from failing correct deliveries on a busy machine: the
+PLAN-007 success audit found plan.fields-preserved failing once and passing on two re-gradings of the same snapshot.
+Commands that no brief bounds in time get 30 seconds instead of 6, a command whose sandbox could not be prepared is
+started once more, and the plan's limit of 10 seconds on one CPU core (S7) is measured as the command's CPU time, with
+30 seconds of wall time as a hard stop. The speed rungs of S6 still compare wall time with the reference, best of three.
 """
 import os
+import resource
 import time
 import argparse
 import datetime
@@ -56,11 +63,20 @@ def sandboxed(command: list[str], root: Path) -> list[str]:
     return [sys.executable, SANDBOX_LAUNCHER, "--rw", str(root), "--", *command] if SANDBOX_LAUNCHER else command
 
 
-def invoke(root: Path, args: list[str], timeout: float = 6) -> subprocess.CompletedProcess[str]:
+COMMAND_SECONDS = 30  # a hard stop for commands no brief bounds in time; never a verdict on speed
+SANDBOX_SETUP_FAILED = 125  # scripts/sandbox_exec.py: the sandbox could not be prepared, so the command never ran
+
+
+def invoke(root: Path, args: list[str], timeout: float = COMMAND_SECONDS) -> subprocess.CompletedProcess[str]:
     command = ["node", "--disable-warning=ExperimentalWarning", "--experimental-strip-types", "src/cli.ts", *args]
     try:
-        return subprocess.run(sandboxed(command, root), cwd=root, text=True, encoding="utf-8", errors="replace",
-                              capture_output=True, timeout=timeout, check=False)
+        result = subprocess.run(sandboxed(command, root), cwd=root, text=True, encoding="utf-8", errors="replace",
+                                capture_output=True, timeout=timeout, check=False)
+        if result.returncode == SANDBOX_SETUP_FAILED and SANDBOX_LAUNCHER:
+            # The command never started, so running it again cannot apply anything twice.
+            result = subprocess.run(sandboxed(command, root), cwd=root, text=True, encoding="utf-8", errors="replace",
+                                    capture_output=True, timeout=timeout, check=False)
+        return result
     except subprocess.TimeoutExpired as error:
         stdout = error.stdout or ""
         stderr = error.stderr or "candidate command timed out"
@@ -69,6 +85,18 @@ def invoke(root: Path, args: list[str], timeout: float = 6) -> subprocess.Comple
         if isinstance(stderr, bytes):
             stderr = stderr.decode("utf-8", errors="replace")
         return subprocess.CompletedProcess(command, 124, stdout, stderr)
+
+
+def invoke_cpu(root: Path, args: list[str], limit: float) -> tuple[subprocess.CompletedProcess[str], float]:
+    """Runs a command and returns it with the CPU time it and its descendants used (S7's limit is on one core, so CPU
+    time, not wall time, is what the brief bounds). A command over the limit counts as exit 124."""
+    before = resource.getrusage(resource.RUSAGE_CHILDREN)
+    result = invoke(root, args, timeout=COMMAND_SECONDS)
+    after = resource.getrusage(resource.RUSAGE_CHILDREN)
+    seconds = (after.ru_utime - before.ru_utime) + (after.ru_stime - before.ru_stime)
+    if result.returncode == 0 and seconds > limit:
+        result = subprocess.CompletedProcess(result.args, 124, result.stdout, f"over {limit} CPU seconds ({seconds:.2f})")
+    return result, seconds
 
 
 def load_store(root: Path) -> dict:
@@ -458,7 +486,7 @@ def plan_checks(temp: Path, submission: Path) -> dict[str, bool]:
         path = root / "data" / "work-orders.json"
         path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         before = path.read_bytes()
-        result = invoke(root, ["plan", "--crews", str(crews)], timeout=PLAN_SECONDS)
+        result, _ = invoke_cpu(root, ["plan", "--crews", str(crews)], PLAN_SECONDS)
         cost, reason = planning.check(value, crews, result.stdout) if result.returncode == 0 else (None, f"exit {result.returncode}")
         return cost, reason, path.read_bytes() == before
 
@@ -482,7 +510,7 @@ def plan_checks(temp: Path, submission: Path) -> dict[str, bool]:
     v1_store = json.loads((Path(__file__).parent / "v1-fixture.json").read_text(encoding="utf-8"))
     v1_path.write_text(json.dumps(v1_store, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     v1_before = v1_path.read_bytes()
-    v1_plan = invoke(v1, ["plan", "--crews", "2"], timeout=PLAN_SECONDS)
+    v1_plan, _ = invoke_cpu(v1, ["plan", "--crews", "2"], PLAN_SECONDS)
     checks["plan.read-only"] = all(unchanged) and v1_plan.returncode == 0 and v1_path.read_bytes() == v1_before and any(valid.values())
     # Errors: bad crews and options; invalid hours or priority in the store.
     errors = clone(submission, temp / "plan-errors")
@@ -585,7 +613,7 @@ def main() -> None:
     checks = [{"id": check_id, "requirementId": ALL_CHECKS[check_id], "status": "pass" if outcomes.get(check_id, False) else "fail", "evidenceRefs": []}
               for check_id in selected]
     result = {"schemaVersion": 1, "requestId": request["requestId"], "taskId": request["task"]["id"],
-              "taskVersion": request["task"]["version"], "graderVersion": "2.2.0", "gradingStatus": "completed",
+              "taskVersion": request["task"]["version"], "graderVersion": "2.3.0", "gradingStatus": "completed",
               "checks": checks, "dimensions": [], "unscoredCheckIds": [], "reason": None, "error": None}
     args.result.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 

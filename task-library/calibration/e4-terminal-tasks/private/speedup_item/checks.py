@@ -64,7 +64,7 @@ def main():
                                          ("large", "speedup-hidden-large", 200_000, 0.0)):
             paths[name] = os.path.join(days, f"{name}.csv")
             with open(paths[name], "w", encoding="utf-8", newline="") as handle:
-                handle.write(data.events(seed, rows, quirks))
+                handle.write(data.events(seed, rows, quirks, audited=name == "quirks"))
         right = {}
         for name in ("small", "quirks"):
             expected, _ = run("naive.py", paths[name], SOURCES["naive.py"])

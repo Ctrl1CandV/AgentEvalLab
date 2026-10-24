@@ -37,7 +37,7 @@
       },
       {
         "path": "private/grader.py",
-        "sha256": "536c4086aa2d2a6ab2c6c5c6171553ae67a9a243e992400823f73bab74afda58"
+        "sha256": "820d923ffd17424b62efb3f3d5501d7f5a927fc4b8587d7dc57b9a42068cf7c2"
       },
       {
         "path": "private/plan-best.json",
@@ -545,7 +545,7 @@
   ],
   "grader": {
     "id": "eng005-checkpoint-grader",
-    "version": "2.2.0",
+    "version": "2.3.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [
