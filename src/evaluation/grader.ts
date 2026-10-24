@@ -24,6 +24,8 @@ interface GraderRequest {
 
 interface ValidatedGraderResult {
   gradingStatus: "completed" | "unscored" | "error";
+  /** Raw values a v2 grader reports (CODE §3.2); empty for a v1 grader. */
+  metrics: Array<{ id: string; value: number; unit?: string }>;
   checks: Array<{ id: string; passed: boolean }>;
   dimensions: Array<{ id: string; value: number; minimum: number; maximum: number; reason: string }>;
   missingCheckIds: string[];
@@ -131,11 +133,9 @@ async function validateGraderResult(
   evidenceRoot: string,
 ): Promise<ValidatedGraderResult> {
   const result = object(value);
-  if (!hasExactKeys(result, [
-    "schemaVersion", "requestId", "taskId", "taskVersion", "graderVersion",
-    "gradingStatus", "checks", "dimensions", "unscoredCheckIds", "reason", "error",
-  ])) throw new Error("GRADER_PROTOCOL_INVALID");
-  if (result.schemaVersion !== 1 || result.requestId !== request.requestId || result.taskId !== manifest.id ||
+  const v1Keys = ["schemaVersion", "requestId", "taskId", "taskVersion", "graderVersion", "gradingStatus", "checks", "dimensions", "unscoredCheckIds", "reason", "error"];
+  if (!hasExactKeys(result, result.schemaVersion === 2 ? [...v1Keys, "metrics"] : v1Keys)) throw new Error("GRADER_PROTOCOL_INVALID");
+  if ((result.schemaVersion !== 1 && result.schemaVersion !== 2) || result.requestId !== request.requestId || result.taskId !== manifest.id ||
       result.taskVersion !== manifest.version || result.graderVersion !== manifest.grader.version) {
     throw new Error("GRADER_RESULT_IDENTITY_MISMATCH");
   }
@@ -147,7 +147,7 @@ async function validateGraderResult(
     if (!hasExactKeys(error, ["code", "phase"]) || !isIdentifier(error.code) || !isIdentifier(error.phase) ||
         result.reason !== null || result.checks.length > 0 || result.dimensions.length > 0 ||
         result.unscoredCheckIds.length > 0) throw new Error("GRADER_ERROR_INVALID");
-    return { gradingStatus: "error", checks: [], dimensions: [], missingCheckIds: [], reason: null, errorCode: "GRADER_REPORTED_ERROR" };
+    return { gradingStatus: "error", metrics: [], checks: [], dimensions: [], missingCheckIds: [], reason: null, errorCode: "GRADER_REPORTED_ERROR" };
   }
 
   const owners = expectedCheckOwners(manifest, request.context.activeRequirementIds);
@@ -188,13 +188,34 @@ async function validateGraderResult(
   }
 
   if (result.error !== null) throw new Error("GRADER_PROTOCOL_INVALID");
+  const metrics = graderMetrics(result.schemaVersion === 2 ? result.metrics : [], manifest, result.gradingStatus === "completed");
   let reason: string | null = null;
   if (result.gradingStatus === "unscored") {
     const unscoredReason = object(result.reason);
     if (!hasExactKeys(unscoredReason, ["code", "message"]) || !isIdentifier(unscoredReason.code)) throw new Error("GRADER_REASON_INVALID");
     reason = safeMessage(unscoredReason.message);
   } else if (result.reason !== null) throw new Error("GRADER_PROTOCOL_INVALID");
-  return { gradingStatus: result.gradingStatus as "completed" | "unscored", checks, dimensions, missingCheckIds: missing, reason, errorCode: null };
+  return { gradingStatus: result.gradingStatus as "completed" | "unscored", metrics, checks, dimensions, missingCheckIds: missing, reason, errorCode: null };
+}
+
+/**
+ * The raw metrics of a v2 result: finite values under unique identifiers. Every metric the manifest's score model
+ * names is required of a completed grading; others are kept as diagnostics.
+ */
+function graderMetrics(value: unknown, manifest: TaskPackageManifest, completed: boolean): ValidatedGraderResult["metrics"] {
+  if (!Array.isArray(value)) throw new Error("GRADER_METRIC_INVALID");
+  const metrics: ValidatedGraderResult["metrics"] = [];
+  for (const raw of value) {
+    const metric = object(raw);
+    if (!(hasExactKeys(metric, ["id", "value"]) || hasExactKeys(metric, ["id", "value", "unit"])) || !isIdentifier(metric.id) ||
+        metrics.some(entry => entry.id === metric.id) || typeof metric.value !== "number" || !Number.isFinite(metric.value) ||
+        (metric.unit !== undefined && (typeof metric.unit !== "string" || metric.unit.length > 100))) throw new Error("GRADER_METRIC_INVALID");
+    metrics.push({ id: metric.id, value: metric.value, ...(typeof metric.unit === "string" ? { unit: metric.unit } : {}) });
+  }
+  if (completed && (manifest.scoreModel?.metrics ?? []).some(required => !metrics.some(metric => metric.id === required.id))) {
+    throw new Error("GRADER_METRIC_MISSING");
+  }
+  return metrics;
 }
 
 function graderError(code: string): EvaluationResult {
@@ -303,7 +324,8 @@ export async function runTaskGrader(input: TaskGraderInput): Promise<EvaluationR
     const score = status === "unscored" ? null : trialScore(checks, manifest.scoring);
     const pendingCheckIds = validated.missingCheckIds.filter(checkId => !criticalChecks.has(checkId));
     const review = pendingCheckIds.length > 0 ? { status: "pending" as const, pendingCheckIds, reason: validated.reason } : undefined;
-    return { status, score, checks, error: status === "unscored" ? validated.reason : null, ...(review ? { review } : {}) };
+    return { status, score, checks, error: status === "unscored" ? validated.reason : null, ...(review ? { review } : {}),
+      ...(validated.metrics.length ? { metrics: validated.metrics } : {}) };
   } catch {
     return graderError("GRADER_IO_FAILED");
   }

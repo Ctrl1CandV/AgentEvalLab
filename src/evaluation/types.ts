@@ -155,6 +155,8 @@ export interface EvaluationResult {
    * Absent when the task has no unscored non-critical checks.
    */
   review?: ReviewStatus;
+  /** Raw metric values a v2 grader reported (CODE §3.2), such as a contest score or a size in bytes. */
+  metrics?: Array<{ id: string; value: number; unit?: string }>;
 }
 
 export interface ReviewStatus {
