@@ -60,6 +60,7 @@ function envelope(status: "success" | "warning" | "error", summary: string, data
 
 /** Explicit tool conditions used by evaluation plans. No automatic dependency installation occurs. */
 export function evaluationTools(root: string, profile: ToolProfile, options: WorkspaceToolOptions = {}): AgentTool[] {
+  if (profile === "none") return [];
   if (profile === "workspace-basic") return workspaceTools(root, options);
   if (profile === "doc-evidence") return docEvidenceTools(root);
 

@@ -8,10 +8,13 @@ public checkers whenever they start candidate code. Inside the sandbox:
 - system directories and the active Python/Node runtimes are read-only;
 - there is no /home (apart from runtime prefixes), no network, a private /tmp,
   and separate PID/IPC/UTS namespaces, so killing the launcher ends every
-  process the command started.
+  process the command started;
+- a task's runtime mounts (--mount SOURCE:TARGET) are bound read-only at their
+  fixed TARGET under /runtime, and --env NAME=VALUE sets the environment that
+  goes with them (PLAN-007 WP2.4).
 
 Usage:
-  sandbox_exec.py --rw DIR [--rw DIR ...] [--ro DIR ...] -- COMMAND [ARG ...]
+  sandbox_exec.py --rw DIR [--rw DIR ...] [--ro DIR ...] [--mount SOURCE:TARGET ...] [--env NAME=VALUE ...] -- COMMAND [ARG ...]
   sandbox_exec.py --check
 
 The launcher replaces itself with bwrap, so the command's exit status is
@@ -19,6 +22,7 @@ returned unchanged. Exit status 125 means the sandbox could not be prepared.
 """
 import argparse
 import os
+import re
 import shutil
 import sys
 
@@ -45,7 +49,22 @@ def absolute_directory(value):
     return path
 
 
-def bwrap_arguments(bwrap, writable, readable, command):
+def runtime_mount(value):
+    """SOURCE:TARGET, a directory bound read-only at a fixed path under /runtime."""
+    source, separator, target = value.rpartition(":")
+    if not separator or not re.fullmatch(r"/runtime(/[A-Za-z0-9._-]+)+", target) or "/../" in target + "/" or "/./" in target + "/":
+        raise argparse.ArgumentTypeError("a mount is SOURCE:/runtime/NAME: " + value)
+    return absolute_directory(source), target
+
+
+def environment(value):
+    name, separator, setting = value.partition("=")
+    if not separator or not re.fullmatch(r"[A-Z_][A-Z0-9_]{0,63}", name) or name in ("HOME", "TMPDIR", "TMP", "TEMP"):
+        raise argparse.ArgumentTypeError("an environment setting is NAME=VALUE: " + value)
+    return name, setting
+
+
+def bwrap_arguments(bwrap, writable, readable, command, mounts=(), env=()):
     arguments = [bwrap, "--unshare-all", "--die-with-parent", "--new-session",
                  "--proc", "/proc", "--dev", "/dev", "--tmpfs", "/tmp"]
     for path in SYSTEM_READ_ONLY:
@@ -54,11 +73,15 @@ def bwrap_arguments(bwrap, writable, readable, command):
         arguments += ["--ro-bind", path, path]
     for path in writable:
         arguments += ["--bind", path, path]
+    for source, target in mounts:
+        arguments += ["--ro-bind", source, target]
     cwd = os.path.realpath(os.getcwd())
     inside = any(cwd == path or cwd.startswith(path + "/") for path in writable + readable)
     arguments += ["--chdir", cwd if inside else writable[0]]
     for name in ("HOME", "TMPDIR", "TMP", "TEMP"):
         arguments += ["--setenv", name, "/tmp"]
+    for name, setting in env:
+        arguments += ["--setenv", name, setting]
     return arguments + ["--", *command]
 
 
@@ -66,6 +89,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--rw", action="append", default=[], type=absolute_directory)
     parser.add_argument("--ro", action="append", default=[], type=absolute_directory)
+    parser.add_argument("--mount", action="append", default=[], type=runtime_mount)
+    parser.add_argument("--env", action="append", default=[], type=environment)
     parser.add_argument("--check", action="store_true")
     parser.add_argument("command", nargs=argparse.REMAINDER)
     args = parser.parse_args()
@@ -82,7 +107,7 @@ def main():
         if not writable or not command:
             parser.error("--rw and a command are required")
     try:
-        os.execv(bwrap, bwrap_arguments(bwrap, writable, args.ro, command))
+        os.execv(bwrap, bwrap_arguments(bwrap, writable, args.ro, command, args.mount, args.env))
     except OSError as error:
         print("SANDBOX_UNAVAILABLE: " + error.strerror, file=sys.stderr)
         return SETUP_FAILED

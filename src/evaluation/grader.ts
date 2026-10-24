@@ -3,9 +3,9 @@ import { copyFile } from "node:fs/promises";
 import { isAbsolute, join, relative, resolve, sep } from "node:path";
 import { command } from "../command.js";
 import { redact } from "../privacy.js";
-import { sandboxLauncher, type Isolation } from "../sandbox.js";
+import { hostEnvironment, sandboxLauncher, type Isolation, type RuntimeMounts } from "../sandbox.js";
 import type { ArtifactManifest, EvaluationResult } from "./types.js";
-import type { ManifestScoring, PackageDescriptor, TaskPackageManifest } from "./manifest.js";
+import { runtimeMounts, type ManifestScoring, type PackageDescriptor, type TaskPackageManifest } from "./manifest.js";
 
 interface GraderRequest {
   schemaVersion: 1;
@@ -20,6 +20,13 @@ interface GraderRequest {
   evidenceRoot: string;
   /** Launcher graders must prefix to every candidate command; null when the plan opted into host execution. */
   sandbox: { launcher: string } | null;
+  /** Present only for a repository item: the delivered change, under the evidence root. */
+  patchRef?: string;
+  /**
+   * Present only when the package declares runtime mounts: what graders bind into candidate commands (`--mount
+   * source:target`) and the environment to set (`--env`), as execute_command does.
+   */
+  runtime?: RuntimeMounts;
 }
 
 interface ValidatedGraderResult {
@@ -46,6 +53,8 @@ export interface TaskGraderInput {
   tracePath?: string;
   context?: { stageId: string | null; cycleId: string | null; itemId?: string; activeRequirementIds: string[] };
   isolation?: Isolation;
+  /** A repository item's delivered change (CODE §5), handed to the grader as `patchRef`. */
+  patchText?: string;
 }
 
 function object(value: unknown): Record<string, unknown> {
@@ -263,6 +272,11 @@ export async function runTaskGrader(input: TaskGraderInput): Promise<EvaluationR
         traceRef = "tool-trace.jsonl";
         await copyFile(input.tracePath, join(evidenceRoot, traceRef));
       }
+      let patchRef: string | null = null;
+      if (input.patchText !== undefined) {
+        patchRef = "submission.patch";
+        await writeFile(join(evidenceRoot, patchRef), input.patchText, { encoding: "utf8", flag: "wx" });
+      }
       const requestId = `${input.trialId}.grader`;
     const context = input.context ?? { stageId: null, cycleId: null, activeRequirementIds: manifest.requirements.map(requirement => requirement.id) };
     const knownRequirements = new Set(manifest.requirements.map(requirement => requirement.id));
@@ -284,6 +298,10 @@ export async function runTaskGrader(input: TaskGraderInput): Promise<EvaluationR
       evidenceRoot,
       sandbox: (input.isolation ?? "sandbox") === "sandbox" ? { launcher: sandboxLauncher } : null,
     };
+    if (patchRef) request.patchRef = patchRef;
+    const runtime = runtimeMounts(descriptor, manifest.items?.find(item => item.id === context.itemId) ?? null);
+    // Without the sandbox nothing is bound: the environment names the mounts' source directories.
+    if (runtime) request.runtime = request.sandbox ? runtime : { mounts: runtime.mounts, env: hostEnvironment(runtime) };
     const requestPath = join(graderDirectory, "request.json");
     const resultPath = join(graderDirectory, "result.json");
     await writeFile(requestPath, JSON.stringify(request), { encoding: "utf8", flag: "wx" });

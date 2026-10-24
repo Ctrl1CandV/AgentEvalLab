@@ -3,7 +3,8 @@ import { constants } from "node:fs";
 import { copyFile, lstat, mkdir, readFile, readdir, realpath } from "node:fs/promises";
 import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import type { ToolProfile } from "../harness/tools.js";
-import { ManifestV2Error, validateManifestV2, type ManifestV2Fields, type TaskPlacement } from "./manifest-v2.js";
+import type { RuntimeMounts } from "../sandbox.js";
+import { ManifestV2Error, validateManifestV2, type ItemV2Fields, type ManifestV2Fields, type TaskPlacement } from "./manifest-v2.js";
 
 export type Capability = "engineering" | "reasoning" | "tool" | "aesthetics";
 export type TaskUsage = "development" | "pilot" | "holdout" | "undecided";
@@ -43,7 +44,7 @@ export interface ManifestDimension {
  * One item of a generated task family (Task Set v2). A trial receives exactly one item: its `items/<id>/prompt.md` is
  * appended to the task prompt, and its `items/<id>/public/...` files are projected without the `items/<id>/` prefix.
  */
-export interface ManifestItem extends Partial<TaskPlacement> {
+export interface ManifestItem extends Partial<TaskPlacement>, ItemV2Fields {
   id: string;
   /** Difficulty level; reports group trials by case and level. */
   level: string;
@@ -102,6 +103,18 @@ export interface TaskPackageManifest extends Partial<ManifestV2Fields> {
     dependencies: string;
     network: false;
     runtimeCheck?: { executable: string; args: string[]; expectedSubstring: string };
+  };
+}
+
+/** The runtime mounts of one task (CODE §4): sources in the package, bound at /runtime/<name>, with `{mount}` replaced. */
+export function runtimeMounts(descriptor: PackageDescriptor, item: ManifestItem | null): RuntimeMounts | undefined {
+  const declared = descriptor.manifest?.runtime?.mounts;
+  if (!declared) return undefined;
+  const chosen = item?.mounts ? declared.filter(mount => item.mounts!.includes(mount.path)) : declared;
+  const mounts = chosen.map(mount => ({ source: join(descriptor.root, ...mount.path.split("/")), target: `/${mount.path}`, env: mount.env }));
+  return {
+    mounts: mounts.map(mount => ({ source: mount.source, target: mount.target })),
+    env: Object.fromEntries(mounts.flatMap(mount => Object.entries(mount.env).map(([name, value]) => [name, value.split("{mount}").join(mount.target)]))),
   };
 }
 
@@ -219,7 +232,7 @@ export function validateTaskPackageManifest(value: unknown): asserts value is Ta
     throw new PackageManifestError("INVALID_PACKAGE_GRADER_TRACE_POLICY");
   }
   if (manifest.toolProfiles !== undefined && (!Array.isArray(manifest.toolProfiles) || manifest.toolProfiles.length === 0 ||
-      !manifest.toolProfiles.every(profile => ["workspace-basic", "workspace-augmented", "doc-evidence"].includes(String(profile))) ||
+      !manifest.toolProfiles.every(profile => ["workspace-basic", "workspace-augmented", "doc-evidence", "none"].includes(String(profile))) ||
       new Set(manifest.toolProfiles).size !== manifest.toolProfiles.length)) {
     throw new PackageManifestError("INVALID_PACKAGE_TOOL_PROFILES");
   }
@@ -479,6 +492,13 @@ export async function inspectPackage(
   const declaredPrivate = manifest.files.trusted.map(file => file.path).filter(path => path.startsWith("private/")).sort();
   if (JSON.stringify(await listFilesUnder(root, "private", true)) !== JSON.stringify(declaredPrivate)) {
     throw new PackageManifestError("PACKAGE_TRUSTED_FILE_SET_MISMATCH");
+  }
+  // Runtime mounts are bound whole into the sandbox, so every file under runtime/ is hashed (no cache exception).
+  const declaredRuntime = manifest.files.trusted.map(file => file.path).filter(path => path.startsWith("runtime/")).sort();
+  if (manifest.runtime || await lstat(join(root, "runtime")).catch(() => null)) {
+    if (!manifest.runtime) throw new PackageManifestError("UNDECLARED_PACKAGE_RUNTIME");
+    if (JSON.stringify(await listFilesUnder(root, "runtime")) !== JSON.stringify(declaredRuntime)) throw new PackageManifestError("PACKAGE_RUNTIME_FILE_SET_MISMATCH");
+    if (declaredRuntime.some(path => !manifest.runtime!.mounts.some(mount => path.startsWith(`${mount.path}/`)))) throw new PackageManifestError("PACKAGE_RUNTIME_FILE_SET_MISMATCH");
   }
   return { root, instruction, manifest, manifestSha256 };
 }

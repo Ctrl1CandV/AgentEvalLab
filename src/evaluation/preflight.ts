@@ -41,6 +41,8 @@ export async function preflightPlan(plan: EvaluationPlan): Promise<Map<string, P
     if (plan.execution?.kind === "trajectory" && (!manifest?.stages || !manifest.stages.length || item.evaluator.kind !== "task-package")) {
       throw new Error("TRAJECTORY_PACKAGE_REQUIRED");
     }
+    // Runtime mounts are bound in single-session trials only; no trajectory package uses them.
+    if (plan.execution?.kind === "trajectory" && manifest?.runtime) throw new Error("TRAJECTORY_RUNTIME_UNSUPPORTED");
     if (manifest?.baseline) {
       if (!item.repository) throw new Error("PACKAGE_BASELINE_REPOSITORY_REQUIRED");
       const expectedRoot = await realpath(resolve(descriptor.root, ...manifest.baseline.path.split("/")));
@@ -58,6 +60,8 @@ export async function preflightPlan(plan: EvaluationPlan): Promise<Map<string, P
       throw new Error("PACKAGE_TRACE_GRADER_REQUIRES_ANSWER_SOURCE");
     }
     const items = resolveCaseItems(item, descriptor);
+    // A repository item brings its own repository; a plan's repository on top would be a second baseline.
+    if (items?.some(entry => entry.repository) && item.repository) throw new Error("PACKAGE_REPOSITORY_CONFLICT");
     await checkProjectedArtifacts(plan, descriptor, items);
     checkSplits(plan, descriptor, items);
     packages.set(item.id, descriptor);

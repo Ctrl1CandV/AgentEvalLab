@@ -20,6 +20,8 @@ export function command(
   timeoutMs = 10_000,
   maxBytes = 1_000_000,
   input?: string,
+  /** Variables set on top of the allowlist, such as a runtime mount's environment on the host. */
+  extraEnv: Record<string, string> = {},
 ): Promise<CommandResult> {
   return new Promise(resolve => {
     // Keep only a small set of path and system variables.
@@ -35,6 +37,7 @@ export function command(
     env.GIT_TERMINAL_PROMPT = "0";
     env.GIT_CONFIG_NOSYSTEM = "1";
     env.GIT_CONFIG_GLOBAL = process.platform === "win32" ? "NUL" : "/dev/null";
+    Object.assign(env, extraEnv);
 
     const child = spawn(executable, args, {
       cwd,

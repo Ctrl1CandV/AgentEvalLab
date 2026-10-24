@@ -15,7 +15,8 @@ function v2(): Record<string, unknown> {
     schemaVersion: 2, id: "fixture", version: "0.1.0", familyId: "fixture", capability: "engineering", usage: "development",
     source: { kind: "open-source", references: [] }, license: { taskText: "MIT", thirdPartyContent: [] },
     entryPoint: { instruction: "instruction.md" },
-    files: { public: [{ path: "instruction.md", sha256: digest }], trusted: [{ path: "card.md", sha256: digest }, { path: "private/grader.py", sha256: digest }] },
+    files: { public: [{ path: "instruction.md", sha256: digest }], trusted: [{ path: "card.md", sha256: digest }, { path: "private/grader.py", sha256: digest },
+      { path: "private/repos/x.tar", sha256: digest }, { path: "runtime/py/site/lib.py", sha256: digest }] },
     requirements: [
       { id: "REQ-A", critical: true, introducedAt: "0.1.0", checkIds: ["a1", "a2"] },
       { id: "REQ-FORMAT", critical: false, introducedAt: "0.1.0", checkIds: ["answer-format"] },
@@ -61,6 +62,48 @@ test("manifest v2: a complete manifest is accepted and every new field is checke
   refuses(manifest => { (manifest.items as Array<{ provenance: { exposure: string } }>)[0]!.provenance.exposure = "secret"; }, /PROVENANCE/);
   refuses(manifest => { manifest.runtime = { mounts: [{ path: "../site", env: {} }] }; }, /INVALID_PACKAGE_RUNTIME/);
   refuses(manifest => { manifest.runtime = { mounts: [{ path: "runtime/py", env: { "bad-name": "x" } }] }; }, /INVALID_PACKAGE_RUNTIME/);
+});
+
+test("manifest v2: per-item headlines and item-scoped metric groups; anchors only where an item is scored on the metric", () => {
+  const manifest = v2();
+  const model = manifest.scoreModel as Record<string, unknown>;
+  model.primaryByItem = { i3: { kind: "metric", metric: "score" } };
+  (model.groups as Array<Record<string, unknown>>)[1]!.items = ["i3"];
+  for (const entry of (manifest.items as Array<Record<string, unknown>>).slice(0, 2)) delete entry.anchors;
+  validateTaskPackageManifest(structuredClone(manifest));
+  const without = structuredClone(manifest);
+  delete (without.items as Array<Record<string, unknown>>)[2]!.anchors;
+  assert.throws(() => validateTaskPackageManifest(without), /ANCHORS_INCOMPLETE/);
+  const unknownItem = structuredClone(manifest);
+  (unknownItem.scoreModel as Record<string, unknown>).primaryByItem = { i9: { kind: "resolved" } };
+  assert.throws(() => validateTaskPackageManifest(unknownItem), /INVALID_SCORE_ITEMS/);
+  const checkGroupItems = structuredClone(manifest);
+  ((checkGroupItems.scoreModel as Record<string, unknown>).groups as Array<Record<string, unknown>>)[0]!.items = ["i1"];
+  assert.throws(() => validateTaskPackageManifest(checkGroupItems), /INVALID_SCORE_GROUPS/);
+  const badHeadline = structuredClone(manifest);
+  (badHeadline.scoreModel as Record<string, unknown>).primaryByItem = { i3: { kind: "metric", metric: "nothing" } };
+  assert.throws(() => validateTaskPackageManifest(badHeadline), /INVALID_SCORE_PRIMARY/);
+});
+
+test("manifest v2: repository items and runtime mounts are hashed trusted files, named exactly", () => {
+  const withRepository = (change: (item: Record<string, unknown>, manifest: Record<string, unknown>) => void) => {
+    const manifest = v2();
+    const first = (manifest.items as Array<Record<string, unknown>>)[0]!;
+    first.repository = { archive: "private/repos/x.tar", directory: "repo" };
+    first.mounts = ["runtime/py"];
+    change(first, manifest);
+    return manifest;
+  };
+  validateTaskPackageManifest(withRepository(() => {}));
+  assert.throws(() => validateTaskPackageManifest(withRepository(item => { item.repository = { archive: "private/repos/y.tar", directory: "repo" }; })), /INVALID_PACKAGE_ITEM_REPOSITORY/);
+  assert.throws(() => validateTaskPackageManifest(withRepository(item => { item.repository = { archive: "card.md", directory: "repo" }; })), /INVALID_PACKAGE_ITEM_REPOSITORY/);
+  assert.throws(() => validateTaskPackageManifest(withRepository(item => { item.repository = { archive: "private/repos/x.tar", directory: "../up" }; })), /INVALID_PACKAGE_ITEM_REPOSITORY/);
+  assert.throws(() => validateTaskPackageManifest(withRepository(item => { item.mounts = ["runtime/other"]; })), /INVALID_PACKAGE_ITEM_MOUNTS/);
+  assert.throws(() => validateTaskPackageManifest(withRepository((_item, manifest) => { manifest.runtime = { mounts: [{ path: "runtime/py/site", env: {} }] }; })), /INVALID_PACKAGE_RUNTIME/);
+  assert.throws(() => validateTaskPackageManifest(withRepository((_item, manifest) => { manifest.runtime = { mounts: [{ path: "runtime/py", env: { HOME: "/x" } }] }; })), /INVALID_PACKAGE_RUNTIME/);
+  assert.throws(() => validateTaskPackageManifest(withRepository((_item, manifest) => {
+    (manifest.files as { trusted: Array<{ path: string }> }).trusted = (manifest.files as { trusted: Array<{ path: string }> }).trusted.filter(file => !file.path.startsWith("runtime/"));
+  })), /INVALID_PACKAGE_RUNTIME_FILES/);
 });
 
 test("manifest v2: a package without items is one task, placed by its own split and structure", () => {

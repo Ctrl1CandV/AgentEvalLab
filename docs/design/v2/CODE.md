@@ -28,7 +28,7 @@ These modules carry the evidence of the v1 results and have tests. They stay in 
 | `scripts/evidence-table.ts` | CLI for the evidence table over `runs/` |
 | `scripts/audit.ts` | Samples resolved and perfect trials per family (VALIDATION §2) and runs the family's audit suite on their snapshots; writes `docs/audits/...` |
 | runtime mounts | Read-only dependency directories declared by a package, mounted by `execute_command` and by graders, with declared environment variables (§4) |
-| answer-only profile | `toolProfiles: ["none"]`: no tools, a single reply (AR answer-only, R3) |
+| answer-only profile | `toolProfiles: ["none"]`: no tools, a single reply (AR answer-only, R3); needs no trusted execution |
 | repository workspaces | Projection of a package repository as a fresh single-commit git repository (ER) |
 
 `src/evaluation/statistics.ts` stays (`pairedDifference`, Wilson, pass@k) and is used by `src/scoring/bootstrap.ts` for cross-checks. `src/suite/score.ts` and `src/suite/report.ts` keep producing the v1 report for v1 families. v2 families get the v2 report, and a suite with both shows both sections until v1 families are migrated.
@@ -72,13 +72,17 @@ All v1 fields stay, plus:
 ```
 
 - A package without items (eng-001, a trajectory such as E3) is one task: its `split`, `structure`, `provenance` and `anchors` sit in a top-level `"task"` object instead (added in PLAN-007 WP1.1).
+- Per-item headlines (added in PLAN-007 WP2.2): `scoreModel.primaryByItem` maps an item id to its own primary, and a metric group may name the `items` it applies to (every item when omitted). A package that holds contract items and an open-ended one (E4: the terminal tasks and compress) keeps one grader, and the suite splits it into families by items. A suite family whose items have different headlines is refused (`SUITE_FAMILY_MIXED_PRIMARY`). Anchors are required only for the metrics a task is scored on: its headline metric and the metric groups that apply to it.
+- Repository items (PLAN-007 WP2.4, §5): `"repository": { "archive": "private/repos/<name>.tar", "directory": "repo" }` on an item; the archive is a hashed trusted file. `"mounts": ["runtime/<name>"]` on an item selects the runtime mounts it binds (all of them when omitted).
+- Every file under `runtime/` is hashed as a trusted file (no cache exception), and a mount is one directory `runtime/<name>`.
 - A v1 manifest (`schemaVersion: 1`) still loads, and its family is reported by the v1 rules. A v1 manifest carrying any v2 field is refused.
 - `scoring.weights` (v1) and `scoreModel` (v2) never appear in the same manifest.
 - `task_packages.py` validates the v2 fields:
   - the card file exists and is hashed;
   - the splits are assigned and disjoint by structure;
   - the anchors are complete;
-  - the groups cover every check of every active requirement (the format check apart), and each check is in one group only.
+  - the groups cover every check of every active requirement (the format check apart), and each check is in one group only;
+  - runtime mounts and repository archives are hashed, and items name only declared mounts.
 
 ### 3.2 Grader result v2 (`schemaVersion: 2`)
 
@@ -134,23 +138,26 @@ New optional fields:
 
 - **Mounts.** A package may ship `runtime/<name>/`: a Python site directory built by its builder from vendored wheels, with `pip install --target` and no network at run time.
 - **Inside the sandbox.**
-  - `execute_command` and the graders bind every declared mount read-only, at a fixed path inside the sandbox.
+  - `execute_command` and the graders bind every declared mount read-only, at `/runtime/<name>` inside the sandbox.
   - They set the declared environment, with `{mount}` replaced by that path.
-  - `scripts/sandbox_exec.py` already accepts `--ro`. The harness passes mounts and environment through `isolatedCommand` (a new `readOnly` and `env` argument).
+  - `scripts/sandbox_exec.py --mount SOURCE:/runtime/<name> --env NAME=VALUE`; the harness passes both through `isolatedCommand(..., runtime)`. Graders get the same in the request's `runtime` field (`mounts` with `source` and `target`, and `env`) and pass them to the launcher.
+  - Without the sandbox (`isolation: "host"`, an explicit opt-out), nothing is bound and the environment names the source directories.
+  - Mounts are bound in single-session trials; a trajectory package with mounts is refused at preflight.
 - **Size and hashing.** Runtime mounts can be large. They are hashed as trusted files in the manifest, and the suite's frozen worktree carries them like any other package file.
 - **Disk.** Keep each runtime under about 200 MB. Share one runtime between tasks of the same repository and version, as a directory referenced by several items.
 
 ## 5. Repository workspaces (ER)
 
 - The builder stores each task's repository as a tarball of the working tree at the base commit, without `.git`. The tarball is a trusted file.
-- At projection, the harness:
-  1. unpacks the repository;
+- At projection, the harness (`src/evaluation/repository.ts`):
+  1. unpacks the repository into the item's `directory` (`repo/`);
   2. runs `git init`;
-  3. commits it once under a fixed author and date;
-  4. adds the issue text as `ISSUE.md` beside the repository.
+  3. commits every file of the archive once (ignored files too) under a fixed author and date (`agenteval`, 2000-01-01), so the same tree always gives the same commit;
+  4. keeps a bare copy of that commit outside the workspace.
 
-  This gives the model a clean history and the grader a clean diff.
-- The grader restores every test file named by FAIL_TO_PASS or PASS_TO_PASS to its gold version before running them.
+  The issue text is item material: `items/<id>/prompt.md` (appended to the prompt) and `items/<id>/public/ISSUE.md` (projected as `public/ISSUE.md`, beside `repo/`). This gives the model a clean history and the grader a clean diff.
+- The delivery is the change, not the tree. After the session the harness reads the working tree against the single commit through its own bare copy (new files included, files the repository's `.gitignore` names excluded, the model's own commits counted), whatever the model did to the workspace's `.git`. It is saved as `submission.patch` beside the trial (at most 10 MB; larger is a resource-limit failure of the delivery), and the repository directory is left out of the artifact snapshot.
+- The grader request carries `patchRef` (the patch, under the evidence root) and `runtime` (§4). The grader unpacks the archive afresh, applies the patch, restores every file the gold test patch touches to its base version and applies the gold test patch, so edits the model made to those files do not count, then runs FAIL_TO_PASS and PASS_TO_PASS in the sandbox with the runtime mount. `tests/runtime-workspace.test.ts` holds a fixture grader that does exactly this.
 
 ## 6. Target layout
 

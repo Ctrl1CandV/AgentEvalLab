@@ -134,3 +134,23 @@ test("groups count only the task's own checks; an expected check the grading lac
   assert.equal(stopped.groups.cells!.score, 0.5, "a trajectory that never reached the later checks fails them");
   assert.equal(stopped.resolved, false);
 });
+
+test("per-item headlines: a contract item is resolved-primary, an open-ended item of the same package metric-primary", () => {
+  const mixed: ScoreModel = {
+    primary: { kind: "resolved" }, primaryByItem: { compress: { kind: "metric", metric: "ratio" } },
+    groups: [{ id: "contract", weight: 1, critical: true, rule: "all", checkIds: ["c1"] }, { id: "valid", weight: 1, critical: true, rule: "all", checkIds: ["v1"] },
+      { id: "ratio", weight: 1, critical: false, rule: "metric", checkIds: [], metric: "ratio", items: ["compress"] }],
+    metrics: [{ id: "ratio", unit: "bytes per byte", direction: "lower", anchors: { version: "1", points: [{ name: "gzip", maps: 0 }, { name: "xz", maps: 1 }] } }],
+  };
+  const contract = buildOutcome({ ...base, itemId: "speedup", evaluation: { status: "passed", score: null, error: null, checks: [{ id: "c1", passed: true }] },
+    execution: emptyExecution(), scoreModel: mixed, expectedCheckIds: ["c1"] });
+  assert.equal(contract.primary, 1);
+  assert.deepEqual(Object.keys(contract.groups), ["contract"], "the open-ended item's metric group does not apply to a contract item");
+  assert.equal(contract.diagnostic, 1);
+  const open = buildOutcome({ ...base, itemId: "compress", evaluation: { status: "passed", score: null, error: null, checks: [{ id: "v1", passed: true }] },
+    metrics: [{ id: "ratio", value: 0.3 }], execution: emptyExecution(), scoreModel: mixed, expectedCheckIds: ["v1"], anchors: { ratio: { gzip: 0.4, xz: 0.3 } } });
+  assert.ok(Math.abs(open.primary! - 1) < 1e-9);
+  assert.deepEqual(Object.keys(open.groups).sort(), ["ratio", "valid"]);
+  assert.throws(() => buildOutcome({ ...base, itemId: "compress", evaluation: { status: "passed", score: null, error: null, checks: [{ id: "v1", passed: true }] },
+    metrics: [{ id: "ratio", value: 0.3 }], execution: emptyExecution(), scoreModel: mixed, expectedCheckIds: ["v1"] }), /ANCHOR_VALUES_MISSING/);
+});

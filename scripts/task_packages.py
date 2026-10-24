@@ -3,11 +3,11 @@
 
 Mirrors the preflight rules in src/evaluation/manifest.ts:
 - every file listed in a manifest exists and matches its SHA-256 digest;
-- public/, private/ (excluding Python caches) and stages/ contain exactly the declared files;
+- public/, private/ (excluding Python caches), stages/, items/ and runtime/ contain exactly the declared files;
 - example and experiment plans pin the current manifest digest;
 - for a v2 manifest (CODE §3.1): the capability card is hashed, every task has a split and a structure group, no
-  structure group spans two splits, every anchored metric has a raw value for every anchor, and the score model's groups
-  cover every check a task is graded on.
+  structure group spans two splits, every anchored metric a task is scored on has a raw value for every anchor, the score
+  model's groups cover every check a task is graded on, runtime mounts and repository archives are hashed.
 
 Usage:
   python3 scripts/task_packages.py check [--plans <plan.eval.json> ...]
@@ -96,11 +96,13 @@ def check_package(package):
     declared_private = sorted(e["path"] for e in manifest["files"]["trusted"] if e["path"].startswith("private/"))
     declared_stages = sorted(e["path"] for stage in manifest.get("stages", []) for e in stage["files"])
     declared_items = sorted(e["path"] for item in manifest.get("items", []) for e in item["files"])
+    declared_runtime = sorted(e["path"] for e in manifest["files"]["trusted"] if e["path"].startswith("runtime/"))
     for label, declared, actual in (
         ("public", declared_public, list_files(package, "public")),
         ("private", declared_private, list_files(package, "private", skip_python_caches=True)),
         ("stages", declared_stages, list_files(package, "stages")),
         ("items", declared_items, list_files(package, "items")),
+        ("runtime", declared_runtime, list_files(package, "runtime")),
     ):
         for path in sorted(set(actual) - set(declared)):
             problems.append("undeclared %s file: %s" % (label, path))
@@ -109,6 +111,16 @@ def check_package(package):
     if manifest.get("schemaVersion") == 2:
         problems += check_v2(manifest)
     return manifest, problems
+
+
+def metrics_of(model, item_id):
+    """The metrics a task is normalised on: its headline metric and those of the metric groups applying to it."""
+    headline = (model.get("primaryByItem") or {}).get(item_id) or model.get("primary") or {}
+    used = {headline["metric"]} if headline.get("kind") == "metric" else set()
+    for group in model.get("groups", []):
+        if group.get("rule") == "metric" and (group.get("items") is None or item_id in group["items"]):
+            used.add(group["metric"])
+    return used
 
 
 def check_v2(manifest):
@@ -136,6 +148,8 @@ def check_v2(manifest):
         if splits.setdefault(structure, split) != split:
             problems.append("structure group %s spans splits %s and %s" % (structure, splits[structure], split))
         for metric, names in anchored.items():
+            if metric not in metrics_of(model, None if name == "(package)" else name):
+                continue
             values = (placement.get("anchors") or {}).get(metric) or {}
             missing = [anchor for anchor in names if not isinstance(values.get(anchor), (int, float))]
             if missing:
@@ -144,6 +158,17 @@ def check_v2(manifest):
             for check in requirements.get(requirement, []):
                 if check not in grouped:
                     problems.append("task %s: check %s is in no score group" % (name, check))
+    mounts = {mount["path"] for mount in (manifest.get("runtime") or {}).get("mounts", [])}
+    for mount in sorted(mounts):
+        if not any(path.startswith(mount + "/") for path in trusted):
+            problems.append("runtime mount %s has no hashed files" % mount)
+    for item in manifest.get("items", []):
+        repository = item.get("repository")
+        if repository and repository.get("archive") not in trusted:
+            problems.append("task %s: repository archive not hashed: %s" % (item["id"], repository.get("archive")))
+        for mount in item.get("mounts", []):
+            if mount not in mounts:
+                problems.append("task %s: unknown runtime mount %s" % (item["id"], mount))
     return problems
 
 

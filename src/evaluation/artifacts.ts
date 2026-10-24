@@ -26,6 +26,8 @@ export class ArtifactLimitError extends Error {
 export async function inspectArtifacts(
   source: string,
   limits: ArtifactLimits = { ...defaultArtifactLimits },
+  /** Top-level entries left out, such as a repository whose change is delivered as a patch instead. */
+  excluded: string[] = [],
 ): Promise<ArtifactManifest> {
   validateLimits(limits);
   const rootInfo = await lstat(source);
@@ -36,7 +38,7 @@ export async function inspectArtifacts(
   let totalBytes = 0;
   const visit = async (directory: string): Promise<void> => {
     for (const name of await readdir(directory)) {
-      if (name === ".git" || name === "__pycache__") continue;
+      if (name === ".git" || name === "__pycache__" || (directory === source && excluded.includes(name))) continue;
       const path = join(directory, name);
       const info = await lstat(path);
       if (info.isSymbolicLink() || (!info.isDirectory() && !info.isFile())) {
@@ -85,8 +87,9 @@ export async function copyArtifacts(
   source: string,
   destination: string,
   limits: ArtifactLimits = { ...defaultArtifactLimits },
+  excluded: string[] = [],
 ): Promise<ArtifactManifest> {
-  const sourceManifest = await inspectArtifacts(source, limits);
+  const sourceManifest = await inspectArtifacts(source, limits, excluded);
   await mkdir(destination, { recursive: true });
   for (const file of sourceManifest.files) {
     const sourcePath = join(source, ...file.path.split("/"));

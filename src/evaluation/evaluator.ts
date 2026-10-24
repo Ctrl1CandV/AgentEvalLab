@@ -24,6 +24,8 @@ export interface EvaluationContext {
   isolation?: Isolation;
   /** The generated item of this trial; its requirements replace the package's for grading. */
   item?: { id: string; activeRequirementIds: string[] };
+  /** A repository item's delivered change, for the task grader (CODE §5). */
+  patchText?: string;
 }
 
 export const skippedEvaluation = (): EvaluationResult => ({
@@ -73,6 +75,7 @@ export async function evaluate(
       tracePath: context.tracePath,
       isolation: context.isolation,
       ...(context.item ? { context: { stageId: null, cycleId: null, itemId: context.item.id, activeRequirementIds: context.item.activeRequirementIds } } : {}),
+      ...(context.patchText !== undefined ? { patchText: context.patchText } : {}),
     });
   }
   const workspace = await prepareWorkspace(item.repository);

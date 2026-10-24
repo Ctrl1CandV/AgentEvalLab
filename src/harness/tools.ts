@@ -1,11 +1,12 @@
 import { readFile, writeFile, mkdir, realpath, readdir } from "node:fs/promises";
 import { command } from "../command.js";
-import { isolatedCommand, type Isolation } from "../sandbox.js";
+import { isolatedCommand, type Isolation, type RuntimeMounts } from "../sandbox.js";
 import { dirname, isAbsolute, relative, resolve } from "node:path";
 import { Type } from "typebox";
 import type { AgentTool } from "@earendil-works/pi-agent-core";
 
-export type ToolProfile = "workspace-basic" | "workspace-augmented" | "doc-evidence";
+/** "none" is answer-only: the model gets no tools and answers in its reply (PLAN-007 WP2.4). */
+export type ToolProfile = "workspace-basic" | "workspace-augmented" | "doc-evidence" | "none";
 
 export interface WorkspaceToolOptions {
   readOnly?: boolean;
@@ -14,6 +15,8 @@ export interface WorkspaceToolOptions {
   isolation?: Isolation;
   /** Limits of one execute_command call; defaults to 10 seconds and 16,000 bytes of output. */
   commandLimits?: { timeoutMs: number; maxOutputBytes: number };
+  /** The task's runtime mounts, bound read-only into every command with their environment. */
+  runtime?: RuntimeMounts;
 }
 
 export const defaultCommandLimits = Object.freeze({ timeoutMs: 10_000, maxOutputBytes: 16_000 });
@@ -81,8 +84,8 @@ export function workspaceTools(root: string, options: WorkspaceToolOptions = {})
     description: `Run a command in the workspace (no shell, no network). Each call may run for ${limits.timeoutMs / 1000} seconds and return ` +
       `${limits.maxOutputBytes} bytes of output; a longer command is stopped (status "timeout").`,
     async execute(_id, args) {
-      const sandboxed = isolatedCommand(args.executable, args.args, [await realpath(root)], options.isolation);
-      const result = await command(sandboxed.executable, sandboxed.args, root, limits.timeoutMs, limits.maxOutputBytes);
+      const sandboxed = isolatedCommand(args.executable, args.args, [await realpath(root)], options.isolation, options.runtime);
+      const result = await command(sandboxed.executable, sandboxed.args, root, limits.timeoutMs, limits.maxOutputBytes, undefined, sandboxed.env);
       return { content: [{ type: "text", text: JSON.stringify(result) }], details: {} };
     },
   };

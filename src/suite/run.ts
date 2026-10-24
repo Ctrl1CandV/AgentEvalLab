@@ -12,6 +12,7 @@ import { familyResults, loadSingleRun, loadTrajectoryRun, trajectoryChecks, traj
 import { failedChecks, markdownSuiteReport, suiteFlags, type FamilyReport, type SuiteReport } from "./report.js";
 import { checkPolicy, parseModelSpec, validateSuite, type FamilySpec, type SuiteFile } from "./spec.js";
 import { loadOutcomes } from "../scoring/outcomes.js";
+import { primaryOf, type Primary } from "../scoring/model.js";
 import { buildReportV2, markdownReportV2, type V2FamilyData } from "../analysis/report-v2.js";
 import type { TaskPackageManifest } from "../evaluation/manifest.js";
 import type { NotRunEntry } from "../evaluation/batch.js";
@@ -290,6 +291,8 @@ export class SuiteRunner {
       if (!chosen.length) throw new Error(`SUITE_SPLIT_EMPTY:${family.id}`);
       const splits = new Set(chosen.map(entry => entry.split));
       if (splits.size !== 1) throw new Error(`SUITE_FAMILY_MIXES_SPLITS:${family.id}`);
+      // A family has one headline (report v2): E4's contract items and its open-ended compress item are separate families.
+      if (new Set(chosen.map(entry => JSON.stringify(primaryOf(manifest.scoreModel!, entry.id)))).size !== 1) throw new Error(`SUITE_FAMILY_MIXED_PRIMARY:${family.id}`);
       item.items = chosen.map(entry => entry.id);
       template.protocol = { track: "fixed", split: [...splits][0]! };
     } else {
@@ -536,9 +539,13 @@ export class SuiteRunner {
     const runDirectories: string[] = [];
     let missing = false;
     let protocol: V2FamilyData["protocol"] = { budget: "n/a", contextPolicy: "single", tools: "n/a", commandLimits: "default" };
+    const scoreModel = manifest.scoreModel!;
+    const headlines = new Set<string>();
     for (const entry of entries) {
       const plan = await readJson<EvaluationPlan>(entry.path);
-      const tasks = plan.execution?.kind === "trajectory" ? 1 : (caseItems(plan, this.items)?.length ?? 1);
+      const items = plan.execution?.kind === "trajectory" ? null : caseItems(plan, this.items);
+      const tasks = plan.execution?.kind === "trajectory" ? 1 : (items?.length ?? 1);
+      for (const item of items ?? [null]) headlines.add(JSON.stringify(primaryOf(scoreModel, item?.id ?? null)));
       for (const model of plan.models) plannedTasks[modelLabel(model)] = (plannedTasks[modelLabel(model)] ?? 0) + tasks;
       const millions = (value: number | null | undefined) => value ? `${+(value / 1_000_000).toFixed(2)}M` : "n/a";
       protocol = {
@@ -555,12 +562,14 @@ export class SuiteRunner {
       const runReport = await readJson<{ batch?: { notRun?: NotRunEntry[] } }>(join(run.runDirectory, "report.json")).catch(() => ({ batch: undefined }));
       for (const skipped of runReport.batch?.notRun ?? []) notRun[label(skipped.model)] = (notRun[label(skipped.model)] ?? 0) + 1;
     }
-    const scoreModel = manifest.scoreModel!;
+    // A family has one headline: a package whose items differ (E4's contract items and compress) is split into families by items.
+    if (headlines.size !== 1) throw new Error(`SUITE_FAMILY_MIXED_PRIMARY:${family.id}`);
+    const headline = JSON.parse([...headlines][0]!) as Primary;
     return {
       missing,
       data: {
-        id: family.id, tier: family.tier ?? manifest.tier!, capability: family.capability ?? manifest.capabilities![0]!, openEnded: scoreModel.primary.kind === "metric",
-        structureCap: scoreModel.structureCap ?? 0.2, packageId: manifest.id, taskVersion: manifest.version, primaryKind: scoreModel.primary.kind,
+        id: family.id, tier: family.tier ?? manifest.tier!, capability: family.capability ?? manifest.capabilities![0]!, openEnded: headline.kind === "metric",
+        structureCap: scoreModel.structureCap ?? 0.2, packageId: manifest.id, taskVersion: manifest.version, primaryKind: headline.kind,
         outcomes, plannedTasks, notRun, protocol, runDirectories,
       },
     };

@@ -18,6 +18,8 @@ export interface ScoreGroup {
   /** The checks of the group ("all", "fraction"); a metric group names its metric instead. */
   checkIds: string[];
   metric?: string;
+  /** The items a metric group applies to; every item when omitted. */
+  items?: string[];
 }
 
 export interface ScoreMetric {
@@ -28,8 +30,15 @@ export interface ScoreMetric {
   anchors?: { version: string; points: Array<{ name: string; maps: number }> };
 }
 
+export type Primary = { kind: "resolved" } | { kind: "metric"; metric: string } | { kind: "rating" };
+
 export interface ScoreModel {
-  primary: { kind: "resolved" } | { kind: "metric"; metric: string } | { kind: "rating" };
+  primary: Primary;
+  /**
+   * The headline of particular items where it differs from the package's (PLAN-007 WP2.2): a package such as E4 holds
+   * contract items and an open-ended one, reported as separate families.
+   */
+  primaryByItem?: Record<string, Primary>;
   groups: ScoreGroup[];
   metrics?: ScoreMetric[];
   /** The format check and the PLAN-005 deduction, reported as a separate penalised value (decision D2). */
@@ -97,6 +106,24 @@ function sum(requests: RequestUsage[], field: keyof Pick<RequestUsage, "inputTok
   return values.every(value => typeof value === "number") ? (values as number[]).reduce((total, value) => total + value, 0) : null;
 }
 
+/** The headline of an item: its own, or the package's. */
+export function primaryOf(scoreModel: ScoreModel, itemId: string | null): Primary {
+  return (itemId ? scoreModel.primaryByItem?.[itemId] : undefined) ?? scoreModel.primary;
+}
+
+/** Whether a group applies to an item: a check group when it holds one of the task's checks, a metric group by its items. */
+function applies(group: ScoreGroup, itemId: string | null, expected: Set<string>): boolean {
+  if (group.rule === "metric") return !group.items || (itemId !== null && group.items.includes(itemId));
+  return group.checkIds.some(id => expected.has(id));
+}
+
+/** The metrics an item is normalised on: its headline metric and the metrics of the metric groups applying to it. */
+export function metricsOf(scoreModel: ScoreModel, itemId: string | null): Set<string> {
+  const headline = primaryOf(scoreModel, itemId);
+  return new Set([...(headline.kind === "metric" ? [headline.metric] : []),
+    ...scoreModel.groups.filter(group => group.rule === "metric" && applies(group, itemId, new Set())).map(group => group.metric!)]);
+}
+
 export function stopOf(execution: ExecutionResult): Stop {
   if (execution.failureKind === "infrastructure") return "infrastructure";
   if (execution.error === "OUTPUT_TOKEN_LIMIT" || execution.error === "OUTPUT_LIMIT") return "output_limit";
@@ -134,15 +161,18 @@ export function buildOutcome(input: OutcomeInput): OutcomeRecord {
   const metrics = (input.metrics ?? []).map(metric => ({ id: metric.id, value: metric.value, unit: metric.unit ?? metricDefinitions.get(metric.id)?.unit ?? null,
     direction: metricDefinitions.get(metric.id)?.direction ?? null }));
   const normalised: OutcomeRecord["normalised"] = {};
+  const used = metricsOf(scoreModel, input.itemId);
   for (const metric of scoreModel.metrics ?? []) {
     const raw = metrics.find(entry => entry.id === metric.id);
+    // A metric the item is not scored on is normalised only where the item has anchors for it.
+    if (!used.has(metric.id) && !input.anchors?.[metric.id]) continue;
     const points = itemAnchors(metric, input.anchors?.[metric.id]);
     if (raw && points) normalised[metric.id] = { ...normalise(raw.value, points, metric.direction), anchorVersion: metric.anchors!.version };
   }
   const expected = new Set(input.expectedCheckIds ?? evaluation.checks.map(check => check.id));
   const groups: OutcomeRecord["groups"] = {};
   // A group with none of the task's checks does not apply to it (an item of another size, say).
-  const applying = scoreModel.groups.filter(group => group.rule === "metric" || group.checkIds.some(id => expected.has(id)));
+  const applying = scoreModel.groups.filter(group => applies(group, input.itemId, expected));
   for (const group of applying) {
     let score: number;
     if (group.rule === "metric") {
@@ -161,11 +191,12 @@ export function buildOutcome(input: OutcomeInput): OutcomeRecord {
   const criticalPass = applying.filter(group => group.critical).every(group => groups[group.id]!.score === 1);
   const resolved = coverage === "scored" ? criticalPass : null;
   let primary: number | null = null;
+  const headline = primaryOf(scoreModel, input.itemId);
   if (coverage === "scored") {
-    if (scoreModel.primary.kind === "resolved") primary = resolved ? 1 : 0;
-    else if (scoreModel.primary.kind === "metric") {
+    if (headline.kind === "resolved") primary = resolved ? 1 : 0;
+    else if (headline.kind === "metric") {
       // An open-ended task's delivery counts only when it is valid (its critical groups pass); otherwise it is at 0.
-      primary = criticalPass ? normalised[scoreModel.primary.metric]?.value ?? 0 : 0;
+      primary = criticalPass ? normalised[headline.metric]?.value ?? 0 : 0;
     }
   }
   let format: OutcomeRecord["format"] = { status: "n/a", penalised: primary };

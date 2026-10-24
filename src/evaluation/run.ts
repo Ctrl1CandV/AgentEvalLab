@@ -13,7 +13,8 @@ import { writeOutcome } from "../scoring/outcomes.js";
 import { evaluate, skippedEvaluation, EvaluatorCleanupError } from "./evaluator.js";
 import { prepareWorkspace } from "./workspace.js";
 import { projectPackage } from "./package.js";
-import { projectPackageItem, type ManifestItem, type PackageDescriptor } from "./manifest.js";
+import { projectPackageItem, runtimeMounts, type ManifestItem, type PackageDescriptor } from "./manifest.js";
+import { collectRepositoryPatch, PatchLimitError, projectRepository, type RepositoryWorkspace } from "./repository.js";
 import { resolveCaseItems } from "./items.js";
 import { ArtifactLimitError, copyArtifacts, defaultArtifactLimits } from "./artifacts.js";
 import { validatePlan } from "./validate.js";
@@ -176,6 +177,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
         ...(packageItem ? { itemId: packageItem.id, itemLevel: packageItem.level } : {}),
         supersedes: previous?.id ?? null };
       let workspace: Awaited<ReturnType<typeof prepareWorkspace>> | undefined;
+      let repository: RepositoryWorkspace | undefined;
       let fatal: unknown;
       let executionFinished = false;
       let evaluationCommitted = false;
@@ -187,6 +189,9 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
         if (projection && projection.manifestSha256 !== (packageDescriptor?.manifestSha256 ?? null)) throw new Error("PACKAGE_CHANGED_AFTER_PREFLIGHT");
         const instruction = projection?.instruction ?? "";
         const itemPrompt = packageItem && projection ? (await projectPackageItem(projection, workspace.path, packageItem.id)).prompt : "";
+        // A repository item: its archive becomes a fresh single-commit repository in the workspace (CODE §5).
+        if (packageItem?.repository && projection) repository = await projectRepository(projection, packageItem, workspace.path);
+        const runtime = projection ? runtimeMounts(projection, packageItem) : undefined;
         await events.emit("execution_started");
         const runner = options.runner ?? createPiRunner({
           ...(notice ? { budgetReminders: notice.reminders } : {}),
@@ -199,7 +204,8 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
           createTools: () => plan.trustedLocalExecution ? evaluationTools(
             toolProfile === "doc-evidence" ? join(workspace!.path, "public", "snapshot") : workspace!.path,
             toolProfile,
-            { readOnly: item.readOnly, execute: !item.readOnly, isolation: plan.isolation, ...(plan.commandLimits ? { commandLimits: plan.commandLimits } : {}) },
+            { readOnly: item.readOnly, execute: !item.readOnly, isolation: plan.isolation, ...(plan.commandLimits ? { commandLimits: plan.commandLimits } : {}),
+              ...(runtime ? { runtime } : {}) },
           ) : [],
         });
         const prompt = [instruction, itemPrompt, item.input.prompt, notice ? budgetStatement(plan.budget, notice.reminders) : ""].filter(Boolean).join("\n\n");
@@ -220,8 +226,14 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
           patch = await collectPatch(workspace.git);
           await writeFile(join(trialDirectory, "submission.patch"), patch);
         }
+        if (repository) {
+          patch = await collectRepositoryPatch(repository);
+          await writeFile(join(trialDirectory, "submission.patch"), patch);
+        }
         await events.emit("evaluation_started");
-        const artifactManifest = await copyArtifacts(workspace.path, join(trialDirectory, "artifacts"), artifactLimits);
+        // A repository's change is the patch; the repository itself stays out of the snapshot.
+        const artifactManifest = await copyArtifacts(workspace.path, join(trialDirectory, "artifacts"), artifactLimits,
+          packageItem?.repository ? [packageItem.repository.directory] : []);
         record.artifactManifest = { totalBytes: artifactManifest.totalBytes, sha256: artifactManifest.sha256 };
         await writeFile(join(trialDirectory, "artifact-manifest.json"), JSON.stringify(artifactManifest, null, 2));
         const scoreRunId = randomUUID();
@@ -240,6 +252,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
             emit: events.emit,
             isolation: plan.isolation,
             ...(packageItem ? { item: { id: packageItem.id, activeRequirementIds: packageItem.activeRequirementIds } } : {}),
+            ...(repository ? { patchText: patch } : {}),
           });
         } catch (error) {
           if (error instanceof EvaluatorCleanupError) record.cleanup = "error";
@@ -274,7 +287,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
         if (error instanceof EventSinkError) fatal = error;
         if (executionFinished) {
           const message = error instanceof Error ? error.message : "";
-          if (error instanceof ArtifactLimitError) {
+          if (error instanceof ArtifactLimitError || error instanceof PatchLimitError) {
             // The deliverable breaks the artifact limits (links and special files are skipped, not refused).
             record.evaluation = { status: "resource_limit", score: null, checks: [], error: message };
           } else if (fatal) {
@@ -291,6 +304,9 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
       } finally {
         if (workspace) {
           try { await workspace.cleanup(); } catch { record.cleanup = "error"; }
+        }
+        if (repository) {
+          try { await repository.cleanup(); } catch { record.cleanup = "error"; }
         }
         record.durationMs = performance.now() - start;
         record.execution = persistedExecution(record.execution, plan.budget.maxOutputChars);
