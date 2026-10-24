@@ -1,0 +1,87 @@
+import { pairedDifference, seededRandom } from "../evaluation/statistics.js";
+import { familyMean, taskWeights, type TaskScore } from "./aggregate.js";
+
+/**
+ * Uncertainty over independent tasks (MEASUREMENT §5): a seeded cluster bootstrap that resamples structure groups,
+ * never checks or repetitions, and paired comparisons by task. With fewer than five groups there is no interval.
+ */
+
+export const RESAMPLES = 2_000;
+export const MIN_GROUPS = 5;
+
+export type Interval = { low: number; high: number } | "n too small";
+
+function percentile(sorted: number[], share: number): number {
+  const position = (sorted.length - 1) * share;
+  const lower = Math.floor(position);
+  const upper = Math.ceil(position);
+  return sorted[lower]! + (sorted[upper]! - sorted[lower]!) * (position - lower);
+}
+
+/** Groups resampled with replacement; each resample keeps every task of a drawn group, renamed so repeats stay apart. */
+function resampleGroups<T extends { structure: string; task: string }>(items: T[], random: () => number): T[] {
+  const groups = [...new Set(items.map(item => item.structure))].sort();
+  const members = new Map(groups.map(group => [group, items.filter(item => item.structure === group)]));
+  const drawn: T[] = [];
+  for (let index = 0; index < groups.length; index++) {
+    const group = groups[Math.floor(random() * groups.length)]!;
+    for (const item of members.get(group)!) drawn.push({ ...item, structure: `${group}#${index}`, task: `${item.task}#${index}` });
+  }
+  return drawn;
+}
+
+/** A percentile 95% interval of one model's family mean, by resampling structure groups (seeded, so reports repeat). */
+export function familyInterval(tasks: TaskScore[], seed: number, cap = 0.2, resamples = RESAMPLES): Interval {
+  const scored = tasks.filter(task => task.primary !== null);
+  if (new Set(scored.map(task => task.structure)).size < MIN_GROUPS) return "n too small";
+  const random = seededRandom(seed);
+  const values: number[] = [];
+  for (let index = 0; index < resamples; index++) values.push(familyMean(resampleGroups(scored, random), cap)!);
+  values.sort((left, right) => left - right);
+  return { low: percentile(values, 0.025), high: percentile(values, 0.975) };
+}
+
+export interface PairedComparison {
+  modelA: string;
+  modelB: string;
+  /** Tasks both models have a score on. */
+  tasks: number;
+  meanDifference: number | null;
+  interval: Interval;
+  /** Shares of those tasks where A is ahead, B is ahead, and where they tie. */
+  ahead: { a: number; b: number; tie: number };
+  /** The task-level t interval of the existing pairedDifference, as a cross-check. */
+  tInterval: [number, number] | null;
+}
+
+/**
+ * A against B, paired by task: the difference of their family means over the tasks both have (task weights with the
+ * structure cap, as in the family mean), a cluster-bootstrap interval, and who is ahead how often.
+ */
+export function pairedComparison(tasks: TaskScore[], modelA: string, modelB: string, seed: number, cap = 0.2, resamples = RESAMPLES): PairedComparison {
+  const pairs: Array<{ task: string; structure: string; difference: number }> = [];
+  for (const left of tasks.filter(task => task.model === modelA && task.primary !== null)) {
+    const right = tasks.find(task => task.model === modelB && task.task === left.task && task.primary !== null);
+    if (right) pairs.push({ task: left.task, structure: left.structure, difference: left.primary! - right.primary! });
+  }
+  const n = pairs.length;
+  const mean = (values: Array<{ task: string; structure: string; difference: number }>) => {
+    const weights = taskWeights(values, cap);
+    return values.reduce((total, value) => total + weights.get(value.task)! * value.difference, 0);
+  };
+  let interval: Interval = "n too small";
+  if (new Set(pairs.map(pair => pair.structure)).size >= MIN_GROUPS) {
+    const random = seededRandom(seed);
+    const values: number[] = [];
+    for (let index = 0; index < resamples; index++) values.push(mean(resampleGroups(pairs, random)));
+    values.sort((left, right) => left - right);
+    interval = { low: percentile(values, 0.025), high: percentile(values, 0.975) };
+  }
+  const t = pairedDifference(pairs.map(pair => pair.difference));
+  return {
+    modelA, modelB, tasks: n, meanDifference: n ? mean(pairs) : null, interval,
+    ahead: { a: n ? pairs.filter(pair => pair.difference > 0).length / n : 0, b: n ? pairs.filter(pair => pair.difference < 0).length / n : 0,
+      tie: n ? pairs.filter(pair => pair.difference === 0).length / n : 0 },
+    tInterval: t.interval,
+  };
+}
