@@ -80,6 +80,11 @@ test("manifest v2: per-item headlines and item-scoped metric groups; anchors onl
   const checkGroupItems = structuredClone(manifest);
   ((checkGroupItems.scoreModel as Record<string, unknown>).groups as Array<Record<string, unknown>>)[0]!.items = ["i1"];
   assert.throws(() => validateTaskPackageManifest(checkGroupItems), /INVALID_SCORE_GROUPS/);
+  const reportedByOne = structuredClone(manifest);
+  ((reportedByOne.scoreModel as Record<string, unknown>).metrics as Array<Record<string, unknown>>)[0]!.items = ["i3"];
+  validateTaskPackageManifest(structuredClone(reportedByOne));
+  ((reportedByOne.scoreModel as Record<string, unknown>).primaryByItem as Record<string, unknown>).i1 = { kind: "metric", metric: "score" };
+  assert.throws(() => validateTaskPackageManifest(reportedByOne), /INVALID_SCORE_ITEMS|ANCHORS_INCOMPLETE/, "an item cannot be scored on a metric its grading does not report");
   const badHeadline = structuredClone(manifest);
   (badHeadline.scoreModel as Record<string, unknown>).primaryByItem = { i3: { kind: "metric", metric: "nothing" } };
   assert.throws(() => validateTaskPackageManifest(badHeadline), /INVALID_SCORE_PRIMARY/);

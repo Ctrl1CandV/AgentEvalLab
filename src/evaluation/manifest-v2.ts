@@ -129,7 +129,8 @@ function validateScoreModel(value: unknown, checkIds: Map<string, { critical: bo
     if (!Array.isArray(model.metrics)) fail("INVALID_SCORE_METRICS");
     for (const raw of model.metrics) {
       const metric = object(raw, "INVALID_SCORE_METRICS");
-      onlyKeys(metric, ["id", "unit", "direction", "anchors"], "INVALID_SCORE_METRICS");
+      onlyKeys(metric, ["id", "unit", "direction", "anchors", "items"], "INVALID_SCORE_METRICS");
+      if (metric.items !== undefined && (!Array.isArray(metric.items) || metric.items.length === 0 || metric.items.some(id => typeof id !== "string"))) fail("INVALID_SCORE_METRICS");
       if (typeof metric.id !== "string" || !IDENTIFIER.test(metric.id) || metrics.has(metric.id) || !text(metric.unit) ||
           !["higher", "lower"].includes(String(metric.direction))) fail("INVALID_SCORE_METRICS");
       if (metric.anchors !== undefined) {
@@ -254,7 +255,16 @@ export function validateManifestV2(manifest: Record<string, unknown>): void {
   // Per-item headlines and metric groups name items of the package.
   const itemIds = new Set((items ?? []).map(item => item.id));
   if (Object.keys(scoreModel.primaryByItem ?? {}).some(id => !itemIds.has(id)) ||
-      scoreModel.groups.some(group => group.items?.some(id => !itemIds.has(id)))) fail("INVALID_SCORE_ITEMS");
+      scoreModel.groups.some(group => group.items?.some(id => !itemIds.has(id))) ||
+      (scoreModel.metrics ?? []).some(metric => metric.items?.some(id => !itemIds.has(id)))) fail("INVALID_SCORE_ITEMS");
+  // A task is scored only on metrics its grading reports.
+  const reported = (itemId: string | null, metric: string) => {
+    const declared = (scoreModel.metrics ?? []).find(entry => entry.id === metric);
+    return !declared?.items || (itemId !== null && declared.items.includes(itemId));
+  };
+  for (const itemId of items ? [...itemIds] as string[] : [null]) {
+    if ([...metricsOf(scoreModel, itemId)].some(metric => !reported(itemId, metric))) fail("INVALID_SCORE_ITEMS");
+  }
   if (items) {
     if (manifest.task !== undefined) fail("INVALID_PACKAGE_TASK");
     for (const item of items) {

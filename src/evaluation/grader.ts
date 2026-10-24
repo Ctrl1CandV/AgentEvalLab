@@ -197,7 +197,7 @@ async function validateGraderResult(
   }
 
   if (result.error !== null) throw new Error("GRADER_PROTOCOL_INVALID");
-  const metrics = graderMetrics(result.schemaVersion === 2 ? result.metrics : [], manifest, result.gradingStatus === "completed");
+  const metrics = graderMetrics(result.schemaVersion === 2 ? result.metrics : [], manifest, result.gradingStatus === "completed", request.context.itemId ?? null);
   let reason: string | null = null;
   if (result.gradingStatus === "unscored") {
     const unscoredReason = object(result.reason);
@@ -211,7 +211,7 @@ async function validateGraderResult(
  * The raw metrics of a v2 result: finite values under unique identifiers. Every metric the manifest's score model
  * names is required of a completed grading; others are kept as diagnostics.
  */
-function graderMetrics(value: unknown, manifest: TaskPackageManifest, completed: boolean): ValidatedGraderResult["metrics"] {
+function graderMetrics(value: unknown, manifest: TaskPackageManifest, completed: boolean, itemId: string | null): ValidatedGraderResult["metrics"] {
   if (!Array.isArray(value)) throw new Error("GRADER_METRIC_INVALID");
   const metrics: ValidatedGraderResult["metrics"] = [];
   for (const raw of value) {
@@ -221,7 +221,9 @@ function graderMetrics(value: unknown, manifest: TaskPackageManifest, completed:
         (metric.unit !== undefined && (typeof metric.unit !== "string" || metric.unit.length > 100))) throw new Error("GRADER_METRIC_INVALID");
     metrics.push({ id: metric.id, value: metric.value, ...(typeof metric.unit === "string" ? { unit: metric.unit } : {}) });
   }
-  if (completed && (manifest.scoreModel?.metrics ?? []).some(required => !metrics.some(metric => metric.id === required.id))) {
+  // A metric declared for some items only (E4's compress bytes) is required for those.
+  const required = (manifest.scoreModel?.metrics ?? []).filter(metric => !metric.items || (itemId !== null && metric.items.includes(itemId)));
+  if (completed && required.some(entry => !metrics.some(metric => metric.id === entry.id))) {
     throw new Error("GRADER_METRIC_MISSING");
   }
   return metrics;

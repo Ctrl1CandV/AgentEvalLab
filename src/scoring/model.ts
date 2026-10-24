@@ -28,6 +28,8 @@ export interface ScoreMetric {
   direction: "higher" | "lower";
   /** Anchor names and the normalised value each maps to; the raw values are per item. */
   anchors?: { version: string; points: Array<{ name: string; maps: number }> };
+  /** The items whose grading reports this metric; every item when omitted. */
+  items?: string[];
 }
 
 export type Primary = { kind: "resolved" } | { kind: "metric"; metric: string } | { kind: "rating" };
