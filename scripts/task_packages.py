@@ -3,7 +3,8 @@
 
 Mirrors the preflight rules in src/evaluation/manifest.ts:
 - every file listed in a manifest exists and matches its SHA-256 digest;
-- public/, private/ (excluding Python caches), stages/, items/ and runtime/ contain exactly the declared files;
+- public/, private/ (excluding Python caches), stages/, items/, runtime/ and assets/ contain exactly the declared files
+  (assets/ holds external archives outside Git, restored by scripts/prepare-assets.mjs);
 - example and experiment plans pin the current manifest digest;
 - for a v2 manifest (CODE §3.1): the capability card is hashed, every task has a split and a structure group, no
   structure group spans two splits, every anchored metric a task is scored on has a raw value for every anchor, the score
@@ -103,6 +104,7 @@ def check_package(package):
         ("stages", declared_stages, list_files(package, "stages")),
         ("items", declared_items, list_files(package, "items")),
         ("runtime", declared_runtime, list_files(package, "runtime")),
+        ("assets", sorted(e["path"] for e in manifest["files"]["trusted"] if e["path"].startswith("assets/")), list_files(package, "assets")),
     ):
         for path in sorted(set(actual) - set(declared)):
             problems.append("undeclared %s file: %s" % (label, path))
@@ -159,8 +161,12 @@ def check_v2(manifest):
                 if check not in grouped:
                     problems.append("task %s: check %s is in no score group" % (name, check))
     mounts = {mount["path"] for mount in (manifest.get("runtime") or {}).get("mounts", [])}
+    archives = {mount["path"]: mount.get("archive") for mount in (manifest.get("runtime") or {}).get("mounts", [])}
     for mount in sorted(mounts):
-        if not any(path.startswith(mount + "/") for path in trusted):
+        if archives.get(mount):
+            if archives[mount] not in trusted or not archives[mount].startswith("assets/"):
+                problems.append("runtime mount %s: archive not a hashed asset: %s" % (mount, archives[mount]))
+        elif not any(path.startswith(mount + "/") for path in trusted):
             problems.append("runtime mount %s has no hashed files" % mount)
     for item in manifest.get("items", []):
         repository = item.get("repository")

@@ -1,9 +1,11 @@
 import { createHash } from "node:crypto";
 import { constants } from "node:fs";
-import { copyFile, lstat, mkdir, readFile, readdir, realpath } from "node:fs/promises";
+import { copyFile, lstat, mkdir, mkdtemp, readFile, readdir, realpath, rename, rm, writeFile } from "node:fs/promises";
+import { homedir } from "node:os";
 import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import type { ToolProfile } from "../harness/tools.js";
 import type { RuntimeMounts } from "../sandbox.js";
+import { command } from "../command.js";
 import { ManifestV2Error, validateManifestV2, type ItemV2Fields, type ManifestV2Fields, type TaskPlacement } from "./manifest-v2.js";
 
 export type Capability = "engineering" | "reasoning" | "tool" | "aesthetics";
@@ -106,12 +108,37 @@ export interface TaskPackageManifest extends Partial<ManifestV2Fields> {
   };
 }
 
+/** Where unpacked runtime archives are kept, one directory per archive hash; never written by candidate code. */
+export const runtimeCache = () => process.env.AGENTEVAL_RUNTIME_CACHE ?? join(homedir(), ".cache", "agenteval", "runtime");
+
+/** A runtime archive of the package, unpacked once into the cache by its hash (verified when the package was inspected). */
+async function unpackedArchive(descriptor: PackageDescriptor, archive: string): Promise<string> {
+  const file = descriptor.manifest!.files.trusted.find(entry => entry.path === archive);
+  if (!file) throw new PackageManifestError("PACKAGE_RUNTIME_ARCHIVE_UNDECLARED");
+  const target = join(runtimeCache(), file.sha256.toLowerCase());
+  if (await lstat(join(target, ".complete")).then(() => true, () => false)) return target;
+  await mkdir(runtimeCache(), { recursive: true });
+  const staging = await mkdtemp(join(runtimeCache(), ".unpacking-"));
+  const result = await command("tar", ["--no-same-owner", "-xf", join(descriptor.root, ...archive.split("/")), "-C", staging], staging, 600_000, 200_000);
+  if (result.status !== "completed" || result.exitCode !== 0) throw new PackageManifestError("PACKAGE_RUNTIME_ARCHIVE_UNPACK_FAILED");
+  await writeFile(join(staging, ".complete"), file.sha256);
+  try { await rename(staging, target); }
+  catch (error) {
+    // Another process unpacked the same archive first.
+    if (!(await lstat(join(target, ".complete")).then(() => true, () => false))) throw error;
+    await rm(staging, { recursive: true, force: true });
+  }
+  return target;
+}
+
 /** The runtime mounts of one task (CODE §4): sources in the package, bound at /runtime/<name>, with `{mount}` replaced. */
-export function runtimeMounts(descriptor: PackageDescriptor, item: ManifestItem | null): RuntimeMounts | undefined {
+export async function runtimeMounts(descriptor: PackageDescriptor, item: ManifestItem | null): Promise<RuntimeMounts | undefined> {
   const declared = descriptor.manifest?.runtime?.mounts;
   if (!declared) return undefined;
   const chosen = item?.mounts ? declared.filter(mount => item.mounts!.includes(mount.path)) : declared;
-  const mounts = chosen.map(mount => ({ source: join(descriptor.root, ...mount.path.split("/")), target: `/${mount.path}`, env: mount.env }));
+  const mounts = await Promise.all(chosen.map(async mount => ({
+    source: mount.archive ? await unpackedArchive(descriptor, mount.archive) : join(descriptor.root, ...mount.path.split("/")),
+    target: `/${mount.path}`, env: mount.env })));
   return {
     mounts: mounts.map(mount => ({ source: mount.source, target: mount.target })),
     env: Object.fromEntries(mounts.flatMap(mount => Object.entries(mount.env).map(([name, value]) => [name, value.split("{mount}").join(mount.target)]))),
@@ -493,11 +520,19 @@ export async function inspectPackage(
   if (JSON.stringify(await listFilesUnder(root, "private", true)) !== JSON.stringify(declaredPrivate)) {
     throw new PackageManifestError("PACKAGE_TRUSTED_FILE_SET_MISMATCH");
   }
+  // External assets (large repository and runtime archives, PLAN-007 WP3.2) live outside Git, are restored from a cache
+  // by their hash (scripts/prepare-assets.mjs), and must be exactly the declared ones.
+  const declaredAssets = manifest.files.trusted.map(file => file.path).filter(path => path.startsWith("assets/")).sort();
+  if (declaredAssets.length || await lstat(join(root, "assets")).catch(() => null)) {
+    const present = await lstat(join(root, "assets")).catch(() => null) ? await listFilesUnder(root, "assets") : [];
+    if (JSON.stringify(present) !== JSON.stringify(declaredAssets)) throw new PackageManifestError("PACKAGE_ASSET_FILE_SET_MISMATCH");
+  }
   // Runtime mounts are bound whole into the sandbox, so every file under runtime/ is hashed (no cache exception).
   const declaredRuntime = manifest.files.trusted.map(file => file.path).filter(path => path.startsWith("runtime/")).sort();
   if (manifest.runtime || await lstat(join(root, "runtime")).catch(() => null)) {
     if (!manifest.runtime) throw new PackageManifestError("UNDECLARED_PACKAGE_RUNTIME");
-    if (JSON.stringify(await listFilesUnder(root, "runtime")) !== JSON.stringify(declaredRuntime)) throw new PackageManifestError("PACKAGE_RUNTIME_FILE_SET_MISMATCH");
+    const present = await lstat(join(root, "runtime")).catch(() => null) ? await listFilesUnder(root, "runtime") : [];
+    if (JSON.stringify(present) !== JSON.stringify(declaredRuntime)) throw new PackageManifestError("PACKAGE_RUNTIME_FILE_SET_MISMATCH");
     if (declaredRuntime.some(path => !manifest.runtime!.mounts.some(mount => path.startsWith(`${mount.path}/`)))) throw new PackageManifestError("PACKAGE_RUNTIME_FILE_SET_MISMATCH");
   }
   return { root, instruction, manifest, manifestSha256 };

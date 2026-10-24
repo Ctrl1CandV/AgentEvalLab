@@ -143,7 +143,8 @@ New optional fields:
   - `scripts/sandbox_exec.py --mount SOURCE:/runtime/<name> --env NAME=VALUE`; the harness passes both through `isolatedCommand(..., runtime)`. Graders get the same in the request's `runtime` field (`mounts` with `source` and `target`, and `env`) and pass them to the launcher.
   - Without the sandbox (`isolation: "host"`, an explicit opt-out), nothing is bound and the environment names the source directories.
   - Mounts are bound in single-session trials; a trajectory package with mounts is refused at preflight.
-- **Size and hashing.** Runtime mounts can be large. They are hashed as trusted files in the manifest, and the suite's frozen worktree carries them like any other package file.
+- **Size and hashing.** Runtime mounts can be large. A small one is a directory `runtime/<name>` whose every file is hashed as a trusted file. A large one (PLAN-007 WP3.2) is one tar archive declared as `{"path": "runtime/<name>", "archive": "assets/<file>.tar", "env": {...}}`: the archive is a hashed trusted file, and the harness unpacks it once into a cache keyed by its hash (`~/.cache/agenteval/runtime/<sha256>/`, or `AGENTEVAL_RUNTIME_CACHE`) and binds that directory at `/runtime/<name>`.
+- **External assets.** Trusted files under `assets/` (runtime archives, repository archives) are kept out of Git (`.gitignore`): builders store them in a content-addressed cache (`~/.cache/agenteval/assets/<sha256>`), and `scripts/prepare-assets.mjs` restores them into their packages by hard link, verifying each hash. `npm ci` runs it, and the suite runs it in its frozen worktree (`FREEZE_ASSETS_FAILED` when one is missing). The harness and `task_packages.py` check that `assets/` holds exactly the declared files.
 - **Disk.** Keep each runtime under about 200 MB. Share one runtime between tasks of the same repository and version, as a directory referenced by several items.
 
 ## 5. Repository workspaces (ER)

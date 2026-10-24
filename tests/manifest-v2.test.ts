@@ -109,6 +109,15 @@ test("manifest v2: repository items and runtime mounts are hashed trusted files,
   assert.throws(() => validateTaskPackageManifest(withRepository((_item, manifest) => {
     (manifest.files as { trusted: Array<{ path: string }> }).trusted = (manifest.files as { trusted: Array<{ path: string }> }).trusted.filter(file => !file.path.startsWith("runtime/"));
   })), /INVALID_PACKAGE_RUNTIME_FILES/);
+  // An archived runtime: one hashed tar under assets/, and no files under its path.
+  const archived = (archive: string, keepFiles = false) => withRepository((_item, manifest) => {
+    const files = manifest.files as { trusted: Array<{ path: string; sha256: string }> };
+    files.trusted = [...files.trusted.filter(file => keepFiles || !file.path.startsWith("runtime/")), { path: archive, sha256: digest }];
+    manifest.runtime = { mounts: [{ path: "runtime/py", archive, env: {} }] };
+  });
+  validateTaskPackageManifest(archived("assets/runtime-py.tar"));
+  assert.throws(() => validateTaskPackageManifest(archived("private/runtime-py.tar")), /INVALID_PACKAGE_RUNTIME_FILES/);
+  assert.throws(() => validateTaskPackageManifest(archived("assets/runtime-py.tar", true)), /INVALID_PACKAGE_RUNTIME_FILES/);
 });
 
 test("manifest v2: a package without items is one task, placed by its own split and structure", () => {

@@ -191,7 +191,7 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
         const itemPrompt = packageItem && projection ? (await projectPackageItem(projection, workspace.path, packageItem.id)).prompt : "";
         // A repository item: its archive becomes a fresh single-commit repository in the workspace (CODE §5).
         if (packageItem?.repository && projection) repository = await projectRepository(projection, packageItem, workspace.path);
-        const runtime = projection ? runtimeMounts(projection, packageItem) : undefined;
+        const runtime = projection ? await runtimeMounts(projection, packageItem) : undefined;
         await events.emit("execution_started");
         const runner = options.runner ?? createPiRunner({
           ...(notice ? { budgetReminders: notice.reminders } : {}),

@@ -29,10 +29,15 @@ export interface TaskPlacement {
 }
 
 export interface RuntimeMount {
-  /** A directory of the package, such as runtime/py, bound read-only into the sandbox. */
+  /** A directory of the package, such as runtime/py, bound read-only into the sandbox at /runtime/py. */
   path: string;
   /** Environment variables to set; "{mount}" is replaced by the mount's path inside the sandbox. */
   env: Record<string, string>;
+  /**
+   * Instead of files under `path`: a tar archive among the package's external assets (`assets/...`), unpacked once into
+   * a cache keyed by its hash and bound read-only in its place (large runtimes, PLAN-007 WP3.2).
+   */
+  archive?: string;
 }
 
 /** An item's repository (CODE §5): a trusted archive of the working tree at the base commit, unpacked into `directory`. */
@@ -223,14 +228,17 @@ export function validateManifestV2(manifest: Record<string, unknown>): void {
     if (!Array.isArray(runtime.mounts) || runtime.mounts.length === 0) fail("INVALID_PACKAGE_RUNTIME");
     for (const raw of runtime.mounts) {
       const mount = object(raw, "INVALID_PACKAGE_RUNTIME");
-      onlyKeys(mount, ["path", "env"], "INVALID_PACKAGE_RUNTIME");
+      onlyKeys(mount, ["path", "env", "archive"], "INVALID_PACKAGE_RUNTIME");
       // runtime/<name>: one directory per mount, bound at /runtime/<name> in the sandbox.
       if (!safeRelative(mount.path) || !/^runtime\/[A-Za-z0-9._-]+$/.test(mount.path) || mountPaths.has(mount.path)) fail("INVALID_PACKAGE_RUNTIME");
       const env = object(mount.env, "INVALID_PACKAGE_RUNTIME");
       if (Object.entries(env).some(([key, value]) => !/^[A-Z_][A-Z0-9_]{0,63}$/.test(key) || ["HOME", "TMPDIR", "TMP", "TEMP"].includes(key) ||
           typeof value !== "string" || value.length > 1000)) fail("INVALID_PACKAGE_RUNTIME");
-      // A mount's files are hashed as trusted files.
-      if (!files.trusted.some(file => file.path.startsWith(`${mount.path}/`))) fail("INVALID_PACKAGE_RUNTIME_FILES");
+      // A mount's files are hashed as trusted files, or it is one hashed archive among the external assets.
+      if (mount.archive !== undefined) {
+        if (!safeRelative(mount.archive) || !/^assets\/[^/]+\.tar$/.test(mount.archive) || !files.trusted.some(file => file.path === mount.archive) ||
+            files.trusted.some(file => file.path.startsWith(`${mount.path}/`))) fail("INVALID_PACKAGE_RUNTIME_FILES");
+      } else if (!files.trusted.some(file => file.path.startsWith(`${mount.path}/`))) fail("INVALID_PACKAGE_RUNTIME_FILES");
       mountPaths.add(mount.path);
     }
   }
@@ -238,7 +246,7 @@ export function validateManifestV2(manifest: Record<string, unknown>): void {
     if (item.repository !== undefined) {
       const repository = object(item.repository, "INVALID_PACKAGE_ITEM_REPOSITORY");
       onlyKeys(repository, ["archive", "directory"], "INVALID_PACKAGE_ITEM_REPOSITORY");
-      if (!safeRelative(repository.archive) || !repository.archive.startsWith("private/") || !/\.tar(\.gz)?$/.test(repository.archive) ||
+      if (!safeRelative(repository.archive) || !/^(private|assets)\//.test(repository.archive) || !/\.tar(\.gz)?$/.test(repository.archive) ||
           !files.trusted.some(file => file.path === repository.archive) || typeof repository.directory !== "string" ||
           !IDENTIFIER.test(repository.directory) || repository.directory === ".git") fail("INVALID_PACKAGE_ITEM_REPOSITORY");
     }

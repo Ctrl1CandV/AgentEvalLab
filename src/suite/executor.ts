@@ -36,6 +36,8 @@ export function processExecutor(repoRoot: string): SuiteExecutor {
       for (const name of ["node_modules", ".env", "runs"]) await symlink(join(repoRoot, name), join(root, name));
       const status = await logged(node, ["scripts/prepare-baselines.mjs"], root, join(dirname(root), "logs", "freeze.log"));
       if (status !== 0) throw new Error("FREEZE_BASELINES_FAILED");
+      // External package assets (repository and runtime archives) come from the content-addressed cache.
+      if (await logged(node, ["scripts/prepare-assets.mjs"], root, join(dirname(root), "logs", "freeze-assets.log")) !== 0) throw new Error("FREEZE_ASSETS_FAILED");
       const dirty = (await git(root, ["status", "--porcelain"])).trim();
       if (dirty) throw new Error("FREEZE_WORKTREE_DIRTY");
       return { commit: head, uncommitted };

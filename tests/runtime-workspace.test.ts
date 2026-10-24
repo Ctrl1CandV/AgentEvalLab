@@ -90,7 +90,7 @@ test("answer-only: the none profile gives the model no tools, and the condition 
 });
 
 /** A small v2 package with one repository item, its runtime, and a grader that works as an ER grader does. */
-async function repositoryPackage(root: string): Promise<{ path: string; manifestSha256: string }> {
+async function repositoryPackage(root: string, archived = false): Promise<{ path: string; manifestSha256: string }> {
   const pkg = join(root, "package");
   const source = join(root, "source");
   await mkdir(join(source, "tests"), { recursive: true });
@@ -164,22 +164,31 @@ json.dump({"schemaVersion": 1, "requestId": request["requestId"], "taskId": requ
   await writeFile(join(pkg, "card.md"), card);
   await writeFile(join(pkg, "items", "calc-1", "public", "ISSUE.md"), issue);
   const file = async (path: string) => ({ path, sha256: sha256(await readFile(join(pkg, ...path.split("/")))) });
+  // Archived: the repository and the runtime as external assets (PLAN-007 WP3.2), the runtime unpacked into a cache.
+  const repositoryArchive = archived ? "assets/calc-1.tar" : "private/calc-1.tar";
+  if (archived) {
+    await mkdir(join(pkg, "assets"));
+    await command("mv", [join(pkg, "private", "calc-1.tar"), join(pkg, "assets", "calc-1.tar")], root);
+    const packed = await command("tar", ["-cf", join(pkg, "assets", "runtime-py.tar"), "-C", join(pkg, "runtime", "py"), "."], root);
+    assert.equal(packed.exitCode, 0, packed.stderr);
+    await rm(join(pkg, "runtime"), { recursive: true });
+  }
   const manifest = {
     schemaVersion: 2, id: "repository-fixture", version: "0.1.0", familyId: "ER-fixture", capability: "engineering", usage: "development",
     source: { kind: "original-design", references: [] }, license: { taskText: "project", thirdPartyContent: [] },
     entryPoint: { instruction: "instruction.md" },
-    files: { public: [await file("instruction.md")], trusted: [await file("card.md"), await file("private/calc-1.tar"), await file("private/gold/calc-1.test.patch"),
-      await file("private/grader.py"), await file("runtime/py/helperlib.py")] },
+    files: { public: [await file("instruction.md")], trusted: [await file("card.md"), await file(repositoryArchive), await file("private/gold/calc-1.test.patch"),
+      await file("private/grader.py"), await file(archived ? "assets/runtime-py.tar" : "runtime/py/helperlib.py")] },
     requirements: [{ id: "REQ-FIX", critical: true, introducedAt: "0.1.0", checkIds: ["fail-to-pass"] }, { id: "REQ-KEEP", critical: true, introducedAt: "0.1.0", checkIds: ["pass-to-pass"] }],
     items: [{ id: "calc-1", level: "L1", files: [await file("items/calc-1/public/ISSUE.md")], activeRequirementIds: ["REQ-FIX", "REQ-KEEP"],
       split: "dev", structure: "repo:calc", provenance: { source: "fixture", published: "2026-10-24", license: "MIT", exposure: "generated" },
-      repository: { archive: "private/calc-1.tar", directory: "repo" }, mounts: ["runtime/py"] }],
+      repository: { archive: repositoryArchive, directory: "repo" }, mounts: ["runtime/py"] }],
     toolProfiles: ["workspace-augmented"],
     grader: { id: "repository-fixture", version: "1.0.0", entryPoint: "private/grader.py", executable: python, args: ["{entryPoint}", "--request", "{request}", "--result", "{result}"] },
     environment: { runtime: "Python 3", dependencies: "none", network: false },
     tier: "core", capabilities: ["engineering"], card: "card.md",
     scoreModel: { primary: { kind: "resolved" }, groups: [{ id: "tests", weight: 1, critical: true, rule: "all", checkIds: ["fail-to-pass", "pass-to-pass"] }] },
-    runtime: { mounts: [{ path: "runtime/py", env: { PYTHONPATH: "{mount}" } }] },
+    runtime: { mounts: [{ path: "runtime/py", env: { PYTHONPATH: "{mount}" }, ...(archived ? { archive: "assets/runtime-py.tar" } : {}) }] },
   };
   const bytes = JSON.stringify(manifest, null, 1);
   await writeFile(join(pkg, "manifest.json"), bytes);
@@ -243,4 +252,36 @@ test("repository workspace: one commit at a fixed author and date; the change is
     assert.deepEqual(weakRecord.evaluation.checks.map(check => [check.id, check.passed]), [["fail-to-pass", false], ["pass-to-pass", true]]);
     assert.match(await readFile(join(weakened.directory, weakRecord.id, "submission.patch"), "utf8"), /tests\/test_calc\.py/);
   } finally { await rm(root, { recursive: true, force: true }); }
+});
+
+test("external assets: a repository and a runtime archived under assets/, the runtime unpacked once into the cache", async t => {
+  const root = await mkdtemp(join(tmpdir(), "repository-assets-test-"));
+  const previous = process.env.AGENTEVAL_RUNTIME_CACHE;
+  process.env.AGENTEVAL_RUNTIME_CACHE = join(root, "runtime-cache");
+  try {
+    if (!await sandboxAvailable(root)) { t.skip("bubblewrap is unavailable"); return; }
+    const pkg = await repositoryPackage(root, true);
+    const plan = {
+      schemaVersion: 3, name: "repository-assets", models: [{ provider: "anthropic", id: "claude-sonnet-4-6" }], budget: { ...defaultBudget }, trustedLocalExecution: true,
+      artifactLimits: { maxFiles: 10, maxFileBytes: 100_000, maxTrialBytes: 1_000_000, graderResultMaxBytes: 100_000, toolEvidenceMaxBytes: 100_000 },
+      cases: [{ id: "calc", packagePath: pkg.path, packageManifestSha256: pkg.manifestSha256, items: ["calc-1"], toolProfile: "workspace-augmented",
+        input: { prompt: "Fix it." }, evaluator: { kind: "task-package", timeoutMs: 120_000 } }],
+    } as unknown as EvaluationPlan;
+    const fixed = await runEvaluation(plan, { outputRoot: join(root, "results"), runner: async input => {
+      await writeFile(join(input.workspacePath, "repo", "calc.py"), "def add(a, b):\n    return a + b\n\n\ndef mul(a, b):\n    return a * b\n");
+      return { ...emptyExecution() };
+    } });
+    const record = fixed.report.records[0]!;
+    assert.equal(record.evaluation.status, "passed", JSON.stringify([record.evaluation, record.execution.error]));
+    const request = JSON.parse(await readFile(join(fixed.directory, record.id, "score-runs", record.scoreRunId!, "grader", "request.json"), "utf8"));
+    const source = request.runtime.mounts[0].source as string;
+    assert.ok(source.startsWith(join(root, "runtime-cache")), source);
+    assert.equal(await readFile(join(source, "helperlib.py"), "utf8"), "FIVE = 5\n");
+    // An asset file that is not declared is refused.
+    await writeFile(join(pkg.path, "assets", "stray.tar"), "x");
+    await assert.rejects(runEvaluation(plan, { outputRoot: join(root, "results-2"), runner: async () => ({ ...emptyExecution() }) }), /PACKAGE_ASSET_FILE_SET_MISMATCH/);
+  } finally {
+    if (previous === undefined) delete process.env.AGENTEVAL_RUNTIME_CACHE; else process.env.AGENTEVAL_RUNTIME_CACHE = previous;
+    await rm(root, { recursive: true, force: true });
+  }
 });

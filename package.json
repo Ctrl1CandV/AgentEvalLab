@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prepare": "npm run prepare:baselines",
+    "prepare": "npm run prepare:baselines && npm run prepare:assets",
     "prepare:baselines": "node scripts/prepare-baselines.mjs",
+    "prepare:assets": "node scripts/prepare-assets.mjs",
     "precheck": "npm run prepare:baselines",
     "pretest": "npm run prepare:baselines",
     "preharness": "npm run prepare:baselines",

@@ -9,3 +9,5 @@ __pycache__/
 !/task-library/basic/e4-terminal-tasks/items/codec/public/lgz.pyc
 /task-library/basic/eng-005-long-cycle-maintenance/baseline/
 /task-library/basic/eng-004-resource-index/baseline/
+# External package assets, restored from ~/.cache/agenteval/assets by scripts/prepare-assets.mjs (PLAN-007 WP3.2).
+/task-library/**/assets/

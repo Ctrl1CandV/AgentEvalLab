@@ -301,7 +301,7 @@ export async function runTaskGrader(input: TaskGraderInput): Promise<EvaluationR
       sandbox: (input.isolation ?? "sandbox") === "sandbox" ? { launcher: sandboxLauncher } : null,
     };
     if (patchRef) request.patchRef = patchRef;
-    const runtime = runtimeMounts(descriptor, manifest.items?.find(item => item.id === context.itemId) ?? null);
+    const runtime = await runtimeMounts(descriptor, manifest.items?.find(item => item.id === context.itemId) ?? null);
     // Without the sandbox nothing is bound: the environment names the mounts' source directories.
     if (runtime) request.runtime = request.sandbox ? runtime : { mounts: runtime.mounts, env: hostEnvironment(runtime) };
     const requestPath = join(graderDirectory, "request.json");
