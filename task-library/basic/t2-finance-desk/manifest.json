@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "t2-finance-desk",
   "version": "0.3.0",
   "familyId": "t2-service-desk",
@@ -29,7 +29,11 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "f13e05ca511eaf1b8e173d11c610d1b6a29cbc855c56bca969d4ca800efaffb5"
+        "sha256": "942e5ab938749da7b78356092ccee4c05c64e3f8ee99c2487d340514f4de4fcd"
+      },
+      {
+        "path": "card.md",
+        "sha256": "04ac5767f77b696cddc1890be9e2d91bebcdc139c66f2ee5cc0d792c43c640da"
       },
       {
         "path": "rubric.md",
@@ -41,7 +45,7 @@
       },
       {
         "path": "private/build_package.py",
-        "sha256": "b5d30f8ef92f9d3754fe52189aac23ceb2883ff2d390f6023ade06ec046c5605"
+        "sha256": "09534da9c2faeac7678721776b3be9066877a95c063d05dcb6a41a134a174b8a"
       },
       {
         "path": "private/calibrate.py",
@@ -1547,38 +1551,228 @@
       ]
     }
   ],
-  "scoring": {
-    "formatCheckId": "answer-format",
-    "formatPenalty": 0.2,
-    "weights": {
-      "fn1-r1-plan-25": 2,
-      "fn1-r1-plan-50": 2,
-      "fn1-r1-plan-65": 2,
-      "fn1-r1-plan-80": 2,
-      "fn1-r1-plan-90": 2,
-      "fn1-r1-plan-97": 2,
-      "fn1-r1-plan-100": 2,
-      "fn2-r1-plan-25": 2,
-      "fn2-r1-plan-50": 2,
-      "fn2-r1-plan-65": 2,
-      "fn2-r1-plan-80": 2,
-      "fn2-r1-plan-90": 2,
-      "fn2-r1-plan-97": 2,
-      "fn2-r1-plan-100": 2,
-      "fn3-r1-plan-25": 2,
-      "fn3-r1-plan-50": 2,
-      "fn3-r1-plan-65": 2,
-      "fn3-r1-plan-80": 2,
-      "fn3-r1-plan-90": 2,
-      "fn3-r1-plan-97": 2,
-      "fn3-r1-plan-100": 2,
-      "fn4-r1-plan-25": 2,
-      "fn4-r1-plan-50": 2,
-      "fn4-r1-plan-65": 2,
-      "fn4-r1-plan-80": 2,
-      "fn4-r1-plan-90": 2,
-      "fn4-r1-plan-97": 2,
-      "fn4-r1-plan-100": 2
+  "tier": "basic",
+  "capabilities": [
+    "agentic"
+  ],
+  "card": "card.md",
+  "scoreModel": {
+    "primary": {
+      "kind": "resolved"
+    },
+    "groups": [
+      {
+        "id": "requests",
+        "weight": 2,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "fn1-r1-outcome",
+          "fn1-r1-clean",
+          "fn1-r2-outcome",
+          "fn1-r2-allocation",
+          "fn1-r2-amounts",
+          "fn1-r2-clean",
+          "fn1-r3-outcome",
+          "fn1-r3-allocation",
+          "fn1-r3-amounts",
+          "fn1-r3-clean",
+          "fn1-r4-outcome",
+          "fn1-r4-allocation",
+          "fn1-r4-amounts",
+          "fn1-r4-clean",
+          "fn1-r5-outcome",
+          "fn1-r5-allocation",
+          "fn1-r5-amounts",
+          "fn1-r5-clean",
+          "fn1-r6-outcome",
+          "fn1-r6-amounts",
+          "fn1-r6-clean",
+          "fn1-r7-outcome",
+          "fn1-r7-amounts",
+          "fn1-r7-clean",
+          "fn1-r8-outcome",
+          "fn1-r8-amounts",
+          "fn1-r8-clean",
+          "fn1-r9-outcome",
+          "fn1-r9-allocation",
+          "fn1-r9-amounts",
+          "fn1-r9-clean",
+          "fn1-r10-outcome",
+          "fn1-r10-amounts",
+          "fn1-r10-clean",
+          "fn1-r11-outcome",
+          "fn1-r11-amounts",
+          "fn1-r11-clean",
+          "fn2-r1-outcome",
+          "fn2-r1-clean",
+          "fn2-r2-outcome",
+          "fn2-r2-allocation",
+          "fn2-r2-amounts",
+          "fn2-r2-clean",
+          "fn2-r3-outcome",
+          "fn2-r3-allocation",
+          "fn2-r3-amounts",
+          "fn2-r3-clean",
+          "fn2-r4-outcome",
+          "fn2-r4-allocation",
+          "fn2-r4-amounts",
+          "fn2-r4-clean",
+          "fn2-r5-outcome",
+          "fn2-r5-allocation",
+          "fn2-r5-amounts",
+          "fn2-r5-clean",
+          "fn2-r6-outcome",
+          "fn2-r6-amounts",
+          "fn2-r6-clean",
+          "fn2-r7-outcome",
+          "fn2-r7-amounts",
+          "fn2-r7-clean",
+          "fn2-r8-outcome",
+          "fn2-r8-amounts",
+          "fn2-r8-clean",
+          "fn2-r9-outcome",
+          "fn2-r9-allocation",
+          "fn2-r9-amounts",
+          "fn2-r9-clean",
+          "fn2-r10-outcome",
+          "fn2-r10-amounts",
+          "fn2-r10-clean",
+          "fn2-r11-outcome",
+          "fn2-r11-amounts",
+          "fn2-r11-clean",
+          "fn3-r1-outcome",
+          "fn3-r1-clean",
+          "fn3-r2-outcome",
+          "fn3-r2-allocation",
+          "fn3-r2-amounts",
+          "fn3-r2-clean",
+          "fn3-r3-outcome",
+          "fn3-r3-allocation",
+          "fn3-r3-amounts",
+          "fn3-r3-clean",
+          "fn3-r4-outcome",
+          "fn3-r4-allocation",
+          "fn3-r4-amounts",
+          "fn3-r4-clean",
+          "fn3-r5-outcome",
+          "fn3-r5-allocation",
+          "fn3-r5-amounts",
+          "fn3-r5-clean",
+          "fn3-r6-outcome",
+          "fn3-r6-amounts",
+          "fn3-r6-clean",
+          "fn3-r7-outcome",
+          "fn3-r7-amounts",
+          "fn3-r7-clean",
+          "fn3-r8-outcome",
+          "fn3-r8-amounts",
+          "fn3-r8-clean",
+          "fn3-r9-outcome",
+          "fn3-r9-allocation",
+          "fn3-r9-amounts",
+          "fn3-r9-clean",
+          "fn3-r10-outcome",
+          "fn3-r10-amounts",
+          "fn3-r10-clean",
+          "fn3-r11-outcome",
+          "fn3-r11-amounts",
+          "fn3-r11-clean",
+          "fn4-r1-outcome",
+          "fn4-r1-clean",
+          "fn4-r2-outcome",
+          "fn4-r2-allocation",
+          "fn4-r2-amounts",
+          "fn4-r2-clean",
+          "fn4-r3-outcome",
+          "fn4-r3-allocation",
+          "fn4-r3-amounts",
+          "fn4-r3-clean",
+          "fn4-r4-outcome",
+          "fn4-r4-allocation",
+          "fn4-r4-amounts",
+          "fn4-r4-clean",
+          "fn4-r5-outcome",
+          "fn4-r5-allocation",
+          "fn4-r5-amounts",
+          "fn4-r5-clean",
+          "fn4-r6-outcome",
+          "fn4-r6-amounts",
+          "fn4-r6-clean",
+          "fn4-r7-outcome",
+          "fn4-r7-amounts",
+          "fn4-r7-clean",
+          "fn4-r8-outcome",
+          "fn4-r8-amounts",
+          "fn4-r8-clean",
+          "fn4-r9-outcome",
+          "fn4-r9-allocation",
+          "fn4-r9-amounts",
+          "fn4-r9-clean",
+          "fn4-r10-outcome",
+          "fn4-r10-amounts",
+          "fn4-r10-clean",
+          "fn4-r11-outcome",
+          "fn4-r11-amounts",
+          "fn4-r11-clean"
+        ]
+      },
+      {
+        "id": "day",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "fn1-coverage",
+          "fn1-end-state",
+          "fn2-coverage",
+          "fn2-end-state",
+          "fn3-coverage",
+          "fn3-end-state",
+          "fn4-coverage",
+          "fn4-end-state"
+        ]
+      },
+      {
+        "id": "plan",
+        "weight": 1,
+        "critical": false,
+        "rule": "fraction",
+        "checkIds": [
+          "fn1-r1-plan-25",
+          "fn1-r1-plan-50",
+          "fn1-r1-plan-65",
+          "fn1-r1-plan-80",
+          "fn1-r1-plan-90",
+          "fn1-r1-plan-97",
+          "fn1-r1-plan-100",
+          "fn2-r1-plan-25",
+          "fn2-r1-plan-50",
+          "fn2-r1-plan-65",
+          "fn2-r1-plan-80",
+          "fn2-r1-plan-90",
+          "fn2-r1-plan-97",
+          "fn2-r1-plan-100",
+          "fn3-r1-plan-25",
+          "fn3-r1-plan-50",
+          "fn3-r1-plan-65",
+          "fn3-r1-plan-80",
+          "fn3-r1-plan-90",
+          "fn3-r1-plan-97",
+          "fn3-r1-plan-100",
+          "fn4-r1-plan-25",
+          "fn4-r1-plan-50",
+          "fn4-r1-plan-65",
+          "fn4-r1-plan-80",
+          "fn4-r1-plan-90",
+          "fn4-r1-plan-97",
+          "fn4-r1-plan-100"
+        ]
+      }
+    ],
+    "format": {
+      "checkId": "answer-format",
+      "penalty": 0.2
     }
   },
   "items": [
@@ -1655,7 +1849,15 @@
         "REQ-FN1-COVERAGE",
         "REQ-FN1-END-STATE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "generator:finance-day",
+      "provenance": {
+        "source": "project generator private/finance.py, seed t2-finance-2026-10:fn1",
+        "published": "2026-10-23",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "fn2",
@@ -1730,7 +1932,15 @@
         "REQ-FN2-COVERAGE",
         "REQ-FN2-END-STATE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "generator:finance-day",
+      "provenance": {
+        "source": "project generator private/finance.py, seed t2-finance-2026-10:fn2",
+        "published": "2026-10-23",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "fn3",
@@ -1805,7 +2015,15 @@
         "REQ-FN3-COVERAGE",
         "REQ-FN3-END-STATE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "generator:finance-day",
+      "provenance": {
+        "source": "project generator private/finance.py, seed t2-finance-2026-10:fn3",
+        "published": "2026-10-23",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "fn4",
@@ -1880,7 +2098,15 @@
         "REQ-FN4-COVERAGE",
         "REQ-FN4-END-STATE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "generator:finance-day",
+      "provenance": {
+        "source": "project generator private/finance.py, seed t2-finance-2026-10:fn4",
+        "published": "2026-10-23",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     }
   ],
   "toolProfiles": [

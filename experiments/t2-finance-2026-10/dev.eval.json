@@ -51,7 +51,7 @@
     {
       "id": "t2-finance-desk",
       "packagePath": "task-library/basic/t2-finance-desk",
-      "packageManifestSha256": "f8653c2a6e66c91423e63c5de7c130920ed78b7f201339094e21469e7454d093",
+      "packageManifestSha256": "14fa83df3f7422ca2903763749ad0333247c537cf7686b3a711a81ea7a1da238",
       "input": {
         "prompt": "Use the tools to handle every request, then give the JSON reply."
       },

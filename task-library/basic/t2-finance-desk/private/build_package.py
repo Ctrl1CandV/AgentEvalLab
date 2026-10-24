@@ -14,9 +14,12 @@ HERE = pathlib.Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import finance  # noqa: E402
 
-# Each rung of the payment plan's scale weighs two checks: the plan is the day's one open-ended request, about a
-# quarter of its score.
-PLAN_RUNG_WEIGHT = 2
+# Manifest v2 (PLAN-007 WP2.2): resolved means every request handled and the day consistent (both critical groups);
+# the payment plan's rungs are a diagnostic group, about a quarter of the diagnostic. The four days share one generator
+# template, so they are one structure group; all are dev (a basic family has no other split).
+GROUP_WEIGHTS = {"requests": 2, "day": 1, "plan": 1}
+STRUCTURE = "generator:finance-day"
+PUBLISHED = "2026-10-23"
 DAYS = {"fn1": "t2-finance-2026-10:fn1", "fn2": "t2-finance-2026-10:fn2", "fn3": "t2-finance-2026-10:fn3", "fn4": "t2-finance-2026-10:fn4"}
 
 
@@ -47,7 +50,7 @@ def main():
     grader.known_plans(grader.DAYS)
     if (ROOT / "items").exists():
         shutil.rmtree(ROOT / "items")
-    requirements, items, weights = {}, [], {}
+    requirements, items, groups = {}, [], {"requests": [], "day": [], "plan": []}
     for item_id, day in days.items():
         public = ROOT / "items" / item_id / "public"
         (public / "data").mkdir(parents=True)
@@ -62,21 +65,28 @@ def main():
             requirements[requirement] = {"id": requirement, "critical": True, "introducedAt": f"{grader.TASK_ID} {grader.TASK_VERSION}",
                                          "checkIds": [f"{item_id}-{name}"]}
             ids.append(requirement)
-            if "-plan-" in name:
-                weights[f"{item_id}-{name}"] = PLAN_RUNG_WEIGHT
+            groups["plan" if "-plan-" in name else "day" if name in finance.DAY_CHECKS else "requests"].append(f"{item_id}-{name}")
         files = sorted(str(path.relative_to(ROOT)) for path in (ROOT / "items" / item_id).rglob("*") if visible(path))
         items.append({"id": item_id, "level": "close", "files": [{"path": path, "sha256": digest(path)} for path in files],
-                      "activeRequirementIds": ids + ["REQ-FORMAT"]})
+                      "activeRequirementIds": ids + ["REQ-FORMAT"], "split": "dev", "structure": STRUCTURE,
+                      "provenance": {"source": f"project generator private/finance.py, seed {day['seed']}", "published": PUBLISHED,
+                                     "license": "project-authored", "exposure": "generated"}})
     requirements["REQ-FORMAT"] = {"id": "REQ-FORMAT", "critical": False, "introducedAt": f"{grader.TASK_ID} {grader.TASK_VERSION}", "checkIds": ["answer-format"]}
-    trusted = ["calibration.md", "rubric.md"] + sorted(str(path.relative_to(ROOT)) for path in (ROOT / "private").rglob("*") if visible(path))
+    trusted = ["calibration.md", "card.md", "rubric.md"] + sorted(str(path.relative_to(ROOT)) for path in (ROOT / "private").rglob("*") if visible(path))
     manifest = {
-        "schemaVersion": 1, "id": grader.TASK_ID, "version": grader.TASK_VERSION, "familyId": "t2-service-desk", "capability": "tool", "usage": "development",
+        "schemaVersion": 2, "id": grader.TASK_ID, "version": grader.TASK_VERSION, "familyId": "t2-service-desk", "capability": "tool", "usage": "development",
         "source": {"kind": "original-design", "references": ["docs/design/TASK_SET_V2.md", "tau-bench (Yao et al., 2024) and tau2-bench (Barres et al., 2025), as models of the task form"]},
         "license": {"taskText": "Original project-authored manual, books, tool and requests.", "thirdPartyContent": []},
         "entryPoint": {"instruction": "instruction.md"},
         "files": {"public": [{"path": "instruction.md", "sha256": digest("instruction.md")}], "trusted": [{"path": path, "sha256": digest(path)} for path in trusted]},
         "requirements": list(requirements.values()),
-        "scoring": {"formatCheckId": "answer-format", "formatPenalty": 0.2, "weights": weights},
+        "tier": "basic", "capabilities": ["agentic"], "card": "card.md",
+        "scoreModel": {
+            "primary": {"kind": "resolved"},
+            "groups": [{"id": group, "weight": GROUP_WEIGHTS[group], "critical": group != "plan", "rule": "fraction", "checkIds": checks}
+                       for group, checks in groups.items()],
+            "format": {"checkId": "answer-format", "penalty": 0.2},
+        },
         "items": items, "toolProfiles": ["workspace-basic"],
         "grader": {"id": "t2-finance-ledger", "version": grader.GRADER_VERSION, "entryPoint": "private/grader.py", "executable": "python3",
                    "args": ["{entryPoint}", "--request", "{request}", "--result", "{result}"], "answerSource": "execution-output"},

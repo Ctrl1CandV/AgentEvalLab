@@ -215,3 +215,7 @@ Run `runs/suites/20261023-050438-dev-9f16` (commit `4a276fb`): fn1 and fn2 on de
 **Scan of the recorded trials.** No trial of 0.1.0, 0.2.0 or 0.3.0 (suites `4b33`, `a7e7`, `9f16`) has a coverage violation, consistent with the review's own scan of `9f16`. The hole did not produce any recorded score.
 
 **Re-grade.** Every trial of the 0.3.0 pilot (`runs/suites/20261023-050438-dev-9f16`, all three models) was re-graded under 1.2.0 into new score runs; the evidence table shows both graders' numbers. Trials of 0.1.0 and 0.2.0 belong to superseded task versions and keep their own graders' numbers.
+
+## Manifest v2 (2026-10-24, PLAN-007 WP2.2, task 0.3.0 and grader 1.2.0 unchanged)
+
+The builder writes a v2 manifest (`python3 private/build_package.py --reuse-days`; the item files are byte-identical): the capability card (`card.md`); the score model `requests` (critical) and `day` (`coverage`, `end-state`; critical), and `plan` (the seven rungs, not critical), each by rule fraction, with weights 2, 1, 1 in the diagnostic; the format check apart with its 0.2 deduction reported separately; the four days dev, in one structure group (`generator:finance-day`). Under v1 every check counted toward the partial score and the plan rungs weighed double; under v2 a day handled correctly with a plan short of the optimum is resolved, and the plan's quality is a diagnostic (and, later, an AP bridge).
