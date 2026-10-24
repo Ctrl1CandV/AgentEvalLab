@@ -21,19 +21,16 @@ The model writes a single-file solution (`public/main.cpp` or `public/main.py`) 
    - **RE**: a non-zero exit status;
    - **TLE**: over the time limit.
 4. **Total.** The accepted cases' scores are added up as in the contest. In these short contests, a single case that is not accepted makes the total 0 (`ale_bench/constants.py`).
-5. **Rank.** The total is ranked among the human standings (`ale_bench/data.py`): above every lower score; on a tie, the average of the tied ranks counts for the performance. The rank is converted into AtCoder performance by linear interpolation of the contest's own rank-to-performance table. Beating the winner earns the winner's performance.
+5. **Rank.** The total is ranked among the human standings (`ale_bench/data.py`): above every lower score; on a tie, the average of the tied ranks counts for the performance. The rank is converted into AtCoder performance by linear interpolation of the contest's own rank-to-performance table. Since task 0.2.0, a total above the winner's extends the winner's performance by the slope between the two best scores of the standings (points of performance per point of score), marked as an extrapolation; it is never capped.
 
 Only one judgement runs on the machine at a time (a file lock), with four cases at once.
 
-## Checks
+## Checks and score (task 0.2.0, grader 2.0.0, manifest v2)
 
-One critical requirement per item, `REQ-<ITEM>-PERFORMANCE`. Its 27 checks, `<item>-perf-0600` to `<item>-perf-3200` in steps of 100, pass when the performance reaches that value. The item's score is the share of rungs passed:
-
-| Performance | Score |
-| --- | ---: |
-| below 600 | 0 |
-| about 1,300 (the median contestant) | 0.30 |
-| 3,200 (the level of the winners) | 1 |
+- One critical check per item, `<item>-accepted`: every private case accepted.
+- The grader reports raw metrics: `performance` (uncapped), `total`, `performanceRank`, and `performanceExtrapolated` (1 above the winner).
+- The headline is the performance normalised through three anchors of the item: its naive reference's performance (0), the contest's median contestant (0.5) and its winner (1). The mapping is linear between anchors and continues above the winner without a cap; below the naive reference it is 0. A delivery with any case not accepted scores 0.
+- Rungs of performance are no longer checks; a report may show them as labels.
 
 `judgement.json` in the grader's evidence records:
 
@@ -42,7 +39,8 @@ One critical requirement per item, `REQ-<ITEM>-PERFORMANCE`. Its 27 checks, `<it
 - the verdicts;
 - the total;
 - the rank and the number of contestants;
-- the performance;
+- the performance and whether it is extrapolated;
+- the contest's median-contestant and winner performances;
 - the slowest case;
 - the failed cases;
 - every case's score.

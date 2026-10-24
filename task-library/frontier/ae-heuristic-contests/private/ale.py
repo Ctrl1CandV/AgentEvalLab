@@ -268,6 +268,29 @@ def performance_of(table, rank):
     return round(points[high] - (points[high] - points[low]) * (rank - high) / (low - high))
 
 
+def performance_uncapped(standings, table, total):
+    """(performance, extrapolated) for AE 0.2.0. Within the standings, exactly performance_of at rank_of's rank. Above
+    the winner's score, the performance table cannot go further, so the winner's performance is extended by the slope
+    between the two best scores of the standings and their performances (points of performance per point of score), and
+    the value is marked as an extrapolation; it is never capped."""
+    groups = score_rank_list(standings)
+    rank, performance_rank = rank_of(standings, total)
+    winner_score = groups[0][0]
+    if total <= winner_score or len(groups) < 3:
+        return performance_of(table, performance_rank), False
+    winner = performance_of(table, (groups[0][1] + groups[0][2]) / 2)
+    second_score, first, last = groups[1]
+    second = performance_of(table, (first + last) / 2)
+    slope = (winner - second) / (winner_score - second_score)
+    return round(winner + slope * (total - winner_score)), True
+
+
+def anchors_of(standings, table):
+    """The human anchors of a contest: the median contestant's performance and the winner's (AE 0.2.0)."""
+    contestants = standings[-1][0] - 1  # the last entry is the score-0 entry after every ranked contestant
+    return {"median-contestant": performance_of(table, (contestants + 1) / 2), "winner": performance_of(table, 1)}
+
+
 def load_problem(directory):
     """The judging facts of a problem directory (data.json from ALE-Bench)."""
     with open(os.path.join(directory, "data.json"), encoding="utf-8") as handle:

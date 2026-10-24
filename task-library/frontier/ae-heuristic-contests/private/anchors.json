@@ -1,0 +1,92 @@
+{
+ "ahc015": {
+  "contestants": 778,
+  "median-contestant": 1243,
+  "naive": 472,
+  "naiveRank": 744,
+  "naiveReference": "references/ahc015/forward.cpp",
+  "naiveTotal": 28592690,
+  "winner": 3506
+ },
+ "ahc026": {
+  "contestants": 739,
+  "median-contestant": 1354,
+  "naive": 611,
+  "naiveRank": 709,
+  "naiveReference": "references/ahc026/naive.cpp",
+  "naiveTotal": 1221582,
+  "winner": 3451
+ },
+ "ahc028": {
+  "contestants": 893,
+  "median-contestant": 1325,
+  "naive": 805,
+  "naiveRank": 744,
+  "naiveReference": "references/ahc028/naive.cpp",
+  "naiveTotal": 849393,
+  "winner": 3512
+ },
+ "ahc032": {
+  "contestants": 962,
+  "median-contestant": 1302,
+  "naive": 495,
+  "naiveRank": 894,
+  "naiveReference": "references/ahc032/naive.cpp",
+  "naiveTotal": 6108352088531,
+  "winner": 3529
+ },
+ "ahc035": {
+  "contestants": 1008,
+  "median-contestant": 1286,
+  "naive": 439,
+  "naiveRank": 907,
+  "naiveReference": "references/ahc035/first-seeds.cpp",
+  "naiveTotal": 143047940,
+  "winner": 3471
+ },
+ "ahc039": {
+  "contestants": 682,
+  "median-contestant": 1336,
+  "naive": 723,
+  "naiveRank": 634,
+  "naiveReference": "references/ahc039/tiny.cpp",
+  "naiveTotal": 300,
+  "winner": 3390
+ },
+ "ahc041": {
+  "contestants": 989,
+  "median-contestant": 1341,
+  "naive": 444,
+  "naiveRank": 954,
+  "naiveReference": "references/ahc041/naive.cpp",
+  "naiveTotal": 7584268,
+  "winner": 3467
+ },
+ "ahc042": {
+  "contestants": 982,
+  "median-contestant": 1300,
+  "naive": 987,
+  "naiveRank": 716,
+  "naiveReference": "references/ahc042/hint.cpp",
+  "naiveTotal": 410938,
+  "winner": 3475
+ },
+ "ahc044": {
+  "contestants": 996,
+  "median-contestant": 1288,
+  "naive": 713,
+  "naiveRank": 847,
+  "naiveReference": "references/ahc044/naive.cpp",
+  "naiveTotal": 112722734,
+  "winner": 3478
+ },
+ "ahc046": {
+  "contestants": 938,
+  "median-contestant": 1333,
+  "naive": 638,
+  "naiveRank": 847,
+  "naiveReference": "references/ahc046/moves.cpp",
+  "naiveTotal": 167612,
+  "winner": 3523
+ }
+}

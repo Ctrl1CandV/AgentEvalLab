@@ -36,6 +36,9 @@ CARGO_ENV = {"RUSTUP_HOME": str(pathlib.Path.home() / ".local" / "share" / "rust
 # Short (four-hour) contests scored by absolute score: the length of one agent session, ranked without relative scores.
 PROBLEMS = ["ahc015", "ahc026", "ahc028", "ahc032", "ahc035", "ahc039", "ahc041", "ahc042", "ahc044", "ahc046"]
 PUBLIC_SEEDS = range(50)
+# Splits (VALIDATION §3): a contest is its own structure group. The four contests calibrated by hand for 0.1.0 and named in
+# its dev plan are dev; the six others are validation. Holdout comes from contests added later (TASK_LIBRARY §5).
+DEV = {"ahc015", "ahc035", "ahc039", "ahc046"}
 
 
 def digest(path):
@@ -88,6 +91,7 @@ def main():
     if (HERE / "problems").exists():
         shutil.rmtree(HERE / "problems")
     requirements, items = {}, []
+    anchors = json.loads((HERE / "anchors.json").read_text(encoding="utf-8"))
     for problem in PROBLEMS:
         with tempfile.TemporaryDirectory() as temporary:
             zipped = archive(problem)
@@ -121,11 +125,15 @@ def main():
         requirements[requirement] = {"id": requirement, "critical": True, "introducedAt": f"{grader.TASK_ID} {grader.TASK_VERSION}",
                                      "checkIds": [f"{problem}-{name}" for name in grader.check_names()]}
         files = sorted(str(path.relative_to(ROOT)) for path in (ROOT / "items" / problem).rglob("*") if visible(path))
+        spec = ale.load_problem(HERE / "problems" / problem)
         items.append({"id": problem, "level": "short-contest", "files": [{"path": path, "sha256": digest(path)} for path in files],
-                      "activeRequirementIds": [requirement]})
-    trusted = ["calibration.md", "rubric.md"] + sorted(str(path.relative_to(ROOT)) for path in (ROOT / "private").rglob("*") if visible(path))
+                      "activeRequirementIds": [requirement], "split": "dev" if problem in DEV else "validation", "structure": f"contest:{problem}",
+                      "provenance": {"source": f"ALE-Bench, AtCoder Heuristic Contest {problem[3:]} ({spec['title']}), official private seeds",
+                                     "published": spec["start_at"][:10], "license": "CC BY-ND 4.0 (ALE-Bench data, AtCoder Inc.)", "exposure": "public"},
+                      "anchors": {"performance": {name: anchors[problem][name] for name in ("naive", "median-contestant", "winner")}}})
+    trusted = ["calibration.md", "card.md", "rubric.md"] + sorted(str(path.relative_to(ROOT)) for path in (ROOT / "private").rglob("*") if visible(path))
     manifest = {
-        "schemaVersion": 1, "id": grader.TASK_ID, "version": grader.TASK_VERSION, "familyId": "ae-algorithm-engineering",
+        "schemaVersion": 2, "id": grader.TASK_ID, "version": grader.TASK_VERSION, "familyId": "ae-algorithm-engineering",
         "capability": "engineering", "usage": "development",
         "source": {"kind": "open-source", "references": [
             "ALE-Bench: problems, official tools, seeds, standings and performance tables (huggingface.co/datasets/SakanaAI/ALE-Bench), from the AtCoder Heuristic Contest",
@@ -138,6 +146,16 @@ def main():
         "files": {"public": [{"path": "instruction.md", "sha256": digest("instruction.md")}], "trusted": [{"path": path, "sha256": digest(path)} for path in trusted]},
         "requirements": list(requirements.values()),
         "items": items, "toolProfiles": ["workspace-augmented"],
+        "tier": "frontier", "capabilities": ["engineering"], "card": "card.md",
+        "scoreModel": {
+            "primary": {"kind": "metric", "metric": "performance"},
+            "groups": [{"id": "accepted", "weight": 1, "critical": True, "rule": "all", "checkIds": [f"{problem}-accepted" for problem in PROBLEMS]},
+                       {"id": "performance", "weight": 1, "critical": False, "rule": "metric", "checkIds": [], "metric": "performance"}],
+            "metrics": [{"id": "performance", "unit": "AtCoder performance", "direction": "higher",
+                         "anchors": {"version": "1", "points": [{"name": "naive", "maps": 0}, {"name": "median-contestant", "maps": 0.5}, {"name": "winner", "maps": 1}]}},
+                        {"id": "total", "unit": "contest score", "direction": "higher"},
+                        {"id": "performanceRank", "unit": "rank among contestants", "direction": "lower"}],
+        },
         "grader": {"id": "ae-ale-judge", "version": grader.GRADER_VERSION, "entryPoint": "private/grader.py", "executable": "python3",
                    "args": ["{entryPoint}", "--request", "{request}", "--result", "{result}"]},
         "environment": {"runtime": "Python 3.13 and g++ 11 (C++20)", "dependencies": "Python standard library, g++, prlimit and timeout; no network", "network": False,

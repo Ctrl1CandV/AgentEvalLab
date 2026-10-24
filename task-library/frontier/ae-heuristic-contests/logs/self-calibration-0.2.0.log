@@ -1,0 +1,28 @@
+ok   ahc015 naive reference (forward.cpp) at its anchor 472: total 28592690 rank 744/778 performance 472 checks passed 1/1 verdicts {'AC': 200} slowest 0.006 s (4 s)
+ok   ahc026 naive reference (naive.cpp) at its anchor 611: total 1221582 rank 709/739 performance 611 checks passed 1/1 verdicts {'AC': 150} slowest 0.005 s (4 s)
+ok   ahc028 naive reference (naive.cpp) at its anchor 805: total 849393 rank 744/893 performance 805 checks passed 1/1 verdicts {'AC': 150} slowest 0.005 s (4 s)
+ok   ahc032 naive reference (naive.cpp) at its anchor 495: total 6108352088531 rank 894/962 performance 495 checks passed 1/1 verdicts {'AC': 150} slowest 0.003 s (3 s)
+ok   ahc035 naive reference (first-seeds.cpp) at its anchor 439: total 143047940 rank 907/1008 performance 439 checks passed 1/1 verdicts {'AC': 300} slowest 0.0 s (6 s)
+ok   ahc039 naive reference (tiny.cpp) at its anchor 723: total 300 rank 634/682 performance 723 checks passed 1/1 verdicts {'AC': 150} slowest 0.005 s (4 s)
+ok   ahc041 naive reference (naive.cpp) at its anchor 444: total 7584268 rank 954/989 performance 444 checks passed 1/1 verdicts {'AC': 150} slowest 0.005 s (4 s)
+ok   ahc042 naive reference (hint.cpp) at its anchor 987: total 410938 rank 716/982 performance 987 checks passed 1/1 verdicts {'AC': 150} slowest 0.004 s (4 s)
+ok   ahc044 naive reference (naive.cpp) at its anchor 713: total 112722734 rank 847/996 performance 713 checks passed 1/1 verdicts {'AC': 150} slowest 0.004 s (4 s)
+ok   ahc046 naive reference (moves.cpp) at its anchor 638: total 167612 rank 847/938 performance 638 checks passed 1/1 verdicts {'AC': 150} slowest 0.004 s (4 s)
+ok   uncapped above the winner: 3390 at the winner's total, 3645 and 3901 beyond it
+ok   ahc039 tiny square, valid and worthless: total 300 rank 634/682 performance 723 checks passed 1/1 verdicts {'AC': 150} slowest 0.005 s (4 s)
+ok   ahc039 best grid rectangle: total 289391 rank 239/682 performance 1547 checks passed 1/1 verdicts {'AC': 150} slowest 0.007 s (4 s)
+ok   ahc015 always forward (reactive): total 28592690 rank 744/778 performance 472 checks passed 1/1 verdicts {'AC': 200} slowest 0.006 s (4 s)
+ok   ahc015 tilt by flavour (reactive): total 46461176 rank 567/778 performance 937 checks passed 1/1 verdicts {'AC': 200} slowest 0.007 s (5 s)
+ok   ahc046 single moves only: total 167612 rank 847/938 performance 638 checks passed 1/1 verdicts {'AC': 150} slowest 0.004 s (4 s)
+ok   ahc035 highest-value seeds (reactive): total 209668175 rank 766/1008 performance 909 checks passed 1/1 verdicts {'AC': 300} slowest 0.0 s (6 s)
+ok   python solution: total 300 rank 634/682 performance 723 checks passed 1/1 verdicts {'AC': 150} slowest 0.02 s (4 s)
+ok   main.cpp is preferred to main.py: total 289391 rank 239/682 performance 1547 checks passed 1/1 verdicts {'AC': 150} slowest 0.009 s (4 s)
+ok   tampering with the tester and reading private inputs has no effect: total 289391 rank 239/682 performance 1547 checks passed 1/1 verdicts {'AC': 150} slowest 0.009 s (4 s)
+ok   a program that spins on some cases: TLE, total 0: total 0 rank 683/682 performance 265 checks passed 0/1 verdicts {'AC': 135, 'TLE': 15} slowest 4.0 s (21 s)
+ok   a compilation error: total 0: total 0 rank 683/682 performance 265 checks passed 0/1 verdicts {} slowest 0.0 s (0 s) compile: main.cpp:1:5: error: cannot declare ‘::main’ to be a global variable
+    1 | int
+ok   an illegal output: WA, total 0: total 0 rank 683/682 performance 265 checks passed 0/1 verdicts {'WA': 150} slowest 0.005 s (3 s)
+ok   no solution: total 0: total 0 rank 683/682 performance 265 checks passed 0/1 verdicts {} slowest 0.0 s (0 s) compile: neither main.cpp nor main.py exists
+ok   ahc039 search that uses the time limit, machine quiet: total 161275 rank 439/682 performance 1152 checks passed 1/1 verdicts {'AC': 150} slowest 1.806 s (73 s)
+ok   the same search with every other core busy: same verdicts, same rank: total 161276 rank 439/682 performance 1152 checks passed 1/1 verdicts {'AC': 150} slowest 1.791 s (79 s)
+RESULT: PASS (26 scenarios)

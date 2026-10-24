@@ -136,7 +136,9 @@ export function buildReportV2(input: ReportV2Input): ReportV2 {
   const families = input.families.map(family => ({
     id: family.id, tier: family.tier, capability: family.capability, openEnded: family.openEnded, packageId: family.packageId, taskVersion: family.taskVersion,
     primaryKind: family.primaryKind, protocol: family.protocol, runDirectories: family.runDirectories,
-    rows: labels.map(label => familyRow(family, label, scores.get(family.id)!, input.id)),
+    // A model that neither ran nor was planned on a family (a reference pseudo-model, say) has no row there.
+    rows: labels.filter(label => family.outcomes.some(outcome => outcome.model === label) || (family.plannedTasks[label] ?? 0) > 0)
+      .map(label => familyRow(family, label, scores.get(family.id)!, input.id)),
     saturation: saturation(scores.get(family.id)!, labels, family.openEnded, family.structureCap),
     audit: input.audits[family.id] ?? null,
   }));
@@ -160,8 +162,8 @@ export function buildReportV2(input: ReportV2Input): ReportV2 {
     }
     const rows: ReportV2["profile"][number]["rows"] = {};
     for (const family of input.families.filter(entry => entry.tier !== "core")) {
-      const row = families.find(entry => entry.id === family.id)!.rows.find(entry => entry.label === label)!;
-      rows[family.id] = { tier: family.tier, primary: row.primary, interval: row.interval, tasks: row.tasks };
+      const row = families.find(entry => entry.id === family.id)!.rows.find(entry => entry.label === label);
+      if (row) rows[family.id] = { tier: family.tier, primary: row.primary, interval: row.interval, tasks: row.tasks };
     }
     return { label, capabilities: byCapability, rows };
   });
@@ -221,7 +223,7 @@ export function markdownReportV2(report: ReportV2): string {
   const capabilities = [...new Set(report.profile.flatMap(entry => Object.keys(entry.capabilities)))];
   if (capabilities.length) {
     lines.push(`| Model | ${capabilities.map(capability => `${capability} (core)`).join(" | ")} |`, `| --- |${capabilities.map(() => " --- |").join("")}`,
-      ...report.profile.map(entry => `| ${entry.label} | ${capabilities.map(capability => {
+      ...report.profile.filter(entry => capabilities.some(capability => entry.capabilities[capability]!.tasks > 0)).map(entry => `| ${entry.label} | ${capabilities.map(capability => {
         const value = entry.capabilities[capability]!;
         return `${number(value.primary)} [${span(value.interval, value => number(value))}], ${value.tasks} tasks`;
       }).join(" | ")} |`), "");
@@ -231,9 +233,9 @@ export function markdownReportV2(report: ReportV2): string {
     lines.push("Basic and frontier families, reported as their own rows and never averaged into the core:", "",
       `| Model | ${others.map(id => `${id} (${report.families.find(family => family.id === id)!.tier})`).join(" | ")} |`, `| --- |${others.map(() => " --- |").join("")}`,
       ...report.profile.map(entry => `| ${entry.label} | ${others.map(id => {
-        const row = entry.rows[id]!;
+        const row = entry.rows[id];
         const kind = report.families.find(family => family.id === id)!.primaryKind;
-        return `${primaryText(kind, row.primary)} [${span(row.interval, value => primaryText(kind, value))}]`;
+        return row ? `${primaryText(kind, row.primary)} [${span(row.interval, value => primaryText(kind, value))}]` : "—";
       }).join(" | ")} |`), "");
   }
   lines.push("## Families", "");

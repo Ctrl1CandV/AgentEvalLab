@@ -83,11 +83,30 @@ def self_calibrate():
         good = condition(evidence)
         rows.append(good)
         print(f"{'ok  ' if good else 'FAIL'} {name}: total {evidence['total']} rank {evidence['rank']}/{evidence['contestants']} "
-              f"performance {evidence['performance']} rungs {sum(results.values())}/{len(results)} verdicts {evidence['verdicts']} "
+              f"performance {evidence['performance']} checks passed {sum(results.values())}/{len(results)} verdicts {evidence['verdicts']} "
               f"slowest {evidence['slowestSeconds']} s ({time.time() - started:.0f} s){' compile: ' + evidence['compileError'][:80] if evidence['compileError'] else ''}")
         return evidence
 
     all_accepted = lambda evidence: set(evidence["verdicts"]) == {"AC"}
+    # Task 0.2.0: every item's naive reference lands exactly on its naive anchor (private/anchors.json).
+    import json
+    import ale
+    with open(os.path.join(HERE, "anchors.json"), encoding="utf-8") as handle:
+        anchors = json.load(handle)
+    for item, anchor in sorted(anchors.items()):
+        name = os.path.basename(anchor["naiveReference"])
+        expect(f"{item} naive reference ({name}) at its anchor {anchor['naive']}", item, reference(item, name),
+               lambda e, anchor=anchor: all_accepted(e) and e["performance"] == anchor["naive"] and not e["performanceExtrapolated"])
+    # Above the winner the performance keeps rising along the top of the table, marked as an extrapolation.
+    problems = os.path.join(HERE, "problems", "ahc039")
+    standings = ale.load_table(os.path.join(problems, "standings_scores.csv"), "score")
+    table = ale.load_table(os.path.join(problems, "performance.csv"), "performance")
+    at_winner, flag_at = ale.performance_uncapped(standings, table, standings[0][1])
+    beyond, flag_beyond = ale.performance_uncapped(standings, table, standings[0][1] + 10_000)
+    further, _ = ale.performance_uncapped(standings, table, standings[0][1] + 20_000)
+    extrapolates = at_winner == anchors["ahc039"]["winner"] and not flag_at and flag_beyond and at_winner < beyond < further
+    rows.append(extrapolates)
+    print(f"{'ok  ' if extrapolates else 'FAIL'} uncapped above the winner: {at_winner} at the winner's total, {beyond} and {further} beyond it")
     expect("ahc039 tiny square, valid and worthless", "ahc039", reference("ahc039", "tiny.cpp"), lambda e: all_accepted(e) and e["performance"] < 800)
     grid = expect("ahc039 best grid rectangle", "ahc039", reference("ahc039", "grid.cpp"), lambda e: all_accepted(e) and 1450 <= e["performance"] <= 1650)
     expect("ahc015 always forward (reactive)", "ahc015", reference("ahc015", "forward.cpp"), lambda e: all_accepted(e) and e["performance"] < 600)

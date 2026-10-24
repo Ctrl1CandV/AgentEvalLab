@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 """Grades an algorithm-engineering item: the solution in public/main.cpp (or public/main.py) is judged on the contest's
 private cases with the official tester, its total is ranked among the human contestants of the original contest, and
-the rank is converted into AtCoder performance. Each check is a rung of performance (600, 700, ..., 3200)."""
+the rank is converted into AtCoder performance.
+
+Grader 2.0.0 (task 0.2.0, manifest v2) reports the raw values (grader result v2): the performance, uncapped and
+extrapolated above the winner; the contest total; the performance rank. The one check per item is whether every case
+was accepted (a valid delivery). The performance is normalised through the item's anchors (its naive reference, the
+median contestant, the winner) by the harness, not here; rungs of performance are labels only."""
 import argparse
 import fcntl
 import json
@@ -17,18 +22,17 @@ sys.dont_write_bytecode = True
 import ale  # noqa: E402
 
 TASK_ID = "ae-heuristic-contests"
-TASK_VERSION = "0.1.0"
-GRADER_VERSION = "1.0.0"
-RUNGS = tuple(range(600, 3201, 100))
+TASK_VERSION = "0.2.0"
+GRADER_VERSION = "2.0.0"
 LOCK_PATH = os.path.expanduser("~/.cache/agenteval/ae-grading.lock")
 
 
 def check_names():
-    return [f"perf-{rung:04d}" for rung in RUNGS]
+    return ["accepted"]
 
 
 def requirement(item_id):
-    return f"REQ-{item_id.upper()}-PERFORMANCE"
+    return f"REQ-{item_id.upper()}-ACCEPTED"
 
 
 def problem_directory(item_id):
@@ -61,20 +65,29 @@ def grade(item_id, public_directory, launcher):
         cases, error = ale.judge(launcher, run_directory, judge_directory, spec, inputs)
     total = ale.overall_score(spec["id"], cases)
     rank, performance_rank = ale.rank_of(standings, total)
-    perf = ale.performance_of(performance, performance_rank)
+    perf, extrapolated = ale.performance_uncapped(standings, performance, total)
     verdicts = {}
     for case in cases or []:
         verdicts[case[1]] = verdicts.get(case[1], 0) + 1
     evidence.update({
         "compileError": error, "cases": len(inputs), "verdicts": verdicts, "total": total, "rank": rank,
-        "contestants": standings[-1][0] - 1, "performanceRank": performance_rank, "performance": perf,
+        "contestants": standings[-1][0] - 1, "performanceRank": performance_rank, "performance": perf, "performanceExtrapolated": extrapolated,
+        "humanAnchors": ale.anchors_of(standings, performance),
         "slowestSeconds": round(max((case[3] for case in cases or []), default=0.0), 3),
         "failedCases": [{"case": case[0], "verdict": case[1], "seconds": round(case[3], 3), "message": case[4]}
                         for case in (cases or []) if case[1] != "AC"][:20],
         "caseScores": {case[0]: case[2] for case in cases or []},
     })
-    results = {f"perf-{rung:04d}": perf >= rung for rung in RUNGS}
-    return results, evidence
+    accepted = bool(cases) and all(case[1] == "AC" for case in cases)
+    return {"accepted": accepted}, evidence
+
+
+def metrics_of(evidence):
+    """The raw values of a judgement (grader result v2)."""
+    return [{"id": "performance", "value": evidence["performance"], "unit": "AtCoder performance"},
+            {"id": "total", "value": evidence["total"], "unit": "contest score"},
+            {"id": "performanceRank", "value": evidence["performanceRank"], "unit": "rank among contestants"},
+            {"id": "performanceExtrapolated", "value": 1 if evidence["performanceExtrapolated"] else 0, "unit": "0 or 1"}]
 
 
 def write_json(path, value):
@@ -97,9 +110,9 @@ def grade_request(request_path, result_path):
     active = set(request["context"]["activeRequirementIds"])
     checks = [{"id": f"{item_id}-{name}", "requirementId": requirement(item_id), "status": "pass" if passed else "fail",
                "evidenceRefs": ["judgement.json"]} for name, passed in results.items() if requirement(item_id) in active]
-    write_json(result_path, {"schemaVersion": 1, "requestId": request["requestId"], "taskId": TASK_ID, "taskVersion": TASK_VERSION,
+    write_json(result_path, {"schemaVersion": 2, "requestId": request["requestId"], "taskId": TASK_ID, "taskVersion": TASK_VERSION,
                              "graderVersion": GRADER_VERSION, "gradingStatus": "completed", "checks": checks, "dimensions": [],
-                             "unscoredCheckIds": [], "reason": None, "error": None})
+                             "unscoredCheckIds": [], "reason": None, "error": None, "metrics": metrics_of(evidence)})
 
 
 def main():

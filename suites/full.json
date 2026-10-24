@@ -97,16 +97,12 @@
       "template": "experiments/ae-2026-10/full.eval.json",
       "score": {
         "items": [
-          "ahc015",
           "ahc026",
           "ahc028",
           "ahc032",
-          "ahc035",
-          "ahc039",
           "ahc041",
           "ahc042",
-          "ahc044",
-          "ahc046"
+          "ahc044"
         ]
       }
     }

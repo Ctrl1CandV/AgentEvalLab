@@ -1,7 +1,7 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "ae-heuristic-contests",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "familyId": "ae-algorithm-engineering",
   "capability": "engineering",
   "usage": "development",
@@ -27,33 +27,45 @@
     "public": [
       {
         "path": "instruction.md",
-        "sha256": "7fe1111c75504570f950000fc6020ebb6e00d0a2b0bd9ba6e130a9198ed328d8"
+        "sha256": "43722b825c7a9b756a0eb955520883a52486c8ae310f3d93048c9e01805f6a7a"
       }
     ],
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "1b85810362792c4ef5d7160a994946f2f40ef6a98e46dd0676f8f4f50eab2cd1"
+        "sha256": "49fd1ae89c2b0fa278713bb0e1f57a5a72ba0953b589d9c00b02af0ca1f09c8e"
+      },
+      {
+        "path": "card.md",
+        "sha256": "f2afacf0921dc3440ca0f72f1fc095160e9b5442636e6d745c1f74fd6107df46"
       },
       {
         "path": "rubric.md",
-        "sha256": "9b30c9fd8f6ce1ee232c8c9e85416ba3a65779c1f1ef491f836558eaef651c1d"
+        "sha256": "0611ef20766bcd67d57f10d5493bb940ae21294160a59c497637b9b877c85b4b"
       },
       {
         "path": "private/ale.py",
-        "sha256": "f0eec8b7f8f47c1c5895d9dc59ac85f0e17f085fcdc1b936937593a358ee9d52"
+        "sha256": "d44d473102b22215e7366b492608a227efa3769eb6ab7cbbc352dcbcb0e33ab5"
+      },
+      {
+        "path": "private/anchors.json",
+        "sha256": "d35da622917cbc289f24fd980c63da20dcf757ff2a4d8ae064cef485a69c61d5"
+      },
+      {
+        "path": "private/anchors.py",
+        "sha256": "eb27f173e5b95729214213e00f5cf4bdc6ac237f7cef9e1570e19b7426759473"
       },
       {
         "path": "private/build_package.py",
-        "sha256": "b9909f6e53d8b9895f38485ebc850e86fecdc814ed7c6a8fb69576150a3f7535"
+        "sha256": "1126ae74608154f0753c09d86e3a4d3c986b76059ec01edc215ad1ebad535925"
       },
       {
         "path": "private/calibrate.py",
-        "sha256": "3c4e6adaedbf664e3c46e7cf0dbaf1330edaaed31a30e5c1c9266dba956324fc"
+        "sha256": "63d0962e04d74b6a26cc5d82b9afb5e6980843b47d369aae5d4ad25af01d8717"
       },
       {
         "path": "private/grader.py",
-        "sha256": "658caeb5c49c31d8665c93bb69aef5e4fc34b1bbf8100130460d497429e5e8c4"
+        "sha256": "5ced4a8479a3bbbfeece10328f32a68c8ecf9b92a1fea637ff0a3ae60d29e742"
       },
       {
         "path": "private/problems/ahc015/data.json",
@@ -304,6 +316,22 @@
         "sha256": "8679b6d8be94c3d36701e0067cf8014c6af17bfbc7bad61154c85b7f80d0c72c"
       },
       {
+        "path": "private/references/ahc026/naive.cpp",
+        "sha256": "99d279e206f323009e1eb5bb58f9496ede215ea46a63498e675e7b1821195fcc"
+      },
+      {
+        "path": "private/references/ahc028/naive.cpp",
+        "sha256": "38d8b56fa8fec9478bf32e04164977de4894b9e7608d2ebf6a32440e07bfdad2"
+      },
+      {
+        "path": "private/references/ahc032/naive.cpp",
+        "sha256": "07c73ec690ee1a3f5e202e8a1db93269dccec80aa4a01f7f7480d7eea025f212"
+      },
+      {
+        "path": "private/references/ahc035/first-seeds.cpp",
+        "sha256": "ba7927972fba5827e84f8bb081eb474e596563efc8162e6fa4ee89d29444e3f6"
+      },
+      {
         "path": "private/references/ahc035/top-value.cpp",
         "sha256": "d94d434c6a10329d2b1f012bbb21c801c1e8a6238e867c618be3ca5907c574da"
       },
@@ -320,6 +348,18 @@
         "sha256": "b9931feceed285861012c2cf03381e35e37538976ff905599b01890a18a7a853"
       },
       {
+        "path": "private/references/ahc041/naive.cpp",
+        "sha256": "aa22c4fb5db4c963010a934f54df11b71dd1baba9b45ea804bfe14cac6f9803d"
+      },
+      {
+        "path": "private/references/ahc042/hint.cpp",
+        "sha256": "006a858f71ec53101b0289c5af5170a97fcdc506a5fac7b394c1a6f66dc814a0"
+      },
+      {
+        "path": "private/references/ahc044/naive.cpp",
+        "sha256": "64ca5d1d9c765d5757aa9b8ee025667f08a0dd29fdd1b382bf6156ae2448e0c5"
+      },
+      {
         "path": "private/references/ahc046/moves.cpp",
         "sha256": "b0854c7c0f20b4bff4cfc9062099bf9fc73c5536a97116c8ed400727c036bc98"
       },
@@ -331,343 +371,83 @@
   },
   "requirements": [
     {
-      "id": "REQ-AHC015-PERFORMANCE",
+      "id": "REQ-AHC015-ACCEPTED",
       "critical": true,
-      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "introducedAt": "ae-heuristic-contests 0.2.0",
       "checkIds": [
-        "ahc015-perf-0600",
-        "ahc015-perf-0700",
-        "ahc015-perf-0800",
-        "ahc015-perf-0900",
-        "ahc015-perf-1000",
-        "ahc015-perf-1100",
-        "ahc015-perf-1200",
-        "ahc015-perf-1300",
-        "ahc015-perf-1400",
-        "ahc015-perf-1500",
-        "ahc015-perf-1600",
-        "ahc015-perf-1700",
-        "ahc015-perf-1800",
-        "ahc015-perf-1900",
-        "ahc015-perf-2000",
-        "ahc015-perf-2100",
-        "ahc015-perf-2200",
-        "ahc015-perf-2300",
-        "ahc015-perf-2400",
-        "ahc015-perf-2500",
-        "ahc015-perf-2600",
-        "ahc015-perf-2700",
-        "ahc015-perf-2800",
-        "ahc015-perf-2900",
-        "ahc015-perf-3000",
-        "ahc015-perf-3100",
-        "ahc015-perf-3200"
+        "ahc015-accepted"
       ]
     },
     {
-      "id": "REQ-AHC026-PERFORMANCE",
+      "id": "REQ-AHC026-ACCEPTED",
       "critical": true,
-      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "introducedAt": "ae-heuristic-contests 0.2.0",
       "checkIds": [
-        "ahc026-perf-0600",
-        "ahc026-perf-0700",
-        "ahc026-perf-0800",
-        "ahc026-perf-0900",
-        "ahc026-perf-1000",
-        "ahc026-perf-1100",
-        "ahc026-perf-1200",
-        "ahc026-perf-1300",
-        "ahc026-perf-1400",
-        "ahc026-perf-1500",
-        "ahc026-perf-1600",
-        "ahc026-perf-1700",
-        "ahc026-perf-1800",
-        "ahc026-perf-1900",
-        "ahc026-perf-2000",
-        "ahc026-perf-2100",
-        "ahc026-perf-2200",
-        "ahc026-perf-2300",
-        "ahc026-perf-2400",
-        "ahc026-perf-2500",
-        "ahc026-perf-2600",
-        "ahc026-perf-2700",
-        "ahc026-perf-2800",
-        "ahc026-perf-2900",
-        "ahc026-perf-3000",
-        "ahc026-perf-3100",
-        "ahc026-perf-3200"
+        "ahc026-accepted"
       ]
     },
     {
-      "id": "REQ-AHC028-PERFORMANCE",
+      "id": "REQ-AHC028-ACCEPTED",
       "critical": true,
-      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "introducedAt": "ae-heuristic-contests 0.2.0",
       "checkIds": [
-        "ahc028-perf-0600",
-        "ahc028-perf-0700",
-        "ahc028-perf-0800",
-        "ahc028-perf-0900",
-        "ahc028-perf-1000",
-        "ahc028-perf-1100",
-        "ahc028-perf-1200",
-        "ahc028-perf-1300",
-        "ahc028-perf-1400",
-        "ahc028-perf-1500",
-        "ahc028-perf-1600",
-        "ahc028-perf-1700",
-        "ahc028-perf-1800",
-        "ahc028-perf-1900",
-        "ahc028-perf-2000",
-        "ahc028-perf-2100",
-        "ahc028-perf-2200",
-        "ahc028-perf-2300",
-        "ahc028-perf-2400",
-        "ahc028-perf-2500",
-        "ahc028-perf-2600",
-        "ahc028-perf-2700",
-        "ahc028-perf-2800",
-        "ahc028-perf-2900",
-        "ahc028-perf-3000",
-        "ahc028-perf-3100",
-        "ahc028-perf-3200"
+        "ahc028-accepted"
       ]
     },
     {
-      "id": "REQ-AHC032-PERFORMANCE",
+      "id": "REQ-AHC032-ACCEPTED",
       "critical": true,
-      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "introducedAt": "ae-heuristic-contests 0.2.0",
       "checkIds": [
-        "ahc032-perf-0600",
-        "ahc032-perf-0700",
-        "ahc032-perf-0800",
-        "ahc032-perf-0900",
-        "ahc032-perf-1000",
-        "ahc032-perf-1100",
-        "ahc032-perf-1200",
-        "ahc032-perf-1300",
-        "ahc032-perf-1400",
-        "ahc032-perf-1500",
-        "ahc032-perf-1600",
-        "ahc032-perf-1700",
-        "ahc032-perf-1800",
-        "ahc032-perf-1900",
-        "ahc032-perf-2000",
-        "ahc032-perf-2100",
-        "ahc032-perf-2200",
-        "ahc032-perf-2300",
-        "ahc032-perf-2400",
-        "ahc032-perf-2500",
-        "ahc032-perf-2600",
-        "ahc032-perf-2700",
-        "ahc032-perf-2800",
-        "ahc032-perf-2900",
-        "ahc032-perf-3000",
-        "ahc032-perf-3100",
-        "ahc032-perf-3200"
+        "ahc032-accepted"
       ]
     },
     {
-      "id": "REQ-AHC035-PERFORMANCE",
+      "id": "REQ-AHC035-ACCEPTED",
       "critical": true,
-      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "introducedAt": "ae-heuristic-contests 0.2.0",
       "checkIds": [
-        "ahc035-perf-0600",
-        "ahc035-perf-0700",
-        "ahc035-perf-0800",
-        "ahc035-perf-0900",
-        "ahc035-perf-1000",
-        "ahc035-perf-1100",
-        "ahc035-perf-1200",
-        "ahc035-perf-1300",
-        "ahc035-perf-1400",
-        "ahc035-perf-1500",
-        "ahc035-perf-1600",
-        "ahc035-perf-1700",
-        "ahc035-perf-1800",
-        "ahc035-perf-1900",
-        "ahc035-perf-2000",
-        "ahc035-perf-2100",
-        "ahc035-perf-2200",
-        "ahc035-perf-2300",
-        "ahc035-perf-2400",
-        "ahc035-perf-2500",
-        "ahc035-perf-2600",
-        "ahc035-perf-2700",
-        "ahc035-perf-2800",
-        "ahc035-perf-2900",
-        "ahc035-perf-3000",
-        "ahc035-perf-3100",
-        "ahc035-perf-3200"
+        "ahc035-accepted"
       ]
     },
     {
-      "id": "REQ-AHC039-PERFORMANCE",
+      "id": "REQ-AHC039-ACCEPTED",
       "critical": true,
-      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "introducedAt": "ae-heuristic-contests 0.2.0",
       "checkIds": [
-        "ahc039-perf-0600",
-        "ahc039-perf-0700",
-        "ahc039-perf-0800",
-        "ahc039-perf-0900",
-        "ahc039-perf-1000",
-        "ahc039-perf-1100",
-        "ahc039-perf-1200",
-        "ahc039-perf-1300",
-        "ahc039-perf-1400",
-        "ahc039-perf-1500",
-        "ahc039-perf-1600",
-        "ahc039-perf-1700",
-        "ahc039-perf-1800",
-        "ahc039-perf-1900",
-        "ahc039-perf-2000",
-        "ahc039-perf-2100",
-        "ahc039-perf-2200",
-        "ahc039-perf-2300",
-        "ahc039-perf-2400",
-        "ahc039-perf-2500",
-        "ahc039-perf-2600",
-        "ahc039-perf-2700",
-        "ahc039-perf-2800",
-        "ahc039-perf-2900",
-        "ahc039-perf-3000",
-        "ahc039-perf-3100",
-        "ahc039-perf-3200"
+        "ahc039-accepted"
       ]
     },
     {
-      "id": "REQ-AHC041-PERFORMANCE",
+      "id": "REQ-AHC041-ACCEPTED",
       "critical": true,
-      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "introducedAt": "ae-heuristic-contests 0.2.0",
       "checkIds": [
-        "ahc041-perf-0600",
-        "ahc041-perf-0700",
-        "ahc041-perf-0800",
-        "ahc041-perf-0900",
-        "ahc041-perf-1000",
-        "ahc041-perf-1100",
-        "ahc041-perf-1200",
-        "ahc041-perf-1300",
-        "ahc041-perf-1400",
-        "ahc041-perf-1500",
-        "ahc041-perf-1600",
-        "ahc041-perf-1700",
-        "ahc041-perf-1800",
-        "ahc041-perf-1900",
-        "ahc041-perf-2000",
-        "ahc041-perf-2100",
-        "ahc041-perf-2200",
-        "ahc041-perf-2300",
-        "ahc041-perf-2400",
-        "ahc041-perf-2500",
-        "ahc041-perf-2600",
-        "ahc041-perf-2700",
-        "ahc041-perf-2800",
-        "ahc041-perf-2900",
-        "ahc041-perf-3000",
-        "ahc041-perf-3100",
-        "ahc041-perf-3200"
+        "ahc041-accepted"
       ]
     },
     {
-      "id": "REQ-AHC042-PERFORMANCE",
+      "id": "REQ-AHC042-ACCEPTED",
       "critical": true,
-      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "introducedAt": "ae-heuristic-contests 0.2.0",
       "checkIds": [
-        "ahc042-perf-0600",
-        "ahc042-perf-0700",
-        "ahc042-perf-0800",
-        "ahc042-perf-0900",
-        "ahc042-perf-1000",
-        "ahc042-perf-1100",
-        "ahc042-perf-1200",
-        "ahc042-perf-1300",
-        "ahc042-perf-1400",
-        "ahc042-perf-1500",
-        "ahc042-perf-1600",
-        "ahc042-perf-1700",
-        "ahc042-perf-1800",
-        "ahc042-perf-1900",
-        "ahc042-perf-2000",
-        "ahc042-perf-2100",
-        "ahc042-perf-2200",
-        "ahc042-perf-2300",
-        "ahc042-perf-2400",
-        "ahc042-perf-2500",
-        "ahc042-perf-2600",
-        "ahc042-perf-2700",
-        "ahc042-perf-2800",
-        "ahc042-perf-2900",
-        "ahc042-perf-3000",
-        "ahc042-perf-3100",
-        "ahc042-perf-3200"
+        "ahc042-accepted"
       ]
     },
     {
-      "id": "REQ-AHC044-PERFORMANCE",
+      "id": "REQ-AHC044-ACCEPTED",
       "critical": true,
-      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "introducedAt": "ae-heuristic-contests 0.2.0",
       "checkIds": [
-        "ahc044-perf-0600",
-        "ahc044-perf-0700",
-        "ahc044-perf-0800",
-        "ahc044-perf-0900",
-        "ahc044-perf-1000",
-        "ahc044-perf-1100",
-        "ahc044-perf-1200",
-        "ahc044-perf-1300",
-        "ahc044-perf-1400",
-        "ahc044-perf-1500",
-        "ahc044-perf-1600",
-        "ahc044-perf-1700",
-        "ahc044-perf-1800",
-        "ahc044-perf-1900",
-        "ahc044-perf-2000",
-        "ahc044-perf-2100",
-        "ahc044-perf-2200",
-        "ahc044-perf-2300",
-        "ahc044-perf-2400",
-        "ahc044-perf-2500",
-        "ahc044-perf-2600",
-        "ahc044-perf-2700",
-        "ahc044-perf-2800",
-        "ahc044-perf-2900",
-        "ahc044-perf-3000",
-        "ahc044-perf-3100",
-        "ahc044-perf-3200"
+        "ahc044-accepted"
       ]
     },
     {
-      "id": "REQ-AHC046-PERFORMANCE",
+      "id": "REQ-AHC046-ACCEPTED",
       "critical": true,
-      "introducedAt": "ae-heuristic-contests 0.1.0",
+      "introducedAt": "ae-heuristic-contests 0.2.0",
       "checkIds": [
-        "ahc046-perf-0600",
-        "ahc046-perf-0700",
-        "ahc046-perf-0800",
-        "ahc046-perf-0900",
-        "ahc046-perf-1000",
-        "ahc046-perf-1100",
-        "ahc046-perf-1200",
-        "ahc046-perf-1300",
-        "ahc046-perf-1400",
-        "ahc046-perf-1500",
-        "ahc046-perf-1600",
-        "ahc046-perf-1700",
-        "ahc046-perf-1800",
-        "ahc046-perf-1900",
-        "ahc046-perf-2000",
-        "ahc046-perf-2100",
-        "ahc046-perf-2200",
-        "ahc046-perf-2300",
-        "ahc046-perf-2400",
-        "ahc046-perf-2500",
-        "ahc046-perf-2600",
-        "ahc046-perf-2700",
-        "ahc046-perf-2800",
-        "ahc046-perf-2900",
-        "ahc046-perf-3000",
-        "ahc046-perf-3100",
-        "ahc046-perf-3200"
+        "ahc046-accepted"
       ]
     }
   ],
@@ -834,8 +614,23 @@
         }
       ],
       "activeRequirementIds": [
-        "REQ-AHC015-PERFORMANCE"
-      ]
+        "REQ-AHC015-ACCEPTED"
+      ],
+      "split": "dev",
+      "structure": "contest:ahc015",
+      "provenance": {
+        "source": "ALE-Bench, AtCoder Heuristic Contest 015 (Halloween Candy), official private seeds",
+        "published": "2022-10-30",
+        "license": "CC BY-ND 4.0 (ALE-Bench data, AtCoder Inc.)",
+        "exposure": "public"
+      },
+      "anchors": {
+        "performance": {
+          "naive": 472,
+          "median-contestant": 1243,
+          "winner": 3506
+        }
+      }
     },
     {
       "id": "ahc026",
@@ -875,8 +670,23 @@
         }
       ],
       "activeRequirementIds": [
-        "REQ-AHC026-PERFORMANCE"
-      ]
+        "REQ-AHC026-ACCEPTED"
+      ],
+      "split": "validation",
+      "structure": "contest:ahc026",
+      "provenance": {
+        "source": "ALE-Bench, AtCoder Heuristic Contest 026 (Stack of Boxes), official private seeds",
+        "published": "2023-11-05",
+        "license": "CC BY-ND 4.0 (ALE-Bench data, AtCoder Inc.)",
+        "exposure": "public"
+      },
+      "anchors": {
+        "performance": {
+          "naive": 611,
+          "median-contestant": 1354,
+          "winner": 3451
+        }
+      }
     },
     {
       "id": "ahc028",
@@ -916,8 +726,23 @@
         }
       ],
       "activeRequirementIds": [
-        "REQ-AHC028-PERFORMANCE"
-      ]
+        "REQ-AHC028-ACCEPTED"
+      ],
+      "split": "validation",
+      "structure": "contest:ahc028",
+      "provenance": {
+        "source": "ALE-Bench, AtCoder Heuristic Contest 028 (Lucky Words), official private seeds",
+        "published": "2024-01-13",
+        "license": "CC BY-ND 4.0 (ALE-Bench data, AtCoder Inc.)",
+        "exposure": "public"
+      },
+      "anchors": {
+        "performance": {
+          "naive": 805,
+          "median-contestant": 1325,
+          "winner": 3512
+        }
+      }
     },
     {
       "id": "ahc032",
@@ -957,8 +782,23 @@
         }
       ],
       "activeRequirementIds": [
-        "REQ-AHC032-PERFORMANCE"
-      ]
+        "REQ-AHC032-ACCEPTED"
+      ],
+      "split": "validation",
+      "structure": "contest:ahc032",
+      "provenance": {
+        "source": "ALE-Bench, AtCoder Heuristic Contest 032 (Mod Stamp), official private seeds",
+        "published": "2024-04-07",
+        "license": "CC BY-ND 4.0 (ALE-Bench data, AtCoder Inc.)",
+        "exposure": "public"
+      },
+      "anchors": {
+        "performance": {
+          "naive": 495,
+          "median-contestant": 1302,
+          "winner": 3529
+        }
+      }
     },
     {
       "id": "ahc035",
@@ -998,8 +838,23 @@
         }
       ],
       "activeRequirementIds": [
-        "REQ-AHC035-PERFORMANCE"
-      ]
+        "REQ-AHC035-ACCEPTED"
+      ],
+      "split": "dev",
+      "structure": "contest:ahc035",
+      "provenance": {
+        "source": "ALE-Bench, AtCoder Heuristic Contest 035 (Breed Improvement), official private seeds",
+        "published": "2024-07-21",
+        "license": "CC BY-ND 4.0 (ALE-Bench data, AtCoder Inc.)",
+        "exposure": "public"
+      },
+      "anchors": {
+        "performance": {
+          "naive": 439,
+          "median-contestant": 1286,
+          "winner": 3471
+        }
+      }
     },
     {
       "id": "ahc039",
@@ -1039,8 +894,23 @@
         }
       ],
       "activeRequirementIds": [
-        "REQ-AHC039-PERFORMANCE"
-      ]
+        "REQ-AHC039-ACCEPTED"
+      ],
+      "split": "dev",
+      "structure": "contest:ahc039",
+      "provenance": {
+        "source": "ALE-Bench, AtCoder Heuristic Contest 039 (Purse Seine Fishing), official private seeds",
+        "published": "2024-11-10",
+        "license": "CC BY-ND 4.0 (ALE-Bench data, AtCoder Inc.)",
+        "exposure": "public"
+      },
+      "anchors": {
+        "performance": {
+          "naive": 723,
+          "median-contestant": 1336,
+          "winner": 3390
+        }
+      }
     },
     {
       "id": "ahc041",
@@ -1080,8 +950,23 @@
         }
       ],
       "activeRequirementIds": [
-        "REQ-AHC041-PERFORMANCE"
-      ]
+        "REQ-AHC041-ACCEPTED"
+      ],
+      "split": "validation",
+      "structure": "contest:ahc041",
+      "provenance": {
+        "source": "ALE-Bench, AtCoder Heuristic Contest 041 (Christmas Tree Cutting), official private seeds",
+        "published": "2025-01-19",
+        "license": "CC BY-ND 4.0 (ALE-Bench data, AtCoder Inc.)",
+        "exposure": "public"
+      },
+      "anchors": {
+        "performance": {
+          "naive": 444,
+          "median-contestant": 1341,
+          "winner": 3467
+        }
+      }
     },
     {
       "id": "ahc042",
@@ -1129,8 +1014,23 @@
         }
       ],
       "activeRequirementIds": [
-        "REQ-AHC042-PERFORMANCE"
-      ]
+        "REQ-AHC042-ACCEPTED"
+      ],
+      "split": "validation",
+      "structure": "contest:ahc042",
+      "provenance": {
+        "source": "ALE-Bench, AtCoder Heuristic Contest 042 (Oni wa Soto, Fuku wa Uchi), official private seeds",
+        "published": "2025-02-02",
+        "license": "CC BY-ND 4.0 (ALE-Bench data, AtCoder Inc.)",
+        "exposure": "public"
+      },
+      "anchors": {
+        "performance": {
+          "naive": 987,
+          "median-contestant": 1300,
+          "winner": 3475
+        }
+      }
     },
     {
       "id": "ahc044",
@@ -1170,8 +1070,23 @@
         }
       ],
       "activeRequirementIds": [
-        "REQ-AHC044-PERFORMANCE"
-      ]
+        "REQ-AHC044-ACCEPTED"
+      ],
+      "split": "validation",
+      "structure": "contest:ahc044",
+      "provenance": {
+        "source": "ALE-Bench, AtCoder Heuristic Contest 044 (Cleaning Up), official private seeds",
+        "published": "2025-03-16",
+        "license": "CC BY-ND 4.0 (ALE-Bench data, AtCoder Inc.)",
+        "exposure": "public"
+      },
+      "anchors": {
+        "performance": {
+          "naive": 713,
+          "median-contestant": 1288,
+          "winner": 3478
+        }
+      }
     },
     {
       "id": "ahc046",
@@ -1211,16 +1126,104 @@
         }
       ],
       "activeRequirementIds": [
-        "REQ-AHC046-PERFORMANCE"
-      ]
+        "REQ-AHC046-ACCEPTED"
+      ],
+      "split": "dev",
+      "structure": "contest:ahc046",
+      "provenance": {
+        "source": "ALE-Bench, AtCoder Heuristic Contest 046 (Skating with Blocks), official private seeds",
+        "published": "2025-04-26",
+        "license": "CC BY-ND 4.0 (ALE-Bench data, AtCoder Inc.)",
+        "exposure": "public"
+      },
+      "anchors": {
+        "performance": {
+          "naive": 638,
+          "median-contestant": 1333,
+          "winner": 3523
+        }
+      }
     }
   ],
   "toolProfiles": [
     "workspace-augmented"
   ],
+  "tier": "frontier",
+  "capabilities": [
+    "engineering"
+  ],
+  "card": "card.md",
+  "scoreModel": {
+    "primary": {
+      "kind": "metric",
+      "metric": "performance"
+    },
+    "groups": [
+      {
+        "id": "accepted",
+        "weight": 1,
+        "critical": true,
+        "rule": "all",
+        "checkIds": [
+          "ahc015-accepted",
+          "ahc026-accepted",
+          "ahc028-accepted",
+          "ahc032-accepted",
+          "ahc035-accepted",
+          "ahc039-accepted",
+          "ahc041-accepted",
+          "ahc042-accepted",
+          "ahc044-accepted",
+          "ahc046-accepted"
+        ]
+      },
+      {
+        "id": "performance",
+        "weight": 1,
+        "critical": false,
+        "rule": "metric",
+        "checkIds": [],
+        "metric": "performance"
+      }
+    ],
+    "metrics": [
+      {
+        "id": "performance",
+        "unit": "AtCoder performance",
+        "direction": "higher",
+        "anchors": {
+          "version": "1",
+          "points": [
+            {
+              "name": "naive",
+              "maps": 0
+            },
+            {
+              "name": "median-contestant",
+              "maps": 0.5
+            },
+            {
+              "name": "winner",
+              "maps": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "total",
+        "unit": "contest score",
+        "direction": "higher"
+      },
+      {
+        "id": "performanceRank",
+        "unit": "rank among contestants",
+        "direction": "lower"
+      }
+    ]
+  },
   "grader": {
     "id": "ae-ale-judge",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [
