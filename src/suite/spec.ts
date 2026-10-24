@@ -9,11 +9,20 @@ import { thinkingLevels, type ModelSelection, type PlanThinkingLevel } from "../
  * real evaluation.
  */
 export interface SuiteFile {
-  schemaVersion: 1;
+  /** 1: the v1 suites (dev.json, full.json). 2: suite v2 (CODE §3.4): a split, tiers, capability weights, no target. */
+  schemaVersion: 1 | 2;
   name: string;
   description?: string;
-  /** The model the hardening aims at; a family where it scores above maxScore is flagged. */
+  /** v1 only: the model the hardening aimed at; a family where it scored above maxScore was flagged. */
   target?: { model: string; maxScore: number };
+  /** v2: the release this suite belongs to, such as v2.0-rc1. */
+  release?: string;
+  /** v2: the split every v2 family runs; its plans hold only that split's tasks. */
+  split?: "dev" | "validation" | "holdout";
+  /** v2: frozen weights of each core capability's families. */
+  capabilityWeights?: Record<string, Record<string, number>>;
+  /** v2: a composite score; none in v2.0 (decision D3), so null. */
+  composite?: null;
   /** Concurrent trials per provider endpoint host across every process of a launch; "*" is the default. */
   providerConcurrency: Record<string, number>;
   /** Spending rules a launch must satisfy before anything runs (the dev-run policy). */
@@ -35,6 +44,9 @@ export type FamilyKind = "single" | "trajectory" | "visual";
 export interface FamilySpec {
   id: string;
   kind: FamilyKind;
+  /** v2 suites: the family's tier and capability (the package's manifest says the same for a v2 package). */
+  tier?: "basic" | "core" | "frontier";
+  capability?: "engineering" | "reasoning" | "agentic" | "visual";
   /** Repository-relative template plan: package, items or levels, budget, batch and artifact limits. */
   template: string;
   /** The items or levels that make up the family score; omitted means every trial of the plan. */
@@ -57,7 +69,14 @@ export function validateSuite(value: unknown): SuiteFile {
   const fail = (detail: string): never => { throw new Error(`SUITE_INVALID:${detail}`); };
   if (!value || typeof value !== "object" || Array.isArray(value)) fail("root");
   const suite = value as SuiteFile;
-  if (suite.schemaVersion !== 1) fail("schemaVersion");
+  if (suite.schemaVersion !== 1 && suite.schemaVersion !== 2) fail("schemaVersion");
+  const v2 = suite.schemaVersion === 2;
+  if (v2) {
+    if (suite.target !== undefined) fail("target");  // suite v2 drops the score target (CODE §3.4)
+    if (suite.split !== undefined && !["dev", "validation", "holdout"].includes(suite.split)) fail("split");
+    if (suite.release !== undefined && (typeof suite.release !== "string" || !identifier.test(suite.release))) fail("release");
+    if (suite.composite !== undefined && suite.composite !== null) fail("composite");
+  } else if (suite.release !== undefined || suite.split !== undefined || suite.capabilityWeights !== undefined || suite.composite !== undefined) fail("v2-fields");
   if (typeof suite.name !== "string" || !identifier.test(suite.name)) fail("name");
   if (!suite.providerConcurrency || typeof suite.providerConcurrency !== "object" ||
       Object.values(suite.providerConcurrency).some(limit => !Number.isSafeInteger(limit) || limit < 1 || limit > 32)) fail("providerConcurrency");
@@ -76,6 +95,21 @@ export function validateSuite(value: unknown): SuiteFile {
     }
     if (family.overrides !== undefined && (typeof family.overrides !== "object" || Array.isArray(family.overrides))) fail(`${family.id}.overrides`);
     if (family.kind === "visual" && !family.visualPackage) fail(`${family.id}.visualPackage`);
+    if (v2 && (!["basic", "core", "frontier"].includes(String(family.tier)) || !["engineering", "reasoning", "agentic", "visual"].includes(String(family.capability)))) {
+      fail(`${family.id}.tier`);
+    }
+    if (!v2 && (family.tier !== undefined || family.capability !== undefined)) fail(`${family.id}.v2-fields`);
+  }
+  if (v2 && suite.capabilityWeights !== undefined) {
+    if (!suite.capabilityWeights || typeof suite.capabilityWeights !== "object") fail("capabilityWeights");
+    for (const [capability, weights] of Object.entries(suite.capabilityWeights)) {
+      for (const [familyId, weight] of Object.entries(weights ?? {})) {
+        const family = suite.families.find(entry => entry.id === familyId);
+        if (!family || family.tier !== "core" || family.capability !== capability || typeof weight !== "number" || !(weight > 0) || !Number.isFinite(weight)) {
+          fail(`capabilityWeights.${capability}.${familyId}`);
+        }
+      }
+    }
   }
   return suite;
 }

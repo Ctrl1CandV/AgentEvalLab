@@ -11,6 +11,10 @@ import { caseItems, generateFamilyPlans, packageItems, smokePlan, type Generated
 import { familyResults, loadSingleRun, loadTrajectoryRun, trajectoryChecks, trajectoryUnit, type FamilyUnit, type NotRunUnit, type RunContents } from "./score.js";
 import { failedChecks, markdownSuiteReport, suiteFlags, type FamilyReport, type SuiteReport } from "./report.js";
 import { checkPolicy, parseModelSpec, validateSuite, type FamilySpec, type SuiteFile } from "./spec.js";
+import { loadOutcomes } from "../scoring/outcomes.js";
+import { buildReportV2, markdownReportV2, type V2FamilyData } from "../analysis/report-v2.js";
+import type { TaskPackageManifest } from "../evaluation/manifest.js";
+import type { NotRunEntry } from "../evaluation/batch.js";
 import type { TrajectoryRecord } from "../evaluation/types.js";
 
 /** What the suite needs from the outside world; the real one spawns processes in the frozen worktree. */
@@ -85,6 +89,14 @@ export interface SuiteState {
 const now = () => new Date().toISOString();
 const PHASES = ["freeze", "generate", "preflight", "smoke", "launch", "retry", "report"] as const;
 const STOPPING_PROVIDER_ERRORS = new Set(["PROVIDER_BALANCE", "PROVIDER_AUTH"]);
+
+/** The latest success audit of a family (docs/audits/<family>/<date>.json), or null. */
+async function latestAudit(repoRoot: string, familyId: string): Promise<{ date: string; summary: Record<string, number> } | null> {
+  const names = (await readdir(join(repoRoot, "docs", "audits", familyId)).catch(() => [] as string[])).filter(name => /^\d{4}-\d{2}-\d{2}\.json$/.test(name)).sort();
+  if (!names.length) return null;
+  const audit = await readJson<{ date: string; summary: Record<string, number> }>(join(repoRoot, "docs", "audits", familyId, names.at(-1)!)).catch(() => null);
+  return audit ? { date: audit.date, summary: audit.summary } : null;
+}
 
 /** The run directories a harness process created under its output directory (one per process; a resume reuses it). */
 export async function runDirectoriesIn(outDirectory: string): Promise<string[]> {
@@ -250,6 +262,8 @@ export class SuiteRunner {
       const packagePath = template.cases[0]!.packagePath;
       if (packagePath && !this.items.has(packagePath)) this.items.set(packagePath, await packageItems(this.state.worktree, packagePath));
       const trialsPerModel = (plan: EvaluationPlan) => plan.execution?.kind === "trajectory" ? 1 : (caseItems(plan, this.items)?.length ?? 1) * (plan.repetitions ?? 1);
+      const manifest = packagePath ? await readJson<TaskPackageManifest>(resolve(this.state.worktree, packagePath, "manifest.json")) : null;
+      if (this.state.suite.schemaVersion === 2 && manifest?.schemaVersion === 2) this.restrictToSplit(family, template, manifest);
       for (const generated of generateFamilyPlans(family, template, this.state.models, this.state.repetitions, this.state.id, trialsPerModel)) {
         const path = join(plansDirectory, `${generated.key}.eval.json`);
         await writeFile(path, JSON.stringify(generated.plan, null, 2));
@@ -261,6 +275,27 @@ export class SuiteRunner {
     this.state.phases.generate = "done";
     await this.save();
     await this.note(`Generated ${this.state.plans.length} plans for ${this.state.familyIds.join(", ")}`);
+  }
+
+  /**
+   * A v2 family in a v2 suite runs only the suite's split (VALIDATION §3): the template's items narrowed to those of the
+   * split, and the plan's protocol recording the track and split. A family with nothing in the split is refused.
+   */
+  private restrictToSplit(family: FamilySpec, template: EvaluationPlan, manifest: TaskPackageManifest): void {
+    const split = this.state.suite.split;
+    const item = template.cases[0]!;
+    if (manifest.items) {
+      const selected = caseItems(template, this.items) ?? manifest.items;
+      const chosen = selected.filter(entry => !split || entry.split === split);
+      if (!chosen.length) throw new Error(`SUITE_SPLIT_EMPTY:${family.id}`);
+      const splits = new Set(chosen.map(entry => entry.split));
+      if (splits.size !== 1) throw new Error(`SUITE_FAMILY_MIXES_SPLITS:${family.id}`);
+      item.items = chosen.map(entry => entry.id);
+      template.protocol = { track: "fixed", split: [...splits][0]! };
+    } else {
+      if (split && manifest.task?.split !== split) throw new Error(`SUITE_SPLIT_EMPTY:${family.id}`);
+      template.protocol = { track: "fixed", split: manifest.task!.split };
+    }
   }
 
   /** Worst-case tokens: every trial uses its whole budget. A spending fuse, not an expectation. */
@@ -354,8 +389,15 @@ export class SuiteRunner {
     // The format check earns nothing by itself, and a task may pass it when there is no reply at all (so that a missing
     // reply is not deducted twice); only content checks count against the null agent.
     const packagePath = plan.cases[0]?.packagePath;
-    const manifest = packagePath ? await readJson<{ scoring?: { formatCheckId?: string } }>(join(this.state.worktree, packagePath, "manifest.json")).catch(() => null) : null;
-    const formatCheckId = manifest?.scoring?.formatCheckId;
+    const manifest = packagePath ? await readJson<TaskPackageManifest>(resolve(this.state.worktree, packagePath, "manifest.json")).catch(() => null) : null;
+    const formatCheckId = manifest?.scoring?.formatCheckId ?? manifest?.scoreModel?.format?.checkId;
+    if (manifest?.schemaVersion === 2) {
+      // A v2 null agent must be unresolved with a primary of 0 in every outcome (VALIDATION §1).
+      const outcomes = await loadOutcomes(directory);
+      if (!outcomes.length) return { ok: false, detail: "no outcome recorded" };
+      const earning = outcomes.filter(outcome => outcome.coverage !== "scored" || outcome.resolved || (outcome.primary ?? 0) > maxScore);
+      if (earning.length) return { ok: false, detail: `the null agent is unscored or earns: ${earning.map(outcome => `${outcome.task.itemId ?? outcome.task.id} ${outcome.coverage} primary ${outcome.primary}`).join(", ")}` };
+    }
     for (const record of records) {
       if (record.evaluation.status !== "passed" && record.evaluation.status !== "failed") {
         return { ok: false, detail: `trial ${record.id} was not graded (${record.evaluation.status}${record.evaluation.error ? `: ${record.evaluation.error}` : ""})` };
@@ -479,6 +521,51 @@ export class SuiteRunner {
     return loadSingleRun(family, runDirectory, scoredOnly);
   }
 
+  private async familyManifest(entry: PlanEntry): Promise<TaskPackageManifest | null> {
+    const plan = await readJson<EvaluationPlan>(entry.path);
+    const packagePath = plan.cases[0]?.packagePath;
+    return packagePath ? readJson<TaskPackageManifest>(resolve(this.state.worktree, packagePath, "manifest.json")).catch(() => null) : null;
+  }
+
+  /** A v2 family's data for report v2: the latest outcome of every trial in the suite's split, and what was planned. */
+  private async v2Family(family: FamilySpec, entries: PlanEntry[], manifest: TaskPackageManifest): Promise<{ data: V2FamilyData; missing: boolean }> {
+    const label = (model: string) => modelLabel(this.state.models.find(entry => `${entry.provider}:${entry.id}` === model) ?? parseModelSpec(model));
+    const outcomes: V2FamilyData["outcomes"] = [];
+    const plannedTasks: Record<string, number> = {};
+    const notRun: Record<string, number> = {};
+    const runDirectories: string[] = [];
+    let missing = false;
+    let protocol: V2FamilyData["protocol"] = { budget: "n/a", contextPolicy: "single", tools: "n/a", commandLimits: "default" };
+    for (const entry of entries) {
+      const plan = await readJson<EvaluationPlan>(entry.path);
+      const tasks = plan.execution?.kind === "trajectory" ? 1 : (caseItems(plan, this.items)?.length ?? 1);
+      for (const model of plan.models) plannedTasks[modelLabel(model)] = (plannedTasks[modelLabel(model)] ?? 0) + tasks;
+      const millions = (value: number | null | undefined) => value ? `${+(value / 1_000_000).toFixed(2)}M` : "n/a";
+      protocol = {
+        budget: plan.execution?.kind === "trajectory" ? `${millions(plan.execution.stageBudget.maxTrialTokens)}/stage, ${millions(plan.budget.maxTrialTokens)}/trajectory` : `${millions(plan.budget.maxTrialTokens)}/task`,
+        contextPolicy: plan.execution?.kind === "trajectory" ? plan.execution.contextPolicy : "single",
+        tools: plan.cases[0]?.toolProfile ?? manifest.toolProfiles?.[0] ?? "workspace-basic",
+        commandLimits: plan.commandLimits ? `${plan.commandLimits.timeoutMs / 1000} s, ${plan.commandLimits.maxOutputBytes} bytes` : "default",
+      };
+      const run = this.latestRun(entry.key);
+      if (!run?.runDirectory || !(await exists(join(run.runDirectory, "report.json")))) { missing = true; continue; }
+      runDirectories.push(relative(this.options.repoRoot, run.runDirectory));
+      const split = this.state.suite.split;
+      outcomes.push(...(await loadOutcomes(run.runDirectory)).filter(outcome => !split || outcome.task.split === split));
+      const runReport = await readJson<{ batch?: { notRun?: NotRunEntry[] } }>(join(run.runDirectory, "report.json")).catch(() => ({ batch: undefined }));
+      for (const skipped of runReport.batch?.notRun ?? []) notRun[label(skipped.model)] = (notRun[label(skipped.model)] ?? 0) + 1;
+    }
+    const scoreModel = manifest.scoreModel!;
+    return {
+      missing,
+      data: {
+        id: family.id, tier: family.tier ?? manifest.tier!, capability: family.capability ?? manifest.capabilities![0]!, openEnded: scoreModel.primary.kind === "metric",
+        structureCap: scoreModel.structureCap ?? 0.2, packageId: manifest.id, taskVersion: manifest.version, primaryKind: scoreModel.primary.kind,
+        outcomes, plannedTasks, notRun, protocol, runDirectories,
+      },
+    };
+  }
+
   private async graderReason(unit: FamilyUnit, checkId: string): Promise<string | null> {
     try {
       const record = await readJson<{ scoreRunId?: string }>(join(unit.runDirectory, unit.trialId, "result.json"));
@@ -504,9 +591,18 @@ export class SuiteRunner {
     const families: FamilyReport[] = [];
     const tokens: Record<string, Record<string, number>> = {};
     let failed = false;
+    const v2Families: V2FamilyData[] = [];
     for (const familyId of this.state.familyIds) {
       const family = this.family(familyId);
       const entries = this.state.plans.filter(entry => entry.familyId === familyId);
+      const manifest = await this.familyManifest(entries[0]!);
+      if (manifest?.schemaVersion === 2) {
+        // v2 families are reported from their outcome records (report-v2), not by the v1 partial-credit score.
+        const { data, missing } = await this.v2Family(family, entries, manifest);
+        v2Families.push(data);
+        failed ||= missing;
+        continue;
+      }
       const units: FamilyUnit[] = [];
       const notRun: NotRunUnit[] = [];
       const providerStops: Record<string, string> = {};
@@ -561,7 +657,17 @@ export class SuiteRunner {
       estimate: this.state.estimate ?? null, smoke: this.state.smoke ?? {}, uncommitted: this.state.uncommitted,
     };
     await writeFile(join(this.directory, "report.json"), JSON.stringify(report, null, 2));
-    await writeFile(join(this.directory, "report.md"), markdownSuiteReport(report));
+    if (this.state.suite.schemaVersion === 2 || v2Families.length) {
+      const reportV2 = buildReportV2({
+        suite: this.state.suite.name, id: this.state.id, release: this.state.suite.release ?? null, split: this.state.suite.split ?? null, track: "fixed",
+        commit: this.state.commit, startedAt: this.state.createdAt, finishedAt: report.finishedAt, status: report.status,
+        models: this.state.models.map(model => ({ label: modelLabel(model), thinking: model.thinkingLevel ?? "provider-default", temperature: model.temperature ?? null })),
+        repetitions: this.state.repetitions, capabilityWeights: this.state.suite.capabilityWeights ?? {}, families: v2Families,
+        audits: Object.fromEntries(await Promise.all(v2Families.map(async family => [family.id, await latestAudit(this.options.repoRoot, family.id)] as const))),
+      });
+      await writeFile(join(this.directory, "report-v2.json"), JSON.stringify(reportV2, null, 2));
+      await writeFile(join(this.directory, "report.md"), `${markdownReportV2(reportV2)}\n${markdownSuiteReport(report, families.length ? "v1 families and run details" : "Run details")}`);
+    } else await writeFile(join(this.directory, "report.md"), markdownSuiteReport(report));
     await this.save();
     await this.note(`Report: ${relative(this.options.repoRoot, join(this.directory, "report.md"))} (${report.status}, ${flags.length} flags)`);
     return report;

@@ -111,8 +111,9 @@ const interval = (value: [number, number] | null) => value ? `${percent(value[0]
 const thousands = (value: number | null) => value === null ? "n/a" : `${(value / 1000).toFixed(0)}k`;
 const cell = (value: string | null | undefined) => (value ?? "").replace(/\|/g, "\\|").replace(/\s+/g, " ").slice(0, 300);
 
-export function markdownSuiteReport(report: SuiteReport): string {
-  const lines = [`# Suite report: ${report.suite}`, "",
+/** The v1 report; under a v2 suite's report it follows as a section of run details (and of any v1 families). */
+export function markdownSuiteReport(report: SuiteReport, title?: string): string {
+  const lines = [title ? `# ${title}` : `# Suite report: ${report.suite}`, "",
     `Suite run \`${report.id}\` at commit \`${report.commit.slice(0, 12)}\`, ${report.repetitions} repetition(s) per model and item, ${report.startedAt} to ${report.finishedAt}. Status: **${report.status}**.`, "",
     `Models: ${report.models.join(", ")}.`, "",
     "A family score is the mean partial-credit score of its scored trials (for E3, of its trajectories; for the visual family, the tournament win rate). Infrastructure failures are excluded and listed below; trials without a score are counted, never treated as zero. The interval is the Wilson interval of the score sum.", ""];

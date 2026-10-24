@@ -17,6 +17,7 @@ import { checkPolicy, parseModelSpec, validateSuite, type FamilySpec } from "../
 import { CEILING_SLACK, generateFamilyPlans, RESPONSE_CHARS, RESPONSE_TOKENS } from "../src/suite/plans.js";
 import { SuiteRunner, type SuiteExecutor } from "../src/suite/run.js";
 import { suiteFlags, type FamilyReport } from "../src/suite/report.js";
+import type { ReportV2 } from "../src/analysis/report-v2.js";
 
 // A two-item family: check-a passes when the answer starts with the item id, check-b when it ends with "+b", and the
 // format check like check-a. A null answer passes nothing. check-b's verdict is explained in an evidence file.
@@ -443,4 +444,106 @@ test("a trajectory's score weighs its final-stage checks by the manifest's weigh
   const weighted = trajectoryUnit("E3", "dir", record, ["a", "b", "rung"], { rung: 2 });
   assert.equal(weighted.score, 0.5);
   assert.deepEqual(weighted.failedChecks, ["rung"]);
+});
+
+/** The two-item package as manifest v2: three items over two splits, a resolved primary and the format check apart. */
+async function itemPackageV2(root: string, name: string): Promise<{ path: string; manifestSha256: string }> {
+  const path = join(root, name);
+  const files: Record<string, string> = { "instruction.md": "# Suite family\n\nAnswer with the item id.\n", "card.md": "# Card\n", "private/grader.py": grader,
+    "items/i1/prompt.md": "Item i1.\n", "items/i2/prompt.md": "Item i2.\n", "items/i3/prompt.md": "Item i3.\n" };
+  for (const [relative, content] of Object.entries(files)) {
+    await mkdir(join(path, relative, ".."), { recursive: true });
+    await writeFile(join(path, relative), content);
+  }
+  const digest = (relative: string) => ({ path: relative, sha256: createHash("sha256").update(files[relative]!).digest("hex") });
+  const item = (id: string, split: string) => ({ id, level: "L1", files: [digest(`items/${id}/prompt.md`)], activeRequirementIds: ["REQ-A", "REQ-B", "REQ-FORMAT"],
+    split, structure: `group:${id}`, provenance: { source: "test", published: "2026-10-24", license: "test", exposure: "generated" } });
+  const manifest = {
+    schemaVersion: 2, id: name, version: "0.1.0", familyId: name, capability: "reasoning", usage: "development",
+    source: { kind: "original-design", references: [] }, license: { taskText: "Test material.", thirdPartyContent: [] }, entryPoint: { instruction: "instruction.md" },
+    files: { public: [digest("instruction.md")], trusted: [digest("card.md"), digest("private/grader.py")] },
+    requirements: [
+      { id: "REQ-A", critical: true, introducedAt: "0.1.0", checkIds: ["check-a"] },
+      { id: "REQ-B", critical: true, introducedAt: "0.1.0", checkIds: ["check-b"] },
+      { id: "REQ-FORMAT", critical: false, introducedAt: "0.1.0", checkIds: ["answer-format"] },
+    ],
+    items: [item("i1", "dev"), item("i2", "dev"), item("i3", "validation")],
+    toolProfiles: ["workspace-basic"],
+    grader: { id: name, version: "1.0.0", entryPoint: "private/grader.py", executable: "python3", args: ["{entryPoint}", "--request", "{request}", "--result", "{result}"],
+      answerSource: "execution-output" },
+    environment: { runtime: "Python 3", dependencies: "standard library", network: false },
+    tier: "core", capabilities: ["reasoning"], card: "card.md",
+    scoreModel: { primary: { kind: "resolved" }, groups: [{ id: "answer", weight: 1, critical: true, rule: "all", checkIds: ["check-a", "check-b"] }],
+      format: { checkId: "answer-format", penalty: 0.2 } },
+  };
+  const manifestText = JSON.stringify(manifest, null, 2);
+  await writeFile(join(path, "manifest.json"), manifestText);
+  return { path, manifestSha256: createHash("sha256").update(manifestText).digest("hex") };
+}
+
+test("a v2 suite runs its split, reports v2 families from their outcomes and keeps v1 families in the v1 section", async () => {
+  const root = await mkdtemp(join(tmpdir(), "suite-v2-test-"));
+  try {
+    const alpha = await itemPackage(root, "alpha");
+    const vee = await itemPackageV2(root, "vee");
+    const write = async (worktree: string) => {
+      await mkdir(join(worktree, "templates"), { recursive: true });
+      await mkdir(join(worktree, "suites"), { recursive: true });
+      await writeFile(join(worktree, "templates", "alpha.eval.json"), JSON.stringify(template(alpha, "alpha")));
+      await writeFile(join(worktree, "templates", "vee.eval.json"), JSON.stringify({ ...template(vee, "vee"), repetitions: 1 }));
+      await writeFile(join(worktree, "suites", "v2.json"), JSON.stringify({ schemaVersion: 2, name: "v2", release: "v2.0-test", split: "dev",
+        providerConcurrency: { "*": 2 }, capabilityWeights: { reasoning: { V: 1 } }, composite: null, families: [
+          { id: "V", kind: "single", tier: "core", capability: "reasoning", template: "templates/vee.eval.json" },
+          { id: "A", kind: "single", tier: "basic", capability: "engineering", template: "templates/alpha.eval.json" },
+        ] }));
+    };
+    await write(root);
+    const calls: string[] = [];
+    const behaviour: Behaviour = (item, model) => model.provider === "deepseek" ? answer(`${item} +b`, 2_000) : answer(item, 1_000);
+    const runner = new SuiteRunner({ repoRoot: root, suitePath: "suites/v2.json", models, suitesRoot: join(root, "suites"), log: () => {} },
+      inProcessExecutor(write, behaviour, calls, []));
+    const result = await runner.run();
+    assert.equal(result.status, 0);
+    const plan = JSON.parse(await readFile(join(result.directory, "plans", "V.eval.json"), "utf8")) as EvaluationPlan;
+    assert.deepEqual(plan.cases[0]!.items, ["i1", "i2"], "only the suite's split runs");
+    assert.deepEqual(plan.protocol, { track: "fixed", split: "dev" });
+    const state = JSON.parse(await readFile(join(result.directory, "suite.json"), "utf8")) as { smoke: Record<string, { ok: boolean; detail: string }> };
+    assert.equal(state.smoke.V!.ok, true, state.smoke.V!.detail);
+    const v2 = JSON.parse(await readFile(join(result.directory, "report-v2.json"), "utf8")) as ReportV2;
+    assert.deepEqual(v2.families.map(family => family.id), ["V"]);
+    const rows = v2.families[0]!.rows;
+    assert.equal(rows.find(row => row.label === "deepseek:deepseek-flash-high")!.primary, 1);
+    assert.equal(rows.find(row => row.label === "aliplan:qwen3.8-flash-default")!.primary, 0);
+    assert.equal(rows[0]!.coverage.planned, 2);
+    assert.equal(rows[0]!.interval, "n too small");
+    assert.equal(v2.exploratory, true);
+    assert.equal(v2.profile[0]!.capabilities.reasoning!.primary, 1);
+    assert.deepEqual(result.report!.families.map(family => family.id), ["A"], "the v1 section holds only v1 families");
+    const markdown = await readFile(join(result.directory, "report.md"), "utf8");
+    assert.match(markdown, /^# Suite report v2: v2 \(v2\.0-test\)/);
+    assert.match(markdown, /# v1 families and run details/);
+    assert.match(markdown, /\| V \| core \| reasoning \| vee@0\.1\.0 \|/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("a plan runs one split: mixed splits and a protocol naming another split are refused; holdout needs the fixed track", async () => {
+  const root = await mkdtemp(join(tmpdir(), "suite-split-test-"));
+  try {
+    const vee = await itemPackageV2(root, "vee");
+    const plan = (items: EvaluationPlan["cases"][number]["items"], protocol?: EvaluationPlan["protocol"]): EvaluationPlan =>
+      ({ ...template(vee, "vee"), cases: [{ ...template(vee, "vee").cases[0]!, items: items! }], ...(protocol ? { protocol } : {}) });
+    await assert.rejects(preflightPlan(plan("all")), /PLAN_MIXES_SPLITS/);
+    await assert.rejects(preflightPlan(plan(["i1", "i2"], { track: "fixed", split: "validation" })), /PLAN_SPLIT_MISMATCH/);
+    await preflightPlan(plan(["i1", "i2"], { track: "curve", split: "dev" }));
+    assert.throws(() => validatePlan(plan(["i3"], { track: "curve", split: "holdout" })), /HOLDOUT_REQUIRES_FIXED_TRACK/);
+    assert.throws(() => validatePlan(plan(["i3"], { track: "fixed", split: "test" } as never)), /INVALID_PROTOCOL/);
+    assert.throws(() => validateSuite({ schemaVersion: 2, name: "x", providerConcurrency: { "*": 1 }, target: { model: "a", maxScore: 1 },
+      families: [{ id: "A", kind: "single", tier: "core", capability: "reasoning", template: "a.eval.json" }] }), /SUITE_INVALID:target/);
+    assert.throws(() => validateSuite({ schemaVersion: 2, name: "x", providerConcurrency: { "*": 1 }, capabilityWeights: { reasoning: { A: 1 } },
+      families: [{ id: "A", kind: "single", tier: "basic", capability: "reasoning", template: "a.eval.json" }] }), /capabilityWeights/);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
 });

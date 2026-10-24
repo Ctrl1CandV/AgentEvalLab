@@ -57,10 +57,21 @@ export async function preflightPlan(plan: EvaluationPlan): Promise<Map<string, P
     if (manifest?.grader.requiresTrace && !descriptor.manifest?.grader.answerSource) {
       throw new Error("PACKAGE_TRACE_GRADER_REQUIRES_ANSWER_SOURCE");
     }
-    await checkProjectedArtifacts(plan, descriptor, resolveCaseItems(item, descriptor));
+    const items = resolveCaseItems(item, descriptor);
+    await checkProjectedArtifacts(plan, descriptor, items);
+    checkSplits(plan, descriptor, items);
     packages.set(item.id, descriptor);
   }
   return packages;
+}
+
+/** A plan runs one split (VALIDATION §3): the v2 tasks it selects all carry the same split, the protocol's when given. */
+function checkSplits(plan: EvaluationPlan, descriptor: PackageDescriptor, items: ManifestItem[] | null): void {
+  const manifest = descriptor.manifest;
+  if (manifest?.schemaVersion !== 2) return;
+  const splits = new Set((items ?? [manifest.task]).map(entry => entry?.split));
+  if (splits.size !== 1) throw new Error("PLAN_MIXES_SPLITS");
+  if (plan.protocol && !splits.has(plan.protocol.split)) throw new Error("PLAN_SPLIT_MISMATCH");
 }
 
 /**

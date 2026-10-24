@@ -35,6 +35,13 @@ export function validatePlan(value: unknown): asserts value is EvaluationPlan {
   if (notice !== undefined && typeof notice !== "boolean" &&
       !(notice && typeof notice === "object" && !Array.isArray(notice) && Object.keys(notice).every(key => key === "reminders") &&
         validReminderThresholds((notice as { reminders?: unknown }).reminders))) throw new Error("INVALID_BUDGET_NOTICE");
+  if (plan.protocol !== undefined) {
+    const protocol = object(plan.protocol);
+    if (Object.keys(protocol).some(key => !["track", "split", "label"].includes(key)) || !["fixed", "curve"].includes(String(protocol.track)) ||
+        !["dev", "validation", "holdout"].includes(String(protocol.split)) ||
+        (protocol.label !== undefined && (typeof protocol.label !== "string" || !/^[\w.-]{1,64}$/.test(protocol.label)))) throw new Error("INVALID_PROTOCOL");
+    if (protocol.split === "holdout" && protocol.track !== "fixed") throw new Error("HOLDOUT_REQUIRES_FIXED_TRACK");
+  }
   validateBatchPolicy(plan.batch);
   if (plan.repetitions !== undefined && (typeof plan.repetitions !== "number" || !Number.isSafeInteger(plan.repetitions) || plan.repetitions < 1 || plan.repetitions > 50)) {
     throw new Error("INVALID_REPETITIONS");

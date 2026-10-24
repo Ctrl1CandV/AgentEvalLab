@@ -60,6 +60,11 @@ export interface EvaluationPlan {
    * message after usage passes each reminder threshold (default 50%, 75% and 90% of any limit). Single runs only.
    */
   budgetNotice?: boolean | { reminders: number[] };
+  /**
+   * The run protocol (CODE §3.3): the budget track and the split every task of the plan belongs to. A plan whose v2
+   * tasks mix splits is refused at preflight, and a holdout plan must run on the fixed track.
+   */
+  protocol?: { track: "fixed" | "curve"; split: "dev" | "validation" | "holdout"; label?: string };
 }
 
 export type ExecutionPolicy =

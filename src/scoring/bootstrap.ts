@@ -30,15 +30,36 @@ function resampleGroups<T extends { structure: string; task: string }>(items: T[
   return drawn;
 }
 
-/** A percentile 95% interval of one model's family mean, by resampling structure groups (seeded, so reports repeat). */
-export function familyInterval(tasks: TaskScore[], seed: number, cap = 0.2, resamples = RESAMPLES): Interval {
+/** The resampled family means of one model (seeded), or null with fewer than MIN_GROUPS structure groups. */
+export function familyResamples(tasks: TaskScore[], seed: number, cap = 0.2, resamples = RESAMPLES): number[] | null {
   const scored = tasks.filter(task => task.primary !== null);
-  if (new Set(scored.map(task => task.structure)).size < MIN_GROUPS) return "n too small";
+  if (new Set(scored.map(task => task.structure)).size < MIN_GROUPS) return null;
   const random = seededRandom(seed);
   const values: number[] = [];
   for (let index = 0; index < resamples; index++) values.push(familyMean(resampleGroups(scored, random), cap)!);
-  values.sort((left, right) => left - right);
-  return { low: percentile(values, 0.025), high: percentile(values, 0.975) };
+  return values;
+}
+
+/** The percentile 95% interval of resampled values. */
+export function intervalOf(values: number[] | null): Interval {
+  if (!values) return "n too small";
+  const sorted = [...values].sort((left, right) => left - right);
+  return { low: percentile(sorted, 0.025), high: percentile(sorted, 0.975) };
+}
+
+/**
+ * Several families' resamples combined with weights, resample by resample (a stratified bootstrap: each family's
+ * groups are resampled within the family). Null when any weighted family has too few groups.
+ */
+export function combineResamples(parts: Array<{ weight: number; values: number[] | null }>): number[] | null {
+  if (!parts.length || parts.some(part => !part.values)) return null;
+  const total = parts.reduce((sum, part) => sum + part.weight, 0);
+  return parts[0]!.values!.map((_, index) => parts.reduce((sum, part) => sum + part.weight * part.values![index]!, 0) / total);
+}
+
+/** A percentile 95% interval of one model's family mean, by resampling structure groups (seeded, so reports repeat). */
+export function familyInterval(tasks: TaskScore[], seed: number, cap = 0.2, resamples = RESAMPLES): Interval {
+  return intervalOf(familyResamples(tasks, seed, cap, resamples));
 }
 
 export interface PairedComparison {
@@ -52,6 +73,8 @@ export interface PairedComparison {
   ahead: { a: number; b: number; tie: number };
   /** The task-level t interval of the existing pairedDifference, as a cross-check. */
   tInterval: [number, number] | null;
+  /** The resampled differences behind the interval, for combining families; null with too few groups. */
+  resamples: number[] | null;
 }
 
 /**
@@ -69,17 +92,15 @@ export function pairedComparison(tasks: TaskScore[], modelA: string, modelB: str
     const weights = taskWeights(values, cap);
     return values.reduce((total, value) => total + weights.get(value.task)! * value.difference, 0);
   };
-  let interval: Interval = "n too small";
+  let values: number[] | null = null;
   if (new Set(pairs.map(pair => pair.structure)).size >= MIN_GROUPS) {
     const random = seededRandom(seed);
-    const values: number[] = [];
+    values = [];
     for (let index = 0; index < resamples; index++) values.push(mean(resampleGroups(pairs, random)));
-    values.sort((left, right) => left - right);
-    interval = { low: percentile(values, 0.025), high: percentile(values, 0.975) };
   }
   const t = pairedDifference(pairs.map(pair => pair.difference));
   return {
-    modelA, modelB, tasks: n, meanDifference: n ? mean(pairs) : null, interval,
+    modelA, modelB, tasks: n, meanDifference: n ? mean(pairs) : null, interval: intervalOf(values), resamples: values,
     ahead: { a: n ? pairs.filter(pair => pair.difference > 0).length / n : 0, b: n ? pairs.filter(pair => pair.difference < 0).length / n : 0,
       tie: n ? pairs.filter(pair => pair.difference === 0).length / n : 0 },
     tInterval: t.interval,
