@@ -19,7 +19,12 @@ import snapshot  # noqa: E402
 TASK_ID = "t1-evidence-recovery"
 TASK_VERSION = "0.6.0"
 GRADER_VERSION = "1.7.1"
-TRUSTED = ["calibration.md", "rubric.md", "private/cases.py", "private/chains.py", "private/generate.py", "private/grader.py", "private/keys.json", "private/snapshot.py"]
+TRUSTED = ["calibration.md", "card.md", "rubric.md", "private/cases.py", "private/chains.py", "private/generate.py", "private/grader.py", "private/keys.json",
+           "private/snapshot.py"]
+# Manifest v2 (PLAN-007 WP2.2): every item has been run and inspected, so all are dev (a basic family has no other
+# split); a structure group is a level, whose items share the generator template.
+SPLIT = "dev"
+PUBLISHED = "2026-10-22"
 
 
 def digest(path):
@@ -58,7 +63,10 @@ def main():
             for number, question in enumerate(questions, 1):
                 # An adjudication question has one check per answer field; every other question has one check.
                 active += [f"REQ-Q{number}-{field.upper()}" for field in question["proofs"]] if question["kind"] == "case" else [f"REQ-Q{number}"]
-            items.append({"id": item_id, "level": level, "files": files, "activeRequirementIds": active + ["REQ-FORMAT"]})
+            items.append({"id": item_id, "level": level, "files": files, "activeRequirementIds": active + ["REQ-FORMAT"], "split": SPLIT,
+                          "structure": f"level:{level}",
+                          "provenance": {"source": f"project generator private/generate.py, seed {args.seed}", "published": PUBLISHED,
+                                         "license": "project-authored", "exposure": "generated"}})
             size = sum(len(snap.text(path)) for path in snap.files)
             print(f"{item_id}: {len(snap.files)} files, {size} characters, questions {[question['kind'] for question in questions]}", file=sys.stderr)
     write_text("private/keys.json", json.dumps(keys, indent=1, ensure_ascii=False) + "\n")
@@ -68,15 +76,21 @@ def main():
     requirements += [{"id": f"REQ-Q{number}-{field.upper()}", "critical": True, "introducedAt": f"{TASK_ID} 0.6.0", "checkIds": [f"q{number}-{field}"]}
                      for number in range(1, cases.QUESTIONS + 1) for field in all_fields]
     requirements.append({"id": "REQ-FORMAT", "critical": False, "introducedAt": f"{TASK_ID} {TASK_VERSION}", "checkIds": ["answer-format"]})
+    answer_checks = [check for requirement in requirements if requirement["id"] != "REQ-FORMAT" for check in requirement["checkIds"]]
     manifest = {
-        "schemaVersion": 1, "id": TASK_ID, "version": TASK_VERSION, "familyId": "t1-evidence-recovery", "capability": "tool", "usage": "development",
-        "source": {"kind": "original-design", "references": ["docs/design/TASK_SET_V2.md", "task-library/calibration/tool-001-doc-evidence-recovery"]},
+        "schemaVersion": 2, "id": TASK_ID, "version": TASK_VERSION, "familyId": "t1-evidence-recovery", "capability": "tool", "usage": "development",
+        "source": {"kind": "original-design", "references": ["docs/design/TASK_SET_V2.md", "task-library/retired/tool-001-doc-evidence-recovery"]},
         "license": {"taskText": "Original project-authored generator and snapshots; generalises tool-001, and no text is copied.", "thirdPartyContent": []},
         "entryPoint": {"instruction": "instruction.md"},
         "files": {"public": [{"path": "instruction.md", "sha256": digest("instruction.md")}],
                   "trusted": [{"path": path, "sha256": digest(path)} for path in TRUSTED]},
         "requirements": requirements,
-        "scoring": {"formatCheckId": "answer-format", "formatPenalty": 0.2},
+        "tier": "basic", "capabilities": ["agentic"], "card": "card.md",
+        "scoreModel": {
+            "primary": {"kind": "resolved"},
+            "groups": [{"id": "answers", "weight": 1, "critical": True, "rule": "fraction", "checkIds": answer_checks}],
+            "format": {"checkId": "answer-format", "penalty": 0.2},
+        },
         "items": items,
         "generator": {"entryPoint": "private/generate.py", "seed": args.seed, "perLevel": args.per_level},
         "toolProfiles": ["doc-evidence"],

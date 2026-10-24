@@ -228,3 +228,7 @@ The self-calibration adds the search case (2973/2973).
 Every deduction is the model's own. Median tokens per item were 405k (deepseek), 491k (qwen) and 93k (mimo).
 
 **Reading.** Multi-factor adjudication did not lower the strong models' scores much. They keep explicit notes and work each fact through in turn, so bookkeeping across chains does not trip them. Only the reach fact, a fan-out with history, produced errors. The levels separate the weaker model sharply.
+
+## Manifest v2 (2026-10-24, PLAN-007 WP2.2)
+
+Task 0.6.0 and grader 1.7.1 unchanged: `private/generate.py` rebuilds the same items and keys byte for byte from seed `t1-2026-10`. The manifest moves to v2: the capability card (`card.md`); one critical group `answers` (rule fraction) over every answer check, so resolved means every field right with its evidence; the format check apart with its 0.2 deduction reported separately; each item dev, in the structure group of its level. The source reference names tool-001 at its retired path.

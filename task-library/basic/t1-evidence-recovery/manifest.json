@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "t1-evidence-recovery",
   "version": "0.6.0",
   "familyId": "t1-evidence-recovery",
@@ -9,7 +9,7 @@
     "kind": "original-design",
     "references": [
       "docs/design/TASK_SET_V2.md",
-      "task-library/calibration/tool-001-doc-evidence-recovery"
+      "task-library/retired/tool-001-doc-evidence-recovery"
     ]
   },
   "license": {
@@ -29,7 +29,11 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "26dc5e4e5903a98a802af45511fc253ad5feff8a38abb34e9c05b6b47bf0c7ef"
+        "sha256": "1ad24ac898f8e8d46b4932509f71d6b144b5b68b48a5974c45e2a0bab9c2f7e0"
+      },
+      {
+        "path": "card.md",
+        "sha256": "1cb4a93a6d1da3cc6ad947d024dc39f0587ea02ee166560e5330ab9d43181594"
       },
       {
         "path": "rubric.md",
@@ -45,7 +49,7 @@
       },
       {
         "path": "private/generate.py",
-        "sha256": "659414aa1ca180ddb0f56facdddf5b30483e866c25571642234cf29662460826"
+        "sha256": "ebc3c7617d8884d4cdb8a4b9f63d027067e7f7d6400afb55e8e08282a670b17f"
       },
       {
         "path": "private/grader.py",
@@ -407,9 +411,71 @@
       ]
     }
   ],
-  "scoring": {
-    "formatCheckId": "answer-format",
-    "formatPenalty": 0.2
+  "tier": "basic",
+  "capabilities": [
+    "agentic"
+  ],
+  "card": "card.md",
+  "scoreModel": {
+    "primary": {
+      "kind": "resolved"
+    },
+    "groups": [
+      {
+        "id": "answers",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "q1",
+          "q2",
+          "q3",
+          "q4",
+          "q5",
+          "q6",
+          "q7",
+          "q8",
+          "q9",
+          "q10",
+          "q11",
+          "q12",
+          "q13",
+          "q14",
+          "q15",
+          "q1-tier",
+          "q1-freeze",
+          "q1-class",
+          "q1-reach",
+          "q1-procedure",
+          "q1-approver",
+          "q1-deadline",
+          "q1-cf_procedure",
+          "q1-cf_deadline",
+          "q2-tier",
+          "q2-freeze",
+          "q2-class",
+          "q2-reach",
+          "q2-procedure",
+          "q2-approver",
+          "q2-deadline",
+          "q2-cf_procedure",
+          "q2-cf_deadline",
+          "q3-tier",
+          "q3-freeze",
+          "q3-class",
+          "q3-reach",
+          "q3-procedure",
+          "q3-approver",
+          "q3-deadline",
+          "q3-cf_procedure",
+          "q3-cf_deadline"
+        ]
+      }
+    ],
+    "format": {
+      "checkId": "answer-format",
+      "penalty": 0.2
+    }
   },
   "items": [
     {
@@ -492,7 +558,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L1",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L1-02",
@@ -574,7 +648,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L1",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L1-03",
@@ -656,7 +738,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L1",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L1-04",
@@ -738,7 +828,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L1",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L2-01",
@@ -842,7 +940,15 @@
         "REQ-Q6",
         "REQ-Q7",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L2",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L2-02",
@@ -946,7 +1052,15 @@
         "REQ-Q6",
         "REQ-Q7",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L2",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L2-03",
@@ -1050,7 +1164,15 @@
         "REQ-Q6",
         "REQ-Q7",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L2",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L2-04",
@@ -1154,7 +1276,15 @@
         "REQ-Q6",
         "REQ-Q7",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L2",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L3-01",
@@ -1316,7 +1446,15 @@
         "REQ-Q8",
         "REQ-Q9",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L3",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L3-02",
@@ -1478,7 +1616,15 @@
         "REQ-Q8",
         "REQ-Q9",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L3",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L3-03",
@@ -1640,7 +1786,15 @@
         "REQ-Q8",
         "REQ-Q9",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L3",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L3-04",
@@ -1802,7 +1956,15 @@
         "REQ-Q8",
         "REQ-Q9",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L3",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L4-01",
@@ -2033,7 +2195,15 @@
         "REQ-Q9",
         "REQ-Q10",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L4-02",
@@ -2264,7 +2434,15 @@
         "REQ-Q9",
         "REQ-Q10",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L4-03",
@@ -2495,7 +2673,15 @@
         "REQ-Q9",
         "REQ-Q10",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L4-04",
@@ -2726,7 +2912,15 @@
         "REQ-Q9",
         "REQ-Q10",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L5-01",
@@ -3019,7 +3213,15 @@
         "REQ-Q11",
         "REQ-Q12",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L5",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L5-02",
@@ -3312,7 +3514,15 @@
         "REQ-Q11",
         "REQ-Q12",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L5",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L5-03",
@@ -3605,7 +3815,15 @@
         "REQ-Q11",
         "REQ-Q12",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L5",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L5-04",
@@ -3898,7 +4116,15 @@
         "REQ-Q11",
         "REQ-Q12",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L5",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L6-01",
@@ -4326,7 +4552,15 @@
         "REQ-Q14",
         "REQ-Q15",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L6",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L6-02",
@@ -4758,7 +4992,15 @@
         "REQ-Q14",
         "REQ-Q15",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L6",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L6-03",
@@ -5186,7 +5428,15 @@
         "REQ-Q14",
         "REQ-Q15",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L6",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L6-04",
@@ -5618,7 +5868,15 @@
         "REQ-Q14",
         "REQ-Q15",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L6",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L7-01",
@@ -6057,7 +6315,15 @@
         "REQ-Q13",
         "REQ-Q14",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L7",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L7-02",
@@ -6484,7 +6750,15 @@
         "REQ-Q13",
         "REQ-Q14",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L7",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L7-03",
@@ -6911,7 +7185,15 @@
         "REQ-Q13",
         "REQ-Q14",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L7",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "L7-04",
@@ -7342,7 +7624,15 @@
         "REQ-Q13",
         "REQ-Q14",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:L7",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "D2-01",
@@ -7864,7 +8154,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:D2",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "D2-02",
@@ -8386,7 +8684,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:D2",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "D2-03",
@@ -8908,7 +9214,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:D2",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "D2-04",
@@ -9430,7 +9744,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:D2",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "D4-01",
@@ -9952,7 +10274,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:D4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "D4-02",
@@ -10474,7 +10804,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:D4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "D4-03",
@@ -10996,7 +11334,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:D4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "D4-04",
@@ -11518,7 +11864,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:D4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "D6-01",
@@ -12040,7 +12394,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:D6",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "D6-02",
@@ -12562,7 +12924,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:D6",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "D6-03",
@@ -13084,7 +13454,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:D6",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "D6-04",
@@ -13606,7 +13984,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:D6",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "D8-01",
@@ -14128,7 +14514,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:D8",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "D8-02",
@@ -14650,7 +15044,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:D8",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "D8-03",
@@ -15172,7 +15574,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:D8",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "D8-04",
@@ -15694,7 +16104,15 @@
         "REQ-Q4",
         "REQ-Q5",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:D8",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "F2-01",
@@ -16442,7 +16860,15 @@
         "REQ-Q3-APPROVER",
         "REQ-Q3-DEADLINE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:F2",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "F2-02",
@@ -17186,7 +17612,15 @@
         "REQ-Q3-APPROVER",
         "REQ-Q3-DEADLINE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:F2",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "F2-03",
@@ -17926,7 +18360,15 @@
         "REQ-Q3-APPROVER",
         "REQ-Q3-DEADLINE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:F2",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "F2-04",
@@ -18674,7 +19116,15 @@
         "REQ-Q3-APPROVER",
         "REQ-Q3-DEADLINE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:F2",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "F3-01",
@@ -19437,7 +19887,15 @@
         "REQ-Q3-APPROVER",
         "REQ-Q3-DEADLINE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:F3",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "F3-02",
@@ -20200,7 +20658,15 @@
         "REQ-Q3-APPROVER",
         "REQ-Q3-DEADLINE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:F3",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "F3-03",
@@ -20947,7 +21413,15 @@
         "REQ-Q3-APPROVER",
         "REQ-Q3-DEADLINE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:F3",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "F3-04",
@@ -21698,7 +22172,15 @@
         "REQ-Q3-APPROVER",
         "REQ-Q3-DEADLINE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:F3",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "F4-01",
@@ -22504,7 +22986,15 @@
         "REQ-Q3-APPROVER",
         "REQ-Q3-DEADLINE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:F4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "F4-02",
@@ -23302,7 +23792,15 @@
         "REQ-Q3-APPROVER",
         "REQ-Q3-DEADLINE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:F4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "F4-03",
@@ -24088,7 +24586,15 @@
         "REQ-Q3-APPROVER",
         "REQ-Q3-DEADLINE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:F4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "F4-04",
@@ -24886,7 +25392,15 @@
         "REQ-Q3-APPROVER",
         "REQ-Q3-DEADLINE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:F4",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "F5-01",
@@ -25694,7 +26208,15 @@
         "REQ-Q3-CF_PROCEDURE",
         "REQ-Q3-CF_DEADLINE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:F5",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "F5-02",
@@ -26490,7 +27012,15 @@
         "REQ-Q3-CF_PROCEDURE",
         "REQ-Q3-CF_DEADLINE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:F5",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "F5-03",
@@ -27282,7 +27812,15 @@
         "REQ-Q3-CF_PROCEDURE",
         "REQ-Q3-CF_DEADLINE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:F5",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     },
     {
       "id": "F5-04",
@@ -28074,7 +28612,15 @@
         "REQ-Q3-CF_PROCEDURE",
         "REQ-Q3-CF_DEADLINE",
         "REQ-FORMAT"
-      ]
+      ],
+      "split": "dev",
+      "structure": "level:F5",
+      "provenance": {
+        "source": "project generator private/generate.py, seed t1-2026-10",
+        "published": "2026-10-22",
+        "license": "project-authored",
+        "exposure": "generated"
+      }
     }
   ],
   "generator": {
