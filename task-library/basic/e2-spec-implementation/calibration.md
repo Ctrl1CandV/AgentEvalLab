@@ -90,3 +90,19 @@ deepseek-flash passed every check of all three items. On `sheet`, glm scored 97%
 
   A model that combines a savings start with local search or ruin and recreate should land between these.
 
+
+## Grader 1.6.0 and manifest v2 (2026-10-24, task 0.5.0 unchanged, PLAN-007 WP2.2)
+
+**Why.** v2 reports open-ended items by a raw value through anchors, not by rungs (MEASUREMENT §3), and routes is an open-ended bridge in core engineering (TASK_LIBRARY §2).
+
+**Change.**
+
+- **Routes** reports `routeShare`, the mean over the eight hidden instances of `(baseline − cost) / (baseline − best known)`, each at least 0 and never capped (an infeasible, missing or late plan counts 0, as the contract says): the contract's own scale as a value. Its anchors are `baseline` (0) and `best-known` (1) on that scale. Diagnostics: `routeCost` (the total length, an instance without a feasible plan, or worse than the baseline, at the baseline's cost) and `feasibleInstances`. The 32 rung checks are unchanged and become labels in a non-critical group.
+- Routes gradings run one at a time under a lock (`~/.cache/agenteval/e2-routes-grading.lock`), since the contract's limit is wall time; the noise test (`--noise`) measures what load does to the value.
+- **Manifest v2**: the card; one critical group per contract item and a critical `readme`; routes headlined by `routeShare` (`primaryByItem`); every item dev, its own structure group.
+
+**Self-calibration** (`logs/self-calibration-0.5.0-grader-1.6.0.log`, 60/60): unchanged results; LNS 22/32 rungs, savings 12/32, the baseline, an infeasible plan, a slow and a missing program none.
+
+**Re-grade.** Every graded 0.5.0 routes trial (`runs/4e0b6c30-…`, `runs/a69d9886-…`) was re-graded under 1.6.0; trials stopped by infrastructure stay unscored.
+
+**Noise test** (`python3 private/grader.py --noise [--load N]`, `logs/noise-0.5.0-grader-1.6.0-routes.log`, PROTOCOL §9), declared tolerance 0.03 on `routeShare`. Savings, which finishes at once, is identical under any load. The 7-second LNS, which stops by the wall clock: with 5 busy processes on 20 cores, 0.909 → 0.900 (0.009), no label changed (pass); with all 20 cores busy, 0.908 → 0.856 (0.052), three rung labels lost (fail). Two quiet runs agree to 0.001. The contract's limit is wall time, so a time-bounded search does less work when its core is shared; the lock removes contention between routes gradings but not other load. Moving the limit to CPU time would change the contract, and so the task version, which a bridge should not; this stays open for the user (PLAN-007 Phase 2 review).

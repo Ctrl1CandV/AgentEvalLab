@@ -1,0 +1,6 @@
+routes lns: quiet {'routeShare': 0.908019, 'routeCost': 345782.21, 'feasibleInstances': 8}; busy (20 cores loaded) {'routeShare': 0.856361, 'routeCost': 354952.22, 'feasibleInstances': 8}; routeShare change 0.0517; checks quiet only ['h5-90', 'h6-80', 'h7-80'], busy only []  NOT STABLE
+routes savings: quiet {'routeShare': 0.773517, 'routeCost': 351202.681, 'feasibleInstances': 8}; busy (20 cores loaded) {'routeShare': 0.773517, 'routeCost': 351202.681, 'feasibleInstances': 8}; routeShare change 0.0000; checks quiet only [], busy only []
+RESULT: FAIL (1/2), tolerance 0.03 on routeShare
+routes lns: quiet {'routeShare': 0.908702, 'routeCost': 345678.873, 'feasibleInstances': 8}; busy (5 busy processes on 20 cores) {'routeShare': 0.90023, 'routeCost': 347479.504, 'feasibleInstances': 8}; routeShare change 0.0085; checks quiet only [], busy only []
+routes savings: quiet {'routeShare': 0.773517, 'routeCost': 351202.681, 'feasibleInstances': 8}; busy (5 busy processes on 20 cores) {'routeShare': 0.773517, 'routeCost': 351202.681, 'feasibleInstances': 8}; routeShare change 0.0000; checks quiet only [], busy only []
+RESULT: PASS (2/2), tolerance 0.03 on routeShare

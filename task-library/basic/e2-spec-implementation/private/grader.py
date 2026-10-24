@@ -4,8 +4,16 @@ launcher when the request provides one, and compares its JSON output with the ex
 
 Fixtures are grouped into checks; a check passes when every fixture in it passes. The score is the fraction of
 checks passed, so a partly correct implementation gets partial credit.
+
+Grader 1.6.0 (manifest v2): the routes item, the open-ended bridge, also reports its raw values. `routeShare` is the mean
+over the eight hidden instances of how far each plan's cost gets from the baseline's towards the best known cost
+(per instance at least 0, never capped; an infeasible, missing or late plan counts 0, as the contract says); it is the
+item's headline. `routeCost` (the total cost, an instance without a feasible plan at its baseline's cost, a plan worse
+than the baseline at the baseline's) and `feasibleInstances` are diagnostics. Routes gradings run one at a time under a
+lock, since the contract's limit is wall time (PROTOCOL §9).
 """
 import argparse
+import fcntl
 import importlib.util
 import json
 import os
@@ -17,7 +25,7 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 TASK_ID = "e2-spec-implementation"
 TASK_VERSION = "0.5.0"
-GRADER_VERSION = "1.5.0"
+GRADER_VERSION = "1.6.0"
 # Per item: the file the candidate delivers, the module holding its hidden fixtures, and how a fixture becomes the
 # program's input. Sheet output is compared cell by cell with numeric tolerance; the others must match exactly.
 ITEMS = {
@@ -30,6 +38,7 @@ ITEMS = {
 FIXTURE_TIMEOUT_SECONDS = 10
 ROUTES_TIMEOUT_SECONDS = 10
 MAX_OUTPUT_BYTES = 1_000_000
+ROUTES_LOCK = os.path.expanduser("~/.cache/agenteval/e2-routes-grading.lock")
 
 
 def load_fixtures(item_id):
@@ -122,32 +131,51 @@ def run_routes(program, data, launcher):
         shutil.rmtree(directory, ignore_errors=True)
 
 
-def grade_routes(submission, launcher):
+def grade_routes(submission, launcher, raw=None):
     """Four checks per hidden instance: the plan is feasible and gets at least 50, 80, 90 or 97% of the way from the
-    baseline's cost to the best-known cost."""
+    baseline's cost to the best-known cost. The raw values go into `raw` when given."""
     sys.path.insert(0, os.path.join(HERE, "routes"))
     import instances
     import model
     with open(os.path.join(HERE, "routes", "anchors.json"), encoding="utf-8") as handle:
         anchors = json.load(handle)
     program = os.path.join(submission, "routes.py")
-    results = {}
-    for name in instances.HIDDEN:
-        data = instances.instance(name)
-        plan, reason = run_routes(program, data, launcher) if os.path.isfile(program) else (None, "routes.py missing")
-        share = 0.0
-        if plan is not None:
-            cost, problem = model.check(data, plan)
-            if problem is None:
-                baseline, best = anchors[name]["baseline"], anchors[name]["best"]
-                share = max(0.0, (baseline - cost) / (baseline - best))
-                reason = f"cost {cost:.1f}, {share:.3f} of the way"
-            else:
-                reason = f"infeasible: {problem}"
-        for threshold in instances.THRESHOLDS:
-            results[f"{name}-{threshold}"] = {"passed": share * 100 >= threshold, "fixtures": {name: reason}}
+    results, shares, cost_total, feasible = {}, [], 0.0, 0
+    os.makedirs(os.path.dirname(ROUTES_LOCK), exist_ok=True)
+    with open(ROUTES_LOCK, "a") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        for name in instances.HIDDEN:
+            data = instances.instance(name)
+            plan, reason = run_routes(program, data, launcher) if os.path.isfile(program) else (None, "routes.py missing")
+            baseline, best = anchors[name]["baseline"], anchors[name]["best"]
+            share, counted = 0.0, baseline
+            if plan is not None:
+                cost, problem = model.check(data, plan)
+                if problem is None:
+                    share = max(0.0, (baseline - cost) / (baseline - best))
+                    counted, feasible = min(cost, baseline), feasible + 1
+                    reason = f"cost {cost:.1f}, {share:.3f} of the way"
+                else:
+                    reason = f"infeasible: {problem}"
+            shares.append(share)
+            cost_total += counted
+            for threshold in instances.THRESHOLDS:
+                results[f"{name}-{threshold}"] = {"passed": share * 100 >= threshold, "fixtures": {name: reason}}
     results["readme"] = {"passed": os.path.isfile(os.path.join(submission, "README.md")), "fixtures": {}}
+    if raw is not None:
+        raw.update({"routeShare": sum(shares) / len(shares), "routeCost": cost_total, "feasibleInstances": feasible})
     return results
+
+
+def grade_with_metrics(item_id, submission, launcher):
+    """(results, metrics of grader result v2): only the routes item reports metrics."""
+    if item_id != "routes":
+        return grade(item_id, submission, launcher), []
+    raw = {}
+    results = grade_routes(submission, launcher, raw)
+    return results, [{"id": "routeShare", "value": round(raw["routeShare"], 6), "unit": "mean share of the way from baseline to best known"},
+                     {"id": "routeCost", "value": round(raw["routeCost"], 3), "unit": "total route length"},
+                     {"id": "feasibleInstances", "value": raw["feasibleInstances"], "unit": "of 8 instances"}]
 
 
 def grade(item_id, submission, launcher):
@@ -197,14 +225,14 @@ def grade_request(request_path, result_path):
     if item_id not in ITEMS:
         raise ValueError("unknown item")
     launcher = (request.get("sandbox") or {}).get("launcher")
-    results = grade(item_id, request["submission"]["directory"], launcher)
+    results, metrics = grade_with_metrics(item_id, request["submission"]["directory"], launcher)
     write_json(os.path.join(request["evidenceRoot"], "fixtures.json"), results)
     active = set(request["context"]["activeRequirementIds"])
     checks = [{"id": check_id(item_id, check), "requirementId": requirement_id(item_id, check), "status": "pass" if result["passed"] else "fail",
                "evidenceRefs": ["fixtures.json"]} for check, result in sorted(results.items()) if requirement_id(item_id, check) in active]
-    write_json(result_path, {"schemaVersion": 1, "requestId": request["requestId"], "taskId": TASK_ID, "taskVersion": TASK_VERSION,
+    write_json(result_path, {"schemaVersion": 2, "requestId": request["requestId"], "taskId": TASK_ID, "taskVersion": TASK_VERSION,
                              "graderVersion": GRADER_VERSION, "gradingStatus": "completed", "checks": checks, "dimensions": [],
-                             "unscoredCheckIds": [], "reason": None, "error": None})
+                             "unscoredCheckIds": [], "reason": None, "error": None, "metrics": metrics})
 
 
 def routes_calibration():
@@ -270,12 +298,48 @@ def self_calibrate():
     return 0 if not failed else 1
 
 
+def routes_noise(launcher, tolerance, load_processes=None):
+    """PROTOCOL §9 noise test of the routes item (grader 1.6.0): the same solutions judged on a quiet machine and with
+    every core busy. Verdicts are reported; the headline routeShare must change by at most `tolerance`."""
+    solutions = os.path.join(HERE, "routes", "solutions")
+    load_processes = load_processes or os.cpu_count() or 1
+    rows = []
+    for name in ("lns", "savings"):
+        judged = []
+        for loaded in (False, True):
+            load = [subprocess.Popen([sys.executable, "-c", "while True: pass"]) for _ in range(load_processes)] if loaded else []
+            try:
+                with tempfile.TemporaryDirectory(prefix="e2-noise-") as submission:
+                    shutil.copy(os.path.join(solutions, f"{name}.py"), os.path.join(submission, "routes.py"))
+                    with open(os.path.join(submission, "README.md"), "w", encoding="utf-8") as handle:
+                        handle.write("Noise test.\n")
+                    results, metrics = grade_with_metrics("routes", submission, launcher)
+            finally:
+                for process in load:
+                    process.kill()
+                    process.wait()
+            judged.append(({check for check, result in results.items() if result["passed"]}, {metric["id"]: metric["value"] for metric in metrics}))
+        (quiet, quiet_metrics), (busy, busy_metrics) = judged
+        change = abs(busy_metrics["routeShare"] - quiet_metrics["routeShare"])
+        ok = change <= tolerance and busy_metrics["feasibleInstances"] == quiet_metrics["feasibleInstances"]
+        print(f"routes {name}: quiet {quiet_metrics}; busy ({load_processes} busy processes on {os.cpu_count()} cores) {busy_metrics}; routeShare change {change:.4f}; "
+              f"checks quiet only {sorted(quiet - busy)}, busy only {sorted(busy - quiet)}" + ("" if ok else "  NOT STABLE"))
+        rows.append(ok)
+    print(f"RESULT: {'PASS' if all(rows) else 'FAIL'} ({sum(rows)}/{len(rows)}), tolerance {tolerance} on routeShare")
+    return 0 if all(rows) else 1
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--request")
     parser.add_argument("--result")
     parser.add_argument("--self-calibrate", action="store_true")
+    parser.add_argument("--noise", action="store_true", help="the routes noise test (quiet against loaded machine)")
+    parser.add_argument("--launcher", help="sandbox launcher for the noise test")
+    parser.add_argument("--load", type=int, help="busy processes in the noise test's loaded run (default: one per core)")
     args = parser.parse_args()
+    if args.noise:
+        raise SystemExit(routes_noise(args.launcher, 0.03, args.load))
     if args.self_calibrate:
         raise SystemExit(self_calibrate())
     if not args.request or not args.result:

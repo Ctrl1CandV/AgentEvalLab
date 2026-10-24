@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "e2-spec-implementation",
   "version": "0.5.0",
   "familyId": "e2-spec-implementation",
@@ -28,7 +28,11 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "c2f8ffe3777c97f36cec0bced3c8b090d5294ba405d0668dc825fda6df932c3c"
+        "sha256": "8b9428aa035d8276f4420650547879455104fdc3e8652bee05ebc2eb8b082bbb"
+      },
+      {
+        "path": "card.md",
+        "sha256": "a35d53ad7604b0b6489e688321fe23c6f85cfb8e01f7752483fa5f6a9731bbc2"
       },
       {
         "path": "rubric.md",
@@ -36,11 +40,11 @@
       },
       {
         "path": "private/build_manifest.py",
-        "sha256": "867bd5aa07a796012ecc8510db2a9b84508ce1ad84392ab467df95b98c61b363"
+        "sha256": "87dbf819c06f48ee5f99e6f6b6875fddcd133d2a090116d05eff383260d72e7c"
       },
       {
         "path": "private/grader.py",
-        "sha256": "058bae88715b96eb37b2507c49a0e5177d68a6042d53ba4c18f1a33b0cd6069c"
+        "sha256": "5c975a2742f10cdd45d95736059df44c2a4266ae32e07fb895ed42f6de5208e7"
       },
       {
         "path": "private/ledger/fixtures.py",
@@ -798,6 +802,206 @@
       ]
     }
   ],
+  "tier": "basic",
+  "capabilities": [
+    "engineering"
+  ],
+  "card": "card.md",
+  "scoreModel": {
+    "primary": {
+      "kind": "resolved"
+    },
+    "primaryByItem": {
+      "routes": {
+        "kind": "metric",
+        "metric": "routeShare"
+      }
+    },
+    "groups": [
+      {
+        "id": "sheet",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "sheet-arithmetic",
+          "sheet-chains",
+          "sheet-comparison",
+          "sheet-cycles",
+          "sheet-division",
+          "sheet-empty-references",
+          "sheet-error-propagation",
+          "sheet-functions",
+          "sheet-if",
+          "sheet-literals",
+          "sheet-number-format",
+          "sheet-parse-errors",
+          "sheet-power",
+          "sheet-references",
+          "sheet-rounding",
+          "sheet-text"
+        ]
+      },
+      {
+        "id": "ledger",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "ledger-amounts",
+          "ledger-capture",
+          "ledger-duplicates",
+          "ledger-error-order",
+          "ledger-frozen",
+          "ledger-fx-rounding",
+          "ledger-holds",
+          "ledger-open",
+          "ledger-output-format",
+          "ledger-reversal",
+          "ledger-transfer",
+          "ledger-withdraw"
+        ]
+      },
+      {
+        "id": "recur",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "recur-clamp",
+          "recur-count-except",
+          "recur-daily",
+          "recur-examples",
+          "recur-limits",
+          "recur-monthly",
+          "recur-nth",
+          "recur-validation",
+          "recur-weekly",
+          "recur-yearly"
+        ]
+      },
+      {
+        "id": "query",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "query-aggregates",
+          "query-arithmetic",
+          "query-basics",
+          "query-division",
+          "query-error-order",
+          "query-grouping",
+          "query-joins",
+          "query-like-functions",
+          "query-logic",
+          "query-names",
+          "query-ordering",
+          "query-parse",
+          "query-types"
+        ]
+      },
+      {
+        "id": "routes",
+        "weight": 1,
+        "critical": false,
+        "rule": "fraction",
+        "checkIds": [
+          "routes-h1-50",
+          "routes-h1-80",
+          "routes-h1-90",
+          "routes-h1-97",
+          "routes-h2-50",
+          "routes-h2-80",
+          "routes-h2-90",
+          "routes-h2-97",
+          "routes-h3-50",
+          "routes-h3-80",
+          "routes-h3-90",
+          "routes-h3-97",
+          "routes-h4-50",
+          "routes-h4-80",
+          "routes-h4-90",
+          "routes-h4-97",
+          "routes-h5-50",
+          "routes-h5-80",
+          "routes-h5-90",
+          "routes-h5-97",
+          "routes-h6-50",
+          "routes-h6-80",
+          "routes-h6-90",
+          "routes-h6-97",
+          "routes-h7-50",
+          "routes-h7-80",
+          "routes-h7-90",
+          "routes-h7-97",
+          "routes-h8-50",
+          "routes-h8-80",
+          "routes-h8-90",
+          "routes-h8-97"
+        ]
+      },
+      {
+        "id": "readme",
+        "weight": 1,
+        "critical": true,
+        "rule": "all",
+        "checkIds": [
+          "readme"
+        ]
+      },
+      {
+        "id": "routes-share",
+        "weight": 1,
+        "critical": false,
+        "rule": "metric",
+        "checkIds": [],
+        "metric": "routeShare",
+        "items": [
+          "routes"
+        ]
+      }
+    ],
+    "metrics": [
+      {
+        "id": "routeShare",
+        "unit": "mean share of the way from baseline to best known",
+        "direction": "higher",
+        "items": [
+          "routes"
+        ],
+        "anchors": {
+          "version": "1",
+          "points": [
+            {
+              "name": "baseline",
+              "maps": 0
+            },
+            {
+              "name": "best-known",
+              "maps": 1
+            }
+          ]
+        }
+      },
+      {
+        "id": "routeCost",
+        "unit": "total route length",
+        "direction": "lower",
+        "items": [
+          "routes"
+        ]
+      },
+      {
+        "id": "feasibleInstances",
+        "unit": "of 8 instances",
+        "direction": "higher",
+        "items": [
+          "routes"
+        ]
+      }
+    ]
+  },
   "items": [
     {
       "id": "sheet",
@@ -826,7 +1030,15 @@
         "REQ-SHEET-ROUNDING",
         "REQ-SHEET-TEXT",
         "REQ-README"
-      ]
+      ],
+      "split": "dev",
+      "structure": "item:sheet",
+      "provenance": {
+        "source": "project-authored specification, reference and fixtures (private/build_manifest.py)",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
     },
     {
       "id": "ledger",
@@ -851,7 +1063,15 @@
         "REQ-LEDGER-TRANSFER",
         "REQ-LEDGER-WITHDRAW",
         "REQ-README"
-      ]
+      ],
+      "split": "dev",
+      "structure": "item:ledger",
+      "provenance": {
+        "source": "project-authored specification, reference and fixtures (private/build_manifest.py)",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
     },
     {
       "id": "recur",
@@ -874,7 +1094,15 @@
         "REQ-RECUR-WEEKLY",
         "REQ-RECUR-YEARLY",
         "REQ-README"
-      ]
+      ],
+      "split": "dev",
+      "structure": "item:recur",
+      "provenance": {
+        "source": "project-authored specification, reference and fixtures (private/build_manifest.py)",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
     },
     {
       "id": "query",
@@ -900,7 +1128,15 @@
         "REQ-QUERY-PARSE",
         "REQ-QUERY-TYPES",
         "REQ-README"
-      ]
+      ],
+      "split": "dev",
+      "structure": "item:query",
+      "provenance": {
+        "source": "project-authored specification, reference and fixtures (private/build_manifest.py)",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
     },
     {
       "id": "routes",
@@ -961,7 +1197,21 @@
         "REQ-ROUTES-H8-90",
         "REQ-ROUTES-H8-97",
         "REQ-README"
-      ]
+      ],
+      "split": "dev",
+      "structure": "item:routes",
+      "provenance": {
+        "source": "project-authored specification, reference and fixtures (private/build_manifest.py)",
+        "published": "2026-10-20",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      },
+      "anchors": {
+        "routeShare": {
+          "baseline": 0,
+          "best-known": 1
+        }
+      }
     }
   ],
   "toolProfiles": [
@@ -969,7 +1219,7 @@
   ],
   "grader": {
     "id": "e2-fixtures",
-    "version": "1.5.0",
+    "version": "1.6.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

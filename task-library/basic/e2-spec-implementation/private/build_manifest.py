@@ -7,7 +7,28 @@ import pathlib
 
 ROOT = pathlib.Path(".")
 ITEMS = {"sheet": "sheet", "ledger": "ledger", "recur": "recur", "query": "query", "routes": "routes"}
-VERSION, GRADER_VERSION = "0.5.0", "1.5.0"
+VERSION, GRADER_VERSION = "0.5.0", "1.6.0"
+# Manifest v2 (PLAN-007 WP2.2). Each item is its own task and structure group, all dev. sheet, ledger, recur and query
+# are contract items (basic): one critical group each. routes is the open-ended bridge: headlined by routeShare, the
+# mean share of the way from the baseline's cost to the best known cost over its eight hidden instances (anchors at 0
+# and 1 of that scale, uncapped); its rungs are labels in a non-critical group. The README is critical for every item.
+PUBLISHED = "2026-10-20"
+
+
+def score_model(checks):
+    groups = [{"id": item, "weight": 1, "critical": item != "routes", "rule": "fraction", "checkIds": [f"{item}-{check}" for check in checks[item]]}
+              for item in ITEMS]
+    groups.append({"id": "readme", "weight": 1, "critical": True, "rule": "all", "checkIds": ["readme"]})
+    groups.append({"id": "routes-share", "weight": 1, "critical": False, "rule": "metric", "checkIds": [], "metric": "routeShare", "items": ["routes"]})
+    return {
+        "primary": {"kind": "resolved"},
+        "primaryByItem": {"routes": {"kind": "metric", "metric": "routeShare"}},
+        "groups": groups,
+        "metrics": [{"id": "routeShare", "unit": "mean share of the way from baseline to best known", "direction": "higher", "items": ["routes"],
+                     "anchors": {"version": "1", "points": [{"name": "baseline", "maps": 0}, {"name": "best-known", "maps": 1}]}},
+                    {"id": "routeCost", "unit": "total route length", "direction": "lower", "items": ["routes"]},
+                    {"id": "feasibleInstances", "unit": "of 8 instances", "direction": "higher", "items": ["routes"]}],
+    }
 
 
 def digest(path):
@@ -37,24 +58,31 @@ def routes_public():
 
 def main():
     routes_public()
-    trusted = ["calibration.md", "rubric.md"] + sorted(str(path.relative_to(ROOT)) for path in (ROOT / "private").rglob("*")
+    trusted = ["calibration.md", "card.md", "rubric.md"] + sorted(str(path.relative_to(ROOT)) for path in (ROOT / "private").rglob("*")
                                                      if path.is_file() and "__pycache__" not in path.parts and not path.name.endswith(".pyc")
                                                      and not any(part.startswith(".") for part in path.parts))
-    requirements, items = [], []
+    requirements, items, checks = [], [], {}
     for item, level in ITEMS.items():
+        checks[item] = checks_of(item)
         ids = [f"REQ-{item.upper()}-{check.upper()}" for check in checks_of(item)]
         requirements += [{"id": requirement, "critical": True, "introducedAt": f"e2-spec-implementation {VERSION}", "checkIds": [f"{item}-{check}"]}
                          for requirement, check in zip(ids, checks_of(item))]
         files = sorted(str(path.relative_to(ROOT)) for path in (ROOT / "items" / item).rglob("*") if path.is_file() and not any(part.startswith(".") for part in path.parts))
-        items.append({"id": item, "level": level, "files": [{"path": path, "sha256": digest(path)} for path in files], "activeRequirementIds": ids + ["REQ-README"]})
+        items.append({"id": item, "level": level, "files": [{"path": path, "sha256": digest(path)} for path in files], "activeRequirementIds": ids + ["REQ-README"],
+                      "split": "dev", "structure": f"item:{item}",
+                      "provenance": {"source": "project-authored specification, reference and fixtures (private/build_manifest.py)",
+                                     "published": PUBLISHED, "license": "project-authored", "exposure": "private-to-runs"},
+                      **({"anchors": {"routeShare": {"baseline": 0, "best-known": 1}}} if item == "routes" else {})})
     requirements.append({"id": "REQ-README", "critical": True, "introducedAt": f"e2-spec-implementation {VERSION}", "checkIds": ["readme"]})
     manifest = {
-        "schemaVersion": 1, "id": "e2-spec-implementation", "version": VERSION, "familyId": "e2-spec-implementation", "capability": "engineering", "usage": "development",
+        "schemaVersion": 2, "id": "e2-spec-implementation", "version": VERSION, "familyId": "e2-spec-implementation", "capability": "engineering", "usage": "development",
         "source": {"kind": "original-design", "references": ["docs/design/TASK_SET_V2.md"]},
         "license": {"taskText": "Original project-authored specifications, references and fixtures.", "thirdPartyContent": []},
         "entryPoint": {"instruction": "instruction.md"},
         "files": {"public": [{"path": "instruction.md", "sha256": digest("instruction.md")}], "trusted": [{"path": path, "sha256": digest(path)} for path in trusted]},
-        "requirements": requirements, "items": items, "toolProfiles": ["workspace-basic"],
+        "requirements": requirements,
+        "tier": "basic", "capabilities": ["engineering"], "card": "card.md", "scoreModel": score_model(checks),
+        "items": items, "toolProfiles": ["workspace-basic"],
         "grader": {"id": "e2-fixtures", "version": GRADER_VERSION, "entryPoint": "private/grader.py", "executable": "python3",
                    "args": ["{entryPoint}", "--request", "{request}", "--result", "{result}"]},
         "environment": {"runtime": "Python 3.13", "dependencies": "Python standard library; no network", "network": False,
