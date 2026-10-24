@@ -35,7 +35,7 @@
     {
       "id": "eng004-basic",
       "packagePath": "task-library/basic/eng-004-resource-index",
-      "packageManifestSha256": "c7561872fcd236963017313f16300044e435a71ee7057941bdb9a83d497dc052",
+      "packageManifestSha256": "7eb0a612953ebc556b1e51051304e03560ea098f9e3241891a67a289c90a9406",
       "input": {
         "prompt": "Implement the request in public/task-contract.md. Use the supplied workspace tools and run relevant checks before reporting."
       },
@@ -53,7 +53,7 @@
     {
       "id": "eng004-augmented",
       "packagePath": "task-library/basic/eng-004-resource-index",
-      "packageManifestSha256": "c7561872fcd236963017313f16300044e435a71ee7057941bdb9a83d497dc052",
+      "packageManifestSha256": "7eb0a612953ebc556b1e51051304e03560ea098f9e3241891a67a289c90a9406",
       "input": {
         "prompt": "Implement the request in public/task-contract.md. Use the supplied workspace tools and run relevant checks before reporting."
       },

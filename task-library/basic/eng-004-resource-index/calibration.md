@@ -38,3 +38,7 @@ The pinned baseline repository (commit 3b43f3c) was a Git link to a repository t
 - **Build.** `private/build_baseline.py` builds a two-commit history with fixed authors and dates, so the baseline commit, 0bd1eda866f64c4cdd990e7636cead1ebd2a6cd2, is reproducible. It writes `baseline.bundle`, and `scripts/prepare-baselines.mjs` restores it as a pinned clone before checks and runs, as for eng-005.
 - **Guards (grader 1.2.0).** The untouched baseline rejected every bad argument, since it has no `search` command, and kept its index, so it passed `invalid-pagination` and `index-compatibility`. Both now count only when `search-filter` passes, so an untouched workspace earns nothing.
 - **Self-calibration.** See `logs/self-calibration-0.3.0.log`: both references on the rebuilt baseline pass 7/7 three times, the three mutants are rejected, the CSV delimiter cases hold, and the untouched baseline earns nothing.
+
+## Manifest v2 (2026-10-24, PLAN-007 WP2.2)
+
+Task 0.3.0 and grader 1.2.0 unchanged. The manifest moves to v2 with the capability card (`card.md`), one critical group `acceptance` (rule fraction) over the seven checks, and the task placement (dev, `package:eng-004`). No model has run this version, so no budget is stated and the package is not yet in `suites/basic.json`.

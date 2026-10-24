@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "eng-004-resource-index",
   "version": "0.3.0",
   "familyId": "eng-resource-index-maintenance",
@@ -37,7 +37,11 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "739308d5d60b16fd31e9d7e925370dd1f3cd2f5d4727aff4ae9ce0900179e934"
+        "sha256": "adf3d2ffc9a76bf70b224889df7876ff1842232db30ba89835142a23a32ae722"
+      },
+      {
+        "path": "card.md",
+        "sha256": "77c71fabce4afdf8a17bde0ade2f3fc2bfa876b707539ad756dc32b5149ec8d3"
       },
       {
         "path": "environment/README.md",
@@ -210,5 +214,42 @@
   "baseline": {
     "path": "baseline",
     "commit": "0bd1eda866f64c4cdd990e7636cead1ebd2a6cd2"
+  },
+  "tier": "basic",
+  "capabilities": [
+    "engineering"
+  ],
+  "card": "card.md",
+  "scoreModel": {
+    "primary": {
+      "kind": "resolved"
+    },
+    "groups": [
+      {
+        "id": "acceptance",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "search-filter",
+          "default-pagination",
+          "unicode-codepoint-order",
+          "pagination-boundaries",
+          "invalid-pagination",
+          "csv-rfc4180",
+          "index-compatibility"
+        ]
+      }
+    ]
+  },
+  "task": {
+    "split": "dev",
+    "structure": "package:eng-004",
+    "provenance": {
+      "source": "project-authored baseline, contract and references",
+      "published": "2026-10-20",
+      "license": "project-authored",
+      "exposure": "private-to-runs"
+    }
   }
 }
