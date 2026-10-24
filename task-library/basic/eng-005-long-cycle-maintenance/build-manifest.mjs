@@ -51,7 +51,7 @@ const requirementChecks = {
 // The ladders rank deliveries on open-ended goals; everything else is correctness that a careful delivery passes.
 const ladders = ["SCALE_SPEED", "PLAN_QUALITY"];
 const allPublic = ["instruction.md", "public/project-brief.md"];
-const allTrusted = ["private/grader.py", "private/base-fixture.json", "private/v1-fixture.json", "private/scale.py", "private/plan.py",
+const allTrusted = ["card.md", "private/grader.py", "private/base-fixture.json", "private/v1-fixture.json", "private/scale.py", "private/plan.py",
   "private/plan-best.json",
   ...(await list("private/scale-reference"))];
 const stages = [];
@@ -75,8 +75,9 @@ for (const id of stageIds) {
   });
 }
 const baselineCommit = execFileSync("git", ["rev-parse", "HEAD"], { cwd: join(root, "baseline"), encoding: "utf8" }).trim();
+const correctness = Object.entries(requirementChecks).filter(([id]) => !ladders.includes(id)).flatMap(([, ids]) => ids);
 const manifest = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   id: "eng-005-long-cycle-maintenance",
   version: "0.5.0",
   familyId: "eng-workflow-evolution",
@@ -88,14 +89,26 @@ const manifest = {
   files: { public: await files(allPublic), trusted: await files(allTrusted) },
   // The ladders rank deliveries; correctness is what each stage accepts.
   requirements: Object.entries(requirementChecks).map(([id, checkIds]) => ({ id, critical: !ladders.includes(id), introducedAt: id, checkIds })),
-  // The final score is half correctness and half the ladders (user decision, 2026-10-22): each ladder rung weighs as
-  // much as the correctness checks divided by the rungs.
-  scoring: { weights: Object.fromEntries(ladders.flatMap(id => requirementChecks[id]).map(check => [check,
-    Object.entries(requirementChecks).filter(([id]) => !ladders.includes(id)).flatMap(([, ids]) => ids).length /
-    ladders.flatMap(id => requirementChecks[id]).length])) },
+  // Manifest v2 (PLAN-007 WP2.2): the trajectory is one task; resolved = every correctness check of the final stage.
+  // The diagnostic keeps the user decision of 2026-10-22, half correctness and half the ladders with every rung equal:
+  // correctness weighs 1, the four speed rungs 0.4 and the six quality rungs 0.6.
+  tier: "basic",
+  capabilities: ["engineering"],
+  card: "card.md",
+  scoreModel: {
+    primary: { kind: "resolved" },
+    groups: [
+      { id: "correctness", weight: 1, critical: true, rule: "fraction", checkIds: correctness },
+      { id: "speed-rungs", weight: 0.4, critical: false, rule: "fraction", checkIds: requirementChecks.SCALE_SPEED },
+      { id: "plan-rungs", weight: 0.6, critical: false, rule: "fraction", checkIds: requirementChecks.PLAN_QUALITY },
+    ],
+  },
+  task: { split: "dev", structure: "package:eng-005",
+    provenance: { source: "project-authored baseline, stage briefs, references and checks", published: "2026-10-22", license: "project-authored",
+      exposure: "private-to-runs" } },
   stages,
   toolProfiles: ["workspace-basic", "workspace-augmented"],
-  grader: { id: "eng005-checkpoint-grader", version: "2.2.0", entryPoint: "private/grader.py", executable: "python3",
+  grader: { id: "eng005-checkpoint-grader", version: "2.4.0", entryPoint: "private/grader.py", executable: "python3",
     args: ["{entryPoint}", "--request", "{request}", "--result", "{result}"] },
   environment: { runtime: "Node.js 22.x + Python 3.x", dependencies: "Node built-ins and Python standard library; no network", network: false,
     runtimeCheck: { executable: "node", args: ["--version"], expectedSubstring: "v22." } },

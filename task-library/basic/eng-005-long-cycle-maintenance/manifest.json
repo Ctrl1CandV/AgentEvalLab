@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "eng-005-long-cycle-maintenance",
   "version": "0.5.0",
   "familyId": "eng-workflow-evolution",
@@ -32,12 +32,16 @@
     ],
     "trusted": [
       {
+        "path": "card.md",
+        "sha256": "4a164e2bfca36b5c676349e984d28c21265293b8706710c9f4e17287d7c84551"
+      },
+      {
         "path": "private/base-fixture.json",
         "sha256": "3c39b7fe2211e61ffc8acdcf45ff7cd850061fe0eadcba6b758332ee5fdd8ab4"
       },
       {
         "path": "private/grader.py",
-        "sha256": "820d923ffd17424b62efb3f3d5501d7f5a927fc4b8587d7dc57b9a42068cf7c2"
+        "sha256": "439a93c5927cbe8626d484491c25b33a8b6c7477ba9e551f9491829b9dc403c4"
       },
       {
         "path": "private/plan-best.json",
@@ -220,18 +224,110 @@
       ]
     }
   ],
-  "scoring": {
-    "weights": {
-      "scale.speed-3": 5,
-      "scale.speed-1.5": 5,
-      "scale.speed-1.1": 5,
-      "scale.speed-0.75": 5,
-      "plan.quality-25": 5,
-      "plan.quality-50": 5,
-      "plan.quality-65": 5,
-      "plan.quality-80": 5,
-      "plan.quality-90": 5,
-      "plan.quality-97": 5
+  "tier": "basic",
+  "capabilities": [
+    "engineering"
+  ],
+  "card": "card.md",
+  "scoreModel": {
+    "primary": {
+      "kind": "resolved"
+    },
+    "groups": [
+      {
+        "id": "correctness",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "base.read",
+          "base.create",
+          "base.update",
+          "base.export",
+          "data.preserves-seed",
+          "query.filter",
+          "query.order",
+          "query.pagination",
+          "query.invalid",
+          "query.defaults",
+          "query.desc-ties",
+          "query.sort-keys",
+          "query.empty-result",
+          "query.page-size-bounds",
+          "query.rejects-malformed",
+          "dependency.self",
+          "dependency.cycle",
+          "dependency.transition",
+          "dependency.prerequisite",
+          "dependency.duplicate",
+          "dependency.unknown",
+          "dependency.transitive-cycle",
+          "dependency.backward",
+          "dependency.all-prerequisites",
+          "failure.no_mutation",
+          "failure.no_mutation-prerequisite",
+          "failure.no_mutation-dependency",
+          "migration.schema",
+          "migration.preserve",
+          "migration.events",
+          "migration.idempotent",
+          "migration.read-only",
+          "migration.event-details",
+          "migration.failed-no-write",
+          "migration.cli-shape",
+          "errors.protocol",
+          "errors.codes",
+          "docs.usage",
+          "errors.codes-all",
+          "errors.store-invalid",
+          "errors.clean-output",
+          "scale.list",
+          "scale.dependencies",
+          "scale.status",
+          "plan.valid-small",
+          "plan.valid-large",
+          "plan.valid-scale",
+          "plan.read-only",
+          "plan.errors",
+          "plan.fields-preserved"
+        ]
+      },
+      {
+        "id": "speed-rungs",
+        "weight": 0.4,
+        "critical": false,
+        "rule": "fraction",
+        "checkIds": [
+          "scale.speed-3",
+          "scale.speed-1.5",
+          "scale.speed-1.1",
+          "scale.speed-0.75"
+        ]
+      },
+      {
+        "id": "plan-rungs",
+        "weight": 0.6,
+        "critical": false,
+        "rule": "fraction",
+        "checkIds": [
+          "plan.quality-25",
+          "plan.quality-50",
+          "plan.quality-65",
+          "plan.quality-80",
+          "plan.quality-90",
+          "plan.quality-97"
+        ]
+      }
+    ]
+  },
+  "task": {
+    "split": "dev",
+    "structure": "package:eng-005",
+    "provenance": {
+      "source": "project-authored baseline, stage briefs, references and checks",
+      "published": "2026-10-22",
+      "license": "project-authored",
+      "exposure": "private-to-runs"
     }
   },
   "stages": [
@@ -545,7 +641,7 @@
   ],
   "grader": {
     "id": "eng005-checkpoint-grader",
-    "version": "2.3.0",
+    "version": "2.4.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

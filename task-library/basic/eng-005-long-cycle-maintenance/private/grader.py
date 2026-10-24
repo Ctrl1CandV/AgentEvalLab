@@ -19,10 +19,15 @@ PLAN-007 success audit found plan.fields-preserved failing once and passing on t
 Commands that no brief bounds in time get 30 seconds instead of 6, a command whose sandbox could not be prepared is
 started once more, and the plan's limit of 10 seconds on one CPU core (S7) is measured as the command's CPU time, with
 30 seconds of wall time as a hard stop. The speed rungs of S6 still compare wall time with the reference, best of three.
+
+Version 2.4.0 (task 0.5.0 unchanged; manifest v2, PLAN-007 WP2.2) times S6 by CPU time: the scale workload's time is the
+CPU time (user and system) of every command it starts, the candidate's and the reference's alike, so a busy machine does
+not move the speed rungs (PROTOCOL §9; `--noise` runs the noise test). It reports grader result v2 with raw values: the
+CPU-time ratio to the reference (`scaleSpeedRatio`, when measured) and the plans' mean place on the quality scale
+(`planQuality`, when computed); the rungs of both are labels.
 """
 import os
 import resource
-import time
 import argparse
 import datetime
 import json
@@ -56,6 +61,8 @@ SCALE_SEED = "eng005-scale-hidden"
 SPEED_LADDER = (("3", 3.0), ("1.5", 1.5), ("1.1", 1.1), ("0.75", 0.75))
 ALL_CHECKS = {check: requirement for requirement, ids in CHECKS.items() for check in ids}
 SANDBOX_LAUNCHER = None  # set from the grader request in main
+GRADER_VERSION = "2.4.0"
+RAW: dict[str, float] = {}  # raw values measured during this grading (grader result v2)
 
 
 def sandboxed(command: list[str], root: Path) -> list[str]:
@@ -430,9 +437,11 @@ def scale_checks(temp: Path, submission: Path) -> dict[str, bool]:
     def run(source: Path, name: str):
         root = prepared(name, source)
         try:
-            started = time.perf_counter()
+            # CPU time of every command of the workload (grader 2.4.0), not wall time.
+            before = resource.getrusage(resource.RUSAGE_CHILDREN)
             results = [(label, group, invoke(root, args, timeout=30)) for label, args, group in scale.workload()]
-            seconds = time.perf_counter() - started
+            after = resource.getrusage(resource.RUSAGE_CHILDREN)
+            seconds = (after.ru_utime - before.ru_utime) + (after.ru_stime - before.ru_stime)
             final = scale.final_state((root / "data" / "work-orders.json").read_text(encoding="utf-8"))
             return results, seconds, final
         finally:
@@ -462,6 +471,7 @@ def scale_checks(temp: Path, submission: Path) -> dict[str, bool]:
             reference_time = min(reference_time, run(reference, f"scale-reference-{repetition}")[1])
             candidate_time = min(candidate_time, run(submission, f"scale-candidate-{repetition}")[1])
         ratio = candidate_time / reference_time
+        RAW["scaleSpeedRatio"] = round(ratio, 4)
     for label, factor in SPEED_LADDER:
         checks[f"scale.speed-{label}"] = all(checks[name] for name in ("scale.list", "scale.dependencies", "scale.status")) and ratio <= factor
     print(json.dumps({"scale": {"ratio": None if ratio == float("inf") else round(ratio, 3), "reference": round(reference_time, 2),
@@ -542,6 +552,7 @@ def plan_checks(temp: Path, submission: Path) -> dict[str, bool]:
         checks["plan.fields-preserved"] = False
     for label, threshold in planning.RUNGS:
         checks[f"plan.quality-{label}"] = mean >= threshold - 1e-9
+    RAW["planQuality"] = round(mean, 6)
     print(json.dumps({"plan": {"mean": round(mean, 4), "stores": report}}), file=sys.stderr)
     return checks
 
@@ -562,8 +573,43 @@ def data_preservation_check(submission: Path, fixture: dict) -> bool:
         return False
 
 
+def noise(launcher: str | None, tolerance: float = 0.15) -> int:
+    """PROTOCOL §9 noise test of S6 (grader 2.4.0): each reference judged by the scale checks on a quiet machine and with
+    every core busy must get identical verdicts and a speed ratio that changes by at most `tolerance`."""
+    global SANDBOX_LAUNCHER
+    SANDBOX_LAUNCHER = launcher
+    rows = []
+    cores = sorted(os.sched_getaffinity(0))  # scale_checks pins this process to one core; the load spreads over all
+    for name in ("ref-a", "ref-b"):
+        submission = Path(__file__).resolve().parent.parent / "references" / name
+        judged = []
+        for loaded in (False, True):
+            load = [subprocess.Popen([sys.executable, "-c", "while True: pass"], preexec_fn=lambda: os.sched_setaffinity(0, cores))
+                    for _ in range(os.cpu_count() or 1)] if loaded else []
+            RAW.clear()
+            try:
+                with tempfile.TemporaryDirectory(prefix="eng005-noise-") as temp:
+                    checks = scale_checks(Path(temp) / "scale", submission)
+            finally:
+                for process in load:
+                    process.kill()
+                    process.wait()
+            judged.append(({check for check, ok in checks.items() if ok}, RAW.get("scaleSpeedRatio")))
+        (quiet, quiet_ratio), (busy, busy_ratio) = judged
+        change = abs(busy_ratio / quiet_ratio - 1) if quiet_ratio and busy_ratio else None
+        ok = quiet == busy and change is not None and change <= tolerance
+        print(f"S6 {name}: quiet {quiet_ratio} {sorted(quiet)}; busy ({os.cpu_count()} cores loaded) {busy_ratio} {sorted(busy)}; "
+              f"ratio change {None if change is None else round(change, 3)}" + ("" if ok else "  NOT STABLE"))
+        rows.append(ok)
+    print(f"RESULT: {'PASS' if all(rows) else 'FAIL'} ({sum(rows)}/{len(rows)}), tolerance {tolerance}")
+    return 0 if all(rows) else 1
+
+
 def main() -> None:
     global SANDBOX_LAUNCHER
+    if "--noise" in sys.argv[1:]:
+        launcher = sys.argv[sys.argv.index("--launcher") + 1] if "--launcher" in sys.argv else None
+        raise SystemExit(noise(launcher))
     parser = argparse.ArgumentParser()
     parser.add_argument("--request", required=True, type=Path)
     parser.add_argument("--result", required=True, type=Path)
@@ -612,9 +658,11 @@ def main() -> None:
                 outcomes[check] = False
     checks = [{"id": check_id, "requirementId": ALL_CHECKS[check_id], "status": "pass" if outcomes.get(check_id, False) else "fail", "evidenceRefs": []}
               for check_id in selected]
-    result = {"schemaVersion": 1, "requestId": request["requestId"], "taskId": request["task"]["id"],
-              "taskVersion": request["task"]["version"], "graderVersion": "2.3.0", "gradingStatus": "completed",
-              "checks": checks, "dimensions": [], "unscoredCheckIds": [], "reason": None, "error": None}
+    units = {"scaleSpeedRatio": "x reference CPU time", "planQuality": "mean place, naive 0, greedy 0.5, best known 1"}
+    metrics = [{"id": name, "value": value, "unit": units[name]} for name, value in sorted(RAW.items())]
+    result = {"schemaVersion": 2, "requestId": request["requestId"], "taskId": request["task"]["id"],
+              "taskVersion": request["task"]["version"], "graderVersion": GRADER_VERSION, "gradingStatus": "completed",
+              "checks": checks, "dimensions": [], "unscoredCheckIds": [], "reason": None, "error": None, "metrics": metrics}
     args.result.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
 

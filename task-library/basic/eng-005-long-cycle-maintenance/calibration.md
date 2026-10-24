@@ -209,3 +209,13 @@ Run `runs/suites/20261023-113824-dev-b319` (commit `d91b39a`), one session per s
 Both models completed every correctness requirement of S1–S5. S6 and S7 are open-ended and used their whole stage budget, as designed.
 
 With a sufficient budget, E3 is saturated: the strong models lose only the top speed rungs. This confirmed the user's view (2026-10-23) that hardening our own procedure-based tasks does not raise their ceiling. New work goes to the frontier families (`docs/design/FRONTIER_TASKS.md`). E3 stays in the basic tier.
+
+## Grader 2.4.0 and manifest v2 (2026-10-24, task 0.5.0 unchanged, PLAN-007 WP2.2)
+
+**Why.** The Phase 0 audit found S6's speed rungs noisy: re-grading deepseek's c750 snapshot flipped `scale.speed-1.1` with no change to its code. S6 timed the scale workload by wall time against the reference.
+
+**Change.** S6 times the workload by the CPU time (user and system) of every command it starts, the candidate's and the reference's alike, best of three; wall time is only the 30-second stop per command (S7's plan limit has been CPU time since 2.3.0). The grader reports grader result v2 with the raw `scaleSpeedRatio` and `planQuality` (the plans' mean place); the rungs of both are labels. The manifest moves to v2 (built by `build-manifest.mjs`): the card; `correctness` (critical) over every check of BASE_CLI … PLAN, and the speed and plan rungs in non-critical groups weighted 0.4 and 0.6, so the diagnostic keeps the user decision of 2026-10-22 (half correctness, half the ladders, every rung equal) while the headline is resolved; the trajectory is one dev task (`package:eng-005`). The builder also had the grader version 2.2.0, a leftover of the 2.3.0 change; it now writes 2.4.0.
+
+**Noise test** (`python3 private/grader.py --noise`, `logs/noise-0.5.0-grader-2.4.0-s6.log`, PROTOCOL §9): ref-a and ref-b judged by the S6 checks on a quiet machine and with all 20 cores busy: identical verdicts, ratios 1.032 → 0.988 and 1.017 → 1.009 (changes 4.3% and 0.8%; declared tolerance 15%).
+
+**Re-grade.** The final snapshot of every 0.5.0 trajectory was re-graded under 2.4.0 (`regradeTrajectory --scope final`). The trajectory test file (both references through seven stages) runs under 2.4.0.

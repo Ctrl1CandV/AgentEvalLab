@@ -1,0 +1,7 @@
+{"scale": {"ratio": 1.032, "reference": 0.24, "candidate": 0.25}}
+{"scale": {"ratio": 0.988, "reference": 0.43, "candidate": 0.42}}
+{"scale": {"ratio": 1.017, "reference": 0.24, "candidate": 0.25}}
+{"scale": {"ratio": 1.009, "reference": 0.43, "candidate": 0.43}}
+S6 ref-a: quiet 1.0316 ['scale.dependencies', 'scale.list', 'scale.speed-1.1', 'scale.speed-1.5', 'scale.speed-3', 'scale.status']; busy (20 cores loaded) 0.9875 ['scale.dependencies', 'scale.list', 'scale.speed-1.1', 'scale.speed-1.5', 'scale.speed-3', 'scale.status']; ratio change 0.043
+S6 ref-b: quiet 1.017 ['scale.dependencies', 'scale.list', 'scale.speed-1.1', 'scale.speed-1.5', 'scale.speed-3', 'scale.status']; busy (20 cores loaded) 1.0093 ['scale.dependencies', 'scale.list', 'scale.speed-1.1', 'scale.speed-1.5', 'scale.speed-3', 'scale.status']; ratio change 0.008
+RESULT: PASS (2/2), tolerance 0.15
