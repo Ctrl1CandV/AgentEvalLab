@@ -4,7 +4,10 @@
 Mirrors the preflight rules in src/evaluation/manifest.ts:
 - every file listed in a manifest exists and matches its SHA-256 digest;
 - public/, private/ (excluding Python caches) and stages/ contain exactly the declared files;
-- example and experiment plans pin the current manifest digest.
+- example and experiment plans pin the current manifest digest;
+- for a v2 manifest (CODE §3.1): the capability card is hashed, every task has a split and a structure group, no
+  structure group spans two splits, every anchored metric has a raw value for every anchor, and the score model's groups
+  cover every check a task is graded on.
 
 Usage:
   python3 scripts/task_packages.py check [--plans <plan.eval.json> ...]
@@ -103,7 +106,45 @@ def check_package(package):
             problems.append("undeclared %s file: %s" % (label, path))
         for path in sorted(set(declared) - set(actual)):
             problems.append("declared %s file missing: %s" % (label, path))
+    if manifest.get("schemaVersion") == 2:
+        problems += check_v2(manifest)
     return manifest, problems
+
+
+def check_v2(manifest):
+    """The v2 rules the harness also enforces, mirrored without Node.js."""
+    problems = []
+    trusted = {entry["path"] for entry in manifest["files"]["trusted"]}
+    if manifest.get("card") not in trusted:
+        problems.append("capability card not hashed: %s" % manifest.get("card"))
+    model = manifest.get("scoreModel") or {}
+    anchored = {metric["id"]: [point["name"] for point in metric["anchors"]["points"]] for metric in model.get("metrics", []) if metric.get("anchors")}
+    grouped = {check for group in model.get("groups", []) for check in group.get("checkIds", [])}
+    if model.get("format"):
+        grouped.add(model["format"]["checkId"])
+    requirements = {requirement["id"]: requirement["checkIds"] for requirement in manifest["requirements"]}
+    tasks = [(item["id"], item, item["activeRequirementIds"]) for item in manifest.get("items", [])]
+    if not tasks:
+        active = manifest["stages"][-1]["activeRequirementIds"] if manifest.get("stages") else list(requirements)
+        tasks = [("(package)", manifest.get("task") or {}, active)]
+    splits = {}
+    for name, placement, active in tasks:
+        split, structure = placement.get("split"), placement.get("structure")
+        if split not in ("dev", "validation", "holdout") or not structure:
+            problems.append("task %s has no split or structure group" % name)
+            continue
+        if splits.setdefault(structure, split) != split:
+            problems.append("structure group %s spans splits %s and %s" % (structure, splits[structure], split))
+        for metric, names in anchored.items():
+            values = (placement.get("anchors") or {}).get(metric) or {}
+            missing = [anchor for anchor in names if not isinstance(values.get(anchor), (int, float))]
+            if missing:
+                problems.append("task %s lacks anchors %s of %s" % (name, ", ".join(missing), metric))
+        for requirement in active:
+            for check in requirements.get(requirement, []):
+                if check not in grouped:
+                    problems.append("task %s: check %s is in no score group" % (name, check))
+    return problems
 
 
 def example_pins(plan_paths=None):

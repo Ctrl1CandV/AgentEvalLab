@@ -3,6 +3,7 @@ import { constants } from "node:fs";
 import { copyFile, lstat, mkdir, readFile, readdir, realpath } from "node:fs/promises";
 import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
 import type { ToolProfile } from "../harness/tools.js";
+import { ManifestV2Error, validateManifestV2, type ManifestV2Fields, type TaskPlacement } from "./manifest-v2.js";
 
 export type Capability = "engineering" | "reasoning" | "tool" | "aesthetics";
 export type TaskUsage = "development" | "pilot" | "holdout" | "undecided";
@@ -42,7 +43,7 @@ export interface ManifestDimension {
  * One item of a generated task family (Task Set v2). A trial receives exactly one item: its `items/<id>/prompt.md` is
  * appended to the task prompt, and its `items/<id>/public/...` files are projected without the `items/<id>/` prefix.
  */
-export interface ManifestItem {
+export interface ManifestItem extends Partial<TaskPlacement> {
   id: string;
   /** Difficulty level; reports group trials by case and level. */
   level: string;
@@ -66,8 +67,9 @@ export interface ManifestTrajectoryStage {
   };
 }
 
-export interface TaskPackageManifest {
-  schemaVersion: 1;
+/** A v1 manifest, or a v2 one (schemaVersion 2) with the fields of manifest-v2.ts beside every v1 field. */
+export interface TaskPackageManifest extends Partial<ManifestV2Fields> {
+  schemaVersion: 1 | 2;
   id: string;
   version: string;
   familyId: string;
@@ -116,6 +118,8 @@ export class PackageManifestError extends Error {
     this.name = "PackageManifestError";
   }
 }
+
+const V2_ONLY_KEYS = ["tier", "capabilities", "card", "scoreModel", "task", "runtime"];
 
 function record(value: unknown): Record<string, unknown> {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
@@ -185,7 +189,7 @@ export function validateTaskPackageManifest(value: unknown): asserts value is Ta
   const grader = record(manifest.grader);
   const environment = record(manifest.environment);
 
-  if (manifest.schemaVersion !== 1 || !isIdentifier(manifest.id) || typeof manifest.version !== "string" || !manifest.version.trim() ||
+  if ((manifest.schemaVersion !== 1 && manifest.schemaVersion !== 2) || !isIdentifier(manifest.id) || typeof manifest.version !== "string" || !manifest.version.trim() ||
       !isIdentifier(manifest.familyId) || !["engineering", "reasoning", "tool", "aesthetics"].includes(String(manifest.capability)) ||
       !["development", "pilot", "holdout", "undecided"].includes(String(manifest.usage))) {
     throw new PackageManifestError("INVALID_PACKAGE_IDENTITY");
@@ -323,6 +327,12 @@ export function validateTaskPackageManifest(value: unknown): asserts value is Ta
       if (!stage.activeRequirementIds.every(id => requirementOwner.has(id))) throw new PackageManifestError("INVALID_STAGE_REQUIREMENTS");
       stageIds.add(stage.id);
     }
+  }
+  if (manifest.schemaVersion === 2) {
+    try { validateManifestV2(manifest); }
+    catch (error) { throw error instanceof ManifestV2Error ? new PackageManifestError(error.message) : error; }
+  } else if (V2_ONLY_KEYS.some(key => key in manifest)) {
+    throw new PackageManifestError("INVALID_PACKAGE_V1_HAS_V2_FIELDS");
   }
 }
 

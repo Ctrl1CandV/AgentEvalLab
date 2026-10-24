@@ -71,13 +71,14 @@ All v1 fields stay, plus:
 }
 ```
 
-- A v1 manifest (`schemaVersion: 1`) still loads, and its family is reported by the v1 rules.
+- A package without items (eng-001, a trajectory such as E3) is one task: its `split`, `structure`, `provenance` and `anchors` sit in a top-level `"task"` object instead (added in PLAN-007 WP1.1).
+- A v1 manifest (`schemaVersion: 1`) still loads, and its family is reported by the v1 rules. A v1 manifest carrying any v2 field is refused.
 - `scoring.weights` (v1) and `scoreModel` (v2) never appear in the same manifest.
 - `task_packages.py` validates the v2 fields:
   - the card file exists and is hashed;
   - the splits are assigned and disjoint by structure;
   - the anchors are complete;
-  - the groups cover every check of every active requirement.
+  - the groups cover every check of every active requirement (the format check apart), and each check is in one group only.
 
 ### 3.2 Grader result v2 (`schemaVersion: 2`)
 
