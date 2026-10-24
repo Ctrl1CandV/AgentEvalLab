@@ -1,6 +1,6 @@
 # Project Handoff
 
-Updated 2026-10-24.
+Updated 2026-10-24 (PLAN-007 Phase 0 done).
 
 ## Current state
 
@@ -16,20 +16,24 @@ AgentEvalLab is a single-model evaluation project on Pi Agent 0.87.1. Its execut
 - plan-level command limits;
 - a frozen-worktree suite runner that refuses a resume under another Node major version and continues interrupted retries.
 
-**The v1 task design has reached its end.** Three hardening rounds (2026-10-20 to 2026-10-23) left the strong flash models at 90–100% on most families, or below that only because of budgets.
+**The v1 task design has reached its end.** Three hardening rounds (2026-10-20 to 2026-10-23) left the strong flash models at 90–100% on most families, or below that only because of budgets. The numbers, each with its task and grader version, protocol and run, are in the evidence table [`evidence/V1_EVIDENCE.md`](evidence/V1_EVIDENCE.md):
 
-- **T1:** deepseek 94.3%; qwen 85%, with 100% content.
-- **T2 finance 0.3.0:** deepseek 98.0%, qwen 67.6% (a budget stop), mimo 8.8%.
-- **E3 at a sufficient budget:** deepseek 90%, qwen 94%.
+- **T1 0.6.0 F4/F5** (grader 1.7.1): deepseek 94.3%; qwen 85%, with every field right (the loss is the format deduction).
+- **T2 finance 0.3.0 at 6M per day:** deepseek 98.1%, qwen 67.9% (a budget stop), mimo 9.4% under grader 1.2.0; 98.0/67.6/8.8 under 1.1.0.
+- **E3 0.5.0 at 5M per stage and 25M per trajectory:** deepseek 90%, qwen 95% under grader 2.3.0; 90/94 under 2.2.0.
 
-A third-party review (`docs/reviews/2026-10-24-third-party-evaluation-review.md`) traced the overflow to task design, scoring, process and coverage, not to the execution core. The review also found a T2 grading hole: actions under an unknown request id escape grading. That hole has not been fixed yet.
+A third-party review ([`reviews/2026-10-24-third-party-evaluation-review.md`](reviews/2026-10-24-third-party-evaluation-review.md)) traced the overflow to task design, scoring, process and coverage, not to the execution core. **The user decided on 2026-10-24 to restructure the whole project**: design in [`design/v2/`](design/v2/README.md), plan [PLAN-007](plans/PLAN-007-v2-restructure.md).
 
-**The user decided on 2026-10-24 to restructure the whole project.**
+**PLAN-007 progress** (review: [`reviews/2026-10-24-v2-phase-0.md`](reviews/2026-10-24-v2-phase-0.md)):
 
-- The design is in [`docs/design/v2/`](design/v2/README.md).
-- The implementation plan is [PLAN-007](plans/PLAN-007-v2-restructure.md).
-- Nothing of PLAN-007 is implemented yet.
-- The AE family (algorithm engineering on AtCoder Heuristic Contest problems, `task-library/frontier/ae-heuristic-contests` 0.1.0) is built and self-calibrated, but has no model runs. Its dev pilot was prepared and deliberately not launched.
+- Phase 0 done:
+  - local tag `v1-final`;
+  - the evidence table (`npm run evidence`), one row per run, model and grader version;
+  - the T2 coverage hole fixed (grader 1.2.0: day-level `coverage` and `end-state` checks, negative tests, the 0.3.0 pilot re-graded);
+  - success audits of T1, T2, E3, E4 speedup and VIS (`npm run audit`, `docs/audits/`): E3 grader 2.3.0 and E4 grader 1.5.0 fixed what they found, with every affected model re-graded; `regradeTrajectory` re-grades trajectory snapshots append-only;
+  - documents synced.
+- Open from Phase 0, for Phase 2: the wall-time speed rungs of E3 (S6) and E4 speedup fail the noise gate; vis-001's two false passes become VIS v2 negative tests; the AE calibration table's "634.5 of 583" is corrected with AE 0.2.0 (WP3.5).
+- The AE family (`task-library/frontier/ae-heuristic-contests` 0.1.0) is built and self-calibrated, with no model runs; its dev pilot was prepared and deliberately not launched.
 
 ## Key files
 
@@ -40,12 +44,15 @@ A third-party review (`docs/reviews/2026-10-24-third-party-evaluation-review.md`
 | [design/v2/MEASUREMENT.md](design/v2/MEASUREMENT.md), [PROTOCOL.md](design/v2/PROTOCOL.md), [TASK_LIBRARY.md](design/v2/TASK_LIBRARY.md), [VALIDATION.md](design/v2/VALIDATION.md), [CODE.md](design/v2/CODE.md) | Binding design |
 | [templates/CAPABILITY_CARD.md](templates/CAPABILITY_CARD.md) | The card every family fills in before it is built |
 | [reviews/2026-10-24-third-party-evaluation-review.md](reviews/2026-10-24-third-party-evaluation-review.md) | The evidence-based review the plan answers |
+| [evidence/V1_EVIDENCE.md](evidence/V1_EVIDENCE.md) | Every recorded result with its versions, protocol, coverage and run (`npm run evidence`) |
+| [audits/](audits/) | Success audits per family (`npm run audit`) |
+| [reviews/2026-10-24-v2-phase-0.md](reviews/2026-10-24-v2-phase-0.md) | PLAN-007 Phase 0, one note per work package |
 | [reviews/2026-10-22-hardening-round-3.md](reviews/2026-10-22-hardening-round-3.md) | The last v1 round, with results |
 | `design/V1_EVALUATION.md`, `design/IMPLEMENTATION_CONTRACTS.md`, `SPEC.md` | v1 protocol and contracts; still valid for the execution core |
 
 ## Next step
 
-Carry out PLAN-007 from Phase 0. Phases 0–3 need no paid model runs. The user's decisions D1–D7 are listed in the plan, with recommendations.
+Continue PLAN-007 with Phase 1 (the measurement layer). Phases 0–3 need no paid model runs. The user's decisions D1–D7 are listed in the plan, with recommendations.
 
 ## Operating rules
 
@@ -62,7 +69,7 @@ Carry out PLAN-007 from Phase 0. Phases 0–3 need no paid model runs. The user'
   ```
 
   The suite refuses a resume under the system Node 24. Watch the run with a background watcher that exits when `phases.report` is done or nothing has been written for 20 minutes. A trajectory cannot continue mid-way, so an interrupted E3 run starts again from S1.
-- **Re-grading.** A grader fix keeps the task version so that trials can be re-graded. Bump the grader version everywhere the package declares it, re-grade with a copy of the run's plan carrying the new pin, then rebuild the suite report with `npm run suite -- --resume runs/suites/<id>`.
+- **Re-grading.** A grader fix keeps the task version so that trials can be re-graded. Bump the grader version everywhere the package declares it, re-grade with a copy of the run's plan carrying the new pin (`npm run harness -- --plan <copy> --regrade <trial> --reason "..."`, or `--regrade-trajectory <trial> [--scope final]` for a trajectory), then rebuild the suite report with `npm run suite -- --resume runs/suites/<id>` and the evidence table with `npm run evidence`.
 - **Baselines.** Keep the ENG-005 and ENG-004 baselines in their `baseline.bundle`. `npm ci` and every `npm test` restore them.
 - **Workspaces.** Never delete `evaluation-*` workspaces while a run is active.
 - **Tools.** Rust is installed under `~/.local/share/{rustup,cargo}` (used by the AE builder). The ALE-Bench archives are cached in `~/.cache/agenteval/ale-bench/`, and their compiled tools in `~/.cache/agenteval/ale-tools/`.

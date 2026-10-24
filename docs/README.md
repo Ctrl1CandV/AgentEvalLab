@@ -9,6 +9,8 @@ Start with [HANDOFF.md](HANDOFF.md) for the current state.
 3. [design/v2/MEASUREMENT.md](design/v2/MEASUREMENT.md), [PROTOCOL.md](design/v2/PROTOCOL.md), [TASK_LIBRARY.md](design/v2/TASK_LIBRARY.md), [VALIDATION.md](design/v2/VALIDATION.md) and [CODE.md](design/v2/CODE.md): the binding design.
 4. [templates/CAPABILITY_CARD.md](templates/CAPABILITY_CARD.md): the card for every task family.
 5. [reviews/2026-10-24-third-party-evaluation-review.md](reviews/2026-10-24-third-party-evaluation-review.md): the review behind v2.
+6. [evidence/](evidence/README.md): the evidence table of every recorded result (`npm run evidence`), and [audits/](audits/): success audits per family (`npm run audit`).
+7. Phase reviews: [reviews/2026-10-24-v2-phase-0.md](reviews/2026-10-24-v2-phase-0.md).
 
 ## v1 (history; the execution core is still valid)
 

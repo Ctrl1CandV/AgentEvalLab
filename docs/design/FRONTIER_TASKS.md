@@ -9,7 +9,7 @@ Originally: draft, 2026-10-23, decided by the user on 2026-10-23.
 
 ## Why
 
-Three hardening rounds added rules, dimensions, couplings and branches to our own task families (T1, T2, E3). deepseek-flash and qwen3.8-flash still scored 94–100% on every fully specified procedure. Agents that read rules, write scripts, query state and check their work carry out any specified procedure exactly. More rules make a task longer, not harder.
+Three hardening rounds added rules, dimensions, couplings and branches to our own task families (T1, T2, E3). deepseek-flash and qwen3.8-flash still scored 94–100% on every fully specified procedure. Agents that read rules, write scripts, query state and check their work carried out the procedures we tested reliably, under our tools and budgets (the draft said "any specified procedure exactly", which overstates the evidence; see the corrections above). More rules make a task longer, not harder.
 
 Our tasks spread models in only two ways:
 
@@ -61,7 +61,7 @@ The problems are NP-hard routing, scheduling, packing and puzzle problems with n
 - The grader compiles the solution in the sandbox and runs it on the private seeds under the problem's time limit, at fixed parallelism with nothing else running.
 - It scores each case with the official tool and sums the scores as AtCoder did.
 - The total is ranked among the human standings, and the rank is mapped to AtCoder's performance.
-- The item score is the share of human contestants the solution beats. Rungs every 5% make it a weighted check ladder; the performance is reported beside it.
+- *As drafted:* the item score was to be the share of human contestants the solution beats, in rungs every 5%. *As built (0.1.0):* AtCoder performance in 27 rungs from 600 to 3,200, which a percentile tops out too early to show; v2 (AE 0.2.0) reports the raw performance, uncapped.
 
 **Ceiling.**
 
