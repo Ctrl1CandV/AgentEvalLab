@@ -13,7 +13,8 @@
     "check": "tsc --noEmit",
     "harness": "NODE_USE_ENV_PROXY=1 node --import tsx src/main.ts",
     "provider-check": "NODE_USE_ENV_PROXY=1 node --import tsx scripts/provider-check.ts",
-    "suite": "NODE_USE_ENV_PROXY=1 node --import tsx scripts/suite.ts"
+    "suite": "NODE_USE_ENV_PROXY=1 node --import tsx scripts/suite.ts",
+    "evidence": "node --import tsx scripts/evidence-table.ts"
   },
   "keywords": [],
   "author": "",
