@@ -14,8 +14,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import logic_grid  # noqa: E402
 
 TASK_ID = "r3-logic-grid"
-TASK_VERSION = "0.3.0"
-GRADER_VERSION = "2.0.0"
+TASK_VERSION = "0.4.0"
+GRADER_VERSION = "2.0.1"
 KEYS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "keys.json")
 
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)

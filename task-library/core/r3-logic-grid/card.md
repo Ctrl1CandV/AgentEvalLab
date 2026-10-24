@@ -1,12 +1,12 @@
-# Capability Card: R3 logic grids 0.3.0
+# Capability Card: R3 logic grids 0.4.0
 
-Template: `docs/templates/CAPABILITY_CARD.md`. Written 2026-10-24 (PLAN-007 WP1.6), for grader 2.0.0 on the unchanged task 0.3.0.
+Template: `docs/templates/CAPABILITY_CARD.md`. Written 2026-10-24 (PLAN-007 WP1.6) for grader 2.0.0 on task 0.3.0; updated for 0.4.0 (WP2.3: validation and holdout shapes, the answer-only profile).
 
 ## 1. Identity
 
 - Tier: core.
 - Capabilities: reasoning.
-- Protocol: answer-only in effect (a read-only, empty workspace, no command execution, at most two tool calls; the formal `none` tool profile replaces it with Phase 2); one session per task; fixed budget track; 300,000 tokens per task in the v1 pilots (to be calibrated on the budget curve before validation).
+- Protocol: answer-only (`toolProfiles: ["none"]` from 0.4.0: no tools, one reply; the v1 pilots had a read-only empty workspace and no execution, which was answer-only in effect); one session per task; fixed budget track; 300,000 tokens per task in the v1 pilots (to be calibrated on the budget curve before validation).
 - Primary score: resolved (every cell of the grid right).
 
 ## 2. What it measures
@@ -52,14 +52,16 @@ The clue sets are minimal: removing any one clue admits a second solution, so ev
 
 ## 9. Splits and size
 
-- Structure group: the grid size (`size:<n>x<n>`), since every item of a level comes from the same generator template.
-- Existing 56 items (L1–L7): dev, since all levels have been seen in pilots. Validation and holdout come from new structure groups (clue structures or sizes not yet piloted), generated before the first v2 pilot (PLAN-007 WP2.3).
+- Structure group: the grid shape (`size:<houses>x<attributes>`), since every item of a shape comes from the same generator template.
+- dev: the 56 items of L1–L7 (square grids 4×4 to 10×10), all seen in pilots.
+- validation and holdout (0.4.0, PLAN-007 WP2.3): new structure groups, never piloted: the twelve rectangular shapes with 7–10 houses and 7–10 attributes, dealt by a seeded shuffle (`r3-2026-10-splits`) six to each split, four puzzles per shape. Validation: 7×9, 7×10, 8×10, 9×8, 9×10, 10×7 (24 puzzles); holdout: 7×8, 8×7, 8×9, 9×7, 10×8, 10×9 (24 puzzles). Mean clue counts 54.4 and 51.9, between L5 (46) and L7 (76). Their contents were not read while designing; only the generator log's shapes and clue counts.
+- Six groups per split, so intervals are available (MEASUREMENT §5); with six equal groups each weighs 1/6 ≈ 16.7%, under the 20% cap.
 
 ## 10. Verification status
 
 | Gate (VALIDATION §1) | Result | Evidence |
 | --- | --- | --- |
-| References | pass: every key passes every cell, metrics at 1 | `python3 private/grader.py --self-calibrate` |
+| References | pass: every key (all 104 puzzles) has exactly one solution and passes every cell, metrics at 1 | `python3 private/grader.py --self-calibrate`, `logs/self-calibration-0.4.0-grader-2.0.1.log` (1248/1248) |
 | Null agent | pass: an empty or unparsable reply fails every cell | self-calibration |
 | Mutants | pass: a swap of two values fails exactly those cells and lowers constraint validity | self-calibration |
 | Alternative valid solutions | pass: case and fencing variants | self-calibration |
@@ -77,3 +79,4 @@ Not yet calibrated for v2. The v1 pilots used 300,000 tokens per task, and outpu
 
 - 0.1.0–0.3.0: levels L1–L7 added; see `calibration.md`.
 - Grader 2.0.0 (2026-10-24): manifest v2, resolved headline, diagnostic metrics; the v1 trials of the 0.3.0 pilot re-graded into v2 outcomes.
+- 0.4.0, grader 2.0.1 (2026-10-24): 48 validation and holdout puzzles in twelve new shapes; the `none` tool profile. The L1–L7 items and keys are byte for byte those of 0.3.0, and the grading logic is unchanged (2.0.1 changes only the task version it reports). 0.3.0 results stay under 0.3.0.

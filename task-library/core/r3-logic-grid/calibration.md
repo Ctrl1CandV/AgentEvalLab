@@ -51,3 +51,11 @@ PLAN-007 WP1.6: R3 is the first contract family on manifest v2.
 - **Self-calibration** (`logs/self-calibration-0.3.0-grader-2.0.0.log`, 672/672): besides the earlier rows, every key scores 1 on all three metrics; a swap of two values stays well formed but breaks some clue (the clue set is minimal and the solution unique); a duplicated value is not well formed; an unparsable reply scores 0 on all three.
 - Items and keys were regenerated from the same seed and are byte for byte the same.
 - The trials of the 0.3.0 pilot (`runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb`) were re-graded under 2.0.0 into new score runs with v2 outcomes.
+
+## Version 0.4.0, grader 2.0.1 (2026-10-24, PLAN-007 WP2.3)
+
+**Splits.** Validation and holdout come from new structure groups, never piloted (VALIDATION §3): the twelve rectangular shapes of 7–10 houses by 7–10 attributes, dealt by a seeded shuffle (`r3-2026-10-splits`) six to each split, four puzzles per shape, from the same seed (`r3-2026-10`, item ids `P<houses>x<attributes>-NN`). Validation: 7×9, 7×10, 8×10, 9×8, 9×10, 10×7; holdout: 7×8, 8×7, 8×9, 9×7, 10×8, 10×9. Mean clue counts 54.4 (validation) and 51.9 (holdout), against 46 (L5), 61 (L6) and 76 (L7). Only these structure figures were read; the puzzles were not opened. The 56 items of L1–L7 and their keys are byte for byte unchanged and stay dev.
+
+**Answer-only.** `toolProfiles: ["none"]`: the model gets no tools and answers in its reply. The v1 pilots ran with a read-only, empty workspace and no execution (at most two tool calls, which could only list an empty directory), so the protocol is the same in effect; formally it is a new condition, which the Phase 4 R3 re-check runs on dev.
+
+**Grader 2.0.1** reports task version 0.4.0; the grading logic is that of 2.0.0. Self-calibration 1248/1248 (`logs/self-calibration-0.4.0-grader-2.0.1.log`): every one of the 104 keys has exactly one solution and passes every cell.

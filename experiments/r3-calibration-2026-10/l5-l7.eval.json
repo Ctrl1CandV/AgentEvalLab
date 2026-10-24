@@ -75,8 +75,7 @@
     {
       "id": "r3-logic-grid",
       "packagePath": "task-library/core/r3-logic-grid",
-      "packageManifestSha256": "58589d8a78f8ef8d4f061aaa9704ed29e0ff199aace1c55db1b2dd3614a707f4",
-      "readOnly": true,
+      "packageManifestSha256": "9a19c159bf3b18aae62be4d4ef407d36f5339716c96ab3bae844ac55695f6bee",
       "input": {
         "prompt": "Solve the puzzle and give the JSON answer described above."
       },
@@ -90,7 +89,8 @@
           "L6",
           "L7"
         ]
-      }
+      },
+      "toolProfile": "none"
     }
   ]
 }
