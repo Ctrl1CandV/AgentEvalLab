@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "id": "eng-001-import-validator",
   "version": "0.3.2",
   "familyId": "eng-data-validation",
@@ -42,7 +42,11 @@
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "f3b4b30fe6029a392c582bdc74676a75622dfb053c6953d21098b94fdcd1808e"
+        "sha256": "fe44ee6caaa02203d462a94315de6c85e518aebdd35bfbc9c57a0784cb7b3d07"
+      },
+      {
+        "path": "card.md",
+        "sha256": "54c5f93a2d1856622ae51c6e08cc40f1e762ecff1497b4f00e33fcdf45334195"
       },
       {
         "path": "environment/README.md",
@@ -50,11 +54,11 @@
       },
       {
         "path": "metadata.json",
-        "sha256": "c2efe6e96be510c2faf3d8e8f1bfa3f6f035336f61eda5701c9612077b7678f9"
+        "sha256": "fe2d6d3fd7261b7af3b5714a5fa40cdcc68a1f6ff4c91262adc20d03901a954b"
       },
       {
         "path": "private/acceptance.py",
-        "sha256": "6ef02eebe9b469d32bce82692a3abcaec59508ec1b884e69fa718550eb981df3"
+        "sha256": "775d6d5b65244d731255c0034f89ee53b440df379276aca241c4208883d7d797"
       },
       {
         "path": "private/bad_impl_always_exit0.py",
@@ -211,7 +215,7 @@
   ],
   "grader": {
     "id": "eng001-acceptance",
-    "version": "1.1.1",
+    "version": "1.2.0",
     "entryPoint": "private/acceptance.py",
     "executable": "python3",
     "args": [
@@ -232,6 +236,58 @@
         "--version"
       ],
       "expectedSubstring": "Python 3.13."
+    }
+  },
+  "tier": "basic",
+  "capabilities": [
+    "engineering"
+  ],
+  "card": "card.md",
+  "scoreModel": {
+    "primary": {
+      "kind": "resolved"
+    },
+    "groups": [
+      {
+        "id": "acceptance",
+        "weight": 1,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "case_clean_dry",
+          "case_embedded_dry",
+          "case_multiline_pos_dry",
+          "case_type_errors_dry",
+          "case_missing_required_dry",
+          "case_constraints_dry",
+          "case_unique_dup_dry",
+          "case_nan_inf_dry",
+          "case_bom_dry",
+          "case_header_only_dry",
+          "case_empty_input",
+          "case_extra_column",
+          "case_missing_column",
+          "case_duplicate_header",
+          "case_malformed_csv",
+          "case_bad_schema_unknown_type",
+          "case_bad_schema_pk_missing",
+          "case_bad_schema_invalid",
+          "case_clean_apply",
+          "case_mixed_apply_all_or_nothing",
+          "case_dryrun_must_not_create_db",
+          "case_idempotency"
+        ]
+      }
+    ]
+  },
+  "task": {
+    "split": "dev",
+    "structure": "package:eng-001",
+    "provenance": {
+      "source": "project-authored task and fixtures (metadata.json)",
+      "published": "2026-10-15",
+      "license": "project-authored",
+      "exposure": "private-to-runs"
     }
   }
 }

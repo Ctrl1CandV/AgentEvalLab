@@ -40,7 +40,7 @@ DEFAULT_SCHEMA = os.path.join(PKG, "public", "schema.json")
 TASK_ID = "eng-001-import-validator"
 TASK_VERSION = "0.3.2"
 GRADER_ID = "eng001-acceptance"
-GRADER_VERSION = "1.1.1"
+GRADER_VERSION = "1.2.0"
 MAX_CANDIDATE_OUTPUT = 200_000
 CANDIDATE_TIMEOUT_SECONDS = 5
 ROW_ERROR_CODES = {"missing_required", "type_mismatch", "constraint", "unique_violation"}
@@ -482,10 +482,16 @@ def _validate_grader_request(request):
     except OSError:
         return None
 
+    # A missing deliverable is graded (every check fails), not refused: grader 1.2.0.
     entry_point = os.path.join(submission_root, "import_validator.py")
-    if os.path.islink(entry_point) or not os.path.isfile(entry_point):
-        return None
     return submission_root, entry_point, evidence_root, sandbox["launcher"] if sandbox else None
+
+
+def grade_entry_point(entry_point):
+    """Every check's outcome; without a delivered import_validator.py every check fails."""
+    if os.path.islink(entry_point) or not os.path.isfile(entry_point):
+        return {case_id: (False, "missing_deliverable") for case_id in [*ORACLE["cases"], "idempotency"]}
+    return run_suite(entry_point)
 
 
 def _write_json_file(path, value):
@@ -511,7 +517,7 @@ def run_harness_protocol(request_path, result_path):
             result = _grader_result(request_id, error_code="GRADER_REQUEST_INVALID", phase="request")
         else:
             _submission_root, entry_point, evidence_root, SANDBOX_LAUNCHER = validated
-            outcomes = run_suite(entry_point)
+            outcomes = grade_entry_point(entry_point)
             checks = []
             for case_id, (passed, reason_code) in outcomes.items():
                 check_id = "case_" + case_id
@@ -592,6 +598,12 @@ def self_calibrate():
         allok &= z_all
     finally:
         shutil.rmtree(zero_dir, ignore_errors=True)
+
+    # The null agent (grader 1.2.0): no import_validator.py is graded, and fails every check.
+    missing = grade_entry_point(os.path.join(tempfile.gettempdir(), "eng001-no-delivery", "import_validator.py"))
+    null_failed = len(missing) == len(ra) and not any(ok for ok, _ in missing.values())
+    print(f"No delivery: {sum(1 for ok, _ in missing.values() if ok)}/{len(missing)} checks; {'REJECTED' if null_failed else 'NOT REJECTED'}")
+    allok &= null_failed
 
     ra2 = run_suite(ref_a)
     repeatable = {k: v[0] for k, v in ra.items()} == {k: v[0] for k, v in ra2.items()}

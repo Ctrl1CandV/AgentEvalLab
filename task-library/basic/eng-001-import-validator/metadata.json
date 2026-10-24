@@ -54,13 +54,13 @@
   "content_hashes_sha256_16": {
     "instruction.md": "ba7fd43b4799937e",
     "rubric.md": "7bc1d2b3e6eca1d4",
-    "calibration.md": "f3b4b30fe6029a39",
+    "calibration.md": "fe44ee6caaa02203",
     "environment/README.md": "410bb0a5f4abcb4b",
     "public/schema.json": "e3b7572aaec273d0",
     "public/data_clean.csv": "dc2da541307c87e3",
     "public/expected_dry_run_clean.jsonl": "ac9b88e0dfd696f2",
     "private/oracle.json": "71a4a95f0e6f739d",
-    "private/acceptance.py": "6ef02eebe9b469d3",
+    "private/acceptance.py": "775d6d5b65244d73",
     "private/ref_impl_a.py": "dca42193dbadb800",
     "private/ref_impl_b.py": "d4b2de8f43a78020",
     "private/make_fixtures.py": "ae07a631b413ace7"
