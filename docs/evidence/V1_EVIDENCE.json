@@ -1,5 +1,5 @@
 {
- "generatedAt": "2026-10-24T04:46:00.098Z",
+ "generatedAt": "2026-10-24T13:38:10.322Z",
  "rows": [
   {
    "contextPolicy": "single",
@@ -37,7 +37,8 @@
    "decided": 3,
    "medianTokens": 3874,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -75,7 +76,8 @@
    "decided": 3,
    "medianTokens": 7992,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -113,7 +115,8 @@
    "decided": 3,
    "medianTokens": 1530,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -151,7 +154,8 @@
    "decided": 3,
    "medianTokens": 2659,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -189,7 +193,8 @@
    "decided": 3,
    "medianTokens": 10966,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -227,7 +232,8 @@
    "decided": 3,
    "medianTokens": 9561,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -265,7 +271,8 @@
    "decided": 3,
    "medianTokens": 11161,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -303,7 +310,8 @@
    "decided": 3,
    "medianTokens": 8050,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -341,7 +349,8 @@
    "decided": 0,
    "medianTokens": 40603,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -379,7 +388,8 @@
    "decided": 2,
    "medianTokens": 42171.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -417,7 +427,8 @@
    "decided": 1,
    "medianTokens": 2701178,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -455,7 +466,8 @@
    "decided": 1,
    "medianTokens": 45476,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -493,7 +505,8 @@
    "decided": 3,
    "medianTokens": 2509,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -531,7 +544,8 @@
    "decided": 3,
    "medianTokens": 5957,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -569,7 +583,8 @@
    "decided": 3,
    "medianTokens": 1574,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -607,7 +622,8 @@
    "decided": 3,
    "medianTokens": 2423,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -645,7 +661,8 @@
    "decided": 3,
    "medianTokens": 7010,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -683,7 +700,8 @@
    "decided": 3,
    "medianTokens": 8049,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -721,7 +739,8 @@
    "decided": 2,
    "medianTokens": 1045342,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -759,7 +778,8 @@
    "decided": 3,
    "medianTokens": 25737,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -797,7 +817,8 @@
    "decided": 3,
    "medianTokens": 2991,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -835,7 +856,8 @@
    "decided": 3,
    "medianTokens": 5980,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -873,7 +895,8 @@
    "decided": 3,
    "medianTokens": 1854,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -911,7 +934,8 @@
    "decided": 3,
    "medianTokens": 2926,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -949,7 +973,8 @@
    "decided": 3,
    "medianTokens": 12514,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -987,7 +1012,8 @@
    "decided": 3,
    "medianTokens": 9646,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1025,7 +1051,8 @@
    "decided": 3,
    "medianTokens": 312267,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1063,7 +1090,8 @@
    "decided": 3,
    "medianTokens": 70010,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1103,7 +1131,8 @@
    "decided": 1,
    "medianTokens": 1814,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1155,7 +1184,8 @@
    "decided": 2,
    "medianTokens": 6092,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1207,7 +1237,8 @@
    "decided": 2,
    "medianTokens": 1979.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1259,7 +1290,8 @@
    "decided": 4,
    "medianTokens": 2169.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1317,7 +1349,8 @@
    "decided": 18,
    "medianTokens": 4552,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1375,7 +1408,8 @@
    "decided": 17,
    "medianTokens": 4528,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1433,7 +1467,8 @@
    "decided": 18,
    "medianTokens": 5466.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1491,7 +1526,8 @@
    "decided": 18,
    "medianTokens": 2206,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1543,7 +1579,8 @@
    "decided": 10,
    "medianTokens": 1886,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1595,7 +1632,8 @@
    "decided": 10,
    "medianTokens": 1936,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1647,7 +1685,8 @@
    "decided": 10,
    "medianTokens": 1965.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1699,7 +1738,8 @@
    "decided": 11,
    "medianTokens": 865,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1757,7 +1797,8 @@
    "decided": 22,
    "medianTokens": 29551.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1815,7 +1856,8 @@
    "decided": 21,
    "medianTokens": 38830,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1873,7 +1915,8 @@
    "decided": 22,
    "medianTokens": 27904,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1931,7 +1974,8 @@
    "decided": 24,
    "medianTokens": 2979,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -1995,7 +2039,8 @@
    "decided": 32,
    "medianTokens": 2507.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -2059,7 +2104,8 @@
    "decided": 32,
    "medianTokens": 2986.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -2123,7 +2169,8 @@
    "decided": 32,
    "medianTokens": 5050.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -2187,7 +2234,8 @@
    "decided": 32,
    "medianTokens": 1270,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -2228,7 +2276,8 @@
     "path": "runs/ec261ceb-8816-4085-9d69-c575efed7364/visual/tournament.json",
     "winRate": 0.6666666666666666
    },
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -2269,7 +2318,8 @@
     "path": "runs/ec261ceb-8816-4085-9d69-c575efed7364/visual/tournament.json",
     "winRate": 0.4166666666666667
    },
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -2310,7 +2360,8 @@
     "path": "runs/ec261ceb-8816-4085-9d69-c575efed7364/visual/tournament.json",
     "winRate": 0.35714285714285715
    },
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -2351,7 +2402,8 @@
     "path": "runs/ec261ceb-8816-4085-9d69-c575efed7364/visual/tournament.json",
     "winRate": 0.4583333333333333
    },
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -2415,7 +2467,8 @@
    "decided": 12,
    "medianTokens": 55956,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -2479,7 +2532,8 @@
    "decided": 12,
    "medianTokens": 55956,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -2543,7 +2597,8 @@
    "decided": 12,
    "medianTokens": 55956,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -2607,7 +2662,8 @@
    "decided": 12,
    "medianTokens": 31377.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -2671,7 +2727,8 @@
    "decided": 12,
    "medianTokens": 31377.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -2735,7 +2792,8 @@
    "decided": 12,
    "medianTokens": 31377.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -2799,7 +2857,8 @@
    "decided": 12,
    "medianTokens": 81984,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -2863,7 +2922,8 @@
    "decided": 12,
    "medianTokens": 81984,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -2927,7 +2987,8 @@
    "decided": 12,
    "medianTokens": 81984,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -2991,7 +3052,8 @@
    "decided": 12,
    "medianTokens": 18911,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3055,7 +3117,8 @@
    "decided": 12,
    "medianTokens": 18911,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3119,7 +3182,8 @@
    "decided": 12,
    "medianTokens": 18911,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3159,7 +3223,8 @@
    "decided": 1,
    "medianTokens": 322474,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3199,7 +3264,8 @@
    "decided": 1,
    "medianTokens": 322474,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3239,7 +3305,8 @@
    "decided": 1,
    "medianTokens": 312652,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3279,7 +3346,8 @@
    "decided": 1,
    "medianTokens": 312652,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3319,7 +3387,8 @@
    "decided": 1,
    "medianTokens": 168522.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3359,7 +3428,8 @@
    "decided": 1,
    "medianTokens": 168522.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3399,7 +3469,8 @@
    "decided": 3,
    "medianTokens": 32168,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3439,7 +3510,8 @@
    "decided": 3,
    "medianTokens": 32168,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3500,7 +3572,8 @@
    "decided": 4,
    "medianTokens": 96952,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3561,7 +3634,8 @@
    "decided": 4,
    "medianTokens": 96952,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3622,7 +3696,8 @@
    "decided": 4,
    "medianTokens": 96952,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3683,7 +3758,8 @@
    "decided": 4,
    "medianTokens": 43727,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3744,7 +3820,8 @@
    "decided": 4,
    "medianTokens": 43727,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3805,7 +3882,8 @@
    "decided": 4,
    "medianTokens": 43727,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3866,7 +3944,8 @@
    "decided": 4,
    "medianTokens": 92449,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3927,7 +4006,8 @@
    "decided": 4,
    "medianTokens": 92449,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -3988,7 +4068,8 @@
    "decided": 4,
    "medianTokens": 92449,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4049,7 +4130,8 @@
    "decided": 4,
    "medianTokens": 38413,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4110,7 +4192,8 @@
    "decided": 4,
    "medianTokens": 38413,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4171,7 +4254,8 @@
    "decided": 4,
    "medianTokens": 38413,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4211,7 +4295,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4251,7 +4336,8 @@
    "decided": 1,
    "medianTokens": 799914,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4291,7 +4377,8 @@
    "decided": 1,
    "medianTokens": 815753,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4331,7 +4418,8 @@
    "decided": 1,
    "medianTokens": 38212,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4389,7 +4477,8 @@
    "decided": 6,
    "medianTokens": 460754.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4447,7 +4536,8 @@
    "decided": 6,
    "medianTokens": 529406,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4505,7 +4595,8 @@
    "decided": 6,
    "medianTokens": 27427.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4557,7 +4648,8 @@
    "decided": 8,
    "medianTokens": 96912,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4609,7 +4701,8 @@
    "decided": 8,
    "medianTokens": 96912,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4661,7 +4754,8 @@
    "decided": 8,
    "medianTokens": 165369.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4713,7 +4807,8 @@
    "decided": 8,
    "medianTokens": 165369.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4765,7 +4860,8 @@
    "decided": 8,
    "medianTokens": 65947,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4817,7 +4913,8 @@
    "decided": 8,
    "medianTokens": 65947,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4881,7 +4978,8 @@
    "decided": 8,
    "medianTokens": 241264.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -4945,7 +5043,8 @@
    "decided": 8,
    "medianTokens": 323635,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5009,7 +5108,8 @@
    "decided": 8,
    "medianTokens": 23365.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5067,7 +5167,8 @@
    "decided": 6,
    "medianTokens": 732952,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5119,7 +5220,8 @@
    "decided": 8,
    "medianTokens": 162012.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5183,7 +5285,8 @@
    "decided": 8,
    "medianTokens": 309136,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5224,7 +5327,8 @@
     "path": "runs/eb491788-9108-41f1-9a32-e671f00873dd/visual/tournament.json",
     "winRate": 0.8333333333333334
    },
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5265,7 +5369,8 @@
     "path": "runs/eb491788-9108-41f1-9a32-e671f00873dd/visual/tournament.json",
     "winRate": 0.8333333333333334
    },
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5306,7 +5411,8 @@
     "path": "runs/eb491788-9108-41f1-9a32-e671f00873dd/visual/tournament.json",
     "winRate": 0.18055555555555555
    },
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5347,7 +5453,8 @@
     "path": "runs/eb491788-9108-41f1-9a32-e671f00873dd/visual/tournament.json",
     "winRate": 0.18055555555555555
    },
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5388,7 +5495,8 @@
     "path": "runs/eb491788-9108-41f1-9a32-e671f00873dd/visual/tournament.json",
     "winRate": 0.2604166666666667
    },
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5429,7 +5537,8 @@
     "path": "runs/eb491788-9108-41f1-9a32-e671f00873dd/visual/tournament.json",
     "winRate": 0.2604166666666667
    },
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5470,7 +5579,8 @@
     "path": "runs/eb491788-9108-41f1-9a32-e671f00873dd/visual/tournament.json",
     "winRate": 0.5694444444444444
    },
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5511,7 +5621,8 @@
     "path": "runs/eb491788-9108-41f1-9a32-e671f00873dd/visual/tournament.json",
     "winRate": 0.5694444444444444
    },
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5552,7 +5663,8 @@
     "path": "runs/eb491788-9108-41f1-9a32-e671f00873dd/visual/tournament.json",
     "winRate": 0.7361111111111112
    },
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5610,7 +5722,8 @@
    "decided": 18,
    "medianTokens": 52666,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5668,7 +5781,8 @@
    "decided": 17,
    "medianTokens": 40803,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5726,7 +5840,8 @@
    "decided": 18,
    "medianTokens": 126151,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5784,7 +5899,8 @@
    "decided": 18,
    "medianTokens": 66995,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5842,7 +5958,8 @@
    "decided": 18,
    "medianTokens": 3904.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5894,7 +6011,8 @@
    "decided": 8,
    "medianTokens": 489728,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5946,7 +6064,8 @@
    "decided": 8,
    "medianTokens": 489728,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -5998,7 +6117,8 @@
    "decided": 8,
    "medianTokens": 396013.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -6050,7 +6170,8 @@
    "decided": 8,
    "medianTokens": 396013.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -6102,7 +6223,8 @@
    "decided": 8,
    "medianTokens": 213392,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -6154,7 +6276,8 @@
    "decided": 8,
    "medianTokens": 213392,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -6206,7 +6329,8 @@
    "decided": 7,
    "medianTokens": 354835,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -6258,7 +6382,8 @@
    "decided": 7,
    "medianTokens": 354835,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -6310,7 +6435,8 @@
    "decided": 8,
    "medianTokens": 139791.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -6362,7 +6488,8 @@
    "decided": 8,
    "medianTokens": 139791.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -6414,7 +6541,8 @@
    "decided": 4,
    "medianTokens": 1241294,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -6466,7 +6594,8 @@
    "decided": 4,
    "medianTokens": 597734,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -6518,7 +6647,8 @@
    "decided": 4,
    "medianTokens": 339347,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -6570,7 +6700,8 @@
    "decided": 3,
    "medianTokens": 44280,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -6622,7 +6753,8 @@
    "decided": 3,
    "medianTokens": 48400,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -6680,7 +6812,8 @@
    "decided": 4,
    "medianTokens": 807000.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -6738,7 +6871,8 @@
    "decided": 4,
    "medianTokens": 756926,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -6796,7 +6930,8 @@
    "decided": 2,
    "medianTokens": 399185,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -6854,7 +6989,8 @@
    "decided": 3,
    "medianTokens": 823040,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -6912,7 +7048,8 @@
    "decided": 3,
    "medianTokens": 81800,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -6958,7 +7095,8 @@
    "decided": 1,
    "medianTokens": 1075511,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -7004,7 +7142,8 @@
    "decided": 1,
    "medianTokens": 5540581,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -7050,7 +7189,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -7096,7 +7236,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -7136,7 +7277,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -7182,7 +7324,8 @@
    "decided": 1,
    "medianTokens": 5807936,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -7270,7 +7413,8 @@
    "decided": 12,
    "medianTokens": 50520.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -7358,7 +7502,8 @@
    "decided": 12,
    "medianTokens": 50520.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -7446,7 +7591,8 @@
    "decided": 12,
    "medianTokens": 35244.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -7534,7 +7680,8 @@
    "decided": 12,
    "medianTokens": 35244.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -7622,7 +7769,8 @@
    "decided": 12,
    "medianTokens": 27073.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -7710,7 +7858,8 @@
    "decided": 12,
    "medianTokens": 27073.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -7798,7 +7947,8 @@
    "decided": 10,
    "medianTokens": 46909.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -7886,7 +8036,8 @@
    "decided": 10,
    "medianTokens": 46909.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -7974,7 +8125,8 @@
    "decided": 13,
    "medianTokens": 20898,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -8062,7 +8214,8 @@
    "decided": 13,
    "medianTokens": 20898,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -8102,7 +8255,8 @@
    "decided": 1,
    "medianTokens": 1200029,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -8142,7 +8296,8 @@
    "decided": 2,
    "medianTokens": 1259749,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -8182,7 +8337,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -8222,7 +8378,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -8262,7 +8419,8 @@
    "decided": 1,
    "medianTokens": 47106,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -8320,7 +8478,67 @@
    "decided": 24,
    "medianTokens": 61232,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
+  },
+  {
+   "contextPolicy": "single",
+   "budget": {
+    "trial": 300000,
+    "stage": null
+   },
+   "budgetNotice": null,
+   "repetitions": 1,
+   "source": "run",
+   "suite": null,
+   "runDirectory": "runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb",
+   "startedAt": "2026-10-20T10:15:56.672Z",
+   "commit": "286dece2f25ac83b0091b6b2e1f86b899c48433c",
+   "family": "R3",
+   "packageId": "r3-logic-grid",
+   "taskVersion": "0.3.0",
+   "graderVersion": "2.0.0",
+   "kind": "single",
+   "model": "aliplan:qwen3.8-flash",
+   "label": "aliplan:qwen3.8-flash-default",
+   "thinking": "provider-default",
+   "temperature": 0,
+   "scope": [
+    "L7",
+    "L5",
+    "L6"
+   ],
+   "breakdown": [
+    {
+     "key": "L5",
+     "score": 0.125,
+     "trials": 8
+    },
+    {
+     "key": "L6",
+     "score": 0.125,
+     "trials": 8
+    },
+    {
+     "key": "L7",
+     "score": 0,
+     "trials": 8
+    }
+   ],
+   "trials": 24,
+   "scored": 24,
+   "infrastructure": 0,
+   "notRun": 0,
+   "unscored": 0,
+   "ungraded": 0,
+   "budgetStops": 3,
+   "meanScore": 0.08333333333333333,
+   "resolved": 2,
+   "decided": 24,
+   "medianTokens": 61232,
+   "tournament": null,
+   "status": "incomplete",
+   "scoreKind": "v2 primary"
   },
   {
    "contextPolicy": "single",
@@ -8378,7 +8596,67 @@
    "decided": 24,
    "medianTokens": 91730,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
+  },
+  {
+   "contextPolicy": "single",
+   "budget": {
+    "trial": 300000,
+    "stage": null
+   },
+   "budgetNotice": null,
+   "repetitions": 1,
+   "source": "run",
+   "suite": null,
+   "runDirectory": "runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb",
+   "startedAt": "2026-10-20T10:15:56.672Z",
+   "commit": "286dece2f25ac83b0091b6b2e1f86b899c48433c",
+   "family": "R3",
+   "packageId": "r3-logic-grid",
+   "taskVersion": "0.3.0",
+   "graderVersion": "2.0.0",
+   "kind": "single",
+   "model": "deepseek:deepseek-flash",
+   "label": "deepseek:deepseek-flash-high",
+   "thinking": "high",
+   "temperature": 0,
+   "scope": [
+    "L6",
+    "L7",
+    "L5"
+   ],
+   "breakdown": [
+    {
+     "key": "L5",
+     "score": 0.75,
+     "trials": 8
+    },
+    {
+     "key": "L6",
+     "score": 0.875,
+     "trials": 8
+    },
+    {
+     "key": "L7",
+     "score": 0.5,
+     "trials": 8
+    }
+   ],
+   "trials": 24,
+   "scored": 24,
+   "infrastructure": 0,
+   "notRun": 0,
+   "unscored": 0,
+   "ungraded": 0,
+   "budgetStops": 5,
+   "meanScore": 0.7083333333333334,
+   "resolved": 17,
+   "decided": 24,
+   "medianTokens": 91730,
+   "tournament": null,
+   "status": "incomplete",
+   "scoreKind": "v2 primary"
   },
   {
    "contextPolicy": "single",
@@ -8436,7 +8714,67 @@
    "decided": 24,
    "medianTokens": 133033,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
+  },
+  {
+   "contextPolicy": "single",
+   "budget": {
+    "trial": 300000,
+    "stage": null
+   },
+   "budgetNotice": null,
+   "repetitions": 1,
+   "source": "run",
+   "suite": null,
+   "runDirectory": "runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb",
+   "startedAt": "2026-10-20T10:15:56.672Z",
+   "commit": "286dece2f25ac83b0091b6b2e1f86b899c48433c",
+   "family": "R3",
+   "packageId": "r3-logic-grid",
+   "taskVersion": "0.3.0",
+   "graderVersion": "2.0.0",
+   "kind": "single",
+   "model": "mimoplan:mimo-v2.6-flash",
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "thinking": "provider-default",
+   "temperature": 0,
+   "scope": [
+    "L7",
+    "L6",
+    "L5"
+   ],
+   "breakdown": [
+    {
+     "key": "L5",
+     "score": 0.625,
+     "trials": 8
+    },
+    {
+     "key": "L6",
+     "score": 0.25,
+     "trials": 8
+    },
+    {
+     "key": "L7",
+     "score": 0,
+     "trials": 8
+    }
+   ],
+   "trials": 24,
+   "scored": 24,
+   "infrastructure": 0,
+   "notRun": 0,
+   "unscored": 0,
+   "ungraded": 0,
+   "budgetStops": 16,
+   "meanScore": 0.2916666666666667,
+   "resolved": 7,
+   "decided": 24,
+   "medianTokens": 133033,
+   "tournament": null,
+   "status": "incomplete",
+   "scoreKind": "v2 primary"
   },
   {
    "contextPolicy": "single",
@@ -8494,7 +8832,67 @@
    "decided": 24,
    "medianTokens": 132759.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
+  },
+  {
+   "contextPolicy": "single",
+   "budget": {
+    "trial": 300000,
+    "stage": null
+   },
+   "budgetNotice": null,
+   "repetitions": 1,
+   "source": "run",
+   "suite": null,
+   "runDirectory": "runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb",
+   "startedAt": "2026-10-20T10:15:56.672Z",
+   "commit": "286dece2f25ac83b0091b6b2e1f86b899c48433c",
+   "family": "R3",
+   "packageId": "r3-logic-grid",
+   "taskVersion": "0.3.0",
+   "graderVersion": "2.0.0",
+   "kind": "single",
+   "model": "mimoplan:mimo-v2.6-pro",
+   "label": "mimoplan:mimo-v2.6-pro-default",
+   "thinking": "provider-default",
+   "temperature": 0,
+   "scope": [
+    "L5",
+    "L7",
+    "L6"
+   ],
+   "breakdown": [
+    {
+     "key": "L5",
+     "score": 0.625,
+     "trials": 8
+    },
+    {
+     "key": "L6",
+     "score": 0.625,
+     "trials": 8
+    },
+    {
+     "key": "L7",
+     "score": 0,
+     "trials": 8
+    }
+   ],
+   "trials": 24,
+   "scored": 24,
+   "infrastructure": 0,
+   "notRun": 0,
+   "unscored": 0,
+   "ungraded": 0,
+   "budgetStops": 14,
+   "meanScore": 0.4166666666666667,
+   "resolved": 10,
+   "decided": 24,
+   "medianTokens": 132759.5,
+   "tournament": null,
+   "status": "incomplete",
+   "scoreKind": "v2 primary"
   },
   {
    "contextPolicy": "single",
@@ -8545,7 +8943,47 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
+  },
+  {
+   "contextPolicy": "single",
+   "budget": {
+    "trial": 300000,
+    "stage": null
+   },
+   "budgetNotice": null,
+   "repetitions": 1,
+   "source": "run",
+   "suite": null,
+   "runDirectory": "runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb",
+   "startedAt": "2026-10-20T10:15:56.672Z",
+   "commit": "286dece2f25ac83b0091b6b2e1f86b899c48433c",
+   "family": "R3",
+   "packageId": "r3-logic-grid",
+   "taskVersion": "0.3.0",
+   "graderVersion": "2.0.0",
+   "kind": "single",
+   "model": "supercn:glm-5.3",
+   "label": "supercn:glm-5.3-high",
+   "thinking": "high",
+   "temperature": 0,
+   "scope": [],
+   "breakdown": [],
+   "trials": 0,
+   "scored": 0,
+   "infrastructure": 0,
+   "notRun": 22,
+   "unscored": 0,
+   "ungraded": 2,
+   "budgetStops": 0,
+   "meanScore": null,
+   "resolved": 0,
+   "decided": 0,
+   "medianTokens": null,
+   "tournament": null,
+   "status": "incomplete",
+   "scoreKind": "v2 primary"
   },
   {
    "contextPolicy": "single",
@@ -8601,7 +9039,47 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
+  },
+  {
+   "contextPolicy": "single",
+   "budget": {
+    "trial": 300000,
+    "stage": null
+   },
+   "budgetNotice": null,
+   "repetitions": 1,
+   "source": "run",
+   "suite": null,
+   "runDirectory": "runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb",
+   "startedAt": "2026-10-20T10:15:56.672Z",
+   "commit": "286dece2f25ac83b0091b6b2e1f86b899c48433c",
+   "family": "R3",
+   "packageId": "r3-logic-grid",
+   "taskVersion": "0.3.0",
+   "graderVersion": "2.0.0",
+   "kind": "single",
+   "model": "supercn:step-5-preview",
+   "label": "supercn:step-5-preview-medium",
+   "thinking": "medium",
+   "temperature": 0,
+   "scope": [],
+   "breakdown": [],
+   "trials": 0,
+   "scored": 0,
+   "infrastructure": 0,
+   "notRun": 21,
+   "unscored": 0,
+   "ungraded": 3,
+   "budgetStops": 0,
+   "meanScore": null,
+   "resolved": 0,
+   "decided": 0,
+   "medianTokens": null,
+   "tournament": null,
+   "status": "incomplete",
+   "scoreKind": "v2 primary"
   },
   {
    "contextPolicy": "single",
@@ -8657,7 +9135,47 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
+  },
+  {
+   "contextPolicy": "single",
+   "budget": {
+    "trial": 300000,
+    "stage": null
+   },
+   "budgetNotice": null,
+   "repetitions": 1,
+   "source": "run",
+   "suite": null,
+   "runDirectory": "runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb",
+   "startedAt": "2026-10-20T10:15:56.672Z",
+   "commit": "286dece2f25ac83b0091b6b2e1f86b899c48433c",
+   "family": "R3",
+   "packageId": "r3-logic-grid",
+   "taskVersion": "0.3.0",
+   "graderVersion": "2.0.0",
+   "kind": "single",
+   "model": "supergpt:gpt-6-luna",
+   "label": "supergpt:gpt-6-luna-medium",
+   "thinking": "medium",
+   "temperature": 0,
+   "scope": [],
+   "breakdown": [],
+   "trials": 0,
+   "scored": 0,
+   "infrastructure": 0,
+   "notRun": 21,
+   "unscored": 0,
+   "ungraded": 3,
+   "budgetStops": 0,
+   "meanScore": null,
+   "resolved": 0,
+   "decided": 0,
+   "medianTokens": null,
+   "tournament": null,
+   "status": "incomplete",
+   "scoreKind": "v2 primary"
   },
   {
    "contextPolicy": "single",
@@ -8769,7 +9287,8 @@
    "decided": 24,
    "medianTokens": 83672,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -8881,7 +9400,8 @@
    "decided": 24,
    "medianTokens": 61875.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -8993,7 +9513,8 @@
    "decided": 24,
    "medianTokens": 103467,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -9105,7 +9626,8 @@
    "decided": 24,
    "medianTokens": 98476.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -9163,7 +9685,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -9221,7 +9744,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -9315,7 +9839,8 @@
    "decided": 3,
    "medianTokens": 23451,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -9361,7 +9886,8 @@
    "decided": 1,
    "medianTokens": 5992988,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -9407,7 +9933,8 @@
    "decided": 1,
    "medianTokens": 6046891,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -9453,7 +9980,8 @@
    "decided": 1,
    "medianTokens": 882035,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -9499,7 +10027,8 @@
    "decided": 1,
    "medianTokens": 675455,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -9545,7 +10074,8 @@
    "decided": 1,
    "medianTokens": 4926505,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -9585,7 +10115,8 @@
    "decided": 2,
    "medianTokens": 786364.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -9625,7 +10156,8 @@
    "decided": 1,
    "medianTokens": 510346,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -9665,7 +10197,8 @@
    "decided": 2,
    "medianTokens": 712721,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -9705,7 +10238,8 @@
    "decided": 2,
    "medianTokens": 193328.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -9743,7 +10277,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -9783,7 +10318,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -9823,7 +10359,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -9863,7 +10400,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -9903,7 +10441,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -9943,7 +10482,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -9983,7 +10523,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10034,7 +10575,8 @@
    "decided": 2,
    "medianTokens": 1469573,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10074,7 +10616,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10125,7 +10668,8 @@
    "decided": 2,
    "medianTokens": 1527980.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10165,7 +10709,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10205,7 +10750,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10245,7 +10791,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10306,7 +10853,8 @@
    "decided": 4,
    "medianTokens": 1324443.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10367,7 +10915,8 @@
    "decided": 4,
    "medianTokens": 968473.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10428,7 +10977,8 @@
    "decided": 4,
    "medianTokens": 1675906,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10489,7 +11039,8 @@
    "decided": 4,
    "medianTokens": 1641881.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10529,7 +11080,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10569,7 +11121,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10609,7 +11162,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10649,7 +11203,8 @@
    "decided": 1,
    "medianTokens": 1244492,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10689,7 +11244,8 @@
    "decided": 2,
    "medianTokens": 1247711,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10729,7 +11285,8 @@
    "decided": 1,
    "medianTokens": 1258822,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10769,7 +11326,8 @@
    "decided": 1,
    "medianTokens": 1285983,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10809,7 +11367,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10849,7 +11408,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10889,7 +11449,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10929,7 +11490,8 @@
    "decided": 0,
    "medianTokens": 800403,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -10969,7 +11531,8 @@
    "decided": 0,
    "medianTokens": 817899,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11007,7 +11570,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11047,7 +11611,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11087,7 +11652,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11127,7 +11693,8 @@
    "decided": 2,
    "medianTokens": 3054644,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11167,7 +11734,8 @@
    "decided": 2,
    "medianTokens": 3040122.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11207,7 +11775,8 @@
    "decided": 2,
    "medianTokens": 3071567.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11247,7 +11816,8 @@
    "decided": 2,
    "medianTokens": 3085653.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11287,7 +11857,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11327,7 +11898,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11367,7 +11939,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11407,7 +11980,8 @@
    "decided": 2,
    "medianTokens": 2057679,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11447,7 +12021,8 @@
    "decided": 2,
    "medianTokens": 2039088,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11487,7 +12062,8 @@
    "decided": 2,
    "medianTokens": 2068913,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11527,7 +12103,8 @@
    "decided": 2,
    "medianTokens": 2107289.5,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11567,7 +12144,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11605,7 +12183,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11645,7 +12224,8 @@
    "decided": 0,
    "medianTokens": null,
    "tournament": null,
-   "status": "incomplete"
+   "status": "incomplete",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11757,7 +12337,8 @@
    "decided": 12,
    "medianTokens": 72254,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11869,7 +12450,8 @@
    "decided": 12,
    "medianTokens": 62652.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11909,7 +12491,8 @@
    "decided": 1,
    "medianTokens": 2035811,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -11949,7 +12532,8 @@
    "decided": 1,
    "medianTokens": 2054434,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12001,7 +12585,8 @@
    "decided": 2,
    "medianTokens": 1373124.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12053,7 +12638,8 @@
    "decided": 2,
    "medianTokens": 1373124.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12100,7 +12686,8 @@
    "decided": 1,
    "medianTokens": 2036382,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12147,7 +12734,8 @@
    "decided": 1,
    "medianTokens": 2036382,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12199,7 +12787,8 @@
    "decided": 2,
    "medianTokens": 2048261.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12251,7 +12840,8 @@
    "decided": 2,
    "medianTokens": 2048261.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12315,7 +12905,8 @@
    "decided": 0,
    "medianTokens": 145000.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12379,7 +12970,8 @@
    "decided": 8,
    "medianTokens": 145000.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12443,7 +13035,8 @@
    "decided": 0,
    "medianTokens": 115486.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12507,7 +13100,8 @@
    "decided": 8,
    "medianTokens": 115486.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12571,7 +13165,8 @@
    "decided": 0,
    "medianTokens": 154320.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12635,7 +13230,8 @@
    "decided": 8,
    "medianTokens": 154320.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12693,7 +13289,8 @@
    "decided": 12,
    "medianTokens": 221693,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12751,7 +13348,8 @@
    "decided": 12,
    "medianTokens": 221693,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12809,7 +13407,8 @@
    "decided": 12,
    "medianTokens": 166574.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12867,7 +13466,8 @@
    "decided": 12,
    "medianTokens": 166574.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12925,7 +13525,8 @@
    "decided": 12,
    "medianTokens": 326552,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -12983,7 +13584,8 @@
    "decided": 12,
    "medianTokens": 326552,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13023,7 +13625,8 @@
    "decided": 1,
    "medianTokens": 2069643,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13063,7 +13666,8 @@
    "decided": 1,
    "medianTokens": 2069643,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -13109,7 +13713,8 @@
    "decided": 1,
    "medianTokens": 6630346,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -13155,7 +13760,8 @@
    "decided": 1,
    "medianTokens": 6827084,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13195,7 +13801,8 @@
    "decided": 1,
    "medianTokens": 4159072,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13235,7 +13842,8 @@
    "decided": 1,
    "medianTokens": 4159072,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13275,7 +13883,8 @@
    "decided": 1,
    "medianTokens": 4111423,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13315,7 +13924,8 @@
    "decided": 1,
    "medianTokens": 4111423,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13367,7 +13977,8 @@
    "decided": 4,
    "medianTokens": 491246,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13419,7 +14030,8 @@
    "decided": 4,
    "medianTokens": 491246,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13471,7 +14083,8 @@
    "decided": 4,
    "medianTokens": 405276.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13523,7 +14136,8 @@
    "decided": 4,
    "medianTokens": 405276.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13575,7 +14189,8 @@
    "decided": 4,
    "medianTokens": 185148.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13627,7 +14242,8 @@
    "decided": 4,
    "medianTokens": 185148.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13679,7 +14295,8 @@
    "decided": 2,
    "medianTokens": 1696239,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13731,7 +14348,8 @@
    "decided": 2,
    "medianTokens": 1333025.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13783,7 +14401,8 @@
    "decided": 2,
    "medianTokens": 875537,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13835,7 +14454,8 @@
    "decided": 2,
    "medianTokens": 2980988.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13887,7 +14507,8 @@
    "decided": 2,
    "medianTokens": 1960333.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -13939,7 +14560,8 @@
    "decided": 2,
    "medianTokens": 2793000,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -13985,7 +14607,8 @@
    "decided": 1,
    "medianTokens": 7732413,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -14031,7 +14654,8 @@
    "decided": 1,
    "medianTokens": 7732413,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -14077,7 +14701,8 @@
    "decided": 1,
    "medianTokens": 5241083,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -14123,7 +14748,8 @@
    "decided": 1,
    "medianTokens": 5241083,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -14169,7 +14795,8 @@
    "decided": 1,
    "medianTokens": 9428441,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -14215,7 +14842,8 @@
    "decided": 1,
    "medianTokens": 9428441,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -14261,7 +14889,8 @@
    "decided": 1,
    "medianTokens": 8828948,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -14307,7 +14936,8 @@
    "decided": 1,
    "medianTokens": 8828948,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -14353,7 +14983,8 @@
    "decided": 1,
    "medianTokens": 9360517,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -14399,7 +15030,8 @@
    "decided": 1,
    "medianTokens": 9360517,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -14445,7 +15077,8 @@
    "decided": 1,
    "medianTokens": 9738144,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "continuous",
@@ -14491,7 +15124,8 @@
    "decided": 1,
    "medianTokens": 9738144,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "per-stage",
@@ -14537,7 +15171,8 @@
    "decided": 1,
    "medianTokens": 9923666,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "per-stage",
@@ -14583,7 +15218,8 @@
    "decided": 1,
    "medianTokens": 9923666,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "per-stage",
@@ -14629,7 +15265,8 @@
    "decided": 1,
    "medianTokens": 11078723,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "per-stage",
@@ -14675,7 +15312,8 @@
    "decided": 1,
    "medianTokens": 11078723,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -14727,7 +15365,8 @@
    "decided": 2,
    "medianTokens": 3490315,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -14779,7 +15418,8 @@
    "decided": 2,
    "medianTokens": 2637383,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -14831,7 +15471,8 @@
    "decided": 1,
    "medianTokens": 2131042.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -14883,7 +15524,8 @@
    "decided": 2,
    "medianTokens": 5741051.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -14935,7 +15577,8 @@
    "decided": 2,
    "medianTokens": 5741051.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -14987,7 +15630,8 @@
    "decided": 2,
    "medianTokens": 5308008,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -15039,7 +15683,8 @@
    "decided": 2,
    "medianTokens": 5308008,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -15091,7 +15736,8 @@
    "decided": 2,
    "medianTokens": 3179072.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "single",
@@ -15143,7 +15789,8 @@
    "decided": 2,
    "medianTokens": 3179072.5,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "per-stage",
@@ -15189,7 +15836,8 @@
    "decided": 1,
    "medianTokens": 19722138,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "per-stage",
@@ -15235,7 +15883,8 @@
    "decided": 1,
    "medianTokens": 19722138,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "per-stage",
@@ -15281,7 +15930,8 @@
    "decided": 1,
    "medianTokens": 16161525,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   },
   {
    "contextPolicy": "per-stage",
@@ -15327,7 +15977,8 @@
    "decided": 1,
    "medianTokens": 16161525,
    "tournament": null,
-   "status": "completed"
+   "status": "completed",
+   "scoreKind": "v1 partial credit"
   }
  ],
  "suites": [
@@ -15901,7 +16552,7 @@
     "trial": 300000,
     "stage": null
    },
-   "matchingRows": 7
+   "matchingRows": 14
   },
   {
    "suite": "suites/dev.json",
@@ -15999,7 +16650,7 @@
    "family": "AE",
    "template": "experiments/ae-2026-10/dev.eval.json",
    "packageId": "ae-heuristic-contests",
-   "taskVersion": "0.1.0",
+   "taskVersion": "0.2.0",
    "contextPolicy": "single",
    "budget": {
     "trial": 30000000,
@@ -16018,7 +16669,7 @@
     "trial": 300000,
     "stage": null
    },
-   "matchingRows": 7
+   "matchingRows": 14
   },
   {
    "suite": "suites/full.json",
@@ -16116,7 +16767,7 @@
    "family": "AE",
    "template": "experiments/ae-2026-10/full.eval.json",
    "packageId": "ae-heuristic-contests",
-   "taskVersion": "0.1.0",
+   "taskVersion": "0.2.0",
    "contextPolicy": "single",
    "budget": {
     "trial": 30000000,

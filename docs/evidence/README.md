@@ -5,6 +5,7 @@ This folder holds the evidence tables: what each recorded result is, under which
 | File | Contents | Produced by |
 | --- | --- | --- |
 | [V1_EVIDENCE.md](V1_EVIDENCE.md) | Every v1 run and suite run under `runs/`: family, task and grader version, protocol, models, items and trials, coverage, score, completion status, run directory. Dry runs, interrupted runs and configurations never run are listed as such and never shown as results. | `npm run evidence` (`scripts/evidence-table.ts`) |
+| [v2-proof/report-v2.md](v2-proof/report-v2.md) | PLAN-007 WP1.6: report v2 over R3 (its 0.3.0 pilot re-graded into v2 outcomes) and AE 0.2.0 (reference programs as pseudo-models). A fixture that proves the measurement layer, not a model comparison. | `node --import tsx scripts/measurement-proof.ts` |
 
 Rules (PLAN-007 Phase 0, `docs/design/v2/MEASUREMENT.md` §8):
 

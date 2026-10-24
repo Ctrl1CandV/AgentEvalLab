@@ -54,6 +54,8 @@ export interface EvidenceRow {
   medianTokens: number | null;
   tournament: { path: string; winRate: number | null } | null;
   status: "completed" | "incomplete";
+  /** v1 partial credit, or, for a re-grade on manifest v2, the mean v2 primary of the outcomes (MEASUREMENT §8). */
+  scoreKind: "v1 partial credit" | "v2 primary";
   source: "suite" | "run";
   suite: string | null;
   runDirectory: string;
@@ -103,7 +105,14 @@ export const FAMILY_CODES: Record<string, string> = {
   "tool-001-doc-evidence-recovery": "tool-001", "eng-001-import-validator": "eng-001", "eng-004-resource-index": "eng-004",
 };
 
-interface ScoreRun { id: string; createdAt: string; graderVersion: string | null; evaluation: EvaluationResult }
+interface ScoreRun {
+  id: string;
+  createdAt: string;
+  graderVersion: string | null;
+  evaluation: EvaluationResult;
+  /** A v2 score run's outcome (outcome.json): its numbers are v2 numbers, never read as v1 partial credit. */
+  outcome: { primary: number | null; resolved: boolean | null; coverage: string } | null;
+}
 
 async function readJson<T>(path: string): Promise<T> {
   return JSON.parse(await readFile(path, "utf8")) as T;
@@ -126,7 +135,9 @@ async function scoreRuns(trialDirectory: string): Promise<ScoreRun[]> {
     const score = await readJson<{ scoreRunId?: string; createdAt: string; scorer?: { graderVersion?: string }; evaluation?: EvaluationResult }>(join(directory, "score.json")).catch(() => null);
     if (!score?.evaluation) continue;
     const grader = await readJson<{ graderVersion?: string }>(join(directory, "grader", "result.json")).catch(() => null);
-    runs.push({ id: score.scoreRunId ?? directory, createdAt: score.createdAt, graderVersion: score.scorer?.graderVersion ?? grader?.graderVersion ?? null, evaluation: score.evaluation });
+    const outcome = await readJson<{ primary: number | null; resolved: boolean | null; coverage: string }>(join(directory, "outcome.json")).catch(() => null);
+    runs.push({ id: score.scoreRunId ?? directory, createdAt: score.createdAt, graderVersion: score.scorer?.graderVersion ?? grader?.graderVersion ?? null,
+      evaluation: score.evaluation, outcome });
   }
   return runs.sort((left, right) => left.createdAt.localeCompare(right.createdAt));
 }
@@ -267,7 +278,7 @@ export async function runRows(runDirectory: string, context: RunContext): Promis
           scope: ["final-stage checks"], breakdown: breakdown(units, unit => unit.level ? `last graded ${unit.level}` : null),
           trials: result!.units, scored: result!.scored, infrastructure: result!.infrastructureFailures, notRun: result!.notRun, unscored: result!.unscored,
           ungraded: 0, budgetStops: result!.budgetStops, meanScore: result!.meanScore, resolved: result!.resolved, decided: result!.decided,
-          medianTokens: result!.medianTokens, tournament: null, status,
+          medianTokens: result!.medianTokens, tournament: null, status, scoreKind: "v1 partial credit",
         });
       }
     }
@@ -293,8 +304,11 @@ export async function runRows(runDirectory: string, context: RunContext): Promis
       if (!own.length) { graded.push(record); continue; }
       const latest = own.filter(run => (run.graderVersion ?? "unknown") === version).at(-1);
       if (!latest) { ungraded.push(record); continue; }
-      graded.push({ ...record, evaluation: latest.evaluation });
+      // A v2 score run counts by its outcome: the primary as the score, resolved as the verdict (MEASUREMENT §8).
+      graded.push({ ...record, evaluation: latest.outcome && latest.outcome.coverage === "scored"
+        ? { ...latest.evaluation, score: latest.outcome.primary, status: latest.outcome.resolved ? "passed" : "failed" } : latest.evaluation });
     }
+    const v2 = [...runs.values()].flat().some(run => (run.graderVersion ?? "unknown") === version && run.outcome);
     const levelOf = new Map(records.map(record => [record.itemId ?? "", record.itemLevel ?? null]));
     for (const fingerprint of fingerprints) {
       const caseRecords = graded.filter(record => record.caseId === fingerprint.caseId);
@@ -321,7 +335,7 @@ export async function runRows(runDirectory: string, context: RunContext): Promis
           trials: result!.units, scored: result!.scored, infrastructure: result!.infrastructureFailures, notRun: result!.notRun, unscored: result!.unscored,
           ungraded: ownUngraded, budgetStops: result!.budgetStops, meanScore: result!.meanScore,
           resolved: result!.resolved, decided: result!.decided, medianTokens: result!.medianTokens,
-          tournament: tournament ? { path: tournament.path, winRate } : null, status,
+          tournament: tournament ? { path: tournament.path, winRate } : null, status, scoreKind: v2 ? "v2 primary" : "v1 partial credit",
         });
       }
     }
@@ -473,6 +487,7 @@ export function markdownEvidence(evidence: Evidence): string {
     "# v1 Evidence Table", "",
     `Generated ${evidence.generatedAt.slice(0, 10)} by \`npm run evidence\` from \`runs/\`. Do not edit by hand; see [README](README.md).`, "",
     "Each row is one model on one task package in one run directory, under one grader version. Scores are **v1 partial-credit scores** under the row's own task version, grader version and protocol; they are not v2 scores and are never compared across rows with different protocols. A run re-graded under a later grader has one row per grader version.", "",
+    "A row re-graded on a v2 manifest (its score runs carry outcome.json) shows the mean v2 primary of its outcomes instead, marked \"v2 primary\" (a resolved rate for contract families, a normalised value for open-ended ones); it is never read as v1 partial credit.", "",
     "Columns: *Trials* is scored / recorded trials (superseded retries left out). *Coverage* lists infrastructure failures (excluded, never zero), trials not run, unscored trials and budget stops (graded as delivered). *Status* is the run's completion: `incomplete` means the run or its suite did not finish its plan.", "",
     "## Review cross-reference", "",
     "Every number in the §2 table of the third-party review, with the rows that carry it.", "",
@@ -494,7 +509,8 @@ export function markdownEvidence(evidence: Evidence): string {
     const values = versions.map(version => {
       const shown = found.filter(row => row.graderVersion === version);
       const text = shown.map(row => `${shortLabel(row.label)} ${row.tournament ? `win rate ${percent(row.tournament.winRate)}` : percent(row.meanScore)}${breakdownText(row) ? ` [${breakdownText(row)}]` : ""}`).join("; ");
-      return versions.length > 1 ? `grader ${version}: ${text}` : text;
+      const kind = shown[0]?.scoreKind === "v2 primary" ? " (v2 primary)" : "";
+      return versions.length > 1 ? `grader ${version}${kind}: ${text}` : text;
     }).reverse().join(" — ");
     const first = found[0];
     const source = first ? `${first.suite ? `suite ${first.suite}, ` : ""}${link(first.runDirectory)}; ${first.packageId}@${first.taskVersion}, grader ${versions.join(" then ")}` : "not found";
@@ -520,7 +536,8 @@ export function markdownEvidence(evidence: Evidence): string {
     for (const row of own) {
       const coverage = [row.infrastructure && `${row.infrastructure} infra`, row.notRun && `${row.notRun} not run`, row.unscored && `${row.unscored} unscored`,
         row.ungraded && `${row.ungraded} not graded under this grader`, row.budgetStops && `${row.budgetStops} budget stops`].filter(Boolean).join(", ") || "—";
-      const score = row.tournament ? `win rate ${percent(row.tournament.winRate)}; functional ${percent(row.meanScore)}` : percent(row.meanScore);
+      const score = row.tournament ? `win rate ${percent(row.tournament.winRate)}; functional ${percent(row.meanScore)}` :
+        row.scoreKind === "v2 primary" ? `v2 primary ${row.meanScore === null ? "n/a" : +row.meanScore.toFixed(3)}` : percent(row.meanScore);
       const scope = `${row.scope.join(", ")}${breakdownText(row) ? `: ${breakdownText(row)}` : ""}`;
       lines.push(`| ${row.startedAt.slice(0, 10)} | ${row.suite ? `suite ${row.suite.slice(0, 15)}… ` : ""}${link(row.runDirectory)} | ${row.packageId.replace(/-.*/, "")}@${row.taskVersion} | ${row.graderVersion ?? "—"} | ${budgetText(row.budget)}; ${row.contextPolicy}${row.budgetNotice === true ? "; stated" : ""} | ${row.label} | ${scope} | ${row.scored}/${row.trials} | ${coverage} | ${score} | ${row.resolved}/${row.decided} | ${row.status} |`);
     }

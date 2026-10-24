@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import type { OutcomeRecord, Stop } from "../scoring/model.js";
-import { capabilityMean, familyMean, saturation, taskScores, type Saturation, type TaskScore } from "../scoring/aggregate.js";
+import { capabilityMean, familyMean, saturation, taskScores, taskWeights, type Saturation, type TaskScore } from "../scoring/aggregate.js";
 import { combineResamples, familyResamples, intervalOf, pairedComparison, type Interval } from "../scoring/bootstrap.js";
 
 /**
@@ -115,7 +115,9 @@ function familyRow(family: V2FamilyData, label: string, tasks: TaskScore[], seed
     label, tasks: mine.length, trials: own.length,
     coverage: { scored: scored.length, unscored: own.length - scored.length, notRun: family.notRun[label] ?? 0, planned, share: planned ? withScore.length / planned : null },
     complete: planned > 0 && withScore.length / planned >= COVERAGE_REQUIRED,
-    resolvedRate: mean(withScore.map(task => task.resolvedRate ?? 0)),
+    // Weighted like the primary (equal tasks, structure groups capped), so that for a resolved-primary family the two agree.
+    resolvedRate: withScore.length ? (() => { const weights = taskWeights(withScore, family.structureCap);
+      return withScore.reduce((sum, task) => sum + weights.get(task.task)! * (task.resolvedRate ?? 0), 0); })() : null,
     primary: familyMean(mine, family.structureCap),
     interval: intervalOf(familyResamples(mine, seedOf(seed, family.id, label), family.structureCap)),
     diagnostic: mean(scored.map(outcome => outcome.diagnostic).filter((value): value is number => value !== null)),
@@ -139,7 +141,8 @@ export function buildReportV2(input: ReportV2Input): ReportV2 {
     // A model that neither ran nor was planned on a family (a reference pseudo-model, say) has no row there.
     rows: labels.filter(label => family.outcomes.some(outcome => outcome.model === label) || (family.plannedTasks[label] ?? 0) > 0)
       .map(label => familyRow(family, label, scores.get(family.id)!, input.id)),
-    saturation: saturation(scores.get(family.id)!, labels, family.openEnded, family.structureCap),
+    // Saturation reads the models that took part in the family.
+    saturation: saturation(scores.get(family.id)!, labels.filter(label => family.outcomes.some(outcome => outcome.model === label)), family.openEnded, family.structureCap),
     audit: input.audits[family.id] ?? null,
   }));
   const core = input.families.filter(family => family.tier === "core");
@@ -176,6 +179,7 @@ export function buildReportV2(input: ReportV2Input): ReportV2 {
         const parts = members.map(family => ({ family, comparison: pairedComparison(scores.get(family.id)!, labels[left]!, labels[right]!,
           seedOf(input.id, family.id, labels[left]!, labels[right]!), family.structureCap) })).filter(part => part.comparison.tasks > 0);
         const tasks = parts.reduce((sum, part) => sum + part.comparison.tasks, 0);
+        if (!tasks) continue;  // the two models share no task of this capability
         const total = parts.reduce((sum, part) => sum + weights[part.family.id]!, 0);
         const ahead = (key: "a" | "b" | "tie") => tasks ? parts.reduce((sum, part) => sum + part.comparison.ahead[key] * part.comparison.tasks, 0) / tasks : 0;
         comparisons.push({
@@ -245,7 +249,7 @@ export function markdownReportV2(report: ReportV2): string {
       `Primary: ${family.primaryKind === "resolved" ? "resolved rate" : family.primaryKind === "metric" ? "normalised metric, uncapped" : "rating"}. Runs: ${family.runDirectories.map(path => `\`${path}\``).join(", ") || "none"}.`, "",
       `| Model | Tasks | Trials | Coverage | Resolved | Primary | 95% interval | Diagnostic |${metricIds.map(id => ` ${id} (median) |`).join("")} Format strict / recovered / missing | Penalised | Stops | Infra / refusals |`,
       `| --- | ---: | ---: | --- | ---: | ---: | --- | ---: |${metricIds.map(() => " ---: |").join("")} --- | ---: | --- | --- |`,
-      ...family.rows.map(row => `| ${row.label} | ${row.tasks} | ${row.trials} | ${row.coverage.scored} scored, ${row.coverage.unscored} unscored, ${row.coverage.notRun} not run of ${row.coverage.planned} planned${row.complete ? "" : " **(incomplete)**"} | ${percent(row.resolvedRate)} | ${primaryText(family.primaryKind, row.primary)} | ${span(row.interval, value => primaryText(family.primaryKind, value))} | ${percent(row.diagnostic)} |${metricIds.map(id => ` ${number(row.metrics[id] ?? null, 1)} |`).join("")} ${row.format.strict} / ${row.format.recovered} / ${row.format.missing} | ${primaryText(family.primaryKind, row.format.penalised)} | ${Object.entries(row.stops).map(([stop, count]) => `${stop} ${count}`).join(", ") || "—"} | ${row.infrastructure} / ${row.refusals} |`), "");
+      ...family.rows.map(row => `| ${row.label} | ${row.tasks} | ${row.trials} | ${row.coverage.scored} scored, ${row.coverage.unscored} unscored, ${row.coverage.notRun} not run of ${row.coverage.planned} planned${row.complete ? "" : " **(incomplete)**"} | ${percent(row.resolvedRate)} | ${primaryText(family.primaryKind, row.primary)} | ${span(row.interval, value => primaryText(family.primaryKind, value))} | ${percent(row.diagnostic)} |${metricIds.map(id => ` ${number(row.metrics[id] ?? null, 3)} |`).join("")} ${row.format.strict} / ${row.format.recovered} / ${row.format.missing} | ${primaryText(family.primaryKind, row.format.penalised)} | ${Object.entries(row.stops).map(([stop, count]) => `${stop} ${count}`).join(", ") || "—"} | ${row.infrastructure} / ${row.refusals} |`), "");
   }
   lines.push("## Pairwise comparisons", "", "Per core capability, paired by task: A − B in the capability's primary, with a stratified cluster-bootstrap interval and the share of tasks each model is ahead.", "");
   if (report.comparisons.length) {

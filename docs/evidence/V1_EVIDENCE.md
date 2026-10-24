@@ -4,6 +4,8 @@ Generated 2026-10-24 by `npm run evidence` from `runs/`. Do not edit by hand; se
 
 Each row is one model on one task package in one run directory, under one grader version. Scores are **v1 partial-credit scores** under the row's own task version, grader version and protocol; they are not v2 scores and are never compared across rows with different protocols. A run re-graded under a later grader has one row per grader version.
 
+A row re-graded on a v2 manifest (its score runs carry outcome.json) shows the mean v2 primary of its outcomes instead, marked "v2 primary" (a resolved rate for contract families, a normalised value for open-ended ones); it is never read as v1 partial credit.
+
 Columns: *Trials* is scored / recorded trials (superseded retries left out). *Coverage* lists infrastructure failures (excluded, never zero), trials not run, unscored trials and budget stops (graded as delivered). *Status* is the run's completion: `incomplete` means the run or its suite did not finish its plan.
 
 ## Review cross-reference
@@ -16,7 +18,7 @@ Every number in the §2 table of the third-party review, with the rows that carr
 | T2 finance 0.3.0 at 6M per day: DeepSeek 98.0%, Qwen 67.6%, MiMo Flash 8.8%; fn1 and fn2 once per model | grader 1.2.0: qwen3.8-flash-default 67.9% [fn1 100.0%; fn2 35.8%]; deepseek-flash-high 98.1% [fn1 100.0%; fn2 96.2%]; mimo-v2.6-flash-default 9.4% [fn1 0.0%; fn2 18.9%] — grader 1.1.0: qwen3.8-flash-default 67.6% [fn1 100.0%; fn2 35.3%]; deepseek-flash-high 98.0% [fn1 100.0%; fn2 96.1%]; mimo-v2.6-flash-default 8.8% [fn1 0.0%; fn2 17.6%]. | suite 20261023-050438-dev-9f16, [suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa](../../runs/suites/20261023-050438-dev-9f16/runs/T2/4c66fddb-9494-4491-808c-fcd5164c15fa); t2-finance-desk@0.3.0, grader 1.1.0 then 1.2.0 |
 | T2 at 10M per day and 4 hours: no completed report | suites/dev.json T2: t2-finance-desk@0.3.0, 10M/trial, **never run**; suites/full.json T2: t2-finance-desk@0.3.0, 10M/trial, **never run** | Configurations below |
 | E3 0.5.0 at 5M per stage, 25M per trajectory: DeepSeek 90%, Qwen 94%, one trajectory each, stage budget stops | grader 2.3.0: qwen3.8-flash-default 95.0% [last graded S7 95.0%]; deepseek-flash-high 90.0% [last graded S7 90.0%] — grader 2.2.0: qwen3.8-flash-default 94.0% [last graded S7 94.0%]; deepseek-flash-high 90.0% [last graded S7 90.0%]. | suite 20261023-113824-dev-b319, [suites/20261023-113824-dev-b319/runs/E3-aliplan-qwen3.8-flash-default/f39e318e-934a-4895-ba98-26053edabb51](../../runs/suites/20261023-113824-dev-b319/runs/E3-aliplan-qwen3.8-flash-default/f39e318e-934a-4895-ba98-26053edabb51); eng-005-long-cycle-maintenance@0.5.0, grader 2.2.0 then 2.3.0 |
-| R3 0.3.0 L5–L7: DeepSeek about 72%, Qwen 24%, MiMo Pro 42%, MiMo Flash 28% | qwen3.8-flash-default 24.0% [L5 25.2% (8); L6 32.2% (8); L7 14.5% (8)]; deepseek-flash-high 72.3% [L5 75.0% (8); L6 89.4% (8); L7 52.6% (8)]; mimo-v2.6-flash-default 28.3% [L5 60.0% (8); L6 25.0% (8); L7 0.0% (8)]; mimo-v2.6-pro-default 41.7% [L5 62.5% (8); L6 62.5% (8); L7 0.0% (8)]. | [e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb](../../runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb); r3-logic-grid@0.3.0, grader 1.0.0 |
+| R3 0.3.0 L5–L7: DeepSeek about 72%, Qwen 24%, MiMo Pro 42%, MiMo Flash 28% | grader 2.0.0 (v2 primary): qwen3.8-flash-default 8.3% [L5 12.5% (8); L6 12.5% (8); L7 0.0% (8)]; deepseek-flash-high 70.8% [L5 75.0% (8); L6 87.5% (8); L7 50.0% (8)]; mimo-v2.6-flash-default 29.2% [L5 62.5% (8); L6 25.0% (8); L7 0.0% (8)]; mimo-v2.6-pro-default 41.7% [L5 62.5% (8); L6 62.5% (8); L7 0.0% (8)] — grader 1.0.0: qwen3.8-flash-default 24.0% [L5 25.2% (8); L6 32.2% (8); L7 14.5% (8)]; deepseek-flash-high 72.3% [L5 75.0% (8); L6 89.4% (8); L7 52.6% (8)]; mimo-v2.6-flash-default 28.3% [L5 60.0% (8); L6 25.0% (8); L7 0.0% (8)]; mimo-v2.6-pro-default 41.7% [L5 62.5% (8); L6 62.5% (8); L7 0.0% (8)]. | [e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb](../../runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb); r3-logic-grid@0.3.0, grader 1.0.0 then 2.0.0 |
 | E2 routes 0.5.0: DeepSeek about 71%, Qwen 17%, MiMo (two configurations) about 56–58% | qwen3.8-flash-default 16.7%; deepseek-flash-high 71.2%; mimo-v2.6-flash-default 57.6%; mimo-v2.6-pro-default 56.1%. | [a69d9886-bc15-4c80-95c6-c187a1cec105](../../runs/a69d9886-bc15-4c80-95c6-c187a1cec105); e2-spec-implementation@0.5.0, grader 1.5.0 |
 | E4 0.5.0 speedup: 87.5% / 100% / 87.5% (DeepSeek / Qwen / MiMo Flash) | grader 1.5.0: qwen3.8-flash-default 37.5% [compress 0.0%; speedup 75.0%]; deepseek-flash-high 75.0% [speedup 75.0%]; mimo-v2.6-flash-default 43.8% [compress 0.0%; speedup 87.5%] — grader 1.4.0: qwen3.8-flash-default 50.0% [compress 0.0%; speedup 100.0%]; deepseek-flash-high 87.5% [speedup 87.5%]; mimo-v2.6-flash-default 43.8% [compress 0.0%; speedup 87.5%] (the speedup entry of the per-item breakdown). | suite 20261021-123806-dev-d275, [suites/20261021-123806-dev-d275/runs/E4/93f420d7-8c69-4f97-b46f-43ac3020d750](../../runs/suites/20261021-123806-dev-d275/runs/E4/93f420d7-8c69-4f97-b46f-43ac3020d750); e4-terminal-tasks@0.5.0, grader 1.4.0 then 1.5.0 |
 | E4 compress at 4M: DeepSeek 83.3%, Qwen 66.7% | grader 1.5.0: qwen3.8-flash-default 66.7%; deepseek-flash-high 83.3% — grader 1.4.0: qwen3.8-flash-default 66.7%; deepseek-flash-high 83.3%. | suite 20261022-050033-dev-0cdf, [suites/20261022-050033-dev-0cdf/runs/E4-compress/acb5bdb3-c65d-4796-ab6b-b3386c760c6c](../../runs/suites/20261022-050033-dev-0cdf/runs/E4-compress/acb5bdb3-c65d-4796-ab6b-b3386c760c6c); e4-terminal-tasks@0.5.0, grader 1.4.0 then 1.5.0 |
@@ -29,7 +31,7 @@ The family templates the suite files point to now, and whether any recorded row 
 
 | Suite | Family | Package | Context | Budget | Recorded rows |
 | --- | --- | --- | --- | --- | --- |
-| suites/dev.json | R3 | r3-logic-grid@0.3.0 | single | 0.3M/trial | 7 |
+| suites/dev.json | R3 | r3-logic-grid@0.3.0 | single | 0.3M/trial | 14 |
 | suites/dev.json | T1 | t1-evidence-recovery@0.6.0 | single | 2M/trial | 6 |
 | suites/dev.json | E2 | e2-spec-implementation@0.5.0 | single | 3M/trial | 7 |
 | suites/dev.json | E4-speedup | e4-terminal-tasks@0.5.0 | single | 2M/trial | 8 |
@@ -37,8 +39,8 @@ The family templates the suite files point to now, and whether any recorded row 
 | suites/dev.json | E3 | eng-005-long-cycle-maintenance@0.5.0 | per-stage | 5M/stage, 25M/trajectory | 4 |
 | suites/dev.json | T2 | t2-finance-desk@0.3.0 | single | 10M/trial | **never run** |
 | suites/dev.json | VIS | vis-001-original-landing@0.3.1 | single | 0.8M/trial | 9 |
-| suites/dev.json | AE | ae-heuristic-contests@0.1.0 | single | 30M/trial | **never run** |
-| suites/full.json | R3 | r3-logic-grid@0.3.0 | single | 0.3M/trial | 7 |
+| suites/dev.json | AE | ae-heuristic-contests@0.2.0 | single | 30M/trial | **never run** |
+| suites/full.json | R3 | r3-logic-grid@0.3.0 | single | 0.3M/trial | 14 |
 | suites/full.json | T1 | t1-evidence-recovery@0.6.0 | single | 2M/trial | 6 |
 | suites/full.json | E2 | e2-spec-implementation@0.5.0 | single | 3M/trial | 7 |
 | suites/full.json | E4-speedup | e4-terminal-tasks@0.5.0 | single | 2M/trial | 8 |
@@ -46,7 +48,7 @@ The family templates the suite files point to now, and whether any recorded row 
 | suites/full.json | E3 | eng-005-long-cycle-maintenance@0.5.0 | per-stage | 5M/stage, 25M/trajectory | 4 |
 | suites/full.json | T2 | t2-finance-desk@0.3.0 | single | 10M/trial | **never run** |
 | suites/full.json | VIS | vis-001-original-landing@0.3.1 | single | 0.8M/trial | 9 |
-| suites/full.json | AE | ae-heuristic-contests@0.1.0 | single | 30M/trial | **never run** |
+| suites/full.json | AE | ae-heuristic-contests@0.2.0 | single | 30M/trial | **never run** |
 
 ## Results by family
 
@@ -72,12 +74,19 @@ The family templates the suite files point to now, and whether any recorded row 
 | 2026-10-20 | [38d352d0-468f-438f-98cc-58f77d1937f7](../../runs/38d352d0-468f-438f-98cc-58f77d1937f7) | r3@0.2.0 | 1.0.0 | 0.3M/trial; single | supercn:step-5-preview-medium | L5, L4, L6: L4 60.0% (8); L5 25.0% (8); L6 50.0% (2) | 18/18 | 6 not run, 10 budget stops | 43.3% | 8/18 | incomplete |
 | 2026-10-20 | [38d352d0-468f-438f-98cc-58f77d1937f7](../../runs/38d352d0-468f-438f-98cc-58f77d1937f7) | r3@0.2.0 | 1.0.0 | 0.3M/trial; single | supergpt:gpt-6-luna-medium | L5, L4, L6: L4 29.8% (8); L5 18.8% (8); L6 27.2% (2) | 18/18 | 6 not run | 24.6% | 0/18 | incomplete |
 | 2026-10-20 | [e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb](../../runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb) | r3@0.3.0 | 1.0.0 | 0.3M/trial; single | aliplan:qwen3.8-flash-default | L7, L5, L6: L5 25.2% (8); L6 32.2% (8); L7 14.5% (8) | 24/24 | 3 budget stops | 24.0% | 2/24 | incomplete |
+| 2026-10-20 | [e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb](../../runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb) | r3@0.3.0 | 2.0.0 | 0.3M/trial; single | aliplan:qwen3.8-flash-default | L7, L5, L6: L5 12.5% (8); L6 12.5% (8); L7 0.0% (8) | 24/24 | 3 budget stops | v2 primary 0.083 | 2/24 | incomplete |
 | 2026-10-20 | [e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb](../../runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb) | r3@0.3.0 | 1.0.0 | 0.3M/trial; single | deepseek:deepseek-flash-high | L6, L7, L5: L5 75.0% (8); L6 89.4% (8); L7 52.6% (8) | 24/24 | 5 budget stops | 72.3% | 17/24 | incomplete |
+| 2026-10-20 | [e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb](../../runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb) | r3@0.3.0 | 2.0.0 | 0.3M/trial; single | deepseek:deepseek-flash-high | L6, L7, L5: L5 75.0% (8); L6 87.5% (8); L7 50.0% (8) | 24/24 | 5 budget stops | v2 primary 0.708 | 17/24 | incomplete |
 | 2026-10-20 | [e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb](../../runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb) | r3@0.3.0 | 1.0.0 | 0.3M/trial; single | mimoplan:mimo-v2.6-flash-default | L7, L6, L5: L5 60.0% (8); L6 25.0% (8); L7 0.0% (8) | 24/24 | 16 budget stops | 28.3% | 7/24 | incomplete |
+| 2026-10-20 | [e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb](../../runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb) | r3@0.3.0 | 2.0.0 | 0.3M/trial; single | mimoplan:mimo-v2.6-flash-default | L7, L6, L5: L5 62.5% (8); L6 25.0% (8); L7 0.0% (8) | 24/24 | 16 budget stops | v2 primary 0.292 | 7/24 | incomplete |
 | 2026-10-20 | [e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb](../../runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb) | r3@0.3.0 | 1.0.0 | 0.3M/trial; single | mimoplan:mimo-v2.6-pro-default | L5, L7, L6: L5 62.5% (8); L6 62.5% (8); L7 0.0% (8) | 24/24 | 14 budget stops | 41.7% | 10/24 | incomplete |
+| 2026-10-20 | [e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb](../../runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb) | r3@0.3.0 | 2.0.0 | 0.3M/trial; single | mimoplan:mimo-v2.6-pro-default | L5, L7, L6: L5 62.5% (8); L6 62.5% (8); L7 0.0% (8) | 24/24 | 14 budget stops | v2 primary 0.417 | 10/24 | incomplete |
 | 2026-10-20 | [e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb](../../runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb) | r3@0.3.0 | 1.0.0 | 0.3M/trial; single | supercn:glm-5.3-high | L5: L5-01 n/a; L5-02 n/a | 0/2 | 2 infra, 22 not run | n/a | 0/0 | incomplete |
+| 2026-10-20 | [e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb](../../runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb) | r3@0.3.0 | 2.0.0 | 0.3M/trial; single | supercn:glm-5.3-high |  | 0/0 | 22 not run, 2 not graded under this grader | v2 primary n/a | 0/0 | incomplete |
 | 2026-10-20 | [e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb](../../runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb) | r3@0.3.0 | 1.0.0 | 0.3M/trial; single | supercn:step-5-preview-medium | L5: L5-01 n/a; L5-02 n/a; L5-03 n/a | 0/3 | 3 infra, 21 not run | n/a | 0/0 | incomplete |
+| 2026-10-20 | [e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb](../../runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb) | r3@0.3.0 | 2.0.0 | 0.3M/trial; single | supercn:step-5-preview-medium |  | 0/0 | 21 not run, 3 not graded under this grader | v2 primary n/a | 0/0 | incomplete |
 | 2026-10-20 | [e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb](../../runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb) | r3@0.3.0 | 1.0.0 | 0.3M/trial; single | supergpt:gpt-6-luna-medium | L5: L5-01 n/a; L5-02 n/a; L5-03 n/a | 0/3 | 3 infra, 21 not run | n/a | 0/0 | incomplete |
+| 2026-10-20 | [e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb](../../runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb) | r3@0.3.0 | 2.0.0 | 0.3M/trial; single | supergpt:gpt-6-luna-medium |  | 0/0 | 21 not run, 3 not graded under this grader | v2 primary n/a | 0/0 | incomplete |
 
 ### T1
 

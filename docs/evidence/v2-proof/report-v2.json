@@ -1,0 +1,529 @@
+{
+ "schemaVersion": 1,
+ "suite": "v2-measurement-proof",
+ "id": "proof-9e1c2b69",
+ "release": null,
+ "split": "dev",
+ "track": "fixed",
+ "commit": "0e3490f891cd1f59f71855e85986261295a6d751",
+ "startedAt": "2026-10-24",
+ "finishedAt": "2026-10-24",
+ "status": "completed",
+ "exploratory": true,
+ "models": [
+  {
+   "label": "aliplan:qwen3.8-flash-default",
+   "thinking": "default",
+   "temperature": 0
+  },
+  {
+   "label": "deepseek:deepseek-flash-high",
+   "thinking": "high",
+   "temperature": 0
+  },
+  {
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "thinking": "default",
+   "temperature": 0
+  },
+  {
+   "label": "mimoplan:mimo-v2.6-pro-default",
+   "thinking": "default",
+   "temperature": 0
+  },
+  {
+   "label": "reference:naive",
+   "thinking": "n/a (a program)",
+   "temperature": null
+  },
+  {
+   "label": "reference:greedy",
+   "thinking": "n/a (a program)",
+   "temperature": null
+  }
+ ],
+ "repetitions": 1,
+ "profile": [
+  {
+   "label": "aliplan:qwen3.8-flash-default",
+   "capabilities": {
+    "reasoning": {
+     "primary": 0.08333333333333333,
+     "interval": "n too small",
+     "families": [
+      "R3"
+     ],
+     "tasks": 24
+    }
+   },
+   "rows": {}
+  },
+  {
+   "label": "deepseek:deepseek-flash-high",
+   "capabilities": {
+    "reasoning": {
+     "primary": 0.7083333333333331,
+     "interval": "n too small",
+     "families": [
+      "R3"
+     ],
+     "tasks": 24
+    }
+   },
+   "rows": {}
+  },
+  {
+   "label": "mimoplan:mimo-v2.6-flash-default",
+   "capabilities": {
+    "reasoning": {
+     "primary": 0.30357142857142855,
+     "interval": "n too small",
+     "families": [
+      "R3"
+     ],
+     "tasks": 22
+    }
+   },
+   "rows": {}
+  },
+  {
+   "label": "mimoplan:mimo-v2.6-pro-default",
+   "capabilities": {
+    "reasoning": {
+     "primary": 0.4166666666666667,
+     "interval": "n too small",
+     "families": [
+      "R3"
+     ],
+     "tasks": 24
+    }
+   },
+   "rows": {}
+  },
+  {
+   "label": "reference:naive",
+   "capabilities": {
+    "reasoning": {
+     "primary": null,
+     "interval": "n too small",
+     "families": [
+      "R3"
+     ],
+     "tasks": 0
+    }
+   },
+   "rows": {
+    "AE": {
+     "tier": "frontier",
+     "primary": 0,
+     "interval": {
+      "low": 0,
+      "high": 0
+     },
+     "tasks": 10
+    }
+   }
+  },
+  {
+   "label": "reference:greedy",
+   "capabilities": {
+    "reasoning": {
+     "primary": null,
+     "interval": "n too small",
+     "families": [
+      "R3"
+     ],
+     "tasks": 0
+    }
+   },
+   "rows": {
+    "AE": {
+     "tier": "frontier",
+     "primary": 0.37678981230202946,
+     "interval": "n too small",
+     "tasks": 3
+    }
+   }
+  }
+ ],
+ "families": [
+  {
+   "id": "R3",
+   "tier": "core",
+   "capability": "reasoning",
+   "openEnded": false,
+   "packageId": "r3-logic-grid",
+   "taskVersion": "0.3.0",
+   "primaryKind": "resolved",
+   "protocol": {
+    "budget": "0.3M/task",
+    "contextPolicy": "single",
+    "tools": "workspace-basic, read-only, no execution",
+    "commandLimits": "default"
+   },
+   "runDirectories": [
+    "runs/e3b89e80-676e-4b9b-a3dc-f5e2ddff6bfb"
+   ],
+   "rows": [
+    {
+     "label": "aliplan:qwen3.8-flash-default",
+     "tasks": 24,
+     "trials": 24,
+     "coverage": {
+      "scored": 24,
+      "unscored": 0,
+      "notRun": 0,
+      "planned": 24,
+      "share": 1
+     },
+     "complete": true,
+     "resolvedRate": 0.08333333333333333,
+     "primary": 0.08333333333333333,
+     "interval": "n too small",
+     "diagnostic": 0.2449720293209877,
+     "metrics": {
+      "cellAccuracy": 0.123125,
+      "constraintValidity": 0.6255090000000001,
+      "wellFormed": 1
+     },
+     "format": {
+      "strict": 11,
+      "recovered": 2,
+      "missing": 11,
+      "penalised": 0.08333333333333333
+     },
+     "stops": {
+      "output_limit": 3,
+      "done": 21
+     },
+     "infrastructure": 0,
+     "refusals": 0,
+     "efficiency": {
+      "medianTokens": 61232,
+      "medianWallMs": 858335.2347690002,
+      "medianModelCalls": 1,
+      "tokensPerResolved": 912246.5
+     }
+    },
+    {
+     "label": "deepseek:deepseek-flash-high",
+     "tasks": 24,
+     "trials": 24,
+     "coverage": {
+      "scored": 24,
+      "unscored": 0,
+      "notRun": 0,
+      "planned": 24,
+      "share": 1
+     },
+     "complete": true,
+     "resolvedRate": 0.7083333333333331,
+     "primary": 0.7083333333333331,
+     "interval": "n too small",
+     "diagnostic": 0.7232561728395063,
+     "metrics": {
+      "cellAccuracy": 1,
+      "constraintValidity": 1,
+      "wellFormed": 1
+     },
+     "format": {
+      "strict": 19,
+      "recovered": 0,
+      "missing": 5,
+      "penalised": 0.7083333333333334
+     },
+     "stops": {
+      "done": 19,
+      "output_limit": 5
+     },
+     "infrastructure": 0,
+     "refusals": 0,
+     "efficiency": {
+      "medianTokens": 91730,
+      "medianWallMs": 389420.49214399996,
+      "medianModelCalls": 1,
+      "tokensPerResolved": 154423.4705882353
+     }
+    },
+    {
+     "label": "mimoplan:mimo-v2.6-flash-default",
+     "tasks": 24,
+     "trials": 24,
+     "coverage": {
+      "scored": 22,
+      "unscored": 2,
+      "notRun": 0,
+      "planned": 24,
+      "share": 0.9166666666666666
+     },
+     "complete": true,
+     "resolvedRate": 0.30357142857142855,
+     "primary": 0.30357142857142855,
+     "interval": "n too small",
+     "diagnostic": 0.3181818181818182,
+     "metrics": {
+      "cellAccuracy": 0,
+      "constraintValidity": 0,
+      "wellFormed": 0
+     },
+     "format": {
+      "strict": 6,
+      "recovered": 1,
+      "missing": 15,
+      "penalised": 0.3090909090909091
+     },
+     "stops": {
+      "output_limit": 15,
+      "done": 8,
+      "timeout": 1
+     },
+     "infrastructure": 0,
+     "refusals": 2,
+     "efficiency": {
+      "medianTokens": 133023.5,
+      "medianWallMs": 2478809.7259380003,
+      "medianModelCalls": 1,
+      "tokensPerResolved": 340528.28571428574
+     }
+    },
+    {
+     "label": "mimoplan:mimo-v2.6-pro-default",
+     "tasks": 24,
+     "trials": 24,
+     "coverage": {
+      "scored": 24,
+      "unscored": 0,
+      "notRun": 0,
+      "planned": 24,
+      "share": 1
+     },
+     "complete": true,
+     "resolvedRate": 0.4166666666666667,
+     "primary": 0.4166666666666667,
+     "interval": "n too small",
+     "diagnostic": 0.4166666666666667,
+     "metrics": {
+      "cellAccuracy": 0,
+      "constraintValidity": 0,
+      "wellFormed": 0
+     },
+     "format": {
+      "strict": 10,
+      "recovered": 0,
+      "missing": 14,
+      "penalised": 0.4166666666666667
+     },
+     "stops": {
+      "done": 10,
+      "output_limit": 14
+     },
+     "infrastructure": 0,
+     "refusals": 0,
+     "efficiency": {
+      "medianTokens": 132759.5,
+      "medianWallMs": 1845713.4889090003,
+      "medianModelCalls": 1,
+      "tokensPerResolved": 243988.3
+     }
+    }
+   ],
+   "saturation": {
+    "tasks": 22,
+    "solvedByAll": 1,
+    "solvedByNone": 5,
+    "bestAboveStrong": 0,
+    "spread": 0.6249999999999998
+   },
+   "audit": null
+  },
+  {
+   "id": "AE",
+   "tier": "frontier",
+   "capability": "engineering",
+   "openEnded": true,
+   "packageId": "ae-heuristic-contests",
+   "taskVersion": "0.2.0",
+   "primaryKind": "metric",
+   "protocol": {
+    "budget": "none (reference programs)",
+    "contextPolicy": "single",
+    "tools": "workspace-augmented",
+    "commandLimits": "600 s"
+   },
+   "runDirectories": [],
+   "rows": [
+    {
+     "label": "reference:naive",
+     "tasks": 10,
+     "trials": 10,
+     "coverage": {
+      "scored": 10,
+      "unscored": 0,
+      "notRun": 0,
+      "planned": 10,
+      "share": 1
+     },
+     "complete": true,
+     "resolvedRate": 0.9999999999999999,
+     "primary": 0,
+     "interval": {
+      "low": 0,
+      "high": 0
+     },
+     "diagnostic": 0.5,
+     "metrics": {
+      "performance": 624.5,
+      "performanceExtrapolated": 0,
+      "performanceRank": 811.75,
+      "total": 4402925
+     },
+     "format": {
+      "strict": 0,
+      "recovered": 0,
+      "missing": 0,
+      "penalised": 0
+     },
+     "stops": {
+      "done": 10
+     },
+     "infrastructure": 0,
+     "refusals": 0,
+     "efficiency": {
+      "medianTokens": 0,
+      "medianWallMs": 0,
+      "medianModelCalls": 0,
+      "tokensPerResolved": 0
+     }
+    },
+    {
+     "label": "reference:greedy",
+     "tasks": 3,
+     "trials": 3,
+     "coverage": {
+      "scored": 3,
+      "unscored": 0,
+      "notRun": 0,
+      "planned": 3,
+      "share": 1
+     },
+     "complete": true,
+     "resolvedRate": 1,
+     "primary": 0.37678981230202946,
+     "interval": "n too small",
+     "diagnostic": 0.6883949061510147,
+     "metrics": {
+      "performance": 937,
+      "performanceExtrapolated": 0,
+      "performanceRank": 568.5,
+      "total": 46461176
+     },
+     "format": {
+      "strict": 0,
+      "recovered": 0,
+      "missing": 0,
+      "penalised": 0.37678981230202946
+     },
+     "stops": {
+      "done": 3
+     },
+     "infrastructure": 0,
+     "refusals": 0,
+     "efficiency": {
+      "medianTokens": 0,
+      "medianWallMs": 0,
+      "medianModelCalls": 0,
+      "tokensPerResolved": 0
+     }
+    }
+   ],
+   "saturation": {
+    "tasks": 3,
+    "solvedByAll": 0,
+    "solvedByNone": 0,
+    "bestAboveStrong": 0,
+    "spread": 0.37678981230202946
+   },
+   "audit": null
+  }
+ ],
+ "comparisons": [
+  {
+   "capability": "reasoning",
+   "modelA": "aliplan:qwen3.8-flash-default",
+   "modelB": "deepseek:deepseek-flash-high",
+   "tasks": 24,
+   "meanDifference": -0.6249999999999999,
+   "interval": "n too small",
+   "ahead": {
+    "a": 0,
+    "b": 0.625,
+    "tie": 0.375
+   }
+  },
+  {
+   "capability": "reasoning",
+   "modelA": "aliplan:qwen3.8-flash-default",
+   "modelB": "mimoplan:mimo-v2.6-flash-default",
+   "tasks": 22,
+   "meanDifference": -0.21428571428571425,
+   "interval": "n too small",
+   "ahead": {
+    "a": 0.045454545454545456,
+    "b": 0.2727272727272727,
+    "tie": 0.6818181818181818
+   }
+  },
+  {
+   "capability": "reasoning",
+   "modelA": "aliplan:qwen3.8-flash-default",
+   "modelB": "mimoplan:mimo-v2.6-pro-default",
+   "tasks": 24,
+   "meanDifference": -0.3333333333333333,
+   "interval": "n too small",
+   "ahead": {
+    "a": 0.041666666666666664,
+    "b": 0.375,
+    "tie": 0.5833333333333334
+   }
+  },
+  {
+   "capability": "reasoning",
+   "modelA": "deepseek:deepseek-flash-high",
+   "modelB": "mimoplan:mimo-v2.6-flash-default",
+   "tasks": 22,
+   "meanDifference": 0.47023809523809523,
+   "interval": "n too small",
+   "ahead": {
+    "a": 0.45454545454545453,
+    "b": 0,
+    "tie": 0.5454545454545454
+   }
+  },
+  {
+   "capability": "reasoning",
+   "modelA": "deepseek:deepseek-flash-high",
+   "modelB": "mimoplan:mimo-v2.6-pro-default",
+   "tasks": 24,
+   "meanDifference": 0.29166666666666663,
+   "interval": "n too small",
+   "ahead": {
+    "a": 0.2916666666666667,
+    "b": 0,
+    "tie": 0.7083333333333334
+   }
+  },
+  {
+   "capability": "reasoning",
+   "modelA": "mimoplan:mimo-v2.6-flash-default",
+   "modelB": "mimoplan:mimo-v2.6-pro-default",
+   "tasks": 22,
+   "meanDifference": -0.14285714285714285,
+   "interval": "n too small",
+   "ahead": {
+    "a": 0.09090909090909091,
+    "b": 0.22727272727272727,
+    "tie": 0.6818181818181818
+   }
+  }
+ ]
+}
