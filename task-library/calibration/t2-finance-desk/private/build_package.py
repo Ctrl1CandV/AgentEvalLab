@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Builds the T2 finance desk package: the close days (days.json), one item per day with the ledger tool, the manual and
-the books, and the manifest. Usage: python3 private/build_package.py (from the package directory)."""
+the books, and the manifest. Usage: python3 private/build_package.py [--reuse-days] (from the package directory).
+--reuse-days keeps private/days.json as it is (the days and their best plans known) and rebuilds the items and the
+manifest from it: for a grader change that leaves the task unchanged."""
 import hashlib
 import json
 import pathlib
@@ -27,14 +29,19 @@ def visible(path):
 
 
 def main():
-    days = {}
-    for item_id, seed in DAYS.items():
-        books, requests, effects = finance.build(seed)
-        problem = finance.PlanProblem(books)
-        value, slots = finance.best_plan(problem)
-        days[item_id] = {"seed": seed, "books": books, "requests": requests, "effects": effects, "prompt": finance.prompt(item_id, requests),
-                         "plan_best": {"signature": problem.signature(), "value": value, "slots": slots}}
-    (HERE / "days.json").write_text(json.dumps(days, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+    if "--reuse-days" in sys.argv[1:]:
+        days = json.loads((HERE / "days.json").read_text(encoding="utf-8"))
+        if {item_id: day["seed"] for item_id, day in days.items()} != DAYS:
+            raise SystemExit("days.json was built from other seeds; rebuild without --reuse-days")
+    else:
+        days = {}
+        for item_id, seed in DAYS.items():
+            books, requests, effects = finance.build(seed)
+            problem = finance.PlanProblem(books)
+            value, slots = finance.best_plan(problem)
+            days[item_id] = {"seed": seed, "books": books, "requests": requests, "effects": effects, "prompt": finance.prompt(item_id, requests),
+                             "plan_best": {"signature": problem.signature(), "value": value, "slots": slots}}
+        (HERE / "days.json").write_text(json.dumps(days, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     import grader
     grader.DAYS = grader.load_days()
     grader.known_plans(grader.DAYS)

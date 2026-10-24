@@ -1,6 +1,7 @@
 """Self-calibration of the T2 finance desk: hand-worked examples of each rule on small books, then, on every close day,
 the oracle through ledger.py itself, an untouched desk, a reply alone, missing begin markers, single slips followed by
-correct handling (attribution), and each modelled misreading. No model is involved."""
+correct handling (attribution), each modelled misreading, and (grader 1.2.0) changes outside the day's requests or
+their order against alternative flows that stay correct. No model is involved."""
 import copy
 import json
 import os
@@ -230,6 +231,52 @@ def own_state_run(books, requests, slip=None, mistakes=()):
     return commands, reply
 
 
+def blocks(commands):
+    """The commands split at each begin marker: [[begin Rn, ...], ...]."""
+    result = []
+    for command in commands:
+        if command[0] == "begin" or not result:
+            result.append([])
+        result[-1].append(command)
+    return result
+
+
+def day_scenarios(item_id, day, commands, reply, names):
+    """Coverage and end state (grader 1.2.0): negative tests for changes outside the day's requests or out of their
+    order, and alternative flows that stay correct. The stray entry is balanced and allowed by the tool."""
+    requests = day["requests"]
+    stray = ["post", {"date": "2026-10-02", "memo": "stray", "lines": [{"account": "1100", "debit": "1000000.00"}, {"account": "4000", "credit": "1000000.00"}]}]
+    plan_request = next(request["id"] for request in requests if request["kind"] == "payment-plan")
+    final_plan = [command for command in commands if command[0] == "set-plan"][-1]
+    by_request = {block[0][1]: block for block in blocks(commands)}
+    rows = [
+        # The review's reproduction: a correct day, then an unknown request that posts.
+        (item_id, "unknown-request-posts", commands + [["begin", "R999"], stray], None, json.dumps(reply), names - {"coverage", "end-state"}),
+        # Beginning an unknown request without changing anything is harmless.
+        (item_id, "unknown-request-without-changes", commands + [["begin", "R999"]], None, json.dumps(reply), names),
+        (item_id, "change-before-the-first-begin", [stray] + commands, None, json.dumps(reply), names - {"coverage", "end-state"}),
+        # Recording the same plan again after the queue moved on: the books end right, but R1 was reopened.
+        (item_id, "reopens-the-plan-request", commands + [["begin", plan_request], final_plan], None, json.dumps(reply), names - {"coverage"}),
+        # The same commands without markers plus a change no request owns.
+        (item_id, "without-begin-unattributed-change", [command for command in commands if command[0] != "begin"] + [stray], None, json.dumps(reply),
+         lambda passed: "coverage" not in passed and "end-state" not in passed),
+        # Alternative flows: a begin repeated, and the plan revised before the next request.
+        (item_id, "begin-repeated", [item for command in commands for item in ([command, command] if command[0] == "begin" else [command])], None,
+         json.dumps(reply), names),
+    ]
+    problem = finance.PlanProblem(day["books"])
+    revised = list(by_request[plan_request])
+    revised.insert(1, ["set-plan", problem.schedule(finance.naive_plan(problem))])
+    rows.append((item_id, "plan-revised-within-its-request", [command for block in blocks(commands) for command in (revised if block[0][1] == plan_request else block)],
+                 None, json.dumps(reply), names))
+    # The last two requests swapped: each is still right on its own books, and so is the day, but the order is not.
+    kinds = {request["kind"]: request["id"] for request in requests}
+    swap = (kinds["deferred"], kinds["revaluation"])
+    swapped = [by_request[swap[1]] if block[0][1] == swap[0] else by_request[swap[0]] if block[0][1] == swap[1] else block for block in blocks(commands)]
+    rows.append((item_id, f"handles-{swap[1]}-before-{swap[0]}", [command for block in swapped for command in block], None, json.dumps(reply), names - {"coverage"}))
+    return rows
+
+
 def scenarios():
     rows = []
     for item_id, day in grader.DAYS.items():
@@ -242,10 +289,12 @@ def scenarios():
         rows.append((item_id, "untouched", [], None, None, {"answer-format"}))
         rows.append((item_id, "reply-only", [], None, json.dumps(reply), {"answer-format"}))
         rows.append((item_id, "oracle-without-begin", [command for command in commands if command[0] != "begin"], None, json.dumps(reply), names))
-        # One slip, then correct handling on the desk's own books: only the slipped request loses checks.
+        rows += day_scenarios(item_id, day, commands, reply, names)
+        # One slip, then correct handling on the desk's own books: only the slipped request loses checks, and the end
+        # state of the day.
         for request in requests:
             prefix = request["id"].lower()
-            others = {name for name in names if not name.startswith(prefix + "-")}
+            others = {name for name in names if not name.startswith(prefix + "-") and name != "end-state"}
             if request["kind"] == "receipt":
                 def wrong(state, request_, result):
                     """Everything to a prepayment, as if no invoice were found."""
@@ -257,18 +306,20 @@ def scenarios():
                     return {"entries": [{"date": bank_line["date"], "memo": "slip", "lines": lines}], "statuses": {}, "outcome": "done"}
                 slipped, slipped_reply = own_state_run(books, requests, (request["id"], wrong))
                 rows.append((item_id, f"misbooks-{request['id']}-only", slipped, None, json.dumps(slipped_reply),
-                             lambda passed, others=others, prefix=prefix: others <= passed and f"{prefix}-amounts" not in passed))
+                             lambda passed, others=others, prefix=prefix: others <= passed and f"{prefix}-amounts" not in passed
+                             and "end-state" not in passed))
                 break
         for request in requests:
             if request["kind"] == "vendor" and request["trap"] == "duplicate":
                 prefix = request["id"].lower()
-                others = {name for name in names if not name.startswith(prefix + "-")}
+                others = {name for name in names if not name.startswith(prefix + "-") and name != "end-state"}
 
                 def posted_anyway(state, request_, result):
                     return finance.handle(state, request_) | {"statuses": {request_["inbox"]: "held"}, "outcome": "held"}
                 slipped, slipped_reply = own_state_run(books, requests, (request["id"], posted_anyway))
                 rows.append((item_id, f"holds-{request['id']}-only", slipped, None, json.dumps(slipped_reply),
-                             lambda passed, others=others, prefix=prefix: others <= passed and f"{prefix}-outcome" not in passed))
+                             lambda passed, others=others, prefix=prefix: others <= passed and f"{prefix}-outcome" not in passed
+                             and "end-state" not in passed))
         # A plan by due date keeps its outcome but loses its rungs; the greedy plan stops at the middle of the scale; a
         # plan recorded after the next request began loses only the plan's clean check.
         for request in requests:

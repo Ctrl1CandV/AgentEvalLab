@@ -194,6 +194,24 @@ Run `runs/suites/20261023-050438-dev-9f16` (commit `4a276fb`): fn1 and fn2 on de
   - First attempt: the provider refused a request ("The request was rejected because it was considered high risk", stop reason `content_filter`), an infrastructure failure.
   - The retry was interrupted when the suite died. A suite bug then marked it done without running it (fixed in `ed910f5`).
   - Run again, mimo ended its session after 9 calls, mid-analysis, without changing anything: a 0 of its own making.
-- **Cache reads.** Every trial spent 92–98% of its counted tokens on cache reads, about 70 calls at 70,000–90,000 tokens of context each.
+- **Cache reads.** Five of the six trials spent 92–98% of their counted tokens on cache reads, about 70 calls at 70,000–90,000 tokens of context each; mimo's fn1 run, which ended after 9 calls, about 56% (corrected 2026-10-24 after the third-party review recomputed it from `execution.requestUsage`).
 
 **Budget, from 2026-10-23 (user decision).** Each day gets 10,000,000 tokens and four hours. A budget that stops a model which solved R1 exactly, before the rest of the queue, scores efficiency, and efficiency is reported, not scored. The next run will show whether 10M is enough.
+
+## Grader 1.2.0 (2026-10-24, task 0.3.0 unchanged)
+
+**Why.** The third-party review (`docs/reviews/2026-10-24-third-party-evaluation-review.md` §3.7) found that changes under an unknown request number escaped grading: `ledger.py begin` accepts any `R<digits>`, the per-request grading reads only the day's requests, and integrity proves only that the books match the audit log. A correct day followed by `begin R999` and a 1,000,000.00 EUR entry on 1100/4000 scored 45/45 (reproduced offline under grader 1.1.0).
+
+**Change.** Two critical checks of the whole day (rubric): `coverage` (every changing command belongs to exactly one request, in the order given, as manual §8 already required) and `end-state` (the books from the original start equal the oracle's correctly handled day). The per-request checks are unchanged. The task, its manual, tool and books are unchanged, so the version stays 0.3.0 and earlier trials can be re-graded. The builder gained `--reuse-days`, which rebuilds the items and the manifest from the existing `private/days.json`; the item files are byte-identical.
+
+**Self-calibration** (`logs/self-calibration-0.3.0-grader-1.2.0.log`), new on every day:
+
+- the review's reproduction (`unknown-request-posts`) and a change before the first `begin` lose `coverage` and `end-state` only;
+- recording the same plan again after the queue moved on (`reopens-the-plan-request`) and the last two requests swapped (`handles-R11-before-R10`) lose `coverage` only: each request is still right on its own books, and so is the day;
+- without markers, a change no request owns loses `coverage` and `end-state`;
+- alternative flows keep every check: a `begin` repeated, an unknown request begun without changes, the plan revised before the next request, the oracle without markers;
+- a single slip followed by correct handling now loses that request's checks and `end-state`.
+
+**Scan of the recorded trials.** No trial of 0.1.0, 0.2.0 or 0.3.0 (suites `4b33`, `a7e7`, `9f16`) has a coverage violation, consistent with the review's own scan of `9f16`. The hole did not produce any recorded score.
+
+**Re-grade.** Every trial of the 0.3.0 pilot (`runs/suites/20261023-050438-dev-9f16`, all three models) was re-graded under 1.2.0 into new score runs; the evidence table shows both graders' numbers. Trials of 0.1.0 and 0.2.0 belong to superseded task versions and keep their own graders' numbers.

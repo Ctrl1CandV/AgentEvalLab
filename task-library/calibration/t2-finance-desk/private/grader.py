@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Grades a T2 finance close day. The delivered data/books.json must equal a replay of data/audit.log through the
 item's ledger.py on the starting books (integrity); otherwise every check fails. Then each request is graded against
-the oracle (finance.py) on the state when the request began, so that one mistake is deducted where it was made."""
+the oracle (finance.py) on the state when the request began, so that one mistake is deducted where it was made. Since
+grader 1.2.0 two checks cover the whole day: every changing command belongs to one request of the day, handled in
+order (coverage), and the books from the original start equal a correctly handled day (end state)."""
 import argparse
 import copy
 import json
@@ -16,7 +18,7 @@ import ledger  # noqa: E402
 
 TASK_ID = "t2-finance-desk"
 TASK_VERSION = "0.3.0"
-GRADER_VERSION = "1.1.0"
+GRADER_VERSION = "1.2.0"
 DAYS_PATH = os.path.join(HERE, "days.json")
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)
 CLOSING_FENCE = re.compile(r"```(?:json)?[ \t]*\r?\n((?:(?!```).)*?)\r?\n?```\s*$", re.S | re.I)
@@ -93,7 +95,7 @@ def check_names(item_id):
     return finance.check_names(DAYS[item_id]["requests"])
 
 
-def grade(item_id, submission, answer_text):
+def grade(item_id, submission, answer_text, evidence=None):
     day = DAYS[item_id]
     names = check_names(item_id)
     results = {name: False for name in names}
@@ -114,7 +116,7 @@ def grade(item_id, submission, answer_text):
         consistent = False
     if not consistent:
         return results, "inconsistent"
-    results.update(finance.grade(day["books"], day["requests"], commands, answer if mode != "unparsed" and isinstance(answer, dict) else {}))
+    results.update(finance.grade(day["books"], day["requests"], commands, answer if mode != "unparsed" and isinstance(answer, dict) else {}, evidence))
     # The format deduction is for a reply that had to be recovered; a missing reply already fails every outcome.
     results["answer-format"] = mode != "recovered"
     return results, "consistent"
@@ -142,8 +144,9 @@ def grade_request(request_path, result_path):
             answer_text = handle.read()
     except (OSError, TypeError):
         answer_text = None
-    results, integrity = grade(item_id, os.path.join(request["submission"]["directory"], "public"), answer_text)
-    write_json(os.path.join(evidence_root, "checks.json"), {"itemId": item_id, "integrity": integrity, "results": results})
+    day = {}
+    results, integrity = grade(item_id, os.path.join(request["submission"]["directory"], "public"), answer_text, day)
+    write_json(os.path.join(evidence_root, "checks.json"), {"itemId": item_id, "integrity": integrity, "results": results, "day": day})
     active = set(request["context"]["activeRequirementIds"])
     checks = [{"id": f"{item_id}-{name}" if name != "answer-format" else "answer-format", "requirementId": requirement(item_id, name),
                "status": "pass" if passed else "fail", "evidenceRefs": ["checks.json"]}

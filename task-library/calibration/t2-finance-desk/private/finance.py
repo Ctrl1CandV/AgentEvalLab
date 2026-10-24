@@ -500,6 +500,7 @@ def owned(request, books):
 
 
 def check_names(requests):
+    """Per request, then the two checks of the whole day (grader 1.2.0): coverage and end state."""
     names = []
     for request in requests:
         prefix = request["id"].lower()
@@ -510,14 +511,92 @@ def check_names(requests):
         if request["kind"] in ("receipt", "credit-note"):
             names.append(f"{prefix}-allocation")
         names += [f"{prefix}-amounts", f"{prefix}-clean"]
-    return names
+    return names + list(DAY_CHECKS)
 
 
-def grade(base, requests, commands, reply):
+DAY_CHECKS = ("coverage", "end-state")
+
+
+def coverage(commands, requests, books):
+    """Manual §8: every changing command belongs to exactly one request of the day, handled in the order given; once the
+    next request is begun, nothing changes for an earlier one. Returns the violations, each {position, command,
+    request, rule}; repeating the begin of the request under way is not a violation, nor is a begun request that
+    changes nothing. Without any begin marker, each command must touch something of the request it is attributed to
+    (the same attribution the per-request grading uses)."""
+    order = {request["id"]: index for index, request in enumerate(requests)}
+    violations = []
+    if any(command[0] == "begin" for command in commands):
+        history, current, rule_now = [], None, "before-first-begin"
+        for position, command in enumerate(commands):
+            if command[0] == "begin":
+                request_id = command[1]
+                if history and history[-1] == request_id:
+                    continue
+                if request_id not in order:
+                    rule_now = "unknown-request"
+                elif request_id in history:
+                    rule_now = "reopened-request"
+                elif any(order.get(other, -1) > order[request_id] for other in history):
+                    rule_now = "out-of-order"
+                else:
+                    rule_now = None
+                history.append(request_id)
+                current = request_id
+                continue
+            if rule_now:
+                violations.append({"position": position, "command": command[0], "request": current, "rule": rule_now})
+        return violations
+    pointer = 0
+    plans = any(request["kind"] == "payment-plan" for request in requests)
+    for position, command in enumerate(commands):
+        if command[0] == "set-plan" and plans:
+            continue
+        touched = touched_by(command)
+        later = [index for index in range(pointer, len(requests)) if touched & owned(requests[index], books)]
+        if later:
+            pointer = later[0]
+            continue
+        violations.append({"position": position, "command": command[0], "request": requests[pointer]["id"], "rule": "unattributed"})
+    return violations
+
+
+def end_state(base, requests, commands):
+    """The day's books from the original start, against the oracle handling every request right from the same start:
+    the same net postings per account, partner, document and period and the same open-item amounts (the footprint the
+    per-request checks use, so lines may be split or combined), the same invoice statuses, and a payment plan recorded
+    that the books at the plan request allow. Any plan the books allow counts here; its worth is graded by the rungs."""
+    results, expected_books = run(base, requests)
+    delivered = copy.deepcopy(base)
+    for command in commands:
+        ledger.apply(delivered, command[0], command[1:])
+    start = len(base["entries"])
+    statuses = lambda books: {key: item["status"] for key, item in books["inbox"].items()}
+    detail = {"postings": footprint(delivered["entries"][start:]) == footprint(expected_books["entries"][start:]),
+              "statuses": statuses(delivered) == statuses(expected_books)}
+    for request, (state, _) in zip(requests, results):
+        if request["kind"] == "payment-plan":
+            plans = [command for command in commands if command[0] == "set-plan"]
+            problem = PlanProblem(state)
+            detail["plan"] = bool(plans) and isinstance(plans[-1][1], dict) and plan_value(problem, problem.slots_of(plans[-1][1])) is not None
+    return detail
+
+
+def day_checks(base, requests, commands):
+    """({coverage, end-state}, evidence). Coverage needs at least one changing command, so that an untouched desk earns
+    nothing; it fails on any violation, the end state on any difference."""
+    violations = coverage(commands, requests, base)
+    changes = [command for command in commands if command[0] != "begin"]
+    detail = end_state(base, requests, commands)
+    return ({"coverage": bool(changes) and not violations, "end-state": all(detail.values())},
+            {"violations": violations[:50], "violationCount": len(violations), "changingCommands": len(changes), "endState": detail})
+
+
+def grade(base, requests, commands, reply, evidence=None):
     """Per request, against the oracle on the state when it began: outcome (reply and, for vendor invoices, status),
     allocation (receipts and credit notes: which documents, how much in their currencies), amounts (every EUR line by
     account, partner, document and period) and clean (nothing else changed; counts only once the request's own
-    work passes)."""
+    work passes). Then the whole day (grader 1.2.0): coverage and end state (day_checks), whose evidence goes into
+    `evidence` when given."""
     by_request, start = segments(commands, requests, base)
     results, state = {}, copy.deepcopy(base)
     for request in requests:
@@ -559,6 +638,10 @@ def grade(base, requests, commands, reply):
             set(footprint(entries)[0]) <= set(footprint(expected["entries"])[0])
         for command in mine:
             ledger.apply(state, command[0], command[1:])
+    day, detail = day_checks(base, requests, commands)
+    results.update(day)
+    if evidence is not None:
+        evidence.update(detail)
     return results
 
 
