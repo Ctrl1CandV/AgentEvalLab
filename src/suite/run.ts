@@ -405,6 +405,9 @@ export class SuiteRunner {
       if (record.evaluation.status !== "passed" && record.evaluation.status !== "failed") {
         return { ok: false, detail: `trial ${record.id} was not graded (${record.evaluation.status}${record.evaluation.error ? `: ${record.evaluation.error}` : ""})` };
       }
+      // A v2 package is judged by its outcomes above; its evaluation score is the v1 check share, which counts a format
+      // check that a missing reply passes (T2), so it is not read here.
+      if (manifest?.schemaVersion === 2) continue;
       const passing = record.evaluation.checks.filter(check => check.passed === true && check.id !== formatCheckId).map(check => check.id);
       if ((record.evaluation.score ?? 0) > maxScore || (maxScore === 0 && passing.length)) {
         return { ok: false, detail: `the null agent earns ${record.evaluation.score}; passing checks: ${passing.join(", ") || "none"}` };

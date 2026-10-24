@@ -1,6 +1,6 @@
 # Project Handoff
 
-Updated 2026-10-24 (PLAN-007 Phase 0 done).
+Updated 2026-10-24 (PLAN-007 Phases 0–2 done; Phase 3 next).
 
 ## Current state
 
@@ -24,16 +24,17 @@ AgentEvalLab is a single-model evaluation project on Pi Agent 0.87.1. Its execut
 
 A third-party review ([`reviews/2026-10-24-third-party-evaluation-review.md`](reviews/2026-10-24-third-party-evaluation-review.md)) traced the overflow to task design, scoring, process and coverage, not to the execution core. **The user decided on 2026-10-24 to restructure the whole project**: design in [`design/v2/`](design/v2/README.md), plan [PLAN-007](plans/PLAN-007-v2-restructure.md).
 
-**PLAN-007 progress** (review: [`reviews/2026-10-24-v2-phase-0.md`](reviews/2026-10-24-v2-phase-0.md)):
+**PLAN-007 progress** (reviews: [phase 0](reviews/2026-10-24-v2-phase-0.md), [phase 1](reviews/2026-10-24-v2-phase-1.md), [phase 2](reviews/2026-10-24-v2-phase-2.md)):
 
-- Phase 0 done:
-  - local tag `v1-final`;
-  - the evidence table (`npm run evidence`), one row per run, model and grader version;
-  - the T2 coverage hole fixed (grader 1.2.0: day-level `coverage` and `end-state` checks, negative tests, the 0.3.0 pilot re-graded);
-  - success audits of T1, T2, E3, E4 speedup and VIS (`npm run audit`, `docs/audits/`): E3 grader 2.3.0 and E4 grader 1.5.0 fixed what they found, with every affected model re-graded; `regradeTrajectory` re-grades trajectory snapshots append-only;
-  - documents synced.
-- Open from Phase 0, for Phase 2: the wall-time speed rungs of E3 (S6) and E4 speedup fail the noise gate; vis-001's two false passes become VIS v2 negative tests; the AE calibration table's "634.5 of 583" is corrected with AE 0.2.0 (WP3.5).
-- The AE family (`task-library/frontier/ae-heuristic-contests`, 0.1.0 at the time) is built and self-calibrated, with no model runs; its dev pilot was prepared and deliberately not launched.
+- **Phase 0** (evidence and corrections): local tag `v1-final`; the evidence table (`npm run evidence`); the T2 coverage hole fixed (grader 1.2.0); success audits (`npm run audit`, `docs/audits/`), with E3 grader 2.3.0 and E4 grader 1.5.0 fixing what they found; append-only trajectory re-grading.
+- **Phase 1** (the measurement layer): manifest v2 and grader result v2; `src/scoring/` (outcome records, uncapped anchors, structure caps, cluster bootstrap, paired comparisons); `outcome.json` beside every v2 score run; report v2 and suite v2; proved on R3 and AE without model runs (`docs/evidence/v2-proof/`).
+- **Phase 2** (library and harness):
+  - packages by tier in `task-library/basic/`, `core/`, `frontier/`, `retired/`; v2 suites `suites/basic.json`, `core-dev.json`, `frontier-dev.json`, all passing their dry runs;
+  - every retained package on manifest v2 with a capability card (`card.md`); grader fixes with re-grades: eng-001 1.2.0 (a missing delivery is graded), E4 1.6.0 (speedup by CPU time; compress headlined by its size through LZMA and reference anchors), E2 1.7.0 (routes headlined by `routeShare`, valid when it solves an instance; README not critical), E3 2.4.0 (S6 by CPU time); noise tests in each package's `logs/`;
+  - R3 0.4.0: validation and holdout in twelve never-piloted grid shapes, and the answer-only `none` profile;
+  - harness: read-only runtime mounts, the `none` profile, repository workspaces (single-commit history, the change as a patch), per-item headlines (`primaryByItem`, item-scoped metric groups and metrics).
+- **Open for the user** (Phase 2 review): E2 routes fails its noise gate because its contract limit is wall time (options a/b/c in the review); budgets for E2's contract items and eng-004 (never run at their versions).
+- vis-001's two false passes become VIS v2 negative tests (Phase 3); the AE calibration table correction lands with AE 0.2.0's references (WP3.5).
 
 ## Key files
 
@@ -46,17 +47,18 @@ A third-party review ([`reviews/2026-10-24-third-party-evaluation-review.md`](re
 | [reviews/2026-10-24-third-party-evaluation-review.md](reviews/2026-10-24-third-party-evaluation-review.md) | The evidence-based review the plan answers |
 | [evidence/V1_EVIDENCE.md](evidence/V1_EVIDENCE.md) | Every recorded result with its versions, protocol, coverage and run (`npm run evidence`) |
 | [audits/](audits/) | Success audits per family (`npm run audit`) |
-| [reviews/2026-10-24-v2-phase-0.md](reviews/2026-10-24-v2-phase-0.md) | PLAN-007 Phase 0, one note per work package |
+| [reviews/2026-10-24-v2-phase-0.md](reviews/2026-10-24-v2-phase-0.md), [phase-1](reviews/2026-10-24-v2-phase-1.md), [phase-2](reviews/2026-10-24-v2-phase-2.md) | PLAN-007 phase reviews, one note per work package |
+| `task-library/<tier>/<package>/card.md` | Each family's capability card, hashed in its manifest |
 | [reviews/2026-10-22-hardening-round-3.md](reviews/2026-10-22-hardening-round-3.md) | The last v1 round, with results |
 | `design/V1_EVALUATION.md`, `design/IMPLEMENTATION_CONTRACTS.md`, `SPEC.md` | v1 protocol and contracts; still valid for the execution core |
 
 ## Next step
 
-Continue PLAN-007 with Phase 1 (the measurement layer). Phases 0–3 need no paid model runs. The user's decisions D1–D7 are listed in the plan, with recommendations.
+Continue PLAN-007 with Phase 3 (new families built and verified offline: AR, ER, AP prototype, VIS v2, AE references), then stop before Phase 4, the first paid run, and report with the token envelope. The user's decisions D1–D7 are listed in the plan, with recommendations.
 
 ## Operating rules
 
-- **Packages.** After changing anything under `task-library/`, rebuild the package, update `packageManifestSha256` in the current plans, and run `python3 scripts/task_packages.py check --plans <current plans>`. calibration.md and rubric.md are pinned too.
+- **Packages.** After changing anything under `task-library/`, rebuild the package (its builder, or `python3 scripts/task_packages.py rehash <package>`, which also re-pins the current plans), and run `python3 scripts/task_packages.py check --plans <current plans>`. calibration.md, rubric.md and card.md are pinned too. Historical plans keep the old paths of packages moved in Phase 2; a plain `check` without `--plans` therefore reports them.
 - **Commits.** Commit only; never push. Use `git -c user.name=liuyijie -c user.email=126372470+Ctrl1CandV@users.noreply.github.com commit`, ending the message with the Co-Authored-By line. Never commit `.env` or the sandbox placeholders (`.claude/`, `.mcp.json`); check `git diff --cached --name-only | grep '/\.'`.
 - **Model runs.** Dev rounds use deepseek-flash plus about two references, at most one from the airy.work relay; no pro models; one repetition.
   - Run a dry run first (`--dry-run`: preflight and a zero-token null-agent smoke).
@@ -69,7 +71,7 @@ Continue PLAN-007 with Phase 1 (the measurement layer). Phases 0–3 need no pai
   ```
 
   The suite refuses a resume under the system Node 24. Watch the run with a background watcher that exits when `phases.report` is done or nothing has been written for 20 minutes. A trajectory cannot continue mid-way, so an interrupted E3 run starts again from S1.
-- **Re-grading.** A grader fix keeps the task version so that trials can be re-graded. Bump the grader version everywhere the package declares it, re-grade with a copy of the run's plan carrying the new pin (`npm run harness -- --plan <copy> --regrade <trial> --reason "..."`, or `--regrade-trajectory <trial> [--scope final]` for a trajectory), then rebuild the suite report with `npm run suite -- --resume runs/suites/<id>` and the evidence table with `npm run evidence`.
+- **Re-grading.** A grader fix keeps the task version so that trials can be re-graded. Bump the grader version everywhere the package declares it, re-grade with the current plan (or a copy of the run's plan) carrying the new pin (`npm run harness -- --plan <copy> --regrade <trial> --reason "..."`, or `--regrade-trajectory <trial> [--scope final]` for a trajectory), then rebuild the suite report with `npm run suite -- --resume runs/suites/<id>` and the evidence table with `npm run evidence`.
 - **Baselines.** Keep the ENG-005 and ENG-004 baselines in their `baseline.bundle`. `npm ci` and every `npm test` restore them.
 - **Workspaces.** Never delete `evaluation-*` workspaces while a run is active.
 - **Tools.** Rust is installed under `~/.local/share/{rustup,cargo}` (used by the AE builder). The ALE-Bench archives are cached in `~/.cache/agenteval/ale-bench/`, and their compiled tools in `~/.cache/agenteval/ale-tools/`.
