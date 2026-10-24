@@ -14,13 +14,14 @@ import { ArtifactLimitError, copyArtifacts, defaultArtifactLimits, inspectArtifa
 import { projectPackage, projectTrajectoryStage, type PackageDescriptor } from "./manifest.js";
 import { prepareWorkspace } from "./workspace.js";
 import { runTaskGrader } from "./grader.js";
+import { writeOutcome } from "../scoring/outcomes.js";
 import { preflightPlan } from "./preflight.js";
 import { evaluatedCondition, sha256 } from "./condition.js";
 import { BatchGuard, resolveBatchPolicy, type BatchPolicy, type NotRunEntry } from "./batch.js";
 import { resolveBudgetNotice } from "./run.js";
 import { sandboxLauncher, type Isolation } from "../sandbox.js";
 import { providerSlotsFromEnvironment } from "./provider-slots.js";
-import type { EvaluationOptions, EvaluationPlan, PublicCheckResult, TrajectoryMetrics, TrajectoryRecord, TrajectorySession, TrajectoryStageResult } from "./types.js";
+import type { EvaluationOptions, EvaluationPlan, EvaluationResult, PublicCheckResult, TrajectoryMetrics, TrajectoryRecord, TrajectorySession, TrajectoryStageResult } from "./types.js";
 import { modelLabel } from "./report.js";
 
 function record(value: unknown): Record<string, unknown> {
@@ -564,6 +565,7 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
       }
 
       // Private grading runs only after all candidate prompts and public repair decisions have finished.
+      let lastGrade: { directory: string; scoreRunId: string; grade: EvaluationResult } | null = null;
       for (const snapshot of snapshotRefs) {
         const scoreRunId = randomUUID();
         const scoreRunDirectory = join(trialDirectory, "score-runs", scoreRunId);
@@ -588,6 +590,12 @@ export async function runTrajectoryEvaluation(plan: EvaluationPlan, options: Eva
         await writeFile(join(scoreRunDirectory, "score.json"), JSON.stringify({ schemaVersion: 1, trialId: id, stageId: snapshot.stageId,
           cycleId: snapshot.cycleId, taskManifestSha256: descriptor.manifestSha256, snapshotManifestSha256: snapshot.manifest.sha256,
           evaluation: grade, createdAt: new Date().toISOString() }, null, 2));
+        lastGrade = { directory: scoreRunDirectory, scoreRunId, grade };
+      }
+      // The trajectory is one task: its outcome is the last graded snapshot's, with the whole trajectory's execution.
+      if (lastGrade) {
+        await writeOutcome(lastGrade.directory, { trialId: id, model, descriptor, itemId: null, evaluation: lastGrade.grade,
+          execution: recordValue.aggregateExecution, scoreRunId: lastGrade.scoreRunId });
       }
       recordValue.metrics = computeMetrics(recordValue, descriptor);
       recordValue.budget.used = toBudgetUsed(totalExecution, executionElapsedMs);

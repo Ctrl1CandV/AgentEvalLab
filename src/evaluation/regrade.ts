@@ -4,6 +4,7 @@ import { basename, dirname, isAbsolute, join, relative, resolve, sep } from "nod
 import { tmpdir } from "node:os";
 import { defaultArtifactLimits, copyArtifacts } from "./artifacts.js";
 import { evaluate, gradable } from "./evaluator.js";
+import { writeOutcome } from "../scoring/outcomes.js";
 import { preflightPlan } from "./preflight.js";
 import { buildReport, markdownReport, type ReportContext } from "./report.js";
 import type { BatchSummary } from "./batch.js";
@@ -343,6 +344,8 @@ export async function regradeTrial(trialDirectory: string, plan: EvaluationPlan,
       },
       evaluation,
     }, null, 2), { encoding: "utf8", flag: "wx" });
+    await writeOutcome(pendingDirectory, { trialId: record.id, model: record.model, descriptor, itemId: record.itemId ?? null, repetition: record.repetition ?? 1,
+      evaluation, execution: record.execution, scoreRunId });
     await rename(pendingDirectory, finalDirectory);
     appended = true;
     await rebuildReports(dirname(directory));

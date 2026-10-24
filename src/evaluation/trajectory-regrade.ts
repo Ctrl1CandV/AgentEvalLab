@@ -4,6 +4,7 @@ import { basename, dirname, join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { copyArtifacts, defaultArtifactLimits } from "./artifacts.js";
 import { runTaskGrader } from "./grader.js";
+import { writeOutcome } from "../scoring/outcomes.js";
 import { preflightPlan } from "./preflight.js";
 import { validatePlan } from "./validate.js";
 import type { EvaluationPlan, EvaluationResult, TrajectoryRecord } from "./types.js";
@@ -126,6 +127,10 @@ export async function regradeTrajectory(trialDirectory: string, plan: Evaluation
         scorer: { kind: "task-package", taskId: descriptor.manifest.id, taskVersion: descriptor.manifest.version, graderId: descriptor.manifest.grader.id,
           graderVersion: descriptor.manifest.grader.version },
       }, null, 2), { encoding: "utf8", flag: "wx" });
+      // The trajectory's outcome follows its last graded snapshot.
+      if (cycle === graded.at(-1)!.cycle) {
+        await writeOutcome(pending, { trialId: record.id, model: record.model, descriptor, itemId: null, evaluation, execution: record.aggregateExecution, scoreRunId });
+      }
       await rename(pending, join(scoreRuns, scoreRunId));
       appended = true;
       results.push({ stageId: stage.stageId, cycleId: cycle.cycleId, scoreRunId, evaluation });

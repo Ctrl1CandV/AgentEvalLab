@@ -9,6 +9,7 @@ import { emptyExecution } from "../types.js";
 import { persistedExecution } from "../privacy.js";
 import { guardEventSink, EventSinkError } from "../events.js";
 import { collectPatch } from "../workspace.js";
+import { writeOutcome } from "../scoring/outcomes.js";
 import { evaluate, skippedEvaluation, EvaluatorCleanupError } from "./evaluator.js";
 import { prepareWorkspace } from "./workspace.js";
 import { projectPackage } from "./package.js";
@@ -262,6 +263,10 @@ export async function runEvaluation(plan: EvaluationPlan, options: EvaluationOpt
           } : { kind: item.evaluator.kind },
           evaluation: record.evaluation,
         }, null, 2));
+        if (packageDescriptor) {
+          await writeOutcome(scoreRunDirectory, { trialId: id, model, descriptor: packageDescriptor, itemId: packageItem?.id ?? null, repetition,
+            evaluation: record.evaluation, execution: record.execution, scoreRunId });
+        }
         evaluationCommitted = true;
         await events.emit("evaluation_completed");
       } catch (error) {
