@@ -1,58 +1,68 @@
 # Project Handoff
 
-Updated 2026-10-22.
+Updated 2026-10-24.
 
 ## Current state
 
-The repository contains a Pi Agent evaluation harness with single-run and continuous-trajectory execution, versioned task packages, trusted graders, tool evidence, snapshot recovery, append-only regrading, and aggregate reports. The current focus is reliable single-model evaluation; agent and harness comparisons come later.
+AgentEvalLab is a single-model evaluation project on Pi Agent 0.87.1. Its execution core is mature:
 
-M1, M2, M2L, and the scoped M2R reliability work have offline implementation evidence for earlier task versions. On 2026-10-13 all six manifest packages were re-pinned to new versions because their task text had changed after calibration; see [PLAN-004](plans/PLAN-004-model-evaluation-baseline.md). The runtime is pinned in `environment.yml`, and recalibration under it passed for every package; eng-004's missing baseline was rebuilt as a project-owned bundle on 2026-10-20. PLAN-004 phase 3 is complete: candidate sandboxing, per-trial clones, objective verdicts with human review, plan schema 3, batch containment, repetitions and per-task reports, and a live provider check.
+- versioned task packages with trusted graders;
+- a bubblewrap sandbox;
+- artifact snapshots (links and special files skipped);
+- append-only re-grading;
+- continuous and per-stage trajectories;
+- batch containment;
+- stated budgets with reminders;
+- plan-level command limits;
+- a frozen-worktree suite runner that refuses a resume under another Node major version and continues interrupted retries.
 
-The 2026-10 pilot ran in two rounds on 2026-10-14 and 2026-10-15: luna-medium with glm-5.3-flash, then with glm-5.3-max. See the [pilot results](reviews/2026-10-15-pilot-results.md). Token use is counted in fixed units without prices and capped per trial and per model. The pilot found and fixed eight defects, among them a tool-001 grader that could not credit any read, budget stops left out of pass rates, and an unstated eng-001 output rule. Pilot results calibrate budgets; they are not model capability results.
+**The v1 task design has reached its end.** Three hardening rounds (2026-10-20 to 2026-10-23) left the strong flash models at 90–100% on most families, or below that only because of budgets.
 
-PLAN-006 was carried out on 2026-10-21/22; see the [round-2 review](reviews/2026-10-22-hardening-round-2.md).
+- **T1:** deepseek 94.3%; qwen 85%, with 100% content.
+- **T2 finance 0.3.0:** deepseek 98.0%, qwen 67.6% (a budget stop), mimo 8.8%.
+- **E3 at a sufficient budget:** deepseek 90%, qwen 94%.
 
-- **Suite runner.** `npm run suite` runs every family from a frozen worktree with one report.
-- **The families now in the suite:**
-  - E4 0.5.0 adds `compress`, scored on a continuous scale, and a `speed-8` gate on `speedup`;
-  - T1 0.5.0 has a depth ladder (D2–D8);
-  - T2 0.3.0 asks for the least-cost resolution within the policy;
-  - eng-005 0.4.0 (E3) adds a sixth stage, scale, and no longer credits an untouched project.
-- **deepseek-flash** scores R3 72%, E2 71%, E4 85%, T1 95%, T2 95% and E3 98%. T1, T2 and E3 did not harden and await the user's decision.
+A third-party review (`docs/reviews/2026-10-24-third-party-evaluation-review.md`) traced the overflow to task design, scoring, process and coverage, not to the execution core. The review also found a T2 grading hole: actions under an unknown request id escape grading. That hole has not been fixed yet.
+
+**The user decided on 2026-10-24 to restructure the whole project.**
+
+- The design is in [`docs/design/v2/`](design/v2/README.md).
+- The implementation plan is [PLAN-007](plans/PLAN-007-v2-restructure.md).
+- Nothing of PLAN-007 is implemented yet.
+- The AE family (algorithm engineering on AtCoder Heuristic Contest problems, `task-library/frontier/ae-heuristic-contests` 0.1.0) is built and self-calibrated, but has no model runs. Its dev pilot was prepared and deliberately not launched.
 
 ## Key files
 
-- [Root README](../README.md): setup and command entry points
-- [Evaluation design](design/V1_EVALUATION.md): core protocol
-- [Implementation contracts](design/IMPLEMENTATION_CONTRACTS.md): package, grader, and recovery behavior
-- [Long-horizon engineering design](design/LONG_HORIZON_ENGINEERING.md): continuous multi-stage task (six stages since eng-005 0.4.0)
-- [Current plan](plans/PLAN-006-suite-runner-and-hardening-round-2.md): the suite runner and hardening round 2 (done; decisions pending)
-- [Suite files](../suites/): `dev.json` (dev-run policy enforced) and `full.json`
+| File | What it is |
+| --- | --- |
+| [design/v2/README.md](design/v2/README.md) | Why v1 overflowed, the goals and principles of v2, the architecture, what stays and what goes |
+| [plans/PLAN-007-v2-restructure.md](plans/PLAN-007-v2-restructure.md) | The phases, work packages, acceptance criteria, token envelopes and user decisions |
+| [design/v2/MEASUREMENT.md](design/v2/MEASUREMENT.md), [PROTOCOL.md](design/v2/PROTOCOL.md), [TASK_LIBRARY.md](design/v2/TASK_LIBRARY.md), [VALIDATION.md](design/v2/VALIDATION.md), [CODE.md](design/v2/CODE.md) | Binding design |
+| [templates/CAPABILITY_CARD.md](templates/CAPABILITY_CARD.md) | The card every family fills in before it is built |
+| [reviews/2026-10-24-third-party-evaluation-review.md](reviews/2026-10-24-third-party-evaluation-review.md) | The evidence-based review the plan answers |
+| [reviews/2026-10-22-hardening-round-3.md](reviews/2026-10-22-hardening-round-3.md) | The last v1 round, with results |
+| `design/V1_EVALUATION.md`, `design/IMPLEMENTATION_CONTRACTS.md`, `SPEC.md` | v1 protocol and contracts; still valid for the execution core |
 
-## Next steps
+## Next step
 
-1. **The user decides** on the review's open points:
-   - T1, T2 and E3 as reliability families, rebuilt around continuous objectives, or retired;
-   - whether E4 at 85% is acceptable;
-   - MiMo runs of compress (4M) and E3 0.4.0 (8M);
-   - relay balance for glm, step and luna.
-2. **Dev rounds** use `npm run suite -- --suite suites/dev.json --models deepseek:deepseek-flash,<references> --families <changed>`, as one background command; accept from `runs/suites/<id>/report.md`. deepseek-flash plus about two references, at most one from the airy.work relay; no pro models; one repetition.
-3. **Audit every failure** before counting it. This round's audits found seven defects in graders, tasks, the runner and budgets (see the review).
-4. **History.**
-   - [PLAN-005](plans/PLAN-005-discriminating-attributable-evaluation.md) set the scoring rules.
-   - The [2026-10-20 review](reviews/2026-10-20-hardening-round.md) found that detail does not harden a family.
-   - The [2026-10-22 review](reviews/2026-10-22-hardening-round-2.md) found that depth and scale under a well-specified brief do not either. Ladders over reasoning depth and continuous engineering objectives do.
-5. **eng-004 0.3.0** has a rebuilt baseline and is the starting point for E1, which is not scheduled.
-6. **Limit conclusions** to the observed task versions, models, prompts, tools and budgets: these are one-trial dev runs.
+Carry out PLAN-007 from Phase 0. Phases 0–3 need no paid model runs. The user's decisions D1–D7 are listed in the plan, with recommendations.
 
 ## Operating rules
 
-- Run `python3 scripts/task_packages.py check --plans <current plans>` after changing anything under `task-library/`, calibration.md and rubric.md included (manifests pin them). Without `--plans` it also reports historical plans' stale pins. Use `rehash` only together with a task version bump and a calibration note.
-- A grader fix keeps the task version so that trials can be regraded. Bump the grader version in every place the package declares it. Regrade with a copy of the run's plan carrying the new pin, then rebuild the suite report with `npm run suite -- --resume runs/suites/<id>`.
-- Dev rounds: deepseek-flash plus about two references, at most one from the SuperAI relay (airy.work: glm, step, luna); no pro models; one repetition. Run preflight before launching, and accept from the report after the completion notification.
-- Keep the pinned ENG-005 and ENG-004 baselines in their packages' `baseline.bundle`; `npm ci` (and every `npm test` or `npm run harness`) restores the local Git checkouts through `scripts/prepare-baselines.mjs`.
-- Do not commit `.env` or other credential files.
-- Use `--validate-only` for plan preflight when no API call is intended.
-- Treat task fixtures as test inputs and preserve their pinned content and commits.
-- Never delete `evaluation-*` workspace directories while a run is active; they are live trial workspaces.
-- A run is pinned to its Git commit. Suites freeze their own worktree under `runs/suites/<id>/worktree`. To resume a plain run after later commits, use `git worktree add --detach <commit>` with `node_modules`, `.env` and `runs` symlinked in.
+- **Packages.** After changing anything under `task-library/`, rebuild the package, update `packageManifestSha256` in the current plans, and run `python3 scripts/task_packages.py check --plans <current plans>`. calibration.md and rubric.md are pinned too.
+- **Commits.** Commit only; never push. Use `git -c user.name=liuyijie -c user.email=126372470+Ctrl1CandV@users.noreply.github.com commit`, ending the message with the Co-Authored-By line. Never commit `.env` or the sandbox placeholders (`.claude/`, `.mcp.json`); check `git diff --cached --name-only | grep '/\.'`.
+- **Model runs.** Dev rounds use deepseek-flash plus about two references, at most one from the airy.work relay; no pro models; one repetition.
+  - Run a dry run first (`--dry-run`: preflight and a zero-token null-agent smoke).
+  - Read its warning about uncommitted changes, and check the frozen plan.
+  - The suite runs the committed HEAD.
+- **Long runs.** My background tasks stop after 2 hours, and also when the session or terminal restarts. A run longer than about 1.5 hours is launched by the user from a WSL terminal:
+
+  ```
+  PATH=/home/claude-dev/.local/share/conda/envs/agenteval/bin:$PATH nohup npm run suite -- --resume runs/suites/<id> >> runs/suites/<id>/launch.log 2>&1 &
+  ```
+
+  The suite refuses a resume under the system Node 24. Watch the run with a background watcher that exits when `phases.report` is done or nothing has been written for 20 minutes. A trajectory cannot continue mid-way, so an interrupted E3 run starts again from S1.
+- **Re-grading.** A grader fix keeps the task version so that trials can be re-graded. Bump the grader version everywhere the package declares it, re-grade with a copy of the run's plan carrying the new pin, then rebuild the suite report with `npm run suite -- --resume runs/suites/<id>`.
+- **Baselines.** Keep the ENG-005 and ENG-004 baselines in their `baseline.bundle`. `npm ci` and every `npm test` restore them.
+- **Workspaces.** Never delete `evaluation-*` workspaces while a run is active.
+- **Tools.** Rust is installed under `~/.local/share/{rustup,cargo}` (used by the AE builder). The ALE-Bench archives are cached in `~/.cache/agenteval/ale-bench/`, and their compiled tools in `~/.cache/agenteval/ale-tools/`.

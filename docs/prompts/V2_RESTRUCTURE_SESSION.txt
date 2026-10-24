@@ -1,0 +1,43 @@
+你接手 AgentEvalLab 的 v2 整体重构。这是一个基于 Pi Agent 0.87.1 的单模型评测项目。v1 的题目设计已经走到尽头：三轮加难之后，强模型在大多数题族上仍然在 90–100% 之间，第三方评审（astra）把原因追溯到题目设计、评分方式、流程和覆盖面，而不是执行框架。用户已决定整体重构，重构的设计和实施计划已经写好并提交，你的任务是按计划实施。
+
+一、开始前按顺序阅读
+
+1. docs/HANDOFF.md
+2. docs/reviews/2026-10-24-third-party-evaluation-review.md（第三方评审，计划以它的证据为准）
+3. docs/design/v2/README.md，然后是同目录的 MEASUREMENT.md、PROTOCOL.md、TASK_LIBRARY.md、VALIDATION.md、CODE.md（这些是有约束力的设计）
+4. docs/plans/PLAN-007-v2-restructure.md（实施计划：阶段、工作包、完成标准、token 额度、需要用户决定的事项 D1–D7）
+5. docs/templates/CAPABILITY_CARD.md
+6. 记忆目录里的 dev-run-policy、project-scope-and-decisions、evaluation-scoring-principles、sandbox-dev-notes、hardening-multi-chain
+
+二、本次的目标
+
+从 PLAN-007 的 Phase 0 开始，按顺序实施。Phase 0 到 Phase 3 不需要付费的模型运行，请自主完成，每个工作包结束时提交一次。到 Phase 4（第一次付费运行）之前停下来，向用户汇报，并请用户确认 D1–D7 和 Phase 4 的 token 额度；用户已经明确批准的事项除外。
+
+Phase 0 的重点：建立 v1 证据表；修复 T2 的覆盖漏洞（未知请求编号下的操作逃过评分），加上全局终态检查和负例测试，并对所有模型统一重评分；对高分的 v1 题族做成功审计；同步文档。Phase 1 建立 v2 的度量层（manifest v2、grader 结果 v2、src/scoring、outcome.json、报告 v2），并且不跑模型，先用 AE 和 R3 证明它能用。Phase 2 按层级重组题库，给保留的题族写能力卡，实现只读运行时挂载、无工具的只答题配置和仓库工作区。Phase 3 离线搭建并验证新题族：AR（ARC-AGI）、ER（SWE-bench-Live 的近期真实 issue）、AP 原型、VIS v2、AE 0.2.0。
+
+三、必须遵守的原则
+
+1. 每次只改一类东西。不要同时改题目、权重、模型、预算和会话策略，否则无法判断哪一项改动起了作用。
+2. 每个题族在任何付费运行之前都要有能力卡。能力卡第 4 节写不出"难点在哪里"的题，不要做。
+3. 难度不能来自隐藏要求、含糊表述、格式陷阱或框架限制。每一项隐藏检查都必须能追溯到公开的任务契约。
+4. 分数以独立任务为单位，开放式题目报告原始值，并且不封顶。不要为了把某个模型压到 80 分以下而调整权重或缩放分数。
+5. 数据切分（dev、validation、holdout）按结构分组，并在第一次试跑之前固定。validation 每次冻结只用一次，holdout 只在发布冻结之后使用。
+6. 失败和成功都要审计。每一项扣分都必须是模型自己的问题；每一次通过都要经过成功审计确认是真的通过。
+7. 版本不可变。修改评分器或锚点就升版本号，并对所有模型统一重评分；旧数字保留旧版本，不重新贴标签。
+8. 沿用用户已有的决定：思考档位用中档；temperature 为 0；token 按固定单位计量，缓存输入全额计入，不按价格计；效率只报告、不计分；预算开场告知，用到 50%、75%、90% 时提醒；格式错误扣 20% 的规则改为单独一列报告，是否保留在主分数里等用户决定 D2。
+
+四、工程与运行规范
+
+1. 改动 task-library 后要重建对应的包，更新当前 plan 里的 packageManifestSha256，并运行 python3 scripts/task_packages.py check --plans <当前的 plan 文件>。
+2. 提交时使用 git -c user.name=liuyijie -c user.email=126372470+Ctrl1CandV@users.noreply.github.com commit，提交信息结尾加 Co-Authored-By 行。只提交，不推送。不要提交 .env 和沙箱生成的占位文件（.claude/、.mcp.json），提交前检查 git diff --cached --name-only | grep '/\.'。
+3. Node 必须用 agenteval 环境里的 22 版本（/home/claude-dev/.local/share/conda/envs/agenteval/bin）。系统自带的 Node 24 会被任务包拒绝。
+4. 命令尽量从仓库根目录运行。在子目录里运行会让沙箱留下占位文件。
+5. 你的后台任务最多运行 2 小时，会话或终端重启时也会中断。预计超过约 1.5 小时的运行，请把命令交给用户在自己的 WSL 终端里用 nohup 启动，然后用后台监视脚本跟踪。具体做法写在 HANDOFF 和 PROTOCOL 里。
+6. 付费运行之前先 dry run，读一下"未提交改动"的警告，并检查冻结下来的 plan。套件运行的是已提交的 HEAD。
+7. 开发轮次的模型：deepseek-flash 加两个左右的参考模型，airy.work 中转最多一个；不用 pro 模型；每题 1 次重复。validation 和 holdout 的模型池由用户决定 D1。
+8. trajectory 的测试文件要跑 25–40 分钟，放到后台去跑。
+9. Rust 工具链在 ~/.local/share/{rustup,cargo}；ALE-Bench 的数据和编译好的工具缓存在 ~/.cache/agenteval/。
+
+五、沟通
+
+用中文回复。每个阶段结束时向用户汇报三件事：做了什么、结果如何（附证据路径）、需要用户决定什么。实施中如果发现设计和证据冲突，把偏差和理由写进该阶段的评审文档；涉及范围变化时先问用户。

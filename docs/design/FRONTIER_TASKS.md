@@ -1,6 +1,11 @@
 # Frontier Tasks: High-Ceiling Families from Open Sources
 
-Status: draft, 2026-10-23. Decided by the user on 2026-10-23; the details are mine to decide.
+Status: **superseded** on 2026-10-24 by the v2 restructure (`docs/design/v2/`, PLAN-007). Kept as history. Two corrections, from the third-party review of 2026-10-24:
+
+- AE no longer scores the share of contestants beaten. Since 0.1.0 it scores AtCoder performance in rungs from 600 to 3,200. v2 reports raw performance, uncapped.
+- "Agents carry out any specified procedure exactly" overstates the evidence. The evidence shows these models reliably carried out the procedures we tested, under our tools and budgets.
+
+Originally: draft, 2026-10-23, decided by the user on 2026-10-23.
 
 ## Why
 
