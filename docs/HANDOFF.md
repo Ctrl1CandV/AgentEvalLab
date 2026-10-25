@@ -1,6 +1,6 @@
 # Project Handoff
 
-Updated 2026-10-24 (PLAN-007 Phases 0–2 done; Phase 3 next).
+Updated 2026-10-25 (PLAN-007 Phases 0–3 done; Phase 4, the first paid run, awaits the user's decisions).
 
 ## Current state
 
@@ -24,7 +24,7 @@ AgentEvalLab is a single-model evaluation project on Pi Agent 0.87.1. Its execut
 
 A third-party review ([`reviews/2026-10-24-third-party-evaluation-review.md`](reviews/2026-10-24-third-party-evaluation-review.md)) traced the overflow to task design, scoring, process and coverage, not to the execution core. **The user decided on 2026-10-24 to restructure the whole project**: design in [`design/v2/`](design/v2/README.md), plan [PLAN-007](plans/PLAN-007-v2-restructure.md).
 
-**PLAN-007 progress** (reviews: [phase 0](reviews/2026-10-24-v2-phase-0.md), [phase 1](reviews/2026-10-24-v2-phase-1.md), [phase 2](reviews/2026-10-24-v2-phase-2.md)):
+**PLAN-007 progress** (reviews: [phase 0](reviews/2026-10-24-v2-phase-0.md), [phase 1](reviews/2026-10-24-v2-phase-1.md), [phase 2](reviews/2026-10-24-v2-phase-2.md), [phase 3](reviews/2026-10-24-v2-phase-3.md)):
 
 - **Phase 0** (evidence and corrections): local tag `v1-final`; the evidence table (`npm run evidence`); the T2 coverage hole fixed (grader 1.2.0); success audits (`npm run audit`, `docs/audits/`), with E3 grader 2.3.0 and E4 grader 1.5.0 fixing what they found; append-only trajectory re-grading.
 - **Phase 1** (the measurement layer): manifest v2 and grader result v2; `src/scoring/` (outcome records, uncapped anchors, structure caps, cluster bootstrap, paired comparisons); `outcome.json` beside every v2 score run; report v2 and suite v2; proved on R3 and AE without model runs (`docs/evidence/v2-proof/`).
@@ -33,6 +33,11 @@ A third-party review ([`reviews/2026-10-24-third-party-evaluation-review.md`](re
   - every retained package on manifest v2 with a capability card (`card.md`); grader fixes with re-grades: eng-001 1.2.0 (a missing delivery is graded), E4 1.6.0 (speedup by CPU time; compress headlined by its size through LZMA and reference anchors), E2 1.7.0 (routes headlined by `routeShare`, valid when it solves an instance; README not critical), E3 2.4.0 (S6 by CPU time); noise tests in each package's `logs/`;
   - R3 0.4.0: validation and holdout in twelve never-piloted grid shapes, and the answer-only `none` profile;
   - harness: read-only runtime mounts, the `none` profile, repository workspaces (single-commit history, the change as a patch), per-item headlines (`primaryByItem`, item-scoped metric groups and metrics).
+- **Phase 3** (new families, built and verified offline; `suites/core-dev.json` dry run passes for all eight families):
+  - AR 0.1.0 (ARC-AGI-1/2 public evaluation, pass@2; answer-only and with code as its own row); AP stockroom 0.1.0 prototype (decisions under uncertainty through a simulator tool); AE grader 2.1.0 (a greedy reference per problem, fresh-seed judging);
+  - VIS v2 0.1.0: eight briefs, executed interaction checks in headless Chromium, a reference and a plain anchor per brief, `scripts/judge-tournament-v2.ts` (ratings per brief against the anchors; judging is paid, Phase 4);
+  - ER 0.1.0: dev 12 (SWE-bench-Live), validation 31 and holdout 3 mined since 2026-06-01; every task reviewed against its issue (`private/review.json`); one test-result parser with whole ids for builder and grader;
+  - harness: external assets and archived runtimes (`npm run prepare`), the `workspace-simulator` profile.
 - **Open for the user** (Phase 2 review): E2 routes fails its noise gate because its contract limit is wall time (options a/b/c in the review); budgets for E2's contract items and eng-004 (never run at their versions).
 - vis-001's two false passes become VIS v2 negative tests (Phase 3); the AE calibration table correction lands with AE 0.2.0's references (WP3.5).
 
@@ -54,7 +59,7 @@ A third-party review ([`reviews/2026-10-24-third-party-evaluation-review.md`](re
 
 ## Next step
 
-Continue PLAN-007 with Phase 3 (new families built and verified offline: AR, ER, AP prototype, VIS v2, AE references), then stop before Phase 4, the first paid run, and report with the token envelope. The user's decisions D1–D7 are listed in the plan, with recommendations.
+Phase 4 (the first paid runs: budget curves on the dev splits, then the dev round) starts when the user has decided the open points listed at the end of the [phase 3 review](reviews/2026-10-24-v2-phase-3.md) (D1–D7, E2 routes noise, budgets, E3 headline, the VIS briefs, model release dates). Mechanical work (mining, re-runs, packaging, self-calibration) may be delegated to a general-purpose model under a written brief; decisions on tasks, graders and scoring stay with the reviewer.
 
 ## Operating rules
 
