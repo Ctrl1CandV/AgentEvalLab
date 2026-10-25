@@ -41,8 +41,13 @@
   "cases": [
     {
       "id": "eng-004-resource-index",
+      "repository": {
+        "path": "task-library/basic/eng-004-resource-index/baseline",
+        "commit": "0bd1eda866f64c4cdd990e7636cead1ebd2a6cd2"
+      },
       "packagePath": "task-library/basic/eng-004-resource-index",
       "packageManifestSha256": "7eb0a612953ebc556b1e51051304e03560ea098f9e3241891a67a289c90a9406",
+      "toolProfile": "workspace-augmented",
       "input": {
         "prompt": "Complete the task in the instruction. Use the workspace tools, run your own checks, and end with a short summary."
       },
