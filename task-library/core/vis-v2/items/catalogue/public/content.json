@@ -1,0 +1,195 @@
+{
+ "brand": "Larkspur Public Library",
+ "title": "Catalogue",
+ "allGenres": "All genres",
+ "genres": [
+  "Fiction",
+  "History",
+  "Science",
+  "Poetry"
+ ],
+ "books": [
+  {
+   "title": "The Silent River",
+   "author": "A. Novak",
+   "genre": "History",
+   "year": 1959
+  },
+  {
+   "title": "An Atlas of Small Lights",
+   "author": "S. Ito",
+   "genre": "Science",
+   "year": 1945
+  },
+  {
+   "title": "Northern Gardens",
+   "author": "A. Novak",
+   "genre": "Fiction",
+   "year": 1970
+  },
+  {
+   "title": "Letters from the Harbour",
+   "author": "A. Novak",
+   "genre": "Fiction",
+   "year": 2007
+  },
+  {
+   "title": "Clockwork Winter",
+   "author": "M. Okafor",
+   "genre": "Science",
+   "year": 1980
+  },
+  {
+   "title": "A Field Guide to Mosses",
+   "author": "R. Delgado",
+   "genre": "History",
+   "year": 1993
+  },
+  {
+   "title": "Notes on Glass",
+   "author": "S. Ito",
+   "genre": "Poetry",
+   "year": 2001
+  },
+  {
+   "title": "The Long Orchard",
+   "author": "L. Brandt",
+   "genre": "Poetry",
+   "year": 1921
+  },
+  {
+   "title": "Salt and Iron",
+   "author": "L. Brandt",
+   "genre": "History",
+   "year": 1986
+  },
+  {
+   "title": "Maps of the Inland Sea",
+   "author": "S. Ito",
+   "genre": "History",
+   "year": 1906
+  },
+  {
+   "title": "The Weather Diaries",
+   "author": "A. Novak",
+   "genre": "Poetry",
+   "year": 1970
+  },
+  {
+   "title": "Bridges of Lyon",
+   "author": "J. Kerr",
+   "genre": "Poetry",
+   "year": 1967
+  },
+  {
+   "title": "Paper Moons",
+   "author": "M. Okafor",
+   "genre": "History",
+   "year": 2012
+  },
+  {
+   "title": "The Copper Kingdom",
+   "author": "J. Kerr",
+   "genre": "Science",
+   "year": 1928
+  },
+  {
+   "title": "Small Hours",
+   "author": "R. Delgado",
+   "genre": "Fiction",
+   "year": 1908
+  },
+  {
+   "title": "The Mathematics of Rain",
+   "author": "M. Okafor",
+   "genre": "History",
+   "year": 1955
+  },
+  {
+   "title": "Lanterns",
+   "author": "J. Kerr",
+   "genre": "Poetry",
+   "year": 1963
+  },
+  {
+   "title": "A Short History of Bread",
+   "author": "A. Novak",
+   "genre": "Science",
+   "year": 1891
+  },
+  {
+   "title": "The Quiet Engine",
+   "author": "J. Kerr",
+   "genre": "Fiction",
+   "year": 1919
+  },
+  {
+   "title": "Songs for a Cold Coast",
+   "author": "M. Okafor",
+   "genre": "Poetry",
+   "year": 1962
+  },
+  {
+   "title": "Beekeeping for Beginners",
+   "author": "M. Okafor",
+   "genre": "Science",
+   "year": 1923
+  },
+  {
+   "title": "The Last Cartographer",
+   "author": "R. Delgado",
+   "genre": "History",
+   "year": 1890
+  },
+  {
+   "title": "Stone Circles",
+   "author": "L. Brandt",
+   "genre": "Fiction",
+   "year": 1933
+  },
+  {
+   "title": "Under the Linden",
+   "author": "M. Okafor",
+   "genre": "Science",
+   "year": 1926
+  },
+  {
+   "title": "Atoms and Orchards",
+   "author": "M. Okafor",
+   "genre": "Poetry",
+   "year": 2023
+  },
+  {
+   "title": "The Cartwright Papers",
+   "author": "R. Delgado",
+   "genre": "Fiction",
+   "year": 1934
+  },
+  {
+   "title": "Fen Country",
+   "author": "R. Delgado",
+   "genre": "Fiction",
+   "year": 1897
+  },
+  {
+   "title": "Rivers of the Moon",
+   "author": "M. Okafor",
+   "genre": "Fiction",
+   "year": 1993
+  },
+  {
+   "title": "Glass Harbour",
+   "author": "R. Delgado",
+   "genre": "History",
+   "year": 1957
+  },
+  {
+   "title": "Other Islands",
+   "author": "A. Novak",
+   "genre": "History",
+   "year": 2019
+  }
+ ],
+ "countFormat": "{n} books",
+ "sortLabel": "Sort by year"
+}

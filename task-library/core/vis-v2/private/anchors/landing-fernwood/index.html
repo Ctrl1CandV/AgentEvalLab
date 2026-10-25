@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fernwood — repairable outdoor equipment</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#top" id="brand"></a>
+  <nav aria-label="Main"><a href="#products">Collection</a><a href="#newsletter">Field notes</a></nav>
+</header>
+<main id="top">
+  <section class="hero" data-role="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Made to be mended</p>
+      <h1 id="hero-heading"></h1>
+      <p class="lede" id="hero-sub"></p>
+      <a class="button" href="#products" id="hero-cta"></a>
+    </div>
+    <svg class="hero-art" viewBox="0 0 480 360" aria-hidden="true">
+      <rect width="480" height="360" rx="28" fill="#dfe6d3"/>
+      <circle cx="360" cy="92" r="40" fill="#f2c46d"/>
+      <path d="M0 270 L110 150 L180 220 L260 120 L360 240 L420 190 L480 240 V360 H0 Z" fill="#7c8f63"/>
+      <path d="M0 300 L90 230 L170 290 L250 210 L340 300 L420 260 L480 300 V360 H0 Z" fill="#4f6142"/>
+      <path d="M60 360 L60 300 M60 300 l-18 24 M60 300 l18 24 M60 312 l-22 28 M60 312 l22 28" stroke="#2f3b28" stroke-width="6" stroke-linecap="round" fill="none"/>
+      <path d="M418 360 L418 290 M418 290 l-16 22 M418 290 l16 22 M418 304 l-20 26 M418 304 l20 26" stroke="#2f3b28" stroke-width="6" stroke-linecap="round" fill="none"/>
+      <path d="M150 340 C 210 320, 270 330, 330 310" stroke="#c9b58f" stroke-width="5" stroke-dasharray="10 12" fill="none"/>
+    </svg>
+  </section>
+  <section class="products" id="products" aria-labelledby="products-title">
+    <div class="section-head">
+      <h2 id="products-title">The collection</h2>
+      <p>Every part has a part number, and every part is sold on its own.</p>
+    </div>
+    <div class="grid" id="product-grid"></div>
+  </section>
+  <section class="newsletter" id="newsletter" aria-labelledby="newsletter-title">
+    <div class="newsletter-copy">
+      <h2 id="newsletter-title"></h2>
+      <p>Repairs, routes and the odd recipe from the workshop. No sales, ever.</p>
+    </div>
+    <form data-role="newsletter-form" id="newsletter-form" novalidate>
+      <div class="field">
+        <label for="email" id="email-label"></label>
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="name@example.com" aria-describedby="form-error">
+      </div>
+      <div class="field">
+        <label for="interest" id="interest-label"></label>
+        <select id="interest" name="interest"><option value="">Choose one</option></select>
+      </div>
+      <button type="submit" id="subscribe"></button>
+      <p class="message error" data-role="form-error" id="form-error" role="alert" hidden></p>
+      <p class="message success" data-role="form-success" role="status" hidden></p>
+    </form>
+  </section>
+</main>
+<footer class="footer"><p id="footer"></p></footer>
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

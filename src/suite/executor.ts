@@ -1,6 +1,6 @@
 import { spawn } from "node:child_process";
 import { createWriteStream } from "node:fs";
-import { mkdir, symlink } from "node:fs/promises";
+import { mkdir, readFile, symlink } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { git } from "../command.js";
 import type { RunOptions, SuiteExecutor } from "./run.js";
@@ -60,7 +60,10 @@ export function processExecutor(repoRoot: string): SuiteExecutor {
       return logged(node, args, root, log, { NODE_USE_ENV_PROXY: "1", ...options.environment });
     },
     async tournament(root, runDirectories, visualPackage, judges, log) {
-      const args = [...tsx, "scripts/judge-tournament.ts", ...runDirectories.flatMap(directory => ["--run", directory]), "--package", visualPackage];
+      // A v2 package (VIS v2: many briefs, anchors per brief) has its own tournament; vis-001 keeps the original.
+      const manifest = JSON.parse(await readFile(join(root, visualPackage, "manifest.json"), "utf8")) as { schemaVersion?: number };
+      const script = manifest.schemaVersion === 2 ? "scripts/judge-tournament-v2.ts" : "scripts/judge-tournament.ts";
+      const args = [...tsx, script, ...runDirectories.flatMap(directory => ["--run", directory]), "--package", visualPackage];
       if (judges?.length) args.push("--judges", judges.join(","));
       return logged(node, args, root, log, { NODE_USE_ENV_PROXY: "1" });
     },

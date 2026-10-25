@@ -1,0 +1,52 @@
+{
+ "brand": "Stackconf 2026",
+ "venue": "Harbour Hall, Gdańsk",
+ "savedFormat": "{n} saved",
+ "days": [
+  {
+   "label": "Day 1",
+   "sessions": [
+    {
+     "time": "09:30",
+     "title": "Opening: small tools, long lives",
+     "room": "Main hall"
+    },
+    {
+     "time": "11:00",
+     "title": "Caching without regret",
+     "room": "Room B"
+    },
+    {
+     "time": "14:00",
+     "title": "Designing for the slow network",
+     "room": "Main hall"
+    },
+    {
+     "time": "16:00",
+     "title": "Panel: maintainers at rest",
+     "room": "Room C"
+    }
+   ]
+  },
+  {
+   "label": "Day 2",
+   "sessions": [
+    {
+     "time": "10:00",
+     "title": "Type systems in the wild",
+     "room": "Room B"
+    },
+    {
+     "time": "11:30",
+     "title": "Accessible charts",
+     "room": "Main hall"
+    },
+    {
+     "time": "15:00",
+     "title": "Closing: what we deleted",
+     "room": "Main hall"
+    }
+   ]
+  }
+ ]
+}

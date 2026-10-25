@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join Orbit</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top"><span class="mark" aria-hidden="true"></span><span id="brand"></span></header>
+<main class="wrap">
+  <section class="card" aria-labelledby="title">
+    <h1 id="title"></h1>
+    <p class="indicator" data-role="step-indicator" aria-live="polite"></p>
+    <ol class="steps" id="steps"></ol>
+    <form id="form" novalidate>
+      <fieldset class="step" data-step="1">
+        <legend class="visually-hidden" id="legend-1"></legend>
+        <div class="field">
+          <label for="name" id="name-label"></label>
+          <input id="name" name="name" type="text" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="email" id="email-label"></label>
+          <input id="email" name="email" type="email" autocomplete="email" aria-describedby="error">
+        </div>
+      </fieldset>
+      <fieldset class="step" data-step="2" hidden>
+        <legend class="visually-hidden" id="legend-2"></legend>
+        <div class="plans" id="plans"></div>
+      </fieldset>
+      <section class="step" data-step="3" hidden>
+        <h2 class="visually-hidden" id="legend-3"></h2>
+        <dl class="summary" data-role="review-summary"></dl>
+      </section>
+      <p class="message error" data-role="form-error" id="error" role="alert" hidden></p>
+      <p class="message success" data-role="form-success" role="status" hidden></p>
+      <div class="actions">
+        <button type="button" class="ghost" data-role="back-button" id="back" hidden></button>
+        <button type="button" class="primary" data-role="next-button" id="next"></button>
+        <button type="submit" class="primary" data-role="submit-button" id="submit" hidden></button>
+      </div>
+    </form>
+  </section>
+</main>
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

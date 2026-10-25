@@ -1,0 +1,63 @@
+PASS: dashboard reference passes every check
+PASS: dashboard plain passes every check
+PASS: dashboard mutant script-error fails exactly ['chart', 'filter', 'kpis', 'renders']
+PASS: dashboard mutant phone-overflow fails exactly ['no-overflow']
+PASS: dashboard mutant filter-ignores-kpis fails exactly ['filter']
+PASS: dashboard mutant tiny-chart fails exactly ['chart']
+PASS: dashboard mutant unlabelled-filter fails exactly ['labels']
+PASS: dashboard missing index.html fails every check
+PASS: editor reference passes every check
+PASS: editor plain passes every check
+PASS: editor mutant script-error fails exactly ['open-note', 'renders', 'save', 'unsaved']
+PASS: editor mutant phone-overflow fails exactly ['no-overflow']
+PASS: editor mutant no-unsaved-state fails exactly ['unsaved']
+PASS: editor mutant save-keeps-old-title fails exactly ['save']
+PASS: editor mutant opens-first-note fails exactly ['open-note', 'save']
+PASS: editor missing index.html fails every check
+PASS: multistep reference passes every check
+PASS: multistep plain passes every check
+PASS: multistep mutant script-error fails exactly ['navigation', 'renders', 'review', 'submit', 'validation']
+PASS: multistep mutant phone-overflow fails exactly ['no-overflow']
+PASS: multistep mutant accepts-any-email fails exactly ['navigation', 'review', 'submit', 'validation']
+PASS: multistep mutant back-resets-plan fails exactly ['navigation']
+PASS: multistep mutant no-success-message fails exactly ['submit']
+PASS: multistep missing index.html fails every check
+PASS: landing-fernwood reference passes every check
+PASS: landing-fernwood plain passes every check
+PASS: landing-fernwood mutant script-error fails exactly ['copy', 'form-invalid', 'form-valid', 'options', 'renders']
+PASS: landing-fernwood mutant phone-overflow fails exactly ['no-overflow']
+PASS: landing-fernwood mutant accepts-address-without-dot fails exactly ['form-invalid']
+PASS: landing-fernwood mutant extra-interest fails exactly ['options']
+PASS: landing-fernwood mutant missing-product fails exactly ['copy']
+PASS: landing-fernwood missing index.html fails every check
+PASS: landing-quanta reference passes every check
+PASS: landing-quanta plain passes every check
+PASS: landing-quanta mutant script-error fails exactly ['copy', 'prices-monthly', 'prices-yearly', 'renders', 'toggle-back']
+PASS: landing-quanta mutant phone-overflow fails exactly ['no-overflow']
+PASS: landing-quanta mutant yearly-times-twelve fails exactly ['prices-yearly']
+PASS: landing-quanta mutant one-way-toggle fails exactly ['toggle-back']
+PASS: landing-quanta missing index.html fails every check
+PASS: mobile-schedule reference passes every check
+PASS: mobile-schedule plain passes every check
+PASS: mobile-schedule mutant script-error fails exactly ['favourite', 'renders', 'tabs', 'touch-targets']
+PASS: mobile-schedule mutant phone-overflow fails exactly ['no-overflow']
+PASS: mobile-schedule mutant no-aria-pressed fails exactly ['favourite']
+PASS: mobile-schedule mutant small-targets fails exactly ['touch-targets']
+PASS: mobile-schedule mutant all-days-shown fails exactly ['tabs']
+PASS: mobile-schedule missing index.html fails every check
+PASS: catalogue reference passes every check
+PASS: catalogue plain passes every check
+PASS: catalogue mutant script-error fails exactly ['combined', 'genre', 'renders', 'search', 'sort']
+PASS: catalogue mutant phone-overflow fails exactly ['no-overflow']
+PASS: catalogue mutant case-sensitive-search fails exactly ['combined', 'search']
+PASS: catalogue mutant genre-ignores-search fails exactly ['combined']
+PASS: catalogue mutant sort-descending fails exactly ['sort']
+PASS: catalogue missing index.html fails every check
+PASS: states reference passes every check
+PASS: states plain passes every check
+PASS: states mutant script-error fails exactly ['empty', 'error', 'loaded', 'renders', 'retry']
+PASS: states mutant phone-overflow fails exactly ['no-overflow']
+PASS: states mutant retry-never-loads fails exactly ['retry']
+PASS: states mutant all-states-shown fails exactly ['empty', 'error', 'loaded', 'retry']
+PASS: states missing index.html fails every check
+RESULT: PASS (62/62)

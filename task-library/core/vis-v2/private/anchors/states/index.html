@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shelfspace · Your files</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="bar">
+  <p class="brand"><span class="logo" aria-hidden="true"></span><span id="brand"></span></p>
+  <nav aria-label="Preview states" class="state-nav"><a href="#empty">Empty</a><a href="#error">Error</a><a href="#loaded">Loaded</a></nav>
+</header>
+<main class="page">
+  <h1 id="title"></h1>
+  <section class="state empty" data-role="state-empty" hidden>
+    <svg viewBox="0 0 200 140" aria-hidden="true" class="art">
+      <rect x="40" y="38" width="120" height="84" rx="12" fill="#e9e4ff"/>
+      <path d="M40 58 h120 v52 a12 12 0 0 1 -12 12 h-96 a12 12 0 0 1 -12 -12z" fill="#d6ccff"/>
+      <path d="M40 50 a12 12 0 0 1 12 -12 h30 l10 10 h56 a12 12 0 0 1 12 12" fill="none" stroke="#7a62e6" stroke-width="4"/>
+      <circle cx="100" cy="86" r="14" fill="#fff"/><path d="M100 79 v14 M93 86 h14" stroke="#7a62e6" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="166" cy="30" r="5" fill="#ffb84d"/><circle cx="30" cy="44" r="3" fill="#ff8a8a"/><circle cx="178" cy="96" r="3" fill="#7fd1b9"/>
+    </svg>
+    <h2 id="empty-heading"></h2>
+    <p id="empty-body"></p>
+    <button type="button" class="primary" id="empty-action"></button>
+  </section>
+  <section class="state error" data-role="state-error" hidden>
+    <svg viewBox="0 0 200 140" aria-hidden="true" class="art">
+      <path d="M58 98 a30 30 0 0 1 4 -59 a38 38 0 0 1 72 6 a26 26 0 0 1 8 53z" fill="#ffe3dc"/>
+      <path d="M86 70 l28 28 M114 70 l-28 28" stroke="#d1492e" stroke-width="6" stroke-linecap="round"/>
+      <path d="M40 116 h120" stroke="#f0c4b8" stroke-width="4" stroke-linecap="round" stroke-dasharray="4 10"/>
+    </svg>
+    <h2 id="error-heading"></h2>
+    <p id="error-body"></p>
+    <button type="button" class="primary" data-role="retry-button" id="retry"></button>
+    <p class="loading" id="loading" role="status" hidden><span class="spinner" aria-hidden="true"></span>Trying again…</p>
+  </section>
+  <section class="state loaded" data-role="state-loaded" hidden>
+    <ul class="files" id="files"></ul>
+  </section>
+</main>
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

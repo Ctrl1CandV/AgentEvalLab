@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operations overview · Tidewater Logistics</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><svg viewBox="0 0 32 32" aria-hidden="true" class="logo"><path d="M3 20c4-6 8-6 12 0s8 6 14 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M3 13c4-6 8-6 12 0s8 6 14 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" opacity=".55"/></svg><span id="brand"></span></div>
+  <p class="updated">Live · updated every 5 minutes</p>
+</header>
+<main class="layout">
+  <div class="heading-row">
+    <h1 id="title"></h1>
+    <div class="filter">
+      <label for="region">Region</label>
+      <select id="region" data-role="region-filter"></select>
+    </div>
+  </div>
+  <section class="kpis" aria-label="Key figures">
+    <article class="kpi">
+      <h2 id="kpi-total-label"></h2>
+      <p class="kpi-value" data-role="kpi-total" aria-describedby="kpi-total-label">0</p>
+      <p class="kpi-note" id="kpi-total-note"></p>
+      <ul class="breakdown" id="breakdown" aria-label="Shipments by region"></ul>
+    </article>
+    <article class="kpi kpi-alert">
+      <h2 id="kpi-delayed-label"></h2>
+      <p class="kpi-value" data-role="kpi-delayed" aria-describedby="kpi-delayed-label">0</p>
+      <p class="kpi-note" id="kpi-delayed-note"></p>
+      <div class="meter" aria-hidden="true"><span id="delayed-meter"></span></div>
+      <ul class="late-list" id="late-list" aria-label="Delayed shipments"></ul>
+    </article>
+    <article class="kpi chart-card">
+      <h2 id="chart-title"></h2>
+      <svg data-role="chart" class="chart" viewBox="0 0 420 180" preserveAspectRatio="xMinYMid meet" role="img" aria-labelledby="chart-title chart-desc"><desc id="chart-desc"></desc></svg>
+    </article>
+  </section>
+  <section class="table-card" aria-labelledby="table-title">
+    <h2 id="table-title">Shipments</h2>
+    <div class="table-scroll">
+      <table data-role="shipments-table">
+        <thead><tr><th scope="col">Shipment</th><th scope="col">Region</th><th scope="col">Status</th><th scope="col">ETA</th><th scope="col" class="num">Weight</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

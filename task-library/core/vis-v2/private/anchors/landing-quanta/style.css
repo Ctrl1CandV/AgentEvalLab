@@ -1,0 +1,47 @@
+:root {
+  --ink: #0b1b2b; --soft: #4b5b6e; --line: #dbe3ec; --blue: #1747d6; --blue-dark: #0f34a8; --mint: #0f9f7a; --ground: #f6f8fb;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif; color: var(--ink); background: var(--ground);
+}
+* { box-sizing: border-box; }
+body { margin: 0; line-height: 1.5; }
+:focus-visible { outline: 3px solid #f59e0b; outline-offset: 3px; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.nav { display: flex; justify-content: space-between; align-items: center; gap: 1rem; max-width: 1160px; margin: 0 auto; padding: 1.25rem clamp(1rem, 4vw, 2rem); }
+.brand { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em; }
+.brand svg { width: 26px; height: 26px; fill: var(--blue); }
+.nav-cta { color: var(--blue); font-weight: 700; text-decoration: none; padding: 0.5rem 0; }
+.nav-cta:hover { text-decoration: underline; }
+.hero { max-width: 760px; margin: 0 auto; padding: clamp(2rem, 6vw, 4.5rem) clamp(1rem, 4vw, 2rem) 2rem; text-align: center; }
+h1 { margin: 0; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.08; letter-spacing: -0.035em; }
+.hero p { margin: 1rem auto 0; font-size: 1.2rem; color: var(--soft); max-width: 34rem; }
+.pricing { max-width: 1160px; margin: 0 auto; padding: 1rem clamp(1rem, 4vw, 2rem) 3rem; }
+.billing { display: flex; justify-content: center; align-items: center; gap: 0.9rem; font-weight: 600; color: var(--soft); }
+.billing-label.active { color: var(--ink); }
+.switch { position: relative; width: 60px; height: 34px; padding: 0; border: 0; border-radius: 999px; background: #c3cddb; cursor: pointer; }
+.switch[aria-checked="true"] { background: var(--blue); }
+.knob { position: absolute; top: 4px; left: 4px; width: 26px; height: 26px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25); transition: transform 0.15s ease; }
+.switch[aria-checked="true"] .knob { transform: translateX(26px); }
+.billing-note { margin: 0.75rem auto 2.25rem; text-align: center; color: var(--mint); font-weight: 600; min-height: 1.5em; visibility: hidden; }
+.billing-note.visible { visibility: visible; }
+.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; align-items: stretch; }
+.plan { position: relative; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 2rem 1.75rem; }
+.plan.featured { border: 2px solid var(--blue); box-shadow: 0 24px 48px -28px rgba(23, 71, 214, 0.45); }
+.badge { position: absolute; top: -0.85rem; left: 1.75rem; margin: 0; padding: 0.2rem 0.7rem; border-radius: 999px; background: var(--blue); color: #fff; font-size: 0.78rem; font-weight: 700; }
+h3 { margin: 0; font-size: 1.15rem; }
+.price-line { display: flex; align-items: baseline; gap: 0.5rem; margin: 0.75rem 0 1.25rem; }
+.price { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.per { color: var(--soft); }
+.plan ul { list-style: none; margin: 0 0 1.75rem; padding: 0; display: grid; align-content: start; gap: 0.6rem; flex: 1; }
+.plan li { padding-left: 1.6rem; position: relative; }
+.plan li::before { content: ""; position: absolute; left: 0; top: 0.35em; width: 0.95rem; height: 0.55rem; border-left: 2.5px solid var(--mint); border-bottom: 2.5px solid var(--mint); transform: rotate(-45deg); }
+.cta { display: flex; justify-content: center; align-items: center; min-height: 48px; border-radius: 10px; border: 1.5px solid var(--blue); color: var(--blue); font-weight: 700; text-decoration: none; }
+.featured .cta { background: var(--blue); color: #fff; }
+.cta:hover { background: var(--blue-dark); border-color: var(--blue-dark); color: #fff; }
+.trust { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; max-width: 1160px; margin: 0 auto 3rem; padding: 0 clamp(1rem, 4vw, 2rem); color: var(--soft); text-align: center; }
+.trust p { margin: 0; padding: 1.25rem; border-top: 1px solid var(--line); }
+.trust strong { display: block; color: var(--ink); font-size: 1.2rem; }
+.footer { text-align: center; padding: 2rem 1rem; color: var(--soft); font-size: 0.9rem; }
+@media (max-width: 900px) {
+  .plans, .trust { grid-template-columns: minmax(0, 1fr); }
+  .plans { gap: 2rem; }
+}

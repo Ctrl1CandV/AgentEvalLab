@@ -18,7 +18,10 @@ export interface Design {
   label: string;
   directory: string;
   screenshots: string[];
+  /** HTML and CSS excerpt; empty when the judges see screenshots only (VIS v2). */
   source: string;
+  /** What the screenshots are, in order; defaults to vis-001's four. */
+  caption?: string;
 }
 
 const choices = new Set(["A", "B", "tie"]);
@@ -75,9 +78,9 @@ export async function judgePair(judge: ModelSelection, skill: string, a: Design,
   const image = async (path: string) => ({ type: "image" as const, data: (await readFile(path)).toString("base64"), mimeType: "image/png" });
   const content = [];
   for (const design of [a, b]) {
-    content.push({ type: "text" as const, text: `Design ${design.label}: screenshots in this order: desktop, phone, form error state, form success state.` });
+    content.push({ type: "text" as const, text: `Design ${design.label}: screenshots in this order: ${design.caption ?? "desktop, phone, form error state, form success state"}.` });
     for (const path of design.screenshots) content.push(await image(path));
-    content.push({ type: "text" as const, text: `Design ${design.label} source excerpt:\n${design.source}` });
+    if (design.source) content.push({ type: "text" as const, text: `Design ${design.label} source excerpt:\n${design.source}` });
   }
   content.push({ type: "text" as const, text: "Compare design A with design B as the judging skill describes, and reply with the JSON object only." });
   const usage = { input: 0, output: 0 };

@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 3,
+  "name": "vis-2026-10-dev",
+  "models": [
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "aliplan",
+      "id": "qwen3.8-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    },
+    {
+      "provider": "mimoplan",
+      "id": "mimo-v2.6-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 1,
+  "budget": {
+    "timeoutMs": 2700000,
+    "maxTurns": 150,
+    "maxModelCalls": 150,
+    "maxToolCalls": 300,
+    "maxOutputChars": 262144,
+    "maxOutputTokensPerCall": 65536,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 1000000
+  },
+  "commandLimits": {
+    "timeoutMs": 120000,
+    "maxOutputBytes": 64000
+  },
+  "artifactLimits": {
+    "maxFiles": 200,
+    "maxFileBytes": 2097152,
+    "maxTrialBytes": 10485760,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 10000000,
+    "concurrency": 4
+  },
+  "trustedLocalExecution": true,
+  "budgetNotice": true,
+  "protocol": {
+    "track": "fixed",
+    "split": "dev",
+    "label": "provisional-B"
+  },
+  "cases": [
+    {
+      "id": "vis-v2",
+      "packagePath": "task-library/core/vis-v2",
+      "packageManifestSha256": "9f7cbb6ce5ec1911e9104745d57b14c67409c2077c78c9bb48bb0187a41be4cb",
+      "toolProfile": "workspace-augmented",
+      "input": {
+        "prompt": "Design and build the page the brief describes, in site/, check it against the brief, and end with a short summary of your design decisions."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 300000
+      },
+      "items": [
+        "landing-fernwood",
+        "dashboard",
+        "multistep"
+      ]
+    }
+  ]
+}

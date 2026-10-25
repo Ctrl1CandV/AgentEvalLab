@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Margin</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <header class="masthead">
+      <p class="brand" id="brand"></p>
+      <p class="tagline" id="tagline"></p>
+    </header>
+    <nav aria-label="Notes">
+      <ul class="notes" data-role="note-list"></ul>
+    </nav>
+  </aside>
+  <main class="sheet">
+    <form id="editor" autocomplete="off">
+      <div class="toolbar">
+        <p class="status" data-role="save-status" role="status" aria-live="polite"></p>
+        <button type="submit" class="save" data-role="save-button" id="save"></button>
+      </div>
+      <label class="field-label" for="title" id="title-label"></label>
+      <input id="title" class="title" data-role="note-title" type="text">
+      <label class="field-label" for="body" id="body-label"></label>
+      <textarea id="body" class="body" data-role="note-body" rows="14"></textarea>
+    </form>
+  </main>
+</div>
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

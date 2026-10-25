@@ -1,0 +1,32 @@
+{
+ "brand": "Orbit Coworking",
+ "title": "Join Orbit",
+ "steps": [
+  "Your details",
+  "Choose a plan",
+  "Review"
+ ],
+ "fields": {
+  "name": "Full name",
+  "email": "Email"
+ },
+ "plans": [
+  "Desk",
+  "Team room",
+  "Studio"
+ ],
+ "planNotes": {
+  "Desk": "A seat in the open floor",
+  "Team room": "A room for up to six",
+  "Studio": "A private studio with storage"
+ },
+ "buttons": {
+  "next": "Next",
+  "back": "Back",
+  "submit": "Create my membership"
+ },
+ "states": {
+  "error": "Please enter a valid email address.",
+  "success": "Welcome to Orbit. Your membership is ready."
+ }
+}

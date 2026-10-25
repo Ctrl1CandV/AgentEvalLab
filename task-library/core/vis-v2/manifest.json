@@ -1,0 +1,796 @@
+{
+  "schemaVersion": 2,
+  "id": "vis-v2",
+  "version": "0.1.0",
+  "familyId": "vis-v2",
+  "capability": "aesthetics",
+  "usage": "development",
+  "source": {
+    "kind": "original-design",
+    "references": [
+      "docs/design/v2/TASK_LIBRARY.md",
+      "https://www.w3.org/TR/WCAG22/"
+    ]
+  },
+  "license": {
+    "taskText": "Original project-authored briefs, content, anchor pages and checks.",
+    "thirdPartyContent": []
+  },
+  "entryPoint": {
+    "instruction": "instruction.md"
+  },
+  "files": {
+    "public": [
+      {
+        "path": "instruction.md",
+        "sha256": "11960fcf594578d38f39ab5ace37aec9fcf030a6a60baba4dfad56eaaefbba6a"
+      }
+    ],
+    "trusted": [
+      {
+        "path": "calibration.md",
+        "sha256": "8b18cf2353dce33faafb5ed60a1ab1719c5945dbd1bba497428b3267ef868792"
+      },
+      {
+        "path": "card.md",
+        "sha256": "dafd7f97ab51102616325c82ba6caba6b4230bc29f1eda9c0b8e7f07eea1cf77"
+      },
+      {
+        "path": "rubric.md",
+        "sha256": "204c085ffcaeac149ed655e2412ec4b2469a78d3771de67909f4e7351682e0a8"
+      },
+      {
+        "path": "private/briefs.py",
+        "sha256": "a317e9e9f8d8352696526d3fa1f13b9a3f608c4e8148dc337cc50b750ee25cd4"
+      },
+      {
+        "path": "private/build_package.py",
+        "sha256": "5fe33f14b0eae53cb3f5a8f7796772aac4f7a9e043431a655576a4f2740640bc"
+      },
+      {
+        "path": "private/calibrate.py",
+        "sha256": "2bfaaa257d638a78f795418334b029565534a8f2d726edf692c6f1b38e260bd6"
+      },
+      {
+        "path": "private/grader.py",
+        "sha256": "09f38b8d80148ff7954573f39a557f80d050beaa400962a895f6d5a3c22952bc"
+      },
+      {
+        "path": "private/scenarios.mjs",
+        "sha256": "93dd436e59d6463f7db0338362c605e1b5e588865e4ffe3a0fae0b9f155f6dbf"
+      },
+      {
+        "path": "private/judge/SKILL.md",
+        "sha256": "388a8d049178acadf2a0d9cf659ff38cdf152d0428fcb30d21cc0b90e412f781"
+      },
+      {
+        "path": "private/anchors/plain.css",
+        "sha256": "d1df94070279c1bd37ebc1eae8b8788088c08d5bced347ac87bbebb299ca1c73"
+      },
+      {
+        "path": "private/anchors/catalogue/app.js",
+        "sha256": "a63648bd499e0e67469409169550a788b5fa178dfdbcf692ca431ff351f3c2a4"
+      },
+      {
+        "path": "private/anchors/catalogue/content.js",
+        "sha256": "bf0d0d72ce4220a08703c0ca6297b8802a9eccfd2ab548bb0c90e3c80d8169b6"
+      },
+      {
+        "path": "private/anchors/catalogue/index.html",
+        "sha256": "06da1547e4bbe72ccb1ce7d072d22ab2f8bc237b59baa8543dc2265e178f3fd5"
+      },
+      {
+        "path": "private/anchors/catalogue/style.css",
+        "sha256": "399c5d7903b5f0d805b804a6ad5f2bf30e63907fd2b519f017e8e5ac0c48d571"
+      },
+      {
+        "path": "private/anchors/dashboard/app.js",
+        "sha256": "a5165b8eeac6c7fe8908c8136c6437e7adb9c33e7acd5482212b5af72ebfa9fe"
+      },
+      {
+        "path": "private/anchors/dashboard/content.js",
+        "sha256": "58d00ebe88676095ae79ecce617d547b7f68b2fda8866375ef02a405fe93144d"
+      },
+      {
+        "path": "private/anchors/dashboard/index.html",
+        "sha256": "8216aa8c804a1abdd70d4507b8e2dac90aaa9885895616904e676e42bff14893"
+      },
+      {
+        "path": "private/anchors/dashboard/style.css",
+        "sha256": "c448bc8670a324292b988c610faf49ed8bc3b2dc7a6f873a3c4a2d68a26a6eb7"
+      },
+      {
+        "path": "private/anchors/editor/app.js",
+        "sha256": "7248b0dcdd773ef540c7f8ae9ffc3fcb0fa827a8d2be859a2ffccc2d9663e1d5"
+      },
+      {
+        "path": "private/anchors/editor/content.js",
+        "sha256": "eda11586748b989887c12a48ed624d18d8e03fd92ffe27f43dbd327c0df232bc"
+      },
+      {
+        "path": "private/anchors/editor/index.html",
+        "sha256": "2df019769ac1409bd1da62ec9cfa3bb2931f839f271c67201ecb18b3cc71f9f5"
+      },
+      {
+        "path": "private/anchors/editor/style.css",
+        "sha256": "151aec7e2a709c5d9c2a270064ee9f29e2a7e31df9d8aff53a9d16f552177db1"
+      },
+      {
+        "path": "private/anchors/landing-fernwood/app.js",
+        "sha256": "1585b0216cad8d28e8e7b97bf8c896edfd14cf3b75b96a8fabe6ffe812c61bd2"
+      },
+      {
+        "path": "private/anchors/landing-fernwood/content.js",
+        "sha256": "04cfaa10aeca921b54096b1d1297a26a88939ffcd8f9b0cbaf79297f69e477f5"
+      },
+      {
+        "path": "private/anchors/landing-fernwood/index.html",
+        "sha256": "276a69196035fcb36eea0a627ba1edbc035ec8da28fb1f9b1c4644140b8a2036"
+      },
+      {
+        "path": "private/anchors/landing-fernwood/style.css",
+        "sha256": "2059d5e62639d983d28a917dfbd7e1da1c59f172853e2d582027ec11a610d4d3"
+      },
+      {
+        "path": "private/anchors/landing-quanta/app.js",
+        "sha256": "21ef5155cf65802f63245b23fb67b267e6d6e95ebb6f0cd5875d2891af546f4d"
+      },
+      {
+        "path": "private/anchors/landing-quanta/content.js",
+        "sha256": "8a7a41179129f9d70c85947a120e2692d0bf9b6c852f92e049cf0c9fa46179cd"
+      },
+      {
+        "path": "private/anchors/landing-quanta/index.html",
+        "sha256": "42b702cd98719806b0d1edec897b080334a428821f3af37c05f6014bb8f28759"
+      },
+      {
+        "path": "private/anchors/landing-quanta/style.css",
+        "sha256": "d937037c696b0f80a5c9db30ab4419749fdfb81c852beabb327024bc745f9bf3"
+      },
+      {
+        "path": "private/anchors/mobile-schedule/app.js",
+        "sha256": "cc8f9464d3e2bd89f00f020c4e24ff88ccc46063da846710914a9dc14947de3a"
+      },
+      {
+        "path": "private/anchors/mobile-schedule/content.js",
+        "sha256": "df00bc039691aefd8db91f95d86e07577b378cabea0254e7026abcbfcf60babd"
+      },
+      {
+        "path": "private/anchors/mobile-schedule/index.html",
+        "sha256": "2e19b4c76b8c1d5b0fc5b2c85afd4e102a5f40493f8acc8b8d78c4a919622df1"
+      },
+      {
+        "path": "private/anchors/mobile-schedule/style.css",
+        "sha256": "2c60ffa29383d790a9d8fbdb1d02c914c977c85df7700393336af270132cabcc"
+      },
+      {
+        "path": "private/anchors/multistep/app.js",
+        "sha256": "0196c72fa5798519995b9e66bbd58edfda63336e79da3a48e9297212d6090926"
+      },
+      {
+        "path": "private/anchors/multistep/content.js",
+        "sha256": "2511e7a251b67797bf7049f833436c128a41735aed3c9eaa37714ece82ec8779"
+      },
+      {
+        "path": "private/anchors/multistep/index.html",
+        "sha256": "498f971ef854c1cb451d76e618acc44de7dc1796b2bcd5076fdb5e73090a8bbe"
+      },
+      {
+        "path": "private/anchors/multistep/style.css",
+        "sha256": "ca8f75bc2344fdc9833148cafd2ed2b1042158af96de2debc4192b25ee9d0456"
+      },
+      {
+        "path": "private/anchors/states/app.js",
+        "sha256": "ef70cf08a2d0ab88a1eb98ca0691b853e2e9edf1bac7e6336beceb5f2f71b26c"
+      },
+      {
+        "path": "private/anchors/states/content.js",
+        "sha256": "879b4d811eeed72a33d407e655c7bfa4c3884f3289bb248b131a55e5c14c3f31"
+      },
+      {
+        "path": "private/anchors/states/index.html",
+        "sha256": "f4d10a1bc5b867c55b790caccdae743afc9c5e7b57c911c7ac46fa5b241c57cd"
+      },
+      {
+        "path": "private/anchors/states/style.css",
+        "sha256": "b4d625d3a15182eaa23c01d8b45ddaad9622cc9d5e17dc424918a2856431fae7"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "REQ-RENDERS",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "renders"
+      ]
+    },
+    {
+      "id": "REQ-LABELS",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "labels"
+      ]
+    },
+    {
+      "id": "REQ-NO-OVERFLOW",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "no-overflow"
+      ]
+    },
+    {
+      "id": "REQ-KPIS",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "kpis"
+      ]
+    },
+    {
+      "id": "REQ-FILTER",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "filter"
+      ]
+    },
+    {
+      "id": "REQ-CHART",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "chart"
+      ]
+    },
+    {
+      "id": "REQ-OPEN-NOTE",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "open-note"
+      ]
+    },
+    {
+      "id": "REQ-UNSAVED",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "unsaved"
+      ]
+    },
+    {
+      "id": "REQ-SAVE",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "save"
+      ]
+    },
+    {
+      "id": "REQ-VALIDATION",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "validation"
+      ]
+    },
+    {
+      "id": "REQ-REVIEW",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "review"
+      ]
+    },
+    {
+      "id": "REQ-NAVIGATION",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "navigation"
+      ]
+    },
+    {
+      "id": "REQ-SUBMIT",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "submit"
+      ]
+    },
+    {
+      "id": "REQ-COPY",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "copy"
+      ]
+    },
+    {
+      "id": "REQ-OPTIONS",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "options"
+      ]
+    },
+    {
+      "id": "REQ-FORM-INVALID",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "form-invalid"
+      ]
+    },
+    {
+      "id": "REQ-FORM-VALID",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "form-valid"
+      ]
+    },
+    {
+      "id": "REQ-PRICES-MONTHLY",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "prices-monthly"
+      ]
+    },
+    {
+      "id": "REQ-PRICES-YEARLY",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "prices-yearly"
+      ]
+    },
+    {
+      "id": "REQ-TOGGLE-BACK",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "toggle-back"
+      ]
+    },
+    {
+      "id": "REQ-TABS",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "tabs"
+      ]
+    },
+    {
+      "id": "REQ-FAVOURITE",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "favourite"
+      ]
+    },
+    {
+      "id": "REQ-TOUCH-TARGETS",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "touch-targets"
+      ]
+    },
+    {
+      "id": "REQ-SEARCH",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "search"
+      ]
+    },
+    {
+      "id": "REQ-GENRE",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "genre"
+      ]
+    },
+    {
+      "id": "REQ-COMBINED",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "combined"
+      ]
+    },
+    {
+      "id": "REQ-SORT",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "sort"
+      ]
+    },
+    {
+      "id": "REQ-EMPTY",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "empty"
+      ]
+    },
+    {
+      "id": "REQ-ERROR",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "error"
+      ]
+    },
+    {
+      "id": "REQ-LOADED",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "loaded"
+      ]
+    },
+    {
+      "id": "REQ-RETRY",
+      "critical": true,
+      "introducedAt": "vis-v2 0.1.0",
+      "checkIds": [
+        "retry"
+      ]
+    }
+  ],
+  "tier": "core",
+  "capabilities": [
+    "visual"
+  ],
+  "card": "card.md",
+  "scoreModel": {
+    "primary": {
+      "kind": "rating"
+    },
+    "groups": [
+      {
+        "id": "basics",
+        "weight": 1,
+        "critical": true,
+        "rule": "all",
+        "checkIds": [
+          "renders",
+          "labels",
+          "no-overflow"
+        ]
+      },
+      {
+        "id": "behaviour",
+        "weight": 2,
+        "critical": true,
+        "rule": "fraction",
+        "checkIds": [
+          "kpis",
+          "filter",
+          "chart",
+          "open-note",
+          "unsaved",
+          "save",
+          "validation",
+          "review",
+          "navigation",
+          "submit",
+          "copy",
+          "options",
+          "form-invalid",
+          "form-valid",
+          "prices-monthly",
+          "prices-yearly",
+          "toggle-back",
+          "tabs",
+          "favourite",
+          "touch-targets",
+          "search",
+          "genre",
+          "combined",
+          "sort",
+          "empty",
+          "error",
+          "loaded",
+          "retry"
+        ]
+      }
+    ],
+    "metrics": [
+      {
+        "id": "checksPassed",
+        "unit": "checks",
+        "direction": "higher"
+      },
+      {
+        "id": "checks",
+        "unit": "checks",
+        "direction": "higher"
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "dashboard",
+      "level": "brief",
+      "files": [
+        {
+          "path": "items/dashboard/prompt.md",
+          "sha256": "7bcd85db20ca05a7c5aab590c498b650a2161ba1deaadc78ba826eb2c376e1e0"
+        },
+        {
+          "path": "items/dashboard/public/content.json",
+          "sha256": "1b3ad6f36ad123a59086a59bbd5a0cfbc3e1b42fc588b4d8074bf0f246257699"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-RENDERS",
+        "REQ-LABELS",
+        "REQ-NO-OVERFLOW",
+        "REQ-KPIS",
+        "REQ-FILTER",
+        "REQ-CHART"
+      ],
+      "split": "dev",
+      "structure": "brief:dashboard",
+      "provenance": {
+        "source": "project-authored brief (private/briefs.py)",
+        "published": "2026-10-25",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
+    },
+    {
+      "id": "editor",
+      "level": "brief",
+      "files": [
+        {
+          "path": "items/editor/prompt.md",
+          "sha256": "bfcfe8668459005cc5220ab616e90c4fcc27abfa59f6b23063a13c11322b282f"
+        },
+        {
+          "path": "items/editor/public/content.json",
+          "sha256": "bf01b2a9d01ccce32c5ed73ed8789caa6c585069a70c1305c4be01f6919dd1cc"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-RENDERS",
+        "REQ-LABELS",
+        "REQ-NO-OVERFLOW",
+        "REQ-OPEN-NOTE",
+        "REQ-UNSAVED",
+        "REQ-SAVE"
+      ],
+      "split": "validation",
+      "structure": "brief:editor",
+      "provenance": {
+        "source": "project-authored brief (private/briefs.py)",
+        "published": "2026-10-25",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
+    },
+    {
+      "id": "multistep",
+      "level": "brief",
+      "files": [
+        {
+          "path": "items/multistep/prompt.md",
+          "sha256": "28f08d3187b1f012f7de600fd5a9a688de0773e87a13b128c1df573f67288dec"
+        },
+        {
+          "path": "items/multistep/public/content.json",
+          "sha256": "bcc7008b4e5c0c44a6acf29c9b76a256598211ddf75ebeef3777907e8d8582d1"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-RENDERS",
+        "REQ-LABELS",
+        "REQ-NO-OVERFLOW",
+        "REQ-VALIDATION",
+        "REQ-REVIEW",
+        "REQ-NAVIGATION",
+        "REQ-SUBMIT"
+      ],
+      "split": "dev",
+      "structure": "brief:multistep",
+      "provenance": {
+        "source": "project-authored brief (private/briefs.py)",
+        "published": "2026-10-25",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
+    },
+    {
+      "id": "landing-fernwood",
+      "level": "brief",
+      "files": [
+        {
+          "path": "items/landing-fernwood/prompt.md",
+          "sha256": "b24d55cf8383a32e52927a3bc88248186cf8240094ec92b79f1f7d7024a28aca"
+        },
+        {
+          "path": "items/landing-fernwood/public/content.json",
+          "sha256": "86519b36a274e237e1f1a185344c402fa1819535aa97f77badb85a00cf1d678c"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-RENDERS",
+        "REQ-LABELS",
+        "REQ-NO-OVERFLOW",
+        "REQ-COPY",
+        "REQ-OPTIONS",
+        "REQ-FORM-INVALID",
+        "REQ-FORM-VALID"
+      ],
+      "split": "dev",
+      "structure": "brief:landing-fernwood",
+      "provenance": {
+        "source": "project-authored brief (private/briefs.py)",
+        "published": "2026-10-25",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
+    },
+    {
+      "id": "landing-quanta",
+      "level": "brief",
+      "files": [
+        {
+          "path": "items/landing-quanta/prompt.md",
+          "sha256": "8b96bfc1957458d15b29f5756b3a8b3547aa21f4de91b509075a97be6450529c"
+        },
+        {
+          "path": "items/landing-quanta/public/content.json",
+          "sha256": "66d2961378b648fc94eae19a4264fd1b0da4b11e425041ebe4f6a46df545e4fd"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-RENDERS",
+        "REQ-LABELS",
+        "REQ-NO-OVERFLOW",
+        "REQ-PRICES-MONTHLY",
+        "REQ-PRICES-YEARLY",
+        "REQ-TOGGLE-BACK",
+        "REQ-COPY"
+      ],
+      "split": "validation",
+      "structure": "brief:landing-quanta",
+      "provenance": {
+        "source": "project-authored brief (private/briefs.py)",
+        "published": "2026-10-25",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
+    },
+    {
+      "id": "mobile-schedule",
+      "level": "brief",
+      "files": [
+        {
+          "path": "items/mobile-schedule/prompt.md",
+          "sha256": "15e22c89176ba5cabd9dc9d72b34ca38b9785b380167a8813f7d1785539461f9"
+        },
+        {
+          "path": "items/mobile-schedule/public/content.json",
+          "sha256": "445fcf59ccde739021d9479b0b298a6b98c7e986949bb905b8a4101ca84d6bea"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-RENDERS",
+        "REQ-LABELS",
+        "REQ-NO-OVERFLOW",
+        "REQ-TABS",
+        "REQ-FAVOURITE",
+        "REQ-TOUCH-TARGETS"
+      ],
+      "split": "validation",
+      "structure": "brief:mobile-schedule",
+      "provenance": {
+        "source": "project-authored brief (private/briefs.py)",
+        "published": "2026-10-25",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
+    },
+    {
+      "id": "catalogue",
+      "level": "brief",
+      "files": [
+        {
+          "path": "items/catalogue/prompt.md",
+          "sha256": "f2f43a0d277a3bdd50ca31fdd49e3fbc84dafd70bd66bcfb374e75a945a75a8b"
+        },
+        {
+          "path": "items/catalogue/public/content.json",
+          "sha256": "50b2abf04944c26cec62dd0b77b168db38db20e83c9145738023ba1ff0373ef6"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-RENDERS",
+        "REQ-LABELS",
+        "REQ-NO-OVERFLOW",
+        "REQ-SEARCH",
+        "REQ-GENRE",
+        "REQ-COMBINED",
+        "REQ-SORT"
+      ],
+      "split": "validation",
+      "structure": "brief:catalogue",
+      "provenance": {
+        "source": "project-authored brief (private/briefs.py)",
+        "published": "2026-10-25",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
+    },
+    {
+      "id": "states",
+      "level": "brief",
+      "files": [
+        {
+          "path": "items/states/prompt.md",
+          "sha256": "3dbca7c92ca570f3b2f101988712f2f7f91f55489312a3f57425947dff01fc14"
+        },
+        {
+          "path": "items/states/public/content.json",
+          "sha256": "a43a92b361211377ecc2f8f3d927bf87a04c335023c62f1e348ce3d519d4be87"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-RENDERS",
+        "REQ-LABELS",
+        "REQ-NO-OVERFLOW",
+        "REQ-EMPTY",
+        "REQ-ERROR",
+        "REQ-LOADED",
+        "REQ-RETRY"
+      ],
+      "split": "validation",
+      "structure": "brief:states",
+      "provenance": {
+        "source": "project-authored brief (private/briefs.py)",
+        "published": "2026-10-25",
+        "license": "project-authored",
+        "exposure": "private-to-runs"
+      }
+    }
+  ],
+  "toolProfiles": [
+    "workspace-augmented"
+  ],
+  "grader": {
+    "id": "vis-v2-functional",
+    "version": "1.0.0",
+    "entryPoint": "private/grader.py",
+    "executable": "python3",
+    "args": [
+      "{entryPoint}",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ]
+  },
+  "environment": {
+    "runtime": "Python 3.13 and Node 22",
+    "dependencies": "playwright-core and its headless Chromium shell (the repository's renderer); no network",
+    "network": false,
+    "runtimeCheck": {
+      "executable": "python3",
+      "args": [
+        "--version"
+      ],
+      "expectedSubstring": "Python 3.13."
+    }
+  }
+}

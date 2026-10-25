@@ -1,0 +1,27 @@
+{
+ "brand": "Margin",
+ "tagline": "Notes that stay out of your way",
+ "notes": [
+  {
+   "title": "Reading list",
+   "body": "Finish the essay collection.\nStart the field guide to mosses."
+  },
+  {
+   "title": "Kitchen ideas",
+   "body": "Try the lentil soup with smoked paprika.\nBuy a second cast-iron pan."
+  },
+  {
+   "title": "Trip to the coast",
+   "body": "Book the ferry for Friday.\nPack the waterproof notebook."
+  }
+ ],
+ "labels": {
+  "title": "Title",
+  "body": "Note",
+  "save": "Save"
+ },
+ "status": {
+  "saved": "All changes saved",
+  "unsaved": "Unsaved changes"
+ }
+}

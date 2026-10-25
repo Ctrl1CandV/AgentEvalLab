@@ -1,0 +1,10 @@
+/* The plain anchor: each reference page's markup and behaviour with browser defaults and only the fixes that keep it
+   working (hidden states, sized graphics, no horizontal scrolling). It is the bottom of the design scale. */
+[hidden] { display: none !important; }
+body { margin: 8px; font-family: serif; }
+svg { width: 240px; max-width: 100%; height: auto; }
+header svg, button svg, h1 svg, p svg { width: 24px; height: 24px; }
+[data-role="chart"] { width: 100%; max-width: 420px; height: auto; }
+table { display: block; max-width: 100%; overflow-x: auto; }
+input, select, textarea { max-width: 100%; }
+button { min-width: 24px; min-height: 24px; }

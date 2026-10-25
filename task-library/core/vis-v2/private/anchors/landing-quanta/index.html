@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quanta pricing</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav">
+  <span class="brand"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg><span id="brand"></span></span>
+  <a class="nav-cta" href="#plans" id="nav-cta"></a>
+</header>
+<main>
+  <section class="hero">
+    <h1 id="hero-heading"></h1>
+    <p id="hero-sub"></p>
+  </section>
+  <section class="pricing" id="plans" aria-labelledby="pricing-title">
+    <h2 id="pricing-title" class="visually-hidden">Plans and prices</h2>
+    <div class="billing">
+      <span id="label-monthly" class="billing-label active"></span>
+      <button type="button" class="switch" role="switch" aria-checked="false" data-role="billing-toggle" id="toggle" aria-labelledby="label-yearly"><span class="knob"></span></button>
+      <span id="label-yearly" class="billing-label"></span>
+    </div>
+    <p class="billing-note" id="billing-note"></p>
+    <div class="plans" id="plan-list"></div>
+  </section>
+  <section class="trust">
+    <p><strong>2,400</strong> firms close their books with Quanta</p>
+    <p><strong>Bank-grade</strong> encryption, audited yearly</p>
+    <p><strong>Cancel</strong> any time, export everything</p>
+  </section>
+</main>
+<footer class="footer">© 2026 Quanta</footer>
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
