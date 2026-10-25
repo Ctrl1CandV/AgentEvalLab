@@ -1,0 +1,290 @@
+{
+ "Archmonger__django-dbbackup-605": {
+  "decision": "keep",
+  "reason": "The issue asks for a usable error when the dump command is missing; the test checks exact wording, stated below.",
+  "interface": [
+   "When the database command cannot be found, the raised `dbbackup.db.exceptions.CommandConnectorError` has a message containing each of: `Database command '<command>' not found`, `Please ensure the required database client tools are installed`, `PostgreSQL: Install postgresql-client`, `MySQL: Install mysql-client`, `MongoDB: Install mongodb-tools`, `DUMP_CMD: Path to the dump command`, `RESTORE_CMD: Path to the restore command`. Other OS errors keep the existing `Error running: ...` message without these hints."
+  ]
+ },
+ "Textualize__textual-5863": {
+  "decision": "keep",
+  "reason": "The test checks the behaviour the issue describes."
+ },
+ "authlib__authlib-800": {
+  "decision": "keep",
+  "reason": "The test checks the behaviour the issue describes."
+ },
+ "cloudtools__troposphere-2314": {
+  "decision": "keep",
+  "reason": "The tests check the value types the issue states."
+ },
+ "deepset-ai__haystack-9680": {
+  "decision": "keep",
+  "reason": "The issue links the Hugging Face image format, unreachable offline; the format is stated below.",
+  "interface": [
+   "`convert_message_to_hf_format` (the existing helper) turns a user `ChatMessage` with text and `ImageContent` parts into `{\"role\": \"user\", \"content\": [{\"type\": \"text\", \"text\": <text>}, {\"type\": \"image_url\", \"image_url\": {\"url\": \"data:<mime type>;base64,<base64 image>\"}}, ...]}`, the parts in the message's order (the Hugging Face chat-completion format for images)."
+  ]
+ },
+ "falconry__falcon-2459": {
+  "decision": "keep",
+  "reason": "The issue asks for consistent naming; the deprecation's class and wording are stated below.",
+  "interface": [
+   "`Response.unset_cookie(..., same_site=...)` takes the keyword `same_site`, as `Response.set_cookie` does; the old keyword `samesite` still works but emits `falcon.util.deprecation.DeprecatedWarning` with a message containing `The \"samesite\" parameter is deprecated`."
+  ]
+ },
+ "falconry__falcon-2475": {
+  "decision": "keep",
+  "reason": "The issue asks for the option; its keyword is stated below.",
+  "interface": [
+   "`falcon.CORSMiddleware(..., allow_private_network=False)`: the new option's keyword argument."
+  ]
+ },
+ "hgrecco__pint-2194": {
+  "decision": "keep",
+  "reason": "The tests check the operations the issue describes."
+ },
+ "hgrecco__pint-2203": {
+  "decision": "keep",
+  "reason": "The test checks the behaviour the issue describes (pint's error for an undefined unit)."
+ },
+ "ipython__ipython-14941": {
+  "decision": "exclude",
+  "reason": "The FAIL_TO_PASS test is a wall-clock assertion (time under 10 s), dependent on the machine and its load."
+ },
+ "ipython__ipython-14943": {
+  "decision": "keep",
+  "reason": "The issue proposes module-wide entries as tuples; the test uses a dotted string, stated below.",
+  "interface": [
+   "An entry of `allowed_getattr_external` (in `Completer.policy_overrides` and in evaluation policies) may also name a whole module, as a dotted string (`\"my.safe.lib\"`) or a one-element tuple (`(\"my_trusted_library\",)`); it allows attribute access on instances of every class defined in that module or below it."
+  ]
+ },
+ "openai__openai-agents-python-1633": {
+  "decision": "keep",
+  "reason": "The issue needs Azure's own authentication; the header rule the test checks is stated below.",
+  "interface": [
+   "When the realtime model's connection config includes `headers`, exactly those headers are sent: they replace the defaults, so no `Authorization` or `OpenAI-Beta` header is added."
+  ]
+ },
+ "python-attrs__attrs-1448": {
+  "decision": "keep",
+  "reason": "The issue asks for optional inner validators; the error the test checks is stated below.",
+  "interface": [
+   "`attrs.validators.deep_mapping(key_validator=None, value_validator=None, mapping_validator=None)`: either inner validator may be omitted (then it is not run); omitting both raises `ValueError` with exactly the message `At least one of key_validator or value_validator must be provided`."
+  ]
+ },
+ "python-attrs__attrs-1457": {
+  "decision": "exclude",
+  "reason": "The tests call the private `_transform_attrs` with a new positional parameter and need a new `force_kw_only` option the issue does not name."
+ },
+ "Delgan__loguru-1510": {
+  "decision": "keep",
+  "reason": "The issue quotes the current code, not the fix; the many FAIL_TO_PASS tests fail at the base because the new test source raises at collection, and any correct fix makes them pass."
+ },
+ "Delgan__loguru-1529": {
+  "decision": "keep",
+  "reason": "The tests check the behaviour the issue describes."
+ },
+ "agronholm__anyio-1424": {
+  "decision": "keep",
+  "reason": "The tests check the behaviour the issue describes."
+ },
+ "fastapi__typer-1410": {
+  "decision": "keep",
+  "reason": "test_rich_help_metavar checks the issue; the two highlighter tests check a new style constant the issue does not describe and are left unchecked.",
+  "dropTests": [
+   "re:::test_metavar_highlighter\\["
+  ]
+ },
+ "joke2k__faker-2461": {
+  "decision": "exclude",
+  "reason": "The issue is the fix: its title is 'I fixed the code in documentor.py' and it quotes the changed line."
+ },
+ "kevin1024__vcrpy-1001": {
+  "decision": "exclude",
+  "reason": "The linked issue (test infrastructure, 2022) does not describe what the test checks (a stale pooled connection must not be reused)."
+ },
+ "kevin1024__vcrpy-1008": {
+  "decision": "keep",
+  "reason": "The issue reports a misleading error; the new wording the test checks is stated below.",
+  "interface": [
+   "Loading a cassette whose YAML has a tag the loader cannot construct raises `ValueError` with a message containing `There was a problem loading the cassette`, which no longer mentions an older version of VCR."
+  ]
+ },
+ "kevin1024__vcrpy-1012": {
+  "decision": "exclude",
+  "reason": "Same issue as vcrpy-1008; its tests need a new `vcr.serializers.yamlserializer.with_custom_tags` API the issue does not describe."
+ },
+ "kevin1024__vcrpy-962": {
+  "decision": "keep",
+  "reason": "The test checks the behaviour the issue describes."
+ },
+ "kevin1024__vcrpy-976": {
+  "decision": "keep",
+  "reason": "The tests check the attribute the issue names."
+ },
+ "networkx__networkx-8890": {
+  "decision": "keep",
+  "reason": "The tests check the behaviour the issue describes."
+ },
+ "networkx__networkx-8913": {
+  "decision": "keep",
+  "reason": "The tests check the semantics the issue describes."
+ },
+ "pallets__click-3704": {
+  "decision": "keep",
+  "reason": "The test checks a DeprecationWarning naming isolated_filesystem, as the issue asks."
+ },
+ "pallets__click-3739": {
+  "decision": "exclude",
+  "reason": "FAIL_TO_PASS includes tests unrelated to the issue (test_editor_path_normalization) that were unstable at the base; the issue also quotes the changed line."
+ },
+ "pallets__click-3769": {
+  "decision": "keep",
+  "reason": "The tests check the behaviour the issue describes."
+ },
+ "pallets__flask-6096": {
+  "decision": "keep",
+  "reason": "The tests check the behaviour the issue describes."
+ },
+ "pallets__flask-6133": {
+  "decision": "exclude",
+  "reason": "The linked issue (session in threads, 2019) does not describe what the test checks (a new app.query decorator for the HTTP QUERY method)."
+ },
+ "pallets__werkzeug-3298": {
+  "decision": "keep",
+  "reason": "The test checks the behaviour the issue describes."
+ },
+ "pallets__werkzeug-3327": {
+  "decision": "keep",
+  "reason": "The tests check the encoding the issue asks for."
+ },
+ "pdm-project__pdm-3930": {
+  "decision": "exclude",
+  "reason": "Structure cap: at most 6 tasks per repository; of pdm's eight admitted tasks, the two that needed the most review intervention are left out. (This one needed a stated build requirement.)"
+ },
+ "pdm-project__pdm-3938": {
+  "decision": "keep",
+  "reason": "The tests check the behaviour the issue describes."
+ },
+ "pdm-project__pdm-3940": {
+  "decision": "keep",
+  "reason": "The tests check the behaviour the issue describes."
+ },
+ "pdm-project__pdm-3946": {
+  "decision": "exclude",
+  "reason": "Structure cap: at most 6 tasks per repository; of pdm's eight admitted tasks, the two that needed the most review intervention are left out. (This one needed seven tests of a private helper left unchecked.)"
+ },
+ "pdm-project__pdm-3949": {
+  "decision": "keep",
+  "reason": "The tests check the behaviour the issue describes."
+ },
+ "pdm-project__pdm-3953": {
+  "decision": "keep",
+  "reason": "The test checks the fields the issue names."
+ },
+ "pyparsing__pyparsing-652": {
+  "decision": "keep",
+  "reason": "The two bounded-repetition tests check the issue; four tests of a new `max` limit of OneOrMore/ZeroOrMore, not in the issue, are left unchecked.",
+  "dropTests": [
+   "re:::test(OneOrMore|ZeroOrMore)Max(Negative)?$"
+  ]
+ },
+ "pyparsing__pyparsing-653": {
+  "decision": "keep",
+  "reason": "The tests check the behaviour the issue describes."
+ },
+ "python-babel__babel-1310": {
+  "decision": "exclude",
+  "reason": "The issue is a broad checklist of CLDR alias kinds; the test checks one internal resolution rule it does not describe."
+ },
+ "scrapy__parsel-351": {
+  "decision": "keep",
+  "reason": "The issue asks for a warning; the tests import its class, stated below.",
+  "interface": [
+   "`parsel.AbsoluteXPathWarning`: a `UserWarning` subclass defined in `parsel.selector` and exported from `parsel`, emitted when an absolute XPath (one starting with `/`) is evaluated on a nested selector (one obtained from another selector, directly or through a `SelectorList`); its message begins `Absolute XPath '<query>' used on a nested selector`, and the warning points at the caller's line."
+  ]
+ },
+ "scrapy__parsel-357": {
+  "decision": "exclude",
+  "reason": "A large new feature (JSONPath support, 2020 issue): the tests need a new `JSONPathError` and a JSONPath API the issue does not specify."
+ },
+ "Kozea__WeasyPrint-2889": {
+  "decision": "keep",
+  "reason": "The test checks the behaviour the issue describes."
+ },
+ "Kozea__WeasyPrint-2890": {
+  "decision": "exclude",
+  "reason": "The tests import and pin a new helper `weasyprint.css.string_to_css` whose exact output the issue does not describe; the whole test file fails at the base on that import."
+ },
+ "Kozea__WeasyPrint-2892": {
+  "decision": "keep",
+  "reason": "The test checks the behaviour the issue describes."
+ },
+ "Kozea__WeasyPrint-2919": {
+  "decision": "keep",
+  "reason": "The test checks the behaviour the issue describes."
+ },
+ "Kozea__WeasyPrint-2954": {
+  "decision": "keep",
+  "reason": "The tests check the behaviour the issue describes."
+ },
+ "Kozea__WeasyPrint-2990": {
+  "decision": "keep",
+  "reason": "The tests check the behaviour the issue describes."
+ },
+ "encode__uvicorn-3199": {
+  "decision": "exclude",
+  "reason": "The issue contains the whole fix (the one changed line)."
+ },
+ "more-itertools__more-itertools-1285": {
+  "decision": "keep",
+  "reason": "The tests check the behaviour the issue describes."
+ },
+ "hynek__stamina-160": {
+  "decision": "exclude",
+  "reason": "The tests import and exercise a new process-details hook API (set_process_details, get_process_details, redaction rules) that the issue does not describe; the whole test file fails at the base on that import."
+ },
+ "pdm-project__pdm-3926": {
+  "decision": "keep",
+  "reason": "The test checks the behaviour the issue describes."
+ },
+ "pdm-project__pdm-3936": {
+  "decision": "keep",
+  "reason": "The test checks that Pipfile paths resolve relative to the Pipfile, as the issue describes, for regular and editable dev entries."
+ },
+ "scrapinghub__dateparser-1430": {
+  "decision": "exclude",
+  "reason": "The tests pin internal translation strings and other languages' results changed by the real fix, which the issue (one Chinese word) does not describe."
+ },
+ "scrapinghub__dateparser-1434": {
+  "decision": "keep",
+  "reason": "The four date-parsing tests check the Korean dates the issue reports; the translation tests (internal normalised strings) and the search test (the exact matched span) pin details of the real fix and are left unchecked.",
+  "dropTests": [
+   "tests/test_languages.py::TestBundledLanguages::test_translation_166_ko",
+   "tests/test_languages.py::TestBundledLanguages::test_translation_167_ko",
+   "tests/test_languages.py::TestBundledLanguages::test_translation_168_ko",
+   "tests/test_languages.py::TestBundledLanguages::test_translation_169_ko",
+   "tests/test_languages.py::TestBundledLanguages::test_translation_170_ko",
+   "tests/test_search.py::TestTranslateSearch::test_search_and_parse_27_ko"
+  ]
+ },
+ "slackapi__python-slack-sdk-1966": {
+  "decision": "keep",
+  "reason": "The test checks the behaviour the issue describes."
+ },
+ "slackapi__python-slack-sdk-1970": {
+  "decision": "keep",
+  "reason": "The test checks the UTC handling the issue identifies as the cause."
+ },
+ "tox-dev__tox-4167": {
+  "decision": "keep",
+  "reason": "The issue proposes the exact `substitute = true` flag; the tests check substitution under tox's existing rules."
+ },
+ "tox-dev__tox-4172": {
+  "decision": "keep",
+  "reason": "The reference tests check the prefixes the issue describes; three tests of a new `Command.raw_args` property, not in the issue, are left unchecked.",
+  "dropTests": [
+   "re:::test_command_raw_args\\["
+  ]
+ }
+}

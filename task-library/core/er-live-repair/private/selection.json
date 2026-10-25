@@ -1,0 +1,3260 @@
+[
+ {
+  "created_at": "2025-08-18T23:24:05",
+  "instance_id": "Archmonger__django-dbbackup-605",
+  "reason": null,
+  "repo": "Archmonger/django-dbbackup",
+  "review": {
+   "decision": "keep",
+   "interface": [
+    "When the database command cannot be found, the raised `dbbackup.db.exceptions.CommandConnectorError` has a message containing each of: `Database command '<command>' not found`, `Please ensure the required database client tools are installed`, `PostgreSQL: Install postgresql-client`, `MySQL: Install mysql-client`, `MongoDB: Install mongodb-tools`, `DUMP_CMD: Path to the dump command`, `RESTORE_CMD: Path to the restore command`. Other OS errors keep the existing `Error running: ...` message without these hints."
+   ],
+   "reason": "The issue asks for a usable error when the dump command is missing; the test checks exact wording, stated below."
+  },
+  "source": "pool",
+  "split": "dev",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-08-28T12:21:56Z",
+  "instance_id": "Delgan__loguru-1510",
+  "reason": null,
+  "repo": "Delgan/loguru",
+  "review": {
+   "decision": "keep",
+   "reason": "The issue quotes the current code, not the fix; the many FAIL_TO_PASS tests fail at the base because the new test source raises at collection, and any correct fix makes them pass."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-11T09:38:06+02:00",
+  "instance_id": "Delgan__loguru-1514",
+  "reason": "pull request #1514 closes no issue",
+  "repo": "Delgan/loguru",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-17T08:21:14Z",
+  "instance_id": "Delgan__loguru-1529",
+  "reason": null,
+  "repo": "Delgan/loguru",
+  "review": {
+   "decision": "keep",
+   "reason": "The tests check the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2025-07-29T08:41:28",
+  "instance_id": "IBM__mcp-context-forge-632",
+  "reason": "FAIL_TO_PASS not passing with the gold patch (run 1): ['tests/unit/mcpgateway/utils/test_verify_credentials.py::test_verify_jwt_token_success']",
+  "repo": "IBM/mcp-context-forge",
+  "source": "pool",
+  "split": null,
+  "stage": "gold-run",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-05T10:14:47Z",
+  "instance_id": "Kozea__WeasyPrint-2889",
+  "reason": null,
+  "repo": "Kozea/WeasyPrint",
+  "review": {
+   "decision": "keep",
+   "reason": "The test checks the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-07-22T11:14:18Z",
+  "instance_id": "Kozea__WeasyPrint-2890",
+  "reason": null,
+  "repo": "Kozea/WeasyPrint",
+  "review": {
+   "decision": "exclude",
+   "reason": "The tests import and pin a new helper `weasyprint.css.string_to_css` whose exact output the issue does not describe; the whole test file fails at the base on that import."
+  },
+  "source": "mined",
+  "split": null,
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-03-26T15:36:16Z",
+  "instance_id": "Kozea__WeasyPrint-2892",
+  "reason": null,
+  "repo": "Kozea/WeasyPrint",
+  "review": {
+   "decision": "keep",
+   "reason": "The test checks the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-09-08T14:00:34+02:00",
+  "instance_id": "Kozea__WeasyPrint-2915",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "Kozea/WeasyPrint",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-10T08:13:45Z",
+  "instance_id": "Kozea__WeasyPrint-2919",
+  "reason": null,
+  "repo": "Kozea/WeasyPrint",
+  "review": {
+   "decision": "keep",
+   "reason": "The test checks the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-09-21T14:37:31+02:00",
+  "instance_id": "Kozea__WeasyPrint-2920",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "Kozea/WeasyPrint",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-21T14:32:26+02:00",
+  "instance_id": "Kozea__WeasyPrint-2929",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "Kozea/WeasyPrint",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-22T23:46:06+02:00",
+  "instance_id": "Kozea__WeasyPrint-2932",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "Kozea/WeasyPrint",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-02T10:56:26Z",
+  "instance_id": "Kozea__WeasyPrint-2954",
+  "reason": null,
+  "repo": "Kozea/WeasyPrint",
+  "review": {
+   "decision": "keep",
+   "reason": "The tests check the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-06T16:41:19+02:00",
+  "instance_id": "Kozea__WeasyPrint-2955",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "Kozea/WeasyPrint",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-10T16:26:57+02:00",
+  "instance_id": "Kozea__WeasyPrint-2961",
+  "reason": "pull request #2961 closes no issue",
+  "repo": "Kozea/WeasyPrint",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-28T02:11:08Z",
+  "instance_id": "Kozea__WeasyPrint-2990",
+  "reason": null,
+  "repo": "Kozea/WeasyPrint",
+  "review": {
+   "decision": "keep",
+   "reason": "The tests check the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2025-07-21T15:56:31",
+  "instance_id": "Lightning-AI__LitServe-582",
+  "reason": "runtime of 5863 MB, over 400 MB",
+  "repo": "Lightning-AI/LitServe",
+  "source": "pool",
+  "split": null,
+  "stage": "runtime-size",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-23T08:18:02-04:00",
+  "instance_id": "PyCQA__flake8-2057",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "PyCQA/flake8",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-08-12T12:51:17",
+  "instance_id": "PyPSA__PyPSA-1325",
+  "reason": "FAIL_TO_PASS not passing with the gold patch (run 1): ['test/test_bugs.py::test_1319']",
+  "repo": "PyPSA/PyPSA",
+  "source": "pool",
+  "split": null,
+  "stage": "gold-run",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-24T09:13:39-04:00",
+  "instance_id": "Python-Markdown__markdown-1621",
+  "reason": "timeout after 300 s",
+  "repo": "Python-Markdown/markdown",
+  "source": "mined",
+  "split": null,
+  "stage": "base-run",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-06-08T15:54:19",
+  "instance_id": "Textualize__textual-5851",
+  "reason": "FAIL_TO_PASS passing at the base: ['tests/snapshot_tests/test_snapshots.py::test_directory_tree_reloading']",
+  "repo": "Textualize/textual",
+  "source": "pool",
+  "split": null,
+  "stage": "base-run",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-06-13T15:44:41",
+  "instance_id": "Textualize__textual-5863",
+  "reason": null,
+  "repo": "Textualize/textual",
+  "review": {
+   "decision": "keep",
+   "reason": "The test checks the behaviour the issue describes."
+  },
+  "source": "pool",
+  "split": "dev",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2025-06-23T08:02:43",
+  "instance_id": "a2aproject__a2a-python-226",
+  "reason": "pip: roblem with pip.\nerror: metadata-generation-failed\n\n\u00d7 Encountered error while generating package metadata.\n\u2570\u2500> from file:///home/claude-dev/.cache/agenteval/er/build/a2aproject__a2a-python-226/tree\n\nnote: This is an issue with the package mentioned above, not pip.\nhint: See above for details.\n ",
+  "repo": "a2aproject/a2a-python",
+  "source": "pool",
+  "split": null,
+  "stage": "runtime",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-08-11T11:36:47",
+  "instance_id": "a2aproject__a2a-python-394",
+  "reason": "pip: roblem with pip.\nerror: metadata-generation-failed\n\n\u00d7 Encountered error while generating package metadata.\n\u2570\u2500> from file:///home/claude-dev/.cache/agenteval/er/build/a2aproject__a2a-python-394/tree\n\nnote: This is an issue with the package mentioned above, not pip.\nhint: See above for details.\n ",
+  "repo": "a2aproject/a2a-python",
+  "source": "pool",
+  "split": null,
+  "stage": "runtime",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-20T10:08:22+03:00",
+  "instance_id": "agronholm__anyio-1358",
+  "reason": "pull request #1358 closes no issue",
+  "repo": "agronholm/anyio",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-17T10:27:18Z",
+  "instance_id": "agronholm__anyio-1424",
+  "reason": null,
+  "repo": "agronholm/anyio",
+  "review": {
+   "decision": "keep",
+   "reason": "The tests check the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-08-20T16:59:01-04:00",
+  "instance_id": "asottile__pyupgrade-1086",
+  "reason": "pull request #1086 closes no issue",
+  "repo": "asottile/pyupgrade",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-21T15:12:15-04:00",
+  "instance_id": "asottile__pyupgrade-1088",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "asottile/pyupgrade",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-21T16:05:45-04:00",
+  "instance_id": "asottile__pyupgrade-1089",
+  "reason": "pull request #1089 closes no issue",
+  "repo": "asottile/pyupgrade",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-04T14:12:54-04:00",
+  "instance_id": "asottile__pyupgrade-1091",
+  "reason": "pull request #1091 closes no issue",
+  "repo": "asottile/pyupgrade",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-25T15:30:16-04:00",
+  "instance_id": "asottile__pyupgrade-1093",
+  "reason": "pull request #1093 closes no issue",
+  "repo": "asottile/pyupgrade",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-02T15:09:48-04:00",
+  "instance_id": "asottile__pyupgrade-1094",
+  "reason": "pull request #1094 closes no issue",
+  "repo": "asottile/pyupgrade",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-03T21:07:42-04:00",
+  "instance_id": "asottile__pyupgrade-1098",
+  "reason": "pull request #1098 closes no issue",
+  "repo": "asottile/pyupgrade",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-26T15:53:00-04:00",
+  "instance_id": "asottile__pyupgrade-1103",
+  "reason": "pull request #1103 closes no issue",
+  "repo": "asottile/pyupgrade",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-08-22T11:09:35",
+  "instance_id": "authlib__authlib-800",
+  "reason": null,
+  "repo": "authlib/authlib",
+  "review": {
+   "decision": "keep",
+   "reason": "The test checks the behaviour the issue describes."
+  },
+  "source": "pool",
+  "split": "dev",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-19T19:20:27+09:00",
+  "instance_id": "authlib__authlib-946",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "authlib/authlib",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-23T22:45:46+09:00",
+  "instance_id": "authlib__authlib-965",
+  "reason": "pull request #965 closes no issue",
+  "repo": "authlib/authlib",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-06-12T10:37:53",
+  "instance_id": "cloudtools__troposphere-2314",
+  "reason": null,
+  "repo": "cloudtools/troposphere",
+  "review": {
+   "decision": "keep",
+   "reason": "The tests check the value types the issue states."
+  },
+  "source": "pool",
+  "split": "dev",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2025-07-15T08:10:51",
+  "instance_id": "conan-io__conan-18642",
+  "reason": "pip: ERROR: Could not find a version that satisfies the requirement patch-ng<1.19,>=1.18.0 (from conan) (from versions: 1.19.1)\nERROR: No matching distribution found for patch-ng<1.19,>=1.18.0\n | ERROR: Could not find a version that satisfies the requirement patch-ng<1.19,>=1.18.0 (from conan) (from",
+  "repo": "conan-io/conan",
+  "source": "pool",
+  "split": null,
+  "stage": "runtime",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-21T12:18:12-04:00",
+  "instance_id": "dateutil__dateutil-1600",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "dateutil/dateutil",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-06-03T22:18:33",
+  "instance_id": "dbcli__mycli-1238",
+  "reason": "pip: ERROR: Ignored the following yanked versions: 1.7.1\nERROR: Could not find a version that satisfies the requirement autopep8==1.3.3 (from versions: 1.1, 1.1.1, 1.2.4, 1.3.2, 1.5.5, 1.5.6, 1.5.7, 1.6.0, 1.7.0, 2.0.0, 2.0.1, 2.0.2, 2.0.3, 2.0.4, 2.1.0, 2.1.1, 2.1.2, 2.2.0, 2.3.0, 2.3.1, 2.3.2)\nERR",
+  "repo": "dbcli/mycli",
+  "source": "pool",
+  "split": null,
+  "stage": "runtime",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-08-05T06:31:38",
+  "instance_id": "deepset-ai__haystack-9680",
+  "reason": null,
+  "repo": "deepset-ai/haystack",
+  "review": {
+   "decision": "keep",
+   "interface": [
+    "`convert_message_to_hf_format` (the existing helper) turns a user `ChatMessage` with text and `ImageContent` parts into `{\"role\": \"user\", \"content\": [{\"type\": \"text\", \"text\": <text>}, {\"type\": \"image_url\", \"image_url\": {\"url\": \"data:<mime type>;base64,<base64 image>\"}}, ...]}`, the parts in the message's order (the Hugging Face chat-completion format for images)."
+   ],
+   "reason": "The issue links the Hugging Face image format, unreachable offline; the format is stated below."
+  },
+  "source": "pool",
+  "split": "dev",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-11T15:38:21+02:00",
+  "instance_id": "encode__uvicorn-3092",
+  "reason": "pull request #3092 closes no issue",
+  "repo": "encode/uvicorn",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-11T15:37:48+02:00",
+  "instance_id": "encode__uvicorn-3184",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "encode/uvicorn",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-10T13:22:52+00:00",
+  "instance_id": "encode__uvicorn-3194",
+  "reason": "pull request #3194 closes no issue",
+  "repo": "encode/uvicorn",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-11T16:38:30+02:00",
+  "instance_id": "encode__uvicorn-3195",
+  "reason": "pull request #3195 closes no issue",
+  "repo": "encode/uvicorn",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-11T14:55:03+00:00",
+  "instance_id": "encode__uvicorn-3197",
+  "reason": "pull request #3197 closes no issue",
+  "repo": "encode/uvicorn",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-20T15:28:41Z",
+  "instance_id": "encode__uvicorn-3199",
+  "reason": null,
+  "repo": "encode/uvicorn",
+  "review": {
+   "decision": "exclude",
+   "reason": "The issue contains the whole fix (the one changed line)."
+  },
+  "source": "mined",
+  "split": null,
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-11T15:28:58+00:00",
+  "instance_id": "encode__uvicorn-3200",
+  "reason": "timeout after 300 s",
+  "repo": "encode/uvicorn",
+  "source": "mined",
+  "split": null,
+  "stage": "base-run",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-19T09:48:16+00:00",
+  "instance_id": "encode__uvicorn-3214",
+  "reason": "pull request #3214 closes no issue",
+  "repo": "encode/uvicorn",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-06-05T17:20:19",
+  "instance_id": "falconry__falcon-2459",
+  "reason": null,
+  "repo": "falconry/falcon",
+  "review": {
+   "decision": "keep",
+   "interface": [
+    "`Response.unset_cookie(..., same_site=...)` takes the keyword `same_site`, as `Response.set_cookie` does; the old keyword `samesite` still works but emits `falcon.util.deprecation.DeprecatedWarning` with a message containing `The \"samesite\" parameter is deprecated`."
+   ],
+   "reason": "The issue asks for consistent naming; the deprecation's class and wording are stated below."
+  },
+  "source": "pool",
+  "split": "dev",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2025-07-03T22:47:46",
+  "instance_id": "falconry__falcon-2475",
+  "reason": null,
+  "repo": "falconry/falcon",
+  "review": {
+   "decision": "keep",
+   "interface": [
+    "`falcon.CORSMiddleware(..., allow_private_network=False)`: the new option's keyword argument."
+   ],
+   "reason": "The issue asks for the option; its keyword is stated below."
+  },
+  "source": "pool",
+  "split": "dev",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-08-03T16:35:16+02:00",
+  "instance_id": "fastapi__typer-1405",
+  "reason": "pull request #1405 closes no issue",
+  "repo": "fastapi/typer",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-02-12T16:55:43Z",
+  "instance_id": "fastapi__typer-1410",
+  "reason": null,
+  "repo": "fastapi/typer",
+  "review": {
+   "decision": "keep",
+   "dropTests": [
+    "re:::test_metavar_highlighter\\["
+   ],
+   "reason": "test_rich_help_metavar checks the issue; the two highlighter tests check a new style constant the issue does not describe and are left unchecked."
+  },
+  "source": "mined",
+  "split": "holdout",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-06-03T09:09:29+02:00",
+  "instance_id": "fastapi__typer-1820",
+  "reason": "pull request #1820 closes no issue",
+  "repo": "fastapi/typer",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-06-02T15:26:24+02:00",
+  "instance_id": "fastapi__typer-1821",
+  "reason": "pull request #1821 closes no issue",
+  "repo": "fastapi/typer",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-06T19:15:49+02:00",
+  "instance_id": "fastapi__typer-1972",
+  "reason": "pull request #1972 closes no issue",
+  "repo": "fastapi/typer",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-20T17:48:42-06:00",
+  "instance_id": "fonttools__fonttools-4337",
+  "reason": "test files to run []",
+  "repo": "fonttools/fonttools",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-21T10:54:19-06:00",
+  "instance_id": "fonttools__fonttools-4339",
+  "reason": "test files to run []",
+  "repo": "fonttools/fonttools",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-22T12:14:42+01:00",
+  "instance_id": "fonttools__fonttools-4340",
+  "reason": "test files to run []",
+  "repo": "fonttools/fonttools",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-22T09:17:26-06:00",
+  "instance_id": "fonttools__fonttools-4341",
+  "reason": "test files to run []",
+  "repo": "fonttools/fonttools",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-22T16:42:49+01:00",
+  "instance_id": "fonttools__fonttools-4342",
+  "reason": "test files to run []",
+  "repo": "fonttools/fonttools",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-22T09:25:40-06:00",
+  "instance_id": "fonttools__fonttools-4346",
+  "reason": "test files to run []",
+  "repo": "fonttools/fonttools",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-22T09:16:28-06:00",
+  "instance_id": "fonttools__fonttools-4348",
+  "reason": "test files to run []",
+  "repo": "fonttools/fonttools",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-22T12:58:11-06:00",
+  "instance_id": "fonttools__fonttools-4349",
+  "reason": "test files to run []",
+  "repo": "fonttools/fonttools",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-06-12T19:27:08",
+  "instance_id": "fsspec__filesystem_spec-1862",
+  "reason": "FAIL_TO_PASS not passing with the gold patch (run 1): ['fsspec/implementations/tests/test_cached.py::test_blockcache_workflow[True]']",
+  "repo": "fsspec/filesystem_spec",
+  "source": "pool",
+  "split": null,
+  "stage": "gold-run",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-07-01T05:36:13",
+  "instance_id": "gboeing__osmnx-1324",
+  "reason": "FAIL_TO_PASS not passing with the gold patch (run 1): ['tests/test_osmnx.py::test_features']",
+  "repo": "gboeing/osmnx",
+  "source": "pool",
+  "split": null,
+  "stage": "gold-run",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-07-30T16:43:21",
+  "instance_id": "hgrecco__pint-2194",
+  "reason": null,
+  "repo": "hgrecco/pint",
+  "review": {
+   "decision": "keep",
+   "reason": "The tests check the operations the issue describes."
+  },
+  "source": "pool",
+  "split": "dev",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2025-08-05T15:17:46",
+  "instance_id": "hgrecco__pint-2203",
+  "reason": null,
+  "repo": "hgrecco/pint",
+  "review": {
+   "decision": "keep",
+   "reason": "The test checks the behaviour the issue describes (pint's error for an undefined unit)."
+  },
+  "source": "pool",
+  "split": "dev",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-04T12:42:46+02:00",
+  "instance_id": "hynek__stamina-155",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "hynek/stamina",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-10T05:37:49+00:00",
+  "instance_id": "hynek__stamina-157",
+  "reason": "pull request #157 closes no issue",
+  "repo": "hynek/stamina",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-13T13:00:34+02:00",
+  "instance_id": "hynek__stamina-158",
+  "reason": "pull request #158 closes no issue",
+  "repo": "hynek/stamina",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-11T15:47:59Z",
+  "instance_id": "hynek__stamina-160",
+  "reason": null,
+  "repo": "hynek/stamina",
+  "review": {
+   "decision": "exclude",
+   "reason": "The tests import and exercise a new process-details hook API (set_process_details, get_process_details, redaction rules) that the issue does not describe; the whole test file fails at the base on that import."
+  },
+  "source": "mined",
+  "split": null,
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2025-07-19T08:53:38",
+  "instance_id": "ipython__ipython-14941",
+  "reason": null,
+  "repo": "ipython/ipython",
+  "review": {
+   "decision": "exclude",
+   "reason": "The FAIL_TO_PASS test is a wall-clock assertion (time under 10 s), dependent on the machine and its load."
+  },
+  "source": "pool",
+  "split": null,
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2025-07-19T12:31:48",
+  "instance_id": "ipython__ipython-14943",
+  "reason": null,
+  "repo": "ipython/ipython",
+  "review": {
+   "decision": "keep",
+   "interface": [
+    "An entry of `allowed_getattr_external` (in `Completer.policy_overrides` and in evaluation policies) may also name a whole module, as a dotted string (`\"my.safe.lib\"`) or a one-element tuple (`(\"my_trusted_library\",)`); it allows attribute access on instances of every class defined in that module or below it."
+   ],
+   "reason": "The issue proposes module-wide entries as tuples; the test uses a dotted string, stated below."
+  },
+  "source": "pool",
+  "split": "dev",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2025-06-12T07:53:21",
+  "instance_id": "iterative__dvc-10778",
+  "reason": "pip: WARNING: dvc 0.0.0 does not provide the extra 'test'\nWARNING: dvc 0.0.0 does not provide the extra 'test'\nERROR: Cannot install dvc because these package versions have conflicting dependencies.\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolutio",
+  "repo": "iterative/dvc",
+  "source": "pool",
+  "split": null,
+  "stage": "runtime",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-14T14:36:54+00:00",
+  "instance_id": "jazzband__pip-tools-2347",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "jazzband/pip-tools",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-07T11:46:56+00:00",
+  "instance_id": "jazzband__pip-tools-2429",
+  "reason": "pull request #2429 closes no issue",
+  "repo": "jazzband/pip-tools",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-10T22:07:23+00:00",
+  "instance_id": "jazzband__pip-tools-2438",
+  "reason": "pull request #2438 closes no issue",
+  "repo": "jazzband/pip-tools",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-06T16:41:17+00:00",
+  "instance_id": "jazzband__pip-tools-2453",
+  "reason": "pull request #2453 closes no issue",
+  "repo": "jazzband/pip-tools",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-15T22:48:38+00:00",
+  "instance_id": "jazzband__pip-tools-2458",
+  "reason": "pull request #2458 closes no issue",
+  "repo": "jazzband/pip-tools",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-18T19:27:26+00:00",
+  "instance_id": "jazzband__pip-tools-2475",
+  "reason": "pull request #2475 closes no issue",
+  "repo": "jazzband/pip-tools",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-22T01:35:30+02:00",
+  "instance_id": "jazzband__pip-tools-2493",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "jazzband/pip-tools",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-06T06:51:32+00:00",
+  "instance_id": "jd__tenacity-645",
+  "reason": "pull request #645 closes no issue",
+  "repo": "jd/tenacity",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-07-29T10:39:31+00:00",
+  "instance_id": "jd__tenacity-660",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "jd/tenacity",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-05T11:48:43+00:00",
+  "instance_id": "jd__tenacity-668",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "jd/tenacity",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-05T15:42:32+00:00",
+  "instance_id": "jd__tenacity-677",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "jd/tenacity",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-05T16:01:15+00:00",
+  "instance_id": "jd__tenacity-682",
+  "reason": "pull request #682 closes no issue",
+  "repo": "jd/tenacity",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-06T06:44:12+00:00",
+  "instance_id": "jd__tenacity-694",
+  "reason": "pull request #694 closes no issue",
+  "repo": "jd/tenacity",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-06T06:51:02+00:00",
+  "instance_id": "jd__tenacity-696",
+  "reason": "pull request #696 closes no issue",
+  "repo": "jd/tenacity",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-07T09:44:30+00:00",
+  "instance_id": "jd__tenacity-741",
+  "reason": "pull request #741 closes no issue",
+  "repo": "jd/tenacity",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-20T14:59:42-05:00",
+  "instance_id": "joke2k__faker-2411",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "joke2k/faker",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-14T11:17:29-05:00",
+  "instance_id": "joke2k__faker-2415",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "joke2k/faker",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-31T16:57:23-05:00",
+  "instance_id": "joke2k__faker-2430",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "joke2k/faker",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-28T16:48:50-05:00",
+  "instance_id": "joke2k__faker-2431",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "joke2k/faker",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-09T10:00:47-05:00",
+  "instance_id": "joke2k__faker-2451",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "joke2k/faker",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-09T11:24:50-05:00",
+  "instance_id": "joke2k__faker-2453",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "joke2k/faker",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-09T11:25:06-05:00",
+  "instance_id": "joke2k__faker-2455",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "joke2k/faker",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-23T01:38:28Z",
+  "instance_id": "joke2k__faker-2461",
+  "reason": null,
+  "repo": "joke2k/faker",
+  "review": {
+   "decision": "exclude",
+   "reason": "The issue is the fix: its title is 'I fixed the code in documentor.py' and it quotes the changed line."
+  },
+  "source": "mined",
+  "split": null,
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2022-05-07T17:10:31Z",
+  "instance_id": "kevin1024__vcrpy-1001",
+  "reason": null,
+  "repo": "kevin1024/vcrpy",
+  "review": {
+   "decision": "exclude",
+   "reason": "The linked issue (test infrastructure, 2022) does not describe what the test checks (a stale pooled connection must not be reused)."
+  },
+  "source": "mined",
+  "split": null,
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-06-24T07:50:27Z",
+  "instance_id": "kevin1024__vcrpy-1008",
+  "reason": null,
+  "repo": "kevin1024/vcrpy",
+  "review": {
+   "decision": "keep",
+   "interface": [
+    "Loading a cassette whose YAML has a tag the loader cannot construct raises `ValueError` with a message containing `There was a problem loading the cassette`, which no longer mentions an older version of VCR."
+   ],
+   "reason": "The issue reports a misleading error; the new wording the test checks is stated below."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-06-24T07:50:27Z",
+  "instance_id": "kevin1024__vcrpy-1012",
+  "reason": null,
+  "repo": "kevin1024/vcrpy",
+  "review": {
+   "decision": "exclude",
+   "reason": "Same issue as vcrpy-1008; its tests need a new `vcr.serializers.yamlserializer.with_custom_tags` API the issue does not describe."
+  },
+  "source": "mined",
+  "split": null,
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2025-12-09T04:15:33Z",
+  "instance_id": "kevin1024__vcrpy-962",
+  "reason": null,
+  "repo": "kevin1024/vcrpy",
+  "review": {
+   "decision": "keep",
+   "reason": "The test checks the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-01-26T16:16:55Z",
+  "instance_id": "kevin1024__vcrpy-976",
+  "reason": null,
+  "repo": "kevin1024/vcrpy",
+  "review": {
+   "decision": "keep",
+   "reason": "The tests check the attribute the issue names."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-06-16T10:01:55-04:00",
+  "instance_id": "kevin1024__vcrpy-980",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "kevin1024/vcrpy",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-06-15T17:08:13-04:00",
+  "instance_id": "kevin1024__vcrpy-985",
+  "reason": "pull request #985 closes no issue",
+  "repo": "kevin1024/vcrpy",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-06-09T19:34:07-04:00",
+  "instance_id": "kevin1024__vcrpy-993",
+  "reason": "pull request #993 closes no issue",
+  "repo": "kevin1024/vcrpy",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-06-09T18:43:49-04:00",
+  "instance_id": "kevin1024__vcrpy-995",
+  "reason": "pull request #995 closes no issue",
+  "repo": "kevin1024/vcrpy",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-07T03:32:58-07:00",
+  "instance_id": "mahmoud__boltons-434",
+  "reason": "pull request #434 closes no issue",
+  "repo": "mahmoud/boltons",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-07T02:49:23-07:00",
+  "instance_id": "mahmoud__boltons-464",
+  "reason": "pull request #464 closes no issue",
+  "repo": "mahmoud/boltons",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-07T02:33:26-07:00",
+  "instance_id": "mahmoud__boltons-465",
+  "reason": "pull request #465 closes no issue",
+  "repo": "mahmoud/boltons",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-07T02:50:04-07:00",
+  "instance_id": "mahmoud__boltons-467",
+  "reason": "pull request #467 closes no issue",
+  "repo": "mahmoud/boltons",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-07T02:33:05-07:00",
+  "instance_id": "mahmoud__boltons-472",
+  "reason": "pull request #472 closes no issue",
+  "repo": "mahmoud/boltons",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-07T03:05:59-07:00",
+  "instance_id": "mahmoud__boltons-475",
+  "reason": "pull request #475 closes no issue",
+  "repo": "mahmoud/boltons",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-07T03:37:10-07:00",
+  "instance_id": "mahmoud__boltons-481",
+  "reason": "pull request #481 closes no issue",
+  "repo": "mahmoud/boltons",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-23T16:55:31-07:00",
+  "instance_id": "mahmoud__boltons-513",
+  "reason": "pull request #513 closes no issue",
+  "repo": "mahmoud/boltons",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-21T18:12:33+02:00",
+  "instance_id": "marshmallow-code__marshmallow-3004",
+  "reason": "FAIL_TO_PASS not passing with the gold patch (run 1): ['tests/test_deserialization.py::TestFieldDeserialization::test_invalid_datetime_deserialization[22:33:15']",
+  "repo": "marshmallow-code/marshmallow",
+  "source": "mined",
+  "split": null,
+  "stage": "gold-run",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-08T14:24:08+00:00",
+  "instance_id": "marshmallow-code__marshmallow-3016",
+  "reason": "pull request #3016 closes no issue",
+  "repo": "marshmallow-code/marshmallow",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-18T14:49:04-05:00",
+  "instance_id": "more-itertools__more-itertools-1260",
+  "reason": "pull request #1260 closes no issue",
+  "repo": "more-itertools/more-itertools",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-21T11:16:22-05:00",
+  "instance_id": "more-itertools__more-itertools-1269",
+  "reason": "pull request #1269 closes no issue",
+  "repo": "more-itertools/more-itertools",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-17T09:28:11-05:00",
+  "instance_id": "more-itertools__more-itertools-1276",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "more-itertools/more-itertools",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-14T09:27:48-05:00",
+  "instance_id": "more-itertools__more-itertools-1278",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "more-itertools/more-itertools",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-14T09:39:08-05:00",
+  "instance_id": "more-itertools__more-itertools-1279",
+  "reason": "pull request #1279 closes no issue",
+  "repo": "more-itertools/more-itertools",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-17T13:48:51Z",
+  "instance_id": "more-itertools__more-itertools-1285",
+  "reason": null,
+  "repo": "more-itertools/more-itertools",
+  "review": {
+   "decision": "keep",
+   "reason": "The tests check the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-09-29T15:28:23-05:00",
+  "instance_id": "more-itertools__more-itertools-1305",
+  "reason": "pull request #1305 closes no issue",
+  "repo": "more-itertools/more-itertools",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-13T10:59:22-05:00",
+  "instance_id": "more-itertools__more-itertools-1314",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "more-itertools/more-itertools",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-01T14:12:45Z",
+  "instance_id": "networkx__networkx-8890",
+  "reason": null,
+  "repo": "networkx/networkx",
+  "review": {
+   "decision": "keep",
+   "reason": "The tests check the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-09-17T09:23:40-07:00",
+  "instance_id": "networkx__networkx-8892",
+  "reason": "pull request #8892 closes no issue",
+  "repo": "networkx/networkx",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-25T16:27:49-04:00",
+  "instance_id": "networkx__networkx-8906",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "networkx/networkx",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-01-13T00:54:07Z",
+  "instance_id": "networkx__networkx-8913",
+  "reason": null,
+  "repo": "networkx/networkx",
+  "review": {
+   "decision": "keep",
+   "reason": "The tests check the semantics the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-09-23T09:15:19-07:00",
+  "instance_id": "networkx__networkx-8925",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "networkx/networkx",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-27T20:09:03-07:00",
+  "instance_id": "networkx__networkx-8931",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "networkx/networkx",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-21T17:46:41-07:00",
+  "instance_id": "networkx__networkx-8938",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "networkx/networkx",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-09-02T01:10:29",
+  "instance_id": "openai__openai-agents-python-1633",
+  "reason": null,
+  "repo": "openai/openai-agents-python",
+  "review": {
+   "decision": "keep",
+   "interface": [
+    "When the realtime model's connection config includes `headers`, exactly those headers are sent: they replace the defaults, so no `Authorization` or `OpenAI-Beta` header is added."
+   ],
+   "reason": "The issue needs Azure's own authentication; the header rule the test checks is stated below."
+  },
+  "source": "pool",
+  "split": "dev",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-07-22T15:25:16-07:00",
+  "instance_id": "pallets__click-3407",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pallets/click",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-07-17T13:19:33Z",
+  "instance_id": "pallets__click-3704",
+  "reason": null,
+  "repo": "pallets/click",
+  "review": {
+   "decision": "keep",
+   "reason": "The test checks a DeprecationWarning naming isolated_filesystem, as the issue asks."
+  },
+  "source": "mined",
+  "split": "holdout",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-08-09T10:51:57-07:00",
+  "instance_id": "pallets__click-3728",
+  "reason": "pull request #3728 closes no issue",
+  "repo": "pallets/click",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-07-31T16:16:15Z",
+  "instance_id": "pallets__click-3739",
+  "reason": null,
+  "repo": "pallets/click",
+  "review": {
+   "decision": "exclude",
+   "reason": "FAIL_TO_PASS includes tests unrelated to the issue (test_editor_path_normalization) that were unstable at the base; the issue also quotes the changed line."
+  },
+  "source": "mined",
+  "split": null,
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-08-16T16:40:02-07:00",
+  "instance_id": "pallets__click-3764",
+  "reason": "pull request #3764 closes no issue",
+  "repo": "pallets/click",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-17T22:38:45-07:00",
+  "instance_id": "pallets__click-3767",
+  "reason": "pull request #3767 closes no issue",
+  "repo": "pallets/click",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-06-08T12:10:23Z",
+  "instance_id": "pallets__click-3769",
+  "reason": null,
+  "repo": "pallets/click",
+  "review": {
+   "decision": "keep",
+   "reason": "The tests check the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "holdout",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-08-19T08:20:27-07:00",
+  "instance_id": "pallets__click-3777",
+  "reason": "pull request #3777 closes no issue",
+  "repo": "pallets/click",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-19T19:50:19-07:00",
+  "instance_id": "pallets__click-3781",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pallets/click",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-22T21:07:17-07:00",
+  "instance_id": "pallets__click-3866",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pallets/click",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-21T11:54:47-07:00",
+  "instance_id": "pallets__click-3876",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pallets/click",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-04T15:19:53-07:00",
+  "instance_id": "pallets__click-3877",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pallets/click",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-07-13T22:07:38Z",
+  "instance_id": "pallets__flask-6096",
+  "reason": null,
+  "repo": "pallets/flask",
+  "review": {
+   "decision": "keep",
+   "reason": "The tests check the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2019-05-10T20:09:04Z",
+  "instance_id": "pallets__flask-6133",
+  "reason": null,
+  "repo": "pallets/flask",
+  "review": {
+   "decision": "exclude",
+   "reason": "The linked issue (session in threads, 2019) does not describe what the test checks (a new app.query decorator for the HTTP QUERY method)."
+  },
+  "source": "mined",
+  "split": null,
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-09-25T00:11:36Z",
+  "instance_id": "pallets__werkzeug-3298",
+  "reason": null,
+  "repo": "pallets/werkzeug",
+  "review": {
+   "decision": "keep",
+   "reason": "The test checks the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-09-25T13:25:41-07:00",
+  "instance_id": "pallets__werkzeug-3300",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pallets/werkzeug",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-25T13:22:02-07:00",
+  "instance_id": "pallets__werkzeug-3304",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pallets/werkzeug",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-25T14:51:15-07:00",
+  "instance_id": "pallets__werkzeug-3306",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pallets/werkzeug",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-08T00:09:36Z",
+  "instance_id": "pallets__werkzeug-3327",
+  "reason": null,
+  "repo": "pallets/werkzeug",
+  "review": {
+   "decision": "keep",
+   "reason": "The tests check the encoding the issue asks for."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2025-06-04T10:03:03",
+  "instance_id": "patroni__patroni-3373",
+  "reason": "pip: ERROR: Could not find a version that satisfies the requirement ydiff!=1.4.0,!=1.4.1,<1.5,>=1.2.0 (from patroni) (from versions: 1.5)\nERROR: No matching distribution found for ydiff!=1.4.0,!=1.4.1,<1.5,>=1.2.0\n | ERROR: Could not find a version that satisfies the requirement ydiff!=1.4.0,!=1.4.1",
+  "repo": "patroni/patroni",
+  "source": "pool",
+  "split": null,
+  "stage": "runtime",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-14T00:38:32Z",
+  "instance_id": "pdm-project__pdm-3926",
+  "reason": null,
+  "repo": "pdm-project/pdm",
+  "review": {
+   "decision": "keep",
+   "reason": "The test checks the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-15T15:49:26Z",
+  "instance_id": "pdm-project__pdm-3930",
+  "reason": null,
+  "repo": "pdm-project/pdm",
+  "review": {
+   "decision": "exclude",
+   "reason": "Structure cap: at most 6 tasks per repository; of pdm's eight admitted tasks, the two that needed the most review intervention are left out. (This one needed a stated build requirement.)"
+  },
+  "source": "mined",
+  "split": null,
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-16T11:45:55+08:00",
+  "instance_id": "pdm-project__pdm-3931",
+  "reason": "pull request #3931 closes no issue",
+  "repo": "pdm-project/pdm",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-17T17:25:40+08:00",
+  "instance_id": "pdm-project__pdm-3934",
+  "reason": "pull request #3934 closes no issue",
+  "repo": "pdm-project/pdm",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-19T00:02:51Z",
+  "instance_id": "pdm-project__pdm-3936",
+  "reason": null,
+  "repo": "pdm-project/pdm",
+  "review": {
+   "decision": "keep",
+   "reason": "The test checks that Pipfile paths resolve relative to the Pipfile, as the issue describes, for regular and editable dev entries."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-20T01:26:36Z",
+  "instance_id": "pdm-project__pdm-3938",
+  "reason": null,
+  "repo": "pdm-project/pdm",
+  "review": {
+   "decision": "keep",
+   "reason": "The tests check the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-20T01:26:59Z",
+  "instance_id": "pdm-project__pdm-3940",
+  "reason": null,
+  "repo": "pdm-project/pdm",
+  "review": {
+   "decision": "keep",
+   "reason": "The tests check the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-20T18:44:22+08:00",
+  "instance_id": "pdm-project__pdm-3941",
+  "reason": "pull request #3941 closes no issue",
+  "repo": "pdm-project/pdm",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-21T09:36:55+08:00",
+  "instance_id": "pdm-project__pdm-3942",
+  "reason": "pull request #3942 closes no issue",
+  "repo": "pdm-project/pdm",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-20T21:10:35Z",
+  "instance_id": "pdm-project__pdm-3946",
+  "reason": null,
+  "repo": "pdm-project/pdm",
+  "review": {
+   "decision": "exclude",
+   "reason": "Structure cap: at most 6 tasks per repository; of pdm's eight admitted tasks, the two that needed the most review intervention are left out. (This one needed seven tests of a private helper left unchecked.)"
+  },
+  "source": "mined",
+  "split": null,
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-21T14:36:44+08:00",
+  "instance_id": "pdm-project__pdm-3947",
+  "reason": "pull request #3947 closes no issue",
+  "repo": "pdm-project/pdm",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-21T17:15:17Z",
+  "instance_id": "pdm-project__pdm-3949",
+  "reason": null,
+  "repo": "pdm-project/pdm",
+  "review": {
+   "decision": "keep",
+   "reason": "The tests check the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-25T09:02:03+08:00",
+  "instance_id": "pdm-project__pdm-3951",
+  "reason": "pull request #3951 closes no issue",
+  "repo": "pdm-project/pdm",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-24T14:06:17Z",
+  "instance_id": "pdm-project__pdm-3953",
+  "reason": null,
+  "repo": "pdm-project/pdm",
+  "review": {
+   "decision": "keep",
+   "reason": "The test checks the fields the issue names."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-25T09:01:44+08:00",
+  "instance_id": "pdm-project__pdm-3954",
+  "reason": "FAIL_TO_PASS not passing with the gold patch (run 1): ['tests/models/test_candidates.py::test_parse_artifact_metadata[/home/claude-dev/.cache/agenteval/er/build/pdm-project__pdm-3954/gold-probe/tests/fixtures/artifacts/demo-0.0.1-py2.py3-none-any.whl]', 'tests/models/test_candidates.py::test_parse_a",
+  "repo": "pdm-project/pdm",
+  "source": "mined",
+  "split": null,
+  "stage": "gold-run",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-20T10:28:47+02:00",
+  "instance_id": "prompt-toolkit__python-prompt-toolkit-2148",
+  "reason": "pull request #2148 closes no issue",
+  "repo": "prompt-toolkit/python-prompt-toolkit",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-06-01T00:52:41",
+  "instance_id": "psf__black-4676",
+  "reason": "FAIL_TO_PASS not passing with the gold patch (run 1): ['tests/test_black.py::BlackTestCase::test_python37']",
+  "repo": "psf/black",
+  "source": "pool",
+  "split": null,
+  "stage": "gold-run",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-18T17:21:08+01:00",
+  "instance_id": "pydantic__pydantic-extra-types-453",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pydantic/pydantic-extra-types",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-19T13:56:51+01:00",
+  "instance_id": "pydantic__pydantic-extra-types-454",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pydantic/pydantic-extra-types",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-21T15:24:55+01:00",
+  "instance_id": "pydantic__pydantic-extra-types-455",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pydantic/pydantic-extra-types",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-21T15:27:08+01:00",
+  "instance_id": "pydantic__pydantic-extra-types-456",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pydantic/pydantic-extra-types",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-21T15:26:40+01:00",
+  "instance_id": "pydantic__pydantic-extra-types-457",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pydantic/pydantic-extra-types",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-21T15:25:33+01:00",
+  "instance_id": "pydantic__pydantic-extra-types-459",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pydantic/pydantic-extra-types",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-22T23:05:57+01:00",
+  "instance_id": "pydantic__pydantic-extra-types-460",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pydantic/pydantic-extra-types",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-22T23:06:20+01:00",
+  "instance_id": "pydantic__pydantic-extra-types-461",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pydantic/pydantic-extra-types",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-20T15:47:55+02:00",
+  "instance_id": "pylint-dev__astroid-2975",
+  "reason": "licence GPL-family",
+  "repo": "pylint-dev/astroid",
+  "source": "mined",
+  "split": null,
+  "stage": "licence",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-08T05:26:21+00:00",
+  "instance_id": "pylint-dev__astroid-3260",
+  "reason": "licence GPL-family",
+  "repo": "pylint-dev/astroid",
+  "source": "mined",
+  "split": null,
+  "stage": "licence",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-08T07:30:52+02:00",
+  "instance_id": "pylint-dev__astroid-3286",
+  "reason": "licence GPL-family",
+  "repo": "pylint-dev/astroid",
+  "source": "mined",
+  "split": null,
+  "stage": "licence",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-08T16:13:40+02:00",
+  "instance_id": "pylint-dev__astroid-3338",
+  "reason": "licence GPL-family",
+  "repo": "pylint-dev/astroid",
+  "source": "mined",
+  "split": null,
+  "stage": "licence",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-22T07:26:48+02:00",
+  "instance_id": "pylint-dev__astroid-3339",
+  "reason": "licence GPL-family",
+  "repo": "pylint-dev/astroid",
+  "source": "mined",
+  "split": null,
+  "stage": "licence",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-08T09:43:25+02:00",
+  "instance_id": "pylint-dev__astroid-3347",
+  "reason": "licence GPL-family",
+  "repo": "pylint-dev/astroid",
+  "source": "mined",
+  "split": null,
+  "stage": "licence",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-12T16:17:04+02:00",
+  "instance_id": "pylint-dev__astroid-3368",
+  "reason": "licence GPL-family",
+  "repo": "pylint-dev/astroid",
+  "source": "mined",
+  "split": null,
+  "stage": "licence",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-12T17:44:05+02:00",
+  "instance_id": "pylint-dev__astroid-3375",
+  "reason": "licence GPL-family",
+  "repo": "pylint-dev/astroid",
+  "source": "mined",
+  "split": null,
+  "stage": "licence",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-03T10:22:22-07:00",
+  "instance_id": "pypa__build-1205",
+  "reason": "pull request #1205 closes no issue",
+  "repo": "pypa/build",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-06T07:35:52-07:00",
+  "instance_id": "pypa__build-1210",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pypa/build",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-11T08:02:57-07:00",
+  "instance_id": "pypa__build-1214",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "pypa/build",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-11T08:03:17-07:00",
+  "instance_id": "pypa__build-1217",
+  "reason": "pull request #1217 closes no issue",
+  "repo": "pypa/build",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-14T11:36:41+01:00",
+  "instance_id": "pypa__build-1224",
+  "reason": "pull request #1224 closes no issue",
+  "repo": "pypa/build",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-24T15:29:39-04:00",
+  "instance_id": "pypa__packaging-1372",
+  "reason": "pull request #1372 closes no issue",
+  "repo": "pypa/packaging",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-19T22:41:55-04:00",
+  "instance_id": "pypa__packaging-1377",
+  "reason": "pull request #1377 closes no issue",
+  "repo": "pypa/packaging",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-08T17:34:02-04:00",
+  "instance_id": "pypa__packaging-1378",
+  "reason": "timeout after 300 s",
+  "repo": "pypa/packaging",
+  "source": "mined",
+  "split": null,
+  "stage": "base-run",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-13T14:06:15+05:30",
+  "instance_id": "pypa__packaging-1446",
+  "reason": "pull request #1446 closes no issue",
+  "repo": "pypa/packaging",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-20T17:17:59-04:00",
+  "instance_id": "pypa__packaging-1457",
+  "reason": "pull request #1457 closes no issue",
+  "repo": "pypa/packaging",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-20T15:12:35-04:00",
+  "instance_id": "pypa__packaging-1458",
+  "reason": "pull request #1458 closes no issue",
+  "repo": "pypa/packaging",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-20T15:10:32-04:00",
+  "instance_id": "pypa__packaging-1459",
+  "reason": "pull request #1459 closes no issue",
+  "repo": "pypa/packaging",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-20T17:35:55-04:00",
+  "instance_id": "pypa__packaging-1460",
+  "reason": "pull request #1460 closes no issue",
+  "repo": "pypa/packaging",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-17T03:30:06-07:00",
+  "instance_id": "pypa__virtualenv-3430",
+  "reason": "pull request #3430 closes no issue",
+  "repo": "pypa/virtualenv",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-17T23:24:11-07:00",
+  "instance_id": "pypa__virtualenv-3440",
+  "reason": "pull request #3440 closes no issue",
+  "repo": "pypa/virtualenv",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-18T00:03:23-07:00",
+  "instance_id": "pypa__virtualenv-3441",
+  "reason": "pull request #3441 closes no issue",
+  "repo": "pypa/virtualenv",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2021-11-08T20:45:47Z",
+  "instance_id": "pyparsing__pyparsing-652",
+  "reason": null,
+  "repo": "pyparsing/pyparsing",
+  "review": {
+   "decision": "keep",
+   "dropTests": [
+    "re:::test(OneOrMore|ZeroOrMore)Max(Negative)?$"
+   ],
+   "reason": "The two bounded-repetition tests check the issue; four tests of a new `max` limit of OneOrMore/ZeroOrMore, not in the issue, are left unchecked."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2024-06-05T16:31:05Z",
+  "instance_id": "pyparsing__pyparsing-653",
+  "reason": null,
+  "repo": "pyparsing/pyparsing",
+  "review": {
+   "decision": "keep",
+   "reason": "The tests check the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-06-09T07:17:03+02:00",
+  "instance_id": "pytest-dev__pytest-xdist-1330",
+  "reason": "pull request #1330 closes no issue",
+  "repo": "pytest-dev/pytest-xdist",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-07-27T12:58:53",
+  "instance_id": "python-attrs__attrs-1448",
+  "reason": null,
+  "repo": "python-attrs/attrs",
+  "review": {
+   "decision": "keep",
+   "interface": [
+    "`attrs.validators.deep_mapping(key_validator=None, value_validator=None, mapping_validator=None)`: either inner validator may be omitted (then it is not run); omitting both raises `ValueError` with exactly the message `At least one of key_validator or value_validator must be provided`."
+   ],
+   "reason": "The issue asks for optional inner validators; the error the test checks is stated below."
+  },
+  "source": "pool",
+  "split": "dev",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2025-08-01T06:13:57",
+  "instance_id": "python-attrs__attrs-1457",
+  "reason": null,
+  "repo": "python-attrs/attrs",
+  "review": {
+   "decision": "exclude",
+   "reason": "The tests call the private `_transform_attrs` with a new positional parameter and need a new `force_kw_only` option the issue does not name."
+  },
+  "source": "pool",
+  "split": null,
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-09-07T14:13:20+02:00",
+  "instance_id": "python-attrs__cattrs-776",
+  "reason": "pull request #776 closes no issue",
+  "repo": "python-attrs/cattrs",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-13T18:53:12+03:00",
+  "instance_id": "python-babel__babel-1161",
+  "reason": "pull request #1161 closes no issue",
+  "repo": "python-babel/babel",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-12T19:38:55+03:00",
+  "instance_id": "python-babel__babel-1291",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "python-babel/babel",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-07-30T18:27:24+03:00",
+  "instance_id": "python-babel__babel-1302",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "python-babel/babel",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-07-30T16:18:41+03:00",
+  "instance_id": "python-babel__babel-1305",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "python-babel/babel",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-12T19:37:14+03:00",
+  "instance_id": "python-babel__babel-1309",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "python-babel/babel",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2024-04-24T12:58:38Z",
+  "instance_id": "python-babel__babel-1310",
+  "reason": null,
+  "repo": "python-babel/babel",
+  "review": {
+   "decision": "exclude",
+   "reason": "The issue is a broad checklist of CLDR alias kinds; the test checks one internal resolution rule it does not describe."
+  },
+  "source": "mined",
+  "split": null,
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-08-17T06:48:08+00:00",
+  "instance_id": "python-babel__babel-1318",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "python-babel/babel",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-21T20:19:24+03:00",
+  "instance_id": "python-babel__babel-1340",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "python-babel/babel",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-18T15:45:58+00:00",
+  "instance_id": "python-poetry__poetry-11003",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "python-poetry/poetry",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-19T15:34:06+02:00",
+  "instance_id": "python-poetry__poetry-11008",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "python-poetry/poetry",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-19T15:46:19+02:00",
+  "instance_id": "python-poetry__poetry-11072",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "python-poetry/poetry",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-19T16:23:07+02:00",
+  "instance_id": "python-poetry__poetry-11073",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "python-poetry/poetry",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-19T16:54:59+02:00",
+  "instance_id": "python-poetry__poetry-11074",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "python-poetry/poetry",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-20T08:54:05+02:00",
+  "instance_id": "python-poetry__poetry-11077",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "python-poetry/poetry",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-27T10:03:40+00:00",
+  "instance_id": "python-poetry__poetry-11093",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "python-poetry/poetry",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-04T17:53:15+00:00",
+  "instance_id": "python-poetry__poetry-11099",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "python-poetry/poetry",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-15T15:27:39+00:00",
+  "instance_id": "python-poetry__poetry-core-942",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "python-poetry/poetry-core",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-19T13:49:53+02:00",
+  "instance_id": "python-poetry__poetry-core-961",
+  "reason": "pull request #961 closes no issue",
+  "repo": "python-poetry/poetry-core",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-04T16:24:50+00:00",
+  "instance_id": "python-poetry__poetry-core-964",
+  "reason": "pull request #964 closes no issue",
+  "repo": "python-poetry/poetry-core",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-04T16:30:39+00:00",
+  "instance_id": "python-poetry__poetry-core-966",
+  "reason": "pull request #966 closes no issue",
+  "repo": "python-poetry/poetry-core",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-18T15:29:04+02:00",
+  "instance_id": "python-poetry__poetry-core-971",
+  "reason": "pull request #971 closes no issue",
+  "repo": "python-poetry/poetry-core",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-18T15:00:27+02:00",
+  "instance_id": "python-poetry__poetry-core-972",
+  "reason": "pull request #972 closes no issue",
+  "repo": "python-poetry/poetry-core",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-18T15:22:45+02:00",
+  "instance_id": "python-poetry__poetry-core-973",
+  "reason": "pull request #973 closes no issue",
+  "repo": "python-poetry/poetry-core",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-19T09:12:43+02:00",
+  "instance_id": "python-poetry__poetry-core-974",
+  "reason": "pull request #974 closes no issue",
+  "repo": "python-poetry/poetry-core",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-10T20:05:38-04:00",
+  "instance_id": "python-trio__trio-3474",
+  "reason": "licence unknown",
+  "repo": "python-trio/trio",
+  "source": "mined",
+  "split": null,
+  "stage": "licence",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-02T22:34:09-04:00",
+  "instance_id": "python-trio__trio-3479",
+  "reason": "licence unknown",
+  "repo": "python-trio/trio",
+  "source": "mined",
+  "split": null,
+  "stage": "licence",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-10T20:45:57-04:00",
+  "instance_id": "python-trio__trio-3491",
+  "reason": "licence unknown",
+  "repo": "python-trio/trio",
+  "source": "mined",
+  "split": null,
+  "stage": "licence",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-16T22:11:59-04:00",
+  "instance_id": "python-trio__trio-3503",
+  "reason": "licence unknown",
+  "repo": "python-trio/trio",
+  "source": "mined",
+  "split": null,
+  "stage": "licence",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-29T23:18:48-04:00",
+  "instance_id": "python-trio__trio-3515",
+  "reason": "licence unknown",
+  "repo": "python-trio/trio",
+  "source": "mined",
+  "split": null,
+  "stage": "licence",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-01T01:27:19-04:00",
+  "instance_id": "python-trio__trio-3525",
+  "reason": "licence unknown",
+  "repo": "python-trio/trio",
+  "source": "mined",
+  "split": null,
+  "stage": "licence",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-22T18:41:50-07:00",
+  "instance_id": "python-trio__trio-3555",
+  "reason": "licence unknown",
+  "repo": "python-trio/trio",
+  "source": "mined",
+  "split": null,
+  "stage": "licence",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-24T10:32:25-04:00",
+  "instance_id": "python-trio__trio-3559",
+  "reason": "licence unknown",
+  "repo": "python-trio/trio",
+  "source": "mined",
+  "split": null,
+  "stage": "licence",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2023-09-12T06:22:57Z",
+  "instance_id": "scrapinghub__dateparser-1430",
+  "reason": null,
+  "repo": "scrapinghub/dateparser",
+  "review": {
+   "decision": "exclude",
+   "reason": "The tests pin internal translation strings and other languages' results changed by the real fix, which the issue (one Chinese word) does not describe."
+  },
+  "source": "mined",
+  "split": null,
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-23T00:28:45+02:00",
+  "instance_id": "scrapinghub__dateparser-1432",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "scrapinghub/dateparser",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2019-11-12T10:04:05Z",
+  "instance_id": "scrapinghub__dateparser-1434",
+  "reason": null,
+  "repo": "scrapinghub/dateparser",
+  "review": {
+   "decision": "keep",
+   "dropTests": [
+    "tests/test_languages.py::TestBundledLanguages::test_translation_166_ko",
+    "tests/test_languages.py::TestBundledLanguages::test_translation_167_ko",
+    "tests/test_languages.py::TestBundledLanguages::test_translation_168_ko",
+    "tests/test_languages.py::TestBundledLanguages::test_translation_169_ko",
+    "tests/test_languages.py::TestBundledLanguages::test_translation_170_ko",
+    "tests/test_search.py::TestTranslateSearch::test_search_and_parse_27_ko"
+   ],
+   "reason": "The four date-parsing tests check the Korean dates the issue reports; the translation tests (internal normalised strings) and the search test (the exact matched span) pin details of the real fix and are left unchecked."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2025-07-26T10:36:29Z",
+  "instance_id": "scrapy__parsel-351",
+  "reason": null,
+  "repo": "scrapy/parsel",
+  "review": {
+   "decision": "keep",
+   "interface": [
+    "`parsel.AbsoluteXPathWarning`: a `UserWarning` subclass defined in `parsel.selector` and exported from `parsel`, emitted when an absolute XPath (one starting with `/`) is evaluated on a nested selector (one obtained from another selector, directly or through a `SelectorList`); its message begins `Absolute XPath '<query>' used on a nested selector`, and the warning points at the caller's line."
+   ],
+   "reason": "The issue asks for a warning; the tests import its class, stated below."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2020-11-17T23:24:59Z",
+  "instance_id": "scrapy__parsel-357",
+  "reason": null,
+  "repo": "scrapy/parsel",
+  "review": {
+   "decision": "exclude",
+   "reason": "A large new feature (JSONPath support, 2020 issue): the tests need a new `JSONPathError` and a JSONPath API the issue does not specify."
+  },
+  "source": "mined",
+  "split": null,
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-13T11:44:39+02:00",
+  "instance_id": "scrapy__parsel-384",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "scrapy/parsel",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-18T15:20:18+05:00",
+  "instance_id": "scrapy__w3lib-379",
+  "reason": "pull request #379 closes no issue",
+  "repo": "scrapy/w3lib",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-19T10:35:09+02:00",
+  "instance_id": "scrapy__w3lib-382",
+  "reason": "pull request #382 closes no issue",
+  "repo": "scrapy/w3lib",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-19T10:41:03+02:00",
+  "instance_id": "scrapy__w3lib-384",
+  "reason": "pull request #384 closes no issue",
+  "repo": "scrapy/w3lib",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-19T10:42:21+02:00",
+  "instance_id": "scrapy__w3lib-385",
+  "reason": "pull request #385 closes no issue",
+  "repo": "scrapy/w3lib",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-19T10:43:48+02:00",
+  "instance_id": "scrapy__w3lib-386",
+  "reason": "pull request #386 closes no issue",
+  "repo": "scrapy/w3lib",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-19T14:21:35+02:00",
+  "instance_id": "scrapy__w3lib-388",
+  "reason": "pull request #388 closes no issue",
+  "repo": "scrapy/w3lib",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-20T18:25:27+05:00",
+  "instance_id": "scrapy__w3lib-389",
+  "reason": "pull request #389 closes no issue",
+  "repo": "scrapy/w3lib",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-23T10:06:09+02:00",
+  "instance_id": "scrapy__w3lib-394",
+  "reason": "pull request #394 closes no issue",
+  "repo": "scrapy/w3lib",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-15T13:14:29-07:00",
+  "instance_id": "simonw__datasette-2876",
+  "reason": "pull request #2876 closes no issue",
+  "repo": "simonw/datasette",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-01T09:39:25-07:00",
+  "instance_id": "simonw__datasette-2887",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "simonw/datasette",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-15T10:55:54-07:00",
+  "instance_id": "simonw__datasette-2889",
+  "reason": "pull request #2889 closes no issue",
+  "repo": "simonw/datasette",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-15T11:09:57-07:00",
+  "instance_id": "simonw__datasette-2890",
+  "reason": "pull request #2890 closes no issue",
+  "repo": "simonw/datasette",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-15T11:22:45-07:00",
+  "instance_id": "simonw__datasette-2891",
+  "reason": "pull request #2891 closes no issue",
+  "repo": "simonw/datasette",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-15T11:56:53-07:00",
+  "instance_id": "simonw__datasette-2892",
+  "reason": "pull request #2892 closes no issue",
+  "repo": "simonw/datasette",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-15T12:57:09-07:00",
+  "instance_id": "simonw__datasette-2903",
+  "reason": "timeout after 300 s",
+  "repo": "simonw/datasette",
+  "source": "mined",
+  "split": null,
+  "stage": "base-run",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-09-16T14:50:06-07:00",
+  "instance_id": "simonw__datasette-2928",
+  "reason": "pull request #2928 closes no issue",
+  "repo": "simonw/datasette",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-07-24T12:47:36Z",
+  "instance_id": "slackapi__python-slack-sdk-1966",
+  "reason": null,
+  "repo": "slackapi/python-slack-sdk",
+  "review": {
+   "decision": "keep",
+   "reason": "The test checks the behaviour the issue describes."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2025-08-24T08:18:16Z",
+  "instance_id": "slackapi__python-slack-sdk-1970",
+  "reason": null,
+  "repo": "slackapi/python-slack-sdk",
+  "review": {
+   "decision": "keep",
+   "reason": "The test checks the UTC handling the issue identifies as the cause."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-13T13:51:07-06:00",
+  "instance_id": "slackapi__python-slack-sdk-1983",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "slackapi/python-slack-sdk",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-15T08:49:57-07:00",
+  "instance_id": "slackapi__python-slack-sdk-1984",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "slackapi/python-slack-sdk",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-16T07:18:50-07:00",
+  "instance_id": "slackapi__python-slack-sdk-1985",
+  "reason": "pull request #1985 closes no issue",
+  "repo": "slackapi/python-slack-sdk",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-01T02:18:42+00:00",
+  "instance_id": "sloria__environs-481",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "sloria/environs",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-08-29T19:36:49+00:00",
+  "instance_id": "sloria__environs-487",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "sloria/environs",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-07-22T17:23:07+02:00",
+  "instance_id": "sphinx-doc__sphinx-14416",
+  "reason": "pull request #14416 closes no issue",
+  "repo": "sphinx-doc/sphinx",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-23T14:25:24-07:00",
+  "instance_id": "sphinx-doc__sphinx-14499",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "sphinx-doc/sphinx",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-20T15:30:47-07:00",
+  "instance_id": "sphinx-doc__sphinx-14764",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "sphinx-doc/sphinx",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-08-06T13:56:07",
+  "instance_id": "stanfordnlp__dspy-8605",
+  "reason": "runtime of 890 MB, over 400 MB",
+  "repo": "stanfordnlp/dspy",
+  "source": "pool",
+  "split": null,
+  "stage": "runtime-size",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-17T02:38:43-07:00",
+  "instance_id": "tox-dev__filelock-844",
+  "reason": "pull request #844 closes no issue",
+  "repo": "tox-dev/filelock",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-17T03:04:21-07:00",
+  "instance_id": "tox-dev__filelock-846",
+  "reason": "pull request #846 closes no issue",
+  "repo": "tox-dev/filelock",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-17T12:56:02+00:00",
+  "instance_id": "tox-dev__filelock-855",
+  "reason": "pull request #855 closes no issue",
+  "repo": "tox-dev/filelock",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-18T07:23:24+00:00",
+  "instance_id": "tox-dev__filelock-856",
+  "reason": "pull request #856 closes no issue",
+  "repo": "tox-dev/filelock",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-18T18:11:04+00:00",
+  "instance_id": "tox-dev__filelock-859",
+  "reason": "pull request #859 closes no issue",
+  "repo": "tox-dev/filelock",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-18T18:26:33+00:00",
+  "instance_id": "tox-dev__filelock-861",
+  "reason": "no test fails at the base and passes with the fix",
+  "repo": "tox-dev/filelock",
+  "source": "mined",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-20T20:40:15-07:00",
+  "instance_id": "tox-dev__filelock-865",
+  "reason": "pull request #865 closes no issue",
+  "repo": "tox-dev/filelock",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-08T15:10:18+00:00",
+  "instance_id": "tox-dev__platformdirs-612",
+  "reason": "pull request #612 closes no issue",
+  "repo": "tox-dev/platformdirs",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-11T05:35:37+00:00",
+  "instance_id": "tox-dev__platformdirs-614",
+  "reason": "pull request #614 closes no issue",
+  "repo": "tox-dev/platformdirs",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-15T21:49:52+00:00",
+  "instance_id": "tox-dev__platformdirs-618",
+  "reason": "pull request #618 closes no issue",
+  "repo": "tox-dev/platformdirs",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-16T00:01:02+00:00",
+  "instance_id": "tox-dev__platformdirs-619",
+  "reason": "pull request #619 closes no issue",
+  "repo": "tox-dev/platformdirs",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-17T12:21:58-07:00",
+  "instance_id": "tox-dev__platformdirs-621",
+  "reason": "pull request #621 closes no issue",
+  "repo": "tox-dev/platformdirs",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-17T18:56:27+00:00",
+  "instance_id": "tox-dev__platformdirs-624",
+  "reason": "pull request #624 closes no issue",
+  "repo": "tox-dev/platformdirs",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-17T19:14:57+00:00",
+  "instance_id": "tox-dev__platformdirs-625",
+  "reason": "pull request #625 closes no issue",
+  "repo": "tox-dev/platformdirs",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-17T19:29:57+00:00",
+  "instance_id": "tox-dev__platformdirs-627",
+  "reason": "pull request #627 closes no issue",
+  "repo": "tox-dev/platformdirs",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-17T18:53:22+00:00",
+  "instance_id": "tox-dev__tox-4166",
+  "reason": "pull request #4166 closes no issue",
+  "repo": "tox-dev/tox",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-16T15:22:09Z",
+  "instance_id": "tox-dev__tox-4167",
+  "reason": null,
+  "repo": "tox-dev/tox",
+  "review": {
+   "decision": "keep",
+   "reason": "The issue proposes the exact `substitute = true` flag; the tests check substitution under tox's existing rules."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-17T04:35:50Z",
+  "instance_id": "tox-dev__tox-4172",
+  "reason": null,
+  "repo": "tox-dev/tox",
+  "review": {
+   "decision": "keep",
+   "dropTests": [
+    "re:::test_command_raw_args\\["
+   ],
+   "reason": "The reference tests check the prefixes the issue describes; three tests of a new `Command.raw_args` property, not in the issue, are left unchecked."
+  },
+  "source": "mined",
+  "split": "validation",
+  "stage": null,
+  "status": "admitted"
+ },
+ {
+  "created_at": "2026-10-18T06:56:30+00:00",
+  "instance_id": "tox-dev__tox-4173",
+  "reason": "pull request #4173 closes no issue",
+  "repo": "tox-dev/tox",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2026-10-18T00:31:44-07:00",
+  "instance_id": "tox-dev__tox-4174",
+  "reason": "pull request #4174 closes no issue",
+  "repo": "tox-dev/tox",
+  "source": "mined",
+  "split": null,
+  "stage": "issue",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-07-16T20:43:03",
+  "instance_id": "typeddjango__django-stubs-2746",
+  "reason": "test files to run ['tests/typecheck/test_forms.yml', 'tests/typecheck/views/generic/test_edit.yml']",
+  "repo": "typeddjango/django-stubs",
+  "source": "pool",
+  "split": null,
+  "stage": "tests",
+  "status": "rejected"
+ },
+ {
+  "created_at": "2025-08-26T15:23:01",
+  "instance_id": "vacanza__holidays-2859",
+  "reason": "pip: sts'\nWARNING: holidays 0.80 does not provide the extra 'dev'\nWARNING: holidays 0.80 does not provide the extra 'test'\nWARNING: holidays 0.80 does not provide the extra 'testing'\nWARNING: holidays 0.80 does not provide the extra 'tests'\nERROR: Could not find a version that satisfies the requirem",
+  "repo": "vacanza/holidays",
+  "source": "pool",
+  "split": null,
+  "stage": "runtime",
+  "status": "rejected"
+ }
+]

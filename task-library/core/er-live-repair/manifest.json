@@ -1,0 +1,2181 @@
+{
+  "schemaVersion": 2,
+  "id": "er-live-repair",
+  "version": "0.1.0",
+  "familyId": "er-live-repair",
+  "capability": "engineering",
+  "usage": "development",
+  "source": {
+    "kind": "open-source",
+    "references": [
+      "https://huggingface.co/datasets/SWE-bench-Live/SWE-bench-Live",
+      "https://arxiv.org/abs/2505.23419",
+      "docs/design/v2/TASK_LIBRARY.md"
+    ]
+  },
+  "license": {
+    "taskText": "Instruction project-authored; issues, repositories and tests from their projects under their licences (per item).",
+    "thirdPartyContent": [
+      "SWE-bench-Live (MIT) for the dev instances",
+      "each repository under its own permissive licence"
+    ]
+  },
+  "entryPoint": {
+    "instruction": "instruction.md"
+  },
+  "files": {
+    "public": [
+      {
+        "path": "instruction.md",
+        "sha256": "320e42c5f05ef6a2b676a17bffd170985bf1226988d40a0aaacae64847335220"
+      }
+    ],
+    "trusted": [
+      {
+        "path": "calibration.md",
+        "sha256": "9cd26e6d36e40da42083064005646b945ed198fba2ba143c026afe7d156ae930"
+      },
+      {
+        "path": "card.md",
+        "sha256": "843abcfc50caedcfdcf2bc744c9b78da2f20978ee3475401dae5a335ebcd6e6d"
+      },
+      {
+        "path": "rubric.md",
+        "sha256": "601538caa5778acc068bbfc678387dd1679519e18ccb7d73aa9e1f1166868af5"
+      },
+      {
+        "path": "private/builder.py",
+        "sha256": "86f9341f04b72329f0682855347728879a06c8cceb83759dbe429977e65e11a8"
+      },
+      {
+        "path": "private/grader.py",
+        "sha256": "0628c0612909ada052ab334ca539b6603ab153ccb66586fba011472bda45b32c"
+      },
+      {
+        "path": "private/review.json",
+        "sha256": "d5c314a8e11c48a191337d1ae25b891d5fd256014c27f5eb28ca9606fa9497f7"
+      },
+      {
+        "path": "private/selection.json",
+        "sha256": "d87db29545c70cf8d94b3ae40ec7c7a16c215f616297888a58a1641f5232eb88"
+      },
+      {
+        "path": "private/tasks.json",
+        "sha256": "b91ec1e8d4e52feea370e670f9542595e615a932fab6643af9fdafcfc38ff99e"
+      },
+      {
+        "path": "assets/repo-Archmonger__django-dbbackup-605.tar",
+        "sha256": "b976393280699a86402b1bfb0371365bd1ebe90aa021ed00d1bdea12536ddfbd"
+      },
+      {
+        "path": "assets/repo-Delgan__loguru-1510.tar",
+        "sha256": "ec839c161e7d7c4d6feb38ea397653b2f28e868a16ebdfb516ba78fb3f634d82"
+      },
+      {
+        "path": "assets/repo-Delgan__loguru-1529.tar",
+        "sha256": "07c896621d8548d82f0ef0fe06988bee93e17e295ac58f40250298613c1c71be"
+      },
+      {
+        "path": "assets/repo-Kozea__WeasyPrint-2889.tar",
+        "sha256": "ba49349d34a7dd644fd7e6a72f631bd3b005aaed4bc171ac7568e5a8524bfe6e"
+      },
+      {
+        "path": "assets/repo-Kozea__WeasyPrint-2892.tar",
+        "sha256": "5e7239b96b0d99ded10b5dcab8ea70ae844a5a804546cbb8569f46b077428f20"
+      },
+      {
+        "path": "assets/repo-Kozea__WeasyPrint-2919.tar",
+        "sha256": "7eaa93a8c3afc2e5d6b2142db0ee3f15cf7781c447e62ee512eaef15408a8fdd"
+      },
+      {
+        "path": "assets/repo-Kozea__WeasyPrint-2954.tar",
+        "sha256": "c4ef4ecb57547466beb7a4319e1f86493d3bc7299ae574ab4bcbe8cdda10de9e"
+      },
+      {
+        "path": "assets/repo-Kozea__WeasyPrint-2990.tar",
+        "sha256": "c80c282e5a534075917a4d32e5b192f69713965731e6ae1e31ab8abb4f6aa655"
+      },
+      {
+        "path": "assets/repo-Textualize__textual-5863.tar",
+        "sha256": "2131f9ef6f5695d5ccc6b8342edbaf9bf43a763fbf3d5d2e95e5f0b256458851"
+      },
+      {
+        "path": "assets/repo-agronholm__anyio-1424.tar",
+        "sha256": "4b61d1a6bc0c16e3adfb31e6f8a63b75ad3e195fb76e073ded038de147be2829"
+      },
+      {
+        "path": "assets/repo-authlib__authlib-800.tar",
+        "sha256": "60f1c23a779e96e3841dde4e63dc725459de6cdbad94e532286051bc94904208"
+      },
+      {
+        "path": "assets/repo-cloudtools__troposphere-2314.tar",
+        "sha256": "11473fe115f19cc9f111ad5b3952316dc9b8d04f6a38c813c60c673ea688475e"
+      },
+      {
+        "path": "assets/repo-deepset-ai__haystack-9680.tar",
+        "sha256": "5442f23374b3411b9a725a3287ff05528447a715cdfdaaf5e2283b3410c93907"
+      },
+      {
+        "path": "assets/repo-falconry__falcon-2459.tar",
+        "sha256": "5efd510875da143bfadc0cd69dce8633391b828d174db89775f43825df64d98f"
+      },
+      {
+        "path": "assets/repo-falconry__falcon-2475.tar",
+        "sha256": "3964b0094dbf1cb813831d469ba94d8d0b67a447a53183561bc350d6a1ded47c"
+      },
+      {
+        "path": "assets/repo-fastapi__typer-1410.tar",
+        "sha256": "d1f11f0a9c9d1cee7ffe5382c769ecd8767d970d4cfb28eeb3023b5a1f2e0924"
+      },
+      {
+        "path": "assets/repo-hgrecco__pint-2194.tar",
+        "sha256": "fef3875b91db127f98a5a447642328f016916baeda941c34d7dae1387f15cf09"
+      },
+      {
+        "path": "assets/repo-hgrecco__pint-2203.tar",
+        "sha256": "d4fec6816ce659bdd5cf77769ff6150d1e8967cf7b9018b1521093d244e9ea93"
+      },
+      {
+        "path": "assets/repo-ipython__ipython-14943.tar",
+        "sha256": "c76ea1fe9038003e38b9d8b9ca54767e8208447f37dfad3cc87a06e234ef239b"
+      },
+      {
+        "path": "assets/repo-kevin1024__vcrpy-1008.tar",
+        "sha256": "a0b8ae09fc298fc5d9bb72007037f61bf15798b6eb66a31beea1d91980c9c4e3"
+      },
+      {
+        "path": "assets/repo-kevin1024__vcrpy-962.tar",
+        "sha256": "5459e25cae5a7f057ef5cb77bf33d3bffc175a7cd05664882c57dd3f2f66421e"
+      },
+      {
+        "path": "assets/repo-kevin1024__vcrpy-976.tar",
+        "sha256": "517bee1793a3ad86b633ec108234e0c2f7741023405006c537be70a548ee2cc2"
+      },
+      {
+        "path": "assets/repo-more-itertools__more-itertools-1285.tar",
+        "sha256": "c5efc8132509d2f6dac89e01dbf6e504bd1a820c557f251319f8ecc892bf2ea7"
+      },
+      {
+        "path": "assets/repo-networkx__networkx-8890.tar",
+        "sha256": "538c3852d5a30bf4ddb579aec467cc5ce11e7863358d00ae193741cb0e5c5769"
+      },
+      {
+        "path": "assets/repo-networkx__networkx-8913.tar",
+        "sha256": "6f26e5fd50bc11dd246625fdc32127016d7937da3f6c05c5f88a72e11fa62f25"
+      },
+      {
+        "path": "assets/repo-openai__openai-agents-python-1633.tar",
+        "sha256": "e0a0a42b1db99372f917e4ee0c196df4a73a3dbceacc7ce29fa2a7b858234718"
+      },
+      {
+        "path": "assets/repo-pallets__click-3704.tar",
+        "sha256": "20dc9abe992e92fec1d3a7633b04cc0f81304ad32241aa5780289966eae7695b"
+      },
+      {
+        "path": "assets/repo-pallets__click-3769.tar",
+        "sha256": "b16ee50036671dfb909ca8ea9f09064a1a53ac5ccbea4f4b37b0a88db42ea3a6"
+      },
+      {
+        "path": "assets/repo-pallets__flask-6096.tar",
+        "sha256": "31b79c4a40e7aaf4b79a32dc6b579d8dde730873b52928e5ab503e8597e0afcc"
+      },
+      {
+        "path": "assets/repo-pallets__werkzeug-3298.tar",
+        "sha256": "bf36ee02d44a0cdd32218fcc2dd4180e14d791fb6fecc6bcf674cf3b0212ea77"
+      },
+      {
+        "path": "assets/repo-pallets__werkzeug-3327.tar",
+        "sha256": "407589e3cdda04d2935bf5818d5af0b5ab65d11d3562b615941c7e0fc59bb23f"
+      },
+      {
+        "path": "assets/repo-pdm-project__pdm-3926.tar",
+        "sha256": "1ed806abc673f71991d19bbc156f4f468dc2c50818aec721f042b45645298411"
+      },
+      {
+        "path": "assets/repo-pdm-project__pdm-3936.tar",
+        "sha256": "be7d0af1a89bac3fccb6de16297581331b5fffac8221d09f916537d36a59c82d"
+      },
+      {
+        "path": "assets/repo-pdm-project__pdm-3938.tar",
+        "sha256": "f286f39a8374db61f1cc75f3abdd5523a9540ae25d1280dcd55cdba3557c4512"
+      },
+      {
+        "path": "assets/repo-pdm-project__pdm-3940.tar",
+        "sha256": "2935e55193a1890497a3a00444d3c7d92e0a2dde25618ec16ff5261b4219a0aa"
+      },
+      {
+        "path": "assets/repo-pdm-project__pdm-3949.tar",
+        "sha256": "52b614388fcca43d44e44a657270b44b3c4e7de5128d6b9138871fe13ae37b42"
+      },
+      {
+        "path": "assets/repo-pdm-project__pdm-3953.tar",
+        "sha256": "3df81876b18a48f6fefd504538541572e6f2d88d8956d2aad0295bbb9de7d036"
+      },
+      {
+        "path": "assets/repo-pyparsing__pyparsing-652.tar",
+        "sha256": "5419ea2cc33994e3ea013cc60eb17add7ed5665a334e337599f11da5b7c1b1f6"
+      },
+      {
+        "path": "assets/repo-pyparsing__pyparsing-653.tar",
+        "sha256": "28d97604eb02a4791d3d95dab1ad52525166411af17e648b27482e5ce2ee7541"
+      },
+      {
+        "path": "assets/repo-python-attrs__attrs-1448.tar",
+        "sha256": "0722f22dd3c59bae0c6ac1f4f8df8675be6ef64878a7a3fd15ceda618715bc89"
+      },
+      {
+        "path": "assets/repo-scrapinghub__dateparser-1434.tar",
+        "sha256": "7246e06f2f31d65a924dfed3136b21c3022ce9de903498d92e82826f61183479"
+      },
+      {
+        "path": "assets/repo-scrapy__parsel-351.tar",
+        "sha256": "181ccc0777b990e6103cfebadf7cb7c48ce75de1ea93a89d5b1948c970408469"
+      },
+      {
+        "path": "assets/repo-slackapi__python-slack-sdk-1966.tar",
+        "sha256": "eef73c284ad88351bbffebe67dea1dffcafa7563e5992b6df929a3770339d7b6"
+      },
+      {
+        "path": "assets/repo-slackapi__python-slack-sdk-1970.tar",
+        "sha256": "312c88b2f1da14a92ed79a59b6c74535f91bdecfd199ed48d7d7a5199efbf6b7"
+      },
+      {
+        "path": "assets/repo-tox-dev__tox-4167.tar",
+        "sha256": "cf2ed4770ef7a97dda8ad75d235a698e66f559b2d42c7b0359194dc6a97d8a06"
+      },
+      {
+        "path": "assets/repo-tox-dev__tox-4172.tar",
+        "sha256": "7902970fe115a928fd9aecd00f35a11f0ccdc2a296c92fae08c4663458c447a6"
+      },
+      {
+        "path": "assets/runtime-0d3e14cd1a53f2ee.tar",
+        "sha256": "0d3e14cd1a53f2eea9dbff89f4c5d624cab81bd7a5835ef633c08d2754ba8e1a"
+      },
+      {
+        "path": "assets/runtime-14e5e718e382a947.tar",
+        "sha256": "14e5e718e382a947515315cb35e015a333e8abe1f48dd50e26e13dac41478c80"
+      },
+      {
+        "path": "assets/runtime-269cd7d0c4ff1b19.tar",
+        "sha256": "269cd7d0c4ff1b191b1e25eef8958ec7909d6de8c1bec01c3d4b00c67334b490"
+      },
+      {
+        "path": "assets/runtime-29857c521395146e.tar",
+        "sha256": "29857c521395146e5372716800b717f2d75ca0bba61bd457db1131b7a3aff553"
+      },
+      {
+        "path": "assets/runtime-395e38eaf140b57f.tar",
+        "sha256": "395e38eaf140b57fef3c559e93278fbca56166225cf0e6006cac95eb118557bf"
+      },
+      {
+        "path": "assets/runtime-41c75924bde662bd.tar",
+        "sha256": "41c75924bde662bd0a1f5644adca07c91663d3a938433fb2f94a4d9c766a70cc"
+      },
+      {
+        "path": "assets/runtime-42ab9e2b0db72dca.tar",
+        "sha256": "42ab9e2b0db72dca394e450826acf641eab0b93f8d483afcc87c65ac37f6eecb"
+      },
+      {
+        "path": "assets/runtime-4e23b9e8d831cc14.tar",
+        "sha256": "4e23b9e8d831cc1462ddebc7e2b1f748b7825e6e467c2eb67a4ecdf95b351911"
+      },
+      {
+        "path": "assets/runtime-55dd6f09f2a955e5.tar",
+        "sha256": "55dd6f09f2a955e5e88eaa4edd8a612141daaca0e9f1aa3966ce384d0a28ef32"
+      },
+      {
+        "path": "assets/runtime-58ab860fd886cd1a.tar",
+        "sha256": "58ab860fd886cd1af06760768b166d61e113403b85ef87a30d1a2f56a45687bd"
+      },
+      {
+        "path": "assets/runtime-6cf7756cd525405e.tar",
+        "sha256": "6cf7756cd525405e601ae9f7162298fb9d7a59a17c29b20cfb3d2b3a7d217d90"
+      },
+      {
+        "path": "assets/runtime-82cc93c616eab468.tar",
+        "sha256": "82cc93c616eab468965cf961355158cec81b1ef39f52c3af40849319c06b2660"
+      },
+      {
+        "path": "assets/runtime-8923b852558bd8b3.tar",
+        "sha256": "8923b852558bd8b389e797c398fae7ffa436868182a277b2a49184a65f99d742"
+      },
+      {
+        "path": "assets/runtime-8f12f5ba4bf4542a.tar",
+        "sha256": "8f12f5ba4bf4542a5d4fa5de99ee6eb86fd365e2a0ad476e2fba3d4d9e48c331"
+      },
+      {
+        "path": "assets/runtime-8f78489bf1c4b636.tar",
+        "sha256": "8f78489bf1c4b636cd7075a1640c3c8384d8961384e04a5485a59877435f5117"
+      },
+      {
+        "path": "assets/runtime-99c0b158ac893912.tar",
+        "sha256": "99c0b158ac8939121bf465075502bb2c42c38b44691953a2c8a2070921e361bb"
+      },
+      {
+        "path": "assets/runtime-a0faaa120ba56036.tar",
+        "sha256": "a0faaa120ba56036e5e4c265a390509c0c77cd405625176c3e89d9cea846c09f"
+      },
+      {
+        "path": "assets/runtime-b190ca5437a90cdd.tar",
+        "sha256": "b190ca5437a90cdd490ffaeb777753f6cdc1be33efae190c56a0f5f0a054cdbd"
+      },
+      {
+        "path": "assets/runtime-b1b86324d9c0805f.tar",
+        "sha256": "b1b86324d9c0805f1b25cebb88a649a4a5752d38c9832a35a19fd408671dd5f9"
+      },
+      {
+        "path": "assets/runtime-b462826329b26c3c.tar",
+        "sha256": "b462826329b26c3c57781a8c88f0e793b98fdec6a5cff262fb21c03c5645d680"
+      },
+      {
+        "path": "assets/runtime-bfe526bd8ee27cf0.tar",
+        "sha256": "bfe526bd8ee27cf0ccdd6e9b9d73e49e300142f197da80fc7c6742e8b3fd572d"
+      },
+      {
+        "path": "assets/runtime-cc369ade55f38458.tar",
+        "sha256": "cc369ade55f38458ea54896c70ee33c105caa156b21e453d6c458149ca36859d"
+      },
+      {
+        "path": "assets/runtime-cd90fac267f26f4a.tar",
+        "sha256": "cd90fac267f26f4a38230bf73158714311117ff0ff0fb5d8a29ec36b660ac7ca"
+      },
+      {
+        "path": "assets/runtime-dfe30ff41e41c7fd.tar",
+        "sha256": "dfe30ff41e41c7fd99e52c714486d9e8ab46668044544bd320b37a12613d0610"
+      },
+      {
+        "path": "assets/runtime-ea9a7002cefac0ef.tar",
+        "sha256": "ea9a7002cefac0ef4a7dc107903f31c412745f2de27684588f7e30f82b4d654a"
+      },
+      {
+        "path": "assets/runtime-f4cbfb3bb3590d3c.tar",
+        "sha256": "f4cbfb3bb3590d3cef5feb9d9f89c580493941dfccc8d5e581f45ffc718d0b92"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "id": "REQ-FAIL-TO-PASS",
+      "critical": true,
+      "introducedAt": "er-live-repair 0.1.0",
+      "checkIds": [
+        "fail-to-pass"
+      ]
+    },
+    {
+      "id": "REQ-PASS-TO-PASS",
+      "critical": true,
+      "introducedAt": "er-live-repair 0.1.0",
+      "checkIds": [
+        "pass-to-pass"
+      ]
+    }
+  ],
+  "tier": "core",
+  "capabilities": [
+    "engineering"
+  ],
+  "card": "card.md",
+  "scoreModel": {
+    "primary": {
+      "kind": "resolved"
+    },
+    "groups": [
+      {
+        "id": "fail-to-pass",
+        "weight": 0.7,
+        "critical": true,
+        "rule": "all",
+        "checkIds": [
+          "fail-to-pass"
+        ]
+      },
+      {
+        "id": "pass-to-pass",
+        "weight": 0.3,
+        "critical": true,
+        "rule": "all",
+        "checkIds": [
+          "pass-to-pass"
+        ]
+      }
+    ],
+    "metrics": [
+      {
+        "id": "f2pShare",
+        "unit": "share of FAIL_TO_PASS tests passing",
+        "direction": "higher"
+      },
+      {
+        "id": "p2pRegressions",
+        "unit": "PASS_TO_PASS tests failing",
+        "direction": "lower"
+      },
+      {
+        "id": "patchApplied",
+        "unit": "0 or 1",
+        "direction": "higher"
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "Archmonger__django-dbbackup-605",
+      "level": "pool",
+      "files": [
+        {
+          "path": "items/Archmonger__django-dbbackup-605/prompt.md",
+          "sha256": "5a4cb85d1818be26a4608a21dd4cca96150b379fdbc843d6dd711e4d4537ea12"
+        },
+        {
+          "path": "items/Archmonger__django-dbbackup-605/public/ISSUE.md",
+          "sha256": "d904ff813a6779d6d39586deaf84ca4193a0008f3b60c7f3553834fd8da3fdf7"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "dev",
+      "structure": "repo:Archmonger/django-dbbackup",
+      "provenance": {
+        "source": "SWE-bench-Live Archmonger__django-dbbackup-605 @4b6c17531eec",
+        "published": "2025-08-18",
+        "license": "BSD-3-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-Archmonger__django-dbbackup-605.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/42ab9e2b0db72dca"
+      ]
+    },
+    {
+      "id": "Delgan__loguru-1510",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/Delgan__loguru-1510/prompt.md",
+          "sha256": "506191c9e1a865c32c220c4445e0ab32b17f373a26d280b87a284946610fb7b0"
+        },
+        {
+          "path": "items/Delgan__loguru-1510/public/ISSUE.md",
+          "sha256": "21f02cef90e82d11f1a4185579c010a0b07a3e1383ceaec84891e2f36e3a9721"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:Delgan/loguru",
+      "provenance": {
+        "source": "mined: Delgan/loguru pull request #1510, issue #1503, merged 2026-08-30 @d3c590573edb",
+        "published": "2026-08-28",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-Delgan__loguru-1510.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/0d3e14cd1a53f2ee"
+      ]
+    },
+    {
+      "id": "Delgan__loguru-1529",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/Delgan__loguru-1529/prompt.md",
+          "sha256": "f644400865cb427851e57223b9849cb27aff04ac18a7b0badd205e6aeec651f2"
+        },
+        {
+          "path": "items/Delgan__loguru-1529/public/ISSUE.md",
+          "sha256": "243f8aa3332fb00bb3ef4e12637f4b7c3cf544b91b3aadc13e93639b2966db42"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:Delgan/loguru",
+      "provenance": {
+        "source": "mined: Delgan/loguru pull request #1529, issue #1527, merged 2026-10-17 @12b0479b8663",
+        "published": "2026-10-17",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-Delgan__loguru-1529.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/0d3e14cd1a53f2ee"
+      ]
+    },
+    {
+      "id": "Kozea__WeasyPrint-2889",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/Kozea__WeasyPrint-2889/prompt.md",
+          "sha256": "a35b2746ec3f03328c0c6feb41b6485b6d5f0ca2847e9073cc9942ee532bcf73"
+        },
+        {
+          "path": "items/Kozea__WeasyPrint-2889/public/ISSUE.md",
+          "sha256": "409fb0818029e0062ccbabb0541b0d8b111c41159aa4df0374329bde684c6027"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:Kozea/WeasyPrint",
+      "provenance": {
+        "source": "mined: Kozea/WeasyPrint pull request #2889, issue #2877, merged 2026-08-10 @0fdd0e6e0bf4",
+        "published": "2026-08-05",
+        "license": "BSD-3-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-Kozea__WeasyPrint-2889.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/bfe526bd8ee27cf0"
+      ]
+    },
+    {
+      "id": "Kozea__WeasyPrint-2892",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/Kozea__WeasyPrint-2892/prompt.md",
+          "sha256": "74f33652d97f298e9e7249b95e46339911a3b49b20560834a74bbdac6d7b22ff"
+        },
+        {
+          "path": "items/Kozea__WeasyPrint-2892/public/ISSUE.md",
+          "sha256": "6f4c78894a1a6151b5abe265e8b0d7a0c20831842577542aba4e47723cf7c726"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:Kozea/WeasyPrint",
+      "provenance": {
+        "source": "mined: Kozea/WeasyPrint pull request #2892, issue #2714, merged 2026-08-13 @df7201d12012",
+        "published": "2026-03-26",
+        "license": "BSD-3-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-Kozea__WeasyPrint-2892.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/bfe526bd8ee27cf0"
+      ]
+    },
+    {
+      "id": "Kozea__WeasyPrint-2919",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/Kozea__WeasyPrint-2919/prompt.md",
+          "sha256": "eeb734f5fb8f9f29c65533559dea8ba35a62b39218ebd062d1e89aee9a9f91be"
+        },
+        {
+          "path": "items/Kozea__WeasyPrint-2919/public/ISSUE.md",
+          "sha256": "c3bca4d7b0ae301a69324970b0aa7307cd422428be3e594f9e5f25aa39c58f4e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:Kozea/WeasyPrint",
+      "provenance": {
+        "source": "mined: Kozea/WeasyPrint pull request #2919, issue #2918, merged 2026-09-10 @4d3b7b6449e3",
+        "published": "2026-09-10",
+        "license": "BSD-3-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-Kozea__WeasyPrint-2919.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/bfe526bd8ee27cf0"
+      ]
+    },
+    {
+      "id": "Kozea__WeasyPrint-2954",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/Kozea__WeasyPrint-2954/prompt.md",
+          "sha256": "26e586b59f4eb6cd6b8fe56fabe2d7d5817115ecec8a62cdc977f3473d17c0df"
+        },
+        {
+          "path": "items/Kozea__WeasyPrint-2954/public/ISSUE.md",
+          "sha256": "c58faffd8d589ab0a559f1df32a38270cfd85f9a09b46466c359d495e3d463ae"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:Kozea/WeasyPrint",
+      "provenance": {
+        "source": "mined: Kozea/WeasyPrint pull request #2954, issue #2952, merged 2026-10-12 @c2731562e65d",
+        "published": "2026-10-02",
+        "license": "BSD-3-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-Kozea__WeasyPrint-2954.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/bfe526bd8ee27cf0"
+      ]
+    },
+    {
+      "id": "Kozea__WeasyPrint-2990",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/Kozea__WeasyPrint-2990/prompt.md",
+          "sha256": "1a9ff237367d59960a53b76a5913c3e215d6a1fadba089daa43e3b243d800e32"
+        },
+        {
+          "path": "items/Kozea__WeasyPrint-2990/public/ISSUE.md",
+          "sha256": "d3339bf0e46c456f5bb025b35e061d7a91955de96433ec8f2ff89933a9c2e9d8"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:Kozea/WeasyPrint",
+      "provenance": {
+        "source": "mined: Kozea/WeasyPrint pull request #2990, issue #2941, merged 2026-10-22 @1eb24a374d37",
+        "published": "2026-09-28",
+        "license": "BSD-3-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-Kozea__WeasyPrint-2990.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/bfe526bd8ee27cf0"
+      ]
+    },
+    {
+      "id": "Textualize__textual-5863",
+      "level": "pool",
+      "files": [
+        {
+          "path": "items/Textualize__textual-5863/prompt.md",
+          "sha256": "75d8f67105349122e1027b270e259ed86d8f303562e997248add909abd4411a3"
+        },
+        {
+          "path": "items/Textualize__textual-5863/public/ISSUE.md",
+          "sha256": "27b0dc02b080049e975dd9ae2fa4cf94b4a8dda7419d308e83c98261fa4e1efa"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "dev",
+      "structure": "repo:Textualize/textual",
+      "provenance": {
+        "source": "SWE-bench-Live Textualize__textual-5863 @3483d81fbed1",
+        "published": "2025-06-13",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-Textualize__textual-5863.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/395e38eaf140b57f"
+      ]
+    },
+    {
+      "id": "agronholm__anyio-1424",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/agronholm__anyio-1424/prompt.md",
+          "sha256": "198c8e2c7e30a82ae75ebba7e9053e0aba44e8f988e8cb4abdd129dd750be3ea"
+        },
+        {
+          "path": "items/agronholm__anyio-1424/public/ISSUE.md",
+          "sha256": "3fe233bfdd4fb1e82c6376ad496db284185401ebcbbfbeb897883ed538f0999d"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:agronholm/anyio",
+      "provenance": {
+        "source": "mined: agronholm/anyio pull request #1424, issue #1423, merged 2026-10-18 @633965bad02a",
+        "published": "2026-10-17",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-agronholm__anyio-1424.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/14e5e718e382a947"
+      ]
+    },
+    {
+      "id": "authlib__authlib-800",
+      "level": "pool",
+      "files": [
+        {
+          "path": "items/authlib__authlib-800/prompt.md",
+          "sha256": "dac27d775734083f3fb44aa08dc8ce78794fa90e76c84355016f00461529041f"
+        },
+        {
+          "path": "items/authlib__authlib-800/public/ISSUE.md",
+          "sha256": "b8a542af11b7b0174cdf9b79ef965b12dfd6d9d6b08dffe2b16c7a25642dad1c"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "dev",
+      "structure": "repo:authlib/authlib",
+      "provenance": {
+        "source": "SWE-bench-Live authlib__authlib-800 @731f618d0fb1",
+        "published": "2025-08-22",
+        "license": "BSD-3-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-authlib__authlib-800.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/b1b86324d9c0805f"
+      ]
+    },
+    {
+      "id": "cloudtools__troposphere-2314",
+      "level": "pool",
+      "files": [
+        {
+          "path": "items/cloudtools__troposphere-2314/prompt.md",
+          "sha256": "332966b47bbc1e0b9acc4bb7321c33c85784c82ba941a1ea345ce9a26dd23f0e"
+        },
+        {
+          "path": "items/cloudtools__troposphere-2314/public/ISSUE.md",
+          "sha256": "c02e98c86a3ba7e7cc309a8ebeeec3310ab404bc9467f18e6a0b6eb5f913fa5e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "dev",
+      "structure": "repo:cloudtools/troposphere",
+      "provenance": {
+        "source": "SWE-bench-Live cloudtools__troposphere-2314 @a9a2d7c4d5eb",
+        "published": "2025-06-12",
+        "license": "BSD-2-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-cloudtools__troposphere-2314.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/55dd6f09f2a955e5"
+      ]
+    },
+    {
+      "id": "deepset-ai__haystack-9680",
+      "level": "pool",
+      "files": [
+        {
+          "path": "items/deepset-ai__haystack-9680/prompt.md",
+          "sha256": "44148a210654f2c95e9f16d5d0531994abe3f4c4734e4845c2b782b5071ac5a1"
+        },
+        {
+          "path": "items/deepset-ai__haystack-9680/public/ISSUE.md",
+          "sha256": "99b89b25f7f027d48c35079f05e723e852284e647940bee5064eeea73175c4e6"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "dev",
+      "structure": "repo:deepset-ai/haystack",
+      "provenance": {
+        "source": "SWE-bench-Live deepset-ai__haystack-9680 @441b48714775",
+        "published": "2025-08-05",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-deepset-ai__haystack-9680.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/cc369ade55f38458"
+      ]
+    },
+    {
+      "id": "falconry__falcon-2459",
+      "level": "pool",
+      "files": [
+        {
+          "path": "items/falconry__falcon-2459/prompt.md",
+          "sha256": "136578d5cfebab54053af22882650a752f9dff01ebd2f2eb513be2dea7dce4de"
+        },
+        {
+          "path": "items/falconry__falcon-2459/public/ISSUE.md",
+          "sha256": "222fc96b66d41c182f94c477d5376b44acf3cbb5f0f0ca513a893dd59b5b2134"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "dev",
+      "structure": "repo:falconry/falcon",
+      "provenance": {
+        "source": "SWE-bench-Live falconry__falcon-2459 @ed80f698e987",
+        "published": "2025-06-05",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-falconry__falcon-2459.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/ea9a7002cefac0ef"
+      ]
+    },
+    {
+      "id": "falconry__falcon-2475",
+      "level": "pool",
+      "files": [
+        {
+          "path": "items/falconry__falcon-2475/prompt.md",
+          "sha256": "e2d28876060db232fc91e0be058485ba0fe60ca9d153213f6eb9e652c3417599"
+        },
+        {
+          "path": "items/falconry__falcon-2475/public/ISSUE.md",
+          "sha256": "a15b59de9dc1dd87e33a5fac9f4cf13e47ed0d48b5742d0a30859995d79e2274"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "dev",
+      "structure": "repo:falconry/falcon",
+      "provenance": {
+        "source": "SWE-bench-Live falconry__falcon-2475 @cacaa905665a",
+        "published": "2025-07-03",
+        "license": "Apache-2.0",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-falconry__falcon-2475.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/ea9a7002cefac0ef"
+      ]
+    },
+    {
+      "id": "fastapi__typer-1410",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/fastapi__typer-1410/prompt.md",
+          "sha256": "9957f97afd28ed360c0c86ede73d7dbadbcd4e1d50d4691ad55ce21a9f2c8062"
+        },
+        {
+          "path": "items/fastapi__typer-1410/public/ISSUE.md",
+          "sha256": "e3c4a80cd3f447c01a3271eeacde2eafd90753dbd153233f3c3cd6f603a78714"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "holdout",
+      "structure": "repo:fastapi/typer",
+      "provenance": {
+        "source": "mined: fastapi/typer pull request #1410, issue #1156, merged 2026-06-25 @b7cb8c7a5879",
+        "published": "2025-02-12",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-fastapi__typer-1410.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/99c0b158ac893912"
+      ]
+    },
+    {
+      "id": "hgrecco__pint-2194",
+      "level": "pool",
+      "files": [
+        {
+          "path": "items/hgrecco__pint-2194/prompt.md",
+          "sha256": "e1d27d37ce34b9fb0864b122c987dca3975750c74e1ddd8b5a52424357cc20d2"
+        },
+        {
+          "path": "items/hgrecco__pint-2194/public/ISSUE.md",
+          "sha256": "72a85f57f94823b4b455a94daffab3ecd8572b4211038b95feb522bd2a30ace7"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "dev",
+      "structure": "repo:hgrecco/pint",
+      "provenance": {
+        "source": "SWE-bench-Live hgrecco__pint-2194 @a0264aa4aa3a",
+        "published": "2025-07-30",
+        "license": "BSD-2-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-hgrecco__pint-2194.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/269cd7d0c4ff1b19"
+      ]
+    },
+    {
+      "id": "hgrecco__pint-2203",
+      "level": "pool",
+      "files": [
+        {
+          "path": "items/hgrecco__pint-2203/prompt.md",
+          "sha256": "d9683520a2515a8494c8d97b3d21e3ddd1669e2c76e2169a753ed4d3c7f8d621"
+        },
+        {
+          "path": "items/hgrecco__pint-2203/public/ISSUE.md",
+          "sha256": "0f9908b6df30b0c6e2f83396dcbcfbee6e1ae09edc241d001093669884c32745"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "dev",
+      "structure": "repo:hgrecco/pint",
+      "provenance": {
+        "source": "SWE-bench-Live hgrecco__pint-2203 @16775fdc9968",
+        "published": "2025-08-05",
+        "license": "BSD-2-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-hgrecco__pint-2203.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/269cd7d0c4ff1b19"
+      ]
+    },
+    {
+      "id": "ipython__ipython-14943",
+      "level": "pool",
+      "files": [
+        {
+          "path": "items/ipython__ipython-14943/prompt.md",
+          "sha256": "ce1b21d0d36f6c071dde277d0ddab486f98c5f729eb43f5595e5e2537bf4556a"
+        },
+        {
+          "path": "items/ipython__ipython-14943/public/ISSUE.md",
+          "sha256": "13c8e969c40f98b2d977b3e47d6123692037af89f4a9347ae9e7170cafcceda3"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "dev",
+      "structure": "repo:ipython/ipython",
+      "provenance": {
+        "source": "SWE-bench-Live ipython__ipython-14943 @4d0c438d617e",
+        "published": "2025-07-19",
+        "license": "BSD-3-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-ipython__ipython-14943.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/4e23b9e8d831cc14"
+      ]
+    },
+    {
+      "id": "kevin1024__vcrpy-1008",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/kevin1024__vcrpy-1008/prompt.md",
+          "sha256": "bf3e7e68556df03821da4e89b4b50301cacb25903ed2ab7fb318345fafba8e57"
+        },
+        {
+          "path": "items/kevin1024__vcrpy-1008/public/ISSUE.md",
+          "sha256": "552255b568e49d111c6d725b64c758f6e451fda3051bfe566b42fb9046d09335"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:kevin1024/vcrpy",
+      "provenance": {
+        "source": "mined: kevin1024/vcrpy pull request #1008, issue #1007, merged 2026-07-04 @b1fb62bf474d",
+        "published": "2026-06-24",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-kevin1024__vcrpy-1008.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/41c75924bde662bd"
+      ]
+    },
+    {
+      "id": "kevin1024__vcrpy-962",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/kevin1024__vcrpy-962/prompt.md",
+          "sha256": "3df6489c09cd13772f09141bb694b57f3253683cd4a9299e04a6233b6a9b1317"
+        },
+        {
+          "path": "items/kevin1024__vcrpy-962/public/ISSUE.md",
+          "sha256": "5156f680177ea6cbc42e1a55da8f212b886f24313cd91241fb858fcfea8cc6d1"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:kevin1024/vcrpy",
+      "provenance": {
+        "source": "mined: kevin1024/vcrpy pull request #962, issue #961, merged 2026-06-15 @13f201a820b7",
+        "published": "2025-12-09",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-kevin1024__vcrpy-962.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/41c75924bde662bd"
+      ]
+    },
+    {
+      "id": "kevin1024__vcrpy-976",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/kevin1024__vcrpy-976/prompt.md",
+          "sha256": "d66b2d4c256d2eebcae13ff491a2bbb8af8fbc9edddcf31cdd5ab51ed92c7671"
+        },
+        {
+          "path": "items/kevin1024__vcrpy-976/public/ISSUE.md",
+          "sha256": "75101c07749aa238a89503bf9f4bda19f1056f0c72ddee4e6c5cc4526c05eb2e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:kevin1024/vcrpy",
+      "provenance": {
+        "source": "mined: kevin1024/vcrpy pull request #976, issue #975, merged 2026-06-15 @d57b55339e1b",
+        "published": "2026-01-26",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-kevin1024__vcrpy-976.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/41c75924bde662bd"
+      ]
+    },
+    {
+      "id": "more-itertools__more-itertools-1285",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/more-itertools__more-itertools-1285/prompt.md",
+          "sha256": "cb64da84f8b4df1581e027cfcdd3637f8d1a8a7932bac956e612defc42bace4a"
+        },
+        {
+          "path": "items/more-itertools__more-itertools-1285/public/ISSUE.md",
+          "sha256": "e38864c6e8cc0258222fb1884f4608b23bf351d908c06062063ddae4f60c369b"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:more-itertools/more-itertools",
+      "provenance": {
+        "source": "mined: more-itertools/more-itertools pull request #1285, issue #1284, merged 2026-09-17 @b2f3aff76330",
+        "published": "2026-09-17",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-more-itertools__more-itertools-1285.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/6cf7756cd525405e"
+      ]
+    },
+    {
+      "id": "networkx__networkx-8890",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/networkx__networkx-8890/prompt.md",
+          "sha256": "33df49439bdd4146a3844a7571c70bf8da0081cbc750c0d6d6aa7991e385c631"
+        },
+        {
+          "path": "items/networkx__networkx-8890/public/ISSUE.md",
+          "sha256": "0b53a4ec11b3589eca68634c39088c5b71d949e2a1c23463ebb67e490ad81900"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:networkx/networkx",
+      "provenance": {
+        "source": "mined: networkx/networkx pull request #8890, issue #8885, merged 2026-09-11 @9ec50e847776",
+        "published": "2026-09-01",
+        "license": "BSD-3-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-networkx__networkx-8890.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/29857c521395146e"
+      ]
+    },
+    {
+      "id": "networkx__networkx-8913",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/networkx__networkx-8913/prompt.md",
+          "sha256": "d7e52f7e8941a33cafb37a45d955d2d65ef83406b088937eb67c3ae2a0003af5"
+        },
+        {
+          "path": "items/networkx__networkx-8913/public/ISSUE.md",
+          "sha256": "631a72fb610f199d829972b059cca25f33c43f4e9d5d1d471e36970b8d143fe0"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:networkx/networkx",
+      "provenance": {
+        "source": "mined: networkx/networkx pull request #8913, issue #8471, merged 2026-10-22 @abf2feda2252",
+        "published": "2026-01-13",
+        "license": "BSD-3-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-networkx__networkx-8913.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/29857c521395146e"
+      ]
+    },
+    {
+      "id": "openai__openai-agents-python-1633",
+      "level": "pool",
+      "files": [
+        {
+          "path": "items/openai__openai-agents-python-1633/prompt.md",
+          "sha256": "888e8a1573479146627e54f53404a909e45ca8c07f70b21e37722eb682b55be2"
+        },
+        {
+          "path": "items/openai__openai-agents-python-1633/public/ISSUE.md",
+          "sha256": "0a613481d17807092c1c00420f472faa2e119bed65b9feea451c762f6918fc2f"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "dev",
+      "structure": "repo:openai/openai-agents-python",
+      "provenance": {
+        "source": "SWE-bench-Live openai__openai-agents-python-1633 @5de3b5849ed9",
+        "published": "2025-09-02",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-openai__openai-agents-python-1633.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/8f12f5ba4bf4542a"
+      ]
+    },
+    {
+      "id": "pallets__click-3704",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/pallets__click-3704/prompt.md",
+          "sha256": "42634e36531376539358bfe173ef09747eeb5d37cfd2412ef1f7930b1b60c32a"
+        },
+        {
+          "path": "items/pallets__click-3704/public/ISSUE.md",
+          "sha256": "1e69e6a8fcac13089df19ca0f099c773e1016484aeb1f1da8a857981d04ca0f3"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "holdout",
+      "structure": "repo:pallets/click",
+      "provenance": {
+        "source": "mined: pallets/click pull request #3704, issue #3700, merged 2026-07-20 @333c28d79cd9",
+        "published": "2026-07-17",
+        "license": "BSD-3-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-pallets__click-3704.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/b462826329b26c3c"
+      ]
+    },
+    {
+      "id": "pallets__click-3769",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/pallets__click-3769/prompt.md",
+          "sha256": "6ac7d94f7778d964d60b88ebcc16a1966bd6dc93763fdfc10395da9650e43a0f"
+        },
+        {
+          "path": "items/pallets__click-3769/public/ISSUE.md",
+          "sha256": "13b99aa22bc072a6167fe550e577dd86672f31ae46a3fede5f76651087fd26e6"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "holdout",
+      "structure": "repo:pallets/click",
+      "provenance": {
+        "source": "mined: pallets/click pull request #3769, issue #3571, merged 2026-08-15 @8b44edfff7d9",
+        "published": "2026-06-08",
+        "license": "BSD-3-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-pallets__click-3769.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/b462826329b26c3c"
+      ]
+    },
+    {
+      "id": "pallets__flask-6096",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/pallets__flask-6096/prompt.md",
+          "sha256": "b054d878b736e96d8740006713871a1b02be9f486b852f13a857d6afb2d852a5"
+        },
+        {
+          "path": "items/pallets__flask-6096/public/ISSUE.md",
+          "sha256": "b026a0a34ecb158545f0708702de6a1afca8783d1ec976e792d8d1cc474312a1"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:pallets/flask",
+      "provenance": {
+        "source": "mined: pallets/flask pull request #6096, issue #6093, merged 2026-08-11 @514fc6b3e840",
+        "published": "2026-07-13",
+        "license": "BSD-3-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-pallets__flask-6096.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/cd90fac267f26f4a"
+      ]
+    },
+    {
+      "id": "pallets__werkzeug-3298",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/pallets__werkzeug-3298/prompt.md",
+          "sha256": "fc29f6b3ed8573dfb1db117e385614d3eb1a7d3bdde0faeb3a277c5ab95a2680"
+        },
+        {
+          "path": "items/pallets__werkzeug-3298/public/ISSUE.md",
+          "sha256": "97409a6e37cf62f9e8c277934263c03031ee1b90a237c999b7300493ce6668ea"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:pallets/werkzeug",
+      "provenance": {
+        "source": "mined: pallets/werkzeug pull request #3298, issue #3294, merged 2026-09-25 @25663ddc2958",
+        "published": "2026-09-25",
+        "license": "BSD-3-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-pallets__werkzeug-3298.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/58ab860fd886cd1a"
+      ]
+    },
+    {
+      "id": "pallets__werkzeug-3327",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/pallets__werkzeug-3327/prompt.md",
+          "sha256": "4de0ff919eda22be2aefee61b5caea28db5ff64caf094cc52f968e75dcb1a039"
+        },
+        {
+          "path": "items/pallets__werkzeug-3327/public/ISSUE.md",
+          "sha256": "9df7bf23bbc84fc15a2d70c3ce34b67745f9badd465d764e6c4721ddc78c1335"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:pallets/werkzeug",
+      "provenance": {
+        "source": "mined: pallets/werkzeug pull request #3327, issue #3318, merged 2026-10-14 @0819a2a9b262",
+        "published": "2026-10-08",
+        "license": "BSD-3-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-pallets__werkzeug-3327.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/58ab860fd886cd1a"
+      ]
+    },
+    {
+      "id": "pdm-project__pdm-3926",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/pdm-project__pdm-3926/prompt.md",
+          "sha256": "8019d49248340694a129b72decc9fff1a6d3e75741009deed012b86ce76ea58a"
+        },
+        {
+          "path": "items/pdm-project__pdm-3926/public/ISSUE.md",
+          "sha256": "77077fcf7ffb2f80ac1239fdb1be4d98a65c2bf2f4ce89035811830f4f4b1ba6"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:pdm-project/pdm",
+      "provenance": {
+        "source": "mined: pdm-project/pdm pull request #3926, issue #3925, merged 2026-10-16 @6b9365ea1f45",
+        "published": "2026-10-14",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-pdm-project__pdm-3926.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/8f78489bf1c4b636"
+      ]
+    },
+    {
+      "id": "pdm-project__pdm-3936",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/pdm-project__pdm-3936/prompt.md",
+          "sha256": "29e0f072063206d4c0b603c9fc48f7a55656fd91c4a8a85e92b138eab166681a"
+        },
+        {
+          "path": "items/pdm-project__pdm-3936/public/ISSUE.md",
+          "sha256": "5c548de9ff02b812b09b22d38b073076392bb45a5e2b865a37718006748a533d"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:pdm-project/pdm",
+      "provenance": {
+        "source": "mined: pdm-project/pdm pull request #3936, issue #3935, merged 2026-10-19 @b8b21a9ce2b8",
+        "published": "2026-10-19",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-pdm-project__pdm-3936.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/8f78489bf1c4b636"
+      ]
+    },
+    {
+      "id": "pdm-project__pdm-3938",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/pdm-project__pdm-3938/prompt.md",
+          "sha256": "b33f60c0f1dffc038003f74f8c075071fb5bfa75a85943a2a01cd8976a8e9c94"
+        },
+        {
+          "path": "items/pdm-project__pdm-3938/public/ISSUE.md",
+          "sha256": "6d1e2f558323b4af861a7b682084669ba8200f7855f79735e02e220ac3377c6f"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:pdm-project/pdm",
+      "provenance": {
+        "source": "mined: pdm-project/pdm pull request #3938, issue #3937, merged 2026-10-20 @09c6ada95afb",
+        "published": "2026-10-20",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-pdm-project__pdm-3938.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/8f78489bf1c4b636"
+      ]
+    },
+    {
+      "id": "pdm-project__pdm-3940",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/pdm-project__pdm-3940/prompt.md",
+          "sha256": "edfdd0f8837cca613801d61ad04decb62e8956c3fc552b3585897ebf4f2ab486"
+        },
+        {
+          "path": "items/pdm-project__pdm-3940/public/ISSUE.md",
+          "sha256": "302e84475fe267415b920d4570282ff65e2e94cc3083537dca1685fd508de521"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:pdm-project/pdm",
+      "provenance": {
+        "source": "mined: pdm-project/pdm pull request #3940, issue #3939, merged 2026-10-20 @fbbfe3304cf4",
+        "published": "2026-10-20",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-pdm-project__pdm-3940.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/8f78489bf1c4b636"
+      ]
+    },
+    {
+      "id": "pdm-project__pdm-3949",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/pdm-project__pdm-3949/prompt.md",
+          "sha256": "f1b2931481a2cfeaf68f2ae214f97dabec169461196bd6477fe8479b4127ae24"
+        },
+        {
+          "path": "items/pdm-project__pdm-3949/public/ISSUE.md",
+          "sha256": "24458d7a078a9ec01714cce5454a78b9a93dab6a5486935f77df25a038bb0756"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:pdm-project/pdm",
+      "provenance": {
+        "source": "mined: pdm-project/pdm pull request #3949, issue #3948, merged 2026-10-23 @201bdc719c15",
+        "published": "2026-10-21",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-pdm-project__pdm-3949.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/8f78489bf1c4b636"
+      ]
+    },
+    {
+      "id": "pdm-project__pdm-3953",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/pdm-project__pdm-3953/prompt.md",
+          "sha256": "a9448c475ac0210bf09a7173bc3e73ff19fc095bea4d01da65db0295b601dc46"
+        },
+        {
+          "path": "items/pdm-project__pdm-3953/public/ISSUE.md",
+          "sha256": "9d714a43345aabf6e0b511b00826b853a0a1413f83795b6f71e6a9d8ed9530e5"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:pdm-project/pdm",
+      "provenance": {
+        "source": "mined: pdm-project/pdm pull request #3953, issue #3952, merged 2026-10-24 @782ab242de26",
+        "published": "2026-10-24",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-pdm-project__pdm-3953.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/8f78489bf1c4b636"
+      ]
+    },
+    {
+      "id": "pyparsing__pyparsing-652",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/pyparsing__pyparsing-652/prompt.md",
+          "sha256": "009c4140f19e0f526a15569d405ef2ab7e93b3de9b32fe57061fec4809b3aa29"
+        },
+        {
+          "path": "items/pyparsing__pyparsing-652/public/ISSUE.md",
+          "sha256": "ef75b6edf39bfc35d89dde61589b96e3fb349b237379fe00e486d946bfdda199"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:pyparsing/pyparsing",
+      "provenance": {
+        "source": "mined: pyparsing/pyparsing pull request #652, issue #332, merged 2026-08-12 @b6dccc8f796f",
+        "published": "2021-11-08",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-pyparsing__pyparsing-652.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/f4cbfb3bb3590d3c"
+      ]
+    },
+    {
+      "id": "pyparsing__pyparsing-653",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/pyparsing__pyparsing-653/prompt.md",
+          "sha256": "ce84fd8acfad60f0c3c20bed1a33ac3d11d76d2e5bc483fd1bd755e23e541e3e"
+        },
+        {
+          "path": "items/pyparsing__pyparsing-653/public/ISSUE.md",
+          "sha256": "b3fb90d729a56d5a2625d5c9ec0c33bac230d5a6e8080412536964862d1472c6"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:pyparsing/pyparsing",
+      "provenance": {
+        "source": "mined: pyparsing/pyparsing pull request #653, issue #560, merged 2026-08-18 @038ff39cbc29",
+        "published": "2024-06-05",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-pyparsing__pyparsing-653.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/f4cbfb3bb3590d3c"
+      ]
+    },
+    {
+      "id": "python-attrs__attrs-1448",
+      "level": "pool",
+      "files": [
+        {
+          "path": "items/python-attrs__attrs-1448/prompt.md",
+          "sha256": "e24984329aa147890b715c00f3e01a66f6e28b605693682ff08e6dc4be03ff59"
+        },
+        {
+          "path": "items/python-attrs__attrs-1448/public/ISSUE.md",
+          "sha256": "d4309a7c05602ece6412166eec5a0a9206492ffc2771220749c4ea224cc01258"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "dev",
+      "structure": "repo:python-attrs/attrs",
+      "provenance": {
+        "source": "SWE-bench-Live python-attrs__attrs-1448 @6879ffd11d9c",
+        "published": "2025-07-27",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-python-attrs__attrs-1448.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/8923b852558bd8b3"
+      ]
+    },
+    {
+      "id": "scrapinghub__dateparser-1434",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/scrapinghub__dateparser-1434/prompt.md",
+          "sha256": "e6a9f5ef9ba4e7a60568b8272d0b7f4d54762e6c186907d35c5b752955a9a391"
+        },
+        {
+          "path": "items/scrapinghub__dateparser-1434/public/ISSUE.md",
+          "sha256": "6806c70ddeb6771eceaf19683aaa776cd3d951a934f1a7ab5bd916c923216f2c"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:scrapinghub/dateparser",
+      "provenance": {
+        "source": "mined: scrapinghub/dateparser pull request #1434, issue #590, merged 2026-10-23 @4c4c5e522dec",
+        "published": "2019-11-12",
+        "license": "BSD-3-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-scrapinghub__dateparser-1434.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/82cc93c616eab468"
+      ]
+    },
+    {
+      "id": "scrapy__parsel-351",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/scrapy__parsel-351/prompt.md",
+          "sha256": "6deb70413743c7b06c393f8d8e459e9ee4a5dc5999b9d01154d7650b948b1a47"
+        },
+        {
+          "path": "items/scrapy__parsel-351/public/ISSUE.md",
+          "sha256": "d3fc4c9f649f6eb37ebeede95a5a0a781722533e8b3ee0559224763ee8a5e98c"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:scrapy/parsel",
+      "provenance": {
+        "source": "mined: scrapy/parsel pull request #351, issue #323, merged 2026-10-08 @99731f340f1e",
+        "published": "2025-07-26",
+        "license": "BSD-3-Clause",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-scrapy__parsel-351.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/b190ca5437a90cdd"
+      ]
+    },
+    {
+      "id": "slackapi__python-slack-sdk-1966",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/slackapi__python-slack-sdk-1966/prompt.md",
+          "sha256": "9f2336e56c9d1a7371e30ddd5ffdc44ce217ef45826876fc85629590f4f5ae86"
+        },
+        {
+          "path": "items/slackapi__python-slack-sdk-1966/public/ISSUE.md",
+          "sha256": "fcd342c48ddd0caef1ea0f5b69b5ac11cb3a027cb3ead420fa5b893cae215ec4"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:slackapi/python-slack-sdk",
+      "provenance": {
+        "source": "mined: slackapi/python-slack-sdk pull request #1966, issue #1922, merged 2026-09-25 @3dc7e66ebeb2",
+        "published": "2026-07-24",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-slackapi__python-slack-sdk-1966.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/a0faaa120ba56036"
+      ]
+    },
+    {
+      "id": "slackapi__python-slack-sdk-1970",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/slackapi__python-slack-sdk-1970/prompt.md",
+          "sha256": "43d65d19a2cb8082832cd4a8d28cfeec89a9981300863416fa053ee57021cd33"
+        },
+        {
+          "path": "items/slackapi__python-slack-sdk-1970/public/ISSUE.md",
+          "sha256": "348e3b014276d291e8ff7450765bf7880a60ee017bb349caf797a26d548028ed"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:slackapi/python-slack-sdk",
+      "provenance": {
+        "source": "mined: slackapi/python-slack-sdk pull request #1970, issue #1731, merged 2026-10-01 @463c8b3c9ae6",
+        "published": "2025-08-24",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-slackapi__python-slack-sdk-1970.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/a0faaa120ba56036"
+      ]
+    },
+    {
+      "id": "tox-dev__tox-4167",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/tox-dev__tox-4167/prompt.md",
+          "sha256": "f1ea12a7ed2768b955a24b8169c907e1eefee080f2f9e23c47c35c5bfe8c3ddf"
+        },
+        {
+          "path": "items/tox-dev__tox-4167/public/ISSUE.md",
+          "sha256": "645c5ae9d5e9af5b1f06984d51b8fee007912937790f675688f09b23ebb06d0e"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:tox-dev/tox",
+      "provenance": {
+        "source": "mined: tox-dev/tox pull request #4167, issue #4165, merged 2026-10-17 @fa16bde0a626",
+        "published": "2026-10-16",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-tox-dev__tox-4167.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/dfe30ff41e41c7fd"
+      ]
+    },
+    {
+      "id": "tox-dev__tox-4172",
+      "level": "mined",
+      "files": [
+        {
+          "path": "items/tox-dev__tox-4172/prompt.md",
+          "sha256": "c70be3f7aa37f7bd02ba7343b541d511f3486c7493662268800585c27dc78d14"
+        },
+        {
+          "path": "items/tox-dev__tox-4172/public/ISSUE.md",
+          "sha256": "e607a088b36bae6f292e64c18a60cb226e822c2a0edbaa88cc8eabfdb46b0f62"
+        }
+      ],
+      "activeRequirementIds": [
+        "REQ-FAIL-TO-PASS",
+        "REQ-PASS-TO-PASS"
+      ],
+      "split": "validation",
+      "structure": "repo:tox-dev/tox",
+      "provenance": {
+        "source": "mined: tox-dev/tox pull request #4172, issue #4169, merged 2026-10-18 @1de497f9f207",
+        "published": "2026-10-17",
+        "license": "MIT",
+        "exposure": "public"
+      },
+      "repository": {
+        "archive": "assets/repo-tox-dev__tox-4172.tar",
+        "directory": "repo"
+      },
+      "mounts": [
+        "runtime/dfe30ff41e41c7fd"
+      ]
+    }
+  ],
+  "runtime": {
+    "mounts": [
+      {
+        "path": "runtime/0d3e14cd1a53f2ee",
+        "archive": "assets/runtime-0d3e14cd1a53f2ee.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/14e5e718e382a947",
+        "archive": "assets/runtime-14e5e718e382a947.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/269cd7d0c4ff1b19",
+        "archive": "assets/runtime-269cd7d0c4ff1b19.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/29857c521395146e",
+        "archive": "assets/runtime-29857c521395146e.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/395e38eaf140b57f",
+        "archive": "assets/runtime-395e38eaf140b57f.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/41c75924bde662bd",
+        "archive": "assets/runtime-41c75924bde662bd.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/42ab9e2b0db72dca",
+        "archive": "assets/runtime-42ab9e2b0db72dca.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/4e23b9e8d831cc14",
+        "archive": "assets/runtime-4e23b9e8d831cc14.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/55dd6f09f2a955e5",
+        "archive": "assets/runtime-55dd6f09f2a955e5.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/58ab860fd886cd1a",
+        "archive": "assets/runtime-58ab860fd886cd1a.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/6cf7756cd525405e",
+        "archive": "assets/runtime-6cf7756cd525405e.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/82cc93c616eab468",
+        "archive": "assets/runtime-82cc93c616eab468.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/8923b852558bd8b3",
+        "archive": "assets/runtime-8923b852558bd8b3.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/8f12f5ba4bf4542a",
+        "archive": "assets/runtime-8f12f5ba4bf4542a.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/8f78489bf1c4b636",
+        "archive": "assets/runtime-8f78489bf1c4b636.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/99c0b158ac893912",
+        "archive": "assets/runtime-99c0b158ac893912.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/a0faaa120ba56036",
+        "archive": "assets/runtime-a0faaa120ba56036.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/b190ca5437a90cdd",
+        "archive": "assets/runtime-b190ca5437a90cdd.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/b1b86324d9c0805f",
+        "archive": "assets/runtime-b1b86324d9c0805f.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/b462826329b26c3c",
+        "archive": "assets/runtime-b462826329b26c3c.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/bfe526bd8ee27cf0",
+        "archive": "assets/runtime-bfe526bd8ee27cf0.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/cc369ade55f38458",
+        "archive": "assets/runtime-cc369ade55f38458.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/cd90fac267f26f4a",
+        "archive": "assets/runtime-cd90fac267f26f4a.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/dfe30ff41e41c7fd",
+        "archive": "assets/runtime-dfe30ff41e41c7fd.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/ea9a7002cefac0ef",
+        "archive": "assets/runtime-ea9a7002cefac0ef.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      },
+      {
+        "path": "runtime/f4cbfb3bb3590d3c",
+        "archive": "assets/runtime-f4cbfb3bb3590d3c.tar",
+        "env": {
+          "PYTHONPATH": "{workspace}/repo/src:{workspace}/repo:{mount}",
+          "PYTHONDONTWRITEBYTECODE": "1"
+        }
+      }
+    ]
+  },
+  "toolProfiles": [
+    "workspace-augmented"
+  ],
+  "grader": {
+    "id": "er-swe-tests",
+    "version": "1.0.0",
+    "entryPoint": "private/grader.py",
+    "executable": "python3",
+    "args": [
+      "{entryPoint}",
+      "--request",
+      "{request}",
+      "--result",
+      "{result}"
+    ]
+  },
+  "environment": {
+    "runtime": "Python 3.13",
+    "dependencies": "per task, from wheels, in a read-only runtime mount; no network",
+    "network": false,
+    "runtimeCheck": {
+      "executable": "python3",
+      "args": [
+        "--version"
+      ],
+      "expectedSubstring": "Python 3.13."
+    }
+  }
+}
