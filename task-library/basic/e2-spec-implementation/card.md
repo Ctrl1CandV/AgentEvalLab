@@ -1,6 +1,6 @@
-# Capability Card: E2 specification implementation 0.5.0
+# Capability Card: E2 specification implementation 0.6.0
 
-Template: `docs/templates/CAPABILITY_CARD.md`. Written 2026-10-24 (PLAN-007 WP2.2), for grader 1.7.0 on the unchanged task 0.5.0.
+Template: `docs/templates/CAPABILITY_CARD.md`. Written 2026-10-24 (PLAN-007 WP2.2); updated 2026-10-25 for task 0.6.0 and grader 2.0.0 (routes timed by CPU time).
 
 ## 1. Identity
 
@@ -49,7 +49,7 @@ Project-authored specifications, references, fixtures and instance generator; no
 
 - Each item's `prompt.md` is its specification; the program runs in the sandbox on hidden fixtures (10 s each) or instances (stopped at 10 s, 8 s stated).
 - Score model: one critical group per contract item (rule fraction); `readme` (not critical, weight 0.1); for routes, `routes-valid` (critical: `routes-feasible`), its 32 rung checks in a non-critical group and the metric group `routes-share`. `primaryByItem` makes routes metric-primary.
-- Timing: routes' limit is wall time, as the contract states; from grader 1.6.0 routes gradings run one at a time under a lock, each on one core. Under heavy machine load a time-bounded search loses value (noise test below), so routes should be graded on a lightly loaded machine.
+- Timing: routes' limit is 8 seconds of CPU time on one core (task 0.6.0, grader 2.0.0), measured over every process the program starts; the kernel stops it at 10 seconds of CPU time and the grader at 30 seconds of wall time. Waiting costs nothing; a busy machine does not change how much a program may compute.
 - Equivalent solutions: any implementation; only outputs (and, for routes, plan costs) count. Sheet compares numbers with a tolerance; the others exactly.
 
 ## 9. Splits and size
@@ -60,13 +60,13 @@ Each item is its own task and structure group (`item:<id>`), all dev. Routes, a 
 
 | Gate (VALIDATION §1) | Result | Evidence |
 | --- | --- | --- |
-| References | pass: each contract item's reference passes every check; routes: LNS and savings each pass every 50% rung, LNS above savings, and are feasible | `python3 private/grader.py --self-calibrate`, `logs/self-calibration-0.5.0-grader-1.7.0.log` |
+| References | pass: each contract item's reference passes every check; routes: LNS and savings each pass every 50% rung, LNS above savings, and are feasible | `python3 private/grader.py --self-calibrate`, `logs/self-calibration-0.6.0-grader-2.0.0.log` (a program that only waits keeps its feasible plan; one that computes past 8 s of CPU time earns nothing) |
 | Null agent | pass: a missing program fails every check and is not valid; routes' baseline earns no rung | self-calibration; the suite smokes |
 | Mutants | pass: every mutant fails the check it targets | self-calibration |
 | Alternative valid solutions | pass for routes (LNS, savings); the contract items accept any output that matches | self-calibration |
 | Adversarial | n/a beyond the sandbox: outputs are recomputed | — |
-| Noise | routes, **open**: with 5 busy processes on 20 cores the LNS reference's `routeShare` moves 0.009 and no label changes (pass at the declared 0.03); with every core busy it loses 0.052 and three rung labels (fail). The wall-time limit is the contract's; a time-bounded search does less work on a loaded machine. Routes gradings run one at a time under a lock; a CPU-time limit would need a new task version (PLAN-007 Phase 2 review) | `python3 private/grader.py --noise [--load N]`, `logs/noise-0.5.0-grader-1.6.0-routes.log` |
-| Determinism | contract items pass; routes depends on the machine through its wall-time limit | — |
+| Noise | routes, **open, mitigated by procedure**: the CPU-time limit removes time-sharing, not throughput loss; with 10 of 20 cores busy the LNS reference's `routeShare` drops 0.039 and two rung labels, with all 20 busy 0.056 and three labels (fail at 0.03); two quiet gradings differ by 0.002. Procedure: routes reports `gradingLoad`, and every routes delivery is re-graded on a quiet machine (load under 0.1 per core) after its run; only quiet gradings are reported | `python3 private/grader.py --noise --load N`, `logs/noise-0.6.0-grader-2.0.0-routes.log` (20 busy), `logs/noise-0.6.0-grader-2.0.0-routes-load10.log` (10 busy) |
+| Determinism | contract items pass; routes depends on the machine only through the CPU-time limit (how much a core computes per second) | — |
 
 ## 11. Budget
 
@@ -77,3 +77,4 @@ Routes 3,000,000 tokens (v1); every routes trial in v1 stopped on its budget, wh
 - 0.1.0–0.5.0: see `calibration.md`.
 - Grader 1.6.0 (2026-10-24): manifest v2; routes reports `routeShare`, `routeCost` and `feasibleInstances`, is headlined by `routeShare`, and is judged one grading at a time; every 0.5.0 trial re-graded.
 - Grader 1.7.0 (2026-10-24): `routes-feasible` is the routes validity check; the README is not critical. Every graded 0.5.0 routes trial re-graded again.
+- 0.6.0, grader 2.0.0 (2026-10-25): routes' limit is CPU time instead of wall time (user decision before PLAN-007 Phase 4: time is a hard constraint of routes, so its noise must go; no continuity with 0.5.0 routes results). The contract items are unchanged.

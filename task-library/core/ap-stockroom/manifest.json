@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "id": "ap-stockroom",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "familyId": "ap-stockroom",
   "capability": "tool",
   "usage": "development",
@@ -22,21 +22,21 @@
     "public": [
       {
         "path": "instruction.md",
-        "sha256": "77a6cd092f65d3343aaaf246dca76abaa5cf94b87241ffdfa4a32d08eabfee36"
+        "sha256": "c94cb759bd4b5e94b90df89daa4d90b39db68839c09b2a1338ab7eaf2a27e060"
       },
       {
         "path": "public/RULES.md",
-        "sha256": "6c2da1e267d70487dd87ad3dce0452dcf9fc2a7f10e967052f2f63c875d46e5f"
+        "sha256": "1d9d83e240c6fbf1e7c75ec3d769c4cb32dee9f4f48c1335aabf4846771623f4"
       }
     ],
     "trusted": [
       {
         "path": "calibration.md",
-        "sha256": "4d52209537d2cca5d362481d873cf570bb869c15d046b5a26ec36d7c468d7660"
+        "sha256": "f31be6c2d200591fcc80e4adf9d1036cf7f2fc29582b2a8126b606e578113ff9"
       },
       {
         "path": "card.md",
-        "sha256": "a2f5fa9d91b4e3254977104b47df92c9eabb33ec6f6b2008ea0b111fa6334411"
+        "sha256": "88ac3a7310f1111ff3393daa635bfba3fab33eff2ea2b6e8b429be9ab04b71c6"
       },
       {
         "path": "rubric.md",
@@ -44,11 +44,11 @@
       },
       {
         "path": "private/build_package.py",
-        "sha256": "1f10c29f33ec6a971759a1f1950882efba1d2fb76e5a07e09ca4cc1542026cea"
+        "sha256": "01267ffa9e95922e971e920244294de8170e527a1f724b5ccf751390049b0636"
       },
       {
         "path": "private/grader.py",
-        "sha256": "1eb644e093187cb682cd65d7b39365a5bf950e594143e3f9cb500be99d8b5bc7"
+        "sha256": "25d0091dc05c7fbc63f61caf8e80091a1aa6f93c762a0dd46d27ee6ac660d80b"
       },
       {
         "path": "private/items.json",
@@ -60,7 +60,7 @@
       },
       {
         "path": "private/stockroom.py",
-        "sha256": "911066ac2e12e35218528ee185c059b18855d7458a84c687596b872e63adfdb6"
+        "sha256": "bebfdce1b54ace6f9f30e6182a80bf56490032a3ca0a2859ebf3022ab40bd182"
       }
     ]
   },
@@ -68,7 +68,7 @@
     {
       "id": "REQ-COMPLETED",
       "critical": true,
-      "introducedAt": "ap-stockroom 0.1.0",
+      "introducedAt": "ap-stockroom 0.2.0",
       "checkIds": [
         "completed"
       ]
@@ -76,7 +76,7 @@
     {
       "id": "REQ-NO-INVALID",
       "critical": false,
-      "introducedAt": "ap-stockroom 0.1.0",
+      "introducedAt": "ap-stockroom 0.2.0",
       "checkIds": [
         "no-invalid-actions"
       ]
@@ -84,7 +84,7 @@
     {
       "id": "REQ-NO-DUPLICATES",
       "critical": false,
-      "introducedAt": "ap-stockroom 0.1.0",
+      "introducedAt": "ap-stockroom 0.2.0",
       "checkIds": [
         "no-duplicate-orders"
       ]
@@ -92,7 +92,7 @@
     {
       "id": "REQ-NO-OVERFLOW",
       "critical": false,
-      "introducedAt": "ap-stockroom 0.1.0",
+      "introducedAt": "ap-stockroom 0.2.0",
       "checkIds": [
         "no-overflow"
       ]
@@ -477,12 +477,12 @@
   "simulator": {
     "entryPoint": "private/stockroom.py",
     "executable": "python3",
-    "description": "The stockroom simulator (see public/RULES.md). command: \"observe\" | \"order\" | \"advance\" | \"result\"; for \"order\", arguments {\"product\": name, \"supplier\": \"local\" | \"import\", \"quantity\": integer, \"ref\": unique string}. Returns a JSON reply. \"advance\" ends the current day.",
+    "description": "The stockroom simulator (see public/RULES.md). command: \"observe\" | \"order\" | \"advance\" | \"day\" | \"result\"; for \"order\", arguments {\"product\": name, \"supplier\": \"local\" | \"import\", \"quantity\": integer, \"ref\": unique string}. \"day\" takes {\"orders\": [order arguments, ...]}, places them and ends the day in one call. Returns a JSON reply. \"advance\" and \"day\" end the current day and return the next morning's compact view.",
     "timeoutMs": 30000
   },
   "grader": {
     "id": "ap-stockroom-replay",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

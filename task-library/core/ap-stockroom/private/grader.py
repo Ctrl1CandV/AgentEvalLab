@@ -7,6 +7,9 @@ to it, and the hard-constraint counts. Hard constraints (invalid actions, duplic
 capacity) are recorded as non-critical checks; their cost is their effect on the profit (rejected commands do nothing,
 duplicates and refused units are paid for).
 
+Grader 1.1.0 (task 0.2.0): the `day` command (orders and the end of the day in one call) replays like its parts;
+`daysManaged` counts the days the model itself ended, whichever command ended them.
+
 Usage: grader.py --request REQUEST --result RESULT | --self-calibrate
 """
 import argparse
@@ -22,8 +25,8 @@ import stockroom as sr  # noqa: E402
 import policies  # noqa: E402
 
 TASK_ID = "ap-stockroom"
-TASK_VERSION = "0.1.0"
-GRADER_VERSION = "1.0.0"
+TASK_VERSION = "0.2.0"
+GRADER_VERSION = "1.1.0"
 
 
 def items():
@@ -41,6 +44,8 @@ def grade(item_id, log_text):
             continue
         if isinstance(request, dict):
             requests.append(request)
+    own, _ = sr.replay(world, requests, finish=False)
+    days_managed = len(own["history"])
     state, managed = sr.replay(world, requests)
     result = sr.result(world, state)
     bound = items()[item_id]["bound"]
@@ -48,7 +53,7 @@ def grade(item_id, log_text):
               "no-overflow": result["overflow_units"] == 0}
     metrics = {"profit": result["profit"], "bound": bound, "regret": round(bound - result["profit"], 2), "invalidActions": result["invalid_actions"],
                "duplicateOrders": result["duplicate_orders"], "overflowUnits": result["overflow_units"], "lostUnits": result["lost_units"],
-               "daysManaged": sum(1 for request in requests if request.get("command") == "advance")}
+               "daysManaged": days_managed}
     return checks, metrics, result
 
 
@@ -126,6 +131,24 @@ def self_calibrate():
         with open(os.path.join(state, "log.jsonl"), encoding="utf-8") as handle:
             _, protocol_metrics, _ = grade(item_id, handle.read())
     rows.append((f"{item_id} command-line protocol matches", abs(protocol_metrics["profit"] - catalogue[item_id]["myopic"]) < 0.01))
+    # The `day` command: the myopic policy issued as one call per day gives, through the command line, the profit its
+    # in-process replay gives, and ends all 40 days; a malformed `day` is an invalid action and ends no day.
+    state, day_log, decide = sr.fresh(world), [], policies.myopic()
+    while not state["done"]:
+        request = {"command": "day", "arguments": {"orders": decide(sr.observe(world, state))}}
+        sr.apply(world, state, request)
+        day_log.append(request)
+    in_process = sr.result(world, state)["profit"]
+    with tempfile.TemporaryDirectory(prefix="ap-day-") as directory:
+        for request in day_log:
+            subprocess.run([sys.executable, os.path.join(HERE, "stockroom.py"), "--item", item_id, "--state", directory], input=json.dumps(request) + "\n",
+                           capture_output=True, text=True, check=True)
+        with open(os.path.join(directory, "log.jsonl"), encoding="utf-8") as handle:
+            day_checks, day_metrics, _ = grade(item_id, handle.read())
+    rows.append((f"{item_id} day command: command line equals in-process, 40 days managed",
+                 abs(day_metrics["profit"] - in_process) < 0.01 and day_checks["completed"] and day_metrics["daysManaged"] == 40))
+    bad_checks, bad_metrics, _ = grade(item_id, json.dumps({"command": "day", "arguments": {"orders": "all"}}))
+    rows.append((f"{item_id} malformed day: invalid, no day ended", not bad_checks["no-invalid-actions"] and bad_metrics["daysManaged"] == 0))
     failed = [name for name, ok in rows if not ok]
     for name in failed:
         print(f"FAIL: {name}")

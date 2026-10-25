@@ -183,8 +183,10 @@ function validateScoreModel(value: unknown, checkIds: Map<string, { critical: bo
     const group = object(raw, "INVALID_SCORE_GROUPS");
     onlyKeys(group, ["id", "weight", "critical", "rule", "checkIds", "metric", "items"], "INVALID_SCORE_GROUPS");
     if (typeof group.id !== "string" || !IDENTIFIER.test(group.id) || groupIds.has(group.id) || typeof group.weight !== "number" ||
-        !Number.isFinite(group.weight) || group.weight <= 0 || typeof group.critical !== "boolean" ||
+        !Number.isFinite(group.weight) || group.weight < 0 || typeof group.critical !== "boolean" ||
         !["all", "fraction", "metric"].includes(String(group.rule)) || !Array.isArray(group.checkIds)) fail("INVALID_SCORE_GROUPS");
+    // Weight 0: checks that are reported and visible in the outcome, but scored nowhere (they may not gate `resolved`).
+    if (group.weight === 0 && group.critical) fail("INVALID_SCORE_GROUPS");
     if (group.rule === "metric") {
       if (typeof group.metric !== "string" || !metrics.get(group.metric)?.anchors || group.checkIds.length !== 0) fail("INVALID_SCORE_GROUPS");
       if (group.items !== undefined && (!Array.isArray(group.items) || group.items.length === 0 || group.items.some(id => typeof id !== "string"))) fail("INVALID_SCORE_GROUPS");

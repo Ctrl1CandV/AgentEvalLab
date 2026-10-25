@@ -16,9 +16,10 @@ import policies  # noqa: E402
 import stockroom as sr  # noqa: E402
 
 SEEDS = {f"store-{index:02d}": f"ap-2026-10:{index}" for index in range(1, 11)}
-SIMULATOR_DESCRIPTION = ("The stockroom simulator (see public/RULES.md). command: \"observe\" | \"order\" | \"advance\" | \"result\"; "
+SIMULATOR_DESCRIPTION = ("The stockroom simulator (see public/RULES.md). command: \"observe\" | \"order\" | \"advance\" | \"day\" | \"result\"; "
                          "for \"order\", arguments {\"product\": name, \"supplier\": \"local\" | \"import\", \"quantity\": integer, \"ref\": unique string}. "
-                         "Returns a JSON reply. \"advance\" ends the current day.")
+                         "\"day\" takes {\"orders\": [order arguments, ...]}, places them and ends the day in one call. "
+                         "Returns a JSON reply. \"advance\" and \"day\" end the current day and return the next morning's compact view.")
 
 
 def digest(path):
@@ -27,8 +28,11 @@ def digest(path):
 
 def main():
     catalogue = {}
+    # Anchors depend only on the scenario and the policies; an unchanged seed keeps its computed anchors (0.2.0 changed
+    # only how the model talks to the simulator).
+    known = json.loads((HERE / "items.json").read_text(encoding="utf-8")) if (HERE / "items.json").exists() else {}
     for item_id, seed in SEEDS.items():
-        found = policies.anchors(seed)
+        found = {key: value for key, value in known[item_id].items() if key != "seed"} if known.get(item_id, {}).get("seed") == seed else policies.anchors(seed)
         catalogue[item_id] = {"seed": seed, **found}
         print(item_id, json.dumps(found), file=sys.stderr, flush=True)
     (HERE / "items.json").write_text(json.dumps(catalogue, indent=1, sort_keys=True) + "\n", encoding="utf-8")

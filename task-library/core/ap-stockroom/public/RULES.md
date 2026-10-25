@@ -33,7 +33,8 @@ Each day, demand for a product is random, with mean
 
 - `observe`: the day, cash, stock on hand, free capacity, what arrived this morning, open orders (with their nominal due day), products, announced promotions, and the last 14 days of demand and sales.
 - `order` with arguments `product`, `supplier` (`local` or `import`), `quantity` (an integer) and `ref` (a string you choose, unique per order). The reference makes orders idempotent: sending the same order again with the same `ref` never orders twice, and a `ref` reused for a different order is rejected. Sometimes a supplier does not answer in time (`"status": "unknown"`): the order may or may not have been placed. Check with `observe`, or send the same order with the same `ref` again.
-- `advance`: ends the day (customers buy, holding costs are charged) and moves to the next morning, when deliveries arrive. After day 40 the run is over.
+- `advance`: ends the day (customers buy, holding costs are charged) and moves to the next morning, when deliveries arrive. After day 40 the run is over. The reply gives the day's sales and the next morning's compact view (day, cash, stock on hand, free capacity, arrivals, open orders, announced promotions); `observe` also gives the product table and the last 14 days.
+- `day` with arguments `orders` (a list of up to 20 objects, each with the arguments of an `order`): places each order exactly as `order` would (its own `ref`, its own possible `"unknown"` reply), then ends the day as `advance` does, in one call. The reply lists each order's reply and then what `advance` returns. A malformed `day` orders nothing, does not end the day, and counts as an invalid action.
 - `result`: your profit so far and its parts.
 
 ## Score

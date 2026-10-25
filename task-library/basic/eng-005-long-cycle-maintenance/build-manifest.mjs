@@ -98,9 +98,12 @@ const manifest = {
   scoreModel: {
     primary: { kind: "resolved" },
     groups: [
-      { id: "correctness", weight: 1, critical: true, rule: "fraction", checkIds: correctness },
-      { id: "speed-rungs", weight: 0.4, critical: false, rule: "fraction", checkIds: requirementChecks.SCALE_SPEED },
-      { id: "plan-rungs", weight: 0.6, critical: false, rule: "fraction", checkIds: requirementChecks.PLAN_QUALITY },
+      // Grader 2.5.0 (user decision, 2026-10-25): speed is not scored; the speed rungs stay as reported labels (a group
+      // of weight 0). The diagnostic weighs completion (the correctness checks) and quality (the plan ladder) equally;
+      // the headline stays resolved until Phase 4 shows whether completion and quality must enter it.
+      { id: "correctness", weight: 0.5, critical: true, rule: "fraction", checkIds: correctness },
+      { id: "speed-rungs", weight: 0, critical: false, rule: "fraction", checkIds: requirementChecks.SCALE_SPEED },
+      { id: "plan-rungs", weight: 0.5, critical: false, rule: "fraction", checkIds: requirementChecks.PLAN_QUALITY },
     ],
   },
   task: { split: "dev", structure: "package:eng-005",
@@ -108,7 +111,7 @@ const manifest = {
       exposure: "private-to-runs" } },
   stages,
   toolProfiles: ["workspace-basic", "workspace-augmented"],
-  grader: { id: "eng005-checkpoint-grader", version: "2.4.0", entryPoint: "private/grader.py", executable: "python3",
+  grader: { id: "eng005-checkpoint-grader", version: "2.5.0", entryPoint: "private/grader.py", executable: "python3",
     args: ["{entryPoint}", "--request", "{request}", "--result", "{result}"] },
   environment: { runtime: "Node.js 22.x + Python 3.x", dependencies: "Node built-ins and Python standard library; no network", network: false,
     runtimeCheck: { executable: "node", args: ["--version"], expectedSubstring: "v22." } },

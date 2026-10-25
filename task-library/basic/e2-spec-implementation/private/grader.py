@@ -10,18 +10,28 @@ over the eight hidden instances of how far each plan's cost gets from the baseli
 (per instance at least 0, never capped; an infeasible, missing or late plan counts 0, as the contract says); it is the
 item's headline. `routeCost` (the total cost, an instance without a feasible plan at its baseline's cost, a plan worse
 than the baseline at the baseline's) and `feasibleInstances` are diagnostics. Routes gradings run one at a time under a
-lock, since the contract's limit is wall time (PROTOCOL §9).
+lock, since the contract's limit was wall time (PROTOCOL §9).
 
 Grader 1.7.0 adds the routes check `feasible`: routes.py printed a feasible plan for at least one hidden instance, the
 least a delivery must do to be a valid one (a delivery that solves no instance at all is not), which makes it the routes
 item's critical check in the v2 score model; the README stops being critical (a documentation file decides nothing
 about whether a program meets its specification).
+
+Grader 2.0.0 (task 0.6.0, PLAN-007 Phase 4 preparation): routes' limit is CPU time, as the new contract states: a plan
+counts when the program used at most 8 seconds of CPU time (user and system, every process it started) on its one core;
+the kernel stops it at 10 seconds of CPU time and the grader at 30 seconds of wall time. A busy machine no longer moves
+a verdict (the wall-time limit did: the same delivery scored 0.886 and 0.658 on two gradings). CPU time does not remove
+throughput noise: on a busy machine a CPU second does less work (shared caches and cores), and a time-bounded search
+finds less (the LNS reference loses 0.04 of routeShare with half the cores busy, 0.056 with all of them; two quiet
+gradings differ by 0.002). So routes reports `gradingLoad`, the highest 1-minute load per core while it was graded, and
+routes deliveries are re-graded on a quiet machine (load under 0.1 per core) after each run.
 """
 import argparse
 import fcntl
 import importlib.util
 import json
 import os
+import resource
 import shutil
 import subprocess
 import sys
@@ -29,8 +39,8 @@ import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TASK_ID = "e2-spec-implementation"
-TASK_VERSION = "0.5.0"
-GRADER_VERSION = "1.7.0"
+TASK_VERSION = "0.6.0"
+GRADER_VERSION = "2.0.0"
 # Per item: the file the candidate delivers, the module holding its hidden fixtures, and how a fixture becomes the
 # program's input. Sheet output is compared cell by cell with numeric tolerance; the others must match exactly.
 ITEMS = {
@@ -41,7 +51,9 @@ ITEMS = {
     "routes": {"entry": "routes.py", "fixtures": os.path.join(HERE, "routes", "fixtures.py")},
 }
 FIXTURE_TIMEOUT_SECONDS = 10
-ROUTES_TIMEOUT_SECONDS = 10
+ROUTES_CPU_SECONDS = 8.0
+ROUTES_CPU_LIMIT_SECONDS = 10
+ROUTES_WALL_SECONDS = 30
 MAX_OUTPUT_BYTES = 1_000_000
 ROUTES_LOCK = os.path.expanduser("~/.cache/agenteval/e2-routes-grading.lock")
 
@@ -108,7 +120,8 @@ def run_fixture(program, data, launcher):
 
 
 def run_routes(program, data, launcher):
-    """Run routes.py on one instance on one CPU core; returns (plan or None, reason)."""
+    """Run routes.py on one instance on one CPU core under its CPU-time limit; returns (plan or None, reason). Gradings
+    run one at a time in a process, so the children's resource usage before and after is this run's."""
     directory = tempfile.mkdtemp(prefix="e2-routes-")
     try:
         shutil.copy(program, os.path.join(directory, "routes.py"))
@@ -120,12 +133,20 @@ def run_routes(program, data, launcher):
         # One core, inherited by every process the program starts; graders running side by side get different cores.
         cpus = sorted(os.sched_getaffinity(0))
         core = cpus[os.getpid() % len(cpus)]
+        def limits():
+            os.sched_setaffinity(0, {core})
+            resource.setrlimit(resource.RLIMIT_CPU, (ROUTES_CPU_LIMIT_SECONDS, ROUTES_CPU_LIMIT_SECONDS))
+        before = resource.getrusage(resource.RUSAGE_CHILDREN)
         try:
-            run = subprocess.run(command, cwd=directory, stdin=subprocess.DEVNULL, capture_output=True, timeout=ROUTES_TIMEOUT_SECONDS,
-                                 preexec_fn=lambda: os.sched_setaffinity(0, {core}),
+            run = subprocess.run(command, cwd=directory, stdin=subprocess.DEVNULL, capture_output=True, timeout=ROUTES_WALL_SECONDS,
+                                 preexec_fn=limits,
                                  env={"PATH": os.environ.get("PATH", "/usr/bin:/bin"), "PYTHONIOENCODING": "utf-8", "LANG": "C.UTF-8"})
         except subprocess.TimeoutExpired:
-            return None, "timeout"
+            return None, "timeout (wall)"
+        after = resource.getrusage(resource.RUSAGE_CHILDREN)
+        seconds = (after.ru_utime - before.ru_utime) + (after.ru_stime - before.ru_stime)
+        if seconds > ROUTES_CPU_SECONDS:
+            return None, f"timeout ({seconds:.1f} s of CPU time)"
         if run.returncode != 0:
             return None, f"exit {run.returncode}"
         try:
@@ -149,7 +170,9 @@ def grade_routes(submission, launcher, raw=None):
     os.makedirs(os.path.dirname(ROUTES_LOCK), exist_ok=True)
     with open(ROUTES_LOCK, "a") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
+        loads = []
         for name in instances.HIDDEN:
+            loads.append(os.getloadavg()[0] / (os.cpu_count() or 1))
             data = instances.instance(name)
             plan, reason = run_routes(program, data, launcher) if os.path.isfile(program) else (None, "routes.py missing")
             baseline, best = anchors[name]["baseline"], anchors[name]["best"]
@@ -169,7 +192,7 @@ def grade_routes(submission, launcher, raw=None):
     results["feasible"] = {"passed": feasible > 0, "fixtures": {"instances": f"{feasible} of {len(shares)} with a feasible plan"}}
     results["readme"] = {"passed": os.path.isfile(os.path.join(submission, "README.md")), "fixtures": {}}
     if raw is not None:
-        raw.update({"routeShare": sum(shares) / len(shares), "routeCost": cost_total, "feasibleInstances": feasible})
+        raw.update({"routeShare": sum(shares) / len(shares), "routeCost": cost_total, "feasibleInstances": feasible, "gradingLoad": max(loads)})
     return results
 
 
@@ -181,7 +204,8 @@ def grade_with_metrics(item_id, submission, launcher):
     results = grade_routes(submission, launcher, raw)
     return results, [{"id": "routeShare", "value": round(raw["routeShare"], 6), "unit": "mean share of the way from baseline to best known"},
                      {"id": "routeCost", "value": round(raw["routeCost"], 3), "unit": "total route length"},
-                     {"id": "feasibleInstances", "value": raw["feasibleInstances"], "unit": "of 8 instances"}]
+                     {"id": "feasibleInstances", "value": raw["feasibleInstances"], "unit": "of 8 instances"},
+                     {"id": "gradingLoad", "value": round(raw["gradingLoad"], 3), "unit": "highest 1-minute load per core while graded"}]
 
 
 def grade(item_id, submission, launcher):
@@ -244,7 +268,8 @@ def grade_request(request_path, result_path):
 def routes_calibration():
     """Routes has no pass-everything reference: the top thresholds on the largest instances are beyond an 8-second run.
     Instead, plain savings and a 7-second LNS each earn every 50% check, the LNS earns more than savings, and the
-    baseline itself, an infeasible plan, a program that runs too long and a missing program earn nothing."""
+    baseline itself, an infeasible plan, a program that computes too long and a missing program earn nothing; a program
+    that only waits (wall time, no CPU time) before printing the baseline still has a feasible plan."""
     solutions = os.path.join(HERE, "routes", "solutions")
 
     def run(name):
@@ -255,7 +280,7 @@ def routes_calibration():
                 handle.write("Calibration candidate.\n")
             return grade("routes", submission, None)
 
-    results = {name: run(name) for name in ("lns", "savings", "nn", "infeasible", "slow", None)}
+    results = {name: run(name) for name in ("lns", "savings", "nn", "infeasible", "slow", "waits", None)}
     rungs = lambda result: {check: entry for check, entry in result.items() if check not in ("readme", "feasible")}
     for name, result in results.items():
         passed = sum(entry["passed"] for entry in rungs(result).values())
@@ -273,7 +298,8 @@ def routes_calibration():
             ("routes-timeout-earns-nothing", earned["slow"] == 0),
             ("routes-missing-earns-nothing", earned[None] == 0),
             ("routes-feasible-for-lns-savings-baseline", feasible["lns"] and feasible["savings"] and feasible["nn"]),
-            ("routes-not-feasible-for-infeasible-slow-missing", not (feasible["infeasible"] or feasible["slow"] or feasible[None]))]
+            ("routes-not-feasible-for-infeasible-slow-missing", not (feasible["infeasible"] or feasible["slow"] or feasible[None])),
+            ("routes-waiting-is-not-cpu-time", feasible["waits"])]
 
 
 def self_calibrate():

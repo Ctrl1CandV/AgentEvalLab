@@ -96,6 +96,20 @@ Done when every core family has a frozen budget, dev results with audits, and an
 | D6 | ARC public sets despite possible contamination | Include them, flagged. ARC-AGI-2 is far from saturated. |
 | D7 | AP environment | Inventory and orders with lead times and uncertain demand: a clear objective, a computable hindsight bound, rich side effects. |
 
+### Decisions taken by the user (2026-10-25, before Phase 4)
+
+- **Premise**: v2's tasks must be much harder, so that every model's scores drop well below v1's.
+- **D1**: agreed in principle; the strong reference for validation is chosen when one is clearly stronger. Dev rounds stay without pro models.
+- **D2**: format errors still cost score: the deduction is 10% (was 20%) and applies to the primary itself; the value before it is kept (`format.content`). T1 grader 1.8.0, T2 1.3.0, R3 2.1.0, AR 1.1.0 (score model only).
+- **D3**: no composite in v2.0.
+- **D4**: Phase 4 envelope 300M, in three stages with a report after each; usage forecast first, caps set from it; main subjects deepseek-flash, qwen3.8-flash, mimo-v2.6-flash. Basic: only the newly added E2 contract items and eng-004; AE deferred to Phase 5.
+- **D5**: the briefs are reviewed once per VIS version; the human calibration (about 20 pairs) is done once per version or judge panel, through a page that shows both pages, the brief, the one question asked and the criteria.
+- **D6**: ARC-2 is AR's headline; ARC-1 runs answer-only as a low-weight reference row (`AR1-answer`, own row). No per-model contamination flags or release dates anywhere: tasks are judged by their own evaluative value.
+- **D7**: the inventory environment stands; two more environments after Phase 4.
+- **E2 routes**: time is a hard constraint there, so task 0.6.0 limits CPU time (grader 2.0.0); no continuity kept with 0.5.0.
+- **E2 contract items and eng-004**: budgets 1.2M per item and 0.3M, in `suites/basic.json`.
+- **E3**: speed is not scored (grader 2.5.0); the headline stays resolved, with completion and quality reported; if Phase 4 shows high scores, completion and quality enter the headline.
+
 ## Risks
 
 | Risk | Mitigation |

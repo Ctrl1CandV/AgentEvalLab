@@ -62,6 +62,14 @@ test("manifest v2: a complete manifest is accepted and every new field is checke
   refuses(manifest => { (manifest.items as Array<{ provenance: { exposure: string } }>)[0]!.provenance.exposure = "secret"; }, /PROVENANCE/);
   refuses(manifest => { manifest.runtime = { mounts: [{ path: "../site", env: {} }] }; }, /INVALID_PACKAGE_RUNTIME/);
   refuses(manifest => { manifest.runtime = { mounts: [{ path: "runtime/py", env: { "bad-name": "x" } }] }; }, /INVALID_PACKAGE_RUNTIME/);
+  // A group of weight 0 reports its checks without scoring them; it may not gate `resolved`.
+  refuses(manifest => { const group = ((manifest.scoreModel as Record<string, unknown>).groups as Array<Record<string, unknown>>)[0]!; group.weight = 0; group.critical = true; },
+    /INVALID_SCORE_GROUPS/);
+  const reportOnly = v2();
+  const reportOnlyGroups = (reportOnly.scoreModel as Record<string, unknown>).groups as Array<Record<string, unknown>>;
+  reportOnlyGroups[0]!.checkIds = ["a1"];
+  reportOnlyGroups.push({ id: "reported", weight: 0, critical: false, rule: "fraction", checkIds: ["a2"] });
+  validateTaskPackageManifest(reportOnly);
 });
 
 test("manifest v2: per-item headlines and item-scoped metric groups; anchors only where an item is scored on the metric", () => {

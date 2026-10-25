@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Calibration candidate: ruin and recreate with simulated annealing for 7 seconds (the reference solver, standalone)."""
+"""Calibration candidate: ruin and recreate with simulated annealing for 7 seconds of CPU time (the reference solver, standalone)."""
 import json
 import math
 import random
@@ -228,9 +228,9 @@ def solve(instance, seconds, seed):
     best_routes = [list(route) for route in routes]
     n = len(problem.ids)
     t_start, t_end = 0.02 * current / n, 0.0005 * current / n
-    began = time.time()
+    began = time.process_time()
     while True:
-        elapsed = time.time() - began
+        elapsed = time.process_time() - began
         if elapsed > seconds:
             break
         temperature = t_start * (t_end / t_start) ** (elapsed / seconds)

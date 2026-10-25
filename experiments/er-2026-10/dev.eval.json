@@ -60,7 +60,7 @@
     {
       "id": "er-live-repair",
       "packagePath": "task-library/core/er-live-repair",
-      "packageManifestSha256": "16a7c32761bc34b0127608b5664b9242a0b569bd70abf5e0731d9fe2d47006b4",
+      "packageManifestSha256": "47ea0f09594a8b313567f54e5536ab521771c1dc0edd830536e58a52b5e41219",
       "toolProfile": "workspace-augmented",
       "input": {
         "prompt": "Resolve the issue as the instruction says, and end with change."

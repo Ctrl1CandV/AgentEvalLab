@@ -7,6 +7,10 @@ uncertain order replies did go through) are hidden, drawn from the item's seed.
 As the `simulator` of the workspace-simulator profile it reads one JSON request on standard input,
 {"command": ..., "arguments": {...}}, applies it to the state in `--state`, appends every state-changing command to
 `log.jsonl`, and prints the JSON reply. `replay()` runs a log on a fresh state (the grader, the policies).
+
+Task 0.2.0 adds the `day` command (the day's orders and the end of the day in one call) and makes the morning view that
+`advance` and `day` return compact (no product table, no sales history; `observe` gives both): with one call per day
+and a small reply, 40 days fit a session's token budget, so the task measures the decisions, not the transcript.
 """
 import argparse
 import json
@@ -125,6 +129,18 @@ def observe(world, state):
     }
 
 
+def morning(world, state):
+    """The compact view after a day ends: what changed and what a decision needs; static facts stay with `observe`."""
+    day = state["day"]
+    return {
+        "day": day, "weekday": WEEKDAYS[(day - 1) % 7], "days_left": DAYS - day + 1 if not state["done"] else 0, "finished": state["done"],
+        "cash": round(state["cash"], 2), "on_hand": dict(state["stock"]), "free_capacity": world["capacity"] - sum(state["stock"].values()),
+        "arrived_this_morning": state["arrivals_today"],
+        "open_orders": [public_order(order) for order in state["orders"] if order["status"] == "open"],
+        "promotions": [promotion for promotion in world["promotions"] if promotion["announced"] <= day],
+    }
+
+
 def place(world, state, arguments):
     """An order line, idempotent by its reference."""
     name, supplier = arguments.get("product"), arguments.get("supplier")
@@ -198,7 +214,7 @@ def advance(world, state):
             state["overflow"] += order["quantity"] - accepted
             order["status"] = "delivered" if accepted == order["quantity"] else "delivered-partly"
             state["arrivals_today"][order["product"]] = state["arrivals_today"].get(order["product"], 0) + accepted
-    return {"status": "advanced", "day_ended": day, "sales": sold, "now": observe(world, state)}
+    return {"status": "advanced", "day_ended": day, "sales": sold, "now": morning(world, state)}
 
 
 def result(world, state):
@@ -217,18 +233,32 @@ def apply(world, state, request):
     if command == "observe":
         return observe(world, state), False
     if command == "order":
-        coin = world["coins"][state["calls"] % len(world["coins"])]
-        state["calls"] += 1
-        if coin < UNCERTAIN_REPLY:
-            if coin < UNCERTAIN_REPLY / 2:
-                place(world, state, arguments)
-            return {"status": "unknown", "reason": "the supplier did not answer in time; the order may or may not have been placed"}, True
-        return place(world, state, arguments), True
+        return order_call(world, state, arguments), True
     if command == "advance":
         return advance(world, state), True
+    if command == "day":
+        # The day's orders, each as an `order` call (its own reference and possibly an uncertain reply), then `advance`.
+        orders = arguments.get("orders", [])
+        if not isinstance(orders, list) or len(orders) > 20 or not all(isinstance(order, dict) for order in orders):
+            state["invalid"] += 1
+            return {"status": "rejected", "reason": "day takes {\"orders\": [up to 20 order objects]}; nothing was ordered and the day did not end"}, True
+        if state["done"]:
+            return {"status": "rejected", "reason": "the 40 days are over"}, True
+        replies = [order_call(world, state, order) for order in orders]
+        return {"orders": replies, **advance(world, state)}, True
     if command == "result":
         return {"finished": state["done"], **result(world, state)}, False
-    return {"status": "rejected", "reason": "commands: observe, order {product, supplier, quantity, ref}, advance, result"}, False
+    return {"status": "rejected", "reason": "commands: observe, order {product, supplier, quantity, ref}, advance, day {orders: [...]}, result"}, False
+
+
+def order_call(world, state, arguments):
+    coin = world["coins"][state["calls"] % len(world["coins"])]
+    state["calls"] += 1
+    if coin < UNCERTAIN_REPLY:
+        if coin < UNCERTAIN_REPLY / 2:
+            place(world, state, arguments)
+        return {"status": "unknown", "reason": "the supplier did not answer in time; the order may or may not have been placed"}
+    return place(world, state, arguments)
 
 
 def replay(world, requests, finish=True):

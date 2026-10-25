@@ -56,7 +56,7 @@
     {
       "id": "ap-stockroom",
       "packagePath": "task-library/core/ap-stockroom",
-      "packageManifestSha256": "e69db299dfc429a29ac8426e14e287d950d42ec45d550d1505666510b3a700f3",
+      "packageManifestSha256": "418ae495d109b2262460438f80d33f30c2ab8fa554593c3e1f16809fb3a2c2b9",
       "toolProfile": "workspace-simulator",
       "input": {
         "prompt": "Run the stockroom as the instruction says, and end with a short summary."

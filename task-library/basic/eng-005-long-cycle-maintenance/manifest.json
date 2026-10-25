@@ -33,7 +33,7 @@
     "trusted": [
       {
         "path": "card.md",
-        "sha256": "4a164e2bfca36b5c676349e984d28c21265293b8706710c9f4e17287d7c84551"
+        "sha256": "908d5a2a175508384a376b10c4f45b6eb20d0f01de334b6eee8a3891bd84dac8"
       },
       {
         "path": "private/base-fixture.json",
@@ -41,7 +41,7 @@
       },
       {
         "path": "private/grader.py",
-        "sha256": "439a93c5927cbe8626d484491c25b33a8b6c7477ba9e551f9491829b9dc403c4"
+        "sha256": "b534e7eb76d9cd50ed15ce5923f0067fc403f2b4ce590e2ffc72a0e0ae0a3a94"
       },
       {
         "path": "private/plan-best.json",
@@ -236,7 +236,7 @@
     "groups": [
       {
         "id": "correctness",
-        "weight": 1,
+        "weight": 0.5,
         "critical": true,
         "rule": "fraction",
         "checkIds": [
@@ -294,7 +294,7 @@
       },
       {
         "id": "speed-rungs",
-        "weight": 0.4,
+        "weight": 0,
         "critical": false,
         "rule": "fraction",
         "checkIds": [
@@ -306,7 +306,7 @@
       },
       {
         "id": "plan-rungs",
-        "weight": 0.6,
+        "weight": 0.5,
         "critical": false,
         "rule": "fraction",
         "checkIds": [
@@ -641,7 +641,7 @@
   ],
   "grader": {
     "id": "eng005-checkpoint-grader",
-    "version": "2.4.0",
+    "version": "2.5.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

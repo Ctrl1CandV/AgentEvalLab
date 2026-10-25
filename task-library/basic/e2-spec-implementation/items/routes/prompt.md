@@ -29,7 +29,7 @@ A route's **length** is the sum of the straight-line (Euclidean) distances along
 
 `routes.py` is run on eight hidden instances of the same kind as the samples, with 50 to 800 customers. They are run one at a time on one CPU core.
 
-- It must print its plan within **8 seconds** of wall time (it is stopped at 10 seconds).
+- It must print its plan within **8 seconds of CPU time** (user and system time of every process it starts; it runs on one core). It is stopped at 10 seconds of CPU time, or at 30 seconds of wall time. Waiting costs no CPU time; computing does, whatever else the machine is doing.
 - An infeasible plan, invalid JSON, a crash or a timeout earns nothing for that instance.
 - For a feasible plan, take how far its cost gets from the cost of a simple **baseline** (nearest neighbour: each van in turn takes the nearest customer that still fits, refrigerated customers first) towards the **best cost we know**. Four checks per instance pass at 50%, 80%, 90% and 97% of that way.
 

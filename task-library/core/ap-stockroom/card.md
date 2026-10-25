@@ -1,4 +1,4 @@
-# Capability Card: AP stockroom 0.1.0 (prototype)
+# Capability Card: AP stockroom 0.2.0 (prototype)
 
 Template: `docs/templates/CAPABILITY_CARD.md`. Written 2026-10-24 (PLAN-007 WP3.3), before any model run. Environment chosen by the plan's recommendation for decision D7 (inventory and orders with lead times and uncertain demand); the user has not yet decided D7.
 
@@ -6,7 +6,7 @@ Template: `docs/templates/CAPABILITY_CARD.md`. Written 2026-10-24 (PLAN-007 WP3.
 
 - Tier: core candidate (prototype: one environment, ten dev seeds).
 - Capabilities: agentic (decisions under uncertainty through a stateful tool).
-- Protocol: `workspace-simulator`: the workspace tools with execution (to plan with programs) and the `simulator` tool (`observe`, `order`, `advance`, `result`), whose state and hidden draws live outside the workspace; one session per store; fixed budget track, provisional 5,000,000 tokens and three hours per store until the budget curve (Phase 4).
+- Protocol: `workspace-simulator`: the workspace tools with execution (to plan with programs) and the `simulator` tool (`observe`, `order`, `advance`, `day`, `result`), whose state and hidden draws live outside the workspace; one session per store; fixed budget track, provisional 5,000,000 tokens and three hours per store until the budget curve (Phase 4).
 - Primary score: the store's profit over 40 days, normalised per item through two reference policies (myopic 0, strong 1), uncapped; 0 unless the model ends day 40 itself.
 
 ## 2. What it measures
@@ -64,7 +64,7 @@ Prototype: ten dev seeds of one environment, one structure group (`env:stockroom
 | References | pass: the myopic and strong logs replay to their anchors on every item; gap ≥ 0.42; strong below the bound | `python3 private/grader.py --self-calibrate`, `logs/self-calibration-0.1.0.log` (71/71) |
 | Null agent | pass: an empty log is not completed | self-calibration; suite smoke |
 | Hard-constraint negative tests | pass: duplicate orders, invalid orders (unknown product, below the import minimum) and an overflowing delivery are counted | self-calibration |
-| Protocol | pass: the myopic policy through the simulator's command line, one process per command, gives the same profit | self-calibration |
+| Protocol | pass: the myopic policy through the simulator's command line, one process per command, gives the same profit; issued as one `day` call per day, the command line gives its in-process profit and 40 managed days; a malformed `day` is invalid and ends no day | self-calibration |
 | Adversarial | the draws are not in the workspace; the simulator runs outside the sandbox with a private state | harness (`workspace-simulator`, CODE §4a) |
 | Noise, determinism | pass: deterministic given the seed and the command log; nothing timed | — |
 
@@ -72,8 +72,9 @@ The strong policy, a heuristic, overflows the stockroom on six of ten items (2�
 
 ## 11. Budget
 
-Provisional 5,000,000 tokens and three hours per store; at least 40 `advance` calls and an `observe` per day make it a long session. The budget curve comes first in Phase 4.
+Provisional 5,000,000 tokens and three hours per store. Task 0.1.0 needed about four calls a day, each re-reading a growing transcript (about 15M tokens for 40 days, cached input counted in full); 0.2.0's `day` command (the day's orders and its end in one call) and compact morning view bring a careful run to roughly 2–3M. The budget curve comes first in Phase 4.
 
 ## 12. History
 
 - 0.1.0 (2026-10-24): the prototype; no model run.
+- 0.2.0, grader 1.1.0 (2026-10-25): the `day` command and the compact morning view of `advance` and `day`, so that 40 days fit the token budget (the usage forecast before Phase 4 found 0.1.0's transcript alone over budget). Rules, draws, policies and anchors unchanged.

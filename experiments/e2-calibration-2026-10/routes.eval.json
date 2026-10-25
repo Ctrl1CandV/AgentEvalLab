@@ -75,7 +75,7 @@
     {
       "id": "e2-spec-implementation",
       "packagePath": "task-library/basic/e2-spec-implementation",
-      "packageManifestSha256": "df00ee417dd431d6459c361107b69dc4240c4e7826e04d24eff86368e3b50f77",
+      "packageManifestSha256": "b2727c52c2212124542d1c1e48bec786ccd93de647f7e0f61493cfac251587f8",
       "input": {
         "prompt": "Implement the specification above, test it, and end with a short summary."
       },

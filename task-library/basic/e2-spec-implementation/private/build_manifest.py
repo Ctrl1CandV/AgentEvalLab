@@ -7,7 +7,7 @@ import pathlib
 
 ROOT = pathlib.Path(".")
 ITEMS = {"sheet": "sheet", "ledger": "ledger", "recur": "recur", "query": "query", "routes": "routes"}
-VERSION, GRADER_VERSION = "0.5.0", "1.7.0"
+VERSION, GRADER_VERSION = "0.6.0", "2.0.0"
 # Manifest v2 (PLAN-007 WP2.2). Each item is its own task and structure group, all dev. sheet, ledger, recur and query
 # are contract items (basic): one critical group each. routes is the open-ended bridge: headlined by routeShare, the
 # mean share of the way from the baseline's cost to the best known cost over its eight hidden instances (anchors at 0
@@ -29,7 +29,8 @@ def score_model(checks):
         "metrics": [{"id": "routeShare", "unit": "mean share of the way from baseline to best known", "direction": "higher", "items": ["routes"],
                      "anchors": {"version": "1", "points": [{"name": "baseline", "maps": 0}, {"name": "best-known", "maps": 1}]}},
                     {"id": "routeCost", "unit": "total route length", "direction": "lower", "items": ["routes"]},
-                    {"id": "feasibleInstances", "unit": "of 8 instances", "direction": "higher", "items": ["routes"]}],
+                    {"id": "feasibleInstances", "unit": "of 8 instances", "direction": "higher", "items": ["routes"]},
+                    {"id": "gradingLoad", "unit": "highest 1-minute load per core while graded", "direction": "lower", "items": ["routes"]}],
     }
 
 

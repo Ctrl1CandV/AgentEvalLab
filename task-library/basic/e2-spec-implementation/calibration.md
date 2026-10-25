@@ -116,3 +116,16 @@ deepseek-flash passed every check of all three items. On `sheet`, glm scored 97%
 **Self-calibration** (`logs/self-calibration-0.5.0-grader-1.7.0.log`): as under 1.6.0, plus `feasible` passing for LNS, savings and the baseline and failing for the infeasible, slow and missing programs.
 
 **Re-grade.** Every graded 0.5.0 routes trial re-graded under 1.7.0.
+
+## Version 0.6.0 (2026-10-25, grader 2.0.0)
+
+Routes is measured in CPU time, not wall time.
+
+**Self-calibration** (`logs/self-calibration-0.6.0-grader-2.0.0.log`): `RESULT: PASS (63/63)` — including `routes-timeout-earns-nothing` (the slow program: 0/32 rungs, every instance a 10.0 s CPU-time timeout) and `routes-waiting-is-not-cpu-time` (the waits program: feasible, its costs equal the baseline's).
+
+**Noise test** (`--noise --load 20`, `logs/noise-0.6.0-grader-2.0.0-routes.log`; run twice on 2026-10-25 with the same outcome): `RESULT: FAIL (1/2), tolerance 0.03 on routeShare`. The savings solution is stable — routeShare 0.773517 quiet and busy, change 0.0000. The lns solution is not — quiet 0.915444 against busy 0.859610 (change 0.0558), with the `h5-90`, `h6-80` and `h7-80` checks passing only when quiet.
+
+**Half load** (`--noise --load 10`, `logs/noise-0.6.0-grader-2.0.0-routes-load10.log`): `RESULT: FAIL (1/2)`; LNS 0.913139 quiet, 0.874582 with 10 of 20 cores busy (change 0.0386, labels h5-90 and h6-80 lost); savings unchanged. The two quiet LNS gradings of the day differ by 0.0023.
+
+**Conclusion and procedure.** The CPU-time limit fixes what the contract measures (no wall-time verdicts, waiting is free), but a search bounded by CPU time still does less work per CPU second on a busy machine. Routes therefore reports `gradingLoad` (the highest 1-minute load per core while graded), and every routes delivery is re-graded on a quiet machine, load under 0.1 per core, after its run; the suite reports only quiet gradings.
+

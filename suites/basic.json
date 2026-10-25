@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "name": "basic",
   "split": "dev",
-  "description": "Basic tier (PLAN-007 WP2.1, TASK_LIBRARY \u00a71-2): reliability families whose tasks have all been opened; high scores are expected. Every family keeps its last v1 configuration (template, budget, session policy). Not yet here: E2's contract items and eng-004, which have no run at their current version and so no stated budget.",
+  "description": "Basic tier (PLAN-007 WP2.1, TASK_LIBRARY \u00a71-2): reliability families whose tasks have all been opened; high scores are expected. Every family keeps its last v1 configuration (template, budget, session policy). E2's contract items (1.2M per item) and eng-004 (0.3M) were added on 2026-10-25.",
   "providerConcurrency": {
     "*": 6,
     "api.airy.work": 3
@@ -72,6 +72,28 @@
       "tier": "basic",
       "capability": "engineering",
       "template": "experiments/budget-pilot-2026-10/engineering.eval.json"
+    },
+    {
+      "id": "E2-contract",
+      "kind": "single",
+      "tier": "basic",
+      "capability": "engineering",
+      "template": "experiments/e2-2026-10/contract-dev.eval.json",
+      "score": {
+        "items": [
+          "sheet",
+          "ledger",
+          "recur",
+          "query"
+        ]
+      }
+    },
+    {
+      "id": "eng-004",
+      "kind": "single",
+      "tier": "basic",
+      "capability": "engineering",
+      "template": "experiments/eng-2026-10/eng-004-dev.eval.json"
     }
   ]
 }

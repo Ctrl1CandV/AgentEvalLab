@@ -25,6 +25,10 @@ CPU time (user and system) of every command it starts, the candidate's and the r
 not move the speed rungs (PROTOCOL §9; `--noise` runs the noise test). It reports grader result v2 with raw values: the
 CPU-time ratio to the reference (`scaleSpeedRatio`, when measured) and the plans' mean place on the quality scale
 (`planQuality`, when computed); the rungs of both are labels.
+
+Version 2.5.0 (task 0.5.0 unchanged; user decision before PLAN-007 Phase 4): speed is no longer scored. The speed rungs
+are still measured and reported as labels with `scaleSpeedRatio`, but they belong to no score group; the diagnostic
+weighs completion (the correctness checks) and quality (the plan ladder) equally. The checks themselves are unchanged.
 """
 import os
 import resource
@@ -61,7 +65,7 @@ SCALE_SEED = "eng005-scale-hidden"
 SPEED_LADDER = (("3", 3.0), ("1.5", 1.5), ("1.1", 1.1), ("0.75", 0.75))
 ALL_CHECKS = {check: requirement for requirement, ids in CHECKS.items() for check in ids}
 SANDBOX_LAUNCHER = None  # set from the grader request in main
-GRADER_VERSION = "2.4.0"
+GRADER_VERSION = "2.5.0"
 RAW: dict[str, float] = {}  # raw values measured during this grading (grader result v2)
 
 

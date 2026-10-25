@@ -1,6 +1,6 @@
 # Capability Card: E3 long-cycle maintenance (eng-005) 0.5.0
 
-Template: `docs/templates/CAPABILITY_CARD.md`. Written 2026-10-24 (PLAN-007 WP2.2), for grader 2.4.0 on the unchanged task 0.5.0.
+Template: `docs/templates/CAPABILITY_CARD.md`. Written 2026-10-24 (PLAN-007 WP2.2), for grader 2.4.0 on the unchanged task 0.5.0; updated 2026-10-25 for grader 2.5.0 (speed not scored).
 
 ## 1. Identity
 
@@ -17,7 +17,7 @@ Keeping a TypeScript work-order CLI correct while it grows over seven requests: 
 
 - One-shot implementation from a full specification (E2): the requirements arrive one stage at a time.
 - Large-repository navigation: the code base is small.
-- Optimisation as the headline: S6's speed and S7's plan quality are ladders in the diagnostic.
+- Speed: S6's speed rungs are measured and reported, not scored (grader 2.5.0). S7's plan quality is a ladder in the diagnostic, not the headline.
 
 ## 4. Where the difficulty lies
 
@@ -40,7 +40,7 @@ Project-authored baseline (`baseline.bundle`), stage briefs, public checkers, re
 ## 8. Task contract and grading
 
 - Each stage releases its brief and public checker; the hidden grader runs the requirements active so far on each snapshot.
-- Score model: `correctness` (rule fraction, critical) over every check of BASE_CLI … PLAN; `speed-rungs` (weight 0.4) and `plan-rungs` (weight 0.6), not critical. The diagnostic thus keeps the user decision of 2026-10-22, half correctness and half the ladders with every rung equal; the headline is resolved (MEASUREMENT §2, basic tier). Resolved reads the final stage's snapshot.
+- Score model (grader 2.5.0, user decision of 2026-10-25): `correctness` (weight 0.5, rule fraction, critical) over every check of BASE_CLI … PLAN, the completion; `plan-rungs` (weight 0.5, not critical), the quality; speed is not scored: its rungs sit in `speed-rungs`, a group of weight 0, reported in every outcome and scored nowhere. The headline is resolved (MEASUREMENT §2, basic tier), read on the final stage's snapshot; if Phase 4 shows the headline too high, completion and quality enter it (to be decided on that evidence).
 - **Timing (grader 2.4.0).** S6's workload is timed by the CPU time of every command it starts, the candidate's and the reference's alike, best of three; S7's 10-second limit has been CPU time since grader 2.3.0. Wall time is only a hard stop (30 s per command).
 - Equivalent solutions: two structurally different references pass every stage.
 
@@ -69,3 +69,4 @@ One task (a trajectory): split dev, structure group `package:eng-005`. Basic tie
 
 - 0.2.0–0.5.0 and graders up to 2.3.0: see `calibration.md`.
 - Grader 2.4.0 (2026-10-24): S6 timed by CPU time; raw `scaleSpeedRatio` and `planQuality`; manifest v2 with this card. The final snapshot of every 0.5.0 trajectory re-graded.
+- Grader 2.5.0 (2026-10-25): speed no longer scored; the diagnostic is half completion, half plan quality. Checks unchanged; every 0.5.0 trajectory re-graded.

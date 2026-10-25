@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 3,
+  "name": "eng-2026-10-eng-004-dev",
+  "models": [
+    {
+      "provider": "supergpt",
+      "id": "gpt-6-luna",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "glm-5.3",
+      "thinkingLevel": "high",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 3,
+  "budget": {
+    "timeoutMs": 1800000,
+    "maxTurns": 40,
+    "maxModelCalls": 40,
+    "maxToolCalls": 60,
+    "maxOutputChars": 65536,
+    "maxOutputTokensPerCall": 32768,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 300000
+  },
+  "artifactLimits": {
+    "maxFiles": 1000,
+    "maxFileBytes": 10485760,
+    "maxTrialBytes": 52428800,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3
+  },
+  "trustedLocalExecution": true,
+  "cases": [
+    {
+      "id": "eng-004-resource-index",
+      "packagePath": "task-library/basic/eng-004-resource-index",
+      "packageManifestSha256": "7eb0a612953ebc556b1e51051304e03560ea098f9e3241891a67a289c90a9406",
+      "input": {
+        "prompt": "Complete the task in the instruction. Use the workspace tools, run your own checks, and end with a short summary."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 180000,
+        "maxOutputBytes": 100000
+      }
+    }
+  ],
+  "budgetNotice": true
+}

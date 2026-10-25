@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Calibration candidate: the baseline printed after 11 seconds, past the limit."""
+"""Calibration candidate: the baseline printed after 11 seconds of CPU time, past the limit."""
 import json
 import math
 import random
@@ -121,5 +121,7 @@ def baseline(instance):
 if __name__ == "__main__":
     with open(sys.argv[1], encoding="utf-8") as handle:
         data = json.load(handle)
-    time.sleep(11)
+    finish = time.process_time() + 11
+    while time.process_time() < finish:
+        pass
     print(json.dumps(baseline(data)))

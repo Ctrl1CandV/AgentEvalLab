@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 3,
+  "name": "e2-2026-10-contract-dev",
+  "models": [
+    {
+      "provider": "supergpt",
+      "id": "gpt-6-luna",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "glm-5.3",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "deepseek",
+      "id": "deepseek-flash",
+      "thinkingLevel": "high",
+      "temperature": 0
+    },
+    {
+      "provider": "supercn",
+      "id": "step-5-preview",
+      "thinkingLevel": "medium",
+      "temperature": 0
+    },
+    {
+      "provider": "aliplan",
+      "id": "qwen3.8-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    },
+    {
+      "provider": "mimoplan",
+      "id": "mimo-v2.6-pro",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    },
+    {
+      "provider": "mimoplan",
+      "id": "mimo-v2.6-flash",
+      "thinkingLevel": "provider-default",
+      "temperature": 0
+    }
+  ],
+  "repetitions": 2,
+  "budget": {
+    "timeoutMs": 7200000,
+    "maxTurns": 150,
+    "maxModelCalls": 150,
+    "maxToolCalls": 200,
+    "maxOutputChars": 524288,
+    "maxOutputTokensPerCall": 131072,
+    "maxToolResultChars": 100000,
+    "maxTrialTokens": 1200000
+  },
+  "artifactLimits": {
+    "maxFiles": 2000,
+    "maxFileBytes": 67108864,
+    "maxTrialBytes": 268435456,
+    "graderResultMaxBytes": 1048576,
+    "toolEvidenceMaxBytes": 5242880
+  },
+  "batch": {
+    "maxRetries": 2,
+    "maxConsecutiveInfrastructureFailures": 3,
+    "maxTotalTokensPerModel": 7000000,
+    "concurrency": 4
+  },
+  "trustedLocalExecution": true,
+  "budgetNotice": true,
+  "cases": [
+    {
+      "id": "e2-spec-implementation",
+      "packagePath": "task-library/basic/e2-spec-implementation",
+      "packageManifestSha256": "b2727c52c2212124542d1c1e48bec786ccd93de647f7e0f61493cfac251587f8",
+      "input": {
+        "prompt": "Implement the specification above, test it, and end with a short summary."
+      },
+      "evaluator": {
+        "kind": "task-package",
+        "timeoutMs": 600000
+      },
+      "items": [
+        "sheet",
+        "ledger",
+        "recur",
+        "query"
+      ]
+    }
+  ]
+}

@@ -27,7 +27,7 @@ The tasks are real merged fixes for real issues, so their difficulty is whatever
 
 - Reading the fix from history: the workspace has a fresh single commit, without the project's history.
 - Editing or deleting the tests: every file the real tests touch is reset to its base content before the real tests are applied.
-- Recalling a public fix: the validation and holdout tasks are mined from fixes merged since 2026-06-01, and every task created before a model's release date is flagged per model as possibly seen (release dates in the evidence table).
+- Recalling a public fix: the validation and holdout tasks are mined from fixes merged since 2026-06-01. No per-model contamination flag is kept (user decision of 2026-10-25); provenance and dates are recorded per item.
 - Doing nothing: fails FAIL_TO_PASS (each task's base fails every FAIL_TO_PASS test, checked three times).
 - Guessing hidden names: none are needed; the review (`private/review.json`) states in the prompt every new name or exact wording a task's tests use that the issue does not give, and leaves unchecked the separable tests of behaviour the issue does not describe.
 
@@ -37,7 +37,7 @@ Contract family: no anchors. The gold patch resolves every task (self-calibratio
 
 ## 7. Source, licence and provenance
 
-- Dev: SWE-bench-Live instances (MIT), created up to 2025-09, flagged per model as possibly seen.
+- Dev: SWE-bench-Live instances (MIT), created up to 2025-09.
 - Validation and holdout: our own mining of merged pull requests that close a linked issue and change tests, in permissively licensed (MIT, BSD, Apache, ISC, MPL) Python repositories, merged since 2026-06-01; repositories in dev are excluded.
 - Each repository and runtime is stored as a content-addressed archive under `assets/` (kept out of Git, restored by `npm run prepare`); `private/selection.json` records every candidate and why each rejected one was rejected.
 

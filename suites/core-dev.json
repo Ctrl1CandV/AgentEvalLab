@@ -2,7 +2,7 @@
   "schemaVersion": 2,
   "name": "core-dev",
   "split": "dev",
-  "description": "Core tier, dev split (PLAN-007): R3, AR (answer-only; with code as its own row), and the two open-ended bridges of core engineering (E4 compress, E2 routes). AP (stockroom prototype); VIS v2 (dev briefs; the tournament's judge calls come on top); ER (dev from SWE-bench-Live). No capability weights until the release freeze.",
+  "description": "Core tier, dev split (PLAN-007): R3, AR on ARC-AGI-2 (answer-only; with code as its own row; ARC-AGI-1 answer-only as a low-weight reference row), and the two open-ended bridges of core engineering (E4 compress, E2 routes). AP (stockroom prototype); VIS v2 (dev briefs; the tournament's judge calls come on top); ER (dev from SWE-bench-Live). No capability weights until the release freeze.",
   "providerConcurrency": {
     "*": 6,
     "api.airy.work": 3
@@ -40,6 +40,14 @@
       "tier": "core",
       "capability": "reasoning",
       "template": "experiments/ar-2026-10/answer-dev.eval.json"
+    },
+    {
+      "id": "AR1-answer",
+      "kind": "single",
+      "tier": "core",
+      "capability": "reasoning",
+      "template": "experiments/ar-2026-10/answer-arc1-dev.eval.json",
+      "ownRow": true
     },
     {
       "id": "AR-code",

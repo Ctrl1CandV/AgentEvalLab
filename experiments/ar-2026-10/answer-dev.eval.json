@@ -56,7 +56,7 @@
     {
       "id": "ar-abstraction",
       "packagePath": "task-library/core/ar-abstraction",
-      "packageManifestSha256": "b892077d5de3105fabe5e99ec81fe1463069559d44e8b62ff221baad18eb739f",
+      "packageManifestSha256": "a14d196c695b5eeee75e87eef6d028c53826c8319840730742f6cde0377c33aa",
       "toolProfile": "none",
       "input": {
         "prompt": "Solve the task and give the JSON answer described above."
@@ -66,26 +66,6 @@
         "timeoutMs": 120000
       },
       "items": [
-        "a1-0a1d4ef5",
-        "a1-12997ef3",
-        "a1-12eac192",
-        "a1-1da012fc",
-        "a1-2697da3f",
-        "a1-27a77e38",
-        "a1-27f8ce4f",
-        "a1-2b01abd0",
-        "a1-505fff84",
-        "a1-66e6c45b",
-        "a1-6f473927",
-        "a1-73ccf9c2",
-        "a1-7e02026e",
-        "a1-84db8fc4",
-        "a1-b9630600",
-        "a1-d19f7514",
-        "a1-e1d2900e",
-        "a1-e4075551",
-        "a1-e6de6e8f",
-        "a1-e99362f0",
         "a2-1ae2feb7",
         "a2-20a9e565",
         "a2-269e22fb",

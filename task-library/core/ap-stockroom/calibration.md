@@ -22,3 +22,7 @@
 Gap = (strong − myopic) / (bound − myopic). Admission (TASK_LIBRARY §3.4): at least 0.3 on every item, and the strong policy clearly below the bound: both hold. The strong policy's parameters were tuned on 30 futures resampled from the public distributions per item (72 settings), never on the item's own draws; the grid's optimum is inside it.
 
 **Self-calibration** (`python3 private/grader.py --self-calibrate`, `logs/self-calibration-0.1.0.log`, 71/71): anchors replay exactly from the policies' logs; the strong run completes with no invalid action or duplicate (it overflows on six items, 2–134 units, when delays bunch imports); an empty log is not completed; duplicates, invalid orders and an overflowing delivery are counted; the command-line protocol reproduces the myopic profit.
+
+## Version 0.2.0 (2026-10-25, grader 1.1.0)
+
+**Self-calibration** (`python3 private/grader.py --self-calibrate`, `logs/self-calibration-0.2.0.log`, 73/73): as 0.1.0, plus the `day` command — `day command: command line equals in-process, 40 days managed` and `malformed day: invalid, no day ended`, for every item.

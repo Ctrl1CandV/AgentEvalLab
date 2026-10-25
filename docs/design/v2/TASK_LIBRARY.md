@@ -42,14 +42,14 @@ Each section is the seed of the family's capability card. The implementer comple
   - **SWE-rebench leaderboard** (`nebius/SWE-rebench-leaderboard`, CC BY 4.0): monthly splits up to **2026-03**.
 
   Both may predate the training of the 2026 models in the pool. So:
-  - **dev**, and the building of the pipeline, use these pools. Every task created before a model's release date is flagged per model as possibly seen.
+  - **dev**, and the building of the pipeline, use these pools.
   - **validation and holdout** come from **our own mining**, by the same method: merged pull requests that fix a linked issue and change tests, in permissively licensed Python repositories, merged after the newest pool model's release date. We validate them locally exactly like the pool instances. Public GitHub data over HTTPS is reachable; the unauthenticated API (60 requests per hour) is enough for tens of tasks, and git clones need no API.
-  - Record each model's release date in the evidence table.
+  - No per-model contamination flags (user decision, 2026-10-25): a task is judged by its own evaluative value; its provenance and dates are recorded as data, nothing more.
 - **Selection.**
   - Python repositories under permissive licences.
   - Dependencies installable from wheels, so they can be vendored offline: no native builds needing apt, and no services.
   - Tests that run in under 5 minutes on this machine.
-  - Issues created after each tested model's release date. Earlier issues are flagged per model as possibly contaminated, as SWE-rebench does.
+  - Mined fixes recent enough that their tests are current (merged since 2026-06-01 for v2.0).
   - Prefer multi-file fixes. Record the gold patch size (files, lines) as a difficulty covariate.
 - **Task.**
   - The workspace holds the repository at the base commit without its history: a fresh single-commit `.git`, so the fix cannot be read from the history.
@@ -70,7 +70,7 @@ Each section is the seed of the family's capability card. The implementer comple
 - **Cheapest shortcut.**
   - Reading the fix from history (blocked).
   - Editing the tests (restored before grading).
-  - Recall of a public fix: limited by date filtering, and flagged per model.
+  - Recall of a public fix: limited by mining recent fixes.
 - **Size.** Dev 10 tasks from at least 5 repositories; validation 30 from repositories not in dev; holdout 30. Structure group = repository.
 
 ### 3.2 AR: abstraction and reasoning (core, reasoning)
