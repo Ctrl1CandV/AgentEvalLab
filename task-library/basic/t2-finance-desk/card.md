@@ -28,7 +28,7 @@ Reliability across a long queue. Each request is ordinary, but each has its own 
 - Doing nothing: every request check and `end-state` fail.
 - Writing the books directly instead of through `ledger.py`: the integrity check compares the books with the audit log.
 - Changes under an unknown request number, or outside the order (the third-party review's hole): `coverage` and `end-state` fail (grader 1.2.0).
-- A reply in another form: the content is still graded; the PLAN-005 deduction is a separate column (decision D2).
+- A reply in another form: the content is still graded, less 10% of the primary (user decision of 2026-10-25, grader 1.3.0).
 
 ## 6. Anchors and headroom
 

@@ -29,7 +29,7 @@ The clue sets are minimal: removing any one clue admits a second solution, so ev
 - Writing a solver: not possible (no execution).
 - Guessing: an assignment drawn without reasoning has a negligible chance of being entirely right; cell accuracy rewards near misses, which is why it is a diagnostic, not the headline.
 - Recall: the puzzles are generated for this project and unpublished.
-- Format games: the answer is one JSON object; a recovered answer is graded on its content, and the PLAN-005 deduction is reported as a separate column (decision D2).
+- Format games: the answer is one JSON object; a recovered answer is graded on its content, less 10% of its primary (user decision of 2026-10-25, grader 2.1.0).
 - Offline score of the shortcut (a random permutation per attribute): resolved 0, cell accuracy about 1/n.
 
 ## 6. Anchors and headroom

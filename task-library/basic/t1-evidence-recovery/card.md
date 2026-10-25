@@ -28,7 +28,7 @@ Reliability over many small decisions. Every rule is in the snapshot (`docs/RESP
 - Guessing from the question text: the conclusions turn on facts in the snapshot, and an answer counts only when the trace shows the files it needs.
 - Answering "insufficient evidence" everywhere: fails every answerable question.
 - Reading `secrets/`: denied by the tools.
-- A reply that is not one clean JSON object: the content is recovered when it ends with the answer object; the PLAN-005 deduction is a separate column (decision D2).
+- A reply that is not one clean JSON object: the content is recovered when it ends with the answer object; it loses 10% of its primary (user decision of 2026-10-25, grader 1.8.0).
 
 ## 6. Anchors and headroom
 
@@ -42,7 +42,7 @@ Project generator (`private/generate.py`, seed `t1-2026-10`, four items per leve
 
 - The model receives `instruction.md`, the item's questions (`prompt.md`) and the snapshot through the tools, and replies with one JSON object, one key per question.
 - Checks: one critical check per question (`q<n>`), or per answer field for an adjudication question (`q<n>-<field>`); a field passes when its value matches and the trace shows its supporting lines (search matches or read pages covering them) and the files it cannot be found without. The format check is apart.
-- Score model: one group `answers` (rule fraction, critical); resolved when every answer check passes; diagnostic = the share passed; format `answer-format`, deduction 0.2 reported separately.
+- Score model: one group `answers` (rule fraction, critical); resolved when every answer check passes; diagnostic = the share passed; format `answer-format`, deduction 0.1 applied to the primary.
 - Equivalent answers: deadlines compared as UTC minutes in any close format; case and whitespace of names.
 
 ## 9. Splits and size

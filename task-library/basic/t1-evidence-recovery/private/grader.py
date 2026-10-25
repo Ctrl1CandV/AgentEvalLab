@@ -15,7 +15,7 @@ import snapshot  # noqa: E402
 
 TASK_ID = "t1-evidence-recovery"
 TASK_VERSION = "0.6.0"
-GRADER_VERSION = "1.7.1"
+GRADER_VERSION = "1.8.0"  # 1.8.0 (2026-10-25): the format deduction is 10% and applies to the headline (score model only; checks unchanged)
 KEYS_PATH = os.path.join(HERE, "keys.json")
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)
 

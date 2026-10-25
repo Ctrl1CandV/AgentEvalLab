@@ -122,7 +122,7 @@ def main():
             "groups": [{"id": "outputs", "weight": 1, "critical": True, "rule": "fraction", "checkIds": [f"test-{index}" for index in range(1, MAX_TESTS + 1)]}],
             "metrics": [{"id": "testShare", "unit": "share of test outputs matched", "direction": "higher"},
                         {"id": "wellFormed", "unit": "0 or 1", "direction": "higher"}],
-            "format": {"checkId": "answer-format", "penalty": 0.2},
+            "format": {"checkId": "answer-format", "penalty": 0.1},
         },
         "items": items,
         "toolProfiles": ["none", "workspace-basic"],

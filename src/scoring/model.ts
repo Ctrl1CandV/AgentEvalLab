@@ -43,7 +43,8 @@ export interface ScoreModel {
   primaryByItem?: Record<string, Primary>;
   groups: ScoreGroup[];
   metrics?: ScoreMetric[];
-  /** The format check and the PLAN-005 deduction, reported as a separate penalised value (decision D2). */
+  /** The format check and its deduction, applied to the primary (user decision of 2026-10-25: following the format is
+   * part of the ability measured; the deduction is lighter, 10% in v2's packages). */
   format?: { checkId: string; penalty: number };
   /** The most a structure group may weigh in its family (default 0.2). */
   structureCap?: number;
@@ -64,7 +65,8 @@ export interface OutcomeRecord {
   metrics: Array<{ id: string; value: number; unit: string | null; direction: "higher" | "lower" | null }>;
   normalised: Record<string, { value: number; extrapolated: boolean; anchorVersion: string }>;
   primary: number | null;
-  format: { status: "strict" | "recovered" | "missing" | "n/a"; penalised: number | null };
+  /** `penalised` is the primary (after the deduction); `content` the value before it. */
+  format: { status: "strict" | "recovered" | "missing" | "n/a"; penalised: number | null; content: number | null };
   stop: Stop;
   usage: {
     inputTokens: number | null; cacheReadTokens: number | null; cacheWriteTokens: number | null; outputTokens: number | null;
@@ -201,12 +203,15 @@ export function buildOutcome(input: OutcomeInput): OutcomeRecord {
       primary = criticalPass ? normalised[headline.metric]?.value ?? 0 : 0;
     }
   }
-  let format: OutcomeRecord["format"] = { status: "n/a", penalised: primary };
+  let format: OutcomeRecord["format"] = { status: "n/a", penalised: primary, content: primary };
   if (scoreModel.format) {
     const verdict = passed.get(scoreModel.format.checkId);
     const anyContent = evaluation.checks.some(check => check.id !== scoreModel.format!.checkId && check.passed === true);
     const status = verdict === true ? "strict" : verdict === false ? (anyContent ? "recovered" : "missing") : "n/a";
-    format = { status, penalised: primary === null ? null : status === "recovered" ? primary * (1 - scoreModel.format.penalty) : primary };
+    const content = primary;
+    // A recovered answer (found, but not in the required format) loses the deduction from the primary itself.
+    if (primary !== null && status === "recovered") primary = primary * (1 - scoreModel.format.penalty);
+    format = { status, penalised: primary, content };
   }
   const requests = execution.requestUsage ?? [];
   return {

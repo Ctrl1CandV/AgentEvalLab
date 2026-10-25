@@ -46,8 +46,9 @@ test("outcome records: groups by rule, resolved from critical groups, diagnostic
   const recovered = buildOutcome({ ...base, evaluation: { status: "passed", score: null, error: null, checks: checks(["f1", "f2", "p1", "p2", "p3", "p4"]) },
     execution: emptyExecution(), scoreModel: contract });
   assert.equal(recovered.resolved, true);
-  assert.equal(recovered.primary, 1, "the headline is content; the deduction is a separate column");
-  assert.deepEqual(recovered.format, { status: "recovered", penalised: 0.8 });
+  assert.ok(Math.abs(recovered.primary! - 0.8) < 1e-12, "the format deduction applies to the headline");
+  assert.equal(recovered.format.status, "recovered");
+  assert.equal(recovered.format.content, 1, "the value before the deduction is kept");
   const missing = buildOutcome({ ...base, evaluation: { status: "failed", score: null, error: null, checks: checks([]) }, execution: emptyExecution(), scoreModel: contract });
   assert.equal(missing.format.status, "missing");
   const infra = buildOutcome({ ...base, evaluation: { status: "skipped", score: null, error: null, checks: [] },

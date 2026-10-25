@@ -18,7 +18,7 @@ import ledger  # noqa: E402
 
 TASK_ID = "t2-finance-desk"
 TASK_VERSION = "0.3.0"
-GRADER_VERSION = "1.2.0"
+GRADER_VERSION = "1.3.0"  # 1.3.0 (2026-10-25): the format deduction is 10% and applies to the headline (score model only; checks unchanged)
 DAYS_PATH = os.path.join(HERE, "days.json")
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)
 CLOSING_FENCE = re.compile(r"```(?:json)?[ \t]*\r?\n((?:(?!```).)*?)\r?\n?```\s*$", re.S | re.I)

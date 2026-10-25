@@ -57,7 +57,7 @@ export interface FamilyModelRow {
   interval: Interval;
   diagnostic: number | null;
   metrics: Record<string, number | null>;
-  format: { strict: number; recovered: number; missing: number; penalised: number | null };
+  format: { strict: number; recovered: number; missing: number; content: number | null };
   stops: Partial<Record<Stop, number>>;
   infrastructure: number;
   refusals: number;
@@ -126,7 +126,8 @@ function familyRow(family: V2FamilyData, label: string, tasks: TaskScore[], seed
     metrics: Object.fromEntries(metricIds.map(id => [id, median(scored.flatMap(outcome => outcome.metrics.filter(metric => metric.id === id).map(metric => metric.value)))])),
     format: { strict: scored.filter(outcome => outcome.format.status === "strict").length, recovered: scored.filter(outcome => outcome.format.status === "recovered").length,
       missing: scored.filter(outcome => outcome.format.status === "missing").length,
-      penalised: mean(scored.map(outcome => outcome.format.penalised).filter((value): value is number => value !== null)) },
+      // The primary before the format deduction (records written before 2026-10-25 kept the deduction apart).
+      content: mean(scored.map(outcome => outcome.format.content ?? outcome.primary).filter((value): value is number => value !== null)) },
     stops, infrastructure: own.filter(outcome => outcome.coverageReason === "infrastructure").length,
     refusals: own.filter(outcome => outcome.coverageReason === "provider_refusal").length,
     efficiency: { medianTokens: median(tokens), medianWallMs: median(scored.map(outcome => outcome.usage.wallMs)), medianModelCalls: median(scored.map(outcome => outcome.usage.modelCalls)),
@@ -249,9 +250,9 @@ export function markdownReportV2(report: ReportV2): string {
     const metricIds = [...new Set(family.rows.flatMap(row => Object.keys(row.metrics)))];
     lines.push(`### ${family.id} (${family.tier}, ${family.capability})`, "",
       `Primary: ${family.primaryKind === "resolved" ? "resolved rate" : family.primaryKind === "metric" ? "normalised metric, uncapped" : "rating"}. Runs: ${family.runDirectories.map(path => `\`${path}\``).join(", ") || "none"}.`, "",
-      `| Model | Tasks | Trials | Coverage | Resolved | Primary | 95% interval | Diagnostic |${metricIds.map(id => ` ${id} (median) |`).join("")} Format strict / recovered / missing | Penalised | Stops | Infra / refusals |`,
+      `| Model | Tasks | Trials | Coverage | Resolved | Primary | 95% interval | Diagnostic |${metricIds.map(id => ` ${id} (median) |`).join("")} Format strict / recovered / missing | Before format deduction | Stops | Infra / refusals |`,
       `| --- | ---: | ---: | --- | ---: | ---: | --- | ---: |${metricIds.map(() => " ---: |").join("")} --- | ---: | --- | --- |`,
-      ...family.rows.map(row => `| ${row.label} | ${row.tasks} | ${row.trials} | ${row.coverage.scored} scored, ${row.coverage.unscored} unscored, ${row.coverage.notRun} not run of ${row.coverage.planned} planned${row.complete ? "" : " **(incomplete)**"} | ${percent(row.resolvedRate)} | ${primaryText(family.primaryKind, row.primary)} | ${span(row.interval, value => primaryText(family.primaryKind, value))} | ${percent(row.diagnostic)} |${metricIds.map(id => ` ${number(row.metrics[id] ?? null, 3)} |`).join("")} ${row.format.strict} / ${row.format.recovered} / ${row.format.missing} | ${primaryText(family.primaryKind, row.format.penalised)} | ${Object.entries(row.stops).map(([stop, count]) => `${stop} ${count}`).join(", ") || "—"} | ${row.infrastructure} / ${row.refusals} |`), "");
+      ...family.rows.map(row => `| ${row.label} | ${row.tasks} | ${row.trials} | ${row.coverage.scored} scored, ${row.coverage.unscored} unscored, ${row.coverage.notRun} not run of ${row.coverage.planned} planned${row.complete ? "" : " **(incomplete)**"} | ${percent(row.resolvedRate)} | ${primaryText(family.primaryKind, row.primary)} | ${span(row.interval, value => primaryText(family.primaryKind, value))} | ${percent(row.diagnostic)} |${metricIds.map(id => ` ${number(row.metrics[id] ?? null, 3)} |`).join("")} ${row.format.strict} / ${row.format.recovered} / ${row.format.missing} | ${primaryText(family.primaryKind, row.format.content)} | ${Object.entries(row.stops).map(([stop, count]) => `${stop} ${count}`).join(", ") || "—"} | ${row.infrastructure} / ${row.refusals} |`), "");
   }
   lines.push("## Pairwise comparisons", "", "Per core capability, paired by task: A − B in the capability's primary, with a stratified cluster-bootstrap interval and the share of tasks each model is ahead.", "");
   if (report.comparisons.length) {

@@ -21,7 +21,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 KEYS_PATH = os.path.join(HERE, "keys.json")
 TASK_ID = "ar-abstraction"
 TASK_VERSION = "0.1.0"
-GRADER_VERSION = "1.0.0"
+GRADER_VERSION = "1.1.0"  # 1.1.0 (2026-10-25): the format deduction is 10% and applies to the headline (score model only; checks unchanged)
 ATTEMPTS = 2
 
 

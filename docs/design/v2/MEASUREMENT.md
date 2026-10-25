@@ -26,7 +26,7 @@ The harness computes one record per trial from the grader result (schema in [COD
 | `metrics` | raw values reported by the grader: `{id, value, unit, direction}`, e.g. contest total, AtCoder performance, runtime, bytes, reward, regret, tests passed |
 | `normalised` | for each metric with anchors: the value mapped piecewise-linearly through the anchors, extended linearly above the top anchor with the last segment's slope, floored at 0; **never capped** |
 | `primary` | the family's declared headline for the task: `resolved` (0/1) for contract tasks, `normalised[<metric>]` for open-ended tasks |
-| `format` | `strict`, `recovered` or `missing`; with the PLAN-005 deduction shown as a separate `penalised` value (decision D2 in PLAN-007) |
+| `format` | `strict`, `recovered` or `missing`; a recovered answer loses the family's format deduction (10% in v2) from the primary itself, and the value before the deduction is kept (`format.content`) (user decision of 2026-10-25: following the required format is part of the ability) |
 | `stop` | `done`, `budget`, `timeout`, `output_limit`, `model_error`, `infrastructure` |
 | `usage` | input, cache read, cache write, output and reasoning tokens (where the provider reports them), model calls, tool calls, wall time, and tool CPU time where measured |
 | `coverage` | `scored`, `unscored` (with the reason), or `not_run` |

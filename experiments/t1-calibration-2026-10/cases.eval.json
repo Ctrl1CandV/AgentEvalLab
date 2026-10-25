@@ -51,7 +51,7 @@
     {
       "id": "t1-evidence-recovery",
       "packagePath": "task-library/basic/t1-evidence-recovery",
-      "packageManifestSha256": "20825f64865f97738de446fd35439d2d7abc52dd179aad8c6075843b0d820944",
+      "packageManifestSha256": "6cb7d1e69d105641a5a241a1bd682001959db960f54990537afae0fb903502ae",
       "readOnly": true,
       "toolProfile": "doc-evidence",
       "input": {

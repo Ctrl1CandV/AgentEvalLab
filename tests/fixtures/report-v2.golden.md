@@ -21,7 +21,7 @@ Every number below comes from the trials' outcome records (MEASUREMENT §2). A t
 
 | Model | reasoning (core) |
 | --- | --- |
-| m:a-high | 0.75 [0.583–0.917], 12 tasks |
+| m:a-high | 0.7 [0.567–0.833], 12 tasks |
 | m:b-default | 0.167 [0–0.333], 12 tasks |
 
 Families reported as their own rows and never averaged into the core (basic, frontier, and core families of a second protocol):
@@ -37,16 +37,16 @@ Families reported as their own rows and never averaged into the core (basic, fro
 
 Primary: resolved rate. Runs: `runs/suites/x/runs/CORE/r1`.
 
-| Model | Tasks | Trials | Coverage | Resolved | Primary | 95% interval | Diagnostic | Format strict / recovered / missing | Penalised | Stops | Infra / refusals |
+| Model | Tasks | Trials | Coverage | Resolved | Primary | 95% interval | Diagnostic | Format strict / recovered / missing | Before format deduction | Stops | Infra / refusals |
 | --- | ---: | ---: | --- | ---: | ---: | --- | ---: | --- | ---: | --- | --- |
-| m:a-high | 12 | 12 | 12 scored, 0 unscored, 0 not run of 12 planned | 75.0% | 75.0% | 58.3%–91.7% | 87.5% | 9 / 3 / 0 | 70.0% | done 12 | 0 / 0 |
+| m:a-high | 12 | 12 | 12 scored, 0 unscored, 0 not run of 12 planned | 75.0% | 70.0% | 56.7%–83.3% | 87.5% | 9 / 3 / 0 | 75.0% | done 12 | 0 / 0 |
 | m:b-default | 12 | 12 | 12 scored, 0 unscored, 0 not run of 12 planned | 16.7% | 16.7% | 0.0%–33.3% | 33.3% | 12 / 0 / 0 | 16.7% | done 11, budget 1 | 0 / 0 |
 
 ### FRONT (frontier, engineering)
 
 Primary: normalised metric, uncapped. Runs: `runs/suites/x/runs/FRONT/r1`.
 
-| Model | Tasks | Trials | Coverage | Resolved | Primary | 95% interval | Diagnostic | score (median) | Format strict / recovered / missing | Penalised | Stops | Infra / refusals |
+| Model | Tasks | Trials | Coverage | Resolved | Primary | 95% interval | Diagnostic | score (median) | Format strict / recovered / missing | Before format deduction | Stops | Infra / refusals |
 | --- | ---: | ---: | --- | ---: | ---: | --- | ---: | ---: | --- | ---: | --- | --- |
 | m:a-high | 3 | 3 | 3 scored, 0 unscored, 0 not run of 3 planned | 100.0% | 0.688 | n too small | 100.0% | 700 | 0 / 0 / 0 | 0.688 | done 3 | 0 / 0 |
 | m:b-default | 3 | 3 | 3 scored, 0 unscored, 1 not run of 4 planned **(incomplete)** | 100.0% | 0.125 | n too small | 100.0% | 100 | 0 / 0 / 0 | 0.125 | done 3 | 0 / 0 |
@@ -55,7 +55,7 @@ Primary: normalised metric, uncapped. Runs: `runs/suites/x/runs/FRONT/r1`.
 
 Primary: resolved rate. Runs: `runs/suites/x/runs/BASE/r1`.
 
-| Model | Tasks | Trials | Coverage | Resolved | Primary | 95% interval | Diagnostic | Format strict / recovered / missing | Penalised | Stops | Infra / refusals |
+| Model | Tasks | Trials | Coverage | Resolved | Primary | 95% interval | Diagnostic | Format strict / recovered / missing | Before format deduction | Stops | Infra / refusals |
 | --- | ---: | ---: | --- | ---: | ---: | --- | ---: | --- | ---: | --- | --- |
 | m:a-high | 2 | 2 | 2 scored, 0 unscored, 0 not run of 2 planned | 100.0% | 100.0% | n too small | 100.0% | 2 / 0 / 0 | 100.0% | done 2 | 0 / 0 |
 | m:b-default | 2 | 2 | 2 scored, 0 unscored, 0 not run of 2 planned | 100.0% | 100.0% | n too small | 100.0% | 2 / 0 / 0 | 100.0% | done 2 | 0 / 0 |
@@ -66,13 +66,13 @@ Per core capability, paired by task: A − B in the capability's primary, with a
 
 | Capability | A | B | Tasks | A − B | 95% interval | A ahead | B ahead | Tied |
 | --- | --- | --- | ---: | ---: | --- | ---: | ---: | ---: |
-| reasoning | m:a-high | m:b-default | 12 | 0.583 | 0.333–0.833 | 58.3% | 0.0% | 41.7% |
+| reasoning | m:a-high | m:b-default | 12 | 0.533 | 0.3–0.767 | 58.3% | 0.0% | 41.7% |
 
 ## Saturation and headroom
 
 | Family | Tasks scored for every model | Solved by all | Solved by none | Best above the strong anchor | Spread |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| CORE | 12 | 2 | 3 | — | 0.583 |
+| CORE | 12 | 2 | 3 | — | 0.533 |
 | FRONT | 3 | — | — | 1 | 0.563 |
 | BASE | 2 | 2 | 0 | — | 0 |
 

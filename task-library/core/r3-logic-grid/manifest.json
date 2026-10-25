@@ -33,7 +33,7 @@
       },
       {
         "path": "card.md",
-        "sha256": "77ab2a5ab38f0cdc1dded54bacc5c4645541871ab5a887cf176174890cb387ce"
+        "sha256": "05e3c9dfc08bfda5f729aee4494a18f7bf765544456dc2255d4907b9493320d5"
       },
       {
         "path": "rubric.md",
@@ -41,11 +41,11 @@
       },
       {
         "path": "private/generate.py",
-        "sha256": "684380c9d7af6c3d4eca28a8d394c2046da6dff69dd77a54192ae2562045b75d"
+        "sha256": "96e8446d0c1ca01147b9fcf24abe9e44843ca3b996be3fc1e7d59d7e18a29a73"
       },
       {
         "path": "private/grader.py",
-        "sha256": "d689e1ace512cf0db78e13b07ab336e39fc547ef2f9c36919b604fd0eb6833bf"
+        "sha256": "a947f68e7c1b5b4cc3fa1ecbbd022171e89bdd25c69885f1f0663466e048e54b"
       },
       {
         "path": "private/keys.json",
@@ -1005,7 +1005,7 @@
     ],
     "format": {
       "checkId": "answer-format",
-      "penalty": 0.2
+      "penalty": 0.1
     }
   },
   "items": [
@@ -9620,7 +9620,7 @@
   ],
   "grader": {
     "id": "r3-logic-grid-cells",
-    "version": "2.0.1",
+    "version": "2.1.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

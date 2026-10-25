@@ -33,7 +33,7 @@
       },
       {
         "path": "card.md",
-        "sha256": "04ac5767f77b696cddc1890be9e2d91bebcdc139c66f2ee5cc0d792c43c640da"
+        "sha256": "76644130289b7baaabd6fadf7f21e21884d9ea84c65ab5af57d51431ccaad5c6"
       },
       {
         "path": "rubric.md",
@@ -45,7 +45,7 @@
       },
       {
         "path": "private/build_package.py",
-        "sha256": "09534da9c2faeac7678721776b3be9066877a95c063d05dcb6a41a134a174b8a"
+        "sha256": "aefbb277c77d07b1ceec20c5cf9dfdd3f3a4b5683c386d326b8e2a2102babebd"
       },
       {
         "path": "private/calibrate.py",
@@ -61,7 +61,7 @@
       },
       {
         "path": "private/grader.py",
-        "sha256": "6ac1b96a73a86f6374cc5eb7c13ed14497a9885072b5a6a695eb81bc5be2a455"
+        "sha256": "631189ad9a7d5061df7a3875d18dcffcba0783a06c024b24d2e5f716f3d3f130"
       },
       {
         "path": "private/ledger.py",
@@ -1772,7 +1772,7 @@
     ],
     "format": {
       "checkId": "answer-format",
-      "penalty": 0.2
+      "penalty": 0.1
     }
   },
   "items": [
@@ -2114,7 +2114,7 @@
   ],
   "grader": {
     "id": "t2-finance-ledger",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

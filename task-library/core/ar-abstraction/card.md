@@ -28,9 +28,9 @@ Each task's rule is new: it must be inferred from a handful of examples and hold
 
 ## 5. Cheapest shortcut
 
-- **Recall.** Both public evaluation sets are on the web (ARC-AGI-1 since 2019, ARC-AGI-2 since 2025), with outputs, and 376 of the 400 ARC-AGI-1 evaluation tasks are also in ARC-AGI-2's public training set. Every task is marked `exposure: public`; ARC-1 and ARC-2 are reported as separate rows as well as together, and each model's release date is recorded in the evidence table (decision D6: include them, flagged).
+- **Recall.** Both public evaluation sets are on the web (ARC-AGI-1 since 2019, ARC-AGI-2 since 2025), with outputs, and 376 of the 400 ARC-AGI-1 evaluation tasks are also in ARC-AGI-2's public training set. Every task is marked `exposure: public`. ARC-2 is the family's headline; ARC-1, with its overlap, runs answer-only as a low-weight reference row outside the capability profile (user decision of 2026-10-25; no per-model contamination flags).
 - **Guessing**: an output grid is exact or nothing; the copy-the-input or most-common-colour answers match only where the rule is that trivial.
-- **Format games**: the answer is one JSON object; a recovered answer is graded on its content, the deduction reported separately (D2).
+- **Format games**: the answer is one JSON object; a recovered answer loses 10% of its primary (user decision of 2026-10-25).
 - **More attempts**: only the first two per test input count.
 
 ## 6. Anchors and headroom

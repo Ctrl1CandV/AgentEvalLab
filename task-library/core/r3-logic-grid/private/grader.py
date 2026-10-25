@@ -15,7 +15,7 @@ import logic_grid  # noqa: E402
 
 TASK_ID = "r3-logic-grid"
 TASK_VERSION = "0.4.0"
-GRADER_VERSION = "2.0.1"
+GRADER_VERSION = "2.1.0"  # 2.1.0 (2026-10-25): the format deduction is 10% and applies to the headline (score model only; checks unchanged)
 KEYS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "keys.json")
 
 FENCED_BLOCK = re.compile(r"```(?:json)?[ \t]*\r?\n(.*?)\r?\n?```", re.S | re.I)

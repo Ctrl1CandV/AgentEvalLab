@@ -85,7 +85,7 @@ def main():
             "primary": {"kind": "resolved"},
             "groups": [{"id": group, "weight": GROUP_WEIGHTS[group], "critical": group != "plan", "rule": "fraction", "checkIds": checks}
                        for group, checks in groups.items()],
-            "format": {"checkId": "answer-format", "penalty": 0.2},
+            "format": {"checkId": "answer-format", "penalty": 0.1},
         },
         "items": items, "toolProfiles": ["workspace-basic"],
         "grader": {"id": "t2-finance-ledger", "version": grader.GRADER_VERSION, "entryPoint": "private/grader.py", "executable": "python3",

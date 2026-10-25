@@ -37,7 +37,7 @@
       },
       {
         "path": "card.md",
-        "sha256": "0cbf143f542b1899be88a6233925cc5265755cd36fe0f58a0f1c33c0983b50d4"
+        "sha256": "d27d23bcaac01588686cf3b1156ffa6525428e300121edd30faa605382cfbc1c"
       },
       {
         "path": "rubric.md",
@@ -45,11 +45,11 @@
       },
       {
         "path": "private/build_package.py",
-        "sha256": "0700a9a1766e69913a04bd6c222746ac3482583605be7ac58c36b8b3768c3d0b"
+        "sha256": "1e39ee322934993e313a57ac5ac5ff4d52bf21f09f06a841d7ee22bedab0faa6"
       },
       {
         "path": "private/grader.py",
-        "sha256": "96a059c5269c610fcf4a85fb76953cf7c8392b47ef88cae5471e1c80b3bed98d"
+        "sha256": "5cd3823e764051008292489e976ec1fa6d152958b114b9b1a5e56b4a58dede37"
       },
       {
         "path": "private/keys.json",
@@ -135,7 +135,7 @@
     ],
     "format": {
       "checkId": "answer-format",
-      "penalty": 0.2
+      "penalty": 0.1
     }
   },
   "items": [
@@ -5398,7 +5398,7 @@
   ],
   "grader": {
     "id": "ar-pass-at-2",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

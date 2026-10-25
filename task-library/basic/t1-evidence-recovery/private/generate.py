@@ -18,7 +18,7 @@ import snapshot  # noqa: E402
 
 TASK_ID = "t1-evidence-recovery"
 TASK_VERSION = "0.6.0"
-GRADER_VERSION = "1.7.1"
+GRADER_VERSION = "1.8.0"
 TRUSTED = ["calibration.md", "card.md", "rubric.md", "private/cases.py", "private/chains.py", "private/generate.py", "private/grader.py", "private/keys.json",
            "private/snapshot.py"]
 # Manifest v2 (PLAN-007 WP2.2): every item has been run and inspected, so all are dev (a basic family has no other
@@ -89,7 +89,7 @@ def main():
         "scoreModel": {
             "primary": {"kind": "resolved"},
             "groups": [{"id": "answers", "weight": 1, "critical": True, "rule": "fraction", "checkIds": answer_checks}],
-            "format": {"checkId": "answer-format", "penalty": 0.2},
+            "format": {"checkId": "answer-format", "penalty": 0.1},
         },
         "items": items,
         "generator": {"entryPoint": "private/generate.py", "seed": args.seed, "perLevel": args.per_level},

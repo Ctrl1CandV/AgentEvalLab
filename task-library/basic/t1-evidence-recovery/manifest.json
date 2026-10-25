@@ -33,7 +33,7 @@
       },
       {
         "path": "card.md",
-        "sha256": "1cb4a93a6d1da3cc6ad947d024dc39f0587ea02ee166560e5330ab9d43181594"
+        "sha256": "c64e0d300629179bcab135911f2ba29134918f5b7b6c5eb22de58b6dd5f29552"
       },
       {
         "path": "rubric.md",
@@ -49,11 +49,11 @@
       },
       {
         "path": "private/generate.py",
-        "sha256": "ebc3c7617d8884d4cdb8a4b9f63d027067e7f7d6400afb55e8e08282a670b17f"
+        "sha256": "0bc8ef5989cc261e46a3deb006cc2b294dcabb566bf18af8ea1e43531dc94f03"
       },
       {
         "path": "private/grader.py",
-        "sha256": "ba15e2cdd40d8a5747936d1f8389ea1d2b15507a18bfee8743acbfc15b9c8c94"
+        "sha256": "76dee10cb2145f523387d8f84ffae6243c7716639e4152341f662637b252c43c"
       },
       {
         "path": "private/keys.json",
@@ -474,7 +474,7 @@
     ],
     "format": {
       "checkId": "answer-format",
-      "penalty": 0.2
+      "penalty": 0.1
     }
   },
   "items": [
@@ -28633,7 +28633,7 @@
   ],
   "grader": {
     "id": "t1-evidence-trace",
-    "version": "1.7.1",
+    "version": "1.8.0",
     "entryPoint": "private/grader.py",
     "executable": "python3",
     "args": [

@@ -25,7 +25,7 @@ SPLIT_SEED = "r3-2026-10-splits"
 SHAPE_ITEMS = 4
 TASK_ID = "r3-logic-grid"
 TASK_VERSION = "0.4.0"
-GRADER_VERSION = "2.0.1"
+GRADER_VERSION = "2.1.0"
 TRUSTED = ["calibration.md", "card.md", "rubric.md", "private/generate.py", "private/grader.py", "private/keys.json", "private/logic_grid.py"]
 # Manifest v2 (grader 2.0.0): every item of L1-L7 has been seen in pilots, so all of them are dev; a structure group is
 # a grid size, since a level's items share the generator template (VALIDATION §3).
@@ -108,7 +108,7 @@ def main():
             "metrics": [{"id": "cellAccuracy", "unit": "share of cells", "direction": "higher"},
                         {"id": "constraintValidity", "unit": "share of clues", "direction": "higher"},
                         {"id": "wellFormed", "unit": "0 or 1", "direction": "higher"}],
-            "format": {"checkId": "answer-format", "penalty": 0.2},
+            "format": {"checkId": "answer-format", "penalty": 0.1},
         },
         "items": items,
         "generator": {"entryPoint": "private/generate.py", "seed": args.seed, "perLevel": args.per_level},

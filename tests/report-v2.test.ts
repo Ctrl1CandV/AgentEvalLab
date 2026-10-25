@@ -57,7 +57,8 @@ test("report v2: the golden fixture suite", async () => {
   assert.equal(markdown, await readFile(GOLDEN, "utf8"));
   // The facts the golden file encodes, stated directly.
   const core = report.families.find(family => family.id === "CORE")!;
-  assert.equal(core.rows[0]!.primary, 0.75, "model a resolves 9 of 12 tasks, every group weighing the same");
+  assert.ok(Math.abs(core.rows[0]!.primary! - 0.7) < 1e-12, "model a resolves 9 of 12 tasks, three of them with a recovered format (20% each)");
+  assert.equal(core.rows[0]!.format.content, 0.75, "before the deduction: 9 of 12");
   assert.notEqual(core.rows[0]!.interval, "n too small", "six structure groups give an interval");
   const frontier = report.families.find(family => family.id === "FRONT")!;
   assert.ok(frontier.rows[0]!.primary! > 0.5);
